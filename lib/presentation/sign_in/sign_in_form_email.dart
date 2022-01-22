@@ -21,9 +21,9 @@ class _SignInFormEmailState extends State<SignInFormEmail> {
         state.authFailureOrSuccessOption.fold(() => 
         {}, (either) => 
         either.fold((failure) {
-
-        }, (r){
           
+        }, (r){
+
         } ));
       },
       builder: (bloccontext, state) {
