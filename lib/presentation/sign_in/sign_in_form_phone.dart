@@ -145,11 +145,7 @@ class _SignInFormPhoneState extends State<SignInFormPhone> {
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: const [
                                 InkWell(
-                                    // onTap: (){
-                                    //   controller.password.clear();
-                                    //   Get.toNamed('/reset');
-                                    // },
-                                    child: Text(
+                                  child: Text(
                                   'Forgot password?',
                                   style: TextStyle(
                                       fontSize: 13.5, color: kPrimaryColor),
@@ -167,7 +163,7 @@ class _SignInFormPhoneState extends State<SignInFormPhone> {
                                           .signInWithPhonePressed(),
                                     )
                               },
-                              disabled: false,
+                              disabled: state.isSubmitting,
                             ),
                           ],
                         ),

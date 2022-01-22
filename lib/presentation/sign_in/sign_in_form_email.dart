@@ -4,9 +4,15 @@ import 'package:fortfolio/application/auth/sign_in_form/email/sign_in_form_email
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
 
-class SignInFormEmail extends StatelessWidget {
+class SignInFormEmail extends StatefulWidget {
   const SignInFormEmail({Key? key}) : super(key: key);
 
+  @override
+  State<SignInFormEmail> createState() => _SignInFormEmailState();
+}
+
+class _SignInFormEmailState extends State<SignInFormEmail> {
+  bool _obscuretext = true;
   @override
   Widget build(BuildContext context) {
     final _formKey = GlobalKey<FormState>();
@@ -16,7 +22,9 @@ class SignInFormEmail extends StatelessWidget {
         {}, (either) => 
         either.fold((failure) {
 
-        }, (r){} ));
+        }, (r){
+          
+        } ));
       },
       builder: (bloccontext, state) {
         return SafeArea(
@@ -63,7 +71,7 @@ class SignInFormEmail extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Text("Your Email", style: TextStyle(fontSize: 15, color: Color(0xFF656565)),),
+                        const Text("Your Email", style: TextStyle(fontSize: 15, color: Color(0xFF656565)),),
                         TextButton(
                           onPressed: () => {}, 
                           child: const Text("Login with phone", style: TextStyle(fontSize: 15, color: kPrimaryColor),),)
@@ -102,25 +110,26 @@ class SignInFormEmail extends StatelessWidget {
                       decoration: InputDecoration(
                         // errorText: controller.passwordErrorText,
                         filled: true,
-                        fillColor: const Color(0xFFF3F6F8),
+                        fillColor: Color(0xFFF3F6F8),
                         border: InputBorder.none,
-                        // suffixIcon: IconButton(
-                        //         onPressed: () => controller.toggle(),
-                        //         icon: controller.showPassword.value
-                        //             ? const Icon(
-                        //                 Icons.visibility,
-                        //                 color: kPrimaryColor,
-                        //               )
-                        //             : const Icon(
-                        //                 Icons.visibility_off,
-                        //                 color: kPrimaryColor,
-                        //               ),
-                        //       )
+                        suffixIcon: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    _obscuretext = !_obscuretext;
+                                  });
+                                },
+                                icon: _obscuretext
+                                    ? const Icon(
+                                        Icons.visibility,
+                                        color: kPrimaryColor,
+                                      )
+                                    : const Icon(
+                                        Icons.visibility_off,
+                                        color: kPrimaryColor,
+                                      ),
+                              )
                       ),
-                      // controller: controller.password,
-                      // textInputAction: TextInputAction.done,
-                      // focusNode: controller.passwordFocusNode,
-                      // onEditingComplete: controller.login,
+                      textInputAction: TextInputAction.done,
                       onChanged: (value) => context
                           .read<SignInFormEmailBloc>()
                           .add(SignInFormEmailEvent.passwordChanged(value)),
@@ -131,18 +140,18 @@ class SignInFormEmail extends StatelessWidget {
                               ),
                           (r) => null),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 3.0,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
+                      children: const [
                         InkWell(
                             // onTap: (){
                             //   controller.password.clear();
                             //   Get.toNamed('/reset');
                             // },
-                            child: const Text(
+                            child: Text(
                           'Forgot password?',
                           style:
                               TextStyle(fontSize: 13.5, color: kPrimaryColor),
@@ -159,7 +168,7 @@ class SignInFormEmail extends StatelessWidget {
                           const SignInFormEmailEvent.signInWithEmailAndPasswordpressed(),
                         )
                       },
-                      disabled: false,
+                      disabled: state.isSubmitting,
                     ),
                   ],
                 ),
