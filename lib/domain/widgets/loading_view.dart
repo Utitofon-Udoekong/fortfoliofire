@@ -6,11 +6,11 @@ class LoadingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
         child: CircularProgressIndicator(
-          color: klightblue,
-          backgroundColor: Colors.white60,
+          color: kWhiteColor,
+          backgroundColor: kPrimaryColor.withOpacity(0.9),
         ),
       ),
     );

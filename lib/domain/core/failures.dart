@@ -17,3 +17,4 @@ class ValueFailure<T> with _$ValueFailure<T> {
     required String failedValue,
   }) = InvalidPhone<T>;
 }
+
