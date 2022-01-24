@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fortfolio/constants/theme.dart';
-import 'package:get/get.dart';
+import 'package:fortfolio/domain/constants/theme.dart';
 
 class CustomIconButton extends StatelessWidget {
   const CustomIconButton({ Key? key, required this.title, required this.page }) : super(key: key);
@@ -10,7 +9,6 @@ class CustomIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        Get.to(page);
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 15.0),

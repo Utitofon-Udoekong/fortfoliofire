@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/application/auth/sign_in_form/email/sign_in_form_email_bloc.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
+import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
+import 'package:fortfolio/domain/widgets/loading_view.dart';
 
 class SignInFormEmail extends StatefulWidget {
   const SignInFormEmail({Key? key}) : super(key: key);
@@ -18,13 +20,25 @@ class _SignInFormEmailState extends State<SignInFormEmail> {
     final _formKey = GlobalKey<FormState>();
     return BlocConsumer<SignInFormEmailBloc, SignInFormEmailState>(
       listener: (context, state) {
-        state.authFailureOrSuccessOption.fold(() => 
-        {}, (either) => 
-        either.fold((failure) {
-          
-        }, (r){
-
-        } ));
+        state.authFailureOrSuccessOption.fold(
+            () {},
+            (either) => either.fold((failure) {
+                  CustomSnackbar.showSnackBar(
+                    context,
+                    failure.map(
+                        serverError: (_) => 'Encountered a servor error',
+                        emailAlreadyInUse: (_) => 'Email already in use',
+                        invalidEmailAndPassword: (_) =>
+                            'Invalid email and password'),
+                    true,
+                  );
+                  // Flushbar(
+                  //   message: failure.map(
+                  //       serverError: (_) => 'Encountered a servor error',
+                  //       emailAlreadyInUse: (_) => 'Encountered a servor error',
+                  //       invalidEmailAndPassword: (_) => 'Encountered a servor error'),
+                  // ).show(context);
+                }, (r) {}));
       },
       builder: (bloccontext, state) {
         return SafeArea(
@@ -71,10 +85,19 @@ class _SignInFormEmailState extends State<SignInFormEmail> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        const Text("Your Email", style: TextStyle(fontSize: 15, color: Color(0xFF656565)),),
+                        const Text(
+                          "Your Email",
+                          style:
+                              TextStyle(fontSize: 15, color: Color(0xFF656565)),
+                        ),
                         TextButton(
-                          onPressed: () => {}, 
-                          child: const Text("Login with phone", style: TextStyle(fontSize: 15, color: kPrimaryColor),),)
+                          onPressed: () => {},
+                          child: const Text(
+                            "Login with phone",
+                            style:
+                                TextStyle(fontSize: 15, color: kPrimaryColor),
+                          ),
+                        )
                       ],
                     ),
                     TextFormField(
@@ -91,12 +114,16 @@ class _SignInFormEmailState extends State<SignInFormEmail> {
                       onChanged: (value) => context
                           .read<SignInFormEmailBloc>()
                           .add(SignInFormEmailEvent.emailChanged(value)),
-                      validator: (_) => context.read<SignInFormEmailBloc>().state.emailAddress.value.fold(
-                          (f) => f.maybeMap(
-                                invalidEmail: (_) => 'Invalid Email',
-                                orElse: () => null
-                              ),
-                          (r) => null),
+                      validator: (_) => context
+                          .read<SignInFormEmailBloc>()
+                          .state
+                          .emailAddress
+                          .value
+                          .fold(
+                              (f) => f.maybeMap(
+                                  invalidEmail: (_) => 'Invalid Email',
+                                  orElse: () => null),
+                              (r) => null),
                     ),
                     const SizedBox(
                       height: 30,
@@ -108,37 +135,40 @@ class _SignInFormEmailState extends State<SignInFormEmail> {
                     TextFormField(
                       obscureText: true,
                       decoration: InputDecoration(
-                        // errorText: controller.passwordErrorText,
-                        filled: true,
-                        fillColor: Color(0xFFF3F6F8),
-                        border: InputBorder.none,
-                        suffixIcon: IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    _obscuretext = !_obscuretext;
-                                  });
-                                },
-                                icon: _obscuretext
-                                    ? const Icon(
-                                        Icons.visibility,
-                                        color: kPrimaryColor,
-                                      )
-                                    : const Icon(
-                                        Icons.visibility_off,
-                                        color: kPrimaryColor,
-                                      ),
-                              )
-                      ),
+                          // errorText: controller.passwordErrorText,
+                          filled: true,
+                          fillColor: const Color(0xFFF3F6F8),
+                          border: InputBorder.none,
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                _obscuretext = !_obscuretext;
+                              });
+                            },
+                            icon: _obscuretext
+                                ? const Icon(
+                                    Icons.visibility,
+                                    color: kPrimaryColor,
+                                  )
+                                : const Icon(
+                                    Icons.visibility_off,
+                                    color: kPrimaryColor,
+                                  ),
+                          )),
                       textInputAction: TextInputAction.done,
                       onChanged: (value) => context
                           .read<SignInFormEmailBloc>()
                           .add(SignInFormEmailEvent.passwordChanged(value)),
-                      validator: (_) => context.read<SignInFormEmailBloc>().state.password.value.fold(
-                          (f) => f.maybeMap(
-                                shortPassword: (_) => 'Short Password',
-                                orElse: () => null
-                              ),
-                          (r) => null),
+                      validator: (_) => context
+                          .read<SignInFormEmailBloc>()
+                          .state
+                          .password
+                          .value
+                          .fold(
+                              (f) => f.maybeMap(
+                                  shortPassword: (_) => 'Short Password',
+                                  orElse: () => null),
+                              (r) => null),
                     ),
                     const SizedBox(
                       height: 3.0,
@@ -165,11 +195,16 @@ class _SignInFormEmailState extends State<SignInFormEmail> {
                       text: 'LOGIN',
                       onTap: () => {
                         context.read<SignInFormEmailBloc>().add(
-                          const SignInFormEmailEvent.signInWithEmailAndPasswordpressed(),
-                        )
+                              const SignInFormEmailEvent
+                                  .signInWithEmailAndPasswordpressed(),
+                            )
                       },
                       disabled: state.isSubmitting,
                     ),
+                    Visibility(
+                      child: const LoadingView(),
+                      visible: state.isSubmitting
+                    )
                   ],
                 ),
               )),

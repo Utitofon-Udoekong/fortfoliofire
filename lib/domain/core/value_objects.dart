@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:equatable/equatable.dart';
 import 'package:fortfolio/domain/auth/value_objects.dart';
+import 'package:uuid/uuid.dart';
 
 import 'errors.dart';
 import 'failures.dart';
@@ -34,4 +35,19 @@ abstract class ValueObject<T> extends Equatable{
 
   @override
   String toString() => 'ValueObject(value: $value)';
+}
+
+class UniqueId extends ValueObject<String> {
+  @override
+  final Either<ValueFailure<String>, String> value;
+  factory UniqueId() {
+    return UniqueId._(
+      right(const Uuid().v4())
+    );
+  }
+  factory UniqueId.fromUniqueString(String uniqueId){
+    assert(uniqueId.isNotEmpty);
+    return UniqueId._(right(uniqueId));
+  }
+  const UniqueId._(this.value);
 }

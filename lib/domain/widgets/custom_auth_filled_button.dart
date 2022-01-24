@@ -12,7 +12,7 @@ class CustomAuthFilledButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: disabled ? null : onTap,
       child: Container(
         alignment: Alignment.center,
         height: 48,

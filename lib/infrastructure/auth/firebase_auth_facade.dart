@@ -3,7 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:fortfolio/domain/auth/auth_failure.dart';
 import 'package:fortfolio/domain/auth/i_auth_facade.dart';
+import 'package:fortfolio/domain/auth/user.dart';
 import 'package:fortfolio/domain/auth/value_objects.dart';
+import 'package:fortfolio/infrastructure/auth/firebase_user_mapper.dart';
 import 'package:injectable/injectable.dart';
 
 @LazySingleton(as: IAuthFacade)
@@ -51,6 +53,7 @@ class FirebaseAuthFacade implements IAuthFacade {
     }
   }
 
+  @override
   Future<Either<AuthFailure, Unit>> registerPhone(
       {required Phone phone, required String smsCode}) async {
     final phoneNumber = phone.getOrCrash();
@@ -76,6 +79,7 @@ class FirebaseAuthFacade implements IAuthFacade {
     }
   }
 
+  @override
   Future<Either<AuthFailure, Unit>> loginWithPhoneNumber(
       {required Phone phone, required String smsCode}) async {
     final phoneNumber = phone.getOrCrash();
@@ -88,7 +92,7 @@ class FirebaseAuthFacade implements IAuthFacade {
           },
           codeSent: (String verificationId, [int? forceResendingToken]) async {
             var _credential = PhoneAuthProvider.credential( verificationId: verificationId, smsCode: smsCode);
-            await firebaseAuth.signInWithCredential(_credential);
+            // await firebaseAuth.signInWithCredential(_credential);
           },
           codeAutoRetrievalTimeout: (String verificationId) {
             verificationId = verificationId;
@@ -100,5 +104,10 @@ class FirebaseAuthFacade implements IAuthFacade {
     }
   }
 
+  @override
+  Future<Option<AppUser>> getSignedInUser() async => optionOf(firebaseAuth.currentUser!.toDomain());
+
+  @override
+  Future<void> signOut() async => await firebaseAuth.signOut();
   
 }

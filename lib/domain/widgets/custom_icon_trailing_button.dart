@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:fortfolio/constants/theme.dart';
-import 'package:get/get.dart';
+import 'package:fortfolio/domain/constants/theme.dart';
 
 class CustomIconTrailingButton extends StatelessWidget {
   const CustomIconTrailingButton({ Key? key, required this.icon, required this.title, required this.page }) : super(key: key);
@@ -15,7 +14,7 @@ class CustomIconTrailingButton extends StatelessWidget {
       semanticsLabel: title,
     );
     return GestureDetector(
-      onTap: () => Get.to(page),
+      onTap: () => {},
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 8),
         decoration: BoxDecoration(

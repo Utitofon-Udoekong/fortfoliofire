@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fortfolio/constants/theme.dart';
+import 'package:fortfolio/domain/constants/theme.dart';
 
 class CustomOutlinedButton extends StatelessWidget {
   final String text;

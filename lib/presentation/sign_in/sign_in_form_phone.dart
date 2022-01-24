@@ -113,57 +113,16 @@ class _SignInFormPhoneState extends State<SignInFormPhone> {
                             const SizedBox(
                               height: 30,
                             ),
-                            const Text(
-                              "Your Password",
-                              style: TextStyle(
-                                  fontSize: 15, color: Color(0xFF656565)),
-                            ),
-                            // TextFormField(
-                            //   obscureText: true,
-                            //   decoration: InputDecoration(
-                            //       filled: true,
-                            //       fillColor: const Color(0xFFF3F6F8),
-                            //       border: InputBorder.none,
-                            //       suffixIcon: IconButton(
-                            //         onPressed: () {
-                            //           setState(() {
-                            //             _obscureText = !_obscureText;
-                            //           });
-                            //         },
-                            //         icon: _obscureText ? const Icon( Icons.visibility, color: kPrimaryColor, ) : const Icon( Icons.visibility_off, color: kPrimaryColor, ),
-                            //       )),
-                            //   textInputAction: TextInputAction.done,
-                            //   onChanged: (value) => context
-                            //       .read<SignInFormPhoneBloc>()
-                            //       .add(SignInFormPhoneEvent.passwordChanged(value)),
-                            //   validator: (_) => context .read<SignInFormPhoneBloc>() .state .password .value .fold( (f) => f.maybeMap( shortPassword: (_) => 'Short Password', orElse: () => null), (r) => null),
-                            // ),
-                            const SizedBox(
-                              height: 3.0,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: const [
-                                InkWell(
-                                  child: Text(
-                                  'Forgot password?',
-                                  style: TextStyle(
-                                      fontSize: 13.5, color: kPrimaryColor),
-                                )),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 20,
-                            ),
+                            
                             CustomAuthFilledButton(
-                              text: 'LOGIN',
+                              text: state.phoneNumber.isValid() ? 'VERIFY OTP ' : 'ENTER PHONE',
                               onTap: () => {
-                                context.read<SignInFormPhoneBloc>().add(
-                                      const SignInFormPhoneEvent
-                                          .signInWithPhonePressed(),
-                                    )
+                                // context.read<SignInFormPhoneBloc>().add(
+                                //       const SignInFormPhoneEvent
+                                //           .signInWithPhonePressed(),
+                                //     )
                               },
-                              disabled: state.isSubmitting,
+                              disabled: !state.phoneNumber.isValid(),
                             ),
                           ],
                         ),
