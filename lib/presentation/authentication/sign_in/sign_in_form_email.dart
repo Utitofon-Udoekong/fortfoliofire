@@ -5,6 +5,7 @@ import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/domain/widgets/loading_view.dart';
+import 'package:fortfolio/presentation/routes/router.gr.dart';
 
 class SignInFormEmail extends StatefulWidget {
   const SignInFormEmail({Key? key}) : super(key: key);
@@ -32,12 +33,6 @@ class _SignInFormEmailState extends State<SignInFormEmail> {
                             'Invalid email and password'),
                     true,
                   );
-                  // Flushbar(
-                  //   message: failure.map(
-                  //       serverError: (_) => 'Encountered a servor error',
-                  //       emailAlreadyInUse: (_) => 'Encountered a servor error',
-                  //       invalidEmailAndPassword: (_) => 'Encountered a servor error'),
-                  // ).show(context);
                 }, (r) {}));
       },
       builder: (bloccontext, state) {
@@ -106,8 +101,6 @@ class _SignInFormEmailState extends State<SignInFormEmail> {
                           filled: true,
                           fillColor: const Color(0xFFF3F6F8),
                           border: InputBorder.none),
-                      // controller: controller.email,
-                      // focusNode: controller.emailFocusNode,
                       autocorrect: false,
                       keyboardType: TextInputType.emailAddress,
                       textInputAction: TextInputAction.next,
@@ -135,7 +128,6 @@ class _SignInFormEmailState extends State<SignInFormEmail> {
                     TextFormField(
                       obscureText: true,
                       decoration: InputDecoration(
-                          // errorText: controller.passwordErrorText,
                           filled: true,
                           fillColor: const Color(0xFFF3F6F8),
                           border: InputBorder.none,
@@ -175,13 +167,12 @@ class _SignInFormEmailState extends State<SignInFormEmail> {
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
-                      children: const [
+                      children: <Widget>[
                         InkWell(
-                            // onTap: (){
-                            //   controller.password.clear();
-                            //   Get.toNamed('/reset');
-                            // },
-                            child: Text(
+                          onTap: () {
+                            // context.router.push
+                          },
+                          child: const Text(
                           'Forgot password?',
                           style:
                               TextStyle(fontSize: 13.5, color: kPrimaryColor),

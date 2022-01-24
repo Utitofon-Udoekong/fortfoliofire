@@ -20,6 +20,10 @@ abstract class ValueObject<T> extends Equatable{
     return value.fold((f) => throw UnexpectedValueError(valueFailure: f), id);
   }
 
+  Either<ValueFailure<dynamic>, Unit> get failureOrUnit {
+    return value.fold((l) => left(l), (r) => right(unit));
+  }
+
   // @override
   // bool operator ==(Object other) {
   //   if (identical(this, other)) return true;

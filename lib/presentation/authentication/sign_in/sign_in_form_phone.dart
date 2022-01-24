@@ -4,6 +4,7 @@ import 'package:fortfolio/application/auth/sign_in_form/phone/sign_in_form_phone
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
 import 'package:fortfolio/injection.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 
 class SignInFormPhone extends StatefulWidget {
   const SignInFormPhone({Key? key}) : super(key: key);
@@ -73,9 +74,9 @@ class _SignInFormPhoneState extends State<SignInFormPhone> {
                               children: <Widget>[
                                 const Text(
                                   "Your Phone Number",
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                       fontSize: 15,
-                                      color: const Color(0xFF656565)),
+                                      color: Color(0xFF656565)),
                                 ),
                                 TextButton(
                                   onPressed: () => {},
@@ -87,18 +88,18 @@ class _SignInFormPhoneState extends State<SignInFormPhone> {
                                 )
                               ],
                             ),
-                            TextFormField(
+                            IntlPhoneField(
                               decoration: const InputDecoration(
-                                  errorText: "",
-                                  filled: true,
-                                  fillColor: const Color(0xFFF3F6F8),
-                                  border: InputBorder.none),
-                              autocorrect: false,
-                              keyboardType: TextInputType.text,
+                                border: InputBorder.none,
+                                filled: true,
+                                fillColor: Color(0xFFF3F6F8),
+                              ),
+                              initialCountryCode: 'NG',
+                              keyboardType: TextInputType.phone,
                               textInputAction: TextInputAction.next,
                               onChanged: (value) => context
                                   .read<SignInFormPhoneBloc>()
-                                  .add(SignInFormPhoneEvent.phoneChanged(value)),
+                                  .add(SignInFormPhoneEvent.phoneChanged(value.toString())),
                               validator: (_) => context
                                   .read<SignInFormPhoneBloc>()
                                   .state

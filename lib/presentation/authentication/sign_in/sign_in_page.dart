@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/application/auth/sign_in_form/email/sign_in_form_email_bloc.dart';
 import 'package:fortfolio/injection.dart';
-import 'package:fortfolio/presentation/sign_in/sign_in_form_email.dart';
+
+import 'sign_in_form_email.dart';
 
 class SignInPage extends StatelessWidget {
   const SignInPage({Key? key}) : super(key: key);

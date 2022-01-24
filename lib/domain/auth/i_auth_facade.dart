@@ -23,4 +23,7 @@ abstract class IAuthFacade {
     required String smsCode
   });
   Future<void> signOut();
+  Future<Either<AuthFailure, Unit>> resetPassword({
+    required EmailAddress emailAddress
+  });
 }

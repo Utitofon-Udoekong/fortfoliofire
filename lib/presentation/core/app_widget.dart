@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/application/auth/auth_bloc.dart';
 import 'package:fortfolio/injection.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
-import 'package:fortfolio/presentation/sign_in/sign_in_page.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
