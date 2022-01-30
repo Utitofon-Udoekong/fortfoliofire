@@ -5,7 +5,9 @@ import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/domain/widgets/loading_view.dart';
+import 'package:fortfolio/presentation/authentication/sign_in/sign_in_form_phone.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
+import 'package:auto_route/auto_route.dart';
 
 class SignInFormEmail extends StatefulWidget {
   const SignInFormEmail({Key? key}) : super(key: key);
@@ -26,11 +28,19 @@ class _SignInFormEmailState extends State<SignInFormEmail> {
             (either) => either.fold((failure) {
                   CustomSnackbar.showSnackBar(
                     context,
-                    failure.map(
-                        serverError: (_) => 'Encountered a servor error',
-                        emailAlreadyInUse: (_) => 'Email already in use',
-                        invalidEmailAndPassword: (_) =>
-                            'Invalid email and password'),
+                    failure.when(
+                      serverError: () => 'Encountered a server error',
+                      emailAlreadyInUse: () => 'Email address already in use',
+                      invalidEmailAndPassword: () =>
+                          'Invalid email and password',
+                      invalidPhoneNumber: () => 'Invalid Phone number',
+                      tooManyRequests: () => "Too Many Requests",
+                      deviceNotSupported: () => "Device Not Supported",
+                      smsTimeout: () => "Sms Timeout",
+                      sessionExpired: () => "Session Expired",
+                      invalidVerificationCode: () =>
+                          "Invalid Verification Code",
+                    ),
                     true,
                   );
                 }, (r) {}));
@@ -55,11 +65,12 @@ class _SignInFormEmailState extends State<SignInFormEmail> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         InkWell(
-                          onTap: () => {},
+                          onTap: () => context.router.pop(),
                           child: const Icon(Icons.close),
                         ),
                         InkWell(
-                          onTap: () => {},
+                          onTap: () =>
+                              context.router.push(const SignUpFormRoute()),
                           child: Text(
                             "Register",
                             style: subTitle.copyWith(color: kPrimaryColor),
@@ -86,7 +97,8 @@ class _SignInFormEmailState extends State<SignInFormEmail> {
                               TextStyle(fontSize: 15, color: Color(0xFF656565)),
                         ),
                         TextButton(
-                          onPressed: () => {},
+                          onPressed: () =>
+                              context.router.push(const SignInFormPhoneRoute()),
                           child: const Text(
                             "Login with phone",
                             style:
@@ -97,9 +109,8 @@ class _SignInFormEmailState extends State<SignInFormEmail> {
                     ),
                     TextFormField(
                       decoration: const InputDecoration(
-                          errorText: "",
                           filled: true,
-                          fillColor: const Color(0xFFF3F6F8),
+                          fillColor: Color(0xFFF3F6F8),
                           border: InputBorder.none),
                       autocorrect: false,
                       keyboardType: TextInputType.emailAddress,
@@ -169,14 +180,14 @@ class _SignInFormEmailState extends State<SignInFormEmail> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: <Widget>[
                         InkWell(
-                          onTap: () {
-                            // context.router.push
-                          },
-                          child: const Text(
-                          'Forgot password?',
-                          style:
-                              TextStyle(fontSize: 13.5, color: kPrimaryColor),
-                        )),
+                            onTap: () {
+                              context.router.push(const ResetPasswordRoute());
+                            },
+                            child: const Text(
+                              'Forgot password?',
+                              style: TextStyle(
+                                  fontSize: 13.5, color: kPrimaryColor),
+                            )),
                       ],
                     ),
                     const SizedBox(
@@ -193,9 +204,7 @@ class _SignInFormEmailState extends State<SignInFormEmail> {
                       disabled: state.isSubmitting,
                     ),
                     Visibility(
-                      child: const LoadingView(),
-                      visible: state.isSubmitting
-                    )
+                        child: const LoadingView(), visible: state.isSubmitting)
                   ],
                 ),
               )),

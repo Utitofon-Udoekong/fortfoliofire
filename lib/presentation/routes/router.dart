@@ -1,4 +1,8 @@
 import 'package:auto_route/annotations.dart';
+import 'package:fortfolio/presentation/authentication/forgot_password/reset_password.dart';
+import 'package:fortfolio/presentation/authentication/sign_in/confirm_login_otp.dart';
+import 'package:fortfolio/presentation/authentication/sign_in/sign_in_form_email.dart';
+import 'package:fortfolio/presentation/authentication/sign_in/sign_in_form_phone.dart';
 import 'package:fortfolio/presentation/authentication/sign_in/sign_in_page.dart';
 import 'package:fortfolio/presentation/authentication/sign_up/sign_up_form.dart';
 import 'package:fortfolio/presentation/home/dashboard/dashboard.dart';
@@ -46,12 +50,19 @@ import 'package:fortfolio/presentation/home/wallet/withdraw/crypto/crypto_withdr
 import 'package:fortfolio/presentation/home/wallet/withdraw/select_investment.dart';
 import 'package:fortfolio/presentation/home/wallet/withdraw/select_method.dart';
 import 'package:fortfolio/presentation/home/wallet/withdraw/withdrawal.dart';
+import 'package:fortfolio/presentation/splash/onboarding.dart';
 import 'package:fortfolio/presentation/splash/splash_Screen.dart';
 
 @MaterialAutoRouter(routes: <AutoRoute>[
   AutoRoute(page: SplashScreen, initial: true),
-  AutoRoute(page: SignInPage),
+  AutoRoute(page: OnboardingScreen),
+  AutoRoute(page: SignInPage, children: <AutoRoute>[
+    AutoRoute(page: SignInFormEmail),
+    AutoRoute(page: SignInFormPhone),
+    AutoRoute(page: ConfirmLoginWithOTP),
+  ],),
   AutoRoute(page: SignUpForm),
+  AutoRoute(page: ResetPassword),
   AutoRoute(page: HomePage, children: <AutoRoute>[
     AutoRoute(page: Dashboard, children: <AutoRoute>[
       AutoRoute(page: ProfilePage),

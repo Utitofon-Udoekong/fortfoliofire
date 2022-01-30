@@ -1,8 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:fortfolio/domain/constants/onboarding_model.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
 import 'package:fortfolio/domain/widgets/custom_outlined_button.dart';
+import 'package:fortfolio/presentation/routes/router.gr.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
@@ -102,18 +104,22 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               children: <Widget>[
                 CustomFilledButton(
                     text: "LOGIN",
-                    onTap: () => {},
+                    onTap: () => {
+                      context.router.replace(const SignInFormEmailRoute())
+                    },
                 ),
                 const SizedBox(
                   height: 10.0,
                 ),
                 CustomOutlinedButton(
                     text: "REGISTER",
-                    onTap: () => {},
+                    onTap: () => {
+                      context.router.replace(const SignUpFormRoute())
+                    },
                 ),
                 Center(
                   child: TextButton(onPressed: (){
-                    // Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const HomePage()));
+                    context.router.replace(const HomePageRoute());
                   }, child: Text('Home', style: titleText.copyWith(color: kBlackColor, fontSize: 15),)),
                 )
               ],

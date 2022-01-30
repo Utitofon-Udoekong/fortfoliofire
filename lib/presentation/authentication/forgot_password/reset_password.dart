@@ -4,6 +4,7 @@ import 'package:fortfolio/application/auth/reset_password_form/reset_password_bl
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
 import 'package:fortfolio/injection.dart';
+import 'package:auto_route/auto_route.dart';
 
 class ResetPassword extends StatelessWidget {
   const ResetPassword({Key? key}) : super(key: key);
@@ -32,7 +33,7 @@ class ResetPassword extends StatelessWidget {
                         height: 20,
                       ),
                       InkWell(
-                        onTap: () => {},
+                        onTap: () => context.router.pop(),
                         child: const Icon(Icons.close),
                       ),
                       const SizedBox(

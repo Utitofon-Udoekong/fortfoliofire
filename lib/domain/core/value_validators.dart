@@ -13,11 +13,11 @@ Either<ValueFailure<String>, String> validateEmail(String input){
 }
 
 Either<ValueFailure<String>, String> validatePassword(String input){
-  var passwordRegex = RegExp(r'[A-Z]');
-  if(input.length >= 6 && input.contains(passwordRegex)){
+  var passwordRegex = RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$');
+  if(passwordRegex.hasMatch(input)){
     return right(input);
   }else {
-    return left(ValueFailure.invalidEmail(failedValue: input));
+    return left(ValueFailure.invalidPassword(failedValue: input));
   }
 }
 
@@ -32,7 +32,7 @@ Either<ValueFailure<String>, String> validateUserName(String input){
 
 Either<ValueFailure<String>, String> validatePhone(String input){
   // var passwordRegex = RegExp(r'[A-Z]');
-  if(input.length >= 4 && input.contains("+")){
+  if(input.length > 4 && input.contains("+")){
     return right(input);
   }else {
     return left(ValueFailure.invalidEmail(failedValue: input));

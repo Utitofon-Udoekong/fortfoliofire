@@ -6,6 +6,8 @@ import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/domain/widgets/loading_view.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:fortfolio/presentation/routes/router.gr.dart';
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({Key? key}) : super(key: key);
@@ -26,19 +28,21 @@ class _SignUpFormState extends State<SignUpForm> {
             (either) => either.fold((failure) {
                   CustomSnackbar.showSnackBar(
                     context,
-                    failure.map(
-                        serverError: (_) => 'Encountered a servor error',
-                        emailAlreadyInUse: (_) => 'Email already in use',
-                        invalidEmailAndPassword: (_) =>
-                            'Invalid email and password'),
+                    failure.when(
+                      serverError: () => 'Encountered a server error',
+                      emailAlreadyInUse: () => 'Email address already in use',
+                      invalidEmailAndPassword: () =>
+                          'Invalid email and password',
+                      invalidPhoneNumber: () => 'Invalid Phone number',
+                      tooManyRequests: () => "Too Many Requests",
+                      deviceNotSupported: () => "Device Not Supported",
+                      smsTimeout: () => "Sms Timeout",
+                      sessionExpired: () => "Session Expired",
+                      invalidVerificationCode: () =>
+                          "Invalid Verification Code",
+                    ),
                     true,
                   );
-                  // Flushbar(
-                  //   message: failure.map(
-                  //       serverError: (_) => 'Encountered a servor error',
-                  //       emailAlreadyInUse: (_) => 'Encountered a servor error',
-                  //       invalidEmailAndPassword: (_) => 'Encountered a servor error'),
-                  // ).show(context);
                 }, (r) {}));
       },
       builder: (bloccontext, state) {
@@ -61,11 +65,12 @@ class _SignUpFormState extends State<SignUpForm> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         InkWell(
-                          onTap: () => {},
+                          onTap: () => context.router.pop(),
                           child: const Icon(Icons.close),
                         ),
                         InkWell(
-                          onTap: () => {},
+                          onTap: () =>
+                              context.router.push(const SignInFormEmailRoute()),
                           child: Text(
                             "Login",
                             style: subTitle.copyWith(color: kPrimaryColor),
@@ -183,24 +188,6 @@ class _SignUpFormState extends State<SignUpForm> {
                                   invalidPhone: (_) => 'Invalid Phone Number',
                                   orElse: () => null),
                               (r) => null),
-                    ),
-                    const SizedBox(
-                      height: 3.0,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: const [
-                        InkWell(
-                            // onTap: (){
-                            //   controller.password.clear();
-                            //   Get.toNamed('/reset');
-                            // },
-                            child: Text(
-                          'Forgot password?',
-                          style:
-                              TextStyle(fontSize: 13.5, color: kPrimaryColor),
-                        )),
-                      ],
                     ),
                     const SizedBox(
                       height: 20,

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'user_entity.dart';
+part of 'user_dtos.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,12 +15,11 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$UserTearOff {
-  const _$UserTearOff();
+class _$UserDtoTearOff {
+  const _$UserDtoTearOff();
 
-  _User call(
-      {required UniqueId id,
-      required UserName firstName,
+  _UserDto call(
+      {required UserName firstName,
       required UserName lastName,
       required EmailAddress email,
       required Phone phone,
@@ -28,8 +27,7 @@ class _$UserTearOff {
       required List<WithdrawalItem> withdrawals,
       required List<DepositItem> deposits,
       required List<ActivePlanItem> activePlans}) {
-    return _User(
-      id: id,
+    return _UserDto(
       firstName: firstName,
       lastName: lastName,
       email: email,
@@ -43,11 +41,10 @@ class _$UserTearOff {
 }
 
 /// @nodoc
-const $User = _$UserTearOff();
+const $UserDto = _$UserDtoTearOff();
 
 /// @nodoc
-mixin _$User {
-  UniqueId get id => throw _privateConstructorUsedError;
+mixin _$UserDto {
   UserName get firstName => throw _privateConstructorUsedError;
   UserName get lastName => throw _privateConstructorUsedError;
   EmailAddress get email => throw _privateConstructorUsedError;
@@ -58,16 +55,15 @@ mixin _$User {
   List<ActivePlanItem> get activePlans => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $UserCopyWith<User> get copyWith => throw _privateConstructorUsedError;
+  $UserDtoCopyWith<UserDto> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UserCopyWith<$Res> {
-  factory $UserCopyWith(User value, $Res Function(User) then) =
-      _$UserCopyWithImpl<$Res>;
+abstract class $UserDtoCopyWith<$Res> {
+  factory $UserDtoCopyWith(UserDto value, $Res Function(UserDto) then) =
+      _$UserDtoCopyWithImpl<$Res>;
   $Res call(
-      {UniqueId id,
-      UserName firstName,
+      {UserName firstName,
       UserName lastName,
       EmailAddress email,
       Phone phone,
@@ -78,16 +74,15 @@ abstract class $UserCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
-  _$UserCopyWithImpl(this._value, this._then);
+class _$UserDtoCopyWithImpl<$Res> implements $UserDtoCopyWith<$Res> {
+  _$UserDtoCopyWithImpl(this._value, this._then);
 
-  final User _value;
+  final UserDto _value;
   // ignore: unused_field
-  final $Res Function(User) _then;
+  final $Res Function(UserDto) _then;
 
   @override
   $Res call({
-    Object? id = freezed,
     Object? firstName = freezed,
     Object? lastName = freezed,
     Object? email = freezed,
@@ -98,10 +93,6 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? activePlans = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as UniqueId,
       firstName: firstName == freezed
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -139,13 +130,12 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
-  factory _$UserCopyWith(_User value, $Res Function(_User) then) =
-      __$UserCopyWithImpl<$Res>;
+abstract class _$UserDtoCopyWith<$Res> implements $UserDtoCopyWith<$Res> {
+  factory _$UserDtoCopyWith(_UserDto value, $Res Function(_UserDto) then) =
+      __$UserDtoCopyWithImpl<$Res>;
   @override
   $Res call(
-      {UniqueId id,
-      UserName firstName,
+      {UserName firstName,
       UserName lastName,
       EmailAddress email,
       Phone phone,
@@ -156,17 +146,16 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
-    implements _$UserCopyWith<$Res> {
-  __$UserCopyWithImpl(_User _value, $Res Function(_User) _then)
-      : super(_value, (v) => _then(v as _User));
+class __$UserDtoCopyWithImpl<$Res> extends _$UserDtoCopyWithImpl<$Res>
+    implements _$UserDtoCopyWith<$Res> {
+  __$UserDtoCopyWithImpl(_UserDto _value, $Res Function(_UserDto) _then)
+      : super(_value, (v) => _then(v as _UserDto));
 
   @override
-  _User get _value => super._value as _User;
+  _UserDto get _value => super._value as _UserDto;
 
   @override
   $Res call({
-    Object? id = freezed,
     Object? firstName = freezed,
     Object? lastName = freezed,
     Object? email = freezed,
@@ -176,11 +165,7 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? deposits = freezed,
     Object? activePlans = freezed,
   }) {
-    return _then(_User(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as UniqueId,
+    return _then(_UserDto(
       firstName: firstName == freezed
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -219,10 +204,9 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_User implements _User {
-  const _$_User(
-      {required this.id,
-      required this.firstName,
+class _$_UserDto implements _UserDto {
+  const _$_UserDto(
+      {required this.firstName,
       required this.lastName,
       required this.email,
       required this.phone,
@@ -231,8 +215,6 @@ class _$_User implements _User {
       required this.deposits,
       required this.activePlans});
 
-  @override
-  final UniqueId id;
   @override
   final UserName firstName;
   @override
@@ -252,15 +234,14 @@ class _$_User implements _User {
 
   @override
   String toString() {
-    return 'User(id: $id, firstName: $firstName, lastName: $lastName, email: $email, phone: $phone, isVerified: $isVerified, withdrawals: $withdrawals, deposits: $deposits, activePlans: $activePlans)';
+    return 'UserDto(firstName: $firstName, lastName: $lastName, email: $email, phone: $phone, isVerified: $isVerified, withdrawals: $withdrawals, deposits: $deposits, activePlans: $activePlans)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _User &&
-            const DeepCollectionEquality().equals(other.id, id) &&
+            other is _UserDto &&
             const DeepCollectionEquality().equals(other.firstName, firstName) &&
             const DeepCollectionEquality().equals(other.lastName, lastName) &&
             const DeepCollectionEquality().equals(other.email, email) &&
@@ -277,7 +258,6 @@ class _$_User implements _User {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(firstName),
       const DeepCollectionEquality().hash(lastName),
       const DeepCollectionEquality().hash(email),
@@ -289,24 +269,21 @@ class _$_User implements _User {
 
   @JsonKey(ignore: true)
   @override
-  _$UserCopyWith<_User> get copyWith =>
-      __$UserCopyWithImpl<_User>(this, _$identity);
+  _$UserDtoCopyWith<_UserDto> get copyWith =>
+      __$UserDtoCopyWithImpl<_UserDto>(this, _$identity);
 }
 
-abstract class _User implements User {
-  const factory _User(
-      {required UniqueId id,
-      required UserName firstName,
+abstract class _UserDto implements UserDto {
+  const factory _UserDto(
+      {required UserName firstName,
       required UserName lastName,
       required EmailAddress email,
       required Phone phone,
       required bool isVerified,
       required List<WithdrawalItem> withdrawals,
       required List<DepositItem> deposits,
-      required List<ActivePlanItem> activePlans}) = _$_User;
+      required List<ActivePlanItem> activePlans}) = _$_UserDto;
 
-  @override
-  UniqueId get id;
   @override
   UserName get firstName;
   @override
@@ -325,5 +302,6 @@ abstract class _User implements User {
   List<ActivePlanItem> get activePlans;
   @override
   @JsonKey(ignore: true)
-  _$UserCopyWith<_User> get copyWith => throw _privateConstructorUsedError;
+  _$UserDtoCopyWith<_UserDto> get copyWith =>
+      throw _privateConstructorUsedError;
 }
