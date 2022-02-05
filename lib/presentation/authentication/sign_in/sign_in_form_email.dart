@@ -124,10 +124,13 @@ class _SignInFormEmailState extends State<SignInFormEmail> {
                           .emailAddress
                           .value
                           .fold(
-                              (f) => f.maybeMap(
-                                  invalidEmail: (_) => 'Invalid Email',
-                                  orElse: () => null),
-                              (r) => null),
+                            (f) => f.maybeMap(
+                                auth: (value) {
+                                  return value.f.failedValue;
+                                },
+                                orElse: () => null),
+                            (r) => null,
+                          ),
                     ),
                     const SizedBox(
                       height: 30,
@@ -168,10 +171,13 @@ class _SignInFormEmailState extends State<SignInFormEmail> {
                           .password
                           .value
                           .fold(
-                              (f) => f.maybeMap(
-                                  shortPassword: (_) => 'Short Password',
-                                  orElse: () => null),
-                              (r) => null),
+                            (f) => f.maybeMap(
+                                auth: (value) {
+                                  return value.f.failedValue;
+                                },
+                                orElse: () => null),
+                            (r) => null,
+                          ),
                     ),
                     const SizedBox(
                       height: 3.0,

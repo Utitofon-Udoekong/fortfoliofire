@@ -57,6 +57,14 @@ class _$SignUpFormEventTearOff {
   RegisterWithEmailAndPasswordPressed registerWithEmailAndPasswordpressed() {
     return const RegisterWithEmailAndPasswordPressed();
   }
+
+  VerifyOTPPressed verifyOTPpressed() {
+    return const VerifyOTPPressed();
+  }
+
+  Reset reset() {
+    return const Reset();
+  }
 }
 
 /// @nodoc
@@ -73,6 +81,8 @@ mixin _$SignUpFormEvent {
     required TResult Function(String passwordString) passwordChanged,
     required TResult Function(String smsCodeString) smsCodeChanged,
     required TResult Function() registerWithEmailAndPasswordpressed,
+    required TResult Function() verifyOTPpressed,
+    required TResult Function() reset,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -84,6 +94,8 @@ mixin _$SignUpFormEvent {
     TResult Function(String passwordString)? passwordChanged,
     TResult Function(String smsCodeString)? smsCodeChanged,
     TResult Function()? registerWithEmailAndPasswordpressed,
+    TResult Function()? verifyOTPpressed,
+    TResult Function()? reset,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -95,6 +107,8 @@ mixin _$SignUpFormEvent {
     TResult Function(String passwordString)? passwordChanged,
     TResult Function(String smsCodeString)? smsCodeChanged,
     TResult Function()? registerWithEmailAndPasswordpressed,
+    TResult Function()? verifyOTPpressed,
+    TResult Function()? reset,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -108,6 +122,8 @@ mixin _$SignUpFormEvent {
     required TResult Function(SMSCodeChanged value) smsCodeChanged,
     required TResult Function(RegisterWithEmailAndPasswordPressed value)
         registerWithEmailAndPasswordpressed,
+    required TResult Function(VerifyOTPPressed value) verifyOTPpressed,
+    required TResult Function(Reset value) reset,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -120,6 +136,8 @@ mixin _$SignUpFormEvent {
     TResult Function(SMSCodeChanged value)? smsCodeChanged,
     TResult Function(RegisterWithEmailAndPasswordPressed value)?
         registerWithEmailAndPasswordpressed,
+    TResult Function(VerifyOTPPressed value)? verifyOTPpressed,
+    TResult Function(Reset value)? reset,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -132,6 +150,8 @@ mixin _$SignUpFormEvent {
     TResult Function(SMSCodeChanged value)? smsCodeChanged,
     TResult Function(RegisterWithEmailAndPasswordPressed value)?
         registerWithEmailAndPasswordpressed,
+    TResult Function(VerifyOTPPressed value)? verifyOTPpressed,
+    TResult Function(Reset value)? reset,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -227,6 +247,8 @@ class _$EmailChanged implements EmailChanged {
     required TResult Function(String passwordString) passwordChanged,
     required TResult Function(String smsCodeString) smsCodeChanged,
     required TResult Function() registerWithEmailAndPasswordpressed,
+    required TResult Function() verifyOTPpressed,
+    required TResult Function() reset,
   }) {
     return emailChanged(emailString);
   }
@@ -241,6 +263,8 @@ class _$EmailChanged implements EmailChanged {
     TResult Function(String passwordString)? passwordChanged,
     TResult Function(String smsCodeString)? smsCodeChanged,
     TResult Function()? registerWithEmailAndPasswordpressed,
+    TResult Function()? verifyOTPpressed,
+    TResult Function()? reset,
   }) {
     return emailChanged?.call(emailString);
   }
@@ -255,6 +279,8 @@ class _$EmailChanged implements EmailChanged {
     TResult Function(String passwordString)? passwordChanged,
     TResult Function(String smsCodeString)? smsCodeChanged,
     TResult Function()? registerWithEmailAndPasswordpressed,
+    TResult Function()? verifyOTPpressed,
+    TResult Function()? reset,
     required TResult orElse(),
   }) {
     if (emailChanged != null) {
@@ -274,6 +300,8 @@ class _$EmailChanged implements EmailChanged {
     required TResult Function(SMSCodeChanged value) smsCodeChanged,
     required TResult Function(RegisterWithEmailAndPasswordPressed value)
         registerWithEmailAndPasswordpressed,
+    required TResult Function(VerifyOTPPressed value) verifyOTPpressed,
+    required TResult Function(Reset value) reset,
   }) {
     return emailChanged(this);
   }
@@ -289,6 +317,8 @@ class _$EmailChanged implements EmailChanged {
     TResult Function(SMSCodeChanged value)? smsCodeChanged,
     TResult Function(RegisterWithEmailAndPasswordPressed value)?
         registerWithEmailAndPasswordpressed,
+    TResult Function(VerifyOTPPressed value)? verifyOTPpressed,
+    TResult Function(Reset value)? reset,
   }) {
     return emailChanged?.call(this);
   }
@@ -304,6 +334,8 @@ class _$EmailChanged implements EmailChanged {
     TResult Function(SMSCodeChanged value)? smsCodeChanged,
     TResult Function(RegisterWithEmailAndPasswordPressed value)?
         registerWithEmailAndPasswordpressed,
+    TResult Function(VerifyOTPPressed value)? verifyOTPpressed,
+    TResult Function(Reset value)? reset,
     required TResult orElse(),
   }) {
     if (emailChanged != null) {
@@ -395,6 +427,8 @@ class _$FirstNameChanged implements FirstNameChanged {
     required TResult Function(String passwordString) passwordChanged,
     required TResult Function(String smsCodeString) smsCodeChanged,
     required TResult Function() registerWithEmailAndPasswordpressed,
+    required TResult Function() verifyOTPpressed,
+    required TResult Function() reset,
   }) {
     return firstNameChanged(firstNameString);
   }
@@ -409,6 +443,8 @@ class _$FirstNameChanged implements FirstNameChanged {
     TResult Function(String passwordString)? passwordChanged,
     TResult Function(String smsCodeString)? smsCodeChanged,
     TResult Function()? registerWithEmailAndPasswordpressed,
+    TResult Function()? verifyOTPpressed,
+    TResult Function()? reset,
   }) {
     return firstNameChanged?.call(firstNameString);
   }
@@ -423,6 +459,8 @@ class _$FirstNameChanged implements FirstNameChanged {
     TResult Function(String passwordString)? passwordChanged,
     TResult Function(String smsCodeString)? smsCodeChanged,
     TResult Function()? registerWithEmailAndPasswordpressed,
+    TResult Function()? verifyOTPpressed,
+    TResult Function()? reset,
     required TResult orElse(),
   }) {
     if (firstNameChanged != null) {
@@ -442,6 +480,8 @@ class _$FirstNameChanged implements FirstNameChanged {
     required TResult Function(SMSCodeChanged value) smsCodeChanged,
     required TResult Function(RegisterWithEmailAndPasswordPressed value)
         registerWithEmailAndPasswordpressed,
+    required TResult Function(VerifyOTPPressed value) verifyOTPpressed,
+    required TResult Function(Reset value) reset,
   }) {
     return firstNameChanged(this);
   }
@@ -457,6 +497,8 @@ class _$FirstNameChanged implements FirstNameChanged {
     TResult Function(SMSCodeChanged value)? smsCodeChanged,
     TResult Function(RegisterWithEmailAndPasswordPressed value)?
         registerWithEmailAndPasswordpressed,
+    TResult Function(VerifyOTPPressed value)? verifyOTPpressed,
+    TResult Function(Reset value)? reset,
   }) {
     return firstNameChanged?.call(this);
   }
@@ -472,6 +514,8 @@ class _$FirstNameChanged implements FirstNameChanged {
     TResult Function(SMSCodeChanged value)? smsCodeChanged,
     TResult Function(RegisterWithEmailAndPasswordPressed value)?
         registerWithEmailAndPasswordpressed,
+    TResult Function(VerifyOTPPressed value)? verifyOTPpressed,
+    TResult Function(Reset value)? reset,
     required TResult orElse(),
   }) {
     if (firstNameChanged != null) {
@@ -563,6 +607,8 @@ class _$LastNameChanged implements LastNameChanged {
     required TResult Function(String passwordString) passwordChanged,
     required TResult Function(String smsCodeString) smsCodeChanged,
     required TResult Function() registerWithEmailAndPasswordpressed,
+    required TResult Function() verifyOTPpressed,
+    required TResult Function() reset,
   }) {
     return lastNameChanged(lastNameString);
   }
@@ -577,6 +623,8 @@ class _$LastNameChanged implements LastNameChanged {
     TResult Function(String passwordString)? passwordChanged,
     TResult Function(String smsCodeString)? smsCodeChanged,
     TResult Function()? registerWithEmailAndPasswordpressed,
+    TResult Function()? verifyOTPpressed,
+    TResult Function()? reset,
   }) {
     return lastNameChanged?.call(lastNameString);
   }
@@ -591,6 +639,8 @@ class _$LastNameChanged implements LastNameChanged {
     TResult Function(String passwordString)? passwordChanged,
     TResult Function(String smsCodeString)? smsCodeChanged,
     TResult Function()? registerWithEmailAndPasswordpressed,
+    TResult Function()? verifyOTPpressed,
+    TResult Function()? reset,
     required TResult orElse(),
   }) {
     if (lastNameChanged != null) {
@@ -610,6 +660,8 @@ class _$LastNameChanged implements LastNameChanged {
     required TResult Function(SMSCodeChanged value) smsCodeChanged,
     required TResult Function(RegisterWithEmailAndPasswordPressed value)
         registerWithEmailAndPasswordpressed,
+    required TResult Function(VerifyOTPPressed value) verifyOTPpressed,
+    required TResult Function(Reset value) reset,
   }) {
     return lastNameChanged(this);
   }
@@ -625,6 +677,8 @@ class _$LastNameChanged implements LastNameChanged {
     TResult Function(SMSCodeChanged value)? smsCodeChanged,
     TResult Function(RegisterWithEmailAndPasswordPressed value)?
         registerWithEmailAndPasswordpressed,
+    TResult Function(VerifyOTPPressed value)? verifyOTPpressed,
+    TResult Function(Reset value)? reset,
   }) {
     return lastNameChanged?.call(this);
   }
@@ -640,6 +694,8 @@ class _$LastNameChanged implements LastNameChanged {
     TResult Function(SMSCodeChanged value)? smsCodeChanged,
     TResult Function(RegisterWithEmailAndPasswordPressed value)?
         registerWithEmailAndPasswordpressed,
+    TResult Function(VerifyOTPPressed value)? verifyOTPpressed,
+    TResult Function(Reset value)? reset,
     required TResult orElse(),
   }) {
     if (lastNameChanged != null) {
@@ -731,6 +787,8 @@ class _$PhoneNumberChanged implements PhoneNumberChanged {
     required TResult Function(String passwordString) passwordChanged,
     required TResult Function(String smsCodeString) smsCodeChanged,
     required TResult Function() registerWithEmailAndPasswordpressed,
+    required TResult Function() verifyOTPpressed,
+    required TResult Function() reset,
   }) {
     return phoneNumberChanged(phoneNumberString);
   }
@@ -745,6 +803,8 @@ class _$PhoneNumberChanged implements PhoneNumberChanged {
     TResult Function(String passwordString)? passwordChanged,
     TResult Function(String smsCodeString)? smsCodeChanged,
     TResult Function()? registerWithEmailAndPasswordpressed,
+    TResult Function()? verifyOTPpressed,
+    TResult Function()? reset,
   }) {
     return phoneNumberChanged?.call(phoneNumberString);
   }
@@ -759,6 +819,8 @@ class _$PhoneNumberChanged implements PhoneNumberChanged {
     TResult Function(String passwordString)? passwordChanged,
     TResult Function(String smsCodeString)? smsCodeChanged,
     TResult Function()? registerWithEmailAndPasswordpressed,
+    TResult Function()? verifyOTPpressed,
+    TResult Function()? reset,
     required TResult orElse(),
   }) {
     if (phoneNumberChanged != null) {
@@ -778,6 +840,8 @@ class _$PhoneNumberChanged implements PhoneNumberChanged {
     required TResult Function(SMSCodeChanged value) smsCodeChanged,
     required TResult Function(RegisterWithEmailAndPasswordPressed value)
         registerWithEmailAndPasswordpressed,
+    required TResult Function(VerifyOTPPressed value) verifyOTPpressed,
+    required TResult Function(Reset value) reset,
   }) {
     return phoneNumberChanged(this);
   }
@@ -793,6 +857,8 @@ class _$PhoneNumberChanged implements PhoneNumberChanged {
     TResult Function(SMSCodeChanged value)? smsCodeChanged,
     TResult Function(RegisterWithEmailAndPasswordPressed value)?
         registerWithEmailAndPasswordpressed,
+    TResult Function(VerifyOTPPressed value)? verifyOTPpressed,
+    TResult Function(Reset value)? reset,
   }) {
     return phoneNumberChanged?.call(this);
   }
@@ -808,6 +874,8 @@ class _$PhoneNumberChanged implements PhoneNumberChanged {
     TResult Function(SMSCodeChanged value)? smsCodeChanged,
     TResult Function(RegisterWithEmailAndPasswordPressed value)?
         registerWithEmailAndPasswordpressed,
+    TResult Function(VerifyOTPPressed value)? verifyOTPpressed,
+    TResult Function(Reset value)? reset,
     required TResult orElse(),
   }) {
     if (phoneNumberChanged != null) {
@@ -900,6 +968,8 @@ class _$PasswordChanged implements PasswordChanged {
     required TResult Function(String passwordString) passwordChanged,
     required TResult Function(String smsCodeString) smsCodeChanged,
     required TResult Function() registerWithEmailAndPasswordpressed,
+    required TResult Function() verifyOTPpressed,
+    required TResult Function() reset,
   }) {
     return passwordChanged(passwordString);
   }
@@ -914,6 +984,8 @@ class _$PasswordChanged implements PasswordChanged {
     TResult Function(String passwordString)? passwordChanged,
     TResult Function(String smsCodeString)? smsCodeChanged,
     TResult Function()? registerWithEmailAndPasswordpressed,
+    TResult Function()? verifyOTPpressed,
+    TResult Function()? reset,
   }) {
     return passwordChanged?.call(passwordString);
   }
@@ -928,6 +1000,8 @@ class _$PasswordChanged implements PasswordChanged {
     TResult Function(String passwordString)? passwordChanged,
     TResult Function(String smsCodeString)? smsCodeChanged,
     TResult Function()? registerWithEmailAndPasswordpressed,
+    TResult Function()? verifyOTPpressed,
+    TResult Function()? reset,
     required TResult orElse(),
   }) {
     if (passwordChanged != null) {
@@ -947,6 +1021,8 @@ class _$PasswordChanged implements PasswordChanged {
     required TResult Function(SMSCodeChanged value) smsCodeChanged,
     required TResult Function(RegisterWithEmailAndPasswordPressed value)
         registerWithEmailAndPasswordpressed,
+    required TResult Function(VerifyOTPPressed value) verifyOTPpressed,
+    required TResult Function(Reset value) reset,
   }) {
     return passwordChanged(this);
   }
@@ -962,6 +1038,8 @@ class _$PasswordChanged implements PasswordChanged {
     TResult Function(SMSCodeChanged value)? smsCodeChanged,
     TResult Function(RegisterWithEmailAndPasswordPressed value)?
         registerWithEmailAndPasswordpressed,
+    TResult Function(VerifyOTPPressed value)? verifyOTPpressed,
+    TResult Function(Reset value)? reset,
   }) {
     return passwordChanged?.call(this);
   }
@@ -977,6 +1055,8 @@ class _$PasswordChanged implements PasswordChanged {
     TResult Function(SMSCodeChanged value)? smsCodeChanged,
     TResult Function(RegisterWithEmailAndPasswordPressed value)?
         registerWithEmailAndPasswordpressed,
+    TResult Function(VerifyOTPPressed value)? verifyOTPpressed,
+    TResult Function(Reset value)? reset,
     required TResult orElse(),
   }) {
     if (passwordChanged != null) {
@@ -1068,6 +1148,8 @@ class _$SMSCodeChanged implements SMSCodeChanged {
     required TResult Function(String passwordString) passwordChanged,
     required TResult Function(String smsCodeString) smsCodeChanged,
     required TResult Function() registerWithEmailAndPasswordpressed,
+    required TResult Function() verifyOTPpressed,
+    required TResult Function() reset,
   }) {
     return smsCodeChanged(smsCodeString);
   }
@@ -1082,6 +1164,8 @@ class _$SMSCodeChanged implements SMSCodeChanged {
     TResult Function(String passwordString)? passwordChanged,
     TResult Function(String smsCodeString)? smsCodeChanged,
     TResult Function()? registerWithEmailAndPasswordpressed,
+    TResult Function()? verifyOTPpressed,
+    TResult Function()? reset,
   }) {
     return smsCodeChanged?.call(smsCodeString);
   }
@@ -1096,6 +1180,8 @@ class _$SMSCodeChanged implements SMSCodeChanged {
     TResult Function(String passwordString)? passwordChanged,
     TResult Function(String smsCodeString)? smsCodeChanged,
     TResult Function()? registerWithEmailAndPasswordpressed,
+    TResult Function()? verifyOTPpressed,
+    TResult Function()? reset,
     required TResult orElse(),
   }) {
     if (smsCodeChanged != null) {
@@ -1115,6 +1201,8 @@ class _$SMSCodeChanged implements SMSCodeChanged {
     required TResult Function(SMSCodeChanged value) smsCodeChanged,
     required TResult Function(RegisterWithEmailAndPasswordPressed value)
         registerWithEmailAndPasswordpressed,
+    required TResult Function(VerifyOTPPressed value) verifyOTPpressed,
+    required TResult Function(Reset value) reset,
   }) {
     return smsCodeChanged(this);
   }
@@ -1130,6 +1218,8 @@ class _$SMSCodeChanged implements SMSCodeChanged {
     TResult Function(SMSCodeChanged value)? smsCodeChanged,
     TResult Function(RegisterWithEmailAndPasswordPressed value)?
         registerWithEmailAndPasswordpressed,
+    TResult Function(VerifyOTPPressed value)? verifyOTPpressed,
+    TResult Function(Reset value)? reset,
   }) {
     return smsCodeChanged?.call(this);
   }
@@ -1145,6 +1235,8 @@ class _$SMSCodeChanged implements SMSCodeChanged {
     TResult Function(SMSCodeChanged value)? smsCodeChanged,
     TResult Function(RegisterWithEmailAndPasswordPressed value)?
         registerWithEmailAndPasswordpressed,
+    TResult Function(VerifyOTPPressed value)? verifyOTPpressed,
+    TResult Function(Reset value)? reset,
     required TResult orElse(),
   }) {
     if (smsCodeChanged != null) {
@@ -1216,6 +1308,8 @@ class _$RegisterWithEmailAndPasswordPressed
     required TResult Function(String passwordString) passwordChanged,
     required TResult Function(String smsCodeString) smsCodeChanged,
     required TResult Function() registerWithEmailAndPasswordpressed,
+    required TResult Function() verifyOTPpressed,
+    required TResult Function() reset,
   }) {
     return registerWithEmailAndPasswordpressed();
   }
@@ -1230,6 +1324,8 @@ class _$RegisterWithEmailAndPasswordPressed
     TResult Function(String passwordString)? passwordChanged,
     TResult Function(String smsCodeString)? smsCodeChanged,
     TResult Function()? registerWithEmailAndPasswordpressed,
+    TResult Function()? verifyOTPpressed,
+    TResult Function()? reset,
   }) {
     return registerWithEmailAndPasswordpressed?.call();
   }
@@ -1244,6 +1340,8 @@ class _$RegisterWithEmailAndPasswordPressed
     TResult Function(String passwordString)? passwordChanged,
     TResult Function(String smsCodeString)? smsCodeChanged,
     TResult Function()? registerWithEmailAndPasswordpressed,
+    TResult Function()? verifyOTPpressed,
+    TResult Function()? reset,
     required TResult orElse(),
   }) {
     if (registerWithEmailAndPasswordpressed != null) {
@@ -1263,6 +1361,8 @@ class _$RegisterWithEmailAndPasswordPressed
     required TResult Function(SMSCodeChanged value) smsCodeChanged,
     required TResult Function(RegisterWithEmailAndPasswordPressed value)
         registerWithEmailAndPasswordpressed,
+    required TResult Function(VerifyOTPPressed value) verifyOTPpressed,
+    required TResult Function(Reset value) reset,
   }) {
     return registerWithEmailAndPasswordpressed(this);
   }
@@ -1278,6 +1378,8 @@ class _$RegisterWithEmailAndPasswordPressed
     TResult Function(SMSCodeChanged value)? smsCodeChanged,
     TResult Function(RegisterWithEmailAndPasswordPressed value)?
         registerWithEmailAndPasswordpressed,
+    TResult Function(VerifyOTPPressed value)? verifyOTPpressed,
+    TResult Function(Reset value)? reset,
   }) {
     return registerWithEmailAndPasswordpressed?.call(this);
   }
@@ -1293,6 +1395,8 @@ class _$RegisterWithEmailAndPasswordPressed
     TResult Function(SMSCodeChanged value)? smsCodeChanged,
     TResult Function(RegisterWithEmailAndPasswordPressed value)?
         registerWithEmailAndPasswordpressed,
+    TResult Function(VerifyOTPPressed value)? verifyOTPpressed,
+    TResult Function(Reset value)? reset,
     required TResult orElse(),
   }) {
     if (registerWithEmailAndPasswordpressed != null) {
@@ -1308,6 +1412,303 @@ abstract class RegisterWithEmailAndPasswordPressed implements SignUpFormEvent {
 }
 
 /// @nodoc
+abstract class $VerifyOTPPressedCopyWith<$Res> {
+  factory $VerifyOTPPressedCopyWith(
+          VerifyOTPPressed value, $Res Function(VerifyOTPPressed) then) =
+      _$VerifyOTPPressedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$VerifyOTPPressedCopyWithImpl<$Res>
+    extends _$SignUpFormEventCopyWithImpl<$Res>
+    implements $VerifyOTPPressedCopyWith<$Res> {
+  _$VerifyOTPPressedCopyWithImpl(
+      VerifyOTPPressed _value, $Res Function(VerifyOTPPressed) _then)
+      : super(_value, (v) => _then(v as VerifyOTPPressed));
+
+  @override
+  VerifyOTPPressed get _value => super._value as VerifyOTPPressed;
+}
+
+/// @nodoc
+
+class _$VerifyOTPPressed implements VerifyOTPPressed {
+  const _$VerifyOTPPressed();
+
+  @override
+  String toString() {
+    return 'SignUpFormEvent.verifyOTPpressed()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is VerifyOTPPressed);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String emailString) emailChanged,
+    required TResult Function(String firstNameString) firstNameChanged,
+    required TResult Function(String lastNameString) lastNameChanged,
+    required TResult Function(String phoneNumberString) phoneNumberChanged,
+    required TResult Function(String passwordString) passwordChanged,
+    required TResult Function(String smsCodeString) smsCodeChanged,
+    required TResult Function() registerWithEmailAndPasswordpressed,
+    required TResult Function() verifyOTPpressed,
+    required TResult Function() reset,
+  }) {
+    return verifyOTPpressed();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String emailString)? emailChanged,
+    TResult Function(String firstNameString)? firstNameChanged,
+    TResult Function(String lastNameString)? lastNameChanged,
+    TResult Function(String phoneNumberString)? phoneNumberChanged,
+    TResult Function(String passwordString)? passwordChanged,
+    TResult Function(String smsCodeString)? smsCodeChanged,
+    TResult Function()? registerWithEmailAndPasswordpressed,
+    TResult Function()? verifyOTPpressed,
+    TResult Function()? reset,
+  }) {
+    return verifyOTPpressed?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String emailString)? emailChanged,
+    TResult Function(String firstNameString)? firstNameChanged,
+    TResult Function(String lastNameString)? lastNameChanged,
+    TResult Function(String phoneNumberString)? phoneNumberChanged,
+    TResult Function(String passwordString)? passwordChanged,
+    TResult Function(String smsCodeString)? smsCodeChanged,
+    TResult Function()? registerWithEmailAndPasswordpressed,
+    TResult Function()? verifyOTPpressed,
+    TResult Function()? reset,
+    required TResult orElse(),
+  }) {
+    if (verifyOTPpressed != null) {
+      return verifyOTPpressed();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(EmailChanged value) emailChanged,
+    required TResult Function(FirstNameChanged value) firstNameChanged,
+    required TResult Function(LastNameChanged value) lastNameChanged,
+    required TResult Function(PhoneNumberChanged value) phoneNumberChanged,
+    required TResult Function(PasswordChanged value) passwordChanged,
+    required TResult Function(SMSCodeChanged value) smsCodeChanged,
+    required TResult Function(RegisterWithEmailAndPasswordPressed value)
+        registerWithEmailAndPasswordpressed,
+    required TResult Function(VerifyOTPPressed value) verifyOTPpressed,
+    required TResult Function(Reset value) reset,
+  }) {
+    return verifyOTPpressed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(EmailChanged value)? emailChanged,
+    TResult Function(FirstNameChanged value)? firstNameChanged,
+    TResult Function(LastNameChanged value)? lastNameChanged,
+    TResult Function(PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(PasswordChanged value)? passwordChanged,
+    TResult Function(SMSCodeChanged value)? smsCodeChanged,
+    TResult Function(RegisterWithEmailAndPasswordPressed value)?
+        registerWithEmailAndPasswordpressed,
+    TResult Function(VerifyOTPPressed value)? verifyOTPpressed,
+    TResult Function(Reset value)? reset,
+  }) {
+    return verifyOTPpressed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(EmailChanged value)? emailChanged,
+    TResult Function(FirstNameChanged value)? firstNameChanged,
+    TResult Function(LastNameChanged value)? lastNameChanged,
+    TResult Function(PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(PasswordChanged value)? passwordChanged,
+    TResult Function(SMSCodeChanged value)? smsCodeChanged,
+    TResult Function(RegisterWithEmailAndPasswordPressed value)?
+        registerWithEmailAndPasswordpressed,
+    TResult Function(VerifyOTPPressed value)? verifyOTPpressed,
+    TResult Function(Reset value)? reset,
+    required TResult orElse(),
+  }) {
+    if (verifyOTPpressed != null) {
+      return verifyOTPpressed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class VerifyOTPPressed implements SignUpFormEvent {
+  const factory VerifyOTPPressed() = _$VerifyOTPPressed;
+}
+
+/// @nodoc
+abstract class $ResetCopyWith<$Res> {
+  factory $ResetCopyWith(Reset value, $Res Function(Reset) then) =
+      _$ResetCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$ResetCopyWithImpl<$Res> extends _$SignUpFormEventCopyWithImpl<$Res>
+    implements $ResetCopyWith<$Res> {
+  _$ResetCopyWithImpl(Reset _value, $Res Function(Reset) _then)
+      : super(_value, (v) => _then(v as Reset));
+
+  @override
+  Reset get _value => super._value as Reset;
+}
+
+/// @nodoc
+
+class _$Reset implements Reset {
+  const _$Reset();
+
+  @override
+  String toString() {
+    return 'SignUpFormEvent.reset()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is Reset);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String emailString) emailChanged,
+    required TResult Function(String firstNameString) firstNameChanged,
+    required TResult Function(String lastNameString) lastNameChanged,
+    required TResult Function(String phoneNumberString) phoneNumberChanged,
+    required TResult Function(String passwordString) passwordChanged,
+    required TResult Function(String smsCodeString) smsCodeChanged,
+    required TResult Function() registerWithEmailAndPasswordpressed,
+    required TResult Function() verifyOTPpressed,
+    required TResult Function() reset,
+  }) {
+    return reset();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String emailString)? emailChanged,
+    TResult Function(String firstNameString)? firstNameChanged,
+    TResult Function(String lastNameString)? lastNameChanged,
+    TResult Function(String phoneNumberString)? phoneNumberChanged,
+    TResult Function(String passwordString)? passwordChanged,
+    TResult Function(String smsCodeString)? smsCodeChanged,
+    TResult Function()? registerWithEmailAndPasswordpressed,
+    TResult Function()? verifyOTPpressed,
+    TResult Function()? reset,
+  }) {
+    return reset?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String emailString)? emailChanged,
+    TResult Function(String firstNameString)? firstNameChanged,
+    TResult Function(String lastNameString)? lastNameChanged,
+    TResult Function(String phoneNumberString)? phoneNumberChanged,
+    TResult Function(String passwordString)? passwordChanged,
+    TResult Function(String smsCodeString)? smsCodeChanged,
+    TResult Function()? registerWithEmailAndPasswordpressed,
+    TResult Function()? verifyOTPpressed,
+    TResult Function()? reset,
+    required TResult orElse(),
+  }) {
+    if (reset != null) {
+      return reset();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(EmailChanged value) emailChanged,
+    required TResult Function(FirstNameChanged value) firstNameChanged,
+    required TResult Function(LastNameChanged value) lastNameChanged,
+    required TResult Function(PhoneNumberChanged value) phoneNumberChanged,
+    required TResult Function(PasswordChanged value) passwordChanged,
+    required TResult Function(SMSCodeChanged value) smsCodeChanged,
+    required TResult Function(RegisterWithEmailAndPasswordPressed value)
+        registerWithEmailAndPasswordpressed,
+    required TResult Function(VerifyOTPPressed value) verifyOTPpressed,
+    required TResult Function(Reset value) reset,
+  }) {
+    return reset(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(EmailChanged value)? emailChanged,
+    TResult Function(FirstNameChanged value)? firstNameChanged,
+    TResult Function(LastNameChanged value)? lastNameChanged,
+    TResult Function(PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(PasswordChanged value)? passwordChanged,
+    TResult Function(SMSCodeChanged value)? smsCodeChanged,
+    TResult Function(RegisterWithEmailAndPasswordPressed value)?
+        registerWithEmailAndPasswordpressed,
+    TResult Function(VerifyOTPPressed value)? verifyOTPpressed,
+    TResult Function(Reset value)? reset,
+  }) {
+    return reset?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(EmailChanged value)? emailChanged,
+    TResult Function(FirstNameChanged value)? firstNameChanged,
+    TResult Function(LastNameChanged value)? lastNameChanged,
+    TResult Function(PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(PasswordChanged value)? passwordChanged,
+    TResult Function(SMSCodeChanged value)? smsCodeChanged,
+    TResult Function(RegisterWithEmailAndPasswordPressed value)?
+        registerWithEmailAndPasswordpressed,
+    TResult Function(VerifyOTPPressed value)? verifyOTPpressed,
+    TResult Function(Reset value)? reset,
+    required TResult orElse(),
+  }) {
+    if (reset != null) {
+      return reset(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Reset implements SignUpFormEvent {
+  const factory Reset() = _$Reset;
+}
+
+/// @nodoc
 class _$SignUpFormStateTearOff {
   const _$SignUpFormStateTearOff();
 
@@ -1320,7 +1721,8 @@ class _$SignUpFormStateTearOff {
       required Password password,
       required bool isSubmitting,
       required bool showErrorMessages,
-      required Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption}) {
+      required Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption,
+      required Option<String> verificationIdOption}) {
     return _SignUpFormState(
       emailAddress: emailAddress,
       firstName: firstName,
@@ -1331,6 +1733,7 @@ class _$SignUpFormStateTearOff {
       isSubmitting: isSubmitting,
       showErrorMessages: showErrorMessages,
       authFailureOrSuccessOption: authFailureOrSuccessOption,
+      verificationIdOption: verificationIdOption,
     );
   }
 }
@@ -1350,6 +1753,7 @@ mixin _$SignUpFormState {
   bool get showErrorMessages => throw _privateConstructorUsedError;
   Option<Either<AuthFailure, Unit>> get authFailureOrSuccessOption =>
       throw _privateConstructorUsedError;
+  Option<String> get verificationIdOption => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SignUpFormStateCopyWith<SignUpFormState> get copyWith =>
@@ -1370,7 +1774,8 @@ abstract class $SignUpFormStateCopyWith<$Res> {
       Password password,
       bool isSubmitting,
       bool showErrorMessages,
-      Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption});
+      Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption,
+      Option<String> verificationIdOption});
 }
 
 /// @nodoc
@@ -1393,6 +1798,7 @@ class _$SignUpFormStateCopyWithImpl<$Res>
     Object? isSubmitting = freezed,
     Object? showErrorMessages = freezed,
     Object? authFailureOrSuccessOption = freezed,
+    Object? verificationIdOption = freezed,
   }) {
     return _then(_value.copyWith(
       emailAddress: emailAddress == freezed
@@ -1431,6 +1837,10 @@ class _$SignUpFormStateCopyWithImpl<$Res>
           ? _value.authFailureOrSuccessOption
           : authFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
               as Option<Either<AuthFailure, Unit>>,
+      verificationIdOption: verificationIdOption == freezed
+          ? _value.verificationIdOption
+          : verificationIdOption // ignore: cast_nullable_to_non_nullable
+              as Option<String>,
     ));
   }
 }
@@ -1451,7 +1861,8 @@ abstract class _$SignUpFormStateCopyWith<$Res>
       Password password,
       bool isSubmitting,
       bool showErrorMessages,
-      Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption});
+      Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption,
+      Option<String> verificationIdOption});
 }
 
 /// @nodoc
@@ -1476,6 +1887,7 @@ class __$SignUpFormStateCopyWithImpl<$Res>
     Object? isSubmitting = freezed,
     Object? showErrorMessages = freezed,
     Object? authFailureOrSuccessOption = freezed,
+    Object? verificationIdOption = freezed,
   }) {
     return _then(_SignUpFormState(
       emailAddress: emailAddress == freezed
@@ -1514,13 +1926,17 @@ class __$SignUpFormStateCopyWithImpl<$Res>
           ? _value.authFailureOrSuccessOption
           : authFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
               as Option<Either<AuthFailure, Unit>>,
+      verificationIdOption: verificationIdOption == freezed
+          ? _value.verificationIdOption
+          : verificationIdOption // ignore: cast_nullable_to_non_nullable
+              as Option<String>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_SignUpFormState implements _SignUpFormState {
+class _$_SignUpFormState extends _SignUpFormState {
   const _$_SignUpFormState(
       {required this.emailAddress,
       required this.firstName,
@@ -1530,7 +1946,9 @@ class _$_SignUpFormState implements _SignUpFormState {
       required this.password,
       required this.isSubmitting,
       required this.showErrorMessages,
-      required this.authFailureOrSuccessOption});
+      required this.authFailureOrSuccessOption,
+      required this.verificationIdOption})
+      : super._();
 
   @override
   final EmailAddress emailAddress;
@@ -1550,10 +1968,12 @@ class _$_SignUpFormState implements _SignUpFormState {
   final bool showErrorMessages;
   @override
   final Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption;
+  @override
+  final Option<String> verificationIdOption;
 
   @override
   String toString() {
-    return 'SignUpFormState(emailAddress: $emailAddress, firstName: $firstName, lastName: $lastName, phoneNumber: $phoneNumber, smsCode: $smsCode, password: $password, isSubmitting: $isSubmitting, showErrorMessages: $showErrorMessages, authFailureOrSuccessOption: $authFailureOrSuccessOption)';
+    return 'SignUpFormState(emailAddress: $emailAddress, firstName: $firstName, lastName: $lastName, phoneNumber: $phoneNumber, smsCode: $smsCode, password: $password, isSubmitting: $isSubmitting, showErrorMessages: $showErrorMessages, authFailureOrSuccessOption: $authFailureOrSuccessOption, verificationIdOption: $verificationIdOption)';
   }
 
   @override
@@ -1574,7 +1994,9 @@ class _$_SignUpFormState implements _SignUpFormState {
             const DeepCollectionEquality()
                 .equals(other.showErrorMessages, showErrorMessages) &&
             const DeepCollectionEquality().equals(
-                other.authFailureOrSuccessOption, authFailureOrSuccessOption));
+                other.authFailureOrSuccessOption, authFailureOrSuccessOption) &&
+            const DeepCollectionEquality()
+                .equals(other.verificationIdOption, verificationIdOption));
   }
 
   @override
@@ -1588,7 +2010,8 @@ class _$_SignUpFormState implements _SignUpFormState {
       const DeepCollectionEquality().hash(password),
       const DeepCollectionEquality().hash(isSubmitting),
       const DeepCollectionEquality().hash(showErrorMessages),
-      const DeepCollectionEquality().hash(authFailureOrSuccessOption));
+      const DeepCollectionEquality().hash(authFailureOrSuccessOption),
+      const DeepCollectionEquality().hash(verificationIdOption));
 
   @JsonKey(ignore: true)
   @override
@@ -1596,7 +2019,7 @@ class _$_SignUpFormState implements _SignUpFormState {
       __$SignUpFormStateCopyWithImpl<_SignUpFormState>(this, _$identity);
 }
 
-abstract class _SignUpFormState implements SignUpFormState {
+abstract class _SignUpFormState extends SignUpFormState {
   const factory _SignUpFormState(
       {required EmailAddress emailAddress,
       required UserName firstName,
@@ -1606,8 +2029,9 @@ abstract class _SignUpFormState implements SignUpFormState {
       required Password password,
       required bool isSubmitting,
       required bool showErrorMessages,
-      required Option<Either<AuthFailure, Unit>>
-          authFailureOrSuccessOption}) = _$_SignUpFormState;
+      required Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption,
+      required Option<String> verificationIdOption}) = _$_SignUpFormState;
+  const _SignUpFormState._() : super._();
 
   @override
   EmailAddress get emailAddress;
@@ -1627,6 +2051,8 @@ abstract class _SignUpFormState implements SignUpFormState {
   bool get showErrorMessages;
   @override
   Option<Either<AuthFailure, Unit>> get authFailureOrSuccessOption;
+  @override
+  Option<String> get verificationIdOption;
   @override
   @JsonKey(ignore: true)
   _$SignUpFormStateCopyWith<_SignUpFormState> get copyWith =>

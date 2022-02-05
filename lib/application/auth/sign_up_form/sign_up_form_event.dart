@@ -9,4 +9,6 @@ class SignUpFormEvent with _$SignUpFormEvent{
   const factory SignUpFormEvent.passwordChanged(String passwordString) = PasswordChanged; 
   const factory SignUpFormEvent.smsCodeChanged(String smsCodeString) = SMSCodeChanged; 
   const factory SignUpFormEvent.registerWithEmailAndPasswordpressed() = RegisterWithEmailAndPasswordPressed;
+  const factory SignUpFormEvent.verifyOTPpressed() = VerifyOTPPressed;
+  const factory SignUpFormEvent.reset() = Reset;
 }

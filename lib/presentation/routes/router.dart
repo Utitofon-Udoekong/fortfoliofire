@@ -1,4 +1,5 @@
 import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:fortfolio/presentation/authentication/forgot_password/reset_password.dart';
 import 'package:fortfolio/presentation/authentication/sign_in/confirm_login_otp.dart';
 import 'package:fortfolio/presentation/authentication/sign_in/sign_in_form_email.dart';
@@ -64,7 +65,12 @@ import 'package:fortfolio/presentation/splash/splash_Screen.dart';
   AutoRoute(page: SignUpForm),
   AutoRoute(page: ResetPassword),
   AutoRoute(page: HomePage, children: <AutoRoute>[
-    AutoRoute(page: Dashboard, children: <AutoRoute>[
+    AutoRoute(
+      path: "dashboard",
+      name: "DashboardRouter",
+      page: EmptyRouterPage,
+      children: <AutoRoute>[
+         AutoRoute(page: Dashboard, children: <AutoRoute>[
       AutoRoute(page: ProfilePage),
       AutoRoute(
         page: Security,
@@ -107,7 +113,14 @@ import 'package:fortfolio/presentation/splash/splash_Screen.dart';
         ],
       )
     ]),
+      ]
+    ),
     AutoRoute(
+      path: "investment",
+      name: "InvestmentRouter",
+      page: EmptyRouterPage,
+      children: <AutoRoute>[
+        AutoRoute(
       page: InvestmentPage,
       children: <AutoRoute>[
         AutoRoute(page: Calculator),
@@ -146,7 +159,14 @@ import 'package:fortfolio/presentation/splash/splash_Screen.dart';
         )
       ],
     ),
+      ]
+    ),
     AutoRoute(
+      path: "wallet",
+      name: "WalletRouter",
+      page: EmptyRouterPage,
+      children: <AutoRoute>[
+        AutoRoute(
       page: Wallet,
       children: <AutoRoute>[
         AutoRoute(page: WalletOverview),
@@ -163,6 +183,8 @@ import 'package:fortfolio/presentation/splash/splash_Screen.dart';
           ],
         )
       ],
+    )
+      ]
     )
   ])
 ])

@@ -30,6 +30,7 @@ abstract class IAuthFacade {
     required Password password
   });
   Future<void> signOut();
+  Future<Option<AuthUserModel>> getSignedInUser();
   Future<void> verifyUser();
   Future<Either<AuthFailure, Unit>> resetPassword({
     required EmailAddress emailAddress

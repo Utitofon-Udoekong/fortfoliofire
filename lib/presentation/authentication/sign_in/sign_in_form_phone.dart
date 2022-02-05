@@ -153,11 +153,13 @@ class _SignInFormPhoneState extends State<SignInFormPhone> {
                                     .phoneNumber
                                     .value
                                     .fold(
-                                        (f) => f.maybeMap(
-                                            invalidPhone: (_) =>
-                                                'Invalid Phone Number',
-                                            orElse: () => null),
-                                        (r) => null),
+                                      (f) => f.maybeMap(
+                                          auth: (value) {
+                                            return value.f.failedValue;
+                                          },
+                                          orElse: () => null),
+                                      (r) => null,
+                                    ),
                               ),
                               const SizedBox(
                                 height: 30,

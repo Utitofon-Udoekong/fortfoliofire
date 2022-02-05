@@ -76,12 +76,13 @@ class ResetPassword extends StatelessWidget {
                             .emailAddress
                             .value
                             .fold(
-                              (l) => l.maybeMap(
-                                invalidEmail: (_) => 'Invalid email address',
-                                orElse: () => null,
-                              ),
-                              (r) => null,
-                            ),
+                            (f) => f.maybeMap(
+                                auth: (value) {
+                                  return value.f.failedValue;
+                                },
+                                orElse: () => null),
+                            (r) => null,
+                          ),
                       ),
                       const SizedBox(
                         height: 50,

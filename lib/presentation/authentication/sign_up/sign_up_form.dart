@@ -110,10 +110,13 @@ class _SignUpFormState extends State<SignUpForm> {
                           .emailAddress
                           .value
                           .fold(
-                              (f) => f.maybeMap(
-                                  invalidEmail: (_) => 'Invalid Email',
-                                  orElse: () => null),
-                              (r) => null),
+                            (f) => f.maybeMap(
+                                auth: (value) {
+                                  return value.f.failedValue;
+                                },
+                                orElse: () => null),
+                            (r) => null,
+                          ),
                     ),
                     const SizedBox(
                       height: 30,
@@ -155,10 +158,13 @@ class _SignUpFormState extends State<SignUpForm> {
                           .password
                           .value
                           .fold(
-                              (f) => f.maybeMap(
-                                  shortPassword: (_) => 'Short Password',
-                                  orElse: () => null),
-                              (r) => null),
+                            (f) => f.maybeMap(
+                                auth: (value) {
+                                  return value.f.failedValue;
+                                },
+                                orElse: () => null),
+                            (r) => null,
+                          ),
                     ),
                     const SizedBox(
                       height: 30,
@@ -184,10 +190,18 @@ class _SignUpFormState extends State<SignUpForm> {
                           .phoneNumber
                           .value
                           .fold(
-                              (f) => f.maybeMap(
-                                  invalidPhone: (_) => 'Invalid Phone Number',
-                                  orElse: () => null),
-                              (r) => null),
+                            (f) => f.maybeMap(
+                                auth: (value) {
+                                  return value.f.failedValue;
+                                },
+                                orElse: () => null),
+                            (r) => null,
+                          ),
+                          // .fold(
+                          //     (f) => f.maybeMap(
+                          //         invalidPhone: (_) => 'Invalid Phone Number',
+                          //         orElse: () => null),
+                          //     (r) => null),
                     ),
                     const SizedBox(
                       height: 20,

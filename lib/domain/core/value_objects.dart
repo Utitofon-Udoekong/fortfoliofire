@@ -2,7 +2,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:equatable/equatable.dart';
-import 'package:fortfolio/domain/auth/value_objects.dart';
 import 'package:uuid/uuid.dart';
 
 import 'errors.dart';

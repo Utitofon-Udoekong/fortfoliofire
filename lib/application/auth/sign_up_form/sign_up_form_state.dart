@@ -11,9 +11,10 @@ class SignUpFormState with _$SignUpFormState {
     required Password password,
     required bool isSubmitting,
     required bool showErrorMessages,
-    required Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption
+    required Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption,
+    required Option<String> verificationIdOption,
   }) = _SignUpFormState;
-
+  const SignUpFormState._();
   factory SignUpFormState.initial() => SignUpFormState(
     emailAddress: EmailAddress(''),
     firstName: UserName(''),
@@ -24,6 +25,10 @@ class SignUpFormState with _$SignUpFormState {
     showErrorMessages: false,
     isSubmitting: false,
     authFailureOrSuccessOption: none(), 
+    verificationIdOption: none(),
   );
+  bool get displayNextButton => verificationIdOption.isNone() && !isSubmitting;
+  bool get displaySmsCodeForm => verificationIdOption.isSome();
+  bool get displayLoadingIndicator => !displayNextButton && !displaySmsCodeForm;
 }
 

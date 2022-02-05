@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'withdrawal_item.dart';
+part of 'deposit_item.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,60 +15,59 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$WithdrawalItemTearOff {
-  const _$WithdrawalItemTearOff();
+class _$DepositItemTearOff {
+  const _$DepositItemTearOff();
 
-  _WithdrawalItem call(
+  _DepositItem call(
       {required UniqueId id,
+      required ItemName planName,
       required int amount,
-      required String planName,
       required bool processed}) {
-    return _WithdrawalItem(
+    return _DepositItem(
       id: id,
-      amount: amount,
       planName: planName,
+      amount: amount,
       processed: processed,
     );
   }
 }
 
 /// @nodoc
-const $WithdrawalItem = _$WithdrawalItemTearOff();
+const $DepositItem = _$DepositItemTearOff();
 
 /// @nodoc
-mixin _$WithdrawalItem {
+mixin _$DepositItem {
   UniqueId get id => throw _privateConstructorUsedError;
+  ItemName get planName => throw _privateConstructorUsedError;
   int get amount => throw _privateConstructorUsedError;
-  String get planName => throw _privateConstructorUsedError;
   bool get processed => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $WithdrawalItemCopyWith<WithdrawalItem> get copyWith =>
+  $DepositItemCopyWith<DepositItem> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $WithdrawalItemCopyWith<$Res> {
-  factory $WithdrawalItemCopyWith(
-          WithdrawalItem value, $Res Function(WithdrawalItem) then) =
-      _$WithdrawalItemCopyWithImpl<$Res>;
-  $Res call({UniqueId id, int amount, String planName, bool processed});
+abstract class $DepositItemCopyWith<$Res> {
+  factory $DepositItemCopyWith(
+          DepositItem value, $Res Function(DepositItem) then) =
+      _$DepositItemCopyWithImpl<$Res>;
+  $Res call({UniqueId id, ItemName planName, int amount, bool processed});
 }
 
 /// @nodoc
-class _$WithdrawalItemCopyWithImpl<$Res>
-    implements $WithdrawalItemCopyWith<$Res> {
-  _$WithdrawalItemCopyWithImpl(this._value, this._then);
+class _$DepositItemCopyWithImpl<$Res> implements $DepositItemCopyWith<$Res> {
+  _$DepositItemCopyWithImpl(this._value, this._then);
 
-  final WithdrawalItem _value;
+  final DepositItem _value;
   // ignore: unused_field
-  final $Res Function(WithdrawalItem) _then;
+  final $Res Function(DepositItem) _then;
 
   @override
   $Res call({
     Object? id = freezed,
-    Object? amount = freezed,
     Object? planName = freezed,
+    Object? amount = freezed,
     Object? processed = freezed,
   }) {
     return _then(_value.copyWith(
@@ -76,14 +75,14 @@ class _$WithdrawalItemCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as UniqueId,
+      planName: planName == freezed
+          ? _value.planName
+          : planName // ignore: cast_nullable_to_non_nullable
+              as ItemName,
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as int,
-      planName: planName == freezed
-          ? _value.planName
-          : planName // ignore: cast_nullable_to_non_nullable
-              as String,
       processed: processed == freezed
           ? _value.processed
           : processed // ignore: cast_nullable_to_non_nullable
@@ -93,46 +92,45 @@ class _$WithdrawalItemCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$WithdrawalItemCopyWith<$Res>
-    implements $WithdrawalItemCopyWith<$Res> {
-  factory _$WithdrawalItemCopyWith(
-          _WithdrawalItem value, $Res Function(_WithdrawalItem) then) =
-      __$WithdrawalItemCopyWithImpl<$Res>;
+abstract class _$DepositItemCopyWith<$Res>
+    implements $DepositItemCopyWith<$Res> {
+  factory _$DepositItemCopyWith(
+          _DepositItem value, $Res Function(_DepositItem) then) =
+      __$DepositItemCopyWithImpl<$Res>;
   @override
-  $Res call({UniqueId id, int amount, String planName, bool processed});
+  $Res call({UniqueId id, ItemName planName, int amount, bool processed});
 }
 
 /// @nodoc
-class __$WithdrawalItemCopyWithImpl<$Res>
-    extends _$WithdrawalItemCopyWithImpl<$Res>
-    implements _$WithdrawalItemCopyWith<$Res> {
-  __$WithdrawalItemCopyWithImpl(
-      _WithdrawalItem _value, $Res Function(_WithdrawalItem) _then)
-      : super(_value, (v) => _then(v as _WithdrawalItem));
+class __$DepositItemCopyWithImpl<$Res> extends _$DepositItemCopyWithImpl<$Res>
+    implements _$DepositItemCopyWith<$Res> {
+  __$DepositItemCopyWithImpl(
+      _DepositItem _value, $Res Function(_DepositItem) _then)
+      : super(_value, (v) => _then(v as _DepositItem));
 
   @override
-  _WithdrawalItem get _value => super._value as _WithdrawalItem;
+  _DepositItem get _value => super._value as _DepositItem;
 
   @override
   $Res call({
     Object? id = freezed,
-    Object? amount = freezed,
     Object? planName = freezed,
+    Object? amount = freezed,
     Object? processed = freezed,
   }) {
-    return _then(_WithdrawalItem(
+    return _then(_DepositItem(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as UniqueId,
+      planName: planName == freezed
+          ? _value.planName
+          : planName // ignore: cast_nullable_to_non_nullable
+              as ItemName,
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as int,
-      planName: planName == freezed
-          ? _value.planName
-          : planName // ignore: cast_nullable_to_non_nullable
-              as String,
       processed: processed == freezed
           ? _value.processed
           : processed // ignore: cast_nullable_to_non_nullable
@@ -143,35 +141,36 @@ class __$WithdrawalItemCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_WithdrawalItem implements _WithdrawalItem {
-  const _$_WithdrawalItem(
+class _$_DepositItem extends _DepositItem {
+  const _$_DepositItem(
       {required this.id,
-      required this.amount,
       required this.planName,
-      required this.processed});
+      required this.amount,
+      required this.processed})
+      : super._();
 
   @override
   final UniqueId id;
   @override
-  final int amount;
+  final ItemName planName;
   @override
-  final String planName;
+  final int amount;
   @override
   final bool processed;
 
   @override
   String toString() {
-    return 'WithdrawalItem(id: $id, amount: $amount, planName: $planName, processed: $processed)';
+    return 'DepositItem(id: $id, planName: $planName, amount: $amount, processed: $processed)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _WithdrawalItem &&
+            other is _DepositItem &&
             const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.amount, amount) &&
             const DeepCollectionEquality().equals(other.planName, planName) &&
+            const DeepCollectionEquality().equals(other.amount, amount) &&
             const DeepCollectionEquality().equals(other.processed, processed));
   }
 
@@ -179,33 +178,34 @@ class _$_WithdrawalItem implements _WithdrawalItem {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(amount),
       const DeepCollectionEquality().hash(planName),
+      const DeepCollectionEquality().hash(amount),
       const DeepCollectionEquality().hash(processed));
 
   @JsonKey(ignore: true)
   @override
-  _$WithdrawalItemCopyWith<_WithdrawalItem> get copyWith =>
-      __$WithdrawalItemCopyWithImpl<_WithdrawalItem>(this, _$identity);
+  _$DepositItemCopyWith<_DepositItem> get copyWith =>
+      __$DepositItemCopyWithImpl<_DepositItem>(this, _$identity);
 }
 
-abstract class _WithdrawalItem implements WithdrawalItem {
-  const factory _WithdrawalItem(
+abstract class _DepositItem extends DepositItem {
+  const factory _DepositItem(
       {required UniqueId id,
+      required ItemName planName,
       required int amount,
-      required String planName,
-      required bool processed}) = _$_WithdrawalItem;
+      required bool processed}) = _$_DepositItem;
+  const _DepositItem._() : super._();
 
   @override
   UniqueId get id;
   @override
-  int get amount;
+  ItemName get planName;
   @override
-  String get planName;
+  int get amount;
   @override
   bool get processed;
   @override
   @JsonKey(ignore: true)
-  _$WithdrawalItemCopyWith<_WithdrawalItem> get copyWith =>
+  _$DepositItemCopyWith<_DepositItem> get copyWith =>
       throw _privateConstructorUsedError;
 }

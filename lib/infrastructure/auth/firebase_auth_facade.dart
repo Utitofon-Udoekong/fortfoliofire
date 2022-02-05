@@ -25,7 +25,7 @@ class FirebaseAuthFacade implements IAuthFacade {
       await firebaseAuth.signInWithEmailAndPassword(
           email: emailAddressString, password: passwordString);
       return right(unit);
-    } on PlatformException catch (e) {
+    } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found' || e.code == 'wrong-password') {
         return left(const AuthFailure.invalidEmailAndPassword());
       } else {
@@ -48,7 +48,7 @@ class FirebaseAuthFacade implements IAuthFacade {
             registerPhoneNumber(phoneNumber: Phone(phoneNumber), timeout: timeout)
           });
       return right(unit);
-    } on PlatformException catch (e) {
+    } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
         return left(const AuthFailure.emailAlreadyInUse());
       } else {
@@ -66,7 +66,7 @@ class FirebaseAuthFacade implements IAuthFacade {
     try {
       await firebaseAuth.sendPasswordResetEmail(email: email);
       return right(unit);
-    } on PlatformException catch (e) {
+    } on FirebaseAuthException catch (e) {
       if(e.code == "auth/invalid-email"){
         return left(const AuthFailure.invalidEmailAndPassword());
       }else {
@@ -198,6 +198,9 @@ class FirebaseAuthFacade implements IAuthFacade {
 
   @override
   Future<void> verifyUser() async => await firebaseAuth.currentUser!.sendEmailVerification();
+
+  @override
+  Future<Option<AuthUserModel>> getSignedInUser() async => optionOf(firebaseAuth.currentUser!.toDomain());
   //   var actionCodeSettings = ActionCodeSettings(
   //     url: 'https://www.example.com/?email=${firebaseAuth.currentUser!.email}',
   //     dynamicLinkDomain: 'example.page.link',

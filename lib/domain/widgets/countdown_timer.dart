@@ -8,9 +8,10 @@ class CountDownTimer extends StatefulWidget {
   ///The total amount of seconds until the SMS code will timeout.
   final int smsCodeTimeoutSeconds;
   const CountDownTimer({
-    required this.smsCodeTimeoutSeconds,
+    Key? key,
     required this.onTimerCompleted,
-  });
+    required this.smsCodeTimeoutSeconds,
+  }) : super(key: key);
 
   @override
   _CountDownTimerState createState() => _CountDownTimerState();

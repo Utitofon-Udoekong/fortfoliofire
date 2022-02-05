@@ -20,15 +20,15 @@ class _$ActivePlanItemTearOff {
 
   _ActivePlanItem call(
       {required UniqueId id,
+      required ItemName planName,
       required int amount,
-      required String planName,
       required int duration,
       required int accountBalance,
       required int roi}) {
     return _ActivePlanItem(
       id: id,
-      amount: amount,
       planName: planName,
+      amount: amount,
       duration: duration,
       accountBalance: accountBalance,
       roi: roi,
@@ -42,8 +42,8 @@ const $ActivePlanItem = _$ActivePlanItemTearOff();
 /// @nodoc
 mixin _$ActivePlanItem {
   UniqueId get id => throw _privateConstructorUsedError;
+  ItemName get planName => throw _privateConstructorUsedError;
   int get amount => throw _privateConstructorUsedError;
-  String get planName => throw _privateConstructorUsedError;
   int get duration => throw _privateConstructorUsedError;
   int get accountBalance => throw _privateConstructorUsedError;
   int get roi => throw _privateConstructorUsedError;
@@ -60,8 +60,8 @@ abstract class $ActivePlanItemCopyWith<$Res> {
       _$ActivePlanItemCopyWithImpl<$Res>;
   $Res call(
       {UniqueId id,
+      ItemName planName,
       int amount,
-      String planName,
       int duration,
       int accountBalance,
       int roi});
@@ -79,8 +79,8 @@ class _$ActivePlanItemCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? amount = freezed,
     Object? planName = freezed,
+    Object? amount = freezed,
     Object? duration = freezed,
     Object? accountBalance = freezed,
     Object? roi = freezed,
@@ -90,14 +90,14 @@ class _$ActivePlanItemCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as UniqueId,
+      planName: planName == freezed
+          ? _value.planName
+          : planName // ignore: cast_nullable_to_non_nullable
+              as ItemName,
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as int,
-      planName: planName == freezed
-          ? _value.planName
-          : planName // ignore: cast_nullable_to_non_nullable
-              as String,
       duration: duration == freezed
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
@@ -123,8 +123,8 @@ abstract class _$ActivePlanItemCopyWith<$Res>
   @override
   $Res call(
       {UniqueId id,
+      ItemName planName,
       int amount,
-      String planName,
       int duration,
       int accountBalance,
       int roi});
@@ -144,8 +144,8 @@ class __$ActivePlanItemCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? amount = freezed,
     Object? planName = freezed,
+    Object? amount = freezed,
     Object? duration = freezed,
     Object? accountBalance = freezed,
     Object? roi = freezed,
@@ -155,14 +155,14 @@ class __$ActivePlanItemCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as UniqueId,
+      planName: planName == freezed
+          ? _value.planName
+          : planName // ignore: cast_nullable_to_non_nullable
+              as ItemName,
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as int,
-      planName: planName == freezed
-          ? _value.planName
-          : planName // ignore: cast_nullable_to_non_nullable
-              as String,
       duration: duration == freezed
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
@@ -181,21 +181,22 @@ class __$ActivePlanItemCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ActivePlanItem implements _ActivePlanItem {
+class _$_ActivePlanItem extends _ActivePlanItem {
   const _$_ActivePlanItem(
       {required this.id,
-      required this.amount,
       required this.planName,
+      required this.amount,
       required this.duration,
       required this.accountBalance,
-      required this.roi});
+      required this.roi})
+      : super._();
 
   @override
   final UniqueId id;
   @override
-  final int amount;
+  final ItemName planName;
   @override
-  final String planName;
+  final int amount;
   @override
   final int duration;
   @override
@@ -205,7 +206,7 @@ class _$_ActivePlanItem implements _ActivePlanItem {
 
   @override
   String toString() {
-    return 'ActivePlanItem(id: $id, amount: $amount, planName: $planName, duration: $duration, accountBalance: $accountBalance, roi: $roi)';
+    return 'ActivePlanItem(id: $id, planName: $planName, amount: $amount, duration: $duration, accountBalance: $accountBalance, roi: $roi)';
   }
 
   @override
@@ -214,8 +215,8 @@ class _$_ActivePlanItem implements _ActivePlanItem {
         (other.runtimeType == runtimeType &&
             other is _ActivePlanItem &&
             const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.amount, amount) &&
             const DeepCollectionEquality().equals(other.planName, planName) &&
+            const DeepCollectionEquality().equals(other.amount, amount) &&
             const DeepCollectionEquality().equals(other.duration, duration) &&
             const DeepCollectionEquality()
                 .equals(other.accountBalance, accountBalance) &&
@@ -226,8 +227,8 @@ class _$_ActivePlanItem implements _ActivePlanItem {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(amount),
       const DeepCollectionEquality().hash(planName),
+      const DeepCollectionEquality().hash(amount),
       const DeepCollectionEquality().hash(duration),
       const DeepCollectionEquality().hash(accountBalance),
       const DeepCollectionEquality().hash(roi));
@@ -238,21 +239,22 @@ class _$_ActivePlanItem implements _ActivePlanItem {
       __$ActivePlanItemCopyWithImpl<_ActivePlanItem>(this, _$identity);
 }
 
-abstract class _ActivePlanItem implements ActivePlanItem {
+abstract class _ActivePlanItem extends ActivePlanItem {
   const factory _ActivePlanItem(
       {required UniqueId id,
+      required ItemName planName,
       required int amount,
-      required String planName,
       required int duration,
       required int accountBalance,
       required int roi}) = _$_ActivePlanItem;
+  const _ActivePlanItem._() : super._();
 
   @override
   UniqueId get id;
   @override
-  int get amount;
+  ItemName get planName;
   @override
-  String get planName;
+  int get amount;
   @override
   int get duration;
   @override
