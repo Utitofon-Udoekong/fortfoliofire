@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:rxdart/rxdart.dart';
@@ -16,8 +17,9 @@ import 'user_dtos.dart';
 @LazySingleton(as: IUserRepository)
 class UserRepository implements IUserRepository {
   final FirebaseFirestore _firestore;
+  final firebase_storage.FirebaseStorage _storage;
 
-  UserRepository(this._firestore);
+  UserRepository(this._firestore, this._storage);
   @override
   Future<Either<UserFailure, Unit>> create(AppUser appUser) async {
     try {
@@ -88,4 +90,22 @@ class UserRepository implements IUserRepository {
           }
         });
   }
+
+  @override
+  Future<Either<UserFailure, firebase_storage.ListResult>> listNews() async{
+    try {
+      final news = await _storage.ref('news').listAll();
+      return right(news);
+    } on FirebaseException catch (e) {
+      if(e.message!.contains('PERMISSION_DENIED')) {
+        return left(const UserFailure.insufficientPermission());
+      }else if(e.message!.contains('NOT_FOUND')) {
+        return left(const UserFailure.unableToUpdate());
+      }else{
+        return left(const UserFailure.unexpected());
+      }
+    }
+  }
+
+  
 }

@@ -32,7 +32,7 @@ class _WalletState extends State<Wallet> with SingleTickerProviderStateMixin {
         child: Scaffold(
       body: Padding(
         padding: kDefaultPadding,
-        child: Container(
+        child: SizedBox(
           height: MediaQuery.of(context).size.height,
           child: Column(
             children: <Widget>[

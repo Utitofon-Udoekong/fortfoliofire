@@ -38,8 +38,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.lazySingleton<_i6.FirebaseStorage>(() => firebaseInjectableModule.storage);
   gh.lazySingleton<_i7.IAuthFacade>(
       () => _i8.FirebaseAuthFacade(firebaseAuth: get<_i4.FirebaseAuth>()));
-  gh.lazySingleton<_i9.IUserRepository>(
-      () => _i10.UserRepository(get<_i5.FirebaseFirestore>()));
+  gh.lazySingleton<_i9.IUserRepository>(() => _i10.UserRepository(
+      get<_i5.FirebaseFirestore>(), get<_i6.FirebaseStorage>()));
   gh.factory<_i11.ResetPasswordBloc>(
       () => _i11.ResetPasswordBloc(get<_i7.IAuthFacade>()));
   gh.factory<_i12.SignInFormEmailBloc>(
