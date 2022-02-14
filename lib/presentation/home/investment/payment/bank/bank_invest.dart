@@ -1,3 +1,4 @@
+import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:flutter/material.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 
@@ -40,7 +41,7 @@ class _BankInvestmentPageState extends State<BankInvestmentPage>
                 height: 20,
               ),
               InkWell(
-                onTap: () => {},
+                onTap: () => context.router.pop(),
                 child: const Icon(Icons.close),
               ),
               const SizedBox(
@@ -50,7 +51,7 @@ class _BankInvestmentPageState extends State<BankInvestmentPage>
                 "Invest Using bank\nTransfer",
                 style: titleText,
               ),
-              Container(
+              SizedBox(
                 height: MediaQuery.of(context).size.height,
                 child: Column(
                   children: <Widget>[

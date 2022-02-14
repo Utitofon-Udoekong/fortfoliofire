@@ -1,6 +1,8 @@
+import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:flutter/material.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
+import 'package:fortfolio/presentation/routes/router.gr.dart';
 
 class ChangePassword extends StatelessWidget {
   const ChangePassword({Key? key}) : super(key: key);
@@ -20,9 +22,7 @@ class ChangePassword extends StatelessWidget {
                 height: 20,
               ),
               InkWell(
-                onTap: () => {
-                  // Get.back()
-                },
+                onTap: () => context.router.pop(),
                 child: const Icon(Icons.close),
               ),
               const SizedBox(
@@ -95,8 +95,7 @@ class ChangePassword extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   InkWell(
-                      onTap: (){
-                      },
+                      onTap: () => context.router.push(const ResetPasswordRoute()),
                       child: const Text(
                         'Forgot password?',
                         style: TextStyle(fontSize: 13.5, color: kPrimaryColor),

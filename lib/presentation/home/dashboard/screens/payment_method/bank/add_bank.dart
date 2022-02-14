@@ -1,6 +1,8 @@
+import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:flutter/material.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
+import 'package:fortfolio/utils/pages.dart';
 
 class AddBank extends StatelessWidget {
   const AddBank({Key? key}) : super(key: key);
@@ -19,9 +21,7 @@ class AddBank extends StatelessWidget {
                 height: 20,
               ),
               InkWell(
-                onTap: () {
-                  // Get.back();
-                },
+                onTap: () => context.router.pop(),
                 child: const Icon(Icons.close),
               ),
               const SizedBox(
@@ -31,10 +31,10 @@ class AddBank extends StatelessWidget {
                 "Add New Bank",
                 style: titleText.copyWith(color: kBlackColor),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              Text('Transfer funds easily to your desired bank account',
+              const Text('Transfer funds easily to your desired bank account',
                   style: TextStyle(fontSize: 15, color: kgreyColor)),
               const SizedBox(
                 height: 30,
@@ -49,7 +49,7 @@ class AddBank extends StatelessWidget {
                 autocorrect: false,
                 keyboardType: TextInputType.number,
                 textInputAction: TextInputAction.next,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     // errorText: controller.codeErrorText,
                     // enabled: controller.isLoading.value == false,
                     filled: true,
@@ -68,7 +68,7 @@ class AddBank extends StatelessWidget {
                 autocorrect: false,
                 keyboardType: TextInputType.text,
                 textInputAction: TextInputAction.done,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     filled: true,
                     fillColor: Color(0xFFF3F6F8),
                     border: InputBorder.none),
@@ -79,9 +79,7 @@ class AddBank extends StatelessWidget {
               ),
               CustomAuthFilledButton(
                 text: 'ADD BANK',
-                onTap: () => {
-                  // Get.to(VerifyBank())
-                },
+                onTap: () => context.router.pushNamed(verifyBank),
                 disabled: false,
               ),
             ],

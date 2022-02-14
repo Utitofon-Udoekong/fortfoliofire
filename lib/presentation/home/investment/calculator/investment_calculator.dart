@@ -1,3 +1,4 @@
+import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:flutter/material.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 
@@ -23,7 +24,7 @@ class _CalculatorState extends State<Calculator> {
                 height: 20,
               ),
               InkWell(
-                onTap: () => {},
+                onTap: () => context.router.pop(),
                 child: const Icon(Icons.close),
               ),
               const SizedBox(
@@ -44,7 +45,7 @@ class _CalculatorState extends State<Calculator> {
                     autocorrect: false,
                     keyboardType: TextInputType.number,
                     textInputAction: TextInputAction.next,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       filled: true,
                       fillColor: Color(0xFFF3F6F8),
                       border: InputBorder.none,
@@ -64,7 +65,7 @@ class _CalculatorState extends State<Calculator> {
                     textInputAction: TextInputAction.next,
                     decoration: InputDecoration(
                       filled: true,
-                      fillColor: Color(0xFFF3F6F8),
+                      fillColor: const Color(0xFFF3F6F8),
                       border: InputBorder.none,
                       suffix: Text('Months', style: subTitle.copyWith(fontSize: 12, color: kgreyColor),)
                     ),
@@ -80,7 +81,7 @@ class _CalculatorState extends State<Calculator> {
                     autocorrect: false,
                     keyboardType: TextInputType.number,
                     textInputAction: TextInputAction.next,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       filled: true,
                       fillColor: Color(0xFFF3F6F8),
                       border: InputBorder.none,
@@ -98,7 +99,7 @@ class _CalculatorState extends State<Calculator> {
                     autocorrect: false,
                     keyboardType: TextInputType.number,
                     textInputAction: TextInputAction.next,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       filled: true,
                       fillColor: Color(0xFFF3F6F8),
                       border: InputBorder.none,

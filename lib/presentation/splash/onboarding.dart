@@ -31,7 +31,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       body: SafeArea(
         child: Column(
         children: <Widget>[
-          const SizedBox(height: 40,),
+          const SizedBox(height: 30,),
           Expanded(
             child: PageView.builder(
                 onPageChanged: (value) {
@@ -54,7 +54,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           width: size.width * 0.7,
                         ),
                         Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 10, 0, 6),
+                          padding: const EdgeInsets.fromLTRB(0, 6, 0, 3),
                           child: Text(
                             onboarding[index].title,
                             style: const TextStyle(
@@ -76,7 +76,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 }),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 15),
+            padding: const EdgeInsets.symmetric(vertical: 8),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
@@ -126,7 +126,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             ),
           ),
           const SizedBox(
-            height: 40,
+            height: 30,
           ),
         ],
       )),

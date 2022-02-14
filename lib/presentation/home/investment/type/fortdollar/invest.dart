@@ -1,3 +1,4 @@
+import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:flutter/material.dart';
 import 'package:fortfolio/domain/constants/order.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
@@ -30,7 +31,7 @@ class _FortDollarInvestmentState extends State<FortDollarInvestment> {
                   height: 20,
                 ),
                 InkWell(
-                  onTap: () => {},
+                  onTap: () => context.router.pop(),
                   child: const Icon(Icons.close),
                 ),
                 const SizedBox(

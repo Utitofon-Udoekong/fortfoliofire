@@ -1,6 +1,8 @@
+import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:flutter/material.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_icon_button.dart';
+import 'package:fortfolio/utils/pages.dart';
 
 import 'change_password.dart';
 
@@ -20,7 +22,7 @@ class Security extends StatelessWidget {
               height: 20,
             ),
             InkWell(
-              onTap: () => {},
+              onTap: () => context.router.pop(),
               child: const Icon(Icons.close),
             ),
             const SizedBox(
@@ -33,7 +35,7 @@ class Security extends StatelessWidget {
             const SizedBox(
               height: 40,
             ),
-            const CustomIconButton(title: 'Change your password', page: ChangePassword()),
+            const CustomIconButton(title: 'Change your password', page: changePassword),
           ],
         ),
       ),

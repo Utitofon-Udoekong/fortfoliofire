@@ -1,7 +1,9 @@
+import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:flutter/material.dart';
 import 'package:fortfolio/domain/constants/plans.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
+import 'package:fortfolio/utils/pages.dart';
 
 class FortCrypto extends StatelessWidget {
   const FortCrypto({Key? key}) : super(key: key);
@@ -37,7 +39,7 @@ class FortCrypto extends StatelessWidget {
                   height: 20,
                 ),
                 CustomFilledButton(text: 'Invest', onTap: () {
-                  // Get.to(FortCryptoInvestment());
+                  context.router.pushNamed(fortcryptoInvest);
                 }),
                 const SizedBox(
                   height: 20,
@@ -177,7 +179,7 @@ class FortCrypto extends StatelessWidget {
                               style: subTitle.copyWith(
                                   fontSize: 15, color: kBlackColor),
                                   children: <TextSpan>[
-                                    TextSpan(text: '${plans[index].minPrice}', style: subTitle.copyWith(fontWeight: FontWeight.w600))
+                                    TextSpan(text: plans[index].minPrice, style: subTitle.copyWith(fontWeight: FontWeight.w600))
                                   ]
                               )
                             ),

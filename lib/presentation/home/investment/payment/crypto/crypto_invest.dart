@@ -1,3 +1,4 @@
+import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:flutter/material.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 
@@ -23,7 +24,7 @@ class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
                   height: 20,
                 ),
                 InkWell(
-                  onTap: () => {},
+                  onTap: () => context.router.pop(),
                   child: const Icon(Icons.close),
                 ),
                 const SizedBox(

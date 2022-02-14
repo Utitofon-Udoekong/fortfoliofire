@@ -1,7 +1,9 @@
+import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:flutter/material.dart';
 import 'package:fortfolio/domain/constants/plans.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
+import 'package:fortfolio/utils/pages.dart';
 
 class FortDollar extends StatelessWidget {
   const FortDollar({Key? key}) : super(key: key);
@@ -18,9 +20,9 @@ class FortDollar extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       image: DecorationImage(image: AssetImage('images'))),
-                  child: Image(image: AssetImage('images/fortdollar.png')),
+                  child: const Image(image: AssetImage('images/fortdollar.png')),
                   alignment: Alignment.center,
                 ),
                 Text(
@@ -40,12 +42,12 @@ class FortDollar extends StatelessWidget {
                 CustomFilledButton(
                     text: 'Invest',
                     onTap: () {
-                      // Get.to(FortDollarInvestment());
+                      context.router.pushNamed(fortdollarInvest);
                     }),
                 const SizedBox(
                   height: 20,
                 ),
-                Divider(),
+                const Divider(),
                 const SizedBox(
                   height: 20,
                 ),
@@ -101,16 +103,16 @@ class FortDollar extends StatelessWidget {
                   height: 200,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    padding: EdgeInsets.only(left: 16, right: 6),
+                    padding: const EdgeInsets.only(left: 16, right: 6),
                     itemCount: plans.length,
                     itemBuilder: (context, index) {
                       return Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6.0),
-                            color: Color.fromRGBO(246, 249, 255, 0.55)),
-                        padding: EdgeInsets.symmetric(
+                            color: const Color.fromRGBO(246, 249, 255, 0.55)),
+                        padding: const EdgeInsets.symmetric(
                             horizontal: 7.0, vertical: 12.0),
-                        margin: EdgeInsets.only(right: 12.0),
+                        margin: const EdgeInsets.only(right: 12.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -121,7 +123,7 @@ class FortDollar extends StatelessWidget {
                                 Flex(
                                   direction: Axis.horizontal,
                                   children: <Widget>[
-                                    Image(image: AssetImage('images/fortdollar.png')),
+                                    const Image(image: AssetImage('images/fortdollar.png')),
                                     const SizedBox(
                                       width: 30,
                                     ),
@@ -146,7 +148,7 @@ class FortDollar extends StatelessWidget {
                                                     color: kGreenColor,
                                                     fontSize: 12,
                                                   )),
-                                              TextSpan(text: 'per annum'),
+                                              const TextSpan(text: 'per annum'),
                                             ],
                                             style: subTitle.copyWith(
                                               fontSize: 12,
@@ -162,7 +164,7 @@ class FortDollar extends StatelessWidget {
                                 )
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 20,
                             ),
                             Text(
@@ -170,7 +172,7 @@ class FortDollar extends StatelessWidget {
                               style: subTitle.copyWith(
                                   fontSize: 14, color: kBlackColor),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 20,
                             ),
                             Text.rich(TextSpan(
@@ -179,7 +181,7 @@ class FortDollar extends StatelessWidget {
                                     fontSize: 15, color: kBlackColor),
                                 children: <TextSpan>[
                                   TextSpan(
-                                      text: '${plans[index].minPrice}',
+                                      text: plans[index].minPrice,
                                       style: subTitle.copyWith(
                                           fontWeight: FontWeight.w600))
                                 ])),
@@ -193,10 +195,10 @@ class FortDollar extends StatelessWidget {
                                       style: subTitle.copyWith(
                                           fontSize: 15, color: kGreenColor),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 15,
                                     ),
-                                    Icon(Icons.arrow_right_alt,
+                                    const Icon(Icons.arrow_right_alt,
                                         color: kGreenColor)
                                   ],
                                 )),

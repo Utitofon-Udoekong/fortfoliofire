@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:fortfolio/domain/constants/order.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
@@ -31,7 +32,7 @@ class _FortShieldInvestmentState extends State<FortShieldInvestment> {
                   height: 20,
                 ),
                 InkWell(
-                  onTap: () => {},
+                  onTap: () => context.router.pop(),
                   child: const Icon(Icons.close),
                 ),
                 const SizedBox(
@@ -199,7 +200,7 @@ class _FortShieldInvestmentState extends State<FortShieldInvestment> {
               color: kPrimaryColor),
           child: const Text(
             '12 months',
-            style: const TextStyle(fontSize: 13),
+            style: TextStyle(fontSize: 13),
           ),
           alignment: Alignment.center,
         ),

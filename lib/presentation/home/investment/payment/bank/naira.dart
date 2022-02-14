@@ -30,7 +30,7 @@ class NairaAccount extends StatelessWidget {
               ],
             ),
             Row(children: <Widget>[
-              const Expanded(child: const Divider()),
+              const Expanded(child: Divider()),
               Container(
                 padding: const EdgeInsets.all(5.0),
                 decoration: BoxDecoration(

@@ -25,6 +25,7 @@ class _$AppUserTearOff {
       required EmailAddress emailAddress,
       required Phone phone,
       required int accountBalance,
+      required bool isVerified,
       required ItemList<WithdrawalItem> withdrawals,
       required ItemList<DepositItem> deposits,
       required ItemList<ActivePlanItem> activeplans}) {
@@ -35,6 +36,7 @@ class _$AppUserTearOff {
       emailAddress: emailAddress,
       phone: phone,
       accountBalance: accountBalance,
+      isVerified: isVerified,
       withdrawals: withdrawals,
       deposits: deposits,
       activeplans: activeplans,
@@ -53,6 +55,7 @@ mixin _$AppUser {
   EmailAddress get emailAddress => throw _privateConstructorUsedError;
   Phone get phone => throw _privateConstructorUsedError;
   int get accountBalance => throw _privateConstructorUsedError;
+  bool get isVerified => throw _privateConstructorUsedError;
   ItemList<WithdrawalItem> get withdrawals =>
       throw _privateConstructorUsedError;
   ItemList<DepositItem> get deposits => throw _privateConstructorUsedError;
@@ -74,6 +77,7 @@ abstract class $AppUserCopyWith<$Res> {
       EmailAddress emailAddress,
       Phone phone,
       int accountBalance,
+      bool isVerified,
       ItemList<WithdrawalItem> withdrawals,
       ItemList<DepositItem> deposits,
       ItemList<ActivePlanItem> activeplans});
@@ -95,6 +99,7 @@ class _$AppUserCopyWithImpl<$Res> implements $AppUserCopyWith<$Res> {
     Object? emailAddress = freezed,
     Object? phone = freezed,
     Object? accountBalance = freezed,
+    Object? isVerified = freezed,
     Object? withdrawals = freezed,
     Object? deposits = freezed,
     Object? activeplans = freezed,
@@ -124,6 +129,10 @@ class _$AppUserCopyWithImpl<$Res> implements $AppUserCopyWith<$Res> {
           ? _value.accountBalance
           : accountBalance // ignore: cast_nullable_to_non_nullable
               as int,
+      isVerified: isVerified == freezed
+          ? _value.isVerified
+          : isVerified // ignore: cast_nullable_to_non_nullable
+              as bool,
       withdrawals: withdrawals == freezed
           ? _value.withdrawals
           : withdrawals // ignore: cast_nullable_to_non_nullable
@@ -152,6 +161,7 @@ abstract class _$AppUserCopyWith<$Res> implements $AppUserCopyWith<$Res> {
       EmailAddress emailAddress,
       Phone phone,
       int accountBalance,
+      bool isVerified,
       ItemList<WithdrawalItem> withdrawals,
       ItemList<DepositItem> deposits,
       ItemList<ActivePlanItem> activeplans});
@@ -174,6 +184,7 @@ class __$AppUserCopyWithImpl<$Res> extends _$AppUserCopyWithImpl<$Res>
     Object? emailAddress = freezed,
     Object? phone = freezed,
     Object? accountBalance = freezed,
+    Object? isVerified = freezed,
     Object? withdrawals = freezed,
     Object? deposits = freezed,
     Object? activeplans = freezed,
@@ -203,6 +214,10 @@ class __$AppUserCopyWithImpl<$Res> extends _$AppUserCopyWithImpl<$Res>
           ? _value.accountBalance
           : accountBalance // ignore: cast_nullable_to_non_nullable
               as int,
+      isVerified: isVerified == freezed
+          ? _value.isVerified
+          : isVerified // ignore: cast_nullable_to_non_nullable
+              as bool,
       withdrawals: withdrawals == freezed
           ? _value.withdrawals
           : withdrawals // ignore: cast_nullable_to_non_nullable
@@ -229,6 +244,7 @@ class _$_AppUser extends _AppUser {
       required this.emailAddress,
       required this.phone,
       required this.accountBalance,
+      required this.isVerified,
       required this.withdrawals,
       required this.deposits,
       required this.activeplans})
@@ -247,6 +263,8 @@ class _$_AppUser extends _AppUser {
   @override
   final int accountBalance;
   @override
+  final bool isVerified;
+  @override
   final ItemList<WithdrawalItem> withdrawals;
   @override
   final ItemList<DepositItem> deposits;
@@ -255,7 +273,7 @@ class _$_AppUser extends _AppUser {
 
   @override
   String toString() {
-    return 'AppUser(id: $id, firstName: $firstName, lastName: $lastName, emailAddress: $emailAddress, phone: $phone, accountBalance: $accountBalance, withdrawals: $withdrawals, deposits: $deposits, activeplans: $activeplans)';
+    return 'AppUser(id: $id, firstName: $firstName, lastName: $lastName, emailAddress: $emailAddress, phone: $phone, accountBalance: $accountBalance, isVerified: $isVerified, withdrawals: $withdrawals, deposits: $deposits, activeplans: $activeplans)';
   }
 
   @override
@@ -272,6 +290,8 @@ class _$_AppUser extends _AppUser {
             const DeepCollectionEquality()
                 .equals(other.accountBalance, accountBalance) &&
             const DeepCollectionEquality()
+                .equals(other.isVerified, isVerified) &&
+            const DeepCollectionEquality()
                 .equals(other.withdrawals, withdrawals) &&
             const DeepCollectionEquality().equals(other.deposits, deposits) &&
             const DeepCollectionEquality()
@@ -287,6 +307,7 @@ class _$_AppUser extends _AppUser {
       const DeepCollectionEquality().hash(emailAddress),
       const DeepCollectionEquality().hash(phone),
       const DeepCollectionEquality().hash(accountBalance),
+      const DeepCollectionEquality().hash(isVerified),
       const DeepCollectionEquality().hash(withdrawals),
       const DeepCollectionEquality().hash(deposits),
       const DeepCollectionEquality().hash(activeplans));
@@ -305,6 +326,7 @@ abstract class _AppUser extends AppUser {
       required EmailAddress emailAddress,
       required Phone phone,
       required int accountBalance,
+      required bool isVerified,
       required ItemList<WithdrawalItem> withdrawals,
       required ItemList<DepositItem> deposits,
       required ItemList<ActivePlanItem> activeplans}) = _$_AppUser;
@@ -322,6 +344,8 @@ abstract class _AppUser extends AppUser {
   Phone get phone;
   @override
   int get accountBalance;
+  @override
+  bool get isVerified;
   @override
   ItemList<WithdrawalItem> get withdrawals;
   @override

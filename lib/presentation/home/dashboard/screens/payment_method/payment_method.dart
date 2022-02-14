@@ -1,3 +1,4 @@
+import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:flutter/material.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 
@@ -43,7 +44,7 @@ class _PaymentMethodState extends State<PaymentMethod>
                     height: 20,
                   ),
                   InkWell(
-                    onTap: () => {},
+                    onTap: () => context.router.pop(),
                     child: const Icon(Icons.close),
                   ),
                   const SizedBox(
@@ -55,17 +56,17 @@ class _PaymentMethodState extends State<PaymentMethod>
                   ),
                   Container(
                     width: MediaQuery.of(context).size.height,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         color: Colors.transparent,
                        ),
                     child: Column(
                       children: [
                         Padding(
-                          padding: EdgeInsets.all(5),
+                          padding: const EdgeInsets.all(5),
                           child: TabBar(
-                            unselectedLabelColor: Color(0XFF656565),
+                            unselectedLabelColor: const Color(0XFF656565),
                             labelColor: kBlackColor,
-                            indicator: BoxDecoration(
+                            indicator: const BoxDecoration(
                               border: Border(
                                 bottom: BorderSide(
                                   color: kPrimaryColor,
@@ -74,7 +75,7 @@ class _PaymentMethodState extends State<PaymentMethod>
                               )
                             ),
                             controller: _tabController,
-                            tabs: [
+                            tabs: const [
                               Tab(
                                 text: 'Crypto Wallet',
                               ),
@@ -90,7 +91,7 @@ class _PaymentMethodState extends State<PaymentMethod>
                   Expanded(
                     child: TabBarView(
                       controller: _tabController,
-                      children: <Widget>[
+                      children: const <Widget>[
                         CryptoWallet(),
                         BankAddress()
                       ],

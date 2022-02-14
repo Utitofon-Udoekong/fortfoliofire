@@ -1,3 +1,4 @@
+import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:flutter/material.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
@@ -20,7 +21,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
         child: Scaffold(
             body: SingleChildScrollView(
       child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -28,7 +29,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
                 height: 20,
               ),
               InkWell(
-                onTap: () => {},
+                onTap: () => context.router.pop(),
                 child: const Icon(Icons.close),
               ),
               const SizedBox(
@@ -91,24 +92,24 @@ class _NotificationsPageState extends State<NotificationsPage> {
 
   Widget buildtile(selected) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 12.0),
+      padding: const EdgeInsets.symmetric(vertical: 12.0),
       decoration: BoxDecoration(
           border: Border(
               bottom: BorderSide(
-                  color: selected ? Color(0XFFF4FBFF) : Color(0XFFF3F6F8)))),
+                  color: selected ? const Color(0XFFF4FBFF) : const Color(0XFFF3F6F8)))),
       child: Row(
         children: <Widget>[
           Container(
               alignment: Alignment.center,
-              padding: EdgeInsets.all(4.0),
+              padding: const EdgeInsets.all(4.0),
               decoration: BoxDecoration(
-                  color: Color(0XFFF2FFF9),
+                  color: const Color(0XFFF2FFF9),
                   borderRadius: BorderRadius.circular(10.0)),
-              child: Icon(
+              child: const Icon(
                 Icons.north_east,
                 color: kGreenColor,
               )),
-          SizedBox(
+          const SizedBox(
             width: 8,
           ),
           Flex(
@@ -117,7 +118,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
             children: <Widget>[
               Text('New investment. 2h ago',
                   style: subTitle.copyWith(
-                      fontSize: 12, color: Color(0XFF757575))),
+                      fontSize: 12, color: const Color(0XFF757575))),
               Text(
                 'Real Estate investment successful',
                 style: titleText.copyWith(
@@ -127,9 +128,9 @@ class _NotificationsPageState extends State<NotificationsPage> {
               )
             ],
           ),
-          Spacer(),
+          const Spacer(),
           PopupMenuButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.more_vert_rounded,
               color: Color(0XFF9E9E9E),
             ),

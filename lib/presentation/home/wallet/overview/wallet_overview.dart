@@ -1,7 +1,9 @@
+import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
+import 'package:fortfolio/utils/pages.dart';
 
 class WalletOverview extends StatelessWidget {
   const WalletOverview({Key? key}) : super(key: key);
@@ -50,34 +52,47 @@ class WalletOverview extends StatelessWidget {
                     ],
                   ),
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 4.0),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 5.0, vertical: 4.0),
                     decoration: BoxDecoration(
-                      border: Border.all(
-                        color: kWhiteColor,
-                        // width: 1.5,
-                      ),
-                      borderRadius: BorderRadius.circular(5.0)
-                    ),
+                        border: Border.all(
+                          color: kWhiteColor,
+                          // width: 1.5,
+                        ),
+                        borderRadius: BorderRadius.circular(5.0)),
                     child: GestureDetector(
-                      onTap: (){
-                        // Get.bottomSheet(Column(
-                        //   children: <Widget>[
-                        //     Text('Select balance', style: titleText.copyWith(fontSize: 15),),
-                        //     buildtile('9ja', 'NGN Balance', () => null),
-                        //     const SizedBox(height: 10,),
-                        //     buildtile('usa', 'USD Balance', () => null),
-                        //     const SizedBox(height: 10,),
-                        //     buildtile('bitcoin', 'BTC Balance', () => null),
-                        //   ],
-                        // ),
-                        // backgroundColor: kWhiteColor);
-                      },
-                      child: Flex(
+                        onTap: () {
+                          BottomSheet(
+                              onClosing: (){},
+                              builder: (context) {
+                                return Column(
+                                  children: <Widget>[
+                                    Text(
+                                      'Select balance',
+                                      style: titleText.copyWith(fontSize: 15),
+                                    ),
+                                    buildtile('9ja', 'NGN Balance', () => null),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    buildtile('usa', 'USD Balance', () => null),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    buildtile(
+                                        'bitcoin', 'BTC Balance', () => null),
+                                  ],
+                                );
+                              },
+                              backgroundColor: kWhiteColor);
+                        },
+                        child: Flex(
                           direction: Axis.horizontal,
                           children: <Widget>[
                             Text(
                               'USD',
-                              style: subTitle.copyWith(color: kWhiteColor, fontSize: 15),
+                              style: subTitle.copyWith(
+                                  color: kWhiteColor, fontSize: 15),
                             ),
                             const SizedBox(
                               width: 20,
@@ -87,8 +102,7 @@ class WalletOverview extends StatelessWidget {
                               color: kWhiteColor,
                             )
                           ],
-                        )
-                    ),
+                        )),
                   ),
                 ],
               ),
@@ -96,13 +110,7 @@ class WalletOverview extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            CustomFilledButton(
-                text: 'Withdrawal', onTap: () => {}),
-            const SizedBox(
-              height: 10,
-            ),
-            CustomFilledButton(
-                text: 'timelinel', onTap: () => {}),
+            CustomFilledButton(text: 'Withdrawal', onTap: () => context.router.pushNamed(walletWithdrawal)),
             const SizedBox(
               height: 10,
             ),
@@ -115,11 +123,11 @@ class WalletOverview extends StatelessWidget {
             ),
             Flex(
               direction: Axis.horizontal,
-              children: <Widget>[
-                const Text(
+              children: const <Widget>[
+                Text(
                   'Investment Packages',
-                  style: const TextStyle(
-                      color: const Color(0XFF535454),
+                  style: TextStyle(
+                      color: Color(0XFF535454),
                       fontSize: 20,
                       fontWeight: FontWeight.w500),
                 ),
@@ -131,17 +139,17 @@ class WalletOverview extends StatelessWidget {
               ],
             ),
             const SizedBox(
+              height: 30,
+            ),
+            buildcard('FortDollar', 'fortdollar', () => context.router.pushNamed(selectInvestment)),
+            const SizedBox(
               height: 20,
             ),
-            buildcard(0XFF59B1EE, 'FortDollar', 'fortdollar'),
+            buildcard('FortCrypto', 'fortcrypto', () => context.router.pushNamed(selectInvestment)),
             const SizedBox(
-              height: 10,
+              height: 20,
             ),
-            buildcard(0XFFA5DBFF, 'FortCrypto', 'fortcrypto'),
-            const SizedBox(
-              height: 10,
-            ),
-            buildcard(0XFF33D185, 'FortShield', 'fortshield'),
+            buildcard('FortShield', 'fortshield', () => context.router.pushNamed(selectInvestment)),
             const SizedBox(
               height: 20,
             ),
@@ -169,7 +177,9 @@ class WalletOverview extends StatelessWidget {
             Text(
               title,
               style: subTitle.copyWith(
-                  color: kBlackColor, fontWeight: FontWeight.w600, fontSize: 15),
+                  color: kBlackColor,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 15),
             ),
             const Spacer(),
             const Icon(
@@ -182,47 +192,32 @@ class WalletOverview extends StatelessWidget {
     );
   }
 
-  Widget buildcard(int color, String title, String path) {
-    final svg = SvgPicture.asset('images/$path.svg');
-    return Container(
-      height: 184,
-      padding: const EdgeInsets.all(20),
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: Color(color),
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: <Widget>[
-          svg,
-          const SizedBox(
-            height: 20,
-          ),
-          Flex(
-            direction: Axis.horizontal,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text(title,
-                  style: subTitle.copyWith(fontSize: 14, color: kWhiteColor)),
-              Text('35%',
-                  style: subTitle.copyWith(fontSize: 14, color: kWhiteColor))
-            ],
-          ),
-          // SizedBox(
-          //   height: 4,
-          // ),
-          Flex(
-            direction: Axis.horizontal,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text('\$20.000',
-                  style: subTitle.copyWith(fontSize: 14, color: kWhiteColor)),
-              Text('\$13.000',
-                  style: subTitle.copyWith(fontSize: 14, color: kWhiteColor))
-            ],
-          ),
-        ],
+  Widget buildcard(String title, String path, Function() ontap) {
+    final Widget svg = SvgPicture.asset(
+      'images/$path.svg',
+      semanticsLabel: title,
+    );
+    return GestureDetector(
+      onTap: ontap,
+      child: SizedBox(
+        width: double.infinity,
+        child: Row(
+          children: <Widget>[
+            Image(image: AssetImage("images/$path.png")),
+            const SizedBox(
+              width: 10,
+            ),
+            Text(
+              title,
+              style: titleText.copyWith(fontSize: 15),
+            ),
+            const Spacer(),
+            Text(
+              "*******",
+              style: titleText.copyWith(fontSize: 12),
+            )
+          ],
+        ),
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_icon_trailing_button.dart';
+import 'package:fortfolio/utils/pages.dart';
 
 import 'bank/bank_withdrawal.dart';
 import 'crypto/crypto_withdrawal.dart';
@@ -42,11 +43,11 @@ class SelectWithdrawalMethod extends StatelessWidget {
                 const SizedBox(
                   height: 30,
                 ),
-                const CustomIconTrailingButton(icon: 'withdraw-bank', title: 'Bank Account', page: BankWithdrawal()),
+                const CustomIconTrailingButton(icon: 'withdraw-bank', title: 'Bank Account', page: selectBank),
                 const SizedBox(
                   height: 10,
                 ),
-                const CustomIconTrailingButton(icon: 'withdraw-crypto', title: 'Crypto Wallet', page: CryptoWithdrawal()),
+                const CustomIconTrailingButton(icon: 'withdraw-crypto', title: 'Crypto Wallet', page: selectWallet),
               ],
             ),
           ),

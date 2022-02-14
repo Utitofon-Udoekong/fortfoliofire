@@ -92,17 +92,17 @@ class UserRepository implements IUserRepository {
   }
 
   @override
-  Future<Either<UserFailure, firebase_storage.ListResult>> listNews() async{
+  Stream<Either<UserFailure, firebase_storage.ListResult>> listNews() async* {
     try {
       final news = await _storage.ref('news').listAll();
-      return right(news);
+      yield right(news);
     } on FirebaseException catch (e) {
       if(e.message!.contains('PERMISSION_DENIED')) {
-        return left(const UserFailure.insufficientPermission());
+        yield left(const UserFailure.insufficientPermission());
       }else if(e.message!.contains('NOT_FOUND')) {
-        return left(const UserFailure.unableToUpdate());
+        yield left(const UserFailure.unableToUpdate());
       }else{
-        return left(const UserFailure.unexpected());
+        yield left(const UserFailure.unexpected());
       }
     }
   }

@@ -1,6 +1,8 @@
+import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:flutter/material.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/verification/verification.dart';
+import 'package:fortfolio/utils/pages.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -18,7 +20,9 @@ class ProfilePage extends StatelessWidget {
                 height: 20,
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  context.router.pop();
+                },
                 child: const Icon(Icons.close),
               ),
               const SizedBox(
@@ -39,7 +43,7 @@ class ProfilePage extends StatelessWidget {
                       width: 60,
                       height: 60,
                       decoration: const BoxDecoration(
-                          shape: BoxShape.circle, color: const Color(0XFFF5F7FA)),
+                          shape: BoxShape.circle, color: Color(0XFFF5F7FA)),
                       child: const CircleAvatar(
                         backgroundColor: Color(0XFFE7E7E7),
                         child: Text('JB',
@@ -54,9 +58,7 @@ class ProfilePage extends StatelessWidget {
                       height: 3,
                     ),
                     TextButton(
-                      onPressed: () => {
-                        // Get.to(VerificationPage())
-                      },
+                      onPressed: () => context.router.pushNamed(verification),
                       child: Text('Account unverified',
                           style: subTitle.copyWith(
                               color: kBlackColor,
@@ -115,9 +117,9 @@ class ProfilePage extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(10.0),
       decoration: const BoxDecoration(
-        border: const Border(
+        border: Border(
           bottom: BorderSide(
-            color: const Color(0XFFF3F6F8)
+            color: Color(0XFFF3F6F8)
           )
         )
       ),

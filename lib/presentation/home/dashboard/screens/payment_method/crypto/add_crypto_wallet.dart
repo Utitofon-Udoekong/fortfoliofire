@@ -1,7 +1,9 @@
+import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:flutter/material.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
 import 'package:fortfolio/domain/widgets/labelled_checkbox.dart';
+import 'package:fortfolio/utils/pages.dart';
 
 import 'networks.dart';
 
@@ -30,9 +32,7 @@ class _AddCryptoWalletState extends State<AddCryptoWallet> {
                 height: 20,
               ),
               InkWell(
-                onTap: () {
-                  // Get.back();
-                },
+                onTap: () => context.router.pop(),
                 child: const Icon(Icons.close),
               ),
               const SizedBox(
@@ -166,9 +166,7 @@ class _AddCryptoWalletState extends State<AddCryptoWallet> {
               ),
               CustomAuthFilledButton(
                 text: 'ADD CRYPTO WALLET',
-                onTap: () => {
-                  // Get.to(const VerifyCryptoWallet())
-                },
+                onTap: () => context.router.pushNamed(verifyWallet),
                 disabled: false,
               ),
             ],
@@ -189,7 +187,7 @@ class _AddCryptoWalletState extends State<AddCryptoWallet> {
                 _value = selected ? item.index : null;
               });
             },
-            labelStyle: TextStyle(
+            labelStyle: const TextStyle(
               backgroundColor: Colors.transparent
             ),
             backgroundColor: Colors.transparent,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_icon_trailing_button.dart';
+import 'package:fortfolio/utils/pages.dart';
 
 import 'faq.dart';
 
@@ -34,15 +35,15 @@ class SupportPage extends StatelessWidget {
             const SizedBox(
               height: 40,
             ),
-            const CustomIconTrailingButton(icon: 'faq', title: 'FAQ', page: FAQPage()),
+            const CustomIconTrailingButton(icon: 'faq', title: 'FAQ', page: faq),
             const SizedBox(
               height: 10,
             ),
-            const CustomIconTrailingButton(icon: 'mail', title: 'Send an email', page: null),
+            const CustomIconTrailingButton(icon: 'mail', title: 'Send an email', page: faq),
             const SizedBox(
               height: 10,
             ),
-            const CustomIconTrailingButton(icon: 'livechat', title: 'Live Chat', page: null),
+            const CustomIconTrailingButton(icon: 'livechat', title: 'Live Chat', page: faq),
             const SizedBox(
               height: 60,
             ),

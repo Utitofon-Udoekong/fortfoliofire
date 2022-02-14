@@ -1,15 +1,15 @@
+import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:flutter/material.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 
 class CustomIconButton extends StatelessWidget {
   const CustomIconButton({ Key? key, required this.title, required this.page }) : super(key: key);
   final String title;
-  final page;
+  final String page;
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: (){
-      },
+    return InkWell(
+      onTap: () => context.router.pushNamed(page),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 15.0),
         decoration: BoxDecoration(

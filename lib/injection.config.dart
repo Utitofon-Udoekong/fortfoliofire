@@ -11,18 +11,18 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
 import 'application/auth/auth_cubit.dart' as _i3;
-import 'application/auth/reset_password_form/reset_password_bloc.dart' as _i11;
-import 'application/auth/sign_in_form/email/sign_in_form_email_bloc.dart'
-    as _i12;
+import 'application/auth/reset_password_form/reset_password_bloc.dart' as _i14;
+import 'application/auth/sign_in_form/email/sign_in_form_email_cubit.dart'
+    as _i9;
 import 'application/auth/sign_in_form/phone/sign_in_form_phone_cubit.dart'
-    as _i13;
-import 'application/auth/sign_up_form/sign_up_form_bloc.dart' as _i14;
-import 'domain/auth/i_auth_facade.dart' as _i7;
-import 'domain/user/i_user_repository.dart' as _i9;
-import 'infrastructure/auth/firebase_auth_facade.dart' as _i8;
+    as _i10;
+import 'application/auth/sign_up_form/sign_up_form_cubit.dart' as _i11;
+import 'domain/auth/i_auth_facade.dart' as _i12;
+import 'domain/user/i_user_repository.dart' as _i7;
+import 'infrastructure/auth/firebase_auth_facade.dart' as _i13;
 import 'infrastructure/core/firebase_injectible.dart' as _i15;
 import 'infrastructure/user/user_repository.dart'
-    as _i10; // ignore_for_file: unnecessary_lambdas
+    as _i8; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -36,17 +36,16 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.lazySingleton<_i5.FirebaseFirestore>(
       () => firebaseInjectableModule.firestore);
   gh.lazySingleton<_i6.FirebaseStorage>(() => firebaseInjectableModule.storage);
-  gh.lazySingleton<_i7.IAuthFacade>(
-      () => _i8.FirebaseAuthFacade(firebaseAuth: get<_i4.FirebaseAuth>()));
-  gh.lazySingleton<_i9.IUserRepository>(() => _i10.UserRepository(
+  gh.lazySingleton<_i7.IUserRepository>(() => _i8.UserRepository(
       get<_i5.FirebaseFirestore>(), get<_i6.FirebaseStorage>()));
-  gh.factory<_i11.ResetPasswordBloc>(
-      () => _i11.ResetPasswordBloc(get<_i7.IAuthFacade>()));
-  gh.factory<_i12.SignInFormEmailBloc>(
-      () => _i12.SignInFormEmailBloc(get<_i7.IAuthFacade>()));
-  gh.factory<_i13.SignInFormPhoneCubit>(() => _i13.SignInFormPhoneCubit());
-  gh.factory<_i14.SignUpFormBloc>(
-      () => _i14.SignUpFormBloc(get<_i7.IAuthFacade>()));
+  gh.factory<_i9.SignInFormEmailCubit>(() => _i9.SignInFormEmailCubit());
+  gh.factory<_i10.SignInFormPhoneCubit>(() => _i10.SignInFormPhoneCubit());
+  gh.factory<_i11.SignUpFormCubit>(() => _i11.SignUpFormCubit());
+  gh.lazySingleton<_i12.IAuthFacade>(() => _i13.FirebaseAuthFacade(
+      firebaseAuth: get<_i4.FirebaseAuth>(),
+      iUserRepository: get<_i7.IUserRepository>()));
+  gh.factory<_i14.ResetPasswordBloc>(
+      () => _i14.ResetPasswordBloc(get<_i12.IAuthFacade>()));
   return get;
 }
 

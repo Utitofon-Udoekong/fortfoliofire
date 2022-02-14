@@ -70,7 +70,7 @@ abstract class UserDTO implements _$UserDTO {
           ItemList(deposits.map((dto) => dto.toDomain()).toImmutableList()),
       withdrawals:
           ItemList(withdrawals.map((dto) => dto.toDomain()).toImmutableList()),
-      activeplans: ItemList(activePlans.map((dto) => dto.toDomain()).toImmutableList())
+      activeplans: ItemList(activePlans.map((dto) => dto.toDomain()).toImmutableList()), isVerified: false
     );
   }
 }

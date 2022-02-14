@@ -22,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
       final bool isUserCheckedFromAuthService =
           context.read<AuthCubit>().state.isUserCheckedFromAuthService;
       if (isUserLoggedIn) {
-        AutoRouter.of(context).replace(const HomePageRoute());
+        context.router.replace(const HomePageRoute());
       } else if (!isUserLoggedIn && isUserCheckedFromAuthService) {
         context.router.replace(const OnboardingScreenRoute());
       }
@@ -40,7 +40,7 @@ class _SplashScreenState extends State<SplashScreen> {
       listener: (context, state) {
         final bool isUserLoggedIn = state.isLoggedIn;
         if (isUserLoggedIn) {
-          // AutoRouter.of(context).replace(const HomeRoute());
+          context.router.replace(const HomePageRoute());
         } else {
           Future.delayed(const Duration(seconds: 1)).then((_) {
             context.router.replace(const OnboardingScreenRoute());

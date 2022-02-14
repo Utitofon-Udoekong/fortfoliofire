@@ -19,6 +19,7 @@ abstract class AppUser implements _$AppUser {
     required EmailAddress emailAddress,
     required Phone phone,
     required int accountBalance,
+    required bool isVerified,
     required ItemList<WithdrawalItem> withdrawals,
     required ItemList<DepositItem> deposits,
     required ItemList<ActivePlanItem> activeplans,
@@ -33,18 +34,8 @@ abstract class AppUser implements _$AppUser {
         firstName: UserName(""),
         lastName: UserName(""),
         phone: Phone(""),
-        withdrawals: ItemList(emptyList()),
+        withdrawals: ItemList(emptyList()), isVerified: false,
       );
 
-  // Option<ValueFailure<dynamic>> get failureOption {
-  //   return body.failureOrUnit
-  //       .andThen(todos.failureOrUnit)
-  //       .andThen(todos
-  //           .getOrCrash()
-  //           .map((todoitem) => todoitem.failureOption)
-  //           .filter((o) => o.isSome())
-  //           .getOrElse(0, (_) => none())
-  //           .fold(() => right(unit), (f) => left(f)))
-  //       .fold((f) => some(f), (_) => none());
-  // }
+ 
 }

@@ -1,6 +1,8 @@
+import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:flutter/material.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
+import 'package:fortfolio/utils/pages.dart';
 
 class UploadDocumentImage extends StatelessWidget {
   const UploadDocumentImage({Key? key}) : super(key: key);
@@ -18,7 +20,7 @@ class UploadDocumentImage extends StatelessWidget {
               height: 20,
             ),
             InkWell(
-              onTap: () => {},
+              onTap: () => context.router.pop(),
               child: const Icon(Icons.close),
             ),
             const SizedBox(
@@ -40,7 +42,7 @@ class UploadDocumentImage extends StatelessWidget {
               height: 60,
             ),
             CustomFilledButton(text: 'NEXT', onTap: () => {
-              // Get.to(UtilityPage())
+              context.router.pushNamed(verificationUtil)
             })
           ],
         ),
@@ -51,17 +53,17 @@ class UploadDocumentImage extends StatelessWidget {
 
   Widget buildTile() {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 15, horizontal: 8),
+      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 8),
       decoration: BoxDecoration(
-          color: Color.fromRGBO(228, 228, 228, 0.24),
+          color: const Color.fromRGBO(228, 228, 228, 0.24),
           borderRadius: BorderRadius.circular(5.0)),
       child: Row(
         children: <Widget>[
-          Icon(
+          const Icon(
             Icons.upload_file,
             color: kgreyColor,
           ),
-          SizedBox(
+          const SizedBox(
             width: 15,
           ),
           Text(

@@ -1,4 +1,4 @@
-part of 'sign_up_form_bloc.dart';
+part of 'sign_up_form_cubit.dart';
 
 @freezed
 class SignUpFormState with _$SignUpFormState {
@@ -30,5 +30,6 @@ class SignUpFormState with _$SignUpFormState {
   bool get displayNextButton => verificationIdOption.isNone() && !isSubmitting;
   bool get displaySmsCodeForm => verificationIdOption.isSome();
   bool get displayLoadingIndicator => !displayNextButton && !displaySmsCodeForm;
+  bool get isValidState => emailAddress.isValid() && phoneNumber.isValid() && firstName.isValid() && lastName.isValid() && password.isValid();
 }
 

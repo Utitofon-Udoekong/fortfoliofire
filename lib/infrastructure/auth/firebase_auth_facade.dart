@@ -2,19 +2,24 @@ import 'dart:async';
 
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/services.dart';
 import 'package:fortfolio/domain/auth/auth_failure.dart';
 import 'package:fortfolio/domain/auth/auth_user_model.dart';
 import 'package:fortfolio/domain/auth/i_auth_facade.dart';
 import 'package:fortfolio/domain/auth/value_objects.dart';
+import 'package:fortfolio/domain/core/value_objects.dart';
+import 'package:fortfolio/domain/user/i_user_repository.dart';
+import 'package:fortfolio/domain/user/user.dart';
+import 'package:fortfolio/domain/user/value_objects.dart';
 import 'package:fortfolio/infrastructure/auth/firebase_user_mapper.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kt_dart/collection.dart';
 
 @LazySingleton(as: IAuthFacade)
 class FirebaseAuthFacade implements IAuthFacade {
   final FirebaseAuth firebaseAuth;
+  final IUserRepository iUserRepository;
 
-  FirebaseAuthFacade({required this.firebaseAuth});
+  FirebaseAuthFacade({required this.firebaseAuth, required this.iUserRepository});
 
   @override
   Future<Either<AuthFailure, Unit>> loginWithEmailAndPassword(
@@ -36,7 +41,7 @@ class FirebaseAuthFacade implements IAuthFacade {
 
   @override
   Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword(
-      {required EmailAddress emailAddress, required Password password, required Phone phone}) async {
+      {required EmailAddress emailAddress, required Password password, required Phone phone, required UserName firstName, required UserName lastName}) async {
     final emailAddressString = emailAddress.getOrCrash();
     final passwordString = password.getOrCrash();
     final phoneNumber = phone.getOrCrash();
@@ -44,8 +49,10 @@ class FirebaseAuthFacade implements IAuthFacade {
 
     try {
       await firebaseAuth.createUserWithEmailAndPassword(
-          email: emailAddressString, password: passwordString).then((value) => {
-            registerPhoneNumber(phoneNumber: Phone(phoneNumber), timeout: timeout)
+          email: emailAddressString, password: passwordString).then((value) async {
+            registerPhoneNumber(phoneNumber: Phone(phoneNumber), timeout: timeout);
+            AppUser _appUser = AppUser(id: UniqueId.fromUniqueString(value.user!.uid), firstName: firstName, lastName: lastName, emailAddress: emailAddress, phone: phone, accountBalance: 0, isVerified: false, withdrawals: ItemList(emptyList()), deposits: ItemList(emptyList()), activeplans: ItemList(emptyList()),);
+            return await iUserRepository.create(_appUser);
           });
       return right(unit);
     } on FirebaseAuthException catch (e) {
@@ -102,8 +109,7 @@ class FirebaseAuthFacade implements IAuthFacade {
         timeout: timeout,
         phoneNumber: phoneNumber.getOrCrash(),
         verificationCompleted: (PhoneAuthCredential credential) async {
-          // ANDROID ONLY!
-          // Sign the user in.
+          firebaseAuth.signInWithCredential(credential);
         },
         codeSent: (String verificationId, int? resendToken) async {
           // Update the UI - wait for the user to enter the SMS code

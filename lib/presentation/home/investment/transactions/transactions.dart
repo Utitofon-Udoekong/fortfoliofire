@@ -1,3 +1,4 @@
+import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:flutter/material.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 
@@ -15,7 +16,7 @@ class _InvestmentTransactionsState extends State<InvestmentTransactions> {
         child: Scaffold(
             body: SingleChildScrollView(
       child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -23,7 +24,7 @@ class _InvestmentTransactionsState extends State<InvestmentTransactions> {
                 height: 20,
               ),
               InkWell(
-                onTap: () => {},
+                onTap: () => context.router.pop(),
                 child: const Icon(Icons.close),
               ),
               const SizedBox(
@@ -52,8 +53,8 @@ class _InvestmentTransactionsState extends State<InvestmentTransactions> {
 
   Widget buildtile(String title, bool investment, String amount, String type) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 12.0),
-      decoration: BoxDecoration(
+      padding: const EdgeInsets.symmetric(vertical: 12.0),
+      decoration: const BoxDecoration(
           border: Border(bottom: BorderSide(color: Color(0XFFF3F6F8)))),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -76,12 +77,12 @@ class _InvestmentTransactionsState extends State<InvestmentTransactions> {
                   : Text('100 units',
                       style: subTitle.copyWith(
                           fontSize: 12, color: kGreenColor)),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Text('28 Jan 2021 ● $type',
                   style: subTitle.copyWith(
-                      fontSize: 12, color: Color(0XFFD8D8D8))),
+                      fontSize: 12, color: const Color(0XFFD8D8D8))),
             ],
           ),
           // Spacer(),
@@ -89,7 +90,7 @@ class _InvestmentTransactionsState extends State<InvestmentTransactions> {
             amount,
             style: titleText.copyWith(
                 fontSize: 20,
-                color: investment ? Color(0XFF00C566) : Color(0XFFDF1414),
+                color: investment ? const Color(0XFF00C566) : const Color(0XFFDF1414),
                 fontWeight: FontWeight.w700),
           )
         ],
