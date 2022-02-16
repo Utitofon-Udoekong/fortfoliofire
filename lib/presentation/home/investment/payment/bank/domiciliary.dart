@@ -114,7 +114,9 @@ class DomiciliaryAccount extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            CustomFilledButton(text: 'I HAVE PAID', onTap: () {})
+            CustomFilledButton(text: 'I HAVE PAID', onTap: () {
+              
+            })
           ],
         ),
       ),

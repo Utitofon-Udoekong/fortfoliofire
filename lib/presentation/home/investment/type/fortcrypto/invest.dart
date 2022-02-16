@@ -1,3 +1,4 @@
+import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:flutter/material.dart';
 import 'package:fortfolio/domain/constants/order.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
@@ -31,7 +32,7 @@ class _FortCryptoInvestmentState extends State<FortCryptoInvestment> {
                   height: 20,
                 ),
                 InkWell(
-                  onTap: () => {},
+                  onTap: () => context.router.pop(),
                   child: const Icon(Icons.close),
                 ),
                 const SizedBox(
@@ -45,7 +46,7 @@ class _FortCryptoInvestmentState extends State<FortCryptoInvestment> {
                   direction: Axis.horizontal,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    const Image(image: const AssetImage('images/fortcrypto.png')),
+                    const Image(image: AssetImage('images/fortcrypto.png')),
                     Text.rich(
                       TextSpan(
                           text: 'up to',
@@ -177,7 +178,9 @@ class _FortCryptoInvestmentState extends State<FortCryptoInvestment> {
                     label:
                         'I have read and I agree to Fortfolio Terms of Services Agreemet',
                     value: false,
-                    onChanged: (bool) => {}),
+                    onChanged: (value) => {
+                      value = !value
+                    }),
                 const SizedBox(
                   height: 20,
                 ),

@@ -2,12 +2,13 @@
 
 import 'package:dartz/dartz.dart';
 import 'package:fortfolio/domain/auth/auth_failure.dart';
+import 'package:fortfolio/domain/user/user.dart';
 
 import 'auth_user_model.dart';
 import 'value_objects.dart';
 
 abstract class IAuthFacade {
-  Stream<AuthUserModel> get authStateChanges;
+  Stream<AppUser> get authStateChanges;
   Stream<Either<AuthFailure, String>> signInWithPhoneNumber({
     required Phone phoneNumber,
     required Duration timeout,
@@ -32,7 +33,7 @@ abstract class IAuthFacade {
     required Password password
   });
   Future<void> signOut();
-  Future<Option<AuthUserModel>> getSignedInUser();
+  Future<Option<AppUser>> getSignedInUser();
   Future<void> verifyUser();
   Future<Either<AuthFailure, Unit>> resetPassword({
     required EmailAddress emailAddress

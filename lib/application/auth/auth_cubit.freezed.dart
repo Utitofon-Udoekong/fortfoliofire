@@ -19,7 +19,7 @@ class _$AuthStateTearOff {
   const _$AuthStateTearOff();
 
   _AuthState call(
-      {required AuthUserModel userModel,
+      {required AppUser userModel,
       required bool isUserCheckedFromAuthService}) {
     return _AuthState(
       userModel: userModel,
@@ -33,7 +33,7 @@ const $AuthState = _$AuthStateTearOff();
 
 /// @nodoc
 mixin _$AuthState {
-  AuthUserModel get userModel => throw _privateConstructorUsedError;
+  AppUser get userModel => throw _privateConstructorUsedError;
   bool get isUserCheckedFromAuthService => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -45,9 +45,9 @@ mixin _$AuthState {
 abstract class $AuthStateCopyWith<$Res> {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
       _$AuthStateCopyWithImpl<$Res>;
-  $Res call({AuthUserModel userModel, bool isUserCheckedFromAuthService});
+  $Res call({AppUser userModel, bool isUserCheckedFromAuthService});
 
-  $AuthUserModelCopyWith<$Res> get userModel;
+  $AppUserCopyWith<$Res> get userModel;
 }
 
 /// @nodoc
@@ -67,7 +67,7 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
       userModel: userModel == freezed
           ? _value.userModel
           : userModel // ignore: cast_nullable_to_non_nullable
-              as AuthUserModel,
+              as AppUser,
       isUserCheckedFromAuthService: isUserCheckedFromAuthService == freezed
           ? _value.isUserCheckedFromAuthService
           : isUserCheckedFromAuthService // ignore: cast_nullable_to_non_nullable
@@ -76,8 +76,8 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
   }
 
   @override
-  $AuthUserModelCopyWith<$Res> get userModel {
-    return $AuthUserModelCopyWith<$Res>(_value.userModel, (value) {
+  $AppUserCopyWith<$Res> get userModel {
+    return $AppUserCopyWith<$Res>(_value.userModel, (value) {
       return _then(_value.copyWith(userModel: value));
     });
   }
@@ -89,10 +89,10 @@ abstract class _$AuthStateCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
           _AuthState value, $Res Function(_AuthState) then) =
       __$AuthStateCopyWithImpl<$Res>;
   @override
-  $Res call({AuthUserModel userModel, bool isUserCheckedFromAuthService});
+  $Res call({AppUser userModel, bool isUserCheckedFromAuthService});
 
   @override
-  $AuthUserModelCopyWith<$Res> get userModel;
+  $AppUserCopyWith<$Res> get userModel;
 }
 
 /// @nodoc
@@ -113,7 +113,7 @@ class __$AuthStateCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
       userModel: userModel == freezed
           ? _value.userModel
           : userModel // ignore: cast_nullable_to_non_nullable
-              as AuthUserModel,
+              as AppUser,
       isUserCheckedFromAuthService: isUserCheckedFromAuthService == freezed
           ? _value.isUserCheckedFromAuthService
           : isUserCheckedFromAuthService // ignore: cast_nullable_to_non_nullable
@@ -130,7 +130,7 @@ class _$_AuthState extends _AuthState {
       : super._();
 
   @override
-  final AuthUserModel userModel;
+  final AppUser userModel;
   @override
   final bool isUserCheckedFromAuthService;
 
@@ -164,12 +164,12 @@ class _$_AuthState extends _AuthState {
 
 abstract class _AuthState extends AuthState {
   const factory _AuthState(
-      {required AuthUserModel userModel,
+      {required AppUser userModel,
       required bool isUserCheckedFromAuthService}) = _$_AuthState;
   const _AuthState._() : super._();
 
   @override
-  AuthUserModel get userModel;
+  AppUser get userModel;
   @override
   bool get isUserCheckedFromAuthService;
   @override

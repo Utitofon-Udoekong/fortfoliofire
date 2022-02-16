@@ -83,12 +83,12 @@ class FirebaseAuthFacade implements IAuthFacade {
   }
 
   @override
-  Stream<AuthUserModel> get authStateChanges {
+  Stream<AppUser> get authStateChanges {
     return firebaseAuth.authStateChanges().map(
       (User? user) {
         if (user == null) {
           // The user is signed out
-          return AuthUserModel.empty();
+          return AppUser.empty();
         } else {
           // The user is logged in
           return user.toDomain();
@@ -206,7 +206,7 @@ class FirebaseAuthFacade implements IAuthFacade {
   Future<void> verifyUser() async => await firebaseAuth.currentUser!.sendEmailVerification();
 
   @override
-  Future<Option<AuthUserModel>> getSignedInUser() async => optionOf(firebaseAuth.currentUser!.toDomain());
+  Future<Option<AppUser>> getSignedInUser() async => optionOf(firebaseAuth.currentUser!.toDomain());
   //   var actionCodeSettings = ActionCodeSettings(
   //     url: 'https://www.example.com/?email=${firebaseAuth.currentUser!.email}',
   //     dynamicLinkDomain: 'example.page.link',

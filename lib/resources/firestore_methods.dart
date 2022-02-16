@@ -96,7 +96,8 @@ class FireStoreMethods {
   }
 
   Future<void> updateBalance(String uid) async {
-
+    DocumentSnapshot snap =
+          await _firestore.collection('users').doc(uid).get();
   }
 
   Future<void> followUser(String uid, String followId) async {

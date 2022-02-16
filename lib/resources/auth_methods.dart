@@ -1,13 +1,10 @@
 import 'dart:async';
-import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fortfolio/domain/auth/auth_failure.dart';
 import 'package:fortfolio/domain/auth/value_objects.dart';
 import 'package:fortfolio/models/user.dart' as model;
-import 'package:fortfolio/repository/firebase_user_mapper.dart';
-
 class AuthMethods {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -60,6 +57,9 @@ class AuthMethods {
           createdAt: DateTime.now(),
           role: model.Roles.user
         );
+
+        var displayName = "{$fName[0]}{$lName[0]}";
+        _auth.currentUser!.updateDisplayName(displayName);
 
         // adding user in our database
         await _firestore
@@ -241,6 +241,12 @@ class AuthMethods {
   }
 
   Future<void> verifyUser() async => await _auth.currentUser!.sendEmailVerification();
+
+  Future<bool> isVerified () async {
+    DocumentSnapshot snap = await _firestore.collection('users').doc(_auth.currentUser!.uid).get();
+    bool isVerified = (snap.data()! as dynamic)['isVerified'];
+    return isVerified;
+  }        
 
   Future<void> signOut() async {
     await _auth.signOut();
