@@ -11,6 +11,7 @@ const kgreyColor = Color(0xFF5B5B5B);
 const kBlackColor = Color(0xFF242424);
 const kTextFieldColor = Color(0xFF979797);
 const kGreenColor = Color(0XFF00C566);
+const kRedColor = Color(0xFFDF1414);
 
 const kDefaultPadding = EdgeInsets.symmetric(horizontal: 20);
 

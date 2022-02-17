@@ -1,4 +1,4 @@
-import 'package:auto_route/src/router/auto_router_x.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
@@ -141,15 +141,15 @@ class WalletOverview extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            buildcard('FortDollar', 'fortdollar', () => context.router.pushNamed(selectInvestment)),
+            buildcard('FortDollar', 'fortdollar', () => context.router.pushNamed(selectInvestmentMethod)),
             const SizedBox(
               height: 20,
             ),
-            buildcard('FortCrypto', 'fortcrypto', () => context.router.pushNamed(selectInvestment)),
+            buildcard('FortCrypto', 'fortcrypto', () => context.router.pushNamed(selectInvestmentMethod)),
             const SizedBox(
               height: 20,
             ),
-            buildcard('FortShield', 'fortshield', () => context.router.pushNamed(selectInvestment)),
+            buildcard('FortShield', 'fortshield', () => context.router.pushNamed(selectInvestmentMethod)),
             const SizedBox(
               height: 20,
             ),

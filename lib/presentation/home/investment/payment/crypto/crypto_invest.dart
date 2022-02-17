@@ -1,6 +1,8 @@
-import 'package:auto_route/src/router/auto_router_x.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
+import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 
 class CryptoInvestmentPage extends StatefulWidget {
   const CryptoInvestmentPage({Key? key}) : super(key: key);
@@ -73,7 +75,11 @@ class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
                         children: <Widget>[
                           buildtile('Wallet Address', 'x45566778899990000'),
                           IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                 Clipboard.setData(const ClipboardData(text: "0627767963")).then((_) {
+                              CustomSnackbar.showSnackBar(context, "Text copied", false);
+                            });
+                              },
                               icon: const Icon(
                                 Icons.copy_rounded,
                                 color: kPrimaryColor,

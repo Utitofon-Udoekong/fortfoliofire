@@ -26,7 +26,7 @@
   // INVESTMENT
   const String investment = "$home/investments";
   // const String notifications = "/notificationsPage";
-  const String selectInvestment = "/selectInvestmentMethod";
+  const String selectInvestmentMethod = "/selectInvestmentMethod";
   const String bankInvestment = "/bankInvestment";
   const String dollarAccount = "/dollar";
   const String nairaAccount = "/naira";

@@ -1,10 +1,14 @@
-import 'package:auto_route/src/router/auto_router_x.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/domain/constants/order.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
 import 'package:fortfolio/domain/widgets/labelled_checkbox.dart';
 import 'package:timelines/timelines.dart';
+
+import '../../../../../utils/pages.dart';
+import '../../cubit/investment_cubit.dart';
 
 const kTileHeight = 40.0;
 
@@ -25,171 +29,220 @@ class _FortCryptoInvestmentState extends State<FortCryptoInvestment> {
         child: Padding(
           padding: kDefaultPadding,
           child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                const SizedBox(
-                  height: 20,
-                ),
-                InkWell(
-                  onTap: () => context.router.pop(),
-                  child: const Icon(Icons.close),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  "Invest",
-                  style: titleText.copyWith(color: kBlackColor),
-                ),
-                Flex(
-                  direction: Axis.horizontal,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    const Image(image: AssetImage('images/fortcrypto.png')),
-                    Text.rich(
-                      TextSpan(
-                          text: 'up to',
-                          children: <TextSpan>[
-                            TextSpan(
-                                text: '15% returns',
-                                style: subTitle.copyWith(
-                                    color: kGreenColor, fontSize: 13))
-                          ],
-                          style: subTitle.copyWith(
-                              fontSize: 13, color: kBlackColor)),
-                    )
-                  ],
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  "FortCrypto",
-                  style: titleText.copyWith(color: kBlackColor, fontSize: 15),
-                ),
-                Text(
-                  "How much are you starting with?",
-                  style:
-                      subTitle.copyWith(color: const Color(0xFF656565), fontSize: 13),
-                ),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: TextFormField(
-                    autocorrect: false,
-                    keyboardType: TextInputType.number,
-                    textInputAction: TextInputAction.next,
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: const Color(0xFFF3F6F8),
-                      border: InputBorder.none,
-                      suffix: DropdownButton(items: <DropdownMenuItem<Object>>[], onChanged: (onChanged){})
+            child: BlocProvider(
+              create: (context) => InvestmentCubit(),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  InkWell(
+                    onTap: () => context.router.pop(),
+                    child: const Icon(Icons.close),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    "Invest",
+                    style: titleText.copyWith(color: kBlackColor),
+                  ),
+                  Flex(
+                    direction: Axis.horizontal,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      const Image(image: AssetImage('images/fortcrypto.png')),
+                      Text.rich(
+                        TextSpan(
+                            text: 'up to',
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: '15% returns',
+                                  style: subTitle.copyWith(
+                                      color: kGreenColor, fontSize: 13))
+                            ],
+                            style: subTitle.copyWith(
+                                fontSize: 13, color: kBlackColor)),
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    "FortCrypto",
+                    style: titleText.copyWith(color: kBlackColor, fontSize: 15),
+                  ),
+                  Text(
+                    "How much are you starting with?",
+                    style: subTitle.copyWith(
+                        color: const Color(0xFF656565), fontSize: 13),
+                  ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: TextFormField(
+                      autocorrect: false,
+                      keyboardType: TextInputType.number,
+                      textInputAction: TextInputAction.next,
+                      decoration: InputDecoration(
+                          filled: true,
+                          fillColor: const Color(0xFFF3F6F8),
+                          border: InputBorder.none,
+                          suffixIcon: const Icon(Icons.keyboard_arrow_down),
+                          // suffix: DropdownButton<String>(
+                          //     items: <String>[
+                          //       'Naira',
+                          //       'Dollar',
+                          //       'Bitcoin'
+                          //     ].map<DropdownMenuItem<String>>((String value) {
+                          //       return DropdownMenuItem<String>(
+                          //         value: value,
+                          //         child: Text(value),
+                          //       );
+                          //     }).toList(),
+                          //     onChanged: (onChanged) {}),
+                          suffixText: "BTC",
+                          suffixStyle: TextStyle(
+                              color: Colors.grey.shade400, fontSize: 13)),
+                      onChanged: (value) => context
+                          .read<InvestmentCubit>()
+                          .amountInvestedChanged(amountInvested: value),
                     ),
                   ),
-                ),
-                // ClipRRect(
-                //   borderRadius: BorderRadius.circular(10),
-                //   child: DropdownButtonFormField(
-                //       items: <DropdownMenuItem<Object>>[], onChanged: (on) {},
-                //       decoration: InputDecoration(
-                //       filled: true,
-                //       fillColor: Color(0xFFF3F6F8),
-                //       border: InputBorder.none,
-                //     ),
-                    
-                //   ),
-                // ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  "Duration",
-                  style:
-                      subTitle.copyWith(color: const Color(0xFF656565), fontSize: 13),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                buildToggle(),
-                const SizedBox(
-                  height: 30,
-                ),
-                Text(
-                  "Summary",
-                  style:
-                      subTitle.copyWith(color: const Color(0xFF656565), fontSize: 13),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                FixedTimeline.tileBuilder(
-                  theme: TimelineThemeData(
-                      nodePosition: 0,
-                      color: const Color(0xffc2c5c9),
-                      connectorTheme: const ConnectorThemeData(
-                        thickness: 3.0,
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    "Duration",
+                    style: subTitle.copyWith(
+                        color: const Color(0xFF656565), fontSize: 13),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  buildToggle(),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Text(
+                    "Summary",
+                    style: subTitle.copyWith(
+                        color: const Color(0xFF656565), fontSize: 13),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  FixedTimeline.tileBuilder(
+                    theme: TimelineThemeData(
+                        nodePosition: 0,
+                        color: const Color(0xffc2c5c9),
+                        connectorTheme: const ConnectorThemeData(
+                          thickness: 3.0,
+                        ),
+                        indicatorTheme: const IndicatorThemeData(
+                            position: 0.5, color: kPrimaryColor)),
+                    builder: TimelineTileBuilder.connected(
+                        itemCount: order.length,
+                        indicatorBuilder: (context, index) {
+                          return const DotIndicator(
+                            color: kPrimaryColor,
+                          );
+                        },
+                        connectorBuilder: (_, index, connectorType) {
+                          return const DashedLineConnector(
+                            color: kPrimaryColor,
+                            thickness: 1.0,
+                          );
+                        },
+                        itemExtentBuilder: (_, __) {
+                          return kTileHeight;
+                        },
+                        contentsBuilder: (_, index) {
+                          return timelineContent(
+                              order[index].title, order[index].subtitle);
+                        }),
+                  ),
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  Flex(
+                    direction: Axis.horizontal,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        'Est. APY',
+                        style:
+                            subTitle.copyWith(fontSize: 14, color: kBlackColor),
                       ),
-                      indicatorTheme: const IndicatorThemeData(
-                          position: 0.5, color: kPrimaryColor)),
-                  builder: TimelineTileBuilder.connected(
-                      itemCount: order.length,
-                      indicatorBuilder: (context, index) {
-                        return const DotIndicator(
-                          color: kPrimaryColor,
+                      Text(
+                        '35.5% ',
+                        style:
+                            subTitle.copyWith(fontSize: 14, color: kGreenColor),
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  BlocBuilder<InvestmentCubit, InvestmentState>(
+                    builder: (context, state) {
+                      return LabeledCheckbox(
+                          label:
+                              'I have read and I agree to Fortfolio Terms of Services Agreemet',
+                          value: state.agreementAccepted,
+                          onChanged: (value) {
+                            context.read<InvestmentCubit>().agreementAcceptedChanged(agreementAccepted: value);
+                          });
+                    },
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  CustomFilledButton(
+                      text: 'INVEST NOW',
+                      onTap: () {
+                        AlertDialog(
+                          title: const Text(
+                              "Please confirm your investment transaction"),
+                          titleTextStyle: titleText.copyWith(fontSize: 16),
+                          content: const Text(
+                              "You are about to invest in the selected investment plan, please confirm before proceedeing to pay."),
+                          contentTextStyle: subTitle.copyWith(
+                              fontSize: 13, color: kgreyColor),
+                          actions: [
+                            CustomFilledButton(text: "CONFIRM", onTap: () {
+                              context.read<InvestmentCubit>().planNameChanged(planName: "FortDollar");
+                              context.router.pushNamed(selectInvestmentMethod);
+                            }),
+                            InkWell(
+                              onTap: () => context.router.pop(),
+                              child: Container(
+                                alignment: Alignment.center,
+                                height: 48,
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: kWhiteColor,
+                                ),
+                                child: Text(
+                                  "CANCEL",
+                                  style: textButton.copyWith(color: kRedColor),
+                                ),
+                              ),
+                            )
+                          ],
+                          backgroundColor: kWhiteColor,
+                          titlePadding:
+                              const EdgeInsets.symmetric(horizontal: 10.0),
+                          contentPadding:
+                              const EdgeInsets.symmetric(horizontal: 10.0),
+                          actionsPadding:
+                              const EdgeInsets.symmetric(horizontal: 10.0),
                         );
-                      },
-                      connectorBuilder: (_, index, connectorType) {
-                        return const DashedLineConnector(
-                          color: kPrimaryColor,
-                          thickness: 1.0,
-                        );
-                      },
-                      itemExtentBuilder: (_, __) {
-                        return kTileHeight;
-                      },
-                      contentsBuilder: (_, index) {
-                        return timelineContent(
-                            order[index].title, order[index].subtitle);
-                      }),
-                ),
-                const SizedBox(
-                  height: 40,
-                ),
-                Flex(
-                  direction: Axis.horizontal,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Text(
-                      'Est. APY',
-                      style:
-                          subTitle.copyWith(fontSize: 14, color: kBlackColor),
-                    ),
-                    Text(
-                      '35.5% ',
-                      style:
-                          subTitle.copyWith(fontSize: 14, color: kGreenColor),
-                    )
-                  ],
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                LabeledCheckbox(
-                    label:
-                        'I have read and I agree to Fortfolio Terms of Services Agreemet',
-                    value: false,
-                    onChanged: (value) => {
-                      value = !value
-                    }),
-                const SizedBox(
-                  height: 20,
-                ),
-                CustomFilledButton(
-                    text: 'INVEST NOW',
-                    onTap: () {
-                      // Get.to(SelectInvestmentMethod());
-                    })
-              ],
+                      })
+                ],
+              ),
             ),
           ),
         ),

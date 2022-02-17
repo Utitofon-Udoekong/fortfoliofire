@@ -246,7 +246,9 @@ class AuthMethods {
     DocumentSnapshot snap = await _firestore.collection('users').doc(_auth.currentUser!.uid).get();
     bool isVerified = (snap.data()! as dynamic)['isVerified'];
     return isVerified;
-  }        
+  }    
+
+  String getUserId() => _auth.currentUser!.uid;    
 
   Future<void> signOut() async {
     await _auth.signOut();

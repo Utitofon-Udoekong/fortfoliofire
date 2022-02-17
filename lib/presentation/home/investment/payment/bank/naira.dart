@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
+import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 
 class NairaAccount extends StatelessWidget {
   const NairaAccount({Key? key}) : super(key: key);
@@ -100,7 +102,11 @@ class NairaAccount extends StatelessWidget {
                     children: <Widget>[
                       buildtile('Account Number', '0627767963'),
                       IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Clipboard.setData(const ClipboardData(text: "0627767963")).then((_) {
+                              CustomSnackbar.showSnackBar(context, "Text copied", false);
+                            });
+                          },
                           icon: const Icon(
                             Icons.copy_rounded,
                             color: kPrimaryColor,
