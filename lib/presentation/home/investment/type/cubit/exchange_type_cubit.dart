@@ -12,12 +12,21 @@ class ExchangeTypeCubit extends Cubit<ExchangeTypeState> {
   }
 
   void isSelectedChanged({required int newIndex}) {
+    int duration = 0;
+    List<bool> newList = state.isSelected;
     for (int index = 0; index < state.isSelected.length; index++) {
       if(index == newIndex){
-        state.isSelected[index] = true;
-        state.duration = state.durations[index];
+        newList[index] = true;
+        duration = state.durations[index];
+        emit(state.copyWith(
+          duration: duration,
+          isSelected: newList
+        ));
       }else {
-        state.isSelected[index] = false;
+        newList[index] = false;
+        emit(state.copyWith(
+          isSelected: newList
+        ));
       }
     }
   }

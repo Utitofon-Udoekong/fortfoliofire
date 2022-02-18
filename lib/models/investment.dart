@@ -14,7 +14,9 @@ class Investment extends Equatable {
   final DateTime dueDate;
   final String duration;
   final String status;
-  Investment({
+  final int planYield;
+
+  const Investment({
     required this.description,
     required this.uid,
     required this.amount,
@@ -25,8 +27,9 @@ class Investment extends Equatable {
     required this.dueDate,
     required this.duration,
     required this.status,
+    required this.planYield,
   });
-  
+
 
   Investment copyWith({
     String? description,
@@ -39,6 +42,7 @@ class Investment extends Equatable {
     DateTime? dueDate,
     String? duration,
     String? status,
+    int? planYield,
   }) {
     return Investment(
       description: description ?? this.description,
@@ -51,6 +55,7 @@ class Investment extends Equatable {
       dueDate: dueDate ?? this.dueDate,
       duration: duration ?? this.duration,
       status: status ?? this.status,
+      planYield: planYield ?? this.planYield,
     );
   }
 
@@ -66,6 +71,7 @@ class Investment extends Equatable {
       'dueDate': dueDate.millisecondsSinceEpoch,
       'duration': duration,
       'status': status,
+      'planYield': planYield,
     };
   }
 
@@ -81,6 +87,7 @@ class Investment extends Equatable {
       dueDate: DateTime.fromMillisecondsSinceEpoch(map['dueDate']),
       duration: map['duration'] ?? '',
       status: map['status'] ?? '',
+      planYield: map['planYield']?.toInt() ?? 0,
     );
   }
 
@@ -90,7 +97,7 @@ class Investment extends Equatable {
 
   @override
   String toString() {
-    return 'Investment(description: $description, uid: $uid, amount: $amount, traxId: $traxId, roi: $roi, planName: $planName, paymentDate: $paymentDate, dueDate: $dueDate, duration: $duration, status: $status)';
+    return 'Investment(description: $description, uid: $uid, amount: $amount, traxId: $traxId, roi: $roi, planName: $planName, paymentDate: $paymentDate, dueDate: $dueDate, duration: $duration, status: $status, planYield: $planYield)';
   }
 
   @override
@@ -106,6 +113,7 @@ class Investment extends Equatable {
       dueDate,
       duration,
       status,
+      planYield,
     ];
   }
 }

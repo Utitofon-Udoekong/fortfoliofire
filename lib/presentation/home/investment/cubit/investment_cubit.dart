@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:js';
-
 import 'package:bloc/bloc.dart';
 import 'package:fortfolio/presentation/home/investment/type/cubit/exchange_type_cubit.dart';
 import 'package:fortfolio/resources/auth_methods.dart';

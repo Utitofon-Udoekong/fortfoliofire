@@ -6,7 +6,6 @@ import 'package:fortfolio/models/crypto_wallet.dart';
 import 'package:fortfolio/models/general_wallet.dart';
 import 'package:fortfolio/models/investment.dart';
 import 'package:fortfolio/models/withdrawal.dart';
-// import 'package:fortfolio/models/post.dart';
 import 'package:uuid/uuid.dart';
 
 class FireStoreMethods {
@@ -26,6 +25,7 @@ class FireStoreMethods {
         dueDate: dueDate,
         duration: "${dueDate.difference(paymentDate).inDays} days",
         status: status,
+        planYield: 0
       );
       _firestore.collection("transactions").doc(traxId).set(investment.toMap());
       res = "Investment made successfully. Awaiting review";
