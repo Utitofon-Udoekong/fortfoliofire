@@ -144,7 +144,45 @@ class _FortShieldInvestmentState extends State<FortShieldInvestment> {
                   const SizedBox(
                     height: 20,
                   ),
-                  buildToggle(),
+                  // ==================TOGGLE BUTTONS---------------
+                  BlocBuilder<ExchangeTypeCubit, ExchangeTypeState>(
+                    builder: (context, state) {
+                      return ToggleButtons(
+                        selectedColor: Colors.white,
+                        color: kgreyColor,
+                        isSelected: state.isSelected,
+                        fillColor: const Color.fromRGBO(243, 246, 248, 0.6),
+                        renderBorder: false,
+                        children: <Widget>[
+                          Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(6),
+                                color: kPrimaryColor),
+                            margin: const EdgeInsets.only(right: 30),
+                            child: const Text(
+                              '6 months',
+                              style: TextStyle(fontSize: 13),
+                            ),
+                            alignment: Alignment.center,
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(6),
+                                color: kPrimaryColor),
+                            child: const Text(
+                              '12 months',
+                              style: TextStyle(fontSize: 13),
+                            ),
+                            alignment: Alignment.center,
+                          ),
+                        ],
+                        onPressed: (int newIndex) => context
+                            .read<ExchangeTypeCubit>()
+                            .isSelectedChanged(newIndex: newIndex),
+                      );
+                    },
+                  ),
+                  // ===============================>,
                   const SizedBox(
                     height: 30,
                   ),
@@ -271,48 +309,6 @@ class _FortShieldInvestmentState extends State<FortShieldInvestment> {
           ),
         ),
       ),
-    );
-  }
-
-  Widget buildToggle() {
-    return ToggleButtons(
-      selectedColor: Colors.white,
-      color: kgreyColor,
-      isSelected: isSelected,
-      fillColor: const Color.fromRGBO(243, 246, 248, 0.6),
-      renderBorder: false,
-      children: <Widget>[
-        Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(6), color: kPrimaryColor),
-          margin: const EdgeInsets.only(right: 30),
-          child: const Text(
-            '6 months',
-            style: TextStyle(fontSize: 13),
-          ),
-          alignment: Alignment.center,
-        ),
-        Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(6), color: kPrimaryColor),
-          child: const Text(
-            '12 months',
-            style: TextStyle(fontSize: 13),
-          ),
-          alignment: Alignment.center,
-        ),
-      ],
-      onPressed: (int newIndex) {
-        setState(() {
-          for (int index = 0; index < isSelected.length; index++) {
-            if (index == newIndex) {
-              isSelected[index] = true;
-            } else {
-              isSelected[index] = false;
-            }
-          }
-        });
-      },
     );
   }
 
