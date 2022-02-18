@@ -3,6 +3,7 @@ import 'dart:js';
 
 import 'package:bloc/bloc.dart';
 import 'package:fortfolio/presentation/home/investment/type/cubit/exchange_type_cubit.dart';
+import 'package:fortfolio/resources/auth_methods.dart';
 import 'package:fortfolio/resources/firestore_methods.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -12,9 +13,10 @@ part 'investment_cubit.freezed.dart';
 @injectable
 class InvestmentCubit extends Cubit<InvestmentState> {
   final FireStoreMethods fireStoreMethods;
+  final  AuthMethods authMethods;
   final ExchangeTypeCubit exchangeTypeCubit;
   StreamSubscription? addSubscription;
-  InvestmentCubit(this.fireStoreMethods, this.exchangeTypeCubit) : super(InvestmentState.initial()){
+  InvestmentCubit(this.fireStoreMethods, this.exchangeTypeCubit, this.authMethods) : super(InvestmentState.initial()){
     addSubscription = exchangeTypeCubit.stream.listen((state) { 
       if(state.duration == 3){
         durationChanged(duration: 2191.45319);
@@ -64,7 +66,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     final double duration = state.duration;
     const String status = "pending";
     String response = "";
-    const uid = "78000504694059";
+    String uid = authMethods.getUserId();
     final dueDate = paymentDate.add(Duration(hours: duration.toInt()));
     try{
       response = await fireStoreMethods.createInvestmentTransaction(description, uid, amount, planName, paymentDate, dueDate, roi.toString(), status);

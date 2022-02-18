@@ -27,15 +27,15 @@ import 'presentation/home/dashboard/screens/payment_method/bank/cubit/bank_addre
 import 'presentation/home/dashboard/screens/payment_method/crypto/bloc/crypto_wallet_bloc.dart'
     as _i6;
 import 'presentation/home/dashboard/screens/profile/cubit/profile_cubit.dart'
-    as _i14;
-import 'presentation/home/dashboard/screens/security/cubit/security_cubit.dart'
     as _i15;
+import 'presentation/home/dashboard/screens/security/cubit/security_cubit.dart'
+    as _i16;
 import 'presentation/home/dashboard/screens/verification/bloc/upload_image_bloc.dart'
     as _i20;
 import 'presentation/home/investment/cubit/investment_cubit.dart' as _i12;
 import 'presentation/home/investment/type/cubit/exchange_type_cubit.dart'
     as _i13;
-import 'resources/auth_methods.dart' as _i16;
+import 'resources/auth_methods.dart' as _i14;
 import 'resources/firestore_methods.dart' as _i5;
 import 'resources/storage_methods.dart'
     as _i21; // ignore_for_file: unnecessary_lambdas
@@ -59,10 +59,12 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.lazySingleton<_i10.IUserRepository>(() => _i11.UserRepository(
       get<_i8.FirebaseFirestore>(), get<_i9.FirebaseStorage>()));
   gh.factory<_i12.InvestmentCubit>(() => _i12.InvestmentCubit(
-      get<_i5.FireStoreMethods>(), get<_i13.ExchangeTypeCubit>()));
-  gh.factory<_i14.ProfileCubit>(() => _i14.ProfileCubit());
-  gh.factory<_i15.SecurityCubit>(
-      () => _i15.SecurityCubit(get<_i16.AuthMethods>()));
+      get<_i5.FireStoreMethods>(),
+      get<_i13.ExchangeTypeCubit>(),
+      get<_i14.AuthMethods>()));
+  gh.factory<_i15.ProfileCubit>(() => _i15.ProfileCubit());
+  gh.factory<_i16.SecurityCubit>(
+      () => _i16.SecurityCubit(get<_i14.AuthMethods>()));
   gh.factory<_i17.SignInFormEmailCubit>(() => _i17.SignInFormEmailCubit());
   gh.factory<_i18.SignInFormPhoneCubit>(() => _i18.SignInFormPhoneCubit());
   gh.factory<_i19.SignUpFormCubit>(() => _i19.SignUpFormCubit());
