@@ -12,9 +12,8 @@ class Investment extends Equatable {
   final String planName;
   final DateTime paymentDate;
   final DateTime dueDate;
-  final String duration;
+  final double duration;
   final String status;
-
   Investment({
     required this.description,
     required this.uid,
@@ -27,38 +26,72 @@ class Investment extends Equatable {
     required this.duration,
     required this.status,
   });
+  
 
-  static Investment fromSnap(DocumentSnapshot snap) {
-    var snapshot = snap.data() as Map<String, dynamic>;
-
+  Investment copyWith({
+    String? description,
+    String? uid,
+    int? amount,
+    String? traxId,
+    String? roi,
+    String? planName,
+    DateTime? paymentDate,
+    DateTime? dueDate,
+    double? duration,
+    String? status,
+  }) {
     return Investment(
-      description: snapshot["description"],
-      uid: snapshot["uid"],
-      amount: snapshot["amount"],
-      dueDate: snapshot["dueDate"],
-      duration: snapshot["duration"],
-      paymentDate: snapshot["paymentDate"],
-      planName: snapshot["planName"],
-      roi: snapshot["roi"],
-      status: snapshot["status"],
-      traxId: snapshot["traxId"],
+      description: description ?? this.description,
+      uid: uid ?? this.uid,
+      amount: amount ?? this.amount,
+      traxId: traxId ?? this.traxId,
+      roi: roi ?? this.roi,
+      planName: planName ?? this.planName,
+      paymentDate: paymentDate ?? this.paymentDate,
+      dueDate: dueDate ?? this.dueDate,
+      duration: duration ?? this.duration,
+      status: status ?? this.status,
     );
   }
 
-  Map<String, dynamic> toJson() => {
-      "description": description,
-      "uid": uid,
-      "amount": amount,
-      "traxId": traxId,
-      "roi": roi,
-      "planName": planName,
-      "paymentDate": paymentDate.millisecondsSinceEpoch,
-      "dueDate": dueDate.millisecondsSinceEpoch,
-      "duration": duration,
-      "status": status,
-      };
+  Map<String, dynamic> toMap() {
+    return {
+      'description': description,
+      'uid': uid,
+      'amount': amount,
+      'traxId': traxId,
+      'roi': roi,
+      'planName': planName,
+      'paymentDate': paymentDate.millisecondsSinceEpoch,
+      'dueDate': dueDate.millisecondsSinceEpoch,
+      'duration': duration,
+      'status': status,
+    };
+  }
 
+  factory Investment.fromMap(Map<String, dynamic> map) {
+    return Investment(
+      description: map['description'] ?? '',
+      uid: map['uid'] ?? '',
+      amount: map['amount']?.toInt() ?? 0,
+      traxId: map['traxId'] ?? '',
+      roi: map['roi'] ?? '',
+      planName: map['planName'] ?? '',
+      paymentDate: DateTime.fromMillisecondsSinceEpoch(map['paymentDate']),
+      dueDate: DateTime.fromMillisecondsSinceEpoch(map['dueDate']),
+      duration: map['duration']?.toDouble() ?? 0.0,
+      status: map['status'] ?? '',
+    );
+  }
 
+  String toJson() => json.encode(toMap());
+
+  factory Investment.fromJson(String source) => Investment.fromMap(json.decode(source));
+
+  @override
+  String toString() {
+    return 'Investment(description: $description, uid: $uid, amount: $amount, traxId: $traxId, roi: $roi, planName: $planName, paymentDate: $paymentDate, dueDate: $dueDate, duration: $duration, status: $status)';
+  }
 
   @override
   List<Object> get props {

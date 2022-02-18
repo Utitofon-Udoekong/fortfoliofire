@@ -5,6 +5,7 @@ import 'package:fortfolio/domain/constants/order.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
 import 'package:fortfolio/domain/widgets/labelled_checkbox.dart';
+import 'package:fortfolio/injection.dart';
 import 'package:fortfolio/presentation/home/investment/type/cubit/exchange_type_cubit.dart';
 import 'package:timelines/timelines.dart';
 
@@ -35,7 +36,7 @@ class _FortShieldInvestmentState extends State<FortShieldInvestment> {
             child: MultiBlocProvider(
               providers: [
                 BlocProvider(
-                  create: (context) => InvestmentCubit(),
+                  create: (context) => getIt<InvestmentCubit>(),
                 ),
                 BlocProvider(
                   create: (context) => ExchangeTypeCubit(),
@@ -127,7 +128,7 @@ class _FortShieldInvestmentState extends State<FortShieldInvestment> {
                                             exchangeType: onChanged!);
                                 }),
                           ),
-                          onChanged: (value) => context.read<InvestmentCubit>().amountInvestedChanged(amountInvested: value),
+                          onChanged: (value) => context.read<InvestmentCubit>().amountInvestedChanged(amountInvested: int.parse(value)),
                         ),
                       );
                     },

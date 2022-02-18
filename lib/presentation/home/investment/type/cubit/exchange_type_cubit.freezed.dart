@@ -18,9 +18,16 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$ExchangeTypeStateTearOff {
   const _$ExchangeTypeStateTearOff();
 
-  _ExchangeTypeState call({required String exchangeType}) {
+  _ExchangeTypeState call(
+      {required String exchangeType,
+      required List<bool> isSelected,
+      required List<int> durations,
+      required int duration}) {
     return _ExchangeTypeState(
       exchangeType: exchangeType,
+      isSelected: isSelected,
+      durations: durations,
+      duration: duration,
     );
   }
 }
@@ -31,6 +38,9 @@ const $ExchangeTypeState = _$ExchangeTypeStateTearOff();
 /// @nodoc
 mixin _$ExchangeTypeState {
   String get exchangeType => throw _privateConstructorUsedError;
+  List<bool> get isSelected => throw _privateConstructorUsedError;
+  List<int> get durations => throw _privateConstructorUsedError;
+  int get duration => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ExchangeTypeStateCopyWith<ExchangeTypeState> get copyWith =>
@@ -42,7 +52,11 @@ abstract class $ExchangeTypeStateCopyWith<$Res> {
   factory $ExchangeTypeStateCopyWith(
           ExchangeTypeState value, $Res Function(ExchangeTypeState) then) =
       _$ExchangeTypeStateCopyWithImpl<$Res>;
-  $Res call({String exchangeType});
+  $Res call(
+      {String exchangeType,
+      List<bool> isSelected,
+      List<int> durations,
+      int duration});
 }
 
 /// @nodoc
@@ -57,12 +71,27 @@ class _$ExchangeTypeStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? exchangeType = freezed,
+    Object? isSelected = freezed,
+    Object? durations = freezed,
+    Object? duration = freezed,
   }) {
     return _then(_value.copyWith(
       exchangeType: exchangeType == freezed
           ? _value.exchangeType
           : exchangeType // ignore: cast_nullable_to_non_nullable
               as String,
+      isSelected: isSelected == freezed
+          ? _value.isSelected
+          : isSelected // ignore: cast_nullable_to_non_nullable
+              as List<bool>,
+      durations: durations == freezed
+          ? _value.durations
+          : durations // ignore: cast_nullable_to_non_nullable
+              as List<int>,
+      duration: duration == freezed
+          ? _value.duration
+          : duration // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -74,7 +103,11 @@ abstract class _$ExchangeTypeStateCopyWith<$Res>
           _ExchangeTypeState value, $Res Function(_ExchangeTypeState) then) =
       __$ExchangeTypeStateCopyWithImpl<$Res>;
   @override
-  $Res call({String exchangeType});
+  $Res call(
+      {String exchangeType,
+      List<bool> isSelected,
+      List<int> durations,
+      int duration});
 }
 
 /// @nodoc
@@ -91,12 +124,27 @@ class __$ExchangeTypeStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? exchangeType = freezed,
+    Object? isSelected = freezed,
+    Object? durations = freezed,
+    Object? duration = freezed,
   }) {
     return _then(_ExchangeTypeState(
       exchangeType: exchangeType == freezed
           ? _value.exchangeType
           : exchangeType // ignore: cast_nullable_to_non_nullable
               as String,
+      isSelected: isSelected == freezed
+          ? _value.isSelected
+          : isSelected // ignore: cast_nullable_to_non_nullable
+              as List<bool>,
+      durations: durations == freezed
+          ? _value.durations
+          : durations // ignore: cast_nullable_to_non_nullable
+              as List<int>,
+      duration: duration == freezed
+          ? _value.duration
+          : duration // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -104,14 +152,25 @@ class __$ExchangeTypeStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ExchangeTypeState extends _ExchangeTypeState {
-  const _$_ExchangeTypeState({required this.exchangeType}) : super._();
+  const _$_ExchangeTypeState(
+      {required this.exchangeType,
+      required this.isSelected,
+      required this.durations,
+      required this.duration})
+      : super._();
 
   @override
   final String exchangeType;
+  @override
+  final List<bool> isSelected;
+  @override
+  final List<int> durations;
+  @override
+  final int duration;
 
   @override
   String toString() {
-    return 'ExchangeTypeState(exchangeType: $exchangeType)';
+    return 'ExchangeTypeState(exchangeType: $exchangeType, isSelected: $isSelected, durations: $durations, duration: $duration)';
   }
 
   @override
@@ -120,12 +179,20 @@ class _$_ExchangeTypeState extends _ExchangeTypeState {
         (other.runtimeType == runtimeType &&
             other is _ExchangeTypeState &&
             const DeepCollectionEquality()
-                .equals(other.exchangeType, exchangeType));
+                .equals(other.exchangeType, exchangeType) &&
+            const DeepCollectionEquality()
+                .equals(other.isSelected, isSelected) &&
+            const DeepCollectionEquality().equals(other.durations, durations) &&
+            const DeepCollectionEquality().equals(other.duration, duration));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(exchangeType));
+      runtimeType,
+      const DeepCollectionEquality().hash(exchangeType),
+      const DeepCollectionEquality().hash(isSelected),
+      const DeepCollectionEquality().hash(durations),
+      const DeepCollectionEquality().hash(duration));
 
   @JsonKey(ignore: true)
   @override
@@ -134,12 +201,21 @@ class _$_ExchangeTypeState extends _ExchangeTypeState {
 }
 
 abstract class _ExchangeTypeState extends ExchangeTypeState {
-  const factory _ExchangeTypeState({required String exchangeType}) =
-      _$_ExchangeTypeState;
+  const factory _ExchangeTypeState(
+      {required String exchangeType,
+      required List<bool> isSelected,
+      required List<int> durations,
+      required int duration}) = _$_ExchangeTypeState;
   const _ExchangeTypeState._() : super._();
 
   @override
   String get exchangeType;
+  @override
+  List<bool> get isSelected;
+  @override
+  List<int> get durations;
+  @override
+  int get duration;
   @override
   @JsonKey(ignore: true)
   _$ExchangeTypeStateCopyWith<_ExchangeTypeState> get copyWith =>

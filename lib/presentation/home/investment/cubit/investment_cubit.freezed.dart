@@ -20,18 +20,22 @@ class _$InvestmentStateTearOff {
 
   _InvestmentState call(
       {required String planName,
-      required String duration,
-      required String amountInvested,
+      required double duration,
+      required int amountInvested,
       required int roi,
       required String method,
-      required bool agreementAccepted}) {
+      required String response,
+      required bool agreementAccepted,
+      required bool isLoading}) {
     return _InvestmentState(
       planName: planName,
       duration: duration,
       amountInvested: amountInvested,
       roi: roi,
       method: method,
+      response: response,
       agreementAccepted: agreementAccepted,
+      isLoading: isLoading,
     );
   }
 }
@@ -42,11 +46,13 @@ const $InvestmentState = _$InvestmentStateTearOff();
 /// @nodoc
 mixin _$InvestmentState {
   String get planName => throw _privateConstructorUsedError;
-  String get duration => throw _privateConstructorUsedError;
-  String get amountInvested => throw _privateConstructorUsedError;
+  double get duration => throw _privateConstructorUsedError;
+  int get amountInvested => throw _privateConstructorUsedError;
   int get roi => throw _privateConstructorUsedError;
   String get method => throw _privateConstructorUsedError;
+  String get response => throw _privateConstructorUsedError;
   bool get agreementAccepted => throw _privateConstructorUsedError;
+  bool get isLoading => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $InvestmentStateCopyWith<InvestmentState> get copyWith =>
@@ -60,11 +66,13 @@ abstract class $InvestmentStateCopyWith<$Res> {
       _$InvestmentStateCopyWithImpl<$Res>;
   $Res call(
       {String planName,
-      String duration,
-      String amountInvested,
+      double duration,
+      int amountInvested,
       int roi,
       String method,
-      bool agreementAccepted});
+      String response,
+      bool agreementAccepted,
+      bool isLoading});
 }
 
 /// @nodoc
@@ -83,7 +91,9 @@ class _$InvestmentStateCopyWithImpl<$Res>
     Object? amountInvested = freezed,
     Object? roi = freezed,
     Object? method = freezed,
+    Object? response = freezed,
     Object? agreementAccepted = freezed,
+    Object? isLoading = freezed,
   }) {
     return _then(_value.copyWith(
       planName: planName == freezed
@@ -93,11 +103,11 @@ class _$InvestmentStateCopyWithImpl<$Res>
       duration: duration == freezed
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       amountInvested: amountInvested == freezed
           ? _value.amountInvested
           : amountInvested // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       roi: roi == freezed
           ? _value.roi
           : roi // ignore: cast_nullable_to_non_nullable
@@ -106,9 +116,17 @@ class _$InvestmentStateCopyWithImpl<$Res>
           ? _value.method
           : method // ignore: cast_nullable_to_non_nullable
               as String,
+      response: response == freezed
+          ? _value.response
+          : response // ignore: cast_nullable_to_non_nullable
+              as String,
       agreementAccepted: agreementAccepted == freezed
           ? _value.agreementAccepted
           : agreementAccepted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isLoading: isLoading == freezed
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -123,11 +141,13 @@ abstract class _$InvestmentStateCopyWith<$Res>
   @override
   $Res call(
       {String planName,
-      String duration,
-      String amountInvested,
+      double duration,
+      int amountInvested,
       int roi,
       String method,
-      bool agreementAccepted});
+      String response,
+      bool agreementAccepted,
+      bool isLoading});
 }
 
 /// @nodoc
@@ -148,7 +168,9 @@ class __$InvestmentStateCopyWithImpl<$Res>
     Object? amountInvested = freezed,
     Object? roi = freezed,
     Object? method = freezed,
+    Object? response = freezed,
     Object? agreementAccepted = freezed,
+    Object? isLoading = freezed,
   }) {
     return _then(_InvestmentState(
       planName: planName == freezed
@@ -158,11 +180,11 @@ class __$InvestmentStateCopyWithImpl<$Res>
       duration: duration == freezed
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       amountInvested: amountInvested == freezed
           ? _value.amountInvested
           : amountInvested // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       roi: roi == freezed
           ? _value.roi
           : roi // ignore: cast_nullable_to_non_nullable
@@ -171,9 +193,17 @@ class __$InvestmentStateCopyWithImpl<$Res>
           ? _value.method
           : method // ignore: cast_nullable_to_non_nullable
               as String,
+      response: response == freezed
+          ? _value.response
+          : response // ignore: cast_nullable_to_non_nullable
+              as String,
       agreementAccepted: agreementAccepted == freezed
           ? _value.agreementAccepted
           : agreementAccepted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isLoading: isLoading == freezed
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -188,25 +218,31 @@ class _$_InvestmentState extends _InvestmentState {
       required this.amountInvested,
       required this.roi,
       required this.method,
-      required this.agreementAccepted})
+      required this.response,
+      required this.agreementAccepted,
+      required this.isLoading})
       : super._();
 
   @override
   final String planName;
   @override
-  final String duration;
+  final double duration;
   @override
-  final String amountInvested;
+  final int amountInvested;
   @override
   final int roi;
   @override
   final String method;
   @override
+  final String response;
+  @override
   final bool agreementAccepted;
+  @override
+  final bool isLoading;
 
   @override
   String toString() {
-    return 'InvestmentState(planName: $planName, duration: $duration, amountInvested: $amountInvested, roi: $roi, method: $method, agreementAccepted: $agreementAccepted)';
+    return 'InvestmentState(planName: $planName, duration: $duration, amountInvested: $amountInvested, roi: $roi, method: $method, response: $response, agreementAccepted: $agreementAccepted, isLoading: $isLoading)';
   }
 
   @override
@@ -220,8 +256,10 @@ class _$_InvestmentState extends _InvestmentState {
                 .equals(other.amountInvested, amountInvested) &&
             const DeepCollectionEquality().equals(other.roi, roi) &&
             const DeepCollectionEquality().equals(other.method, method) &&
+            const DeepCollectionEquality().equals(other.response, response) &&
             const DeepCollectionEquality()
-                .equals(other.agreementAccepted, agreementAccepted));
+                .equals(other.agreementAccepted, agreementAccepted) &&
+            const DeepCollectionEquality().equals(other.isLoading, isLoading));
   }
 
   @override
@@ -232,7 +270,9 @@ class _$_InvestmentState extends _InvestmentState {
       const DeepCollectionEquality().hash(amountInvested),
       const DeepCollectionEquality().hash(roi),
       const DeepCollectionEquality().hash(method),
-      const DeepCollectionEquality().hash(agreementAccepted));
+      const DeepCollectionEquality().hash(response),
+      const DeepCollectionEquality().hash(agreementAccepted),
+      const DeepCollectionEquality().hash(isLoading));
 
   @JsonKey(ignore: true)
   @override
@@ -243,25 +283,31 @@ class _$_InvestmentState extends _InvestmentState {
 abstract class _InvestmentState extends InvestmentState {
   const factory _InvestmentState(
       {required String planName,
-      required String duration,
-      required String amountInvested,
+      required double duration,
+      required int amountInvested,
       required int roi,
       required String method,
-      required bool agreementAccepted}) = _$_InvestmentState;
+      required String response,
+      required bool agreementAccepted,
+      required bool isLoading}) = _$_InvestmentState;
   const _InvestmentState._() : super._();
 
   @override
   String get planName;
   @override
-  String get duration;
+  double get duration;
   @override
-  String get amountInvested;
+  int get amountInvested;
   @override
   int get roi;
   @override
   String get method;
   @override
+  String get response;
+  @override
   bool get agreementAccepted;
+  @override
+  bool get isLoading;
   @override
   @JsonKey(ignore: true)
   _$InvestmentStateCopyWith<_InvestmentState> get copyWith =>

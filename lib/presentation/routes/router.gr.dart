@@ -227,7 +227,7 @@ class AppRouter extends _i53.RootStackRouter {
     },
     FortDollarInvestmentRoute.name: (routeData) {
       return _i53.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i38.FortDollarInvestment());
+          routeData: routeData, child: _i38.FortDollarInvestment());
     },
     FortShieldRoute.name: (routeData) {
       return _i53.MaterialPageX<dynamic>(

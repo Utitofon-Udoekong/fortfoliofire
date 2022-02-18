@@ -11,7 +11,7 @@ import 'package:uuid/uuid.dart';
 
 class FireStoreMethods {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  Future<String> createInvestmentTransaction( String description, String uid, int amount, String planName, DateTime paymentDate, DateTime dueDate, String roi, String duration, String status) async {
+  Future<String> createInvestmentTransaction( String description, String uid, int amount, String planName, DateTime paymentDate, DateTime dueDate, String roi, double duration, String status) async {
     String traxId = const Uuid().v4();
     String res = "Some error occurred";
     try {
@@ -27,7 +27,7 @@ class FireStoreMethods {
         duration: duration,
         status: status,
       );
-      _firestore.collection("transactions").doc(traxId).set(investment.toJson());
+      _firestore.collection("transactions").doc(traxId).set(investment.toMap());
       res = "Investment made successfully. Awaiting review";
     } catch (e) {
       res = e.toString();

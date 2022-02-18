@@ -1,36 +1,32 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:timelines/timelines.dart';
+
 import 'package:fortfolio/domain/constants/order.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
 import 'package:fortfolio/domain/widgets/labelled_checkbox.dart';
-import 'package:timelines/timelines.dart';
+import 'package:fortfolio/injection.dart';
+import 'package:fortfolio/presentation/home/investment/type/cubit/exchange_type_cubit.dart';
 
 import '../../../../../utils/pages.dart';
 import '../../cubit/investment_cubit.dart';
 
 const kTileHeight = 40.0;
 
-class FortCryptoInvestment extends StatefulWidget {
+class FortCryptoInvestment extends StatelessWidget {
   const FortCryptoInvestment({Key? key}) : super(key: key);
 
   @override
-  _FortCryptoInvestmentState createState() => _FortCryptoInvestmentState();
-}
-
-class _FortCryptoInvestmentState extends State<FortCryptoInvestment> {
-  List<bool> isSelected = [false, true, false];
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: kDefaultPadding,
-          child: SingleChildScrollView(
-            child: BlocProvider(
-              create: (context) => InvestmentCubit(),
+    return BlocProvider(
+      create: (context) => getIt<InvestmentCubit>(),
+      child: Scaffold(
+        body: SafeArea(
+          child: Padding(
+            padding: kDefaultPadding,
+            child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -107,7 +103,8 @@ class _FortCryptoInvestmentState extends State<FortCryptoInvestment> {
                               color: Colors.grey.shade400, fontSize: 13)),
                       onChanged: (value) => context
                           .read<InvestmentCubit>()
-                          .amountInvestedChanged(amountInvested: value),
+                          .amountInvestedChanged(
+                              amountInvested: int.parse(value)),
                     ),
                   ),
                   const SizedBox(
@@ -121,7 +118,56 @@ class _FortCryptoInvestmentState extends State<FortCryptoInvestment> {
                   const SizedBox(
                     height: 20,
                   ),
-                  buildToggle(),
+                  // ==================TOGGLE BUTTONS---------------
+                  BlocBuilder<ExchangeTypeCubit, ExchangeTypeState>(
+                    builder: (context, state) {
+                      return ToggleButtons(
+                        selectedColor: Colors.white,
+                        color: kgreyColor,
+                        isSelected: state.isSelected,
+                        fillColor: const Color.fromRGBO(243, 246, 248, 0.6),
+                        renderBorder: false,
+                        children: <Widget>[
+                          Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(6),
+                                color: kPrimaryColor),
+                            margin: const EdgeInsets.only(right: 30),
+                            child: const Text(
+                              '3 months',
+                              style: TextStyle(fontSize: 13),
+                            ),
+                            alignment: Alignment.center,
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(6),
+                                color: kPrimaryColor),
+                            margin: const EdgeInsets.only(right: 30),
+                            child: const Text(
+                              '6 months',
+                              style: TextStyle(fontSize: 13),
+                            ),
+                            alignment: Alignment.center,
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(6),
+                                color: kPrimaryColor),
+                            child: const Text(
+                              '12 months',
+                              style: TextStyle(fontSize: 13),
+                            ),
+                            alignment: Alignment.center,
+                          ),
+                        ],
+                        onPressed: (int newIndex) => context
+                            .read<ExchangeTypeCubit>()
+                            .isSelectedChanged(newIndex: newIndex),
+                      );
+                    },
+                  ),
+                  // ===============================>
                   const SizedBox(
                     height: 30,
                   ),
@@ -192,7 +238,10 @@ class _FortCryptoInvestmentState extends State<FortCryptoInvestment> {
                               'I have read and I agree to Fortfolio Terms of Services Agreemet',
                           value: state.agreementAccepted,
                           onChanged: (value) {
-                            context.read<InvestmentCubit>().agreementAcceptedChanged(agreementAccepted: value);
+                            context
+                                .read<InvestmentCubit>()
+                                .agreementAcceptedChanged(
+                                    agreementAccepted: value);
                           });
                     },
                   ),
@@ -211,10 +260,15 @@ class _FortCryptoInvestmentState extends State<FortCryptoInvestment> {
                           contentTextStyle: subTitle.copyWith(
                               fontSize: 13, color: kgreyColor),
                           actions: [
-                            CustomFilledButton(text: "CONFIRM", onTap: () {
-                              context.read<InvestmentCubit>().planNameChanged(planName: "FortDollar");
-                              context.router.pushNamed(selectInvestmentMethod);
-                            }),
+                            CustomFilledButton(
+                                text: "CONFIRM",
+                                onTap: () {
+                                  context
+                                      .read<InvestmentCubit>()
+                                      .planNameChanged(planName: "FortDollar");
+                                  context.router
+                                      .pushNamed(selectInvestmentMethod);
+                                }),
                             InkWell(
                               onTap: () => context.router.pop(),
                               child: Container(
@@ -247,58 +301,6 @@ class _FortCryptoInvestmentState extends State<FortCryptoInvestment> {
           ),
         ),
       ),
-    );
-  }
-
-  Widget buildToggle() {
-    return ToggleButtons(
-      selectedColor: Colors.white,
-      color: kgreyColor,
-      isSelected: isSelected,
-      fillColor: const Color.fromRGBO(243, 246, 248, 0.6),
-      renderBorder: false,
-      children: <Widget>[
-        Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(6), color: kPrimaryColor),
-          margin: const EdgeInsets.only(right: 30),
-          child: const Text(
-            '3 months',
-            style: TextStyle(fontSize: 13),
-          ),
-          alignment: Alignment.center,
-        ),
-        Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(6), color: kPrimaryColor),
-          margin: const EdgeInsets.only(right: 30),
-          child: const Text(
-            '6 months',
-            style: TextStyle(fontSize: 13),
-          ),
-          alignment: Alignment.center,
-        ),
-        Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(6), color: kPrimaryColor),
-          child: const Text(
-            '12 months',
-            style: TextStyle(fontSize: 13),
-          ),
-          alignment: Alignment.center,
-        ),
-      ],
-      onPressed: (int newIndex) {
-        setState(() {
-          for (int index = 0; index < isSelected.length; index++) {
-            if (index == newIndex) {
-              isSelected[index] = true;
-            } else {
-              isSelected[index] = false;
-            }
-          }
-        });
-      },
     );
   }
 

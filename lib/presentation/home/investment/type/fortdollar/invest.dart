@@ -5,6 +5,7 @@ import 'package:fortfolio/domain/constants/order.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
 import 'package:fortfolio/domain/widgets/labelled_checkbox.dart';
+import 'package:fortfolio/injection.dart';
 import 'package:fortfolio/presentation/home/investment/cubit/investment_cubit.dart';
 import 'package:fortfolio/presentation/home/investment/type/cubit/exchange_type_cubit.dart';
 import 'package:fortfolio/utils/pages.dart';
@@ -12,31 +13,23 @@ import 'package:timelines/timelines.dart';
 
 const kTileHeight = 40.0;
 
-class FortDollarInvestment extends StatefulWidget {
-  const FortDollarInvestment({Key? key}) : super(key: key);
-
-  @override
-  _FortDollarInvestmentState createState() => _FortDollarInvestmentState();
-}
-
-class _FortDollarInvestmentState extends State<FortDollarInvestment> {
-  List<bool> isSelected = [false, true, false];
+class FortDollarInvestment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: kDefaultPadding,
-          child: SingleChildScrollView(
-            child: MultiBlocProvider(
-              providers: [
-                BlocProvider(
-                  create: (context) => InvestmentCubit(),
-                ),
-                BlocProvider(
-                  create: (context) => ExchangeTypeCubit(),
-                ),
-              ],
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => getIt<InvestmentCubit>(),
+        ),
+        BlocProvider(
+          create: (context) => ExchangeTypeCubit(),
+        ),
+      ],
+      child: Scaffold(
+        body: SafeArea(
+          child: Padding(
+            padding: kDefaultPadding,
+            child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -101,12 +94,15 @@ class _FortDollarInvestmentState extends State<FortDollarInvestment> {
                                   items: <String>['NGN Balance', 'USD Balance']
                                       .map<DropdownMenuItem<String>>(
                                           (String value) {
-                                    String path = value == "NGN BALANCE" ? '9ja' : 'usa';
+                                    String path =
+                                        value == "NGN BALANCE" ? '9ja' : 'usa';
                                     return DropdownMenuItem<String>(
                                       value: value,
                                       child: Row(
                                         children: <Widget>[
-                                          Image(image: AssetImage("images/$path.png")),
+                                          Image(
+                                              image:
+                                                  AssetImage("images///.png")),
                                           const SizedBox(
                                             width: 15,
                                           ),
@@ -124,7 +120,10 @@ class _FortDollarInvestmentState extends State<FortDollarInvestment> {
                               suffixText: "BTC",
                               suffixStyle: TextStyle(
                                   color: Colors.grey.shade400, fontSize: 13)),
-                          onChanged: (value) => context.read<InvestmentCubit>().amountInvestedChanged(amountInvested: value),
+                          onChanged: (value) => context
+                              .read<InvestmentCubit>()
+                              .amountInvestedChanged(
+                                  amountInvested: int.parse(value)),
                         ),
                       );
                     },
@@ -140,7 +139,56 @@ class _FortDollarInvestmentState extends State<FortDollarInvestment> {
                   const SizedBox(
                     height: 20,
                   ),
-                  buildToggle(),
+                  // ==================TOGGLE BUTTONS---------------
+                  BlocBuilder<ExchangeTypeCubit, ExchangeTypeState>(
+                    builder: (context, state) {
+                      return ToggleButtons(
+                        selectedColor: Colors.white,
+                        color: kgreyColor,
+                        isSelected: state.isSelected,
+                        fillColor: const Color.fromRGBO(243, 246, 248, 0.6),
+                        renderBorder: false,
+                        children: <Widget>[
+                          Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(6),
+                                color: kPrimaryColor),
+                            margin: const EdgeInsets.only(right: 30),
+                            child: const Text(
+                              '3 months',
+                              style: TextStyle(fontSize: 13),
+                            ),
+                            alignment: Alignment.center,
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(6),
+                                color: kPrimaryColor),
+                            margin: const EdgeInsets.only(right: 30),
+                            child: const Text(
+                              '6 months',
+                              style: TextStyle(fontSize: 13),
+                            ),
+                            alignment: Alignment.center,
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(6),
+                                color: kPrimaryColor),
+                            child: const Text(
+                              '12 months',
+                              style: TextStyle(fontSize: 13),
+                            ),
+                            alignment: Alignment.center,
+                          ),
+                        ],
+                        onPressed: (int newIndex) => context
+                            .read<ExchangeTypeCubit>()
+                            .isSelectedChanged(newIndex: newIndex),
+                      );
+                    },
+                  ),
+                  // ===============================>
                   const SizedBox(
                     height: 30,
                   ),
@@ -211,7 +259,10 @@ class _FortDollarInvestmentState extends State<FortDollarInvestment> {
                               'I have read and I agree to Fortfolio Terms of Services Agreemet',
                           value: state.agreementAccepted,
                           onChanged: (value) {
-                            context.read<InvestmentCubit>().agreementAcceptedChanged(agreementAccepted: value);
+                            context
+                                .read<InvestmentCubit>()
+                                .agreementAcceptedChanged(
+                                    agreementAccepted: value);
                           });
                     },
                   ),
@@ -230,10 +281,15 @@ class _FortDollarInvestmentState extends State<FortDollarInvestment> {
                           contentTextStyle: subTitle.copyWith(
                               fontSize: 13, color: kgreyColor),
                           actions: [
-                            CustomFilledButton(text: "CONFIRM", onTap: () {
-                              context.read<InvestmentCubit>().planNameChanged(planName: "FortDollar");
-                              context.router.pushNamed(selectInvestmentMethod);
-                            }),
+                            CustomFilledButton(
+                                text: "CONFIRM",
+                                onTap: () {
+                                  context
+                                      .read<InvestmentCubit>()
+                                      .planNameChanged(planName: "FortDollar");
+                                  context.router
+                                      .pushNamed(selectInvestmentMethod);
+                                }),
                             InkWell(
                               onTap: () {
                                 context.router.pop();
@@ -272,57 +328,6 @@ class _FortDollarInvestmentState extends State<FortDollarInvestment> {
     );
   }
 
-  Widget buildToggle() {
-    return ToggleButtons(
-      selectedColor: Colors.white,
-      color: kgreyColor,
-      isSelected: isSelected,
-      fillColor: const Color.fromRGBO(243, 246, 248, 0.6),
-      renderBorder: false,
-      children: <Widget>[
-        Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(6), color: kPrimaryColor),
-          margin: const EdgeInsets.only(right: 30),
-          child: const Text(
-            '3 months',
-            style: TextStyle(fontSize: 13),
-          ),
-          alignment: Alignment.center,
-        ),
-        Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(6), color: kPrimaryColor),
-          margin: const EdgeInsets.only(right: 30),
-          child: const Text(
-            '6 months',
-            style: TextStyle(fontSize: 13),
-          ),
-          alignment: Alignment.center,
-        ),
-        Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(6), color: kPrimaryColor),
-          child: const Text(
-            '12 months',
-            style: TextStyle(fontSize: 13),
-          ),
-          alignment: Alignment.center,
-        ),
-      ],
-      onPressed: (int newIndex) {
-        setState(() {
-          for (int index = 0; index < isSelected.length; index++) {
-            if (index == newIndex) {
-              isSelected[index] = true;
-            } else {
-              isSelected[index] = false;
-            }
-          }
-        });
-      },
-    );
-  }
 
   Widget timelineContent(String title, String subtitle) {
     return Flex(
