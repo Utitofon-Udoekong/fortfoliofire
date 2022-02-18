@@ -67,7 +67,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     const uid = "78000504694059";
     final dueDate = paymentDate.add(Duration(hours: duration.toInt()));
     try{
-      response = await fireStoreMethods.createInvestmentTransaction(description, uid, amount, planName, paymentDate, dueDate, roi.toString(), duration, status);
+      response = await fireStoreMethods.createInvestmentTransaction(description, uid, amount, planName, paymentDate, dueDate, roi.toString(), status);
       emit(state.copyWith(isLoading: false, response: response));
     }catch (e) {
       emit(state.copyWith(isLoading: false, response: e.toString()));

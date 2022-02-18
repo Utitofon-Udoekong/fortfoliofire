@@ -12,8 +12,7 @@ class ExchangeTypeState with _$ExchangeTypeState {
   factory ExchangeTypeState.initial() => const ExchangeTypeState(
         exchangeType: "NGN Balance",
         isSelected: [false, true, false],
+        duration: 3,
         durations: [3, 6, 9],
-        duration: 3
-        // duration: [2191.45319, 4382.90638, ]
       );
 }

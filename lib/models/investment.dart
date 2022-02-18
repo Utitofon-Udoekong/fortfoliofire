@@ -12,7 +12,7 @@ class Investment extends Equatable {
   final String planName;
   final DateTime paymentDate;
   final DateTime dueDate;
-  final double duration;
+  final String duration;
   final String status;
   Investment({
     required this.description,
@@ -37,7 +37,7 @@ class Investment extends Equatable {
     String? planName,
     DateTime? paymentDate,
     DateTime? dueDate,
-    double? duration,
+    String? duration,
     String? status,
   }) {
     return Investment(
@@ -79,7 +79,7 @@ class Investment extends Equatable {
       planName: map['planName'] ?? '',
       paymentDate: DateTime.fromMillisecondsSinceEpoch(map['paymentDate']),
       dueDate: DateTime.fromMillisecondsSinceEpoch(map['dueDate']),
-      duration: map['duration']?.toDouble() ?? 0.0,
+      duration: map['duration'] ?? '',
       status: map['status'] ?? '',
     );
   }

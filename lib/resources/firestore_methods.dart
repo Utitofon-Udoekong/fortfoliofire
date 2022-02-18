@@ -11,7 +11,7 @@ import 'package:uuid/uuid.dart';
 
 class FireStoreMethods {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  Future<String> createInvestmentTransaction( String description, String uid, int amount, String planName, DateTime paymentDate, DateTime dueDate, String roi, double duration, String status) async {
+  Future<String> createInvestmentTransaction( String description, String uid, int amount, String planName, DateTime paymentDate, DateTime dueDate, String roi, String status) async {
     String traxId = const Uuid().v4();
     String res = "Some error occurred";
     try {
@@ -24,7 +24,7 @@ class FireStoreMethods {
         planName: planName,
         paymentDate: DateTime.now(),
         dueDate: dueDate,
-        duration: duration,
+        duration: "${dueDate.difference(paymentDate).inDays} days",
         status: status,
       );
       _firestore.collection("transactions").doc(traxId).set(investment.toMap());
