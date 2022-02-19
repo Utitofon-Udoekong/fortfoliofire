@@ -90,6 +90,21 @@ class Investment extends Equatable {
       planYield: map['planYield']?.toInt() ?? 0,
     );
   }
+  // static Investment fromSnap(DocumentSnapshot snap) {
+  //   var snapshot = snap.data() as Map<String, dynamic>;
+
+  //   return Investment(
+  //     uid: snapshot["uid"],
+  //     email: snapshot["email"],
+  //     balance: snapshot["balance"], 
+  //     createdAt: snapshot["createdAt"], 
+  //     firstname: snapshot["firstname"], 
+  //     isVerified: snapshot["isVerified"], 
+  //     lastname: snapshot["lastname"], 
+  //     phone: snapshot["phone"], 
+  //     role: snapshot["role"]
+  //   );
+  // }
 
   String toJson() => json.encode(toMap());
 

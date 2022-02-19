@@ -3,7 +3,7 @@ import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fortfolio/models/bankAddress.dart';
 import 'package:fortfolio/models/crypto_wallet.dart';
-import 'package:fortfolio/models/general_wallet.dart';
+import 'package:fortfolio/models/crypto_wallet.dart';
 import 'package:fortfolio/models/investment.dart';
 import 'package:fortfolio/models/withdrawal.dart';
 import 'package:uuid/uuid.dart';
@@ -39,7 +39,7 @@ class FireStoreMethods {
     String res = "Some error occurred";
     String docId = const Uuid().v4();
     try {
-      BankAddress bank = BankAddress(bankName: bankName, accountNumber: accountNumber, userName: userName, type: "BANK ADDRESS");
+      BankAddress bank = BankAddress(bankName: bankName, accountNumber: accountNumber, userName: userName, type: "BANKADDRESS");
       await _firestore.collection("addresses").doc(docId).set(bank.toMap()).then((_) {
         res = "Bank added successfully.";
       });
@@ -67,7 +67,7 @@ class FireStoreMethods {
     String res = "Some error occurred";
     String docId = const Uuid().v4();
     try {
-      GeneralCryptoAddress wallet = GeneralCryptoAddress(walletLabel: walletLabel, address: address, coin: coin, platform: platform, network: network, type: 'GENERALCRYPTOWALLET');
+      CryptoAddress wallet = CryptoAddress(walletLabel: walletLabel, address: address, coin: coin, platform: platform, network: network, type: 'GENERALCRYPTOWALLET');
       await _firestore.collection("addresses").doc(docId).set(wallet.toMap()).then((_) {
         res = "Wallet added successfully.";
       });
@@ -77,20 +77,38 @@ class FireStoreMethods {
     return res;
   }
 
-  Future<String> createWithdrawalTransaction( String description, String uid, int amount, String planName, DateTime paymentDate, DateTime dueDate, String roi, String duration, String status) async {
+  Future<BankAddress> getBankAddress() async {
+    final cryptowallets = await _firestore.collection("addresses").where("type", isEqualTo: "BANKADDRESS").get();
+    final BankAddress addressess = BankAddress.fromMap(cryptowallets as Map<String, dynamic>);
+    return addressess;
+  }
+  Future<CryptoAddress> getCryptoWallets() async {
+    final cryptowallets = await _firestore.collection("addresses").where("type", isEqualTo: "CRYPTOWALLET").get();
+    final CryptoAddress addressess = CryptoAddress.fromMap(cryptowallets as Map<String, dynamic>);
+    return addressess;
+  }
+
+  Future<CryptoAddress> getGeneralCryptoWallets() async {
+    final cryptowallets = await _firestore.collection("addresses").where("type", isEqualTo: "GENERALCRYPTOWALLET").get();
+    final CryptoAddress addressess = CryptoAddress.fromMap(cryptowallets as Map<String, dynamic>);
+    return addressess;
+  }
+
+  Future<String> createWithdrawalTransaction( String description, int amount, String planName, String paymentMethod, Map<String, dynamic> paymentDetails) async {
     String traxId = const Uuid().v4();
     String res = "Some error occurred";
     try {
       Withdrawal withdrawal = Withdrawal(
         description: description,
-        uid: uid,
         amount: amount,
         traxId: traxId,
         planName: planName,
-        status: status,
-        createdat: DateTime.now()
+        status: "pending",
+        createdat: DateTime.now(),
+        paymentMethod: paymentMethod,
+        paymentDetails: paymentDetails
       );
-      _firestore.collection("withdrawals").doc(traxId).set(withdrawal.toJson());
+      _firestore.collection("withdrawals").doc(traxId).set(withdrawal.toMap());
       res = "Withdrawal requested successfully. Awaiting review";
     } catch (e) {
       res = e.toString();

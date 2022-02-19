@@ -47,4 +47,7 @@
   const String selectWithdrawalMethod = "/selectWithdrawalMethod";
   const String selectBank = "/bankwithdrawal";
   const String selectWallet = "/cryptoWithdrawal";
+  const String fortdollarinvestinfo = "/fortdollarinvestinfo";
+  const String fortshieldinvestinfo = "/fortshieldinvestinfo";
+  const String fortcryptoinvestinfo = "/fortcryptoinvestinfo";
   const String withdrawalSucess = "/withdrawalSuccess";

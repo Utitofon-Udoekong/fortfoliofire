@@ -41,6 +41,7 @@ import 'package:fortfolio/presentation/home/investment/type/fortdollar/fortdolla
 import 'package:fortfolio/presentation/home/investment/type/fortdollar/invest.dart';
 import 'package:fortfolio/presentation/home/investment/type/fortshield/fortshield.dart';
 import 'package:fortfolio/presentation/home/investment/type/fortshield/invest.dart';
+import 'package:fortfolio/presentation/home/wallet/investment/fortdollar_info.dart';
 import 'package:fortfolio/presentation/home/wallet/overview/wallet_overview.dart';
 import 'package:fortfolio/presentation/home/wallet/success.dart';
 import 'package:fortfolio/presentation/home/wallet/transactions/transactions.dart';
@@ -52,6 +53,9 @@ import 'package:fortfolio/presentation/home/wallet/withdraw/select_method.dart';
 import 'package:fortfolio/presentation/home/wallet/withdraw/withdrawal.dart';
 import 'package:fortfolio/presentation/splash/onboarding.dart';
 import 'package:fortfolio/presentation/splash/splash_Screen.dart';
+
+import '../home/wallet/investment/fortcrypto_info.dart';
+import '../home/wallet/investment/fortshield_info.dart';
 
 @MaterialAutoRouter(routes: <AutoRoute>[
   AutoRoute(page: SplashScreen, initial: true),
@@ -101,6 +105,9 @@ import 'package:fortfolio/presentation/splash/splash_Screen.dart';
   AutoRoute(path: "selectWithdrawalMethod", page: SelectWithdrawalMethod),
   AutoRoute(path: "bankwithdrawal", page: BankWithdrawal),
   AutoRoute(path: "cryptowithdrawal", page: CryptoWithdrawal),
+  AutoRoute(path: "fortdollarinvestinfo", page: FortDollarInvestmentInfo),
+  AutoRoute(path: "fortshieldinvestinfo", page: FortShieldInvestmentInfo),
+  AutoRoute(path: "fortcryptoinvestinfo", page: FortCryptoInvestmentInfo),
   AutoRoute(path: "withdrawPage", page: WithdrawalPage),
   AutoRoute(path: "withdrawalSuccess", page: WithdrawalSuccess),
   AutoRoute(path: "/home", page: HomePage, children: <AutoRoute>[

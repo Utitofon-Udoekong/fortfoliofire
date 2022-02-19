@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'bank_invest_cubit.dart';
+part of 'wallet_transactions_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,8 +15,8 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$BankInvestStateTearOff {
-  const _$BankInvestStateTearOff();
+class _$WalletTransactionsStateTearOff {
+  const _$WalletTransactionsStateTearOff();
 
   _Initial initial() {
     return const _Initial();
@@ -24,10 +24,10 @@ class _$BankInvestStateTearOff {
 }
 
 /// @nodoc
-const $BankInvestState = _$BankInvestStateTearOff();
+const $WalletTransactionsState = _$WalletTransactionsStateTearOff();
 
 /// @nodoc
-mixin _$BankInvestState {
+mixin _$WalletTransactionsState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
@@ -63,20 +63,20 @@ mixin _$BankInvestState {
 }
 
 /// @nodoc
-abstract class $BankInvestStateCopyWith<$Res> {
-  factory $BankInvestStateCopyWith(
-          BankInvestState value, $Res Function(BankInvestState) then) =
-      _$BankInvestStateCopyWithImpl<$Res>;
+abstract class $WalletTransactionsStateCopyWith<$Res> {
+  factory $WalletTransactionsStateCopyWith(WalletTransactionsState value,
+          $Res Function(WalletTransactionsState) then) =
+      _$WalletTransactionsStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$BankInvestStateCopyWithImpl<$Res>
-    implements $BankInvestStateCopyWith<$Res> {
-  _$BankInvestStateCopyWithImpl(this._value, this._then);
+class _$WalletTransactionsStateCopyWithImpl<$Res>
+    implements $WalletTransactionsStateCopyWith<$Res> {
+  _$WalletTransactionsStateCopyWithImpl(this._value, this._then);
 
-  final BankInvestState _value;
+  final WalletTransactionsState _value;
   // ignore: unused_field
-  final $Res Function(BankInvestState) _then;
+  final $Res Function(WalletTransactionsState) _then;
 }
 
 /// @nodoc
@@ -86,7 +86,8 @@ abstract class _$InitialCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$InitialCopyWithImpl<$Res> extends _$BankInvestStateCopyWithImpl<$Res>
+class __$InitialCopyWithImpl<$Res>
+    extends _$WalletTransactionsStateCopyWithImpl<$Res>
     implements _$InitialCopyWith<$Res> {
   __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
       : super(_value, (v) => _then(v as _Initial));
@@ -102,7 +103,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'BankInvestState.initial()';
+    return 'WalletTransactionsState.initial()';
   }
 
   @override
@@ -171,6 +172,6 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements BankInvestState {
+abstract class _Initial implements WalletTransactionsState {
   const factory _Initial() = _$_Initial;
 }
