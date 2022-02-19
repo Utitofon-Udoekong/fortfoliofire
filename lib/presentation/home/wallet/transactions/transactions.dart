@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 
 class WalletTransactions extends StatelessWidget {
@@ -41,9 +42,15 @@ class WalletTransactions extends StatelessWidget {
   Widget buildtile(String title, String status, String amount, int duration) {
     return GestureDetector(
       onTap: (){
-        // AlertDialog(
-
-        // );
+        Dialog(
+          backgroundColor: Colors.transparent,
+          child: ClipPath(
+            clipper: PointsClipper(),
+            child: Container(
+              
+            ),
+          ),
+        );
       },
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 12.0),
@@ -110,3 +117,47 @@ class WalletTransactions extends StatelessWidget {
     );
   }
 }
+
+class RPSCustomPainter extends CustomPainter{
+  
+  @override
+  void paint(Canvas canvas, Size size) {
+    
+    
+
+  Paint paint0 = Paint()
+      ..color = const Color.fromARGB(255, 33, 150, 243)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 2.7;
+     
+          // Size(WIDTH,(WIDTH*0.625).toDouble()),
+    Path path0 = Path();
+    path0.moveTo(size.width*0.2512500,size.height*0.8000000);
+    path0.lineTo(size.width*0.2737500,size.height*0.7580000);
+    path0.lineTo(size.width*0.3000000,size.height*0.8000000);
+    path0.lineTo(size.width*0.3237500,size.height*0.7580000);
+    path0.lineTo(size.width*0.3475000,size.height*0.7980000);
+    path0.lineTo(size.width*0.3737500,size.height*0.7600000);
+    path0.lineTo(size.width*0.3975000,size.height*0.8000000);
+    path0.lineTo(size.width*0.4250000,size.height*0.7620000);
+    path0.lineTo(size.width*0.4500000,size.height*0.7960000);
+    path0.lineTo(size.width*0.4750000,size.height*0.7600000);
+    path0.lineTo(size.width*0.5000000,size.height*0.8000000);
+    path0.lineTo(size.width*0.5250000,size.height*0.7600000);
+    path0.lineTo(size.width*0.5512500,size.height*0.7980000);
+
+    canvas.drawPath(path0, paint0);
+  
+    
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return true;
+  }
+  
+}
+
+
+
+
