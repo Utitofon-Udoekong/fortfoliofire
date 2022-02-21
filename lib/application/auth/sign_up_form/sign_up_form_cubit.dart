@@ -15,15 +15,16 @@ part 'sign_up_form_cubit.freezed.dart';
 
 @injectable
 class SignUpFormCubit extends Cubit<SignUpFormState> {
-  late final IAuthFacade _authFacade;
-  late final IFirestoreFacade _firestoreFacade;
+  final IAuthFacade _authFacade;
+  final IFirestoreFacade _firestoreFacade;
   StreamSubscription<Either<AuthFailure, String>>?
       _phoneNumberSignInSubscription;
   final Duration verificationCodeTimeout = const Duration(seconds: 60);
-  SignUpFormCubit() : super(SignUpFormState.initial()){
-    _authFacade = getIt<IAuthFacade>();
-    _firestoreFacade = getIt<IFirestoreFacade>();
-  }
+  SignUpFormCubit(this._authFacade, this._firestoreFacade) : super(SignUpFormState.initial());
+  // SignUpFormCubit(this._authFacade, this._firestoreFacade) : super(SignUpFormState.initial()){
+  //   // _authFacade = getIt<IAuthFacade>();
+  //   // _firestoreFacade = getIt<IFirestoreFacade>();
+  // }
 
   @override
   Future<void> close() async {

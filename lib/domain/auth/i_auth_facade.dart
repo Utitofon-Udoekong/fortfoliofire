@@ -1,6 +1,6 @@
 
 
-import 'package:fpdart/fpdart.dart';
+import 'package:dartz/dartz.dart';
 import 'package:fortfolio/domain/auth/auth_failure.dart';
 
 import 'auth_user_model.dart';
