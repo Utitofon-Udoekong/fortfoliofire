@@ -17,7 +17,7 @@ dependencies:
   flutter_bloc: ^8.0.1
   otp_text_field: ^1.1.1
   intl_phone_field: ^3.0.0
-  nanoid: ^1.0.0
+  fpdart: ^0.0.14
   google_fonts: ^2.1.1
   carousel_slider: ^4.0.0
   cached_network_image: ^3.2.0

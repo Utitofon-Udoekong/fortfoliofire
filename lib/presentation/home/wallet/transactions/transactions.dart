@@ -47,7 +47,46 @@ class WalletTransactions extends StatelessWidget {
           child: ClipPath(
             clipper: PointsClipper(),
             child: Container(
-              
+              decoration: const BoxDecoration(
+                color: Colors.white
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(child: const Icon(Icons.north_east_rounded, color: Color.fromRGBO(16, 180, 107, 1),),
+                  padding: const EdgeInsets.all(3.0),
+                  decoration: const BoxDecoration(
+                    color: Color(0XFFF0FFFA),
+                    shape: BoxShape.circle
+                  ),),
+                  const SizedBox(height: 5,),
+                  Text("Investment funding", style: subTitle.copyWith(color: kgreyColor, fontSize: 14),),
+                  const SizedBox(height: 20,),
+                  Text("Type of Transaction", style: subTitle.copyWith(color: kgreyColor, fontSize: 13),),
+                  const SizedBox(height: 5,),
+                  Text("FortShield Investment", style: titleText.copyWith(color: kBlackColor, fontSize: 15),),
+                  const SizedBox(height: 20,),
+                  Text("Amount", style: subTitle.copyWith(color: kgreyColor, fontSize: 13),),
+                  const SizedBox(height: 5,),
+                  Text("N500", style: titleText.copyWith(color: kBlackColor, fontSize: 15),),
+                  const SizedBox(height: 20,),
+                  Text("Date", style: subTitle.copyWith(color: kgreyColor, fontSize: 13),),
+                  const SizedBox(height: 5,),
+                  Text("Jan 05 2022, 09:00 AM ", style: titleText.copyWith(color: kBlackColor, fontSize: 15),),
+                  const SizedBox(height: 20,),
+                  Text("Status", style: subTitle.copyWith(color: kgreyColor, fontSize: 13),),
+                  const SizedBox(height: 5,),
+                  Text("success", style: titleText.copyWith(color: kGreenColor, fontSize: 15),),
+                  const SizedBox(height: 20,),
+                  Text("Transaction Reference", style: subTitle.copyWith(color: kgreyColor, fontSize: 13),),
+                  const SizedBox(height: 5,),
+                  Text("5rrerryiop8899654", style: titleText.copyWith(color: kGreenColor, fontSize: 15),),
+                  const SizedBox(height: 20,),
+                  Text("Payment Method", style: subTitle.copyWith(color: kgreyColor, fontSize: 13),),
+                  const SizedBox(height: 5,),
+                  Text("Bank", style: titleText.copyWith(color: kGreenColor, fontSize: 15),),
+                ],
+              ),
             ),
           ),
         );

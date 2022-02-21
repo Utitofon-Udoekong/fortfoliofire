@@ -471,6 +471,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  fpdart:
+    dependency: "direct main"
+    description:
+      name: fpdart
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.14"
   freezed:
     dependency: "direct dev"
     description:
@@ -674,13 +681,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.1"
-  nanoid:
-    dependency: "direct main"
-    description:
-      name: nanoid
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.0"
   nested:
     dependency: transitive
     description:

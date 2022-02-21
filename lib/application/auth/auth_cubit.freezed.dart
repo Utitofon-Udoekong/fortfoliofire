@@ -19,11 +19,17 @@ class _$AuthStateTearOff {
   const _$AuthStateTearOff();
 
   _AuthState call(
-      {required AppUser userModel,
-      required bool isUserCheckedFromAuthService}) {
+      {required AuthUserModel userModel,
+      required bool isUserCheckedFromAuthService,
+      required bool isAnonymousLoginInProgress,
+      required bool isSignupInProgress,
+      required bool isLoginInProgress}) {
     return _AuthState(
       userModel: userModel,
       isUserCheckedFromAuthService: isUserCheckedFromAuthService,
+      isAnonymousLoginInProgress: isAnonymousLoginInProgress,
+      isSignupInProgress: isSignupInProgress,
+      isLoginInProgress: isLoginInProgress,
     );
   }
 }
@@ -33,8 +39,11 @@ const $AuthState = _$AuthStateTearOff();
 
 /// @nodoc
 mixin _$AuthState {
-  AppUser get userModel => throw _privateConstructorUsedError;
+  AuthUserModel get userModel => throw _privateConstructorUsedError;
   bool get isUserCheckedFromAuthService => throw _privateConstructorUsedError;
+  bool get isAnonymousLoginInProgress => throw _privateConstructorUsedError;
+  bool get isSignupInProgress => throw _privateConstructorUsedError;
+  bool get isLoginInProgress => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AuthStateCopyWith<AuthState> get copyWith =>
@@ -45,9 +54,14 @@ mixin _$AuthState {
 abstract class $AuthStateCopyWith<$Res> {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
       _$AuthStateCopyWithImpl<$Res>;
-  $Res call({AppUser userModel, bool isUserCheckedFromAuthService});
+  $Res call(
+      {AuthUserModel userModel,
+      bool isUserCheckedFromAuthService,
+      bool isAnonymousLoginInProgress,
+      bool isSignupInProgress,
+      bool isLoginInProgress});
 
-  $AppUserCopyWith<$Res> get userModel;
+  $AuthUserModelCopyWith<$Res> get userModel;
 }
 
 /// @nodoc
@@ -62,22 +76,37 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
   $Res call({
     Object? userModel = freezed,
     Object? isUserCheckedFromAuthService = freezed,
+    Object? isAnonymousLoginInProgress = freezed,
+    Object? isSignupInProgress = freezed,
+    Object? isLoginInProgress = freezed,
   }) {
     return _then(_value.copyWith(
       userModel: userModel == freezed
           ? _value.userModel
           : userModel // ignore: cast_nullable_to_non_nullable
-              as AppUser,
+              as AuthUserModel,
       isUserCheckedFromAuthService: isUserCheckedFromAuthService == freezed
           ? _value.isUserCheckedFromAuthService
           : isUserCheckedFromAuthService // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isAnonymousLoginInProgress: isAnonymousLoginInProgress == freezed
+          ? _value.isAnonymousLoginInProgress
+          : isAnonymousLoginInProgress // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isSignupInProgress: isSignupInProgress == freezed
+          ? _value.isSignupInProgress
+          : isSignupInProgress // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isLoginInProgress: isLoginInProgress == freezed
+          ? _value.isLoginInProgress
+          : isLoginInProgress // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
 
   @override
-  $AppUserCopyWith<$Res> get userModel {
-    return $AppUserCopyWith<$Res>(_value.userModel, (value) {
+  $AuthUserModelCopyWith<$Res> get userModel {
+    return $AuthUserModelCopyWith<$Res>(_value.userModel, (value) {
       return _then(_value.copyWith(userModel: value));
     });
   }
@@ -89,10 +118,15 @@ abstract class _$AuthStateCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
           _AuthState value, $Res Function(_AuthState) then) =
       __$AuthStateCopyWithImpl<$Res>;
   @override
-  $Res call({AppUser userModel, bool isUserCheckedFromAuthService});
+  $Res call(
+      {AuthUserModel userModel,
+      bool isUserCheckedFromAuthService,
+      bool isAnonymousLoginInProgress,
+      bool isSignupInProgress,
+      bool isLoginInProgress});
 
   @override
-  $AppUserCopyWith<$Res> get userModel;
+  $AuthUserModelCopyWith<$Res> get userModel;
 }
 
 /// @nodoc
@@ -108,15 +142,30 @@ class __$AuthStateCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
   $Res call({
     Object? userModel = freezed,
     Object? isUserCheckedFromAuthService = freezed,
+    Object? isAnonymousLoginInProgress = freezed,
+    Object? isSignupInProgress = freezed,
+    Object? isLoginInProgress = freezed,
   }) {
     return _then(_AuthState(
       userModel: userModel == freezed
           ? _value.userModel
           : userModel // ignore: cast_nullable_to_non_nullable
-              as AppUser,
+              as AuthUserModel,
       isUserCheckedFromAuthService: isUserCheckedFromAuthService == freezed
           ? _value.isUserCheckedFromAuthService
           : isUserCheckedFromAuthService // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isAnonymousLoginInProgress: isAnonymousLoginInProgress == freezed
+          ? _value.isAnonymousLoginInProgress
+          : isAnonymousLoginInProgress // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isSignupInProgress: isSignupInProgress == freezed
+          ? _value.isSignupInProgress
+          : isSignupInProgress // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isLoginInProgress: isLoginInProgress == freezed
+          ? _value.isLoginInProgress
+          : isLoginInProgress // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -126,17 +175,27 @@ class __$AuthStateCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
 
 class _$_AuthState extends _AuthState {
   const _$_AuthState(
-      {required this.userModel, required this.isUserCheckedFromAuthService})
+      {required this.userModel,
+      required this.isUserCheckedFromAuthService,
+      required this.isAnonymousLoginInProgress,
+      required this.isSignupInProgress,
+      required this.isLoginInProgress})
       : super._();
 
   @override
-  final AppUser userModel;
+  final AuthUserModel userModel;
   @override
   final bool isUserCheckedFromAuthService;
+  @override
+  final bool isAnonymousLoginInProgress;
+  @override
+  final bool isSignupInProgress;
+  @override
+  final bool isLoginInProgress;
 
   @override
   String toString() {
-    return 'AuthState(userModel: $userModel, isUserCheckedFromAuthService: $isUserCheckedFromAuthService)';
+    return 'AuthState(userModel: $userModel, isUserCheckedFromAuthService: $isUserCheckedFromAuthService, isAnonymousLoginInProgress: $isAnonymousLoginInProgress, isSignupInProgress: $isSignupInProgress, isLoginInProgress: $isLoginInProgress)';
   }
 
   @override
@@ -147,14 +206,23 @@ class _$_AuthState extends _AuthState {
             const DeepCollectionEquality().equals(other.userModel, userModel) &&
             const DeepCollectionEquality().equals(
                 other.isUserCheckedFromAuthService,
-                isUserCheckedFromAuthService));
+                isUserCheckedFromAuthService) &&
+            const DeepCollectionEquality().equals(
+                other.isAnonymousLoginInProgress, isAnonymousLoginInProgress) &&
+            const DeepCollectionEquality()
+                .equals(other.isSignupInProgress, isSignupInProgress) &&
+            const DeepCollectionEquality()
+                .equals(other.isLoginInProgress, isLoginInProgress));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(userModel),
-      const DeepCollectionEquality().hash(isUserCheckedFromAuthService));
+      const DeepCollectionEquality().hash(isUserCheckedFromAuthService),
+      const DeepCollectionEquality().hash(isAnonymousLoginInProgress),
+      const DeepCollectionEquality().hash(isSignupInProgress),
+      const DeepCollectionEquality().hash(isLoginInProgress));
 
   @JsonKey(ignore: true)
   @override
@@ -164,14 +232,23 @@ class _$_AuthState extends _AuthState {
 
 abstract class _AuthState extends AuthState {
   const factory _AuthState(
-      {required AppUser userModel,
-      required bool isUserCheckedFromAuthService}) = _$_AuthState;
+      {required AuthUserModel userModel,
+      required bool isUserCheckedFromAuthService,
+      required bool isAnonymousLoginInProgress,
+      required bool isSignupInProgress,
+      required bool isLoginInProgress}) = _$_AuthState;
   const _AuthState._() : super._();
 
   @override
-  AppUser get userModel;
+  AuthUserModel get userModel;
   @override
   bool get isUserCheckedFromAuthService;
+  @override
+  bool get isAnonymousLoginInProgress;
+  @override
+  bool get isSignupInProgress;
+  @override
+  bool get isLoginInProgress;
   @override
   @JsonKey(ignore: true)
   _$AuthStateCopyWith<_AuthState> get copyWith =>
