@@ -76,8 +76,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i20.SecurityCubit(get<_i17.AuthMethods>()));
   gh.factory<_i21.SignInFormEmailCubit>(() => _i21.SignInFormEmailCubit());
   gh.factory<_i22.SignInFormPhoneCubit>(() => _i22.SignInFormPhoneCubit());
-  gh.factory<_i23.SignUpFormCubit>(() => _i23.SignUpFormCubit(
-      get<_i11.IAuthFacade>(), get<_i13.IFirestoreFacade>()));
+  gh.factory<_i23.SignUpFormCubit>(() => _i23.SignUpFormCubit());
   gh.factory<_i24.UploadImageBloc>(
       () => _i24.UploadImageBloc(get<_i25.StorageMethods>()));
   gh.factory<_i26.WalletCubit>(
