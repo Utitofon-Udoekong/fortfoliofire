@@ -18,7 +18,7 @@ abstract class ActivePlanItem implements _$ActivePlanItem {
       required int accountBalance,
       required int roi}) = _ActivePlanItem;
 
-  factory ActivePlanItem.empty() => ActivePlanItem(
+  factory ActivePlanItem.empty() => const ActivePlanItem(
         id: "",
         planName: "",
         amount: 0,

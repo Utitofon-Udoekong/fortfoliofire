@@ -26,7 +26,7 @@ class _$WithdrawalItemTearOff {
       required String status,
       required DateTime createdat,
       required String paymentMethod,
-      required Map<String, dynamic> paymentDetails}) {
+      required PaymentDetails paymentDetails}) {
     return _WithdrawalItem(
       description: description,
       amount: amount,
@@ -52,7 +52,7 @@ mixin _$WithdrawalItem {
   String get status => throw _privateConstructorUsedError;
   DateTime get createdat => throw _privateConstructorUsedError;
   String get paymentMethod => throw _privateConstructorUsedError;
-  Map<String, dynamic> get paymentDetails => throw _privateConstructorUsedError;
+  PaymentDetails get paymentDetails => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $WithdrawalItemCopyWith<WithdrawalItem> get copyWith =>
@@ -72,7 +72,9 @@ abstract class $WithdrawalItemCopyWith<$Res> {
       String status,
       DateTime createdat,
       String paymentMethod,
-      Map<String, dynamic> paymentDetails});
+      PaymentDetails paymentDetails});
+
+  $PaymentDetailsCopyWith<$Res> get paymentDetails;
 }
 
 /// @nodoc
@@ -127,8 +129,15 @@ class _$WithdrawalItemCopyWithImpl<$Res>
       paymentDetails: paymentDetails == freezed
           ? _value.paymentDetails
           : paymentDetails // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>,
+              as PaymentDetails,
     ));
+  }
+
+  @override
+  $PaymentDetailsCopyWith<$Res> get paymentDetails {
+    return $PaymentDetailsCopyWith<$Res>(_value.paymentDetails, (value) {
+      return _then(_value.copyWith(paymentDetails: value));
+    });
   }
 }
 
@@ -147,7 +156,10 @@ abstract class _$WithdrawalItemCopyWith<$Res>
       String status,
       DateTime createdat,
       String paymentMethod,
-      Map<String, dynamic> paymentDetails});
+      PaymentDetails paymentDetails});
+
+  @override
+  $PaymentDetailsCopyWith<$Res> get paymentDetails;
 }
 
 /// @nodoc
@@ -204,7 +216,7 @@ class __$WithdrawalItemCopyWithImpl<$Res>
       paymentDetails: paymentDetails == freezed
           ? _value.paymentDetails
           : paymentDetails // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>,
+              as PaymentDetails,
     ));
   }
 }
@@ -238,7 +250,7 @@ class _$_WithdrawalItem extends _WithdrawalItem {
   @override
   final String paymentMethod;
   @override
-  final Map<String, dynamic> paymentDetails;
+  final PaymentDetails paymentDetails;
 
   @override
   String toString() {
@@ -290,7 +302,7 @@ abstract class _WithdrawalItem extends WithdrawalItem {
       required String status,
       required DateTime createdat,
       required String paymentMethod,
-      required Map<String, dynamic> paymentDetails}) = _$_WithdrawalItem;
+      required PaymentDetails paymentDetails}) = _$_WithdrawalItem;
   const _WithdrawalItem._() : super._();
 
   @override
@@ -308,7 +320,7 @@ abstract class _WithdrawalItem extends WithdrawalItem {
   @override
   String get paymentMethod;
   @override
-  Map<String, dynamic> get paymentDetails;
+  PaymentDetails get paymentDetails;
   @override
   @JsonKey(ignore: true)
   _$WithdrawalItemCopyWith<_WithdrawalItem> get copyWith =>

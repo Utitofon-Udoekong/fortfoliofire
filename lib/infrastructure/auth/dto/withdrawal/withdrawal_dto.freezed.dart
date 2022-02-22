@@ -30,7 +30,7 @@ class _$WithdrawalItemDTOTearOff {
       required String status,
       required DateTime createdat,
       required String paymentMethod,
-      required Map<String, dynamic> paymentDetails}) {
+      required PaymentDetails paymentDetails}) {
     return _WithdrawalItemDTO(
       description: description,
       amount: amount,
@@ -60,7 +60,7 @@ mixin _$WithdrawalItemDTO {
   String get status => throw _privateConstructorUsedError;
   DateTime get createdat => throw _privateConstructorUsedError;
   String get paymentMethod => throw _privateConstructorUsedError;
-  Map<String, dynamic> get paymentDetails => throw _privateConstructorUsedError;
+  PaymentDetails get paymentDetails => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -81,7 +81,9 @@ abstract class $WithdrawalItemDTOCopyWith<$Res> {
       String status,
       DateTime createdat,
       String paymentMethod,
-      Map<String, dynamic> paymentDetails});
+      PaymentDetails paymentDetails});
+
+  $PaymentDetailsCopyWith<$Res> get paymentDetails;
 }
 
 /// @nodoc
@@ -136,8 +138,15 @@ class _$WithdrawalItemDTOCopyWithImpl<$Res>
       paymentDetails: paymentDetails == freezed
           ? _value.paymentDetails
           : paymentDetails // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>,
+              as PaymentDetails,
     ));
+  }
+
+  @override
+  $PaymentDetailsCopyWith<$Res> get paymentDetails {
+    return $PaymentDetailsCopyWith<$Res>(_value.paymentDetails, (value) {
+      return _then(_value.copyWith(paymentDetails: value));
+    });
   }
 }
 
@@ -156,7 +165,10 @@ abstract class _$WithdrawalItemDTOCopyWith<$Res>
       String status,
       DateTime createdat,
       String paymentMethod,
-      Map<String, dynamic> paymentDetails});
+      PaymentDetails paymentDetails});
+
+  @override
+  $PaymentDetailsCopyWith<$Res> get paymentDetails;
 }
 
 /// @nodoc
@@ -213,7 +225,7 @@ class __$WithdrawalItemDTOCopyWithImpl<$Res>
       paymentDetails: paymentDetails == freezed
           ? _value.paymentDetails
           : paymentDetails // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>,
+              as PaymentDetails,
     ));
   }
 }
@@ -250,7 +262,7 @@ class _$_WithdrawalItemDTO extends _WithdrawalItemDTO {
   @override
   final String paymentMethod;
   @override
-  final Map<String, dynamic> paymentDetails;
+  final PaymentDetails paymentDetails;
 
   @override
   String toString() {
@@ -307,7 +319,7 @@ abstract class _WithdrawalItemDTO extends WithdrawalItemDTO {
       required String status,
       required DateTime createdat,
       required String paymentMethod,
-      required Map<String, dynamic> paymentDetails}) = _$_WithdrawalItemDTO;
+      required PaymentDetails paymentDetails}) = _$_WithdrawalItemDTO;
   const _WithdrawalItemDTO._() : super._();
 
   factory _WithdrawalItemDTO.fromJson(Map<String, dynamic> json) =
@@ -328,7 +340,7 @@ abstract class _WithdrawalItemDTO extends WithdrawalItemDTO {
   @override
   String get paymentMethod;
   @override
-  Map<String, dynamic> get paymentDetails;
+  PaymentDetails get paymentDetails;
   @override
   @JsonKey(ignore: true)
   _$WithdrawalItemDTOCopyWith<_WithdrawalItemDTO> get copyWith =>

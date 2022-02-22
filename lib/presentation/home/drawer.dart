@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_icon_filled_button.dart';
-import 'package:fortfolio/presentation/routes/router.gr.dart';
+// import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:fortfolio/utils/pages.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,6 +13,10 @@ class MainDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final String displayName = context.select((AuthCubit authCubit) => authCubit.state.userModel.displayName);
+    final String firstName = context.select((AuthCubit authCubit) => authCubit.state.userModel.firstName);
+    final String lastName = context.select((AuthCubit authCubit) => authCubit.state.userModel.lastName);
+    final String userId = context.select((AuthCubit authCubit) => authCubit.state.userModel.id);
+    final bool isVerified = context.select((AuthCubit authCubit) => authCubit.state.userModel.isVerified);
     // final String displayName = context.select<AuthCubit, String>((cubit) => cubit.state.userModel.displayName);
     return Drawer(
       backgroundColor: kWhiteColor,
@@ -31,12 +35,12 @@ class MainDrawer extends StatelessWidget {
                     Container(
                       decoration: const BoxDecoration(
                           shape: BoxShape.circle, color: Color(0XFFF5F7FA)),
-                      child: const CircleAvatar(
+                      child: CircleAvatar(
                         backgroundColor: const Color(0XFFE7E7E7),
-                        child: Text('JB',
-                            style: TextStyle(
+                        child: Text(displayName,
+                            style: const TextStyle(
                               fontSize: 25,
-                              color: const Color(0XFF242424),
+                              color: Color(0XFF242424),
                             )),
                       ),
                       padding: const EdgeInsets.all(5.0),
@@ -44,7 +48,7 @@ class MainDrawer extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       child: Text(
-                        'Joy Henshaw',
+                        '$firstName $lastName',
                         style: titleText.copyWith(
                             color: Colors.white,
                             fontSize: 25,
@@ -55,15 +59,15 @@ class MainDrawer extends StatelessWidget {
                       direction: Axis.horizontal,
                       children: [
                         Text(
-                          'ID: 65443339900',
+                          'ID: $userId',
                           style: subTitle.copyWith(
                               color: Colors.white, fontSize: 15),
                         ),
-                        const Icon(
+                        isVerified ? const Icon(
                           Icons.verified,
                           color: kGreenColor,
                           size: 13,
-                        )
+                        ) : Text("Unverified", style: subTitle.copyWith(fontSize: 13, color: kWhiteColor.withOpacity(0.5)), )
                       ],
                     )
                   ],

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fortfolio/domain/user/payment_details.dart';
 import 'package:fortfolio/domain/user/withdrawal_item.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -16,7 +17,7 @@ abstract class WithdrawalItemDTO implements _$WithdrawalItemDTO {
     required String status,
     required DateTime createdat,
     required String paymentMethod,
-    required Map<String, dynamic> paymentDetails,
+    required PaymentDetails paymentDetails,
   }) = _WithdrawalItemDTO;
 
   factory WithdrawalItemDTO.fromDomain(WithdrawalItem withdrawalItem) {
@@ -25,7 +26,7 @@ abstract class WithdrawalItemDTO implements _$WithdrawalItemDTO {
       planName: '',
       createdat: DateTime.now(),
       description: '',
-      paymentDetails: {},
+      paymentDetails: PaymentDetails.empty(),
       paymentMethod: '',
       status: '',
       traxId: '',

@@ -27,8 +27,8 @@ class _$WalletStateTearOff {
       required String response,
       required Map<String, dynamic> withdrawalDetails,
       required List<BankAddress> bankAddresses,
-      required List<CryptoAddress> cryptoAddresses,
-      required List<CryptoAddress> generalCryptoAddresses}) {
+      required List<CryptoWallet> cryptoAddresses,
+      required List<CryptoWallet> generalCryptoAddresses}) {
     return _WalletState(
       investmentPlan: investmentPlan,
       amountToBeWithdrawn: amountToBeWithdrawn,
@@ -58,8 +58,8 @@ mixin _$WalletState {
   Map<String, dynamic> get withdrawalDetails =>
       throw _privateConstructorUsedError;
   List<BankAddress> get bankAddresses => throw _privateConstructorUsedError;
-  List<CryptoAddress> get cryptoAddresses => throw _privateConstructorUsedError;
-  List<CryptoAddress> get generalCryptoAddresses =>
+  List<CryptoWallet> get cryptoAddresses => throw _privateConstructorUsedError;
+  List<CryptoWallet> get generalCryptoAddresses =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -81,8 +81,8 @@ abstract class $WalletStateCopyWith<$Res> {
       String response,
       Map<String, dynamic> withdrawalDetails,
       List<BankAddress> bankAddresses,
-      List<CryptoAddress> cryptoAddresses,
-      List<CryptoAddress> generalCryptoAddresses});
+      List<CryptoWallet> cryptoAddresses,
+      List<CryptoWallet> generalCryptoAddresses});
 }
 
 /// @nodoc
@@ -142,11 +142,11 @@ class _$WalletStateCopyWithImpl<$Res> implements $WalletStateCopyWith<$Res> {
       cryptoAddresses: cryptoAddresses == freezed
           ? _value.cryptoAddresses
           : cryptoAddresses // ignore: cast_nullable_to_non_nullable
-              as List<CryptoAddress>,
+              as List<CryptoWallet>,
       generalCryptoAddresses: generalCryptoAddresses == freezed
           ? _value.generalCryptoAddresses
           : generalCryptoAddresses // ignore: cast_nullable_to_non_nullable
-              as List<CryptoAddress>,
+              as List<CryptoWallet>,
     ));
   }
 }
@@ -167,8 +167,8 @@ abstract class _$WalletStateCopyWith<$Res>
       String response,
       Map<String, dynamic> withdrawalDetails,
       List<BankAddress> bankAddresses,
-      List<CryptoAddress> cryptoAddresses,
-      List<CryptoAddress> generalCryptoAddresses});
+      List<CryptoWallet> cryptoAddresses,
+      List<CryptoWallet> generalCryptoAddresses});
 }
 
 /// @nodoc
@@ -230,11 +230,11 @@ class __$WalletStateCopyWithImpl<$Res> extends _$WalletStateCopyWithImpl<$Res>
       cryptoAddresses: cryptoAddresses == freezed
           ? _value.cryptoAddresses
           : cryptoAddresses // ignore: cast_nullable_to_non_nullable
-              as List<CryptoAddress>,
+              as List<CryptoWallet>,
       generalCryptoAddresses: generalCryptoAddresses == freezed
           ? _value.generalCryptoAddresses
           : generalCryptoAddresses // ignore: cast_nullable_to_non_nullable
-              as List<CryptoAddress>,
+              as List<CryptoWallet>,
     ));
   }
 }
@@ -272,9 +272,9 @@ class _$_WalletState extends _WalletState {
   @override
   final List<BankAddress> bankAddresses;
   @override
-  final List<CryptoAddress> cryptoAddresses;
+  final List<CryptoWallet> cryptoAddresses;
   @override
-  final List<CryptoAddress> generalCryptoAddresses;
+  final List<CryptoWallet> generalCryptoAddresses;
 
   @override
   String toString() {
@@ -337,8 +337,8 @@ abstract class _WalletState extends WalletState {
       required String response,
       required Map<String, dynamic> withdrawalDetails,
       required List<BankAddress> bankAddresses,
-      required List<CryptoAddress> cryptoAddresses,
-      required List<CryptoAddress> generalCryptoAddresses}) = _$_WalletState;
+      required List<CryptoWallet> cryptoAddresses,
+      required List<CryptoWallet> generalCryptoAddresses}) = _$_WalletState;
   const _WalletState._() : super._();
 
   @override
@@ -358,9 +358,9 @@ abstract class _WalletState extends WalletState {
   @override
   List<BankAddress> get bankAddresses;
   @override
-  List<CryptoAddress> get cryptoAddresses;
+  List<CryptoWallet> get cryptoAddresses;
   @override
-  List<CryptoAddress> get generalCryptoAddresses;
+  List<CryptoWallet> get generalCryptoAddresses;
   @override
   @JsonKey(ignore: true)
   _$WalletStateCopyWith<_WalletState> get copyWith =>

@@ -11,8 +11,8 @@ class WalletState with _$WalletState {
     required String response,
     required Map<String, dynamic> withdrawalDetails,
     required List<BankAddress> bankAddresses,
-    required List<CryptoAddress> cryptoAddresses,
-    required List<CryptoAddress> generalCryptoAddresses,
+    required List<CryptoWallet> cryptoAddresses,
+    required List<CryptoWallet> generalCryptoAddresses,
   }) = _WalletState;
   const WalletState._();
   factory WalletState.initial() => const WalletState(

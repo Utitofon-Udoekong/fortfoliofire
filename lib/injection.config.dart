@@ -77,7 +77,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i23.UploadImageBloc>(
       () => _i23.UploadImageBloc(get<_i24.StorageMethods>()));
   gh.factory<_i25.WalletCubit>(
-      () => _i25.WalletCubit(get<_i6.FireStoreMethods>()));
+      () => _i25.WalletCubit(get<_i14.FirebaseFirestoreFacade>()));
   return get;
 }
 

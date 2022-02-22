@@ -1,9 +1,5 @@
-import 'package:dartz/dartz.dart';
-import 'package:fortfolio/domain/core/failures.dart';
-import 'package:fortfolio/domain/core/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'value_objects.dart';
 part 'bank_address.freezed.dart';
 
 @freezed
