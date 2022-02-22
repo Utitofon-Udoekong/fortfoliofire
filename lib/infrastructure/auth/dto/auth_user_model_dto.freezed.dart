@@ -24,24 +24,24 @@ class _$AuthUserModelDtoTearOff {
 
   _AuthUserModelDto call(
       {required String id,
+      required String displayName,
       required String phoneNumber,
       required String firstName,
       required String lastName,
       required double balance,
       required String email,
       required bool isVerified,
-      required String status,
       @JsonKey(fromJson: sendDateTimeFromJson, toJson: sendDateTimeToJson)
           required DateTime createdat}) {
     return _AuthUserModelDto(
       id: id,
+      displayName: displayName,
       phoneNumber: phoneNumber,
       firstName: firstName,
       lastName: lastName,
       balance: balance,
       email: email,
       isVerified: isVerified,
-      status: status,
       createdat: createdat,
     );
   }
@@ -57,13 +57,13 @@ const $AuthUserModelDto = _$AuthUserModelDtoTearOff();
 /// @nodoc
 mixin _$AuthUserModelDto {
   String get id => throw _privateConstructorUsedError;
+  String get displayName => throw _privateConstructorUsedError;
   String get phoneNumber => throw _privateConstructorUsedError;
   String get firstName => throw _privateConstructorUsedError;
   String get lastName => throw _privateConstructorUsedError;
   double get balance => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   bool get isVerified => throw _privateConstructorUsedError;
-  String get status => throw _privateConstructorUsedError;
   @JsonKey(fromJson: sendDateTimeFromJson, toJson: sendDateTimeToJson)
   DateTime get createdat => throw _privateConstructorUsedError;
 
@@ -80,13 +80,13 @@ abstract class $AuthUserModelDtoCopyWith<$Res> {
       _$AuthUserModelDtoCopyWithImpl<$Res>;
   $Res call(
       {String id,
+      String displayName,
       String phoneNumber,
       String firstName,
       String lastName,
       double balance,
       String email,
       bool isVerified,
-      String status,
       @JsonKey(fromJson: sendDateTimeFromJson, toJson: sendDateTimeToJson)
           DateTime createdat});
 }
@@ -103,19 +103,23 @@ class _$AuthUserModelDtoCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? displayName = freezed,
     Object? phoneNumber = freezed,
     Object? firstName = freezed,
     Object? lastName = freezed,
     Object? balance = freezed,
     Object? email = freezed,
     Object? isVerified = freezed,
-    Object? status = freezed,
     Object? createdat = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      displayName: displayName == freezed
+          ? _value.displayName
+          : displayName // ignore: cast_nullable_to_non_nullable
               as String,
       phoneNumber: phoneNumber == freezed
           ? _value.phoneNumber
@@ -141,10 +145,6 @@ class _$AuthUserModelDtoCopyWithImpl<$Res>
           ? _value.isVerified
           : isVerified // ignore: cast_nullable_to_non_nullable
               as bool,
-      status: status == freezed
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
       createdat: createdat == freezed
           ? _value.createdat
           : createdat // ignore: cast_nullable_to_non_nullable
@@ -162,13 +162,13 @@ abstract class _$AuthUserModelDtoCopyWith<$Res>
   @override
   $Res call(
       {String id,
+      String displayName,
       String phoneNumber,
       String firstName,
       String lastName,
       double balance,
       String email,
       bool isVerified,
-      String status,
       @JsonKey(fromJson: sendDateTimeFromJson, toJson: sendDateTimeToJson)
           DateTime createdat});
 }
@@ -187,19 +187,23 @@ class __$AuthUserModelDtoCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? displayName = freezed,
     Object? phoneNumber = freezed,
     Object? firstName = freezed,
     Object? lastName = freezed,
     Object? balance = freezed,
     Object? email = freezed,
     Object? isVerified = freezed,
-    Object? status = freezed,
     Object? createdat = freezed,
   }) {
     return _then(_AuthUserModelDto(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      displayName: displayName == freezed
+          ? _value.displayName
+          : displayName // ignore: cast_nullable_to_non_nullable
               as String,
       phoneNumber: phoneNumber == freezed
           ? _value.phoneNumber
@@ -225,10 +229,6 @@ class __$AuthUserModelDtoCopyWithImpl<$Res>
           ? _value.isVerified
           : isVerified // ignore: cast_nullable_to_non_nullable
               as bool,
-      status: status == freezed
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
       createdat: createdat == freezed
           ? _value.createdat
           : createdat // ignore: cast_nullable_to_non_nullable
@@ -242,13 +242,13 @@ class __$AuthUserModelDtoCopyWithImpl<$Res>
 class _$_AuthUserModelDto implements _AuthUserModelDto {
   _$_AuthUserModelDto(
       {required this.id,
+      required this.displayName,
       required this.phoneNumber,
       required this.firstName,
       required this.lastName,
       required this.balance,
       required this.email,
       required this.isVerified,
-      required this.status,
       @JsonKey(fromJson: sendDateTimeFromJson, toJson: sendDateTimeToJson)
           required this.createdat});
 
@@ -257,6 +257,8 @@ class _$_AuthUserModelDto implements _AuthUserModelDto {
 
   @override
   final String id;
+  @override
+  final String displayName;
   @override
   final String phoneNumber;
   @override
@@ -270,14 +272,12 @@ class _$_AuthUserModelDto implements _AuthUserModelDto {
   @override
   final bool isVerified;
   @override
-  final String status;
-  @override
   @JsonKey(fromJson: sendDateTimeFromJson, toJson: sendDateTimeToJson)
   final DateTime createdat;
 
   @override
   String toString() {
-    return 'AuthUserModelDto(id: $id, phoneNumber: $phoneNumber, firstName: $firstName, lastName: $lastName, balance: $balance, email: $email, isVerified: $isVerified, status: $status, createdat: $createdat)';
+    return 'AuthUserModelDto(id: $id, displayName: $displayName, phoneNumber: $phoneNumber, firstName: $firstName, lastName: $lastName, balance: $balance, email: $email, isVerified: $isVerified, createdat: $createdat)';
   }
 
   @override
@@ -287,6 +287,8 @@ class _$_AuthUserModelDto implements _AuthUserModelDto {
             other is _AuthUserModelDto &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality()
+                .equals(other.displayName, displayName) &&
+            const DeepCollectionEquality()
                 .equals(other.phoneNumber, phoneNumber) &&
             const DeepCollectionEquality().equals(other.firstName, firstName) &&
             const DeepCollectionEquality().equals(other.lastName, lastName) &&
@@ -294,7 +296,6 @@ class _$_AuthUserModelDto implements _AuthUserModelDto {
             const DeepCollectionEquality().equals(other.email, email) &&
             const DeepCollectionEquality()
                 .equals(other.isVerified, isVerified) &&
-            const DeepCollectionEquality().equals(other.status, status) &&
             const DeepCollectionEquality().equals(other.createdat, createdat));
   }
 
@@ -302,13 +303,13 @@ class _$_AuthUserModelDto implements _AuthUserModelDto {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(displayName),
       const DeepCollectionEquality().hash(phoneNumber),
       const DeepCollectionEquality().hash(firstName),
       const DeepCollectionEquality().hash(lastName),
       const DeepCollectionEquality().hash(balance),
       const DeepCollectionEquality().hash(email),
       const DeepCollectionEquality().hash(isVerified),
-      const DeepCollectionEquality().hash(status),
       const DeepCollectionEquality().hash(createdat));
 
   @JsonKey(ignore: true)
@@ -325,13 +326,13 @@ class _$_AuthUserModelDto implements _AuthUserModelDto {
 abstract class _AuthUserModelDto implements AuthUserModelDto {
   factory _AuthUserModelDto(
       {required String id,
+      required String displayName,
       required String phoneNumber,
       required String firstName,
       required String lastName,
       required double balance,
       required String email,
       required bool isVerified,
-      required String status,
       @JsonKey(fromJson: sendDateTimeFromJson, toJson: sendDateTimeToJson)
           required DateTime createdat}) = _$_AuthUserModelDto;
 
@@ -340,6 +341,8 @@ abstract class _AuthUserModelDto implements AuthUserModelDto {
 
   @override
   String get id;
+  @override
+  String get displayName;
   @override
   String get phoneNumber;
   @override
@@ -352,8 +355,6 @@ abstract class _AuthUserModelDto implements AuthUserModelDto {
   String get email;
   @override
   bool get isVerified;
-  @override
-  String get status;
   @override
   @JsonKey(fromJson: sendDateTimeFromJson, toJson: sendDateTimeToJson)
   DateTime get createdat;

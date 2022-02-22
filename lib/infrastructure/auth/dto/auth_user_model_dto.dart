@@ -18,13 +18,13 @@ part 'auth_user_model_dto.g.dart';
 class AuthUserModelDto with _$AuthUserModelDto {
   factory AuthUserModelDto({
     required String id,
+    required String displayName,
     required String phoneNumber,
     required String firstName,
     required String lastName,
     required double balance,
     required String email,
     required bool isVerified,
-    required String status,
     @JsonKey(fromJson: sendDateTimeFromJson, toJson: sendDateTimeToJson)
         required DateTime createdat,
   }) = _AuthUserModelDto;
@@ -35,6 +35,7 @@ class AuthUserModelDto with _$AuthUserModelDto {
   factory AuthUserModelDto.fromDomain(AuthUserModel userModel) {
     return AuthUserModelDto(
       id: userModel.id,
+      displayName: userModel.displayName,
       phoneNumber: userModel.phoneNumber,
       balance: userModel.balance,
       createdat: userModel.createdat,
@@ -42,7 +43,7 @@ class AuthUserModelDto with _$AuthUserModelDto {
       firstName: userModel.firstName,
       isVerified: userModel.isVerified,
       lastName: userModel.lastName,
-      status: userModel.statusString,
+      // status: userModel.statusString,
     );
   }
 
@@ -62,13 +63,14 @@ extension AuthUserModelDtoX on AuthUserModelDto {
     return AuthUserModel(
       id: id,
       phoneNumber: phoneNumber,
-      status: Status.values.firstWhere((element) => element.name == status),
+      // status: Status.values.firstWhere((element) => element.name == status),
       balance: balance,
       createdat: createdat,
       email: email,
       firstName: firstName,
       isVerified: isVerified,
       lastName: lastName,
+      displayName: displayName,
     );
   }
 }

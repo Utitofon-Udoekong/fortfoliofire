@@ -7,13 +7,13 @@ part 'auth_user_model.freezed.dart';
 class AuthUserModel with _$AuthUserModel {
   const factory AuthUserModel({
     required String id,
+    required String displayName,
     required String phoneNumber,
     required String firstName,
     required String lastName,
     required double balance,
     required String email,
     required bool isVerified,
-    required Status status,
     required DateTime createdat,
   }) = _AuthUserModel;
 
@@ -27,9 +27,9 @@ class AuthUserModel with _$AuthUserModel {
         firstName: '',
         lastName: '',
         isVerified: false,
-        createdat: DateTime.fromMillisecondsSinceEpoch(0),
-        status: Status.processing
+        createdat: DateTime.fromMillisecondsSinceEpoch(0), 
+        displayName: '',
       );
 
-  String get statusString => status.toCustomString();
+  // String get statusString => status.toCustomString();
 }

@@ -1,15 +1,19 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_icon_filled_button.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:fortfolio/utils/pages.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MainDrawer extends StatelessWidget {
   const MainDrawer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final String displayName = context.select((AuthCubit authCubit) => authCubit.state.userModel.displayName);
+    // final String displayName = context.select<AuthCubit, String>((cubit) => cubit.state.userModel.displayName);
     return Drawer(
       backgroundColor: kWhiteColor,
       child: ListView(

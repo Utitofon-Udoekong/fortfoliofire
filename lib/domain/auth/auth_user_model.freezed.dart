@@ -20,23 +20,23 @@ class _$AuthUserModelTearOff {
 
   _AuthUserModel call(
       {required String id,
+      required String displayName,
       required String phoneNumber,
       required String firstName,
       required String lastName,
       required double balance,
       required String email,
       required bool isVerified,
-      required Status status,
       required DateTime createdat}) {
     return _AuthUserModel(
       id: id,
+      displayName: displayName,
       phoneNumber: phoneNumber,
       firstName: firstName,
       lastName: lastName,
       balance: balance,
       email: email,
       isVerified: isVerified,
-      status: status,
       createdat: createdat,
     );
   }
@@ -48,13 +48,13 @@ const $AuthUserModel = _$AuthUserModelTearOff();
 /// @nodoc
 mixin _$AuthUserModel {
   String get id => throw _privateConstructorUsedError;
+  String get displayName => throw _privateConstructorUsedError;
   String get phoneNumber => throw _privateConstructorUsedError;
   String get firstName => throw _privateConstructorUsedError;
   String get lastName => throw _privateConstructorUsedError;
   double get balance => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   bool get isVerified => throw _privateConstructorUsedError;
-  Status get status => throw _privateConstructorUsedError;
   DateTime get createdat => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -69,13 +69,13 @@ abstract class $AuthUserModelCopyWith<$Res> {
       _$AuthUserModelCopyWithImpl<$Res>;
   $Res call(
       {String id,
+      String displayName,
       String phoneNumber,
       String firstName,
       String lastName,
       double balance,
       String email,
       bool isVerified,
-      Status status,
       DateTime createdat});
 }
 
@@ -91,19 +91,23 @@ class _$AuthUserModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? displayName = freezed,
     Object? phoneNumber = freezed,
     Object? firstName = freezed,
     Object? lastName = freezed,
     Object? balance = freezed,
     Object? email = freezed,
     Object? isVerified = freezed,
-    Object? status = freezed,
     Object? createdat = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      displayName: displayName == freezed
+          ? _value.displayName
+          : displayName // ignore: cast_nullable_to_non_nullable
               as String,
       phoneNumber: phoneNumber == freezed
           ? _value.phoneNumber
@@ -129,10 +133,6 @@ class _$AuthUserModelCopyWithImpl<$Res>
           ? _value.isVerified
           : isVerified // ignore: cast_nullable_to_non_nullable
               as bool,
-      status: status == freezed
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as Status,
       createdat: createdat == freezed
           ? _value.createdat
           : createdat // ignore: cast_nullable_to_non_nullable
@@ -150,13 +150,13 @@ abstract class _$AuthUserModelCopyWith<$Res>
   @override
   $Res call(
       {String id,
+      String displayName,
       String phoneNumber,
       String firstName,
       String lastName,
       double balance,
       String email,
       bool isVerified,
-      Status status,
       DateTime createdat});
 }
 
@@ -174,19 +174,23 @@ class __$AuthUserModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? displayName = freezed,
     Object? phoneNumber = freezed,
     Object? firstName = freezed,
     Object? lastName = freezed,
     Object? balance = freezed,
     Object? email = freezed,
     Object? isVerified = freezed,
-    Object? status = freezed,
     Object? createdat = freezed,
   }) {
     return _then(_AuthUserModel(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      displayName: displayName == freezed
+          ? _value.displayName
+          : displayName // ignore: cast_nullable_to_non_nullable
               as String,
       phoneNumber: phoneNumber == freezed
           ? _value.phoneNumber
@@ -212,10 +216,6 @@ class __$AuthUserModelCopyWithImpl<$Res>
           ? _value.isVerified
           : isVerified // ignore: cast_nullable_to_non_nullable
               as bool,
-      status: status == freezed
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as Status,
       createdat: createdat == freezed
           ? _value.createdat
           : createdat // ignore: cast_nullable_to_non_nullable
@@ -229,18 +229,20 @@ class __$AuthUserModelCopyWithImpl<$Res>
 class _$_AuthUserModel extends _AuthUserModel {
   const _$_AuthUserModel(
       {required this.id,
+      required this.displayName,
       required this.phoneNumber,
       required this.firstName,
       required this.lastName,
       required this.balance,
       required this.email,
       required this.isVerified,
-      required this.status,
       required this.createdat})
       : super._();
 
   @override
   final String id;
+  @override
+  final String displayName;
   @override
   final String phoneNumber;
   @override
@@ -254,13 +256,11 @@ class _$_AuthUserModel extends _AuthUserModel {
   @override
   final bool isVerified;
   @override
-  final Status status;
-  @override
   final DateTime createdat;
 
   @override
   String toString() {
-    return 'AuthUserModel(id: $id, phoneNumber: $phoneNumber, firstName: $firstName, lastName: $lastName, balance: $balance, email: $email, isVerified: $isVerified, status: $status, createdat: $createdat)';
+    return 'AuthUserModel(id: $id, displayName: $displayName, phoneNumber: $phoneNumber, firstName: $firstName, lastName: $lastName, balance: $balance, email: $email, isVerified: $isVerified, createdat: $createdat)';
   }
 
   @override
@@ -270,6 +270,8 @@ class _$_AuthUserModel extends _AuthUserModel {
             other is _AuthUserModel &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality()
+                .equals(other.displayName, displayName) &&
+            const DeepCollectionEquality()
                 .equals(other.phoneNumber, phoneNumber) &&
             const DeepCollectionEquality().equals(other.firstName, firstName) &&
             const DeepCollectionEquality().equals(other.lastName, lastName) &&
@@ -277,7 +279,6 @@ class _$_AuthUserModel extends _AuthUserModel {
             const DeepCollectionEquality().equals(other.email, email) &&
             const DeepCollectionEquality()
                 .equals(other.isVerified, isVerified) &&
-            const DeepCollectionEquality().equals(other.status, status) &&
             const DeepCollectionEquality().equals(other.createdat, createdat));
   }
 
@@ -285,13 +286,13 @@ class _$_AuthUserModel extends _AuthUserModel {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(displayName),
       const DeepCollectionEquality().hash(phoneNumber),
       const DeepCollectionEquality().hash(firstName),
       const DeepCollectionEquality().hash(lastName),
       const DeepCollectionEquality().hash(balance),
       const DeepCollectionEquality().hash(email),
       const DeepCollectionEquality().hash(isVerified),
-      const DeepCollectionEquality().hash(status),
       const DeepCollectionEquality().hash(createdat));
 
   @JsonKey(ignore: true)
@@ -303,18 +304,20 @@ class _$_AuthUserModel extends _AuthUserModel {
 abstract class _AuthUserModel extends AuthUserModel {
   const factory _AuthUserModel(
       {required String id,
+      required String displayName,
       required String phoneNumber,
       required String firstName,
       required String lastName,
       required double balance,
       required String email,
       required bool isVerified,
-      required Status status,
       required DateTime createdat}) = _$_AuthUserModel;
   const _AuthUserModel._() : super._();
 
   @override
   String get id;
+  @override
+  String get displayName;
   @override
   String get phoneNumber;
   @override
@@ -327,8 +330,6 @@ abstract class _AuthUserModel extends AuthUserModel {
   String get email;
   @override
   bool get isVerified;
-  @override
-  Status get status;
   @override
   DateTime get createdat;
   @override

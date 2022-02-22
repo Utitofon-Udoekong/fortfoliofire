@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fortfolio/application/auth/auth_cubit.dart';
+import 'package:fortfolio/domain/auth/auth_user_model.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
-import 'package:fortfolio/injection.dart';
-import 'package:fortfolio/presentation/home/dashboard/screens/profile/cubit/profile_cubit.dart';
 import 'package:fortfolio/utils/pages.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -13,12 +13,13 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: BlocProvider(
-          create: (context) => getIt<ProfileCubit>(),
-          child: Padding(
+        body: Padding(
             padding: kDefaultPadding,
-            child: BlocBuilder<ProfileCubit, ProfileState>(
-              builder: (context, state) {
+            child: BlocSelector<AuthCubit, AuthState, AuthUserModel>(
+              selector: (state){
+                return state.userModel;
+              },
+              builder: (context, authUserModel){
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
@@ -26,9 +27,7 @@ class ProfilePage extends StatelessWidget {
                       height: 20,
                     ),
                     InkWell(
-                      onTap: () {
-                        context.router.pop();
-                      },
+                      onTap: () => context.router.pop(),
                       child: const Icon(Icons.close),
                     ),
                     const SizedBox(
@@ -53,7 +52,7 @@ class ProfilePage extends StatelessWidget {
                                 color: Color(0XFFF5F7FA)),
                             child: CircleAvatar(
                               backgroundColor: const Color(0XFFE7E7E7),
-                              child: Text(state.displayName,
+                              child: Text(authUserModel.displayName,
                                   style: const TextStyle(
                                     fontSize: 25,
                                     color: Color(0XFF242424),
@@ -64,7 +63,7 @@ class ProfilePage extends StatelessWidget {
                           const SizedBox(
                             height: 3,
                           ),
-                          state.isVerified
+                          authUserModel.isVerified
                               ? Text("Account Verified",
                                   style: subTitle.copyWith(
                                       color: kBlackColor,
@@ -87,27 +86,26 @@ class ProfilePage extends StatelessWidget {
                       height: 30,
                     ),
                     buildtile(
-                        'ID: ${state.id}',
+                        'ID: ${authUserModel.id}',
                         const Icon(
                           Icons.file_copy_rounded,
                           color: kPrimaryColor,
                           size: 15,
                         ),
                         true),
-                    buildtile(state.email, const Spacer(), false),
+                    buildtile(authUserModel.email, const Spacer(), false),
                     const SizedBox(
                       height: 10,
                     ),
                     buildtile(
-                      "",
-                        // appUser.firstName.getOrCrash(),
+                      authUserModel.firstName,
                         Text(
-                          'Henshaw',
+                          authUserModel.lastName,
                           style: subTitle.copyWith(
                               color: kBlackColor, fontSize: 15),
                         ),
                         true),
-                    buildtile(state.phone, const Spacer(), false),
+                    buildtile(authUserModel.phoneNumber, const Spacer(), false),
                     const SizedBox(
                       height: 130,
                     ),
@@ -125,9 +123,7 @@ class ProfilePage extends StatelessWidget {
                   ],
                 );
               },
-            ),
-          ),
-        ),
+            )),
       ),
     );
   }

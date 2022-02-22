@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fortfolio/domain/core/value_objects.dart';
 import 'package:injectable/injectable.dart';
 
 import 'package:fortfolio/domain/auth/auth_failure.dart';
@@ -69,7 +70,7 @@ class FirebaseAuthFacade implements IAuthFacade {
     final passwordString = password.getOrCrash();
     try {
       await firebaseAuth.signInWithEmailAndPassword(
-          email: emailAddressString, password: passwordString);
+          email: emailAddressString, password: passwordString).then((cred) => getDatabaseUser(id: cred.user!.uid));
       return right(unit);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found' || e.code == 'wrong-password') {
@@ -125,7 +126,9 @@ class FirebaseAuthFacade implements IAuthFacade {
     final passwordString = password.getOrCrash();
     final phoneNumber = phone.getOrCrash();
     const timeout = Duration(seconds: 60);
-
+    final fName = firstName.getOrCrash();
+    final lName = lastName.getOrCrash();
+    var displayName = "${fName[0]}${lName[0]}";
     try {
       await firebaseAuth
           .createUserWithEmailAndPassword(
@@ -138,6 +141,11 @@ class FirebaseAuthFacade implements IAuthFacade {
           "phoneNumber": phoneNumber,
           "firstName": firstName.getOrCrash(),
           "lastName": lastName.getOrCrash(),
+          "balance": 0,
+          "createdat": DateTime.now(),
+          "isVerified": false,
+          "id": UniqueId.fromUniqueString(value.user!.uid),
+          "displayName": displayName
         }).then((_) {
           registerPhoneNumber(phoneNumber: Phone(phoneNumber), timeout: timeout);
         });
@@ -269,6 +277,26 @@ class FirebaseAuthFacade implements IAuthFacade {
       }
     } catch (e) {
       log("authh Error $e on getDatabaseUser");
+      return none();
+    }
+  }
+
+  @override
+  Future<Option<AuthUserModel>> getDatabaseUserWithPhoneNumber(
+      {required String phoneNumber}) async {
+    try {
+      final query = await firestore.authUserCollection
+          .where("phoneNumber", isEqualTo: phoneNumber)
+          .get();
+      if (query.docs.isNotEmpty && query.docs[0].exists) {
+        final doc = query.docs[0];
+        return some(AuthUserModelDto.fromFirestore(doc).toDomain());
+      } else {
+        print("authh getDatabaseUserWithPhoneNumber DOES NOT EXIST");
+        return none();
+      }
+    } on FirebaseException catch (e) {
+      log("authh Error $e on getDatabaseUserWithPhoneNumber");
       return none();
     }
   }

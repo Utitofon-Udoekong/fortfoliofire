@@ -57,5 +57,7 @@ abstract class IAuthFacade {
   Future<Either<AuthFailure, Unit>> signInAnonymously();
   // get user id from db
   Future<Option<AuthUserModel>> getDatabaseUser({required String id});
-
+  // get user with phone
+  Future<Option<AuthUserModel>> getDatabaseUserWithPhoneNumber(
+      {required String phoneNumber});
 }

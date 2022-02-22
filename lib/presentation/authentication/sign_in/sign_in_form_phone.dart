@@ -43,20 +43,16 @@ class _SignInFormPhoneState extends State<SignInFormPhone> {
                       () => null,
                       (failure) => CustomSnackbar.showSnackBar(
                         context,
-                        failure.when(
-                          serverError: () => 'Encountered a server error',
-                          emailAlreadyInUse: () =>
-                              'Email address already in use',
-                          invalidEmailAndPassword: () =>
-                              'Invalid email and password',
-                          invalidPhoneNumber: () => 'Invalid Phone number',
-                          tooManyRequests: () => "Too Many Requests",
-                          deviceNotSupported: () => "Device Not Supported",
-                          smsTimeout: () => "Sms Timeout",
-                          sessionExpired: () => "Session Expired",
-                          invalidVerificationCode: () =>
-                              "Invalid Verification Code",
-                        ),
+                        failure.maybeMap(orElse: () => "",
+                              serverError: (_) => 'Encountered a server error',
+                              invalidEmailAndPasswordCombination: (_) => "Invalid email or Password",
+                              tooManyRequests: (_) => "Too Many Requests",
+                              emailAlreadyInUse: (_) => 'Email address already in use',
+                              smsTimeout: (_) => "Sms Timeout",
+                                sessionExpired: (_) => "Session Expired",
+                                invalidVerificationCode: (_) =>
+                                    "Invalid Verification Code",
+                              ),
                         true,
                       ),
                     );

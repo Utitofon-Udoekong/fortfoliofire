@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
     WidgetsBinding.instance!.addPostFrameCallback((_) {
       final bool isUserLoggedIn = context.read<AuthCubit>().state.isLoggedIn;
       final bool isUserCheckedFromAuthService =
-          context.read<AuthCubit>().state.isUserCheckedFromAuthService;
+          context.read<AuthCubit>().state.isUserCheckedFromAuthFacade;
       if (isUserLoggedIn) {
         context.router.replace(const HomePageRoute());
       } else if (!isUserLoggedIn && isUserCheckedFromAuthService) {
@@ -35,8 +35,8 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return BlocListener<AuthCubit, AuthState>(
       listenWhen: (previous, current) => 
-        previous.isUserCheckedFromAuthService != current.isUserCheckedFromAuthService &&
-        current.isUserCheckedFromAuthService,
+        previous.isUserCheckedFromAuthFacade != current.isUserCheckedFromAuthFacade &&
+        current.isUserCheckedFromAuthFacade,
       listener: (context, state) {
         final bool isUserLoggedIn = state.isLoggedIn;
         if (isUserLoggedIn) {

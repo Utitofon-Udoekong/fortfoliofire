@@ -22,19 +22,25 @@ class ResetPassword extends StatelessWidget {
               (either) => either.fold((failure) {
                     CustomSnackbar.showSnackBar(
                         context,
-                        failure.when(
-                          serverError: () => 'Encountered a server error',
-                          emailAlreadyInUse: () => 'Email address already in use',
-                          invalidEmailAndPassword: () =>
-                              'Invalid email and password',
-                          invalidPhoneNumber: () => 'Invalid Phone number',
-                          tooManyRequests: () => "Too Many Requests",
-                          deviceNotSupported: () => "Device Not Supported",
-                          smsTimeout: () => "Sms Timeout",
-                          sessionExpired: () => "Session Expired",
-                          invalidVerificationCode: () =>
-                              "Invalid Verification Code",
+                        failure.maybeMap(orElse: () => "",
+                        serverError: (_) => 'Encountered a server error',
+                        invalidEmail: (_) => "Invalid email address",
+                        tooManyRequests: (_) => "Too Many Requests",
+                        emailAlreadyInUse: (_) => 'Email address already in use',
                         ),
+                        // failure.when(
+                        //   serverError: () => 'Encountered a server error',
+                        //   emailAlreadyInUse: () => 'Email address already in use',
+                        //   invalidEmailAndPasswordCombination: () =>
+                        //       'Invalid email and password',
+                        //   invalidPhoneNumber: () => 'Invalid Phone number',
+                        //   tooManyRequests: () => "Too Many Requests",
+                        //   deviceNotSupported: () => "Device Not Supported",
+                        //   smsTimeout: () => "Sms Timeout",
+                        //   sessionExpired: () => "Session Expired",
+                        //   invalidVerificationCode: () =>
+                        //       "Invalid Verification Code",
+                        // ),
                         true);
                   }, (r) {}));
         }, builder: (context, state) {
