@@ -2,8 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
+import 'package:fortfolio/domain/user/bank_address.dart';
 import 'package:fortfolio/injection.dart';
-import 'package:fortfolio/models/bankAddress.dart';
 import 'package:fortfolio/utils/pages.dart';
 
 import '../../cubit/wallet_cubit.dart';
@@ -50,8 +50,7 @@ class BankWithdrawal extends StatelessWidget {
                   BlocBuilder<WalletCubit, WalletState>(builder: (context, state){
                     Widget tiles = buildtile("", () => null);
                     for (var element in state.bankAddresses) {
-                      BankAddress bankAddress = BankAddress(bankName: element.bankName, accountNumber: element.accountNumber, userName: element.userName, type: element.type);
-                      tiles = buildtile(element.accountNumber, () => context.read<WalletCubit>().withdrawalDetailsChanged(withdrawalDetails: bankAddress.toMap()));
+                      tiles = buildtile(element.accountNumber, () => context.read<WalletCubit>().withdrawalDetailsChanged(withdrawalDetails: element.toMap()));
                      }
                      return tiles;
                    }),

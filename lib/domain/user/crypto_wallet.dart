@@ -21,4 +21,14 @@ abstract class CryptoWallet implements _$CryptoWallet {
       platform: '',
       type: '',
       walletLabel: '');
+  Map<String, dynamic> toMap() {
+    return {
+      'walletLabel': walletLabel,
+      'address': address,
+      'coin': coin,
+      'network': network,
+      'platform': platform,
+      'type': type,
+    };
+  }
 }

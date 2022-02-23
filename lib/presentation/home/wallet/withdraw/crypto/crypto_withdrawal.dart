@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
+import 'package:fortfolio/domain/user/crypto_wallet.dart';
 import 'package:fortfolio/injection.dart';
 import 'package:fortfolio/presentation/home/wallet/cubit/wallet_cubit.dart';
 import 'package:fortfolio/utils/pages.dart';
@@ -62,7 +63,8 @@ class CryptoWithdrawal extends StatelessWidget {
                         var addressess = state.cryptoAddresses +
                             state.generalCryptoAddresses;
                         for (var element in addressess) {
-                          tiles = buildtile(element.address, () => context.read<WalletCubit>().withdrawalDetailsChanged(withdrawalDetails: element.toMap()));
+                          CryptoWallet cryptoWallet = CryptoWallet(walletLabel: element.walletLabel, address: element.address, coin: element.coin, network: element.network, platform: element.platform, type: element.type);
+                          tiles = buildtile(element.address, () => context.read<WalletCubit>().withdrawalDetailsChanged(withdrawalDetails: cryptoWallet.toMap()));
                         }
                         return tiles;
                       }

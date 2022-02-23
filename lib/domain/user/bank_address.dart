@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'bank_address.freezed.dart';
+// part 'bank_address.g.dart';
 
 @freezed
 abstract class BankAddress implements _$BankAddress {
@@ -19,5 +20,13 @@ abstract class BankAddress implements _$BankAddress {
        userName: "",
        type: ""
       );
-  
+
+  Map<String, dynamic> toMap() {
+    return {
+      'bankName': bankName,
+      'accountNumber': accountNumber,
+      'userName': userName,
+      'type': type,
+    };
+  }
 }
