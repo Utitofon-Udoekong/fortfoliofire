@@ -1,4 +1,4 @@
-import 'package:fortfolio/domain/user/payment_details.dart';
+import 'package:fortfolio/domain/auth/status.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'withdrawal_item.freezed.dart';
 
@@ -10,20 +10,19 @@ abstract class WithdrawalItem implements _$WithdrawalItem {
     required int amount,
     required String traxId,
     required String planName,
-    required String status,
+    required Status status,
     required DateTime createdat,
     required String paymentMethod,
-    required PaymentDetails paymentDetails,
   }) = _WithdrawalItem;
 
   factory WithdrawalItem.empty() => WithdrawalItem(
         amount: 0,
         createdat: DateTime.now(),
         description: '',
-        paymentDetails: PaymentDetails.empty(),
         paymentMethod: '',
         planName: '',
-        status: '',
+        status: Status.processing,
         traxId: '',
       );
+  String get statusString => status.toCustomString();
 }

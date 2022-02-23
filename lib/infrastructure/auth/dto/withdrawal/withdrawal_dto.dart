@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fortfolio/domain/user/payment_details.dart';
+import 'package:fortfolio/domain/auth/status.dart';
 import 'package:fortfolio/domain/user/withdrawal_item.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -17,7 +17,6 @@ abstract class WithdrawalItemDTO implements _$WithdrawalItemDTO {
     required String status,
     required DateTime createdat,
     required String paymentMethod,
-    required PaymentDetails paymentDetails,
   }) = _WithdrawalItemDTO;
 
   factory WithdrawalItemDTO.fromDomain(WithdrawalItem withdrawalItem) {
@@ -26,7 +25,6 @@ abstract class WithdrawalItemDTO implements _$WithdrawalItemDTO {
       planName: '',
       createdat: DateTime.now(),
       description: '',
-      paymentDetails: PaymentDetails.empty(),
       paymentMethod: '',
       status: '',
       traxId: '',
@@ -53,9 +51,8 @@ extension WithdrawalItemDTOX on WithdrawalItemDTO {
       planName: planName,
       createdat: createdat,
       description: description,
-      paymentDetails: paymentDetails,
       paymentMethod: paymentMethod,
-      status: status,
+      status: Status.values.firstWhere((element) => element.name == status),
       traxId: traxId
     );
   }

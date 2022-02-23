@@ -50,7 +50,8 @@ class BankWithdrawal extends StatelessWidget {
                   BlocBuilder<WalletCubit, WalletState>(builder: (context, state){
                     Widget tiles = buildtile("", () => null);
                     for (var element in state.bankAddresses) {
-                      tiles = buildtile(element.accountNumber, () => context.read<WalletCubit>().withdrawalDetailsChanged(withdrawalDetails: element.toMap()));
+                      BankAddress bankAddress = BankAddress(bankName: element.bankName, accountNumber: element.accountNumber, userName: element.userName, type: element.type);
+                      tiles = buildtile(element.accountNumber, () => context.read<WalletCubit>().withdrawalDetailsChanged(withdrawalDetails: bankAddress.toMap()));
                      }
                      return tiles;
                    }),

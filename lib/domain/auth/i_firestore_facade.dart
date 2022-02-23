@@ -10,12 +10,12 @@ import 'auth_failure.dart';
 import 'auth_user_model.dart';
 
 abstract class IFirestoreFacade {
-  Future<Option<Unit>> createInvestmentTransaction( {required InvestmentItem investmentItem});
-  Future<Option<Unit>> addBank({required BankAddress bankAddress});
-  Future<Option<Unit>> addCryptoWallet({required CryptoWallet cryptoWallet});
-  Future<Option<Unit>> addGeneralCryptoWallet({required CryptoWallet cryptoWallet});
+  Future<Option<String>> createInvestmentTransaction( {required InvestmentItem investmentItem});
+  Future<Option<String>> addBank({required BankAddress bankAddress});
+  Future<Option<String>> addCryptoWallet({required CryptoWallet cryptoWallet});
+  Future<Option<String>> addGeneralCryptoWallet({required CryptoWallet cryptoWallet});
   Future<Option<BankAddress>> getBankAddress();
   Future<Option<CryptoWallet>> getCryptoWallets();
   Future<Option<CryptoWallet>> getGeneralCryptoWallets();
-  Future<Option<Unit>> createWithdrawalTransaction( {required WithdrawalItem withdrawalItem});
+  Future<Option<String>> createWithdrawalTransaction( {required WithdrawalItem withdrawalItem});
 }

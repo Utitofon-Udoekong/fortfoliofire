@@ -23,11 +23,11 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
   FirebaseFirestoreFacade(this.firestore, this.auth);
 
   @override
-  Future<Option<Unit>> addBank({required BankAddress bankAddress}) async {
+  Future<Option<String>> addBank({required BankAddress bankAddress}) async {
     String docId = const Uuid().v4();
     try {
       await firestore.authUserCollection.doc(docId).set(BankAddressDTO.fromDomain(bankAddress).toJson());
-      return some(unit);
+      return some("Bank account added successfully");
     } on FirebaseException catch (e) {
       print(e.toString());
       return none();
@@ -35,11 +35,11 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
   }
 
   @override
-  Future<Option<Unit>> addCryptoWallet({required CryptoWallet cryptoWallet}) async {
+  Future<Option<String>> addCryptoWallet({required CryptoWallet cryptoWallet}) async {
     String docId = const Uuid().v4();
     try {
       await firestore.authUserCollection.doc(docId).set(CryptoWalletDTO.fromDomain(cryptoWallet).toJson());
-      return some(unit);
+      return some("Crypto wallet added successfully");
     } on FirebaseException catch (e) {
       print(e.toString());
       return none();
@@ -47,11 +47,11 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
   }
 
   @override
-  Future<Option<Unit>> addGeneralCryptoWallet({required CryptoWallet cryptoWallet}) async {
+  Future<Option<String>> addGeneralCryptoWallet({required CryptoWallet cryptoWallet}) async {
     String docId = const Uuid().v4();
     try {
       await firestore.authUserCollection.doc(docId).set(CryptoWalletDTO.fromDomain(cryptoWallet).toJson());
-      return some(unit);
+      return some("Crypto wallet added successfully");
     } on FirebaseException catch (e) {
       print(e.toString());
       return none();
@@ -59,11 +59,11 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
   }
 
   @override
-  Future<Option<Unit>> createInvestmentTransaction({required InvestmentItem investmentItem}) async {
+  Future<Option<String>> createInvestmentTransaction({required InvestmentItem investmentItem}) async {
     String docId = const Uuid().v4();
     try {
       await firestore.authUserCollection.doc(docId).set(InvestmentItemDTO.fromDomain(investmentItem).toJson());
-      return some(unit);
+      return some("Investment made. Awaiting approval");
     } on FirebaseException catch (e) {
       print(e.toString());
       return none();
@@ -71,11 +71,11 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
   }
 
   @override
-  Future<Option<Unit>> createWithdrawalTransaction({required WithdrawalItem withdrawalItem}) async{
+  Future<Option<String>> createWithdrawalTransaction({required WithdrawalItem withdrawalItem}) async{
     String docId = const Uuid().v4();
     try {
       firestore.authUserCollection.doc(docId).set(WithdrawalItemDTO.fromDomain(withdrawalItem).toJson());
-      return some(unit);
+      return some("Withdrawal submitted. Awaiting approval");
     } on FirebaseException catch (e) {
       print(e.toString());
       return none();

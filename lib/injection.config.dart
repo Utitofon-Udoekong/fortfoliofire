@@ -22,7 +22,8 @@ import 'domain/auth/i_auth_facade.dart' as _i11;
 import 'domain/auth/i_firestore_facade.dart' as _i13;
 import 'infrastructure/auth/firebase_auth_facade.dart' as _i12;
 import 'infrastructure/auth/firebase_firestore_facade.dart' as _i14;
-import 'infrastructure/core/firebase_injectible.dart' as _i26;
+import 'infrastructure/core/firebase_injectible.dart' as _i27;
+import 'infrastructure/user/user_repository.dart' as _i25;
 import 'presentation/home/dashboard/screens/payment_method/bank/cubit/bank_address_cubit.dart'
     as _i5;
 import 'presentation/home/dashboard/screens/payment_method/crypto/bloc/crypto_wallet_bloc.dart'
@@ -34,7 +35,7 @@ import 'presentation/home/dashboard/screens/verification/bloc/upload_image_bloc.
 import 'presentation/home/investment/cubit/investment_cubit.dart' as _i15;
 import 'presentation/home/investment/type/cubit/exchange_type_cubit.dart'
     as _i16;
-import 'presentation/home/wallet/cubit/wallet_cubit.dart' as _i25;
+import 'presentation/home/wallet/cubit/wallet_cubit.dart' as _i26;
 import 'resources/auth_methods.dart' as _i17;
 import 'resources/firestore_methods.dart' as _i6;
 import 'resources/storage_methods.dart'
@@ -76,9 +77,11 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i22.SignUpFormCubit>(() => _i22.SignUpFormCubit());
   gh.factory<_i23.UploadImageBloc>(
       () => _i23.UploadImageBloc(get<_i24.StorageMethods>()));
-  gh.factory<_i25.WalletCubit>(
-      () => _i25.WalletCubit(get<_i14.FirebaseFirestoreFacade>()));
+  gh.lazySingleton<_i25.UserRepository>(() => _i25.UserRepository(
+      get<_i9.FirebaseFirestore>(), get<_i10.FirebaseStorage>()));
+  gh.factory<_i26.WalletCubit>(
+      () => _i26.WalletCubit(get<_i14.FirebaseFirestoreFacade>()));
   return get;
 }
 
-class _$FirebaseInjectableModule extends _i26.FirebaseInjectableModule {}
+class _$FirebaseInjectableModule extends _i27.FirebaseInjectableModule {}

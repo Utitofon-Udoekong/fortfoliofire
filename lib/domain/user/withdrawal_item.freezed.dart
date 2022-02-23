@@ -23,10 +23,9 @@ class _$WithdrawalItemTearOff {
       required int amount,
       required String traxId,
       required String planName,
-      required String status,
+      required Status status,
       required DateTime createdat,
-      required String paymentMethod,
-      required PaymentDetails paymentDetails}) {
+      required String paymentMethod}) {
     return _WithdrawalItem(
       description: description,
       amount: amount,
@@ -35,7 +34,6 @@ class _$WithdrawalItemTearOff {
       status: status,
       createdat: createdat,
       paymentMethod: paymentMethod,
-      paymentDetails: paymentDetails,
     );
   }
 }
@@ -49,10 +47,9 @@ mixin _$WithdrawalItem {
   int get amount => throw _privateConstructorUsedError;
   String get traxId => throw _privateConstructorUsedError;
   String get planName => throw _privateConstructorUsedError;
-  String get status => throw _privateConstructorUsedError;
+  Status get status => throw _privateConstructorUsedError;
   DateTime get createdat => throw _privateConstructorUsedError;
   String get paymentMethod => throw _privateConstructorUsedError;
-  PaymentDetails get paymentDetails => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $WithdrawalItemCopyWith<WithdrawalItem> get copyWith =>
@@ -69,12 +66,9 @@ abstract class $WithdrawalItemCopyWith<$Res> {
       int amount,
       String traxId,
       String planName,
-      String status,
+      Status status,
       DateTime createdat,
-      String paymentMethod,
-      PaymentDetails paymentDetails});
-
-  $PaymentDetailsCopyWith<$Res> get paymentDetails;
+      String paymentMethod});
 }
 
 /// @nodoc
@@ -95,7 +89,6 @@ class _$WithdrawalItemCopyWithImpl<$Res>
     Object? status = freezed,
     Object? createdat = freezed,
     Object? paymentMethod = freezed,
-    Object? paymentDetails = freezed,
   }) {
     return _then(_value.copyWith(
       description: description == freezed
@@ -117,7 +110,7 @@ class _$WithdrawalItemCopyWithImpl<$Res>
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Status,
       createdat: createdat == freezed
           ? _value.createdat
           : createdat // ignore: cast_nullable_to_non_nullable
@@ -126,18 +119,7 @@ class _$WithdrawalItemCopyWithImpl<$Res>
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
               as String,
-      paymentDetails: paymentDetails == freezed
-          ? _value.paymentDetails
-          : paymentDetails // ignore: cast_nullable_to_non_nullable
-              as PaymentDetails,
     ));
-  }
-
-  @override
-  $PaymentDetailsCopyWith<$Res> get paymentDetails {
-    return $PaymentDetailsCopyWith<$Res>(_value.paymentDetails, (value) {
-      return _then(_value.copyWith(paymentDetails: value));
-    });
   }
 }
 
@@ -153,13 +135,9 @@ abstract class _$WithdrawalItemCopyWith<$Res>
       int amount,
       String traxId,
       String planName,
-      String status,
+      Status status,
       DateTime createdat,
-      String paymentMethod,
-      PaymentDetails paymentDetails});
-
-  @override
-  $PaymentDetailsCopyWith<$Res> get paymentDetails;
+      String paymentMethod});
 }
 
 /// @nodoc
@@ -182,7 +160,6 @@ class __$WithdrawalItemCopyWithImpl<$Res>
     Object? status = freezed,
     Object? createdat = freezed,
     Object? paymentMethod = freezed,
-    Object? paymentDetails = freezed,
   }) {
     return _then(_WithdrawalItem(
       description: description == freezed
@@ -204,7 +181,7 @@ class __$WithdrawalItemCopyWithImpl<$Res>
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Status,
       createdat: createdat == freezed
           ? _value.createdat
           : createdat // ignore: cast_nullable_to_non_nullable
@@ -213,10 +190,6 @@ class __$WithdrawalItemCopyWithImpl<$Res>
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
               as String,
-      paymentDetails: paymentDetails == freezed
-          ? _value.paymentDetails
-          : paymentDetails // ignore: cast_nullable_to_non_nullable
-              as PaymentDetails,
     ));
   }
 }
@@ -231,8 +204,7 @@ class _$_WithdrawalItem extends _WithdrawalItem {
       required this.planName,
       required this.status,
       required this.createdat,
-      required this.paymentMethod,
-      required this.paymentDetails})
+      required this.paymentMethod})
       : super._();
 
   @override
@@ -244,17 +216,15 @@ class _$_WithdrawalItem extends _WithdrawalItem {
   @override
   final String planName;
   @override
-  final String status;
+  final Status status;
   @override
   final DateTime createdat;
   @override
   final String paymentMethod;
-  @override
-  final PaymentDetails paymentDetails;
 
   @override
   String toString() {
-    return 'WithdrawalItem(description: $description, amount: $amount, traxId: $traxId, planName: $planName, status: $status, createdat: $createdat, paymentMethod: $paymentMethod, paymentDetails: $paymentDetails)';
+    return 'WithdrawalItem(description: $description, amount: $amount, traxId: $traxId, planName: $planName, status: $status, createdat: $createdat, paymentMethod: $paymentMethod)';
   }
 
   @override
@@ -270,9 +240,7 @@ class _$_WithdrawalItem extends _WithdrawalItem {
             const DeepCollectionEquality().equals(other.status, status) &&
             const DeepCollectionEquality().equals(other.createdat, createdat) &&
             const DeepCollectionEquality()
-                .equals(other.paymentMethod, paymentMethod) &&
-            const DeepCollectionEquality()
-                .equals(other.paymentDetails, paymentDetails));
+                .equals(other.paymentMethod, paymentMethod));
   }
 
   @override
@@ -284,8 +252,7 @@ class _$_WithdrawalItem extends _WithdrawalItem {
       const DeepCollectionEquality().hash(planName),
       const DeepCollectionEquality().hash(status),
       const DeepCollectionEquality().hash(createdat),
-      const DeepCollectionEquality().hash(paymentMethod),
-      const DeepCollectionEquality().hash(paymentDetails));
+      const DeepCollectionEquality().hash(paymentMethod));
 
   @JsonKey(ignore: true)
   @override
@@ -299,10 +266,9 @@ abstract class _WithdrawalItem extends WithdrawalItem {
       required int amount,
       required String traxId,
       required String planName,
-      required String status,
+      required Status status,
       required DateTime createdat,
-      required String paymentMethod,
-      required PaymentDetails paymentDetails}) = _$_WithdrawalItem;
+      required String paymentMethod}) = _$_WithdrawalItem;
   const _WithdrawalItem._() : super._();
 
   @override
@@ -314,13 +280,11 @@ abstract class _WithdrawalItem extends WithdrawalItem {
   @override
   String get planName;
   @override
-  String get status;
+  Status get status;
   @override
   DateTime get createdat;
   @override
   String get paymentMethod;
-  @override
-  PaymentDetails get paymentDetails;
   @override
   @JsonKey(ignore: true)
   _$WithdrawalItemCopyWith<_WithdrawalItem> get copyWith =>

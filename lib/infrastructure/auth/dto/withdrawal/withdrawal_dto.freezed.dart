@@ -29,8 +29,7 @@ class _$WithdrawalItemDTOTearOff {
       required String planName,
       required String status,
       required DateTime createdat,
-      required String paymentMethod,
-      required PaymentDetails paymentDetails}) {
+      required String paymentMethod}) {
     return _WithdrawalItemDTO(
       description: description,
       amount: amount,
@@ -39,7 +38,6 @@ class _$WithdrawalItemDTOTearOff {
       status: status,
       createdat: createdat,
       paymentMethod: paymentMethod,
-      paymentDetails: paymentDetails,
     );
   }
 
@@ -60,7 +58,6 @@ mixin _$WithdrawalItemDTO {
   String get status => throw _privateConstructorUsedError;
   DateTime get createdat => throw _privateConstructorUsedError;
   String get paymentMethod => throw _privateConstructorUsedError;
-  PaymentDetails get paymentDetails => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -80,10 +77,7 @@ abstract class $WithdrawalItemDTOCopyWith<$Res> {
       String planName,
       String status,
       DateTime createdat,
-      String paymentMethod,
-      PaymentDetails paymentDetails});
-
-  $PaymentDetailsCopyWith<$Res> get paymentDetails;
+      String paymentMethod});
 }
 
 /// @nodoc
@@ -104,7 +98,6 @@ class _$WithdrawalItemDTOCopyWithImpl<$Res>
     Object? status = freezed,
     Object? createdat = freezed,
     Object? paymentMethod = freezed,
-    Object? paymentDetails = freezed,
   }) {
     return _then(_value.copyWith(
       description: description == freezed
@@ -135,18 +128,7 @@ class _$WithdrawalItemDTOCopyWithImpl<$Res>
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
               as String,
-      paymentDetails: paymentDetails == freezed
-          ? _value.paymentDetails
-          : paymentDetails // ignore: cast_nullable_to_non_nullable
-              as PaymentDetails,
     ));
-  }
-
-  @override
-  $PaymentDetailsCopyWith<$Res> get paymentDetails {
-    return $PaymentDetailsCopyWith<$Res>(_value.paymentDetails, (value) {
-      return _then(_value.copyWith(paymentDetails: value));
-    });
   }
 }
 
@@ -164,11 +146,7 @@ abstract class _$WithdrawalItemDTOCopyWith<$Res>
       String planName,
       String status,
       DateTime createdat,
-      String paymentMethod,
-      PaymentDetails paymentDetails});
-
-  @override
-  $PaymentDetailsCopyWith<$Res> get paymentDetails;
+      String paymentMethod});
 }
 
 /// @nodoc
@@ -191,7 +169,6 @@ class __$WithdrawalItemDTOCopyWithImpl<$Res>
     Object? status = freezed,
     Object? createdat = freezed,
     Object? paymentMethod = freezed,
-    Object? paymentDetails = freezed,
   }) {
     return _then(_WithdrawalItemDTO(
       description: description == freezed
@@ -222,10 +199,6 @@ class __$WithdrawalItemDTOCopyWithImpl<$Res>
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
               as String,
-      paymentDetails: paymentDetails == freezed
-          ? _value.paymentDetails
-          : paymentDetails // ignore: cast_nullable_to_non_nullable
-              as PaymentDetails,
     ));
   }
 }
@@ -240,8 +213,7 @@ class _$_WithdrawalItemDTO extends _WithdrawalItemDTO {
       required this.planName,
       required this.status,
       required this.createdat,
-      required this.paymentMethod,
-      required this.paymentDetails})
+      required this.paymentMethod})
       : super._();
 
   factory _$_WithdrawalItemDTO.fromJson(Map<String, dynamic> json) =>
@@ -261,12 +233,10 @@ class _$_WithdrawalItemDTO extends _WithdrawalItemDTO {
   final DateTime createdat;
   @override
   final String paymentMethod;
-  @override
-  final PaymentDetails paymentDetails;
 
   @override
   String toString() {
-    return 'WithdrawalItemDTO(description: $description, amount: $amount, traxId: $traxId, planName: $planName, status: $status, createdat: $createdat, paymentMethod: $paymentMethod, paymentDetails: $paymentDetails)';
+    return 'WithdrawalItemDTO(description: $description, amount: $amount, traxId: $traxId, planName: $planName, status: $status, createdat: $createdat, paymentMethod: $paymentMethod)';
   }
 
   @override
@@ -282,9 +252,7 @@ class _$_WithdrawalItemDTO extends _WithdrawalItemDTO {
             const DeepCollectionEquality().equals(other.status, status) &&
             const DeepCollectionEquality().equals(other.createdat, createdat) &&
             const DeepCollectionEquality()
-                .equals(other.paymentMethod, paymentMethod) &&
-            const DeepCollectionEquality()
-                .equals(other.paymentDetails, paymentDetails));
+                .equals(other.paymentMethod, paymentMethod));
   }
 
   @override
@@ -296,8 +264,7 @@ class _$_WithdrawalItemDTO extends _WithdrawalItemDTO {
       const DeepCollectionEquality().hash(planName),
       const DeepCollectionEquality().hash(status),
       const DeepCollectionEquality().hash(createdat),
-      const DeepCollectionEquality().hash(paymentMethod),
-      const DeepCollectionEquality().hash(paymentDetails));
+      const DeepCollectionEquality().hash(paymentMethod));
 
   @JsonKey(ignore: true)
   @override
@@ -318,8 +285,7 @@ abstract class _WithdrawalItemDTO extends WithdrawalItemDTO {
       required String planName,
       required String status,
       required DateTime createdat,
-      required String paymentMethod,
-      required PaymentDetails paymentDetails}) = _$_WithdrawalItemDTO;
+      required String paymentMethod}) = _$_WithdrawalItemDTO;
   const _WithdrawalItemDTO._() : super._();
 
   factory _WithdrawalItemDTO.fromJson(Map<String, dynamic> json) =
@@ -339,8 +305,6 @@ abstract class _WithdrawalItemDTO extends WithdrawalItemDTO {
   DateTime get createdat;
   @override
   String get paymentMethod;
-  @override
-  PaymentDetails get paymentDetails;
   @override
   @JsonKey(ignore: true)
   _$WithdrawalItemDTOCopyWith<_WithdrawalItemDTO> get copyWith =>

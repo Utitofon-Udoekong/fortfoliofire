@@ -1,13 +1,12 @@
 import 'package:bloc/bloc.dart';
+import 'package:fortfolio/domain/auth/status.dart';
 import 'package:fortfolio/domain/user/bank_address.dart';
 import 'package:fortfolio/domain/user/crypto_wallet.dart';
-import 'package:fortfolio/domain/user/payment_details.dart';
 import 'package:fortfolio/domain/user/withdrawal_item.dart';
-import 'package:fortfolio/infrastructure/auth/dto/withdrawal/withdrawal_dto.dart';
 import 'package:fortfolio/infrastructure/auth/firebase_firestore_facade.dart';
-import 'package:fortfolio/resources/firestore_methods.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:uuid/uuid.dart';
 
 part 'wallet_state.dart';
 part 'wallet_cubit.freezed.dart';
@@ -73,21 +72,21 @@ class WalletCubit extends Cubit<WalletState> {
     final int amount = state.amountToBeWithdrawn;
     final String paymentMethod = state.withdrawalMethod;
     final withdrawalDetails = state.withdrawalDetails;
+    final traxId = const Uuid().v4();
     try {
       WithdrawalItem withdrawalItem = WithdrawalItem(
         description: description,
         amount: amount,
         traxId: traxId,
-        planName: planName,
-        status: status,
-        createdat: createdat,
+        planName: investmentPlan,
+        status: Status.processing,
+        createdat: DateTime.now(),
         paymentMethod: paymentMethod,
-        paymentDetails: PaymentDetails(description: description, amount: amount, createdat: DateTime.now(), status: status, traxId: traxId, paymentMethod: paymentMethod),
       );
-      // final String response =
-      //     await firestoreFacade.createWithdrawalTransaction(
-      //         description, amount, investmentPlan, paymentMethod, withdrawalDetails);
-      // emit(state.copyWith(response: response));
+      final response = await firestoreFacade.createWithdrawalTransaction(withdrawalItem: withdrawalItem);
+      response.fold(() => null, (response){
+        emit(state.copyWith(response: response));
+      });
     } catch (e) {
       emit(state.copyWith(response: e.toString()));
     }
