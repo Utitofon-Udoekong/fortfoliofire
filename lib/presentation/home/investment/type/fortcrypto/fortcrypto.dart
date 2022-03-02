@@ -1,7 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:fortfolio/domain/constants/plans.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
+import 'package:fortfolio/presentation/routes/router.gr.dart';
+import 'package:fortfolio/utils/pages.dart';
 
 class FortCrypto extends StatelessWidget {
   const FortCrypto({Key? key}) : super(key: key);
@@ -9,7 +12,10 @@ class FortCrypto extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          backgroundColor: kWhiteColor,
+
+        ),
         body: Padding(
           padding: kDefaultPadding,
           child: SingleChildScrollView(
@@ -37,7 +43,7 @@ class FortCrypto extends StatelessWidget {
                   height: 20,
                 ),
                 CustomFilledButton(text: 'Invest', onTap: () {
-                  // Get.to(FortCryptoInvestment());
+                  context.router.push(const FortCryptoInvestmentRoute());
                 }),
                 const SizedBox(
                   height: 20,
@@ -117,7 +123,7 @@ class FortCrypto extends StatelessWidget {
                                 Flex(
                                   direction: Axis.horizontal,
                                   children: <Widget>[
-                                    const Image(image: AssetImage('images/fortcrypto.png')),
+                                    Image(image: AssetImage('images/${plans[index].icon}.png')),
                                     const SizedBox(
                                       width: 30,
                                     ),
@@ -177,7 +183,7 @@ class FortCrypto extends StatelessWidget {
                               style: subTitle.copyWith(
                                   fontSize: 15, color: kBlackColor),
                                   children: <TextSpan>[
-                                    TextSpan(text: '${plans[index].minPrice}', style: subTitle.copyWith(fontWeight: FontWeight.w600))
+                                    TextSpan(text: plans[index].minPrice, style: subTitle.copyWith(fontWeight: FontWeight.w600))
                                   ]
                               )
                             ),

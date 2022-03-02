@@ -1,6 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
+import 'package:fortfolio/presentation/routes/router.gr.dart';
+import 'package:fortfolio/utils/pages.dart';
 
 class CryptoWallet extends StatelessWidget {
   const CryptoWallet({Key? key}) : super(key: key);
@@ -31,9 +34,7 @@ class CryptoWallet extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-          onPressed: () => {
-            // Get.to(AddCryptoWallet())
-          },
+          onPressed: () => context.router.push(const AddCryptoWalletRoute()),
           child: const Icon(
             Icons.add,
             size: 25,

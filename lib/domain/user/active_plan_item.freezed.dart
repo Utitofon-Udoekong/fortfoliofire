@@ -19,8 +19,8 @@ class _$ActivePlanItemTearOff {
   const _$ActivePlanItemTearOff();
 
   _ActivePlanItem call(
-      {required UniqueId id,
-      required ItemName planName,
+      {required String id,
+      required String planName,
       required int amount,
       required int duration,
       required int accountBalance,
@@ -41,8 +41,8 @@ const $ActivePlanItem = _$ActivePlanItemTearOff();
 
 /// @nodoc
 mixin _$ActivePlanItem {
-  UniqueId get id => throw _privateConstructorUsedError;
-  ItemName get planName => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  String get planName => throw _privateConstructorUsedError;
   int get amount => throw _privateConstructorUsedError;
   int get duration => throw _privateConstructorUsedError;
   int get accountBalance => throw _privateConstructorUsedError;
@@ -59,8 +59,8 @@ abstract class $ActivePlanItemCopyWith<$Res> {
           ActivePlanItem value, $Res Function(ActivePlanItem) then) =
       _$ActivePlanItemCopyWithImpl<$Res>;
   $Res call(
-      {UniqueId id,
-      ItemName planName,
+      {String id,
+      String planName,
       int amount,
       int duration,
       int accountBalance,
@@ -89,11 +89,11 @@ class _$ActivePlanItemCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as UniqueId,
+              as String,
       planName: planName == freezed
           ? _value.planName
           : planName // ignore: cast_nullable_to_non_nullable
-              as ItemName,
+              as String,
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -122,8 +122,8 @@ abstract class _$ActivePlanItemCopyWith<$Res>
       __$ActivePlanItemCopyWithImpl<$Res>;
   @override
   $Res call(
-      {UniqueId id,
-      ItemName planName,
+      {String id,
+      String planName,
       int amount,
       int duration,
       int accountBalance,
@@ -154,11 +154,11 @@ class __$ActivePlanItemCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as UniqueId,
+              as String,
       planName: planName == freezed
           ? _value.planName
           : planName // ignore: cast_nullable_to_non_nullable
-              as ItemName,
+              as String,
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -192,9 +192,9 @@ class _$_ActivePlanItem extends _ActivePlanItem {
       : super._();
 
   @override
-  final UniqueId id;
+  final String id;
   @override
-  final ItemName planName;
+  final String planName;
   @override
   final int amount;
   @override
@@ -241,8 +241,8 @@ class _$_ActivePlanItem extends _ActivePlanItem {
 
 abstract class _ActivePlanItem extends ActivePlanItem {
   const factory _ActivePlanItem(
-      {required UniqueId id,
-      required ItemName planName,
+      {required String id,
+      required String planName,
       required int amount,
       required int duration,
       required int accountBalance,
@@ -250,9 +250,9 @@ abstract class _ActivePlanItem extends ActivePlanItem {
   const _ActivePlanItem._() : super._();
 
   @override
-  UniqueId get id;
+  String get id;
   @override
-  ItemName get planName;
+  String get planName;
   @override
   int get amount;
   @override

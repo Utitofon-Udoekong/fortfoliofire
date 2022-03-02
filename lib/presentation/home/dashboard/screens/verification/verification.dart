@@ -1,7 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_icon_trailing_button.dart';
-import 'package:fortfolio/presentation/home/dashboard/screens/verification/upload.dart';
+import 'package:fortfolio/presentation/routes/router.gr.dart';
+import 'package:fortfolio/utils/pages.dart';
 
 class VerificationPage extends StatelessWidget {
   const VerificationPage({Key? key}) : super(key: key);
@@ -19,7 +21,7 @@ class VerificationPage extends StatelessWidget {
               height: 20,
             ),
             InkWell(
-              onTap: () => {},
+              onTap: () => context.router.pop(),
               child: const Icon(Icons.close),
             ),
             const SizedBox(
@@ -43,15 +45,15 @@ class VerificationPage extends StatelessWidget {
             const SizedBox(
               height: 40,
             ),
-            const CustomIconTrailingButton(icon: 'idcard', title: 'National ID Card', page: UploadPage() ),
+            const CustomIconTrailingButton(icon: 'idcard', title: 'National ID Card', page: UploadPageRoute() ),
             const SizedBox(
               height: 20,
             ),
-            const CustomIconTrailingButton(icon: 'passport', title: 'International Passport', page: UploadPage() ),
+            const CustomIconTrailingButton(icon: 'passport', title: 'International Passport', page: UploadPageRoute() ),
             const SizedBox(
               height: 20,
             ),
-            const CustomIconTrailingButton(icon: 'license', title: 'Drivers License', page: UploadPage() ),
+            const CustomIconTrailingButton(icon: 'license', title: 'Drivers License', page: UploadPageRoute() ),
           ],
         ),
       ),

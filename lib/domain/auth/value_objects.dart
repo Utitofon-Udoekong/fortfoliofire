@@ -8,7 +8,7 @@ class EmailAddress extends ValueObject<String> {
   @override
   final Either<ValueFailure<String>, String> value;
   factory EmailAddress(String input){
-    assert(input.isNotEmpty);
+    //assert(input.isNotEmpty);
     return EmailAddress._(
       validateEmail(input)
     );
@@ -25,7 +25,7 @@ class Password extends ValueObject<String> {
   final Either<ValueFailure<String>, String> value;
 
   factory Password(String input){
-    assert(input.isNotEmpty);
+    //assert(input.isNotEmpty);
     return Password._(
       validatePassword(input)
     );
@@ -43,7 +43,7 @@ class UserName extends ValueObject<String> {
   final Either<ValueFailure<String>, String> value;
 
   factory UserName(String input){
-    assert(input.isNotEmpty);
+    //assert(input.isNotEmpty);
     return UserName._(
       validateUserName(input)
     );
@@ -61,7 +61,7 @@ class Phone extends ValueObject<String> {
   final Either<ValueFailure<String>, String> value;
 
   factory Phone(String input){
-    assert(input.isNotEmpty);
+    //assert(input.isNotEmpty);
     return Phone._(
       validatePhone(input)
     );

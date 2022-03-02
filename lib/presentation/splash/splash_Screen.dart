@@ -4,8 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 
-// import 'onboarding.dart';
-
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
@@ -20,9 +18,9 @@ class _SplashScreenState extends State<SplashScreen> {
     WidgetsBinding.instance!.addPostFrameCallback((_) {
       final bool isUserLoggedIn = context.read<AuthCubit>().state.isLoggedIn;
       final bool isUserCheckedFromAuthService =
-          context.read<AuthCubit>().state.isUserCheckedFromAuthService;
+          context.read<AuthCubit>().state.isUserCheckedFromAuthFacade;
       if (isUserLoggedIn) {
-        AutoRouter.of(context).replace(const HomePageRoute());
+        context.router.replace(const HomePageRoute());
       } else if (!isUserLoggedIn && isUserCheckedFromAuthService) {
         context.router.replace(const OnboardingScreenRoute());
       }
@@ -35,12 +33,12 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return BlocListener<AuthCubit, AuthState>(
       listenWhen: (previous, current) => 
-        previous.isUserCheckedFromAuthService != current.isUserCheckedFromAuthService &&
-        current.isUserCheckedFromAuthService,
+        previous.isUserCheckedFromAuthFacade != current.isUserCheckedFromAuthFacade &&
+        current.isUserCheckedFromAuthFacade,
       listener: (context, state) {
         final bool isUserLoggedIn = state.isLoggedIn;
         if (isUserLoggedIn) {
-          // AutoRouter.of(context).replace(const HomeRoute());
+          context.router.replace(const HomePageRoute());
         } else {
           Future.delayed(const Duration(seconds: 1)).then((_) {
             context.router.replace(const OnboardingScreenRoute());
@@ -55,7 +53,7 @@ class _SplashScreenState extends State<SplashScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                width: MediaQuery.of(context).size.width - 20,
+                width: MediaQuery.of(context).size.width / 1.3,
                 height: MediaQuery.of(context).size.height / 5,
                 decoration: const BoxDecoration(
                   image: DecorationImage(

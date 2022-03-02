@@ -1,28 +1,30 @@
-import 'package:dartz/dartz.dart';
-import 'package:fortfolio/domain/core/failures.dart';
-import 'package:fortfolio/domain/core/value_objects.dart';
+import 'package:fortfolio/domain/auth/status.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import 'value_objects.dart';
-
 part 'withdrawal_item.freezed.dart';
+
 @freezed
 abstract class WithdrawalItem implements _$WithdrawalItem {
   const WithdrawalItem._();
-  const factory WithdrawalItem(
-      {required UniqueId id,
-      required ItemName planName,
+  const factory WithdrawalItem({
+    required String description,
     required int amount,
-    required bool processed
-      }) = _WithdrawalItem;
+    required String traxId,
+    required String planName,
+    required Status status,
+    required DateTime createdat,
+    required String paymentMethod,
+    // add duration
+    // add roi
+  }) = _WithdrawalItem;
 
   factory WithdrawalItem.empty() => WithdrawalItem(
-        id: UniqueId(),
-        planName: ItemName(''),
-        processed: false,
-        amount: 0
+        amount: 0,
+        createdat: DateTime.now(),
+        description: '',
+        paymentMethod: '',
+        planName: '',
+        status: Status.processing,
+        traxId: '',
       );
-  Option<ValueFailure<dynamic>> get failureOption {
-    return planName.value.fold((f) => some(f), (_) => none());
-  }
+  String get statusString => status.toCustomString();
 }

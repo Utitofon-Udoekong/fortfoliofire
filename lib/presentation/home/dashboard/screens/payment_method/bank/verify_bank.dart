@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
@@ -52,7 +53,7 @@ class _VerifyBankState extends State<VerifyBank> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 InkWell(
-                  onTap: (){},
+                  onTap: ()=>context.router.pop(),
                   child: const Icon(Icons.close, size: 18, color: kBlackColor,),
                 ),
                 const SizedBox(

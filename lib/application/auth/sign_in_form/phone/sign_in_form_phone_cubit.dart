@@ -102,6 +102,7 @@ class SignInFormPhoneCubit extends Cubit<SignInFormPhoneState> {
             );
           },
           (_) {
+            _authFacade.getDatabaseUserWithPhoneNumber(phoneNumber: state.phoneNumber.getOrCrash());
             emit(state.copyWith(isSubmitting: false));
             // Verification completed successfully case.
             // Bloc Listener in the UI should listen to Auth Listener State and if user is authenticated and not anonymous, we should take them to Registration page or Feed Page.

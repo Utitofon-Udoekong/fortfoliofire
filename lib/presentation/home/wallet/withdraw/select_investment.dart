@@ -1,5 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
+import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
+import 'package:fortfolio/presentation/routes/router.gr.dart';
+import 'package:fortfolio/utils/pages.dart';
 
 class SelectInvestmentToWithdraw extends StatelessWidget {
   const SelectInvestmentToWithdraw({Key? key}) : super(key: key);
@@ -18,7 +22,7 @@ class SelectInvestmentToWithdraw extends StatelessWidget {
                   height: 20,
                 ),
                 InkWell(
-                  onTap: () => {},
+                  onTap: () => context.router.pop(),
                   child: const Icon(Icons.close),
                 ),
                 const SizedBox(
@@ -31,13 +35,14 @@ class SelectInvestmentToWithdraw extends StatelessWidget {
                 const SizedBox(
                   height: 30,
                 ),
-                buildTile('FortDollar', 350000),
+                buildTile('FortDollar', 350000, context),
                 const SizedBox(
                   height: 10,
                 ),
                 buildTile(
                   'FortShield',
                   60000,
+                  context
                 ),
                 const SizedBox(
                   height: 10,
@@ -45,6 +50,7 @@ class SelectInvestmentToWithdraw extends StatelessWidget {
                 buildTile(
                   'FortCrypto',
                   60,
+                  context
                 )
               ],
             ),
@@ -54,7 +60,7 @@ class SelectInvestmentToWithdraw extends StatelessWidget {
     );
   }
 
-  Widget buildTile(String title, int amount) {
+  Widget buildTile(String title, int amount, BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -81,52 +87,54 @@ class SelectInvestmentToWithdraw extends StatelessWidget {
             ],
           ),
           GestureDetector(
-            onTap: () => {
-              // Get.bottomSheet(
-              //     Padding(
-              //       padding: kDefaultPadding,
-              //       child: Column(
-              //         crossAxisAlignment: CrossAxisAlignment.start,
-              //         children: <Widget>[
-              //           SizedBox(
-              //             height: 30,
-              //           ),
-              //           Text(
-              //             'How much are you\nwithdrawing?',
-              //             style: titleText.copyWith(fontSize: 20),
-              //           ),
-              //           SizedBox(
-              //             height: 30,
-              //           ),
-              //           Text(
-              //             'Amount',
-              //             style: subTitle.copyWith(color: kgreyColor),
-              //           ),
-              //           SizedBox(
-              //             height: 10,
-              //           ),
-              //           TextFormField(
-              //             // controller: controller.code,
-              //             autocorrect: false,
-              //             keyboardType: TextInputType.number,
-              //             decoration: InputDecoration(
-              //                 filled: true,
-              //                 fillColor: Color(0xFFF3F6F8),
-              //                 border: InputBorder.none),
-              //             // onChanged: (value) => controller.updateResetPasswordform(value),
-              //           ),
-              //           SizedBox(
-              //             height: 10,
-              //           ),
-              //           CustomFilledButton(
-              //               text: 'CONTINUE',
-              //               onTap: () {
-              //                 Get.to(SelectWithdrawalMethod());
-              //               })
-              //         ],
-              //       ),
-              //     ),
-              //     backgroundColor: kWhiteColor)
+            onTap: () {
+              showModalBottomSheet(context: context, builder: (BuildContext context){
+                return SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.35,
+                  child:  Padding(
+                    padding: kDefaultPadding,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        Text(
+                          'How much are you\nwithdrawing?',
+                          style: titleText.copyWith(fontSize: 20),
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        Text(
+                          'Amount',
+                          style: subTitle.copyWith(color: kgreyColor),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                          autocorrect: false,
+                          keyboardType: TextInputType.number,
+                          decoration: const InputDecoration(
+                              filled: true,
+                              fillColor: Color(0xFFF3F6F8),
+                              border: InputBorder.none),
+                          // onChanged: (value) => controller.updateResetPasswordform(value),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        CustomFilledButton(
+                            text: 'CONTINUE',
+                            onTap: () => context.router.push(const SelectWithdrawalMethodRoute()))
+                      ],
+                    ),
+                ));
+              },
+              backgroundColor: kWhiteColor
+              );
+              
             },
             child: Container(
               alignment: Alignment.center,

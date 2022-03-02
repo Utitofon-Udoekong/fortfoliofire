@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 
@@ -9,7 +10,7 @@ class FAQPage extends StatefulWidget {
 }
 
 class _FAQPageState extends State<FAQPage> {
-  bool _customTileExpanded = false;
+  final bool _customTileExpanded = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +25,7 @@ class _FAQPageState extends State<FAQPage> {
                   height: 20,
                 ),
                 InkWell(
-                  onTap: () => {},
+                  onTap: () => context.router.pop(),
                   child: const Icon(Icons.close),
                 ),
                 const SizedBox(
@@ -52,8 +53,8 @@ class _FAQPageState extends State<FAQPage> {
   Widget buildTile() {
     return Container(
       decoration: BoxDecoration(
-          color: Color(0XFFF3F6F8), borderRadius: BorderRadius.circular(6.0)),
-          margin: EdgeInsets.only(bottom: 15.0),
+          color: const Color(0XFFF3F6F8), borderRadius: BorderRadius.circular(6.0)),
+          margin: const EdgeInsets.only(bottom: 15.0),
       child: ExpansionPanelList(
         elevation: 0.0,
         expansionCallback: (int index, bool isExpanded) {
@@ -73,15 +74,15 @@ class _FAQPageState extends State<FAQPage> {
               );
             },
             body: Container(
-              padding: EdgeInsets.all(10.0),
-              margin: EdgeInsets.only(top: 10),
+              padding: const EdgeInsets.all(10.0),
+              margin: const EdgeInsets.only(top: 10),
               decoration: BoxDecoration(
-                  color: Color(0XFFF8F8F8),
+                  color: const Color(0XFFF8F8F8),
                   borderRadius: BorderRadius.circular(6.0)),
               child: Text(
                 item.answer,
                 style:
-                    subTitle.copyWith(fontSize: 14, color: Color(0XFF535454)),
+                    subTitle.copyWith(fontSize: 14, color: const Color(0XFF535454)),
               ),
             ),
             isExpanded: item.isExpanded,

@@ -18,10 +18,26 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$AuthUserModelTearOff {
   const _$AuthUserModelTearOff();
 
-  _AuthUserModel call({required UniqueId id, required Phone phoneNumber}) {
+  _AuthUserModel call(
+      {required String id,
+      required String displayName,
+      required String phoneNumber,
+      required String firstName,
+      required String lastName,
+      required double balance,
+      required String email,
+      required bool isVerified,
+      required DateTime createdat}) {
     return _AuthUserModel(
       id: id,
+      displayName: displayName,
       phoneNumber: phoneNumber,
+      firstName: firstName,
+      lastName: lastName,
+      balance: balance,
+      email: email,
+      isVerified: isVerified,
+      createdat: createdat,
     );
   }
 }
@@ -31,8 +47,15 @@ const $AuthUserModel = _$AuthUserModelTearOff();
 
 /// @nodoc
 mixin _$AuthUserModel {
-  UniqueId get id => throw _privateConstructorUsedError;
-  Phone get phoneNumber => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  String get displayName => throw _privateConstructorUsedError;
+  String get phoneNumber => throw _privateConstructorUsedError;
+  String get firstName => throw _privateConstructorUsedError;
+  String get lastName => throw _privateConstructorUsedError;
+  double get balance => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
+  bool get isVerified => throw _privateConstructorUsedError;
+  DateTime get createdat => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AuthUserModelCopyWith<AuthUserModel> get copyWith =>
@@ -44,7 +67,16 @@ abstract class $AuthUserModelCopyWith<$Res> {
   factory $AuthUserModelCopyWith(
           AuthUserModel value, $Res Function(AuthUserModel) then) =
       _$AuthUserModelCopyWithImpl<$Res>;
-  $Res call({UniqueId id, Phone phoneNumber});
+  $Res call(
+      {String id,
+      String displayName,
+      String phoneNumber,
+      String firstName,
+      String lastName,
+      double balance,
+      String email,
+      bool isVerified,
+      DateTime createdat});
 }
 
 /// @nodoc
@@ -59,17 +91,52 @@ class _$AuthUserModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? displayName = freezed,
     Object? phoneNumber = freezed,
+    Object? firstName = freezed,
+    Object? lastName = freezed,
+    Object? balance = freezed,
+    Object? email = freezed,
+    Object? isVerified = freezed,
+    Object? createdat = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as UniqueId,
+              as String,
+      displayName: displayName == freezed
+          ? _value.displayName
+          : displayName // ignore: cast_nullable_to_non_nullable
+              as String,
       phoneNumber: phoneNumber == freezed
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as Phone,
+              as String,
+      firstName: firstName == freezed
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastName: lastName == freezed
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String,
+      balance: balance == freezed
+          ? _value.balance
+          : balance // ignore: cast_nullable_to_non_nullable
+              as double,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      isVerified: isVerified == freezed
+          ? _value.isVerified
+          : isVerified // ignore: cast_nullable_to_non_nullable
+              as bool,
+      createdat: createdat == freezed
+          ? _value.createdat
+          : createdat // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -81,7 +148,16 @@ abstract class _$AuthUserModelCopyWith<$Res>
           _AuthUserModel value, $Res Function(_AuthUserModel) then) =
       __$AuthUserModelCopyWithImpl<$Res>;
   @override
-  $Res call({UniqueId id, Phone phoneNumber});
+  $Res call(
+      {String id,
+      String displayName,
+      String phoneNumber,
+      String firstName,
+      String lastName,
+      double balance,
+      String email,
+      bool isVerified,
+      DateTime createdat});
 }
 
 /// @nodoc
@@ -98,17 +174,52 @@ class __$AuthUserModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? displayName = freezed,
     Object? phoneNumber = freezed,
+    Object? firstName = freezed,
+    Object? lastName = freezed,
+    Object? balance = freezed,
+    Object? email = freezed,
+    Object? isVerified = freezed,
+    Object? createdat = freezed,
   }) {
     return _then(_AuthUserModel(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as UniqueId,
+              as String,
+      displayName: displayName == freezed
+          ? _value.displayName
+          : displayName // ignore: cast_nullable_to_non_nullable
+              as String,
       phoneNumber: phoneNumber == freezed
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as Phone,
+              as String,
+      firstName: firstName == freezed
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastName: lastName == freezed
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String,
+      balance: balance == freezed
+          ? _value.balance
+          : balance // ignore: cast_nullable_to_non_nullable
+              as double,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      isVerified: isVerified == freezed
+          ? _value.isVerified
+          : isVerified // ignore: cast_nullable_to_non_nullable
+              as bool,
+      createdat: createdat == freezed
+          ? _value.createdat
+          : createdat // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -116,17 +227,40 @@ class __$AuthUserModelCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_AuthUserModel extends _AuthUserModel {
-  const _$_AuthUserModel({required this.id, required this.phoneNumber})
+  const _$_AuthUserModel(
+      {required this.id,
+      required this.displayName,
+      required this.phoneNumber,
+      required this.firstName,
+      required this.lastName,
+      required this.balance,
+      required this.email,
+      required this.isVerified,
+      required this.createdat})
       : super._();
 
   @override
-  final UniqueId id;
+  final String id;
   @override
-  final Phone phoneNumber;
+  final String displayName;
+  @override
+  final String phoneNumber;
+  @override
+  final String firstName;
+  @override
+  final String lastName;
+  @override
+  final double balance;
+  @override
+  final String email;
+  @override
+  final bool isVerified;
+  @override
+  final DateTime createdat;
 
   @override
   String toString() {
-    return 'AuthUserModel(id: $id, phoneNumber: $phoneNumber)';
+    return 'AuthUserModel(id: $id, displayName: $displayName, phoneNumber: $phoneNumber, firstName: $firstName, lastName: $lastName, balance: $balance, email: $email, isVerified: $isVerified, createdat: $createdat)';
   }
 
   @override
@@ -136,14 +270,30 @@ class _$_AuthUserModel extends _AuthUserModel {
             other is _AuthUserModel &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality()
-                .equals(other.phoneNumber, phoneNumber));
+                .equals(other.displayName, displayName) &&
+            const DeepCollectionEquality()
+                .equals(other.phoneNumber, phoneNumber) &&
+            const DeepCollectionEquality().equals(other.firstName, firstName) &&
+            const DeepCollectionEquality().equals(other.lastName, lastName) &&
+            const DeepCollectionEquality().equals(other.balance, balance) &&
+            const DeepCollectionEquality().equals(other.email, email) &&
+            const DeepCollectionEquality()
+                .equals(other.isVerified, isVerified) &&
+            const DeepCollectionEquality().equals(other.createdat, createdat));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(phoneNumber));
+      const DeepCollectionEquality().hash(displayName),
+      const DeepCollectionEquality().hash(phoneNumber),
+      const DeepCollectionEquality().hash(firstName),
+      const DeepCollectionEquality().hash(lastName),
+      const DeepCollectionEquality().hash(balance),
+      const DeepCollectionEquality().hash(email),
+      const DeepCollectionEquality().hash(isVerified),
+      const DeepCollectionEquality().hash(createdat));
 
   @JsonKey(ignore: true)
   @override
@@ -153,13 +303,35 @@ class _$_AuthUserModel extends _AuthUserModel {
 
 abstract class _AuthUserModel extends AuthUserModel {
   const factory _AuthUserModel(
-      {required UniqueId id, required Phone phoneNumber}) = _$_AuthUserModel;
+      {required String id,
+      required String displayName,
+      required String phoneNumber,
+      required String firstName,
+      required String lastName,
+      required double balance,
+      required String email,
+      required bool isVerified,
+      required DateTime createdat}) = _$_AuthUserModel;
   const _AuthUserModel._() : super._();
 
   @override
-  UniqueId get id;
+  String get id;
   @override
-  Phone get phoneNumber;
+  String get displayName;
+  @override
+  String get phoneNumber;
+  @override
+  String get firstName;
+  @override
+  String get lastName;
+  @override
+  double get balance;
+  @override
+  String get email;
+  @override
+  bool get isVerified;
+  @override
+  DateTime get createdat;
   @override
   @JsonKey(ignore: true)
   _$AuthUserModelCopyWith<_AuthUserModel> get copyWith =>

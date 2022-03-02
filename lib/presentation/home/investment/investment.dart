@@ -13,7 +13,7 @@ class InvestmentPage extends StatelessWidget {
     return SafeArea(
           child: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 12),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -71,8 +71,8 @@ class InvestmentPage extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(6.0),
-          color: Color.fromRGBO(246, 249, 255, 0.55)),
-      padding: EdgeInsets.symmetric(horizontal: 7.0, vertical: 12.0),
+          color: const Color.fromRGBO(246, 249, 255, 0.55)),
+      padding: const EdgeInsets.symmetric(horizontal: 7.0, vertical: 12.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -83,9 +83,9 @@ class InvestmentPage extends StatelessWidget {
               Flex(
                 direction: Axis.horizontal,
                 children: <Widget>[
-                  svg,
+                  Image(image: AssetImage("images/$icon.png")),
                   const SizedBox(
-                    width: 30,
+                    width: 8,
                   ),
                   Flex(
                     direction: Axis.vertical,
@@ -105,7 +105,7 @@ class InvestmentPage extends StatelessWidget {
                                   color: kGreenColor,
                                   fontSize: 12,
                                 )),
-                            TextSpan(text: 'per annum'),
+                            const TextSpan(text: 'per annum'),
                           ],
                           style: subTitle.copyWith(
                             fontSize: 12,
@@ -120,22 +120,22 @@ class InvestmentPage extends StatelessWidget {
               )
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Text(
             'Accepted currency: $currency',
             style: subTitle.copyWith(fontSize: 14, color: kBlackColor),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Text.rich(TextSpan(
-              text: 'Minimum Investment',
+              text: 'Minimum Investment     ',
               style: subTitle.copyWith(fontSize: 15, color: kBlackColor),
-              children: <TextSpan>[
+              children: [
                 TextSpan(
-                    text: '$minPrice',
+                    text: minPrice,
                     style: subTitle.copyWith(fontWeight: FontWeight.w600))
               ])),
           TextButton(
@@ -147,10 +147,10 @@ class InvestmentPage extends StatelessWidget {
                     'Learn more',
                     style: subTitle.copyWith(fontSize: 15, color: kGreenColor),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 15,
                   ),
-                  Icon(Icons.arrow_right_alt, color: kGreenColor)
+                  const Icon(Icons.arrow_right_alt, color: kGreenColor)
                 ],
               )),
         ],

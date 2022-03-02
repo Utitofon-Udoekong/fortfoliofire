@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 // import 'package:carousel_slider/carousel_slider.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
+import 'package:fortfolio/utils/pages.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -46,8 +47,8 @@ class Dashboard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                buildSmallIcons('images/Activity-small.svg', 'Investments', () => context.router.push(const NotificationsPageRoute())),
-                buildSmallIcons('images/Swap.svg', 'Transactions', () => context.router.push(const InvestmentTransactionsRoute())),
+                buildSmallIcons('images/Activity-small.svg', 'Investments', () => context.router.push(const InvestmentPageRoute())),
+                buildSmallIcons('images/Swap.svg', 'Transactions', () => context.router.push(const DashboardTransactionsRoute())),
                 buildSmallIcons('images/Chart.svg', 'Invest Calculator', () => context.router.push(const CalculatorRoute())),
               ],
             ),
@@ -55,7 +56,7 @@ class Dashboard extends StatelessWidget {
               height: 30,
             ),
             const Text('Quick Actions', style: TextStyle(
-              color: const Color(0XFF212529),
+              color: Color(0XFF212529),
               fontSize: 15,
               fontWeight: FontWeight.w600
             ),
@@ -85,13 +86,13 @@ class Dashboard extends StatelessWidget {
     );
   }
 
-  List<Widget> generateSlider(BuildContext context) {
-    List<Widget> imageSlider = controller.lstpopular
+  List<Widget> generateSlider(BuildContext context, List list) {
+    List<Widget> imageSlider = list
         .map((item) {
           return Container(
             margin: const EdgeInsets.all(5),
             child: ClipRRect(
-              borderRadius: const BorderRadius.all(const Radius.circular(10)),
+              borderRadius: const BorderRadius.all(Radius.circular(10)),
               child: CachedNetworkImage(
                 imageUrl: item['image_thumbnail_path'],
                 fit: BoxFit.cover,
@@ -123,8 +124,8 @@ class Dashboard extends StatelessWidget {
           Container(
             child: svg,
             decoration: const BoxDecoration(
-              color: const Color(0XFFF4FFFA),
-              borderRadius: const BorderRadius.all(const Radius.circular(5)),
+              color: Color(0XFFF4FFFA),
+              borderRadius: BorderRadius.all(Radius.circular(5)),
             ),
             width: 40,
             height: 40,

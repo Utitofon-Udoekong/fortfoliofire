@@ -1,7 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:fortfolio/domain/constants/plans.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
+import 'package:fortfolio/presentation/routes/router.gr.dart';
+import 'package:fortfolio/utils/pages.dart';
 
 class FortShield extends StatelessWidget {
   const FortShield({Key? key}) : super(key: key);
@@ -10,7 +13,9 @@ class FortShield extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          backgroundColor: kWhiteColor,
+        ),
         body: Padding(
           padding: kDefaultPadding,
           child: SingleChildScrollView(
@@ -18,9 +23,9 @@ class FortShield extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       image: DecorationImage(image: AssetImage('images'))),
-                  child: Image(image: AssetImage('images/fortshield.png')),
+                  child: const Image(image: AssetImage('images/fortshield.png')),
                   alignment: Alignment.center,
                 ),
                 Text(
@@ -40,12 +45,12 @@ class FortShield extends StatelessWidget {
                 CustomFilledButton(
                     text: 'Invest',
                     onTap: () {
-                      // Get.to(FortDollarInvestment());
+                      context.router.push(const FortShieldInvestmentRoute());
                     }),
                 const SizedBox(
                   height: 20,
                 ),
-                Divider(),
+                const Divider(),
                 const SizedBox(
                   height: 20,
                 ),
@@ -97,20 +102,20 @@ class FortShield extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                Container(
+                SizedBox(
                   height: 200,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    padding: EdgeInsets.only(left: 16, right: 6),
+                    padding: const EdgeInsets.only(left: 16, right: 6),
                     itemCount: plans.length,
                     itemBuilder: (context, index) {
                       return Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6.0),
-                            color: Color.fromRGBO(246, 249, 255, 0.55)),
-                        padding: EdgeInsets.symmetric(
+                            color: const Color.fromRGBO(246, 249, 255, 0.55)),
+                        padding: const EdgeInsets.symmetric(
                             horizontal: 7.0, vertical: 12.0),
-                        margin: EdgeInsets.only(right: 12.0),
+                        margin: const EdgeInsets.only(right: 12.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -121,7 +126,7 @@ class FortShield extends StatelessWidget {
                                 Flex(
                                   direction: Axis.horizontal,
                                   children: <Widget>[
-                                    Image(image: AssetImage('images/fortshield.png')),
+                                    Image(image: AssetImage('images/${plans[index].icon}.png')),
                                     const SizedBox(
                                       width: 30,
                                     ),
@@ -146,7 +151,7 @@ class FortShield extends StatelessWidget {
                                                     color: kGreenColor,
                                                     fontSize: 12,
                                                   )),
-                                              TextSpan(text: 'per annum'),
+                                              const TextSpan(text: 'per annum'),
                                             ],
                                             style: subTitle.copyWith(
                                               fontSize: 12,
@@ -162,7 +167,7 @@ class FortShield extends StatelessWidget {
                                 )
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 20,
                             ),
                             Text(
@@ -170,7 +175,7 @@ class FortShield extends StatelessWidget {
                               style: subTitle.copyWith(
                                   fontSize: 14, color: kBlackColor),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 20,
                             ),
                             Text.rich(TextSpan(
@@ -179,7 +184,7 @@ class FortShield extends StatelessWidget {
                                     fontSize: 15, color: kBlackColor),
                                 children: <TextSpan>[
                                   TextSpan(
-                                      text: '${plans[index].minPrice}',
+                                      text: plans[index].minPrice,
                                       style: subTitle.copyWith(
                                           fontWeight: FontWeight.w600))
                                 ])),
@@ -193,10 +198,10 @@ class FortShield extends StatelessWidget {
                                       style: subTitle.copyWith(
                                           fontSize: 15, color: kGreenColor),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 15,
                                     ),
-                                    Icon(Icons.arrow_right_alt,
+                                    const Icon(Icons.arrow_right_alt,
                                         color: kGreenColor)
                                   ],
                                 )),

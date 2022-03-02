@@ -19,15 +19,21 @@ class _$WithdrawalItemTearOff {
   const _$WithdrawalItemTearOff();
 
   _WithdrawalItem call(
-      {required UniqueId id,
-      required ItemName planName,
+      {required String description,
       required int amount,
-      required bool processed}) {
+      required String traxId,
+      required String planName,
+      required Status status,
+      required DateTime createdat,
+      required String paymentMethod}) {
     return _WithdrawalItem(
-      id: id,
-      planName: planName,
+      description: description,
       amount: amount,
-      processed: processed,
+      traxId: traxId,
+      planName: planName,
+      status: status,
+      createdat: createdat,
+      paymentMethod: paymentMethod,
     );
   }
 }
@@ -37,10 +43,13 @@ const $WithdrawalItem = _$WithdrawalItemTearOff();
 
 /// @nodoc
 mixin _$WithdrawalItem {
-  UniqueId get id => throw _privateConstructorUsedError;
-  ItemName get planName => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
   int get amount => throw _privateConstructorUsedError;
-  bool get processed => throw _privateConstructorUsedError;
+  String get traxId => throw _privateConstructorUsedError;
+  String get planName => throw _privateConstructorUsedError;
+  Status get status => throw _privateConstructorUsedError;
+  DateTime get createdat => throw _privateConstructorUsedError;
+  String get paymentMethod => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $WithdrawalItemCopyWith<WithdrawalItem> get copyWith =>
@@ -52,7 +61,14 @@ abstract class $WithdrawalItemCopyWith<$Res> {
   factory $WithdrawalItemCopyWith(
           WithdrawalItem value, $Res Function(WithdrawalItem) then) =
       _$WithdrawalItemCopyWithImpl<$Res>;
-  $Res call({UniqueId id, ItemName planName, int amount, bool processed});
+  $Res call(
+      {String description,
+      int amount,
+      String traxId,
+      String planName,
+      Status status,
+      DateTime createdat,
+      String paymentMethod});
 }
 
 /// @nodoc
@@ -66,28 +82,43 @@ class _$WithdrawalItemCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? id = freezed,
-    Object? planName = freezed,
+    Object? description = freezed,
     Object? amount = freezed,
-    Object? processed = freezed,
+    Object? traxId = freezed,
+    Object? planName = freezed,
+    Object? status = freezed,
+    Object? createdat = freezed,
+    Object? paymentMethod = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as UniqueId,
-      planName: planName == freezed
-          ? _value.planName
-          : planName // ignore: cast_nullable_to_non_nullable
-              as ItemName,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as int,
-      processed: processed == freezed
-          ? _value.processed
-          : processed // ignore: cast_nullable_to_non_nullable
-              as bool,
+      traxId: traxId == freezed
+          ? _value.traxId
+          : traxId // ignore: cast_nullable_to_non_nullable
+              as String,
+      planName: planName == freezed
+          ? _value.planName
+          : planName // ignore: cast_nullable_to_non_nullable
+              as String,
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as Status,
+      createdat: createdat == freezed
+          ? _value.createdat
+          : createdat // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      paymentMethod: paymentMethod == freezed
+          ? _value.paymentMethod
+          : paymentMethod // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -99,7 +130,14 @@ abstract class _$WithdrawalItemCopyWith<$Res>
           _WithdrawalItem value, $Res Function(_WithdrawalItem) then) =
       __$WithdrawalItemCopyWithImpl<$Res>;
   @override
-  $Res call({UniqueId id, ItemName planName, int amount, bool processed});
+  $Res call(
+      {String description,
+      int amount,
+      String traxId,
+      String planName,
+      Status status,
+      DateTime createdat,
+      String paymentMethod});
 }
 
 /// @nodoc
@@ -115,28 +153,43 @@ class __$WithdrawalItemCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? id = freezed,
-    Object? planName = freezed,
+    Object? description = freezed,
     Object? amount = freezed,
-    Object? processed = freezed,
+    Object? traxId = freezed,
+    Object? planName = freezed,
+    Object? status = freezed,
+    Object? createdat = freezed,
+    Object? paymentMethod = freezed,
   }) {
     return _then(_WithdrawalItem(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as UniqueId,
-      planName: planName == freezed
-          ? _value.planName
-          : planName // ignore: cast_nullable_to_non_nullable
-              as ItemName,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as int,
-      processed: processed == freezed
-          ? _value.processed
-          : processed // ignore: cast_nullable_to_non_nullable
-              as bool,
+      traxId: traxId == freezed
+          ? _value.traxId
+          : traxId // ignore: cast_nullable_to_non_nullable
+              as String,
+      planName: planName == freezed
+          ? _value.planName
+          : planName // ignore: cast_nullable_to_non_nullable
+              as String,
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as Status,
+      createdat: createdat == freezed
+          ? _value.createdat
+          : createdat // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      paymentMethod: paymentMethod == freezed
+          ? _value.paymentMethod
+          : paymentMethod // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -145,24 +198,33 @@ class __$WithdrawalItemCopyWithImpl<$Res>
 
 class _$_WithdrawalItem extends _WithdrawalItem {
   const _$_WithdrawalItem(
-      {required this.id,
-      required this.planName,
+      {required this.description,
       required this.amount,
-      required this.processed})
+      required this.traxId,
+      required this.planName,
+      required this.status,
+      required this.createdat,
+      required this.paymentMethod})
       : super._();
 
   @override
-  final UniqueId id;
-  @override
-  final ItemName planName;
+  final String description;
   @override
   final int amount;
   @override
-  final bool processed;
+  final String traxId;
+  @override
+  final String planName;
+  @override
+  final Status status;
+  @override
+  final DateTime createdat;
+  @override
+  final String paymentMethod;
 
   @override
   String toString() {
-    return 'WithdrawalItem(id: $id, planName: $planName, amount: $amount, processed: $processed)';
+    return 'WithdrawalItem(description: $description, amount: $amount, traxId: $traxId, planName: $planName, status: $status, createdat: $createdat, paymentMethod: $paymentMethod)';
   }
 
   @override
@@ -170,19 +232,27 @@ class _$_WithdrawalItem extends _WithdrawalItem {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _WithdrawalItem &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.planName, planName) &&
+            const DeepCollectionEquality()
+                .equals(other.description, description) &&
             const DeepCollectionEquality().equals(other.amount, amount) &&
-            const DeepCollectionEquality().equals(other.processed, processed));
+            const DeepCollectionEquality().equals(other.traxId, traxId) &&
+            const DeepCollectionEquality().equals(other.planName, planName) &&
+            const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality().equals(other.createdat, createdat) &&
+            const DeepCollectionEquality()
+                .equals(other.paymentMethod, paymentMethod));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(planName),
+      const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(amount),
-      const DeepCollectionEquality().hash(processed));
+      const DeepCollectionEquality().hash(traxId),
+      const DeepCollectionEquality().hash(planName),
+      const DeepCollectionEquality().hash(status),
+      const DeepCollectionEquality().hash(createdat),
+      const DeepCollectionEquality().hash(paymentMethod));
 
   @JsonKey(ignore: true)
   @override
@@ -192,20 +262,29 @@ class _$_WithdrawalItem extends _WithdrawalItem {
 
 abstract class _WithdrawalItem extends WithdrawalItem {
   const factory _WithdrawalItem(
-      {required UniqueId id,
-      required ItemName planName,
+      {required String description,
       required int amount,
-      required bool processed}) = _$_WithdrawalItem;
+      required String traxId,
+      required String planName,
+      required Status status,
+      required DateTime createdat,
+      required String paymentMethod}) = _$_WithdrawalItem;
   const _WithdrawalItem._() : super._();
 
   @override
-  UniqueId get id;
-  @override
-  ItemName get planName;
+  String get description;
   @override
   int get amount;
   @override
-  bool get processed;
+  String get traxId;
+  @override
+  String get planName;
+  @override
+  Status get status;
+  @override
+  DateTime get createdat;
+  @override
+  String get paymentMethod;
   @override
   @JsonKey(ignore: true)
   _$WithdrawalItemCopyWith<_WithdrawalItem> get copyWith =>

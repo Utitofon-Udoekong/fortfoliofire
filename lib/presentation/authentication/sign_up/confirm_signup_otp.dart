@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fortfolio/application/auth/sign_in_form/phone/sign_in_form_phone_cubit.dart';
-import 'package:fortfolio/application/auth/sign_up_form/sign_up_form_bloc.dart';
+import 'package:fortfolio/application/auth/sign_up_form/sign_up_form_cubit.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
@@ -18,7 +17,7 @@ class ConfirmSignupWithOTP extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
-      value: BlocProvider.of<SignUpFormBloc>(context),
+      value: BlocProvider.of<SignUpFormCubit>(context),
       child: Scaffold(
         body: SafeArea(
             child: SingleChildScrollView(
@@ -41,7 +40,7 @@ class ConfirmSignupWithOTP extends StatelessWidget{
                     height: 20,
                   ),
                   Text(
-                    'We sent an OTP to the number ${context.read<SignUpFormBloc>().state.phoneNumber}',
+                    'We sent an OTP to the number ${context.read<SignUpFormCubit>().state.phoneNumber}',
                     style: titleText,
                   ),
                   const SizedBox(
@@ -59,19 +58,19 @@ class ConfirmSignupWithOTP extends StatelessWidget{
                         borderColor: kgreyColor,
                         focusBorderColor: kPrimaryColor),
                     keyboardType: TextInputType.number,
-                    onChanged: (value) => context.read<SignUpFormBloc>().add(SignUpFormEvent.smsCodeChanged(value)),
+                    onChanged: (value) => context.read<SignUpFormCubit>().smsCodeChanged(smsCode: value),
                   ),
                   const SizedBox(
                     height: 20,
                   ),
                   CustomAuthFilledButton(
                     text:
-                        context.read<SignUpFormBloc>().state.isSubmitting
+                        context.read<SignUpFormCubit>().state.isSubmitting
                             ? 'VERIFYING'
                             : 'VERIFY',
-                    onTap: () => context.read<SignUpFormBloc>().add(const SignUpFormEvent.verifyOTPpressed()),
+                    onTap: () => context.read<SignUpFormCubit>().verifyOTPpressed(),
                     disabled:
-                        context.read<SignUpFormBloc>().state.isSubmitting,
+                        context.read<SignUpFormCubit>().state.isSubmitting,
                   ),
                   const SizedBox(
                     height: 30,
@@ -85,7 +84,7 @@ class ConfirmSignupWithOTP extends StatelessWidget{
                           smsCodeTimeoutSeconds: smsCodeTimeoutSeconds,
                           onTimerCompleted: (){
                             CustomSnackbar.showSnackBar(context, "SMS Code Timeout!", true);
-                            context.read<SignUpFormBloc>().add(const SignUpFormEvent.reset());
+                            context.read<SignUpFormCubit>().reset();
                           },
                         ),
                       ],

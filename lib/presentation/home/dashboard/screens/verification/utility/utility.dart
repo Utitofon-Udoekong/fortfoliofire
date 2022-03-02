@@ -1,6 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
+import 'package:fortfolio/presentation/routes/router.gr.dart';
+import 'package:fortfolio/utils/pages.dart';
 
 class UtilityPage extends StatelessWidget {
   const UtilityPage({Key? key}) : super(key: key);
@@ -22,7 +25,7 @@ class UtilityPage extends StatelessWidget {
                 height: 20,
               ),
               InkWell(
-                onTap: () => {},
+                onTap: () => context.router.pop(),
                 child: const Icon(Icons.close),
               ),
               const SizedBox(
@@ -52,7 +55,7 @@ class UtilityPage extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () => {
-                      // Get.to(UploadUtilityDoc())
+                      context.router.push(const UploadUtilityDocRoute())
                     },
                     child: Container(
                       alignment: Alignment.center,

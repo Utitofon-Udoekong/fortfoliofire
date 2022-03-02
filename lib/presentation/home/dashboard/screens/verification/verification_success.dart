@@ -1,6 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
+import 'package:fortfolio/presentation/routes/router.gr.dart';
+import 'package:fortfolio/utils/pages.dart';
 
 class VerificationSuccess extends StatelessWidget {
   const VerificationSuccess({Key? key}) : super(key: key);
@@ -23,9 +26,9 @@ class VerificationSuccess extends StatelessWidget {
               ),
               InkWell(
                 onTap: () => {
-                  // Get.to(ProfilePage())
+                  context.router.push(const ProfilePageRoute())
                 },
-                child: Icon(Icons.close, color: kWhiteColor,),
+                child: const Icon(Icons.close, color: kWhiteColor,),
               ),
               const SizedBox(
                 height: 80,

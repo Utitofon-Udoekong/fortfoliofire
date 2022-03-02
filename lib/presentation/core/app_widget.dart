@@ -14,15 +14,15 @@ class App extends StatelessWidget {
       create: (context) => getIt<AuthCubit>(),
       lazy: false,
       child: MaterialApp.router(
-          title: 'Fortfolio',
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-          ), 
-          routeInformationParser: _appRouter.defaultRouteParser(),
-          routerDelegate: _appRouter.delegate(),
-          // builder: ,
+        title: 'Fortfolio',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
         ),
+        routeInformationParser: _appRouter.defaultRouteParser(),
+        routerDelegate: _appRouter.delegate(),
+        // builder: ,
+      ),
     );
   }
 }

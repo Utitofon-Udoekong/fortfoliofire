@@ -1,6 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
+import 'package:fortfolio/presentation/routes/router.gr.dart';
+import 'package:fortfolio/utils/pages.dart';
 
 class UploadPage extends StatelessWidget {
   const UploadPage({Key? key}) : super(key: key);
@@ -22,7 +25,7 @@ class UploadPage extends StatelessWidget {
               height: 20,
             ),
             InkWell(
-              onTap: () => {},
+              onTap: () => context.router.pop(),
               child: const Icon(Icons.close),
             ),
             const SizedBox(
@@ -39,7 +42,7 @@ class UploadPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 svg,
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Text(
@@ -47,12 +50,12 @@ class UploadPage extends StatelessWidget {
                   style: subTitle.copyWith(color: kgreyColor),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
                 GestureDetector(
                   onTap: () => {
-                    // Get.to(UploadImage())
+                    context.router.push(const UploadDocumentImageRoute())
                   },
                   child: Container(
                     alignment: Alignment.center,
@@ -65,12 +68,12 @@ class UploadPage extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.upload,
                           color: kWhiteColor,
                           size: 23,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 15,
                         ),
                         Text(

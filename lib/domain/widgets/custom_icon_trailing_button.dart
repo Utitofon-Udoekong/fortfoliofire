@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
@@ -6,15 +7,15 @@ class CustomIconTrailingButton extends StatelessWidget {
   const CustomIconTrailingButton({ Key? key, required this.icon, required this.title, required this.page }) : super(key: key);
   final String icon;
   final String title;
-  final page;
+  final PageRouteInfo page;
   @override
   Widget build(BuildContext context) {
     final Widget svg = SvgPicture.asset(
       'images/$icon.svg',
       semanticsLabel: title,
     );
-    return GestureDetector(
-      onTap: () => {},
+    return InkWell(
+      onTap: () => context.router.push(page),
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 8),
         decoration: BoxDecoration(

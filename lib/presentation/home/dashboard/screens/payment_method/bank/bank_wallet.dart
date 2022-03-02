@@ -1,6 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
+import 'package:fortfolio/presentation/routes/router.gr.dart';
+import 'package:fortfolio/utils/pages.dart';
 
 class BankAddress extends StatelessWidget {
   const BankAddress({ Key? key }) : super(key: key);
@@ -16,11 +19,11 @@ class BankAddress extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
             svg,
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             Text(
@@ -31,10 +34,8 @@ class BankAddress extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-          onPressed: () => {
-            // Get.to(AddBank())
-          },
-          child: Icon(
+          onPressed: () => context.router.push(const AddBankRoute()),
+          child: const Icon(
             Icons.add,
             size: 25,
             color: kPrimaryColor,

@@ -10,7 +10,7 @@ class ItemName extends ValueObject<String> {
   final Either<ValueFailure<String>, String> value;
 
   factory ItemName(String input) {
-    assert(input.isNotEmpty);
+    // assert(input.isNotEmpty);
     return ItemName._(
       validateStringNotEmpty(input)
     );
