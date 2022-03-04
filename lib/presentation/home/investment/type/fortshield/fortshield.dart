@@ -13,18 +13,27 @@ class FortShield extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: kWhiteColor,
-        ),
         body: Padding(
           padding: kDefaultPadding,
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
+                const SizedBox(
+                height: 20,
+              ),
+              InkWell(
+                onTap: () => context.router.pop(),
+                child: const Icon(Icons.close),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
                 Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 180,
                   decoration: const BoxDecoration(
-                      image: DecorationImage(image: AssetImage('images'))),
+                      image: DecorationImage(image: AssetImage('images/estate.png'))),
                   child: const Image(image: AssetImage('images/fortshield.png')),
                   alignment: Alignment.center,
                 ),

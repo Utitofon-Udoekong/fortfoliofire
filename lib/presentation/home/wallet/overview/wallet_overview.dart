@@ -85,25 +85,31 @@ class WalletOverview extends StatelessWidget {
                             showModalBottomSheet<dynamic>(isScrollControlled: true,context: context, builder: (BuildContext context){
                               return SizedBox(
                                 height: MediaQuery.of(context).size.height * 0.35,
-                                child: Column(
-                                      children: <Widget>[
-                                        Text(
-                                          'Select balance',
-                                          style: titleText.copyWith(fontSize: 15),
-                                        ),
-                                        buildtile('9ja', 'NGN Balance', () => context.read<WalletOverviewCubit>().exchangeChanged(exchange: "NGN")),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        buildtile(
-                                            'usa', 'USD Balance', () => context.read<WalletOverviewCubit>().exchangeChanged(exchange: "USD")),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        buildtile(
-                                            'bitcoin', 'BTC Balance', () => context.read<WalletOverviewCubit>().exchangeChanged(exchange: "BTC")),
-                                      ],
-                                    ),
+                                child: Padding(
+                                  padding: kDefaultPadding,
+                                  child: Column(
+                                        children: <Widget>[
+                                          Text(
+                                            'Select balance',
+                                            style: titleText.copyWith(fontSize: 15),
+                                          ),
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                          buildtile('9ja', 'NGN Balance', () => context.read<WalletOverviewCubit>().exchangeChanged(exchange: "NGN")),
+                                          const SizedBox(
+                                            height: 16,
+                                          ),
+                                          buildtile(
+                                              'usa', 'USD Balance', () => context.read<WalletOverviewCubit>().exchangeChanged(exchange: "USD")),
+                                          const SizedBox(
+                                            height: 16,
+                                          ),
+                                          buildtile(
+                                              'btc', 'BTC Balance', () => context.read<WalletOverviewCubit>().exchangeChanged(exchange: "BTC")),
+                                        ],
+                                      ),
+                                ),
                               );
                             },backgroundColor: kWhiteColor);
                           },
@@ -166,17 +172,17 @@ class WalletOverview extends StatelessWidget {
               ),
               // BUILD DIFFERENT PAGES TO SHOW BALANCE FOR THESE PLANS
               buildcard('FortDollar', 'fortdollar',
-                  () => context.router.push(const SelectInvestmentMethodRoute())),
+                  () => context.router.push(const FortDollarInvestmentInfoRoute())),
               const SizedBox(
                 height: 20,
               ),
               buildcard('FortCrypto', 'fortcrypto',
-                  () => context.router.push(const SelectInvestmentMethodRoute())),
+                  () => context.router.push(const FortCryptoInvestmentInfoRoute())),
               const SizedBox(
                 height: 20,
               ),
               buildcard('FortShield', 'fortshield',
-                  () => context.router.push(const SelectInvestmentMethodRoute())),
+                  () => context.router.push(const FortShieldInvestmentInfoRoute())),
               const SizedBox(
                 height: 20,
               ),
@@ -189,33 +195,30 @@ class WalletOverview extends StatelessWidget {
 
   Widget buildtile(String icon, String title, Function() ontap) {
     final Widget svg = SvgPicture.asset(
-      'images/$icon.svg',
+      'images/$icon.png',
       semanticsLabel: title,
     );
     return GestureDetector(
       onTap: ontap,
-      child: Container(
-        // padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-        child: Row(
-          children: <Widget>[
-            svg,
-            const SizedBox(
-              width: 20,
-            ),
-            Text(
-              title,
-              style: subTitle.copyWith(
-                  color: kBlackColor,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 15),
-            ),
-            const Spacer(),
-            const Icon(
-              Icons.circle_outlined,
-              color: klightblue,
-            )
-          ],
-        ),
+      child: Row(
+        children: <Widget>[
+          svg,
+          const SizedBox(
+            width: 20,
+          ),
+          Text(
+            title,
+            style: subTitle.copyWith(
+                color: kBlackColor,
+                fontWeight: FontWeight.w600,
+                fontSize: 15),
+          ),
+          const Spacer(),
+          const Icon(
+            Icons.circle_outlined,
+            color: klightblue,
+          )
+        ],
       ),
     );
   }

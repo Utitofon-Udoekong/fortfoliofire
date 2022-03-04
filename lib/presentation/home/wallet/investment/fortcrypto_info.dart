@@ -6,7 +6,6 @@ import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
 import 'package:fortfolio/domain/widgets/custom_outlined_button.dart';
 import 'package:fortfolio/presentation/home/wallet/cubit/wallet_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
-import 'package:fortfolio/utils/pages.dart';
 
 import '../../../../injection.dart';
 
@@ -86,17 +85,23 @@ Widget buildTile(String title, String amount) {
       decoration: BoxDecoration(
           color: const Color(0XFFF3F6F8),
           borderRadius: BorderRadius.circular(10.0)),
-      child: Flex(
-        direction: Axis.vertical,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            title,
-            style: subTitle.copyWith(fontSize: 12),
+          Flex(
+            direction: Axis.vertical,
+            children: [
+              Text(
+                title,
+                style: subTitle.copyWith(fontSize: 12),
+              ),
+              Text(
+                amount,
+                style: titleText.copyWith(fontSize: 15),
+              )
+            ],
           ),
-          Text(
-            amount,
-            style: titleText.copyWith(fontSize: 15),
-          )
+          CustomFilledButton(text: "Withdraw", onTap: () => null)
         ],
       ));
 }

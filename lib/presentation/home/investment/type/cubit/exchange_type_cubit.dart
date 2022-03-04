@@ -1,9 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 
 part 'exchange_type_state.dart';
 part 'exchange_type_cubit.freezed.dart';
 
+@injectable
 class ExchangeTypeCubit extends Cubit<ExchangeTypeState> {
   ExchangeTypeCubit() : super(ExchangeTypeState.initial());
 

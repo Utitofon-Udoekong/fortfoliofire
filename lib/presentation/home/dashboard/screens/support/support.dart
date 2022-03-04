@@ -1,11 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_icon_trailing_button.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
-import 'package:fortfolio/utils/pages.dart';
-
-import 'faq.dart';
 
 class SupportPage extends StatelessWidget {
   const SupportPage({Key? key}) : super(key: key);
@@ -23,7 +21,7 @@ class SupportPage extends StatelessWidget {
               height: 20,
             ),
             InkWell(
-              onTap: () => {},
+              onTap: () => context.router.pop(),
               child: const Icon(Icons.close),
             ),
             const SizedBox(

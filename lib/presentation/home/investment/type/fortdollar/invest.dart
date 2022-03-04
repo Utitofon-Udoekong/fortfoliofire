@@ -22,7 +22,7 @@ class FortDollarInvestment extends StatelessWidget {
           create: (context) => getIt<InvestmentCubit>(),
         ),
         BlocProvider(
-          create: (context) => ExchangeTypeCubit(),
+          create: (context) => getIt<ExchangeTypeCubit>(),
         ),
       ],
       child: Scaffold(

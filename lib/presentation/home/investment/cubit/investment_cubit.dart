@@ -10,6 +10,7 @@ import 'package:uuid/uuid.dart';
 
 part 'investment_state.dart';
 part 'investment_cubit.freezed.dart';
+
 @injectable
 class InvestmentCubit extends Cubit<InvestmentState> {
   final IFirestoreFacade firestoreFacade ;

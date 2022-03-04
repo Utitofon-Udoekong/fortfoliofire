@@ -11,7 +11,6 @@ import 'package:fortfolio/domain/widgets/labelled_checkbox.dart';
 import 'package:fortfolio/injection.dart';
 import 'package:fortfolio/presentation/home/investment/type/cubit/exchange_type_cubit.dart';
 
-import '../../../../../utils/pages.dart';
 import '../../cubit/investment_cubit.dart';
 
 const kTileHeight = 40.0;
@@ -22,7 +21,7 @@ class FortCryptoInvestment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<InvestmentCubit>(),
+      create: (bloccontext) => getIt<InvestmentCubit>(),
       child: Scaffold(
         body: SafeArea(
           child: Padding(

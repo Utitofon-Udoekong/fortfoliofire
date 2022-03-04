@@ -10,7 +10,6 @@ import 'package:fortfolio/presentation/home/investment/type/cubit/exchange_type_
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:timelines/timelines.dart';
 
-import '../../../../../utils/pages.dart';
 import '../../cubit/investment_cubit.dart';
 
 const kTileHeight = 40.0;

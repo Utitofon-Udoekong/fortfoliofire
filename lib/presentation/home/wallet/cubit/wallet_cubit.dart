@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
 import 'package:fortfolio/domain/auth/status.dart';
 import 'package:fortfolio/domain/user/bank_address.dart';
 import 'package:fortfolio/domain/user/crypto_wallet.dart';
@@ -13,7 +14,7 @@ part 'wallet_cubit.freezed.dart';
 
 @injectable
 class WalletCubit extends Cubit<WalletState> {
-  final FirebaseFirestoreFacade firestoreFacade;
+  final IFirestoreFacade firestoreFacade;
   WalletCubit(this.firestoreFacade) : super(WalletState.initial());
 
   void investmentPlanChanged({required String investmentPlan}) {
