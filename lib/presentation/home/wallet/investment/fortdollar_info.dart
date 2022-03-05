@@ -53,20 +53,10 @@ class FortDollarInvestmentInfo extends StatelessWidget {
                 const SizedBox(height: 12),
                 buildTile("FortDollar / 6 months", "\$40,000.00"),
                 const Spacer(),
-                Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        CustomOutlinedButton(
-                            text: 'INVEST', onTap: () => context.router.push(const FortDollarInvestmentRoute())),
-                        CustomFilledButton(text: 'WITHDRAW', onTap: () {
-                      context.read<WalletCubit>().investmentPlanChanged(investmentPlan: "fortdollar");
-                      context.router.push(const WithdrawalPageRoute());
-                    })
-                      ],
-                    ),
-                  )
+                CustomOutlinedButton(
+                        text: 'INVEST',
+                        onTap: () =>
+                            context.router.push(const FortShieldInvestmentRoute())),
               ]),
             ),
           )),

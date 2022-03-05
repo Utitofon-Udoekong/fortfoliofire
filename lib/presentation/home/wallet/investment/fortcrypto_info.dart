@@ -49,28 +49,41 @@ class FortCryptoInvestmentInfo extends StatelessWidget {
               Text("Active Investments",
                   style: subTitle.copyWith(fontSize: 12, color: kPrimaryColor)),
               const SizedBox(height: 15),
-              buildTile("FortDollar / 3 months", "\$40,000.00"),
-              const SizedBox(height: 12),
-              buildTile("FortDollar / 3 months", "\$40,000.00"),
-              const SizedBox(height: 12),
-              buildTile("FortDollar / 6 months", "\$40,000.00"),
+              buildTile("FortDollar / 3 months", "\$40,000.00", () {
+                      context.read<WalletCubit>().investmentPlanChanged(investmentPlan: "fortdollar");
+                      context.router.push(const WithdrawalPageRoute());
+                    }),
+              // const SizedBox(height: 12),
+              // buildTile("FortDollar / 3 months", "\$40,000.00",() {
+              //         context.read<WalletCubit>().investmentPlanChanged(investmentPlan: "fortcrypto");
+              //         context.router.push(const WithdrawalPageRoute());
+              //       }),
+              // const SizedBox(height: 12),
+              // buildTile("FortDollar / 6 months", "\$40,000.00",() {
+              //         context.read<WalletCubit>().investmentPlanChanged(investmentPlan: "fortcrypto");
+              //         context.router.push(const WithdrawalPageRoute());
+              //       }),
               const Spacer(),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    CustomOutlinedButton(
+              // Align(
+              //   alignment: Alignment.bottomCenter,
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //     children: [
+              //       CustomOutlinedButton(
+              //           text: 'INVEST',
+              //           onTap: () =>
+              //               context.router.push(const FortShieldInvestmentRoute())),
+              //       CustomFilledButton(text: 'WITHDRAW', onTap: () {
+                    //   context.read<WalletCubit>().investmentPlanChanged(investmentPlan: "fortcrypto");
+                    //   context.router.push(const WithdrawalPageRoute());
+                    // })
+              //     ],
+              //   ),
+              // ),
+              CustomOutlinedButton(
                         text: 'INVEST',
                         onTap: () =>
                             context.router.push(const FortShieldInvestmentRoute())),
-                    CustomFilledButton(text: 'WITHDRAW', onTap: () {
-                      context.read<WalletCubit>().investmentPlanChanged(investmentPlan: "fortcrypto");
-                      context.router.push(const WithdrawalPageRoute());
-                    })
-                  ],
-                ),
-              )
             ]),
           ),
         )),
@@ -79,7 +92,7 @@ class FortCryptoInvestmentInfo extends StatelessWidget {
   }
 }
 
-Widget buildTile(String title, String amount) {
+Widget buildTile(String title, String amount, Function() ontap) {
   return Container(
       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 8),
       decoration: BoxDecoration(
@@ -101,7 +114,23 @@ Widget buildTile(String title, String amount) {
               )
             ],
           ),
-          CustomFilledButton(text: "Withdraw", onTap: () => null)
+          GestureDetector(
+            onTap: ontap,
+            child: Container(
+                alignment: Alignment.center,
+                height: 48,
+                width: 100,
+                // width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: kPrimaryColor,
+                ),
+                child: Text(
+                  'Withdraw',
+                  style: textButton.copyWith(color: kWhiteColor, fontSize: 15),
+                ),
+              ),
+          ),
         ],
       ));
 }

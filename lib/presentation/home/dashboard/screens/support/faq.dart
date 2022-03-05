@@ -10,7 +10,7 @@ class FAQPage extends StatefulWidget {
 }
 
 class _FAQPageState extends State<FAQPage> {
-  final bool _customTileExpanded = false;
+  // final bool _customTileExpanded = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,13 +57,15 @@ class _FAQPageState extends State<FAQPage> {
           margin: const EdgeInsets.only(bottom: 15.0),
       child: ExpansionPanelList(
         elevation: 0.0,
-        expansionCallback: (int index, bool isExpanded) {
-          setState(() {
-            items[index].isExpanded = !isExpanded;
-          });
-        },
-        children: items.map<ExpansionPanel>((ItemModel item) {
-          return ExpansionPanel(
+        // expansionCallback: (int index, bool isExpanded) {
+        //   setState(() {
+        //     items[index].isExpanded = !isExpanded;
+        //   });
+        // },
+        children: items.map<ExpansionPanelRadio>((ItemModel item) {
+          return ExpansionPanelRadio(
+            canTapOnHeader: true,
+            value: item.question,
             headerBuilder: (BuildContext context, bool isExpanded) {
               return ExpansionTile(
                 title: Text(
@@ -85,7 +87,7 @@ class _FAQPageState extends State<FAQPage> {
                     subTitle.copyWith(fontSize: 14, color: const Color(0XFF535454)),
               ),
             ),
-            isExpanded: item.isExpanded,
+            // isExpanded: item.isExpanded,
           );
         }).toList(),
       ),
@@ -118,12 +120,12 @@ class ItemModel {
   ItemModel({
     required this.answer,
     required this.question,
-    this.isExpanded = false,
+    // this.isExpanded = false,
   });
 
   String answer;
   String question;
-  bool isExpanded;
+  // bool isExpanded;
 }
 
 List<ItemModel> items = <ItemModel>[

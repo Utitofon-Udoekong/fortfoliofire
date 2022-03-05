@@ -40,7 +40,23 @@ class TACPage extends StatelessWidget {
                 height: 30,
               ),
               buildtitle('1. General'),
-              buildbody('These terms and conditions include various limitations and exclusions, a clause that governs the jurisdiction and venue of disputes and obligations to comply with applicable laws and regulations.\n\nUse of our website is conditional upon your acceptance of these terms. If you do not agree to these terms you should immediately discontinue use of our website.\n\nBy accessing this website, you hereby agree that you have read and fully understood the following terms and conditions. You are therefore bound by our terms and conditions when you access the site or interact with us as a business or use/patronize any of our services.\n\nThe terms and conditions herein are subject to change without any prior notice and we can do so anytime at our sole discretion. You are therefore advised to periodically check our terms and conditions page for any new changes that may have been made prior after your last visit.\n\nFor purposes of these terms and conditions, ”User”, “Client”, “You” and “Your” refers to you, the person accessing this Website and accepting the Company’s terms and conditions. “The Company”, “Ourselves”, “We” and “Us”, refers to Fortfolio Limited and its subsidiary companies.“Party”, “Parties”, or “Us”, refers to both the Client and the Company, or either the Client or the Company.'),
+              buildbody('These terms and conditions include various limitations and exclusions, a clause that governs the jurisdiction and venue of disputes and obligations to comply with applicable laws and regulations.'),
+              const SizedBox(
+                height: 10,
+              ),
+              buildbody('Use of our website is conditional upon your acceptance of these terms. If you do not agree to these terms you should immediately discontinue use of our website'),
+              const SizedBox(
+                height: 10,
+              ),
+              buildbody('By accessing this website, you hereby agree that you have read and fully understood the following terms and conditions. You are therefore bound by our terms and conditions when you access the site or interact with us as a business or use/patronize any of our services.'),
+              const SizedBox(
+                height: 10,
+              ),
+              buildbody('The terms and conditions herein are subject to change without any prior notice and we can do so anytime at our sole discretion. You are therefore advised to periodically check our terms and conditions page for any new changes that may have been made prior after your last visit.'),
+              const SizedBox(
+                height: 10,
+              ),
+              buildbody('For purposes of these terms and conditions, ”User”, “Client”, “You” and “Your” refers to you, the person accessing this Website and accepting the Company’s terms and conditions. “The Company”, “Ourselves”, “We” and “Us”, refers to Fortfolio Limited and its subsidiary companies.“Party”, “Parties”, or “Us”, refers to both the Client and the Company, or either the Client or the Company.'),
               const SizedBox(
                 height: 25,
               ),
@@ -98,7 +114,7 @@ class TACPage extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              buildbody('You may use our systems and this website for lawful purposes only. You may not impersonate any person or entity, or falsify or otherwise misrepresent yourself or your affiliation with any person or entity. You are strictly prohibited from posting or transmitting any material that could cause Fortfolio harm, constitute a criminal offence, give rise to civil liability or otherwise violate any laws or these Terms and Conditions. Fortfolio assumes no responsibility for users posting or transmitting of such material. '),
+              buildbody('You may use our systems and this website for lawful purposes only. You may not impersonate any person or entity, or falsify or otherwise misrepresent yourself or your affiliation with any person or entity. You are strictly prohibited from posting or transmitting any material that could cause Fortfolio harm, constitute a criminal offence, give rise to civil liability or otherwise violate any laws or these Terms and Conditions. Fortfolio assumes no responsibility for users posting or transmitting of such material '),
               const SizedBox(
                 height: 25,
               ),

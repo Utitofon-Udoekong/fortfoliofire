@@ -48,7 +48,6 @@ import 'package:fortfolio/presentation/home/wallet/transactions/transactions.dar
 import 'package:fortfolio/presentation/home/wallet/wallet.dart';
 import 'package:fortfolio/presentation/home/wallet/withdraw/bank/bank_withdrawal.dart';
 import 'package:fortfolio/presentation/home/wallet/withdraw/crypto/crypto_withdrawal.dart';
-import 'package:fortfolio/presentation/home/wallet/withdraw/select_investment.dart';
 import 'package:fortfolio/presentation/home/wallet/withdraw/select_method.dart';
 import 'package:fortfolio/presentation/home/wallet/withdraw/withdrawal.dart';
 import 'package:fortfolio/presentation/splash/onboarding.dart';
@@ -100,8 +99,7 @@ import '../home/wallet/investment/fortshield_info.dart';
   AutoRoute(path: "fortshieldinvest", page: FortShieldInvestment),
   AutoRoute(path: "walletOverview", page: WalletOverview),
   AutoRoute(path: "walletTransactions", page: WalletTransactions),
-  AutoRoute(
-      path: "selectInvestmentToWihdraw", page: SelectInvestmentToWithdraw),
+  
   AutoRoute(path: "selectWithdrawalMethod", page: SelectWithdrawalMethod),
   AutoRoute(path: "bankwithdrawal", page: BankWithdrawal),
   AutoRoute(path: "cryptowithdrawal", page: CryptoWithdrawal),

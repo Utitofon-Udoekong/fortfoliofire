@@ -93,53 +93,6 @@ class WithdrawalPage extends StatelessWidget {
                         )
                       );
                     },backgroundColor: kWhiteColor,);
-                    // BottomSheet(
-                    //   onClosing: () {},
-                    //   builder: ((context) {
-                    //     return Padding(
-                    //       padding: kDefaultPadding,
-                    //       child: Column(
-                    //         crossAxisAlignment: CrossAxisAlignment.start,
-                    //         children: <Widget>[
-                    //           const SizedBox(
-                    //             height: 30,
-                    //           ),
-                    //           Text(
-                    //             'How much are you\nwithdrawing?',
-                    //             style: titleText.copyWith(fontSize: 20),
-                    //           ),
-                    //           const SizedBox(
-                    //             height: 30,
-                    //           ),
-                    //           Text(
-                    //             'Amount',
-                    //             style: subTitle.copyWith(color: kgreyColor),
-                    //           ),
-                    //           const SizedBox(
-                    //             height: 10,
-                    //           ),
-                    //           TextFormField(
-                    //             // controller: controller.code,
-                    //             autocorrect: false,
-                    //             keyboardType: TextInputType.number,
-                    //             decoration: const InputDecoration(
-                    //                 filled: true,
-                    //                 fillColor: Color(0xFFF3F6F8),
-                    //                 border: InputBorder.none),
-                    //             onChanged: (value) => context.read<WalletCubit>().amountToBeWithdrawnChanged(amountToBeWithdrawn: int.parse(value)),
-                    //           ),
-                    //           const SizedBox(
-                    //             height: 10,
-                    //           ),
-                    //           CustomFilledButton(
-                    //               text: 'CONTINUE',
-                    //               onTap: () => context.router.push(selectWithdrawalMethod))
-                    //         ],
-                    //       ),
-                    //     );
-                    //   }),
-                    //   backgroundColor: kWhiteColor,
-                    // );
                   }),
                   const SizedBox(
                     height: 20,
@@ -190,52 +143,6 @@ class WithdrawalPage extends StatelessWidget {
                         ),
                       );
                     });
-                    // BottomSheet(
-                    //   onClosing: () {},
-                    //   builder: ((context) {
-                    //     return Padding(
-                    //       padding: kDefaultPadding,
-                    //       child: Column(
-                    //         crossAxisAlignment: CrossAxisAlignment.start,
-                    //         children: <Widget>[
-                    //           const SizedBox(
-                    //             height: 30,
-                    //           ),
-                    //           Text(
-                    //             'How much are you\nwithdrawing?',
-                    //             style: titleText.copyWith(fontSize: 20),
-                    //           ),
-                    //           const SizedBox(
-                    //             height: 30,
-                    //           ),
-                    //           Text(
-                    //             'Amount',
-                    //             style: subTitle.copyWith(color: kgreyColor),
-                    //           ),
-                    //           const SizedBox(
-                    //             height: 10,
-                    //           ),
-                    //           TextFormField(
-                    //             autocorrect: false,
-                    //             keyboardType: TextInputType.number,
-                    //             decoration: const InputDecoration(
-                    //                 filled: true,
-                    //                 fillColor: Color(0xFFF3F6F8),
-                    //                 border: InputBorder.none),
-                    //             onChanged: (value) => context.read<WalletCubit>().amountToBeWithdrawnChanged(amountToBeWithdrawn: int.parse(value)),
-                    //           ),
-                    //           const SizedBox(
-                    //             height: 10,
-                    //           ),
-                    //           CustomFilledButton(
-                    //               text: 'CONTINUE',
-                    //               onTap: () => context.router.push(selectWithdrawalMethod))
-                    //         ],
-                    //       ),
-                    //     );
-                    //   }),
-                    //   backgroundColor: kWhiteColor,
-                    // );
                   })
                 ],
               ),
