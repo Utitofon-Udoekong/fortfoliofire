@@ -5,7 +5,7 @@ import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
 import 'package:fortfolio/injection.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/bank/cubit/bank_address_cubit.dart';
-import 'package:fortfolio/utils/pages.dart';
+ 
 
 class AddBank extends StatelessWidget {
   const AddBank({Key? key}) : super(key: key);

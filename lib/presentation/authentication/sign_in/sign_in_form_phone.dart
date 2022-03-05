@@ -7,7 +7,7 @@ import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/domain/widgets/loading_view.dart';
 import 'package:fortfolio/injection.dart';
-import 'package:fortfolio/utils/pages.dart';
+ 
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:auto_route/auto_route.dart';
@@ -21,7 +21,6 @@ class SignInFormPhone extends StatefulWidget {
 
 class _SignInFormPhoneState extends State<SignInFormPhone> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  bool _obscureText = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +32,7 @@ class _SignInFormPhoneState extends State<SignInFormPhone> {
                   listenWhen: (p, c) =>
                       p.isLoggedIn != c.isLoggedIn && c.isLoggedIn,
                   listener: (context, state) {
-                    context.router.replaceNamed(home);
+                    context.router.replace(const HomePageRoute());
                   },
                 ),
                 BlocListener<SignInFormPhoneCubit, SignInFormPhoneState>(
@@ -126,7 +125,7 @@ class _SignInFormPhoneState extends State<SignInFormPhone> {
                                     ),
                                     TextButton(
                                       onPressed: () => context.router
-                                          .push(SignInFormEmailRoute()),
+                                          .push(const SignInFormEmailRoute()),
                                       child: const Text(
                                         "Login with email",
                                         style: TextStyle(

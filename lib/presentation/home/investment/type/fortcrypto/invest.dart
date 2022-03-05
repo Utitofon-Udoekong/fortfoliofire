@@ -20,8 +20,15 @@ class FortCryptoInvestment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (bloccontext) => getIt<InvestmentCubit>(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => getIt<InvestmentCubit>(),
+        ),
+        BlocProvider(
+          create: (context) => getIt<ExchangeTypeCubit>(),
+        ),
+      ],
       child: Scaffold(
         body: SafeArea(
           child: Padding(
@@ -43,6 +50,9 @@ class FortCryptoInvestment extends StatelessWidget {
                   Text(
                     "Invest",
                     style: titleText.copyWith(color: kBlackColor),
+                  ),
+                  const SizedBox(
+                    width: 7,
                   ),
                   Flex(
                     direction: Axis.horizontal,
@@ -70,10 +80,14 @@ class FortCryptoInvestment extends StatelessWidget {
                     "FortCrypto",
                     style: titleText.copyWith(color: kBlackColor, fontSize: 15),
                   ),
+
                   Text(
                     "How much are you starting with?",
                     style: subTitle.copyWith(
                         color: const Color(0xFF656565), fontSize: 13),
+                  ),
+                  const SizedBox(
+                    height: 10,
                   ),
                   ClipRRect(
                     borderRadius: BorderRadius.circular(10),
@@ -86,19 +100,6 @@ class FortCryptoInvestment extends StatelessWidget {
                           fillColor: const Color(0xFFF3F6F8),
                           border: InputBorder.none,
                           suffixIcon: const Icon(Icons.keyboard_arrow_down),
-                          // suffix: DropdownButton<String>(
-                          //     items: <String>[
-                          //       'Naira',
-                          //       'Dollar',
-                          //       'Bitcoin'
-                          //     ].map<DropdownMenuItem<String>>((String value) {
-                          //       return DropdownMenuItem<String>(
-                          //         value: value,
-                          //         child: Text(value),
-                          //       );
-                          //     }).toList(),
-                          //     onChanged: (onChanged) {}),
-                          suffixText: "BTC",
                           suffixStyle: TextStyle(
                               color: Colors.grey.shade400, fontSize: 13)),
                       onChanged: (value) => context
@@ -123,12 +124,13 @@ class FortCryptoInvestment extends StatelessWidget {
                     builder: (context, state) {
                       return ToggleButtons(
                         selectedColor: Colors.white,
-                        color: kgreyColor,
+                        color: Colors.white70,
                         isSelected: state.isSelected,
                         fillColor: const Color.fromRGBO(243, 246, 248, 0.6),
                         renderBorder: false,
                         children: <Widget>[
                           Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 6.0),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6),
                                 color: kPrimaryColor),
@@ -140,6 +142,7 @@ class FortCryptoInvestment extends StatelessWidget {
                             alignment: Alignment.center,
                           ),
                           Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 6.0),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6),
                                 color: kPrimaryColor),
@@ -151,6 +154,7 @@ class FortCryptoInvestment extends StatelessWidget {
                             alignment: Alignment.center,
                           ),
                           Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 6.0),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6),
                                 color: kPrimaryColor),
@@ -266,8 +270,8 @@ class FortCryptoInvestment extends StatelessWidget {
                                   context
                                       .read<InvestmentCubit>()
                                       .planNameChanged(planName: "FortDollar");
-                                  context.router
-                                      .push(const SelectInvestmentMethodRoute());
+                                  context.router.push(
+                                      const SelectInvestmentMethodRoute());
                                 }),
                             InkWell(
                               onTap: () => context.router.pop(),

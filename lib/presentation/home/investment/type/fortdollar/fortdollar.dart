@@ -36,6 +36,9 @@ class FortDollar extends StatelessWidget {
                   child: const Image(image: AssetImage('images/fortdollar.png')),
                   alignment: Alignment.center,
                 ),
+                const SizedBox(
+                height: 20,
+              ),
                 Text(
                   'FortDollar Investment',
                   style: titleText.copyWith(fontSize: 18),

@@ -9,7 +9,7 @@ import 'package:fortfolio/domain/widgets/loading_view.dart';
 import 'package:fortfolio/injection.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:fortfolio/utils/pages.dart';
+ 
 
 class SignInFormEmail extends StatelessWidget {
 
@@ -64,7 +64,7 @@ class SignInFormEmail extends StatelessWidget {
                 listenWhen: (p, c) =>
                     p.isLoggedIn != c.isLoggedIn && c.isLoggedIn,
                 listener: (context, state) {
-                  context.router.replaceNamed(home);
+                  context.router.replace(const HomePageRoute());
                 },
               )
             ],

@@ -6,7 +6,7 @@ import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
 import 'package:fortfolio/injection.dart';
 import 'package:fortfolio/presentation/home/wallet/cubit/wallet_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
-import 'package:fortfolio/utils/pages.dart';
+ 
 
 class WithdrawalPage extends StatelessWidget {
   const WithdrawalPage({Key? key}) : super(key: key);

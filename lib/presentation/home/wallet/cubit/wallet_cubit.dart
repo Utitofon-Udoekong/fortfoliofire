@@ -3,6 +3,7 @@ import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
 import 'package:fortfolio/domain/auth/status.dart';
 import 'package:fortfolio/domain/user/bank_address.dart';
 import 'package:fortfolio/domain/user/crypto_wallet.dart';
+import 'package:fortfolio/domain/user/investment.dart';
 import 'package:fortfolio/domain/user/withdrawal_item.dart';
 import 'package:fortfolio/infrastructure/auth/firebase_firestore_facade.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -35,30 +36,104 @@ class WalletCubit extends Cubit<WalletState> {
     emit(state.copyWith(withdrawalMethod: withdrawalMethod));
   }
 
+  void initFortDollar(){
+    var fortDollarInvestments = state.fortDollarInvestments;
+    var planYield = 0;
+      var amount = 0;
+      for(var element in fortDollarInvestments){
+        planYield += element.planYield;
+        amount += element.amount;
+      }
+      emit(state.copyWith(yieldBalance: planYield, investmentBalance: amount));
+  }
+  void initFortShield(){
+    var fortShieldInvestments = state.fortShieldInvestments;
+    var planYield = 0;
+      var amount = 0;
+      for(var element in fortShieldInvestments){
+        planYield += element.planYield;
+        amount += element.amount;
+      }
+      emit(state.copyWith(yieldBalance: planYield, investmentBalance: amount));
+  }
+  void initFortCrypto(){
+    var fortCryptoInvestments = state.fortCryptoInvestments;
+    var planYield = 0;
+      var amount = 0;
+      for(var element in fortCryptoInvestments){
+        planYield += element.planYield;
+        amount += element.amount;
+      }
+      emit(state.copyWith(yieldBalance: planYield, investmentBalance: amount));
+  }
+
+  void initWalletBalance(){
+    var fortDollarInvestments = state.fortDollarInvestments;
+    var fortShieldInvestments = state.fortShieldInvestments;
+    var fortCryptoInvestments = state.fortCryptoInvestments;
+    var investmentView = state.investmentView;
+    if(investmentView == "fortdollar"){
+      var balance = 0;
+      for(var element in fortDollarInvestments){
+        var availableBalance = element.amount + element.planYield;
+        balance += availableBalance;
+      }
+      emit(state.copyWith(walletBalance: balance));
+    }else if(investmentView == "fortshield"){
+      var balance = 0;
+      for(var element in fortShieldInvestments){
+        var availableBalance = element.amount + element.planYield;
+        balance += availableBalance;
+      }
+      emit(state.copyWith(walletBalance: balance));
+    }else if(investmentView == "fortcrypto"){
+      var balance = 0;
+      for(var element in fortCryptoInvestments){
+        var availableBalance = element.amount + element.planYield;
+        balance += availableBalance;
+      }
+      emit(state.copyWith(walletBalance: balance));
+    }
+  }
+
+  
   void initBankAddresses() async {
-    var bankAddresses = state.bankAddresses;
     var bank = await firestoreFacade.getBankAddress();
-    bank.fold(() => null, (bankAddress) {
-      bankAddresses.add(bankAddress);
+    bank.fold(() => null, (bankAddresses) {
       emit(state.copyWith(bankAddresses: bankAddresses));
     });
   }
 
   void initCryptoWallet() async {
-    var cryptoAddresses = state.cryptoAddresses;
     var wallet = await firestoreFacade.getCryptoWallets();
-    wallet.fold(() => null, (address) {
-      cryptoAddresses.add(address);
+    wallet.fold(() => null, (cryptoAddresses) {
       emit(state.copyWith(cryptoAddresses: cryptoAddresses));
     });
   }
 
   void initGeneralCryptoWallet() async {
-    var generalCryptoAddresses = state.generalCryptoAddresses;
     var wallet = await firestoreFacade.getGeneralCryptoWallets();
-    wallet.fold(() => null, (address) {
-      generalCryptoAddresses.add(address);
+    wallet.fold(() => null, (generalCryptoAddresses) {
       emit(state.copyWith(generalCryptoAddresses: generalCryptoAddresses));
+    });
+  }
+
+  void initFortDollarInvestments() async {
+    var investments = await firestoreFacade.getFortDollarInvestments();
+    investments.fold(() => null, (fortDollarInvestments) {
+      emit(state.copyWith(fortDollarInvestments: fortDollarInvestments));
+    });
+  }
+  void initFortShieldInvestments() async {
+    var investments = await firestoreFacade.getFortShieldInvestments();
+    investments.fold(() => null, (fortShieldInvestments) {
+      emit(state.copyWith(fortShieldInvestments: fortShieldInvestments));
+    });
+  }
+  void initFortCryptoInvestments() async {
+    var investments = await firestoreFacade.getFortCryptoInvestments();
+    investments.fold(() => null, (fortCryptoInvestments) {
+      emit(state.copyWith(fortCryptoInvestments: fortCryptoInvestments));
     });
   }
 

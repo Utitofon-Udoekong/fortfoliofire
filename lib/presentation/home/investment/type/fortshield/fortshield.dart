@@ -4,7 +4,7 @@ import 'package:fortfolio/domain/constants/plans.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
-import 'package:fortfolio/utils/pages.dart';
+ 
 
 class FortShield extends StatelessWidget {
   const FortShield({Key? key}) : super(key: key);
@@ -37,8 +37,11 @@ class FortShield extends StatelessWidget {
                   child: const Image(image: AssetImage('images/fortshield.png')),
                   alignment: Alignment.center,
                 ),
+                const SizedBox(
+                height: 20,
+              ),
                 Text(
-                  'FortDollar Investment',
+                  'FortShield Investment',
                   style: titleText.copyWith(fontSize: 18),
                 ),
                 const SizedBox(

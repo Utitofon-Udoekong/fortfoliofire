@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
-import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
 import 'package:fortfolio/domain/widgets/custom_outlined_button.dart';
 import 'package:fortfolio/presentation/home/wallet/cubit/wallet_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
@@ -35,14 +34,14 @@ class FortCryptoInvestmentInfo extends StatelessWidget {
               const SizedBox(height: 30),
               Text("Total", style: subTitle.copyWith(fontSize: 12)),
               const SizedBox(height: 8),
-              Text("N 90,000.00",
+              Text("\$ 90,000.00",
                   style: titleText.copyWith(
                       fontSize: 16, fontWeight: FontWeight.w500)),
               const SizedBox(height: 30),
               Text("Available for yield",
                   style: subTitle.copyWith(fontSize: 12)),
               const SizedBox(height: 8),
-              Text("N 30,000.00",
+              Text("\$ 30,000.00",
                   style: titleText.copyWith(
                       fontSize: 16, fontWeight: FontWeight.w500)),
               const SizedBox(height: 30),

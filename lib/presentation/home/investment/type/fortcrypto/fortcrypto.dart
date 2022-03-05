@@ -35,6 +35,9 @@ class FortCrypto extends StatelessWidget {
                   child: const Image(image: AssetImage('images/fortcrypto.png')),
                   alignment: Alignment.center,
                 ),
+                const SizedBox(
+                height: 20,
+              ),
                 Text(
                   'FortCrypto Investment',
                   style: titleText.copyWith(fontSize: 18),

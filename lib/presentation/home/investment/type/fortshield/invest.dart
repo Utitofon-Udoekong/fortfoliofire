@@ -59,6 +59,9 @@ class _FortShieldInvestmentState extends State<FortShieldInvestment> {
                     "Invest",
                     style: titleText.copyWith(color: kBlackColor),
                   ),
+                  const SizedBox(
+                    width: 8,
+                  ),
                   Flex(
                     direction: Axis.horizontal,
                     children: <Widget>[
@@ -88,6 +91,9 @@ class _FortShieldInvestmentState extends State<FortShieldInvestment> {
                     "How much are you starting with?",
                     style: subTitle.copyWith(
                         color: const Color(0xFF656565), fontSize: 13),
+                  ),
+                  const SizedBox(
+                    height: 10,
                   ),
                   BlocBuilder<ExchangeTypeCubit, ExchangeTypeState>(
                     builder: (context, state) {
@@ -149,12 +155,14 @@ class _FortShieldInvestmentState extends State<FortShieldInvestment> {
                     builder: (context, state) {
                       return ToggleButtons(
                         selectedColor: Colors.white,
-                        color: kgreyColor,
+                        color: Colors.white70,
                         isSelected: state.isSelected,
                         fillColor: const Color.fromRGBO(243, 246, 248, 0.6),
                         renderBorder: false,
                         children: <Widget>[
+                          const SizedBox(width: 0),
                           Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 6.0),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6),
                                 color: kPrimaryColor),
@@ -166,6 +174,7 @@ class _FortShieldInvestmentState extends State<FortShieldInvestment> {
                             alignment: Alignment.center,
                           ),
                           Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 6.0),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6),
                                 color: kPrimaryColor),

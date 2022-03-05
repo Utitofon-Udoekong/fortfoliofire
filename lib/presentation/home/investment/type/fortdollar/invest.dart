@@ -8,12 +8,15 @@ import 'package:fortfolio/domain/widgets/labelled_checkbox.dart';
 import 'package:fortfolio/injection.dart';
 import 'package:fortfolio/presentation/home/investment/cubit/investment_cubit.dart';
 import 'package:fortfolio/presentation/home/investment/type/cubit/exchange_type_cubit.dart';
-import 'package:fortfolio/utils/pages.dart';
+import 'package:fortfolio/presentation/routes/router.gr.dart';
+ 
 import 'package:timelines/timelines.dart';
 
 const kTileHeight = 40.0;
 
 class FortDollarInvestment extends StatelessWidget {
+  const FortDollarInvestment({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -47,6 +50,9 @@ class FortDollarInvestment extends StatelessWidget {
                     "Invest",
                     style: titleText.copyWith(color: kBlackColor),
                   ),
+                  const SizedBox(
+                    width: 7,
+                  ),
                   Flex(
                     direction: Axis.horizontal,
                     children: <Widget>[
@@ -77,6 +83,9 @@ class FortDollarInvestment extends StatelessWidget {
                     style: subTitle.copyWith(
                         color: const Color(0xFF656565), fontSize: 13),
                   ),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   BlocBuilder<ExchangeTypeCubit, ExchangeTypeState>(
                     builder: (context, state) {
                       return ClipRRect(
@@ -102,7 +111,7 @@ class FortDollarInvestment extends StatelessWidget {
                                         children: <Widget>[
                                           Image(
                                               image:
-                                                  AssetImage("images///.png")),
+                                                   AssetImage("images/$path.png")),
                                           const SizedBox(
                                             width: 15,
                                           ),
@@ -117,7 +126,6 @@ class FortDollarInvestment extends StatelessWidget {
                                         .exchangeTypeChanged(
                                             exchangeType: onChanged!);
                                   }),
-                              suffixText: "BTC",
                               suffixStyle: TextStyle(
                                   color: Colors.grey.shade400, fontSize: 13)),
                           onChanged: (value) => context
@@ -144,12 +152,13 @@ class FortDollarInvestment extends StatelessWidget {
                     builder: (context, state) {
                       return ToggleButtons(
                         selectedColor: Colors.white,
-                        color: kgreyColor,
+                        color: Colors.white70,
                         isSelected: state.isSelected,
                         fillColor: const Color.fromRGBO(243, 246, 248, 0.6),
                         renderBorder: false,
                         children: <Widget>[
                           Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 6.0),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6),
                                 color: kPrimaryColor),
@@ -161,6 +170,7 @@ class FortDollarInvestment extends StatelessWidget {
                             alignment: Alignment.center,
                           ),
                           Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 6.0),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6),
                                 color: kPrimaryColor),
@@ -172,6 +182,7 @@ class FortDollarInvestment extends StatelessWidget {
                             alignment: Alignment.center,
                           ),
                           Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 6.0),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6),
                                 color: kPrimaryColor),
@@ -287,8 +298,7 @@ class FortDollarInvestment extends StatelessWidget {
                                   context
                                       .read<InvestmentCubit>()
                                       .planNameChanged(planName: "FortDollar");
-                                  context.router
-                                      .pushNamed(selectInvestmentMethod);
+                                  context.router.push(const SelectInvestmentMethodRoute());
                                 }),
                             InkWell(
                               onTap: () {

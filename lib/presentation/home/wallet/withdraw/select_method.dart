@@ -7,7 +7,7 @@ import 'package:fortfolio/domain/widgets/custom_icon_trailing_function_button.da
 import 'package:fortfolio/injection.dart';
 import 'package:fortfolio/presentation/home/wallet/cubit/wallet_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
-import 'package:fortfolio/utils/pages.dart';
+ 
 
 class SelectWithdrawalMethod extends StatelessWidget {
   const SelectWithdrawalMethod({Key? key}) : super(key: key);
