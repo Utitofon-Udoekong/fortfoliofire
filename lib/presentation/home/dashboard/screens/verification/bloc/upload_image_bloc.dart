@@ -24,7 +24,7 @@ class UploadImageBloc extends Bloc<UploadImageEvent, UploadImageState> {
       frontPicked: (e) async* {
         yield state.copyWith(frontFile: e.file);
         final response = await storageFacade.uploadImageToStorage(
-            childName: "FrontDocument", file: state.frontFile, isDocument: true);
+            childName: "FrontDocument", file: state.frontFile);
         response.fold(() => null, (response) async* {
           yield state.copyWith(response: response);
         });
@@ -32,7 +32,7 @@ class UploadImageBloc extends Bloc<UploadImageEvent, UploadImageState> {
       backPicked: (e) async* {
         yield state.copyWith(backFile: e.file);
         final response = await storageFacade.uploadImageToStorage(
-            childName: "BackDocument", file: state.backFile, isDocument: true);
+            childName: "BackDocument", file: state.backFile);
         response.fold(() => null, (response) async* {
           yield state.copyWith(response: response);
         });
@@ -40,7 +40,7 @@ class UploadImageBloc extends Bloc<UploadImageEvent, UploadImageState> {
       utitlityPicked: (e) async* {
         yield state.copyWith(backFile: e.file);
         final response = await storageFacade.uploadImageToStorage(
-            childName: "UtilityDocument", file: state.utilityFile, isDocument: true);
+            childName: "UtilityDocument", file: state.utilityFile);
         response.fold(() => null, (response) async* {
           yield state.copyWith(response: response);
         });

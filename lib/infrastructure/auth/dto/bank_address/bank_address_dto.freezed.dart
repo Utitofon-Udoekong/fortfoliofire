@@ -26,11 +26,13 @@ class _$BankAddressDTOTearOff {
       {required String bankName,
       required String accountNumber,
       required String userName,
+      required String id,
       required String type}) {
     return _BankAddressDTO(
       bankName: bankName,
       accountNumber: accountNumber,
       userName: userName,
+      id: id,
       type: type,
     );
   }
@@ -48,6 +50,7 @@ mixin _$BankAddressDTO {
   String get bankName => throw _privateConstructorUsedError;
   String get accountNumber => throw _privateConstructorUsedError;
   String get userName => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -62,7 +65,11 @@ abstract class $BankAddressDTOCopyWith<$Res> {
           BankAddressDTO value, $Res Function(BankAddressDTO) then) =
       _$BankAddressDTOCopyWithImpl<$Res>;
   $Res call(
-      {String bankName, String accountNumber, String userName, String type});
+      {String bankName,
+      String accountNumber,
+      String userName,
+      String id,
+      String type});
 }
 
 /// @nodoc
@@ -79,6 +86,7 @@ class _$BankAddressDTOCopyWithImpl<$Res>
     Object? bankName = freezed,
     Object? accountNumber = freezed,
     Object? userName = freezed,
+    Object? id = freezed,
     Object? type = freezed,
   }) {
     return _then(_value.copyWith(
@@ -93,6 +101,10 @@ class _$BankAddressDTOCopyWithImpl<$Res>
       userName: userName == freezed
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
       type: type == freezed
           ? _value.type
@@ -110,7 +122,11 @@ abstract class _$BankAddressDTOCopyWith<$Res>
       __$BankAddressDTOCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String bankName, String accountNumber, String userName, String type});
+      {String bankName,
+      String accountNumber,
+      String userName,
+      String id,
+      String type});
 }
 
 /// @nodoc
@@ -129,6 +145,7 @@ class __$BankAddressDTOCopyWithImpl<$Res>
     Object? bankName = freezed,
     Object? accountNumber = freezed,
     Object? userName = freezed,
+    Object? id = freezed,
     Object? type = freezed,
   }) {
     return _then(_BankAddressDTO(
@@ -143,6 +160,10 @@ class __$BankAddressDTOCopyWithImpl<$Res>
       userName: userName == freezed
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
       type: type == freezed
           ? _value.type
@@ -159,6 +180,7 @@ class _$_BankAddressDTO extends _BankAddressDTO {
       {required this.bankName,
       required this.accountNumber,
       required this.userName,
+      required this.id,
       required this.type})
       : super._();
 
@@ -172,11 +194,13 @@ class _$_BankAddressDTO extends _BankAddressDTO {
   @override
   final String userName;
   @override
+  final String id;
+  @override
   final String type;
 
   @override
   String toString() {
-    return 'BankAddressDTO(bankName: $bankName, accountNumber: $accountNumber, userName: $userName, type: $type)';
+    return 'BankAddressDTO(bankName: $bankName, accountNumber: $accountNumber, userName: $userName, id: $id, type: $type)';
   }
 
   @override
@@ -188,6 +212,7 @@ class _$_BankAddressDTO extends _BankAddressDTO {
             const DeepCollectionEquality()
                 .equals(other.accountNumber, accountNumber) &&
             const DeepCollectionEquality().equals(other.userName, userName) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.type, type));
   }
 
@@ -197,6 +222,7 @@ class _$_BankAddressDTO extends _BankAddressDTO {
       const DeepCollectionEquality().hash(bankName),
       const DeepCollectionEquality().hash(accountNumber),
       const DeepCollectionEquality().hash(userName),
+      const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(type));
 
   @JsonKey(ignore: true)
@@ -215,6 +241,7 @@ abstract class _BankAddressDTO extends BankAddressDTO {
       {required String bankName,
       required String accountNumber,
       required String userName,
+      required String id,
       required String type}) = _$_BankAddressDTO;
   const _BankAddressDTO._() : super._();
 
@@ -227,6 +254,8 @@ abstract class _BankAddressDTO extends BankAddressDTO {
   String get accountNumber;
   @override
   String get userName;
+  @override
+  String get id;
   @override
   String get type;
   @override

@@ -11,6 +11,7 @@ _$_BankAddressDTO _$$_BankAddressDTOFromJson(Map<String, dynamic> json) =>
       bankName: json['bankName'] as String,
       accountNumber: json['accountNumber'] as String,
       userName: json['userName'] as String,
+      id: json['id'] as String,
       type: json['type'] as String,
     );
 
@@ -19,5 +20,6 @@ Map<String, dynamic> _$$_BankAddressDTOToJson(_$_BankAddressDTO instance) =>
       'bankName': instance.bankName,
       'accountNumber': instance.accountNumber,
       'userName': instance.userName,
+      'id': instance.id,
       'type': instance.type,
     };

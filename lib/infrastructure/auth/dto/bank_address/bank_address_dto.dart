@@ -1,9 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
-import 'package:fortfolio/domain/core/value_objects.dart';
-import 'package:fortfolio/domain/user/active_plan_item.dart';
 import 'package:fortfolio/domain/user/bank_address.dart';
-import 'package:fortfolio/domain/user/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'bank_address_dto.freezed.dart';
@@ -17,11 +13,12 @@ abstract class BankAddressDTO implements _$BankAddressDTO {
     required String bankName,
   required String accountNumber,
   required String userName,
+  required String id,
   required String type,
   }) = _BankAddressDTO;
 
   factory BankAddressDTO.fromDomain(BankAddress bankAddress) {
-    return const BankAddressDTO(accountNumber: '', bankName: '', type: '', userName: ''
+    return const BankAddressDTO(accountNumber: '', bankName: '', type: '', userName: '', id: ''
         );
   }
 
@@ -45,6 +42,7 @@ extension BankAddressDTOX on BankAddressDTO {
      bankName: bankName,
      accountNumber: accountNumber,
      userName: userName,
+     id: id,
      type: type
     );
   }

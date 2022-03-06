@@ -15,11 +15,12 @@ abstract class CryptoWalletDTO implements _$CryptoWalletDTO {
     required String coin,
     required String? network,
     required String platform,
+    required String id,
     required String type,
   }) = _CryptoWalletDTO;
 
   factory CryptoWalletDTO.fromDomain(CryptoWallet cryptoWallet) {
-    return const CryptoWalletDTO(address: '', coin: '', network: '', platform: '', type: '', walletLabel: '');
+    return const CryptoWalletDTO(address: '', coin: '', network: '', platform: '', type: '',id: '', walletLabel: '');
   }
 
 
@@ -44,7 +45,8 @@ extension CryptoWalletDTOX on CryptoWalletDTO {
       coin: coin,
       network: network,
       platform: platform,
-      type: type
+      type: type,
+      id: id
     );
   }
 }

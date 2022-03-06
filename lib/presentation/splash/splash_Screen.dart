@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 
@@ -31,6 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final svg = SvgPicture.asset('images/logo.svg',semanticsLabel: 'logo',);
     return BlocListener<AuthCubit, AuthState>(
       listenWhen: (previous, current) => 
         previous.isUserCheckedFromAuthFacade != current.isUserCheckedFromAuthFacade &&
@@ -57,7 +59,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 height: MediaQuery.of(context).size.height / 5,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage('images/logo.svg'),
+                    image: AssetImage('images/logo.png'),
                     fit: BoxFit.fitHeight
                   ),
                 ),
