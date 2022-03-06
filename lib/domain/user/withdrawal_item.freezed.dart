@@ -22,6 +22,7 @@ class _$WithdrawalItemTearOff {
       {required String description,
       required int amount,
       required String traxId,
+      required String uid,
       required String planName,
       required Status status,
       required DateTime createdat,
@@ -30,6 +31,7 @@ class _$WithdrawalItemTearOff {
       description: description,
       amount: amount,
       traxId: traxId,
+      uid: uid,
       planName: planName,
       status: status,
       createdat: createdat,
@@ -46,6 +48,7 @@ mixin _$WithdrawalItem {
   String get description => throw _privateConstructorUsedError;
   int get amount => throw _privateConstructorUsedError;
   String get traxId => throw _privateConstructorUsedError;
+  String get uid => throw _privateConstructorUsedError;
   String get planName => throw _privateConstructorUsedError;
   Status get status => throw _privateConstructorUsedError;
   DateTime get createdat => throw _privateConstructorUsedError;
@@ -65,6 +68,7 @@ abstract class $WithdrawalItemCopyWith<$Res> {
       {String description,
       int amount,
       String traxId,
+      String uid,
       String planName,
       Status status,
       DateTime createdat,
@@ -85,6 +89,7 @@ class _$WithdrawalItemCopyWithImpl<$Res>
     Object? description = freezed,
     Object? amount = freezed,
     Object? traxId = freezed,
+    Object? uid = freezed,
     Object? planName = freezed,
     Object? status = freezed,
     Object? createdat = freezed,
@@ -102,6 +107,10 @@ class _$WithdrawalItemCopyWithImpl<$Res>
       traxId: traxId == freezed
           ? _value.traxId
           : traxId // ignore: cast_nullable_to_non_nullable
+              as String,
+      uid: uid == freezed
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
               as String,
       planName: planName == freezed
           ? _value.planName
@@ -134,6 +143,7 @@ abstract class _$WithdrawalItemCopyWith<$Res>
       {String description,
       int amount,
       String traxId,
+      String uid,
       String planName,
       Status status,
       DateTime createdat,
@@ -156,6 +166,7 @@ class __$WithdrawalItemCopyWithImpl<$Res>
     Object? description = freezed,
     Object? amount = freezed,
     Object? traxId = freezed,
+    Object? uid = freezed,
     Object? planName = freezed,
     Object? status = freezed,
     Object? createdat = freezed,
@@ -173,6 +184,10 @@ class __$WithdrawalItemCopyWithImpl<$Res>
       traxId: traxId == freezed
           ? _value.traxId
           : traxId // ignore: cast_nullable_to_non_nullable
+              as String,
+      uid: uid == freezed
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
               as String,
       planName: planName == freezed
           ? _value.planName
@@ -201,6 +216,7 @@ class _$_WithdrawalItem extends _WithdrawalItem {
       {required this.description,
       required this.amount,
       required this.traxId,
+      required this.uid,
       required this.planName,
       required this.status,
       required this.createdat,
@@ -214,6 +230,8 @@ class _$_WithdrawalItem extends _WithdrawalItem {
   @override
   final String traxId;
   @override
+  final String uid;
+  @override
   final String planName;
   @override
   final Status status;
@@ -224,7 +242,7 @@ class _$_WithdrawalItem extends _WithdrawalItem {
 
   @override
   String toString() {
-    return 'WithdrawalItem(description: $description, amount: $amount, traxId: $traxId, planName: $planName, status: $status, createdat: $createdat, paymentMethod: $paymentMethod)';
+    return 'WithdrawalItem(description: $description, amount: $amount, traxId: $traxId, uid: $uid, planName: $planName, status: $status, createdat: $createdat, paymentMethod: $paymentMethod)';
   }
 
   @override
@@ -236,6 +254,7 @@ class _$_WithdrawalItem extends _WithdrawalItem {
                 .equals(other.description, description) &&
             const DeepCollectionEquality().equals(other.amount, amount) &&
             const DeepCollectionEquality().equals(other.traxId, traxId) &&
+            const DeepCollectionEquality().equals(other.uid, uid) &&
             const DeepCollectionEquality().equals(other.planName, planName) &&
             const DeepCollectionEquality().equals(other.status, status) &&
             const DeepCollectionEquality().equals(other.createdat, createdat) &&
@@ -249,6 +268,7 @@ class _$_WithdrawalItem extends _WithdrawalItem {
       const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(amount),
       const DeepCollectionEquality().hash(traxId),
+      const DeepCollectionEquality().hash(uid),
       const DeepCollectionEquality().hash(planName),
       const DeepCollectionEquality().hash(status),
       const DeepCollectionEquality().hash(createdat),
@@ -265,6 +285,7 @@ abstract class _WithdrawalItem extends WithdrawalItem {
       {required String description,
       required int amount,
       required String traxId,
+      required String uid,
       required String planName,
       required Status status,
       required DateTime createdat,
@@ -277,6 +298,8 @@ abstract class _WithdrawalItem extends WithdrawalItem {
   int get amount;
   @override
   String get traxId;
+  @override
+  String get uid;
   @override
   String get planName;
   @override

@@ -269,7 +269,7 @@ class FortCryptoInvestment extends StatelessWidget {
                                 onTap: () {
                                   context
                                       .read<InvestmentCubit>()
-                                      .planNameChanged(planName: "FortDollar");
+                                      .planNameChanged(planName: "FortCrypto");
                                   context.router.push(
                                       const SelectInvestmentMethodRoute());
                                 }),

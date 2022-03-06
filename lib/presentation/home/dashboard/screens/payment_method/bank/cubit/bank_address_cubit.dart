@@ -3,6 +3,7 @@ import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
 import 'package:fortfolio/domain/user/bank_address.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:uuid/uuid.dart';
 
 part 'bank_address_state.dart';
 part 'bank_address_cubit.freezed.dart';
@@ -26,7 +27,8 @@ class BankAddressCubit extends Cubit<BankAddressState> {
     final String userName = state.userName;
     final String bankName = state.bankName;
     final String accountNumber = state.accountNumber;
-    BankAddress bankAddress = BankAddress(bankName: bankName, accountNumber: accountNumber, userName: userName, type: "BANKADDRESS");
+    final String id = const Uuid().v4();
+    BankAddress bankAddress = BankAddress(bankName: bankName, accountNumber: accountNumber, userName: userName, type: "BANKADDRESS", id: id);
     try {
       final res = await firestoreFacade.addBank(bankAddress: bankAddress);
       res.fold(() => null, (response) {

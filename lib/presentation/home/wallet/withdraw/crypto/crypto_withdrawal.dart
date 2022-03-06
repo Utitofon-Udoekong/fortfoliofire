@@ -64,7 +64,7 @@ class CryptoWithdrawal extends StatelessWidget {
                         var addressess = state.cryptoAddresses +
                             state.generalCryptoAddresses;
                         for (var element in addressess) {
-                          CryptoWallet cryptoWallet = CryptoWallet(walletLabel: element.walletLabel, address: element.address, coin: element.coin, network: element.network, platform: element.platform, type: element.type);
+                          CryptoWallet cryptoWallet = CryptoWallet(walletLabel: element.walletLabel, address: element.address, coin: element.coin, network: element.network, platform: element.platform, type: element.type, id: element.id);
                           tiles = buildtile(element.address, () => context.read<WalletCubit>().withdrawalDetailsChanged(withdrawalDetails: cryptoWallet.toMap()));
                         }
                         return tiles;

@@ -25,61 +25,62 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
 
   @override
   Future<Option<String>> addBank({required BankAddress bankAddress}) async {
-    String docId = const Uuid().v4();
+    String docId = bankAddress.accountNumber + bankAddress.id;
     try {
       await firestore.authUserCollection.doc(docId).set(BankAddressDTO.fromDomain(bankAddress).toJson());
       return some("Bank account added successfully");
     } on FirebaseException catch (e) {
       log("Code: ${e.code}, Message: ${e.message}");
-      return none();
+      return some('Unable to add wallet');
     }
   }
 
   @override
   Future<Option<String>> addCryptoWallet({required CryptoWallet cryptoWallet}) async {
-    String docId = const Uuid().v4();
+    String docId = cryptoWallet.address + cryptoWallet.id;
     try {
       await firestore.authUserCollection.doc(docId).set(CryptoWalletDTO.fromDomain(cryptoWallet).toJson());
       return some("Crypto wallet added successfully");
     } on FirebaseException catch (e) {
       log("Code: ${e.code}, Message: ${e.message}");
-      return none();
+      return some('Unable to add wallet');
     }
   }
 
   @override
   Future<Option<String>> addGeneralCryptoWallet({required CryptoWallet cryptoWallet}) async {
-    String docId = const Uuid().v4();
+    String docId = cryptoWallet.address + cryptoWallet.id;
     try {
       await firestore.authUserCollection.doc(docId).set(CryptoWalletDTO.fromDomain(cryptoWallet).toJson());
       return some("Crypto wallet added successfully");
     } on FirebaseException catch (e) {
       log("Code: ${e.code}, Message: ${e.message}");
-      return none();
+      return some('Unable to add wallet');
     }
   }
 
   @override
   Future<Option<String>> createInvestmentTransaction({required InvestmentItem investmentItem}) async {
-    String docId = const Uuid().v4();
+    String docId = investmentItem.traxId + investmentItem.uid;
     try {
+      // investmentItem.uid = docId;
       await firestore.investmentCollection.doc(docId).set(InvestmentItemDTO.fromDomain(investmentItem).toJson());
       return some("Investment made. Awaiting approval");
     } on FirebaseException catch (e) {
       log("Code: ${e.code}, Message: ${e.message}");
-      return none();
+      return some('Unable to create transaction at the moment');
     }
   }
 
   @override
   Future<Option<String>> createWithdrawalTransaction({required WithdrawalItem withdrawalItem}) async{
-    String docId = const Uuid().v4();
+    String docId = withdrawalItem.traxId + withdrawalItem.uid;
     try {
       firestore.withdrawalsCollection.doc(docId).set(WithdrawalItemDTO.fromDomain(withdrawalItem).toJson());
       return some("Withdrawal submitted. Awaiting approval");
     } on FirebaseException catch (e) {
       log("Code: ${e.code}, Message: ${e.message}");
-      return none();
+      return some('Unable to create withdrawals at the moment');
     }
   }
 
@@ -96,7 +97,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
         }
         return some(newDocs);
       } else {
-        log("authh getDatabaseUserWithPhoneNumber DOES NOT EXIST");
+        log("bank add error");
         return none();
       }
     } on FirebaseException catch (e) {
@@ -107,7 +108,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
 
   @override
   Future<Option<List<CryptoWallet>>> getCryptoWallets() async {
-    final query = await firestore.addressCollection .where("type", isEqualTo: "CRYPTOWALLET").get();
+    final query = await firestore.addressCollection.where("type", isEqualTo: "CRYPTOWALLET").get();
     try {
      if (query.docs.isNotEmpty && query.docs[0].exists) {
         final docs = query.docs;
@@ -118,7 +119,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
         }
         return some(newDocs);
       } else {
-        log("authh getDatabaseUserWithPhoneNumber DOES NOT EXIST");
+        log("crypto wallet error not gen");
         return none();
       }
     } on FirebaseException catch (e) {
@@ -141,7 +142,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
         }
         return some(newDocs);
       } else {
-        log("authh getDatabaseUserWithPhoneNumber DOES NOT EXIST");
+        log("cryptowallet error");
         return none();
       }
     } on FirebaseException catch (e) {
@@ -153,7 +154,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
 
   @override
   Future<Option<List<InvestmentItem>>> getFortDollarInvestments() async {
-    final query = await firestore.investmentCollection.where("planName",isEqualTo: "FORTDOLLAR").get();
+    final query = await firestore.investmentCollection.where("planName",isEqualTo: "FortDollar").get();
     try {
       if(query.docs.isNotEmpty && query.docs[0].exists){
         final docs = query.docs;
@@ -175,7 +176,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
 
   @override
   Future<Option<List<InvestmentItem>>> getFortCryptoInvestments() async {
-    final query = await firestore.investmentCollection.where("planName",isEqualTo: "FORTCRYPTO").get();
+    final query = await firestore.investmentCollection.where("planName",isEqualTo: "FortCrypto").get();
     try {
       if(query.docs.isNotEmpty && query.docs[0].exists){
         final docs = query.docs;
@@ -197,7 +198,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
 
   @override
   Future<Option<List<InvestmentItem>>> getFortShieldInvestments() async {
-    final query = await firestore.investmentCollection.where("planName",isEqualTo: "FORTSHIELD").get();
+    final query = await firestore.investmentCollection.where("planName",isEqualTo: "FortShield").get();
     try {
       if(query.docs.isNotEmpty && query.docs[0].exists){
         final docs = query.docs;
@@ -236,6 +237,20 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
     } on FirebaseException catch (e) {
       log("Code: ${e.code}, Message: ${e.message}");
       return none();
+    }
+  }
+
+  @override
+  Future<Option<String>> harvestInvestment({required String docId, required int amount}) async {
+    final query = firestore.investmentCollection.doc(docId);
+    try {
+      await query.update({
+        "planYield": amount
+      });
+      return some('Investment harvested');
+    } on FirebaseException catch (e) {
+      log("Code: ${e.code}, Message: ${e.message}");
+      return some('Unable to harvest');
     }
   }
 }

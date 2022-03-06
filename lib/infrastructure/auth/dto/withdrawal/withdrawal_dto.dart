@@ -13,6 +13,7 @@ abstract class WithdrawalItemDTO implements _$WithdrawalItemDTO {
     required String description,
     required int amount,
     required String traxId,
+    required String uid,
     required String planName,
     required String status,
     required DateTime createdat,
@@ -28,6 +29,7 @@ abstract class WithdrawalItemDTO implements _$WithdrawalItemDTO {
       paymentMethod: '',
       status: '',
       traxId: '',
+      uid: '',
     );
   }
 
@@ -53,7 +55,8 @@ extension WithdrawalItemDTOX on WithdrawalItemDTO {
       description: description,
       paymentMethod: paymentMethod,
       status: Status.values.firstWhere((element) => element.name == status),
-      traxId: traxId
+      traxId: traxId,
+      uid: uid
     );
   }
 }

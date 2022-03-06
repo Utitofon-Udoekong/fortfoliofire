@@ -11,6 +11,7 @@ abstract class BankAddress implements _$BankAddress {
         required String bankName,
   required String accountNumber,
   required String userName,
+  required String id,
   required String type,
       }) = _BankAddress;
 
@@ -18,6 +19,7 @@ abstract class BankAddress implements _$BankAddress {
        bankName: "",
        accountNumber: "",
        userName: "",
+       id: "",
        type: ""
       );
 
@@ -26,6 +28,7 @@ abstract class BankAddress implements _$BankAddress {
       'bankName': bankName,
       'accountNumber': accountNumber,
       'userName': userName,
+      'id': id,
       'type': type,
     };
   }

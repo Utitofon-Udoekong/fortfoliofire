@@ -8,6 +8,7 @@ import 'package:fortfolio/domain/user/withdrawal_item.dart';
 
 abstract class IFirestoreFacade {
   Future<Option<String>> createInvestmentTransaction( {required InvestmentItem investmentItem});
+  Future<Option<String>> harvestInvestment( {required String docId, required int amount});
   Future<Option<String>> addBank({required BankAddress bankAddress});
   Future<Option<String>> addCryptoWallet({required CryptoWallet cryptoWallet});
   Future<Option<String>> addGeneralCryptoWallet({required CryptoWallet cryptoWallet});

@@ -18,8 +18,10 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$WalletTransactionsStateTearOff {
   const _$WalletTransactionsStateTearOff();
 
-  _Initial initial() {
-    return const _Initial();
+  _WalletTransactionsState call({required List<WithdrawalItem> withdrawals}) {
+    return _WalletTransactionsState(
+      withdrawals: withdrawals,
+    );
   }
 }
 
@@ -28,37 +30,10 @@ const $WalletTransactionsState = _$WalletTransactionsStateTearOff();
 
 /// @nodoc
 mixin _$WalletTransactionsState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    required TResult orElse(),
-  }) =>
+  List<WithdrawalItem> get withdrawals => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $WalletTransactionsStateCopyWith<WalletTransactionsState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -67,6 +42,7 @@ abstract class $WalletTransactionsStateCopyWith<$Res> {
   factory $WalletTransactionsStateCopyWith(WalletTransactionsState value,
           $Res Function(WalletTransactionsState) then) =
       _$WalletTransactionsStateCopyWithImpl<$Res>;
+  $Res call({List<WithdrawalItem> withdrawals});
 }
 
 /// @nodoc
@@ -77,101 +53,96 @@ class _$WalletTransactionsStateCopyWithImpl<$Res>
   final WalletTransactionsState _value;
   // ignore: unused_field
   final $Res Function(WalletTransactionsState) _then;
-}
-
-/// @nodoc
-abstract class _$InitialCopyWith<$Res> {
-  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
-      __$InitialCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$InitialCopyWithImpl<$Res>
-    extends _$WalletTransactionsStateCopyWithImpl<$Res>
-    implements _$InitialCopyWith<$Res> {
-  __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
-      : super(_value, (v) => _then(v as _Initial));
 
   @override
-  _Initial get _value => super._value as _Initial;
+  $Res call({
+    Object? withdrawals = freezed,
+  }) {
+    return _then(_value.copyWith(
+      withdrawals: withdrawals == freezed
+          ? _value.withdrawals
+          : withdrawals // ignore: cast_nullable_to_non_nullable
+              as List<WithdrawalItem>,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$WalletTransactionsStateCopyWith<$Res>
+    implements $WalletTransactionsStateCopyWith<$Res> {
+  factory _$WalletTransactionsStateCopyWith(_WalletTransactionsState value,
+          $Res Function(_WalletTransactionsState) then) =
+      __$WalletTransactionsStateCopyWithImpl<$Res>;
+  @override
+  $Res call({List<WithdrawalItem> withdrawals});
+}
+
+/// @nodoc
+class __$WalletTransactionsStateCopyWithImpl<$Res>
+    extends _$WalletTransactionsStateCopyWithImpl<$Res>
+    implements _$WalletTransactionsStateCopyWith<$Res> {
+  __$WalletTransactionsStateCopyWithImpl(_WalletTransactionsState _value,
+      $Res Function(_WalletTransactionsState) _then)
+      : super(_value, (v) => _then(v as _WalletTransactionsState));
+
+  @override
+  _WalletTransactionsState get _value =>
+      super._value as _WalletTransactionsState;
+
+  @override
+  $Res call({
+    Object? withdrawals = freezed,
+  }) {
+    return _then(_WalletTransactionsState(
+      withdrawals: withdrawals == freezed
+          ? _value.withdrawals
+          : withdrawals // ignore: cast_nullable_to_non_nullable
+              as List<WithdrawalItem>,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial();
+class _$_WalletTransactionsState implements _WalletTransactionsState {
+  const _$_WalletTransactionsState({required this.withdrawals});
+
+  @override
+  final List<WithdrawalItem> withdrawals;
 
   @override
   String toString() {
-    return 'WalletTransactionsState.initial()';
+    return 'WalletTransactionsState(withdrawals: $withdrawals)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Initial);
+        (other.runtimeType == runtimeType &&
+            other is _WalletTransactionsState &&
+            const DeepCollectionEquality()
+                .equals(other.withdrawals, withdrawals));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(withdrawals));
 
+  @JsonKey(ignore: true)
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
+  _$WalletTransactionsStateCopyWith<_WalletTransactionsState> get copyWith =>
+      __$WalletTransactionsStateCopyWithImpl<_WalletTransactionsState>(
+          this, _$identity);
 }
 
-abstract class _Initial implements WalletTransactionsState {
-  const factory _Initial() = _$_Initial;
+abstract class _WalletTransactionsState implements WalletTransactionsState {
+  const factory _WalletTransactionsState(
+      {required List<WithdrawalItem> withdrawals}) = _$_WalletTransactionsState;
+
+  @override
+  List<WithdrawalItem> get withdrawals;
+  @override
+  @JsonKey(ignore: true)
+  _$WalletTransactionsStateCopyWith<_WalletTransactionsState> get copyWith =>
+      throw _privateConstructorUsedError;
 }

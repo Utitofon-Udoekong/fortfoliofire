@@ -4,6 +4,7 @@ import 'package:fortfolio/domain/user/crypto_wallet.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/crypto/networks.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:uuid/uuid.dart';
 
 part 'crypto_wallet_event.dart';
 part 'crypto_wallet_state.dart';
@@ -43,6 +44,7 @@ class CryptoWalletBloc extends Bloc<CryptoWalletEvent, CryptoWalletState> {
     final String address = state.address;
     final String platform = state.platform;
     final String network = state.network;
+    final String id = const Uuid().v4();
     if (isGeneral) {
       CryptoWallet cryptoWallet = CryptoWallet(
           walletLabel: walletLabel,
@@ -50,6 +52,7 @@ class CryptoWalletBloc extends Bloc<CryptoWalletEvent, CryptoWalletState> {
           coin: coin,
           network: network,
           platform: platform,
+          id: id,
           type: "GENERALCRYPTOWALLET");
       try {
         final response = await firestoreFacade.addGeneralCryptoWallet(
@@ -67,6 +70,7 @@ class CryptoWalletBloc extends Bloc<CryptoWalletEvent, CryptoWalletState> {
           coin: coin,
           network: network,
           platform: platform,
+          id: id,
           type: "CRYPTOWALLET");
       try {
         final response =

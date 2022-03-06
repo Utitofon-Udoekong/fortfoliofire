@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:fortfolio/domain/auth/i_auth_facade.dart';
 import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
@@ -70,13 +71,14 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     final String uid = authFacade.getUserId();
     final dueDate = paymentDate.add(Duration(hours: duration.toInt()));
     InvestmentItem investmentItem = InvestmentItem(description: description, uid: uid, amount: amount, traxId: traxId, roi: roi, planName: planName, paymentDate: paymentDate, dueDate: dueDate, duration: duration, status: status, planYield: 0);
+    final response = await firestoreFacade.createInvestmentTransaction(investmentItem: investmentItem);
     try{
-      final response = await firestoreFacade.createInvestmentTransaction(investmentItem: investmentItem);
       response.fold(() => null, (response) {
         emit(state.copyWith(isLoading: false, response: response));
       });
     }catch (e) {
-      emit(state.copyWith(isLoading: false, response: e.toString()));
+      emit(state.copyWith(isLoading: false));
+      log(e.toString());
     }
   }
 

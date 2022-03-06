@@ -9,6 +9,7 @@ abstract class WithdrawalItem implements _$WithdrawalItem {
     required String description,
     required int amount,
     required String traxId,
+    required String uid,
     required String planName,
     required Status status,
     required DateTime createdat,
@@ -25,6 +26,7 @@ abstract class WithdrawalItem implements _$WithdrawalItem {
         planName: '',
         status: Status.processing,
         traxId: '',
+        uid: '',
       );
   String get statusString => status.toCustomString();
 }

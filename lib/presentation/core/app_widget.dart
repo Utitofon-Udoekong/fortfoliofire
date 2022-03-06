@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/injection.dart';
+import 'package:fortfolio/presentation/home/wallet/cubit/wallet_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 
 class App extends StatelessWidget {
@@ -10,9 +11,16 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _appRouter = AppRouter();
-    return BlocProvider(
-      create: (context) => getIt<AuthCubit>(),
-      lazy: false,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => getIt<AuthCubit>(),
+          lazy: false,
+        ),
+        BlocProvider(
+          create: (context) => getIt<WalletCubit>(),
+        ),
+      ],
       child: MaterialApp.router(
         title: 'Fortfolio',
         debugShowCheckedModeBanner: false,

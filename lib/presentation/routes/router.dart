@@ -42,6 +42,7 @@ import 'package:fortfolio/presentation/home/investment/type/fortdollar/invest.da
 import 'package:fortfolio/presentation/home/investment/type/fortshield/fortshield.dart';
 import 'package:fortfolio/presentation/home/investment/type/fortshield/invest.dart';
 import 'package:fortfolio/presentation/home/wallet/investment/fortdollar_info.dart';
+import 'package:fortfolio/presentation/home/wallet/overview/wallet_engine.dart';
 import 'package:fortfolio/presentation/home/wallet/overview/wallet_overview.dart';
 import 'package:fortfolio/presentation/home/wallet/success.dart';
 import 'package:fortfolio/presentation/home/wallet/transactions/transactions.dart';
@@ -98,6 +99,7 @@ import '../home/wallet/investment/fortshield_info.dart';
   AutoRoute(path: "fortshield", page: FortShield),
   AutoRoute(path: "fortshieldinvest", page: FortShieldInvestment),
   AutoRoute(path: "walletOverview", page: WalletOverview),
+  AutoRoute(path: "walletOverviewEngine", page: WalletOverviewEngine),
   AutoRoute(path: "walletTransactions", page: WalletTransactions),
   
   AutoRoute(path: "selectWithdrawalMethod", page: SelectWithdrawalMethod),

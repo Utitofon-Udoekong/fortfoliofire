@@ -4,14 +4,17 @@ part of 'wallet_cubit.dart';
 class WalletState with _$WalletState {
   const factory WalletState({
     required String investmentPlan,
-    required int amountToBeWithdrawn,
     required int walletBalance,
-    required int investmentBalance,
-    required String investmentView,
-    required int yieldBalance,
+    required int fortDollarInvestmentBalance,
+    required int fortCryptoInvestmentBalance,
+    required int fortShieldInvestmentBalance,
+    required int fortDollarYieldBalance,
+    required int fortCryptoYieldBalance,
+    required int fortShieldYieldBalance,
     required String withdrawalMethod,
     required String response,
     required Map<String, dynamic> withdrawalDetails,
+    required InvestmentItem investmentToBeWithdrawn,
     required List<BankAddress> bankAddresses,
     required List<CryptoWallet> cryptoAddresses,
     required List<CryptoWallet> generalCryptoAddresses,
@@ -19,16 +22,21 @@ class WalletState with _$WalletState {
     required List<InvestmentItem> fortCryptoInvestments,
     required List<InvestmentItem> fortShieldInvestments,
     required List<WithdrawalItem> withdrawals,
+    required String exchange,
+    required bool showDigits
   }) = _WalletState;
   const WalletState._();
-  factory WalletState.initial() => const WalletState(
+  factory WalletState.initial() => WalletState(
     investmentPlan: "",
-    investmentView: "",
-    amountToBeWithdrawn: 0,
     walletBalance: 0,
-    investmentBalance: 0,
-    yieldBalance: 0,
+    fortDollarInvestmentBalance: 0,
+    fortCryptoInvestmentBalance: 0,
+    fortShieldInvestmentBalance: 0,
+    fortDollarYieldBalance: 0,
+    fortCryptoYieldBalance: 0,
+    fortShieldYieldBalance: 0,
     withdrawalMethod: "",
+    investmentToBeWithdrawn: InvestmentItem.empty(),
     withdrawalDetails: {},
     response: "",
     bankAddresses: [
@@ -40,7 +48,9 @@ class WalletState with _$WalletState {
     fortDollarInvestments: [],
     fortCryptoInvestments: [],
     fortShieldInvestments: [],
-    withdrawals: []
+    withdrawals: [],
+    exchange: "NGN",
+    showDigits: false
   );
   bool get isGeneral => cryptoAddresses.isEmpty && generalCryptoAddresses.isNotEmpty;
   bool get isNotGeneral => cryptoAddresses.isNotEmpty && generalCryptoAddresses.isEmpty;

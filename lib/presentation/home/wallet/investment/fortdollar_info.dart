@@ -13,8 +13,11 @@ class FortDollarInvestmentInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<WalletCubit>(),
+    final balance = context.select((WalletCubit walletCubit) => walletCubit.state.fortDollarInvestmentBalance);
+    final yield = context.select((WalletCubit walletCubit) => walletCubit.state.fortDollarYieldBalance);
+    final activeInvestments = context.select((WalletCubit walletCubit) => walletCubit.state.fortDollarInvestments);
+    return BlocProvider.value(
+      value: getIt<WalletCubit>(),
       child: Scaffold(
           body: SafeArea(
               child: SingleChildScrollView(
@@ -34,24 +37,29 @@ class FortDollarInvestmentInfo extends StatelessWidget {
                 const SizedBox(height: 30),
                 Text("Total", style: subTitle.copyWith(fontSize: 12)),
                 const SizedBox(height: 8),
-                Text("N 90,000.00",
-                    style: titleText.copyWith(
-                        fontSize: 16, fontWeight: FontWeight.w500)),
+                Text("\$ ${balance.toString()}",
+                style: titleText.copyWith(
+                    fontSize: 16, fontWeight: FontWeight.w500)),
                 const SizedBox(height: 30),
-                Text("Available for yield", style: subTitle.copyWith(fontSize: 12)),
+                Text("Available for yield",
+                    style: subTitle.copyWith(fontSize: 12)),
                 const SizedBox(height: 8),
-                Text("N 30,000.00",
-                    style: titleText.copyWith(
-                        fontSize: 16, fontWeight: FontWeight.w500)),
+                Text("\$ ${yield.toString()}",
+                style: titleText.copyWith(
+                    fontSize: 16, fontWeight: FontWeight.w500)),
                 const SizedBox(height: 30),
                 Text("Active Investments",
                     style: subTitle.copyWith(fontSize: 12, color: kPrimaryColor)),
                 const SizedBox(height: 15),
-                buildTile("FortDollar / 3 months", "\$40,000.00"),
-                const SizedBox(height: 12),
-                buildTile("FortDollar / 3 months", "\$40,000.00"),
-                const SizedBox(height: 12),
-                buildTile("FortDollar / 6 months", "\$40,000.00"),
+                ListView.builder(
+                itemCount: activeInvestments.length,
+                itemBuilder: ((context, index) {
+                  return buildTile('${activeInvestments[index].planName} / ${activeInvestments[index].duration} month(s)', 'N${activeInvestments[index].amount}',() {
+                        context.router.push(const WithdrawalPageRoute());
+                        context.read<WalletCubit>().investmentToBeWithdrawnChanged(investmentToBeWithdrawn: activeInvestments[index]);
+                      });
+                }),
+              ),
                 const Spacer(),
                 CustomOutlinedButton(
                         text: 'INVEST',
@@ -65,22 +73,44 @@ class FortDollarInvestmentInfo extends StatelessWidget {
   }
 }
 
-Widget buildTile(String title, String amount) {
+Widget buildTile(String title, String amount, Function() ontap) {
   return Container(
-    padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 8),
-    decoration: BoxDecoration(
-        color: const Color(0XFFF3F6F8),
-        borderRadius: BorderRadius.circular(10.0)),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Flex(direction: Axis.vertical,
+      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 8),
+      decoration: BoxDecoration(
+          color: const Color(0XFFF3F6F8),
+          borderRadius: BorderRadius.circular(10.0)),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(title,style: subTitle.copyWith(fontSize: 12),),
-          Text(amount, style: titleText.copyWith(fontSize: 15),)
-        ],),
-        CustomFilledButton(text: "Withdraw", onTap: () => null)
-      ],
-    )
-  );
+          Flex(
+            direction: Axis.vertical,
+            children: [
+              Text(
+                title,
+                style: subTitle.copyWith(fontSize: 12),
+              ),
+              Text(
+                amount,
+                style: titleText.copyWith(fontSize: 15),
+              )
+            ],
+          ),
+          GestureDetector(
+            onTap: ontap,
+            child: Container(
+                alignment: Alignment.center,
+                height: 48,
+                width: 100,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: kPrimaryColor,
+                ),
+                child: Text(
+                  'Withdraw',
+                  style: textButton.copyWith(color: kWhiteColor, fontSize: 15),
+                ),
+              ),
+          ),
+        ],
+      ));
 }

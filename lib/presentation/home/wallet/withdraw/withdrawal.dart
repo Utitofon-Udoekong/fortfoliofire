@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
-import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
+import 'package:fortfolio/domain/user/investment.dart';
 import 'package:fortfolio/injection.dart';
 import 'package:fortfolio/presentation/home/wallet/cubit/wallet_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
@@ -13,6 +13,8 @@ class WithdrawalPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final InvestmentItem withdrawalItem = context.select((WalletCubit walletCubit) => walletCubit.state.investmentToBeWithdrawn);
+    final bool harvested = context.select((WalletCubit walletCubit) => walletCubit.state.investmentToBeWithdrawn.planYield == 0);
     return BlocProvider.value(
       value: getIt<WalletCubit>(),
       child: Scaffold(
@@ -42,108 +44,23 @@ class WithdrawalPage extends StatelessWidget {
                   ),
                   Text(
                     'Select where you want to withdraw from. Withdrawals have a time lock of 7 days.',
-                    style: subTitle.copyWith(color: kgreyColor),
+                    style: subTitle.copyWith(color: kgreyColor, fontSize: 15),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    'Note that all rewards must be harvested before investments can be withdrawn',
+                    style: subTitle.copyWith(color: kgreyColor, fontSize: 15),
                   ),
                   const SizedBox(
                     height: 30,
                   ),
-                  buildTile('Invested', 350000, 'Withdraw', () {
-                    showModalBottomSheet(context: context, builder: (BuildContext context){
-                      return SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.35,
-                        child: Padding(
-                          padding: kDefaultPadding,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              const SizedBox(
-                                height: 30,
-                              ),
-                              Text(
-                                'How much are you\nwithdrawing?',
-                                style: titleText.copyWith(fontSize: 20),
-                              ),
-                              const SizedBox(
-                                height: 30,
-                              ),
-                              Text(
-                                'Amount',
-                                style: subTitle.copyWith(color: kgreyColor),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              TextFormField(
-                                autocorrect: false,
-                                keyboardType: TextInputType.number,
-                                decoration: const InputDecoration(
-                                    filled: true,
-                                    fillColor: Color(0xFFF3F6F8),
-                                    border: InputBorder.none),
-                                onChanged: (value) => context.read<WalletCubit>().amountToBeWithdrawnChanged(amountToBeWithdrawn: int.parse(value)),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              CustomFilledButton(
-                                  text: 'CONTINUE',
-                                  onTap: () => context.router.push(const SelectWithdrawalMethodRoute()))
-                            ],
-                          ),
-                        )
-                      );
-                    },backgroundColor: kWhiteColor,);
-                  }),
+                  buildTile('Invested', withdrawalItem.amount, 'Withdraw', () => harvested ? context.router.push(const SelectWithdrawalMethodRoute()) : null, harvested ? kPrimaryColor : const Color.fromRGBO(3, 66, 109, 0.65)),
                   const SizedBox(
                     height: 20,
                   ),
-                  buildTile('Reward', 60000, 'Harvest', () {
-                    showModalBottomSheet(context: context, builder: (BuildContext context){
-                      return SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.35,
-                        child: Padding(
-                          padding: kDefaultPadding,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              const SizedBox(
-                                height: 30,
-                              ),
-                              Text(
-                                'How much are you\nwithdrawing?',
-                                style: titleText.copyWith(fontSize: 20),
-                              ),
-                              const SizedBox(
-                                height: 30,
-                              ),
-                              Text(
-                                'Amount',
-                                style: subTitle.copyWith(color: kgreyColor),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              TextFormField(
-                                autocorrect: false,
-                                keyboardType: TextInputType.number,
-                                decoration: const InputDecoration(
-                                    filled: true,
-                                    fillColor: Color(0xFFF3F6F8),
-                                    border: InputBorder.none),
-                                onChanged: (value) => context.read<WalletCubit>().amountToBeWithdrawnChanged(amountToBeWithdrawn: int.parse(value)),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              CustomFilledButton(
-                                  text: 'CONTINUE',
-                                  onTap: () => context.router.push(const SelectWithdrawalMethodRoute()))
-                            ],
-                          ),
-                        ),
-                      );
-                    });
-                  })
+                  buildTile('Reward', withdrawalItem.planYield, 'Harvest', () => context.read<WalletCubit>().harvestInvestment(docId: withdrawalItem.traxId + withdrawalItem.uid, amount: withdrawalItem.amount), kPrimaryColor)
                 ],
               ),
             ),
@@ -153,7 +70,7 @@ class WithdrawalPage extends StatelessWidget {
     );
   }
 
-  Widget buildTile(String title, int amount, String type, Function() ontap) {
+  Widget buildTile(String title, int amount, String type, Function() ontap, Color color) {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -186,10 +103,9 @@ class WithdrawalPage extends StatelessWidget {
               alignment: Alignment.center,
               height: 48,
               width: 100,
-              // width: double.infinity,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: kPrimaryColor,
+                color: color,
               ),
               child: Text(
                 type,

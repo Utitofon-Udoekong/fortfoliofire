@@ -26,6 +26,7 @@ class _$WithdrawalItemDTOTearOff {
       {required String description,
       required int amount,
       required String traxId,
+      required String uid,
       required String planName,
       required String status,
       required DateTime createdat,
@@ -34,6 +35,7 @@ class _$WithdrawalItemDTOTearOff {
       description: description,
       amount: amount,
       traxId: traxId,
+      uid: uid,
       planName: planName,
       status: status,
       createdat: createdat,
@@ -54,6 +56,7 @@ mixin _$WithdrawalItemDTO {
   String get description => throw _privateConstructorUsedError;
   int get amount => throw _privateConstructorUsedError;
   String get traxId => throw _privateConstructorUsedError;
+  String get uid => throw _privateConstructorUsedError;
   String get planName => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   DateTime get createdat => throw _privateConstructorUsedError;
@@ -74,6 +77,7 @@ abstract class $WithdrawalItemDTOCopyWith<$Res> {
       {String description,
       int amount,
       String traxId,
+      String uid,
       String planName,
       String status,
       DateTime createdat,
@@ -94,6 +98,7 @@ class _$WithdrawalItemDTOCopyWithImpl<$Res>
     Object? description = freezed,
     Object? amount = freezed,
     Object? traxId = freezed,
+    Object? uid = freezed,
     Object? planName = freezed,
     Object? status = freezed,
     Object? createdat = freezed,
@@ -111,6 +116,10 @@ class _$WithdrawalItemDTOCopyWithImpl<$Res>
       traxId: traxId == freezed
           ? _value.traxId
           : traxId // ignore: cast_nullable_to_non_nullable
+              as String,
+      uid: uid == freezed
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
               as String,
       planName: planName == freezed
           ? _value.planName
@@ -143,6 +152,7 @@ abstract class _$WithdrawalItemDTOCopyWith<$Res>
       {String description,
       int amount,
       String traxId,
+      String uid,
       String planName,
       String status,
       DateTime createdat,
@@ -165,6 +175,7 @@ class __$WithdrawalItemDTOCopyWithImpl<$Res>
     Object? description = freezed,
     Object? amount = freezed,
     Object? traxId = freezed,
+    Object? uid = freezed,
     Object? planName = freezed,
     Object? status = freezed,
     Object? createdat = freezed,
@@ -182,6 +193,10 @@ class __$WithdrawalItemDTOCopyWithImpl<$Res>
       traxId: traxId == freezed
           ? _value.traxId
           : traxId // ignore: cast_nullable_to_non_nullable
+              as String,
+      uid: uid == freezed
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
               as String,
       planName: planName == freezed
           ? _value.planName
@@ -210,6 +225,7 @@ class _$_WithdrawalItemDTO extends _WithdrawalItemDTO {
       {required this.description,
       required this.amount,
       required this.traxId,
+      required this.uid,
       required this.planName,
       required this.status,
       required this.createdat,
@@ -226,6 +242,8 @@ class _$_WithdrawalItemDTO extends _WithdrawalItemDTO {
   @override
   final String traxId;
   @override
+  final String uid;
+  @override
   final String planName;
   @override
   final String status;
@@ -236,7 +254,7 @@ class _$_WithdrawalItemDTO extends _WithdrawalItemDTO {
 
   @override
   String toString() {
-    return 'WithdrawalItemDTO(description: $description, amount: $amount, traxId: $traxId, planName: $planName, status: $status, createdat: $createdat, paymentMethod: $paymentMethod)';
+    return 'WithdrawalItemDTO(description: $description, amount: $amount, traxId: $traxId, uid: $uid, planName: $planName, status: $status, createdat: $createdat, paymentMethod: $paymentMethod)';
   }
 
   @override
@@ -248,6 +266,7 @@ class _$_WithdrawalItemDTO extends _WithdrawalItemDTO {
                 .equals(other.description, description) &&
             const DeepCollectionEquality().equals(other.amount, amount) &&
             const DeepCollectionEquality().equals(other.traxId, traxId) &&
+            const DeepCollectionEquality().equals(other.uid, uid) &&
             const DeepCollectionEquality().equals(other.planName, planName) &&
             const DeepCollectionEquality().equals(other.status, status) &&
             const DeepCollectionEquality().equals(other.createdat, createdat) &&
@@ -261,6 +280,7 @@ class _$_WithdrawalItemDTO extends _WithdrawalItemDTO {
       const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(amount),
       const DeepCollectionEquality().hash(traxId),
+      const DeepCollectionEquality().hash(uid),
       const DeepCollectionEquality().hash(planName),
       const DeepCollectionEquality().hash(status),
       const DeepCollectionEquality().hash(createdat),
@@ -282,6 +302,7 @@ abstract class _WithdrawalItemDTO extends WithdrawalItemDTO {
       {required String description,
       required int amount,
       required String traxId,
+      required String uid,
       required String planName,
       required String status,
       required DateTime createdat,
@@ -297,6 +318,8 @@ abstract class _WithdrawalItemDTO extends WithdrawalItemDTO {
   int get amount;
   @override
   String get traxId;
+  @override
+  String get uid;
   @override
   String get planName;
   @override

@@ -32,4 +32,5 @@ abstract class InvestmentItem implements _$InvestmentItem {
         traxId: '',
         uid: '',
       );
+  
 }

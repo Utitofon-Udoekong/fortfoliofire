@@ -24,7 +24,8 @@ class _$CryptoWalletTearOff {
       required String coin,
       required String? network,
       required String platform,
-      required String type}) {
+      required String type,
+      required String id}) {
     return _CryptoWallet(
       walletLabel: walletLabel,
       address: address,
@@ -32,6 +33,7 @@ class _$CryptoWalletTearOff {
       network: network,
       platform: platform,
       type: type,
+      id: id,
     );
   }
 }
@@ -47,6 +49,7 @@ mixin _$CryptoWallet {
   String? get network => throw _privateConstructorUsedError;
   String get platform => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CryptoWalletCopyWith<CryptoWallet> get copyWith =>
@@ -64,7 +67,8 @@ abstract class $CryptoWalletCopyWith<$Res> {
       String coin,
       String? network,
       String platform,
-      String type});
+      String type,
+      String id});
 }
 
 /// @nodoc
@@ -83,6 +87,7 @@ class _$CryptoWalletCopyWithImpl<$Res> implements $CryptoWalletCopyWith<$Res> {
     Object? network = freezed,
     Object? platform = freezed,
     Object? type = freezed,
+    Object? id = freezed,
   }) {
     return _then(_value.copyWith(
       walletLabel: walletLabel == freezed
@@ -109,6 +114,10 @@ class _$CryptoWalletCopyWithImpl<$Res> implements $CryptoWalletCopyWith<$Res> {
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -126,7 +135,8 @@ abstract class _$CryptoWalletCopyWith<$Res>
       String coin,
       String? network,
       String platform,
-      String type});
+      String type,
+      String id});
 }
 
 /// @nodoc
@@ -147,6 +157,7 @@ class __$CryptoWalletCopyWithImpl<$Res> extends _$CryptoWalletCopyWithImpl<$Res>
     Object? network = freezed,
     Object? platform = freezed,
     Object? type = freezed,
+    Object? id = freezed,
   }) {
     return _then(_CryptoWallet(
       walletLabel: walletLabel == freezed
@@ -173,6 +184,10 @@ class __$CryptoWalletCopyWithImpl<$Res> extends _$CryptoWalletCopyWithImpl<$Res>
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -186,7 +201,8 @@ class _$_CryptoWallet extends _CryptoWallet {
       required this.coin,
       required this.network,
       required this.platform,
-      required this.type})
+      required this.type,
+      required this.id})
       : super._();
 
   @override
@@ -201,10 +217,12 @@ class _$_CryptoWallet extends _CryptoWallet {
   final String platform;
   @override
   final String type;
+  @override
+  final String id;
 
   @override
   String toString() {
-    return 'CryptoWallet(walletLabel: $walletLabel, address: $address, coin: $coin, network: $network, platform: $platform, type: $type)';
+    return 'CryptoWallet(walletLabel: $walletLabel, address: $address, coin: $coin, network: $network, platform: $platform, type: $type, id: $id)';
   }
 
   @override
@@ -218,7 +236,8 @@ class _$_CryptoWallet extends _CryptoWallet {
             const DeepCollectionEquality().equals(other.coin, coin) &&
             const DeepCollectionEquality().equals(other.network, network) &&
             const DeepCollectionEquality().equals(other.platform, platform) &&
-            const DeepCollectionEquality().equals(other.type, type));
+            const DeepCollectionEquality().equals(other.type, type) &&
+            const DeepCollectionEquality().equals(other.id, id));
   }
 
   @override
@@ -229,7 +248,8 @@ class _$_CryptoWallet extends _CryptoWallet {
       const DeepCollectionEquality().hash(coin),
       const DeepCollectionEquality().hash(network),
       const DeepCollectionEquality().hash(platform),
-      const DeepCollectionEquality().hash(type));
+      const DeepCollectionEquality().hash(type),
+      const DeepCollectionEquality().hash(id));
 
   @JsonKey(ignore: true)
   @override
@@ -244,7 +264,8 @@ abstract class _CryptoWallet extends CryptoWallet {
       required String coin,
       required String? network,
       required String platform,
-      required String type}) = _$_CryptoWallet;
+      required String type,
+      required String id}) = _$_CryptoWallet;
   const _CryptoWallet._() : super._();
 
   @override
@@ -259,6 +280,8 @@ abstract class _CryptoWallet extends CryptoWallet {
   String get platform;
   @override
   String get type;
+  @override
+  String get id;
   @override
   @JsonKey(ignore: true)
   _$CryptoWalletCopyWith<_CryptoWallet> get copyWith =>

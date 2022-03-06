@@ -12,6 +12,7 @@ abstract class CryptoWallet implements _$CryptoWallet {
     required String? network,
     required String platform,
     required String type,
+    required String id,
   }) = _CryptoWallet;
 
   factory CryptoWallet.empty() => const CryptoWallet(
@@ -20,6 +21,7 @@ abstract class CryptoWallet implements _$CryptoWallet {
       network: '',
       platform: '',
       type: '',
+      id: '',
       walletLabel: '');
   Map<String, dynamic> toMap() {
     return {
@@ -29,6 +31,7 @@ abstract class CryptoWallet implements _$CryptoWallet {
       'network': network,
       'platform': platform,
       'type': type,
+      'id': id,
     };
   }
 }
