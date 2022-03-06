@@ -18,16 +18,23 @@ class FirebaseStorageFacade implements IStorageFacade {
   Future<Option<String>> uploadImageToStorage({required String childName, required Uint8List file}) async {
     Reference ref =
         storage.ref().child(childName).child(auth.currentUser!.uid);
-    // if(isDocument) {
-    //   String id = const Uuid().v4(options: UuidUtil.cryptoRNG());
-    //   ref = ref.child(id);
-    // }
-    UploadTask uploadTask = ref.putData(
-      file
-    );
-    TaskSnapshot snapshot = await uploadTask;
-    String downloadUrl = await snapshot.ref.getDownloadURL();
-    return some(downloadUrl);
+    try {
+      UploadTask uploadTask = ref.putData(
+        file
+      );
+      TaskSnapshot snapshot = await uploadTask;
+      String downloadUrl = await snapshot.ref.getDownloadURL();
+      return some(downloadUrl);
+    } on FirebaseException catch (e) {
+      if (e.code == 'permission-denied') {
+        return some('User does not have permission to upload to this reference.');
+      }else if (e.code == 'canceled'){
+        return some('Upload task has been cancelled');
+      }else{
+        return some('Server error encountered');
+      }
+      
+    }
   }
   
 }
