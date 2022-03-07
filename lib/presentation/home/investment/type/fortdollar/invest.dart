@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/domain/constants/order.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
+import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
 import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
 import 'package:fortfolio/domain/widgets/labelled_checkbox.dart';
 import 'package:fortfolio/injection.dart';
 import 'package:fortfolio/presentation/home/investment/cubit/investment_cubit.dart';
 import 'package:fortfolio/presentation/home/investment/type/cubit/exchange_type_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
- 
+
 import 'package:timelines/timelines.dart';
 
 const kTileHeight = 40.0;
@@ -51,7 +52,7 @@ class FortDollarInvestment extends StatelessWidget {
                     style: titleText.copyWith(color: kBlackColor),
                   ),
                   const SizedBox(
-                    width: 7,
+                    width: 10,
                   ),
                   Flex(
                     direction: Axis.horizontal,
@@ -86,55 +87,24 @@ class FortDollarInvestment extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  BlocBuilder<ExchangeTypeCubit, ExchangeTypeState>(
-                    builder: (context, state) {
-                      return ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: TextFormField(
-                          autocorrect: false,
-                          keyboardType: TextInputType.number,
-                          textInputAction: TextInputAction.next,
-                          decoration: InputDecoration(
-                              filled: true,
-                              fillColor: const Color(0xFFF3F6F8),
-                              border: InputBorder.none,
-                              suffix: DropdownButton<String>(
-                                  value: state.exchangeType,
-                                  items: <String>['NGN Balance', 'USD Balance']
-                                      .map<DropdownMenuItem<String>>(
-                                          (String value) {
-                                    String path =
-                                        value == "NGN BALANCE" ? '9ja' : 'usa';
-                                    return DropdownMenuItem<String>(
-                                      value: value,
-                                      child: Row(
-                                        children: <Widget>[
-                                          Image(
-                                              image:
-                                                   AssetImage("images/$path.png")),
-                                          const SizedBox(
-                                            width: 15,
-                                          ),
-                                          Text(value),
-                                        ],
-                                      ),
-                                    );
-                                  }).toList(),
-                                  onChanged: (onChanged) {
-                                    context
-                                        .read<ExchangeTypeCubit>()
-                                        .exchangeTypeChanged(
-                                            exchangeType: onChanged!);
-                                  }),
-                              suffixStyle: TextStyle(
-                                  color: Colors.grey.shade400, fontSize: 13)),
-                          onChanged: (value) => context
-                              .read<InvestmentCubit>()
-                              .amountInvestedChanged(
-                                  amountInvested: int.parse(value)),
-                        ),
-                      );
-                    },
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: TextFormField(
+                      autocorrect: false,
+                      keyboardType: TextInputType.number,
+                      textInputAction: TextInputAction.next,
+                      decoration: InputDecoration(
+                          filled: true,
+                          fillColor: const Color(0xFFF3F6F8),
+                          border: InputBorder.none,
+                          suffixIcon: const Icon(Icons.attach_money),
+                          suffixStyle: TextStyle(
+                              color: Colors.grey.shade400, fontSize: 13)),
+                      onChanged: (value) => context
+                          .read<InvestmentCubit>()
+                          .amountInvestedChanged(
+                              amountInvested: int.parse(value)),
+                    ),
                   ),
                   const SizedBox(
                     height: 20,
@@ -149,6 +119,8 @@ class FortDollarInvestment extends StatelessWidget {
                   ),
                   // ==================TOGGLE BUTTONS---------------
                   BlocBuilder<ExchangeTypeCubit, ExchangeTypeState>(
+                    buildWhen: (previous, current) =>
+                        previous.isSelected != current.isSelected,
                     builder: (context, state) {
                       return ToggleButtons(
                         selectedColor: Colors.white,
@@ -157,40 +129,49 @@ class FortDollarInvestment extends StatelessWidget {
                         fillColor: const Color.fromRGBO(243, 246, 248, 0.6),
                         renderBorder: false,
                         children: <Widget>[
-                          Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(6),
-                                color: kPrimaryColor),
-                            margin: const EdgeInsets.only(right: 30),
-                            child: const Text(
-                              '3 months',
-                              style: TextStyle(fontSize: 13),
+                          Ink(
+                            child: Container(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 8.0),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(6),
+                                  color: kPrimaryColor),
+                              margin: const EdgeInsets.only(right: 30),
+                              child: const Text(
+                                '3 months',
+                                style: TextStyle(fontSize: 13),
+                              ),
+                              alignment: Alignment.center,
                             ),
-                            alignment: Alignment.center,
                           ),
-                          Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(6),
-                                color: kPrimaryColor),
-                            margin: const EdgeInsets.only(right: 30),
-                            child: const Text(
-                              '6 months',
-                              style: TextStyle(fontSize: 13),
+                          Ink(
+                            child: Container(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 8.0),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(6),
+                                  color: kPrimaryColor),
+                              margin: const EdgeInsets.only(right: 30),
+                              child: const Text(
+                                '6 months',
+                                style: TextStyle(fontSize: 13),
+                              ),
+                              alignment: Alignment.center,
                             ),
-                            alignment: Alignment.center,
                           ),
-                          Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(6),
-                                color: kPrimaryColor),
-                            child: const Text(
-                              '12 months',
-                              style: TextStyle(fontSize: 13),
+                          Ink(
+                            child: Container(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 8.0),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(6),
+                                  color: kPrimaryColor),
+                              child: const Text(
+                                '12 months',
+                                style: TextStyle(fontSize: 13),
+                              ),
+                              alignment: Alignment.center,
                             ),
-                            alignment: Alignment.center,
                           ),
                         ],
                         onPressed: (int newIndex) => context
@@ -280,55 +261,66 @@ class FortDollarInvestment extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  CustomFilledButton(
-                      text: 'INVEST NOW',
-                      onTap: () {
-                        AlertDialog(
-                          title: const Text(
-                              "Please confirm your investment transaction"),
-                          titleTextStyle: titleText.copyWith(fontSize: 16),
-                          content: const Text(
-                              "You are about to invest in the selected investment plan, please confirm before proceedeing to pay."),
-                          contentTextStyle: subTitle.copyWith(
-                              fontSize: 13, color: kgreyColor),
-                          actions: [
-                            CustomFilledButton(
-                                text: "CONFIRM",
-                                onTap: () {
-                                  context
-                                      .read<InvestmentCubit>()
-                                      .planNameChanged(planName: "FortDollar");
-                                  context.router.push(const SelectInvestmentMethodRoute());
-                                }),
-                            InkWell(
-                              onTap: () {
-                                context.router.pop();
-                              },
-                              child: Container(
-                                alignment: Alignment.center,
-                                height: 48,
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: kWhiteColor,
-                                ),
-                                child: Text(
-                                  "CANCEL",
-                                  style: textButton.copyWith(color: kRedColor),
-                                ),
-                              ),
-                            )
-                          ],
-                          backgroundColor: kWhiteColor,
-                          titlePadding:
-                              const EdgeInsets.symmetric(horizontal: 10.0),
-                          contentPadding:
-                              const EdgeInsets.symmetric(horizontal: 10.0),
-                          actionsPadding:
-                              const EdgeInsets.symmetric(horizontal: 10.0),
-                        );
-                        // Get.to(SelectInvestmentMethod());
-                      })
+                  BlocBuilder<InvestmentCubit, InvestmentState>(
+                    buildWhen: (previous, current) => previous.agreementAccepted != current.agreementAccepted,
+                    builder: (context, state) {
+                      return CustomAuthFilledButton(
+                          text: 'INVEST NOW',
+                          onTap: () {
+                            AlertDialog(
+                              title: const Text(
+                                  "Please confirm your investment transaction"),
+                              titleTextStyle: titleText.copyWith(fontSize: 16),
+                              content: const Text(
+                                  "You are about to invest in the selected investment plan, please confirm before proceedeing to pay."),
+                              contentTextStyle: subTitle.copyWith(
+                                  fontSize: 13, color: kgreyColor),
+                              actions: [
+                                CustomFilledButton(
+                                    text: "CONFIRM",
+                                    onTap: () {
+                                      context
+                                          .read<InvestmentCubit>()
+                                          .planNameChanged(
+                                              planName: "FortDollar");
+                                      context.router.push(
+                                          const SelectInvestmentMethodRoute());
+                                    }),
+                                InkWell(
+                                  onTap: () {
+                                    context.router.pop();
+                                  },
+                                  child: Container(
+                                    alignment: Alignment.center,
+                                    height: 48,
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: kWhiteColor,
+                                    ),
+                                    child: Text(
+                                      "CANCEL",
+                                      style:
+                                          textButton.copyWith(color: kRedColor),
+                                    ),
+                                  ),
+                                )
+                              ],
+                              backgroundColor: kWhiteColor,
+                              titlePadding:
+                                  const EdgeInsets.symmetric(horizontal: 10.0),
+                              contentPadding:
+                                  const EdgeInsets.symmetric(horizontal: 10.0),
+                              actionsPadding:
+                                  const EdgeInsets.symmetric(horizontal: 10.0),
+                            );
+                          },
+                          disabled: state.agreementAccepted);
+                    },
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
                 ],
               ),
             ),
@@ -337,7 +329,6 @@ class FortDollarInvestment extends StatelessWidget {
       ),
     );
   }
-
 
   Widget timelineContent(String title, String subtitle) {
     return Flex(

@@ -106,9 +106,9 @@ class WalletOverview extends StatelessWidget {
                               builder: (BuildContext context) {
                                 return SizedBox(
                                   height:
-                                      MediaQuery.of(context).size.height * 0.35,
+                                      MediaQuery.of(context).size.height * 0.5,
                                   child: Padding(
-                                    padding: kDefaultPadding,
+                                    padding: const EdgeInsets.all(20.0),
                                     child: Column(
                                       children: <Widget>[
                                         Text(
@@ -300,7 +300,7 @@ class WalletOverview extends StatelessWidget {
                     balance,
                     style: titleText.copyWith(fontSize: 14),
                   )
-                : Text(balance.replaceAll(RegExp(r"."), '*'))
+                : Text(balance.replaceAll(RegExp(r"."), '*'),style: subTitle.copyWith(color: kWhiteColor),)
           ],
         ),
       ),

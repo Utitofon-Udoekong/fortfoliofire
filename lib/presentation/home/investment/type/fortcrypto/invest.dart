@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:timelines/timelines.dart';
 
@@ -52,7 +53,7 @@ class FortCryptoInvestment extends StatelessWidget {
                     style: titleText.copyWith(color: kBlackColor),
                   ),
                   const SizedBox(
-                    width: 7,
+                    width: 10,
                   ),
                   Flex(
                     direction: Axis.horizontal,
@@ -130,7 +131,8 @@ class FortCryptoInvestment extends StatelessWidget {
                         renderBorder: false,
                         children: <Widget>[
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 8.0),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6),
                                 color: kPrimaryColor),
@@ -142,7 +144,8 @@ class FortCryptoInvestment extends StatelessWidget {
                             alignment: Alignment.center,
                           ),
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 8.0),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6),
                                 color: kPrimaryColor),
@@ -154,7 +157,8 @@ class FortCryptoInvestment extends StatelessWidget {
                             alignment: Alignment.center,
                           ),
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 8.0),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6),
                                 color: kPrimaryColor),
@@ -252,53 +256,64 @@ class FortCryptoInvestment extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  CustomFilledButton(
-                      text: 'INVEST NOW',
-                      onTap: () {
-                        AlertDialog(
-                          title: const Text(
-                              "Please confirm your investment transaction"),
-                          titleTextStyle: titleText.copyWith(fontSize: 16),
-                          content: const Text(
-                              "You are about to invest in the selected investment plan, please confirm before proceedeing to pay."),
-                          contentTextStyle: subTitle.copyWith(
-                              fontSize: 13, color: kgreyColor),
-                          actions: [
-                            CustomFilledButton(
-                                text: "CONFIRM",
-                                onTap: () {
-                                  context
-                                      .read<InvestmentCubit>()
-                                      .planNameChanged(planName: "FortCrypto");
-                                  context.router.push(
-                                      const SelectInvestmentMethodRoute());
-                                }),
-                            InkWell(
-                              onTap: () => context.router.pop(),
-                              child: Container(
-                                alignment: Alignment.center,
-                                height: 48,
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: kWhiteColor,
-                                ),
-                                child: Text(
-                                  "CANCEL",
-                                  style: textButton.copyWith(color: kRedColor),
-                                ),
-                              ),
-                            )
-                          ],
-                          backgroundColor: kWhiteColor,
-                          titlePadding:
-                              const EdgeInsets.symmetric(horizontal: 10.0),
-                          contentPadding:
-                              const EdgeInsets.symmetric(horizontal: 10.0),
-                          actionsPadding:
-                              const EdgeInsets.symmetric(horizontal: 10.0),
-                        );
-                      })
+                  BlocBuilder<InvestmentCubit, InvestmentState>(
+                    buildWhen: (previous, current) => previous.agreementAccepted != current.agreementAccepted,
+                    builder: (context, state) {
+                      return CustomAuthFilledButton(
+                          text: 'INVEST NOW',
+                          onTap: () {
+                            AlertDialog(
+                              title: const Text(
+                                  "Please confirm your investment transaction"),
+                              titleTextStyle: titleText.copyWith(fontSize: 16),
+                              content: const Text(
+                                  "You are about to invest in the selected investment plan, please confirm before proceedeing to pay."),
+                              contentTextStyle: subTitle.copyWith(
+                                  fontSize: 13, color: kgreyColor),
+                              actions: [
+                                CustomFilledButton(
+                                    text: "CONFIRM",
+                                    onTap: () {
+                                      context
+                                          .read<InvestmentCubit>()
+                                          .planNameChanged(
+                                              planName: "FortCrypto");
+                                      context.router.push(
+                                          const SelectInvestmentMethodRoute());
+                                    }),
+                                InkWell(
+                                  onTap: () => context.router.pop(),
+                                  child: Container(
+                                    alignment: Alignment.center,
+                                    height: 48,
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: kWhiteColor,
+                                    ),
+                                    child: Text(
+                                      "CANCEL",
+                                      style:
+                                          textButton.copyWith(color: kRedColor),
+                                    ),
+                                  ),
+                                )
+                              ],
+                              backgroundColor: kWhiteColor,
+                              titlePadding:
+                                  const EdgeInsets.symmetric(horizontal: 10.0),
+                              contentPadding:
+                                  const EdgeInsets.symmetric(horizontal: 10.0),
+                              actionsPadding:
+                                  const EdgeInsets.symmetric(horizontal: 10.0),
+                            );
+                          },
+                          disabled: state.agreementAccepted);
+                    },
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
                 ],
               ),
             ),

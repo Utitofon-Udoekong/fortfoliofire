@@ -10,7 +10,7 @@ class ExchangeTypeState with _$ExchangeTypeState {
   }) = _ExchangeTypeState;
   const ExchangeTypeState._();
   factory ExchangeTypeState.initial() => const ExchangeTypeState(
-        exchangeType: "NGN Balance",
+        exchangeType: "NGN",
         isSelected: [false, true, false],
         durations: [3, 6, 9], 
         duration: 3

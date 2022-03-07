@@ -24,11 +24,13 @@ class ExchangeTypeCubit extends Cubit<ExchangeTypeState> {
           duration: duration,
           isSelected: newList
         ));
+        print(newIndex);
       }else {
         newList[index] = false;
         emit(state.copyWith(
           isSelected: newList
         ));
+        print(newIndex);
       }
     }
   }
