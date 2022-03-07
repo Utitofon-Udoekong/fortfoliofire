@@ -40,8 +40,9 @@ class SignInFormEmailCubit extends Cubit<SignInFormEmailState> {
     ));
   }
   void isObscureChanged(){
+    final newScure = state.isObscure;
     emit(state.copyWith(
-      isObscure: !state.isObscure
+      isObscure: !newScure
     ));
   }
 

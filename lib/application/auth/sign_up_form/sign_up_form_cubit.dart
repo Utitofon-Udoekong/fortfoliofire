@@ -65,7 +65,8 @@ class SignUpFormCubit extends Cubit<SignUpFormState> {
     emit(state.copyWith(smsCode: smsCode));
   }
   void isObscureChanged(){
-    emit(state.copyWith(isObscure: !state.isObscure));
+    final newScure = state.isObscure;
+    emit(state.copyWith(isObscure: !newScure));
   }
   Future registerWithEmailAndPasswordpressed() async{
     late Either<AuthFailure, Unit> failureOrSuccess;

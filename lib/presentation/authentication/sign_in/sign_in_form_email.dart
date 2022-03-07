@@ -226,14 +226,18 @@ class SignInFormEmail extends StatelessWidget {
                             const SizedBox(
                               height: 20,
                             ),
-                            CustomAuthFilledButton(
-                              text: 'LOGIN',
-                              onTap: () => {
-                                context
-                                    .read<SignInFormEmailCubit>()
-                                    .signInWithEmailAndPasswordpressed(),
+                            BlocBuilder<SignInFormEmailCubit, SignInFormEmailState>(
+                              builder: (context, state) {
+                                return CustomAuthFilledButton(
+                                                          text: 'LOGIN',
+                                                          onTap: () => {
+                                                            context
+                                                                .read<SignInFormEmailCubit>()
+                                                                .signInWithEmailAndPasswordpressed(),
+                                                          },
+                                                          disabled: !state.isValidState,
+                                                        );
                               },
-                              disabled: !state.isValidState,
                             ),
                           ],
                         ),
