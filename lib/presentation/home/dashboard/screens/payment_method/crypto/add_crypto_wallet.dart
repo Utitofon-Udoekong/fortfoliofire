@@ -21,13 +21,13 @@ class _AddCryptoWalletState extends State<AddCryptoWallet> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-          child: Padding(
-        padding: kDefaultPadding,
-        child: SingleChildScrollView(
-          child: BlocProvider(
-            create: (context) => getIt<CryptoWalletBloc>(),
+    return BlocProvider(
+      create: (context) => getIt<CryptoWalletBloc>(),
+      child: Scaffold(
+        body: SafeArea(
+            child: Padding(
+          padding: kDefaultPadding,
+          child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -200,8 +200,8 @@ class _AddCryptoWalletState extends State<AddCryptoWallet> {
               ],
             ),
           ),
-        ),
-      )),
+        )),
+      ),
     );
   }
 }

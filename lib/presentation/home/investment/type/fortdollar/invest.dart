@@ -315,7 +315,7 @@ class FortDollarInvestment extends StatelessWidget {
                                   const EdgeInsets.symmetric(horizontal: 10.0),
                             );
                           },
-                          disabled: state.agreementAccepted);
+                          disabled: !state.agreementAccepted);
                     },
                   ),
                   const SizedBox(

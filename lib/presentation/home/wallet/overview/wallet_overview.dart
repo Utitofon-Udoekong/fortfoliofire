@@ -75,7 +75,8 @@ class WalletOverview extends StatelessWidget {
                                         fontSize: 14, color: kWhiteColor))
                                 : Text((state.walletBalance * 560)
                                     .toString()
-                                    .replaceAll(regExp, "*"));
+                                    .replaceAll(regExp, "*"),style: subTitle.copyWith(
+                                        fontSize: 14, color: kWhiteColor));
                           } else {
                             return state.showDigits
                                 ? Text('\$${state.walletBalance}',
@@ -83,7 +84,8 @@ class WalletOverview extends StatelessWidget {
                                         fontSize: 14, color: kWhiteColor))
                                 : Text(state.walletBalance
                                     .toString()
-                                    .replaceAll(regExp, "*"));
+                                    .replaceAll(regExp, "*"),style: subTitle.copyWith(
+                                        fontSize: 14, color: kWhiteColor));
                           }
                         },
                       )
@@ -300,7 +302,7 @@ class WalletOverview extends StatelessWidget {
                     balance,
                     style: titleText.copyWith(fontSize: 14),
                   )
-                : Text(balance.replaceAll(RegExp(r"."), '*'),style: subTitle.copyWith(color: kWhiteColor),)
+                : Text(balance.replaceAll(RegExp(r"."), '*'),style: titleText.copyWith(fontSize: 14),)
           ],
         ),
       ),

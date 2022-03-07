@@ -5,20 +5,19 @@ import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
 import 'package:fortfolio/injection.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/bank/cubit/bank_address_cubit.dart';
- 
 
 class AddBank extends StatelessWidget {
   const AddBank({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-          child: Padding(
-        padding: kDefaultPadding,
-        child: SingleChildScrollView(
-          child: BlocProvider(
-            create: (context) => getIt<BankAddressCubit>(),
+    return BlocProvider(
+      create: (context) => getIt<BankAddressCubit>(),
+      child: Scaffold(
+        body: SafeArea(
+            child: Padding(
+          padding: kDefaultPadding,
+          child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -114,8 +113,8 @@ class AddBank extends StatelessWidget {
               ],
             ),
           ),
-        ),
-      )),
+        )),
+      ),
     );
   }
 }

@@ -29,20 +29,20 @@ class _FortShieldInvestmentState extends State<FortShieldInvestment> {
   Widget build(BuildContext context) {
     Text roi = const Text('30% returns');
     roi.style?.copyWith(color: kGreenColor);
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: kDefaultPadding,
-          child: SingleChildScrollView(
-            child: MultiBlocProvider(
-              providers: [
-                BlocProvider(
-                  create: (context) => getIt<InvestmentCubit>(),
-                ),
-                BlocProvider(
-                  create: (context) => ExchangeTypeCubit(),
-                ),
-              ],
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => getIt<InvestmentCubit>(),
+        ),
+        BlocProvider(
+          create: (context) => ExchangeTypeCubit(),
+        ),
+      ],
+      child: Scaffold(
+        body: SafeArea(
+          child: Padding(
+            padding: kDefaultPadding,
+            child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -109,7 +109,7 @@ class _FortShieldInvestmentState extends State<FortShieldInvestment> {
                             fillColor: const Color(0xFFF3F6F8),
                             border: InputBorder.none,
                             suffix: DropdownButton<String>(
-                              isDense: true,
+                                isDense: true,
                                 value: state.exchangeType,
                                 items: <String>[
                                   'NGN',
@@ -281,7 +281,8 @@ class _FortShieldInvestmentState extends State<FortShieldInvestment> {
                     height: 20,
                   ),
                   BlocBuilder<InvestmentCubit, InvestmentState>(
-                    buildWhen: (previous, current) => previous.agreementAccepted != current.agreementAccepted,
+                    buildWhen: (previous, current) =>
+                        previous.agreementAccepted != current.agreementAccepted,
                     builder: (context, state) {
                       return CustomAuthFilledButton(
                           text: 'INVEST NOW',
@@ -332,7 +333,7 @@ class _FortShieldInvestmentState extends State<FortShieldInvestment> {
                                   const EdgeInsets.symmetric(horizontal: 10.0),
                             );
                           },
-                          disabled: state.agreementAccepted);
+                          disabled: !state.agreementAccepted);
                     },
                   ),
                   const SizedBox(
