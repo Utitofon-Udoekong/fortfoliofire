@@ -108,7 +108,7 @@ class WalletOverview extends StatelessWidget {
                               builder: (BuildContext context) {
                                 return SizedBox(
                                   height:
-                                      MediaQuery.of(context).size.height * 0.5,
+                                      MediaQuery.of(context).size.height * 0.35,
                                   child: Padding(
                                     padding: const EdgeInsets.all(20.0),
                                     child: Column(

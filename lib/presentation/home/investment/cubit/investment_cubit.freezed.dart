@@ -26,7 +26,10 @@ class _$InvestmentStateTearOff {
       required String method,
       required String response,
       required bool agreementAccepted,
-      required bool isLoading}) {
+      required bool isLoading,
+      required String exchangeType,
+      required List<bool> isSelected,
+      required List<int> durations}) {
     return _InvestmentState(
       planName: planName,
       duration: duration,
@@ -36,6 +39,9 @@ class _$InvestmentStateTearOff {
       response: response,
       agreementAccepted: agreementAccepted,
       isLoading: isLoading,
+      exchangeType: exchangeType,
+      isSelected: isSelected,
+      durations: durations,
     );
   }
 }
@@ -53,6 +59,9 @@ mixin _$InvestmentState {
   String get response => throw _privateConstructorUsedError;
   bool get agreementAccepted => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
+  String get exchangeType => throw _privateConstructorUsedError;
+  List<bool> get isSelected => throw _privateConstructorUsedError;
+  List<int> get durations => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $InvestmentStateCopyWith<InvestmentState> get copyWith =>
@@ -72,7 +81,10 @@ abstract class $InvestmentStateCopyWith<$Res> {
       String method,
       String response,
       bool agreementAccepted,
-      bool isLoading});
+      bool isLoading,
+      String exchangeType,
+      List<bool> isSelected,
+      List<int> durations});
 }
 
 /// @nodoc
@@ -94,6 +106,9 @@ class _$InvestmentStateCopyWithImpl<$Res>
     Object? response = freezed,
     Object? agreementAccepted = freezed,
     Object? isLoading = freezed,
+    Object? exchangeType = freezed,
+    Object? isSelected = freezed,
+    Object? durations = freezed,
   }) {
     return _then(_value.copyWith(
       planName: planName == freezed
@@ -128,6 +143,18 @@ class _$InvestmentStateCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      exchangeType: exchangeType == freezed
+          ? _value.exchangeType
+          : exchangeType // ignore: cast_nullable_to_non_nullable
+              as String,
+      isSelected: isSelected == freezed
+          ? _value.isSelected
+          : isSelected // ignore: cast_nullable_to_non_nullable
+              as List<bool>,
+      durations: durations == freezed
+          ? _value.durations
+          : durations // ignore: cast_nullable_to_non_nullable
+              as List<int>,
     ));
   }
 }
@@ -147,7 +174,10 @@ abstract class _$InvestmentStateCopyWith<$Res>
       String method,
       String response,
       bool agreementAccepted,
-      bool isLoading});
+      bool isLoading,
+      String exchangeType,
+      List<bool> isSelected,
+      List<int> durations});
 }
 
 /// @nodoc
@@ -171,6 +201,9 @@ class __$InvestmentStateCopyWithImpl<$Res>
     Object? response = freezed,
     Object? agreementAccepted = freezed,
     Object? isLoading = freezed,
+    Object? exchangeType = freezed,
+    Object? isSelected = freezed,
+    Object? durations = freezed,
   }) {
     return _then(_InvestmentState(
       planName: planName == freezed
@@ -205,6 +238,18 @@ class __$InvestmentStateCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      exchangeType: exchangeType == freezed
+          ? _value.exchangeType
+          : exchangeType // ignore: cast_nullable_to_non_nullable
+              as String,
+      isSelected: isSelected == freezed
+          ? _value.isSelected
+          : isSelected // ignore: cast_nullable_to_non_nullable
+              as List<bool>,
+      durations: durations == freezed
+          ? _value.durations
+          : durations // ignore: cast_nullable_to_non_nullable
+              as List<int>,
     ));
   }
 }
@@ -220,7 +265,10 @@ class _$_InvestmentState extends _InvestmentState {
       required this.method,
       required this.response,
       required this.agreementAccepted,
-      required this.isLoading})
+      required this.isLoading,
+      required this.exchangeType,
+      required this.isSelected,
+      required this.durations})
       : super._();
 
   @override
@@ -239,10 +287,16 @@ class _$_InvestmentState extends _InvestmentState {
   final bool agreementAccepted;
   @override
   final bool isLoading;
+  @override
+  final String exchangeType;
+  @override
+  final List<bool> isSelected;
+  @override
+  final List<int> durations;
 
   @override
   String toString() {
-    return 'InvestmentState(planName: $planName, duration: $duration, amountInvested: $amountInvested, roi: $roi, method: $method, response: $response, agreementAccepted: $agreementAccepted, isLoading: $isLoading)';
+    return 'InvestmentState(planName: $planName, duration: $duration, amountInvested: $amountInvested, roi: $roi, method: $method, response: $response, agreementAccepted: $agreementAccepted, isLoading: $isLoading, exchangeType: $exchangeType, isSelected: $isSelected, durations: $durations)';
   }
 
   @override
@@ -259,7 +313,12 @@ class _$_InvestmentState extends _InvestmentState {
             const DeepCollectionEquality().equals(other.response, response) &&
             const DeepCollectionEquality()
                 .equals(other.agreementAccepted, agreementAccepted) &&
-            const DeepCollectionEquality().equals(other.isLoading, isLoading));
+            const DeepCollectionEquality().equals(other.isLoading, isLoading) &&
+            const DeepCollectionEquality()
+                .equals(other.exchangeType, exchangeType) &&
+            const DeepCollectionEquality()
+                .equals(other.isSelected, isSelected) &&
+            const DeepCollectionEquality().equals(other.durations, durations));
   }
 
   @override
@@ -272,7 +331,10 @@ class _$_InvestmentState extends _InvestmentState {
       const DeepCollectionEquality().hash(method),
       const DeepCollectionEquality().hash(response),
       const DeepCollectionEquality().hash(agreementAccepted),
-      const DeepCollectionEquality().hash(isLoading));
+      const DeepCollectionEquality().hash(isLoading),
+      const DeepCollectionEquality().hash(exchangeType),
+      const DeepCollectionEquality().hash(isSelected),
+      const DeepCollectionEquality().hash(durations));
 
   @JsonKey(ignore: true)
   @override
@@ -289,7 +351,10 @@ abstract class _InvestmentState extends InvestmentState {
       required String method,
       required String response,
       required bool agreementAccepted,
-      required bool isLoading}) = _$_InvestmentState;
+      required bool isLoading,
+      required String exchangeType,
+      required List<bool> isSelected,
+      required List<int> durations}) = _$_InvestmentState;
   const _InvestmentState._() : super._();
 
   @override
@@ -308,6 +373,12 @@ abstract class _InvestmentState extends InvestmentState {
   bool get agreementAccepted;
   @override
   bool get isLoading;
+  @override
+  String get exchangeType;
+  @override
+  List<bool> get isSelected;
+  @override
+  List<int> get durations;
   @override
   @JsonKey(ignore: true)
   _$InvestmentStateCopyWith<_InvestmentState> get copyWith =>

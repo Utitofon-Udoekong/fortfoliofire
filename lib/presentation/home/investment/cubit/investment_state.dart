@@ -11,17 +11,23 @@ class InvestmentState with _$InvestmentState {
       required String response,
       required bool agreementAccepted,
       required bool isLoading,
+      required String exchangeType,
+      required List<bool> isSelected,
+      required List<int> durations,
       }) = _InvestmentState;
   const InvestmentState._();
 
   factory InvestmentState.initial() => const InvestmentState(
         amountInvested: 0,
-        duration: 0.0,
         method: '',
         planName: '',
         roi: 0,
         response: "",
         agreementAccepted: false,
-        isLoading: false
+        isLoading: false,
+        exchangeType: "NGN",
+        isSelected: [false, true, false],
+        durations: [3, 6, 9], 
+        duration: 6
       );
 }

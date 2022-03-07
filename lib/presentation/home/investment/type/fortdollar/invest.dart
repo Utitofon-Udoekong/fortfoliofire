@@ -8,7 +8,6 @@ import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
 import 'package:fortfolio/domain/widgets/labelled_checkbox.dart';
 import 'package:fortfolio/injection.dart';
 import 'package:fortfolio/presentation/home/investment/cubit/investment_cubit.dart';
-import 'package:fortfolio/presentation/home/investment/type/cubit/exchange_type_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 
 import 'package:timelines/timelines.dart';
@@ -20,15 +19,8 @@ class FortDollarInvestment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => getIt<InvestmentCubit>(),
-        ),
-        BlocProvider(
-          create: (context) => getIt<ExchangeTypeCubit>(),
-        ),
-      ],
+    return BlocProvider(
+      create: (context) => getIt<InvestmentCubit>(),
       child: Scaffold(
         body: SafeArea(
           child: Padding(
@@ -118,7 +110,7 @@ class FortDollarInvestment extends StatelessWidget {
                     height: 20,
                   ),
                   // ==================TOGGLE BUTTONS---------------
-                  BlocBuilder<ExchangeTypeCubit, ExchangeTypeState>(
+                  BlocBuilder<InvestmentCubit, InvestmentState>(
                     buildWhen: (previous, current) =>
                         previous.isSelected != current.isSelected,
                     builder: (context, state) {
@@ -175,7 +167,7 @@ class FortDollarInvestment extends StatelessWidget {
                           ),
                         ],
                         onPressed: (int newIndex) => context
-                            .read<ExchangeTypeCubit>()
+                            .read<InvestmentCubit>()
                             .isSelectedChanged(newIndex: newIndex),
                       );
                     },
@@ -267,7 +259,8 @@ class FortDollarInvestment extends StatelessWidget {
                       return CustomAuthFilledButton(
                           text: 'INVEST NOW',
                           onTap: () {
-                            AlertDialog(
+                            showDialog(context: context, builder: (BuildContext context){
+                              return AlertDialog(
                               title: const Text(
                                   "Please confirm your investment transaction"),
                               titleTextStyle: titleText.copyWith(fontSize: 16),
@@ -314,6 +307,7 @@ class FortDollarInvestment extends StatelessWidget {
                               actionsPadding:
                                   const EdgeInsets.symmetric(horizontal: 10.0),
                             );
+                            });
                           },
                           disabled: !state.agreementAccepted);
                     },

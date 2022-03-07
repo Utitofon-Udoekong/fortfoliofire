@@ -4,7 +4,6 @@ import 'package:bloc/bloc.dart';
 import 'package:fortfolio/domain/auth/i_auth_facade.dart';
 import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
 import 'package:fortfolio/domain/user/investment.dart';
-import 'package:fortfolio/presentation/home/investment/type/cubit/exchange_type_cubit.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:uuid/uuid.dart';
@@ -16,18 +15,33 @@ part 'investment_cubit.freezed.dart';
 class InvestmentCubit extends Cubit<InvestmentState> {
   final IFirestoreFacade firestoreFacade ;
   final  IAuthFacade authFacade;
-  final ExchangeTypeCubit exchangeTypeCubit;
   StreamSubscription? addSubscription;
-  InvestmentCubit( this.exchangeTypeCubit, this.authFacade, this.firestoreFacade) : super(InvestmentState.initial()){
-    addSubscription = exchangeTypeCubit.stream.listen((state) { 
-      if(state.duration == 3){
-        durationChanged(duration: 2191.45319);
-      }else if(state.duration == 6){
-        durationChanged(duration: 4382.90638);
-      }else{
-        durationChanged(duration: 8765.81277);
+  InvestmentCubit(  this.authFacade, this.firestoreFacade) : super(InvestmentState.initial());
+
+  void exchangeTypeChanged({required String exchangeType}) {
+    emit(state.copyWith(exchangeType: exchangeType));
+  }
+
+  void isSelectedChanged({required int newIndex}) {
+    int duration = 0;
+    List<bool> newList = state.isSelected;
+    for (int index = 0; index < state.isSelected.length; index++) {
+      if(index == newIndex){
+        newList[index] = true;
+        duration = state.durations[index];
+        emit(state.copyWith(
+          duration: duration.toDouble(),
+          isSelected: newList
+        ));
+        print(newIndex);
+      }else {
+        newList[index] = false;
+        emit(state.copyWith(
+          isSelected: newList
+        ));
+        print(newIndex);
       }
-    });
+    }
   }
 
   void planNameChanged({required String planName}){

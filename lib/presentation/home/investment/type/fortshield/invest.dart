@@ -7,7 +7,6 @@ import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
 import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
 import 'package:fortfolio/domain/widgets/labelled_checkbox.dart';
 import 'package:fortfolio/injection.dart';
-import 'package:fortfolio/presentation/home/investment/type/cubit/exchange_type_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:timelines/timelines.dart';
 
@@ -29,15 +28,8 @@ class _FortShieldInvestmentState extends State<FortShieldInvestment> {
   Widget build(BuildContext context) {
     Text roi = const Text('30% returns');
     roi.style?.copyWith(color: kGreenColor);
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => getIt<InvestmentCubit>(),
-        ),
-        BlocProvider(
-          create: (context) => ExchangeTypeCubit(),
-        ),
-      ],
+    return BlocProvider(
+      create: (context) => getIt<InvestmentCubit>(),
       child: Scaffold(
         body: SafeArea(
           child: Padding(
@@ -96,7 +88,7 @@ class _FortShieldInvestmentState extends State<FortShieldInvestment> {
                   const SizedBox(
                     height: 10,
                   ),
-                  BlocBuilder<ExchangeTypeCubit, ExchangeTypeState>(
+                  BlocBuilder<InvestmentCubit, InvestmentState>(
                     builder: (context, state) {
                       return ClipRRect(
                         borderRadius: BorderRadius.circular(10),
@@ -132,7 +124,7 @@ class _FortShieldInvestmentState extends State<FortShieldInvestment> {
                                 }).toList(),
                                 onChanged: (onChanged) {
                                   context
-                                      .read<ExchangeTypeCubit>()
+                                      .read<InvestmentCubit>()
                                       .exchangeTypeChanged(
                                           exchangeType: onChanged!);
                                 }),
@@ -157,7 +149,7 @@ class _FortShieldInvestmentState extends State<FortShieldInvestment> {
                     height: 20,
                   ),
                   // ==================TOGGLE BUTTONS---------------
-                  BlocBuilder<ExchangeTypeCubit, ExchangeTypeState>(
+                  BlocBuilder<InvestmentCubit, InvestmentState>(
                     builder: (context, state) {
                       return ToggleButtons(
                         selectedColor: Colors.white,
@@ -194,7 +186,7 @@ class _FortShieldInvestmentState extends State<FortShieldInvestment> {
                           ),
                         ],
                         onPressed: (int newIndex) => context
-                            .read<ExchangeTypeCubit>()
+                            .read<InvestmentCubit>()
                             .isSelectedChanged(newIndex: newIndex),
                       );
                     },
@@ -287,7 +279,8 @@ class _FortShieldInvestmentState extends State<FortShieldInvestment> {
                       return CustomAuthFilledButton(
                           text: 'INVEST NOW',
                           onTap: () {
-                            AlertDialog(
+                            showDialog(context: context, builder: (BuildContext context){
+                              return AlertDialog(
                               title: const Text(
                                   "Please confirm your investment transaction"),
                               titleTextStyle: titleText.copyWith(fontSize: 16),
@@ -332,6 +325,7 @@ class _FortShieldInvestmentState extends State<FortShieldInvestment> {
                               actionsPadding:
                                   const EdgeInsets.symmetric(horizontal: 10.0),
                             );
+                            });
                           },
                           disabled: !state.agreementAccepted);
                     },
