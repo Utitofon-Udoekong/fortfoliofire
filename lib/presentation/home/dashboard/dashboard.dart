@@ -68,8 +68,8 @@ class Dashboard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                buildBigIcons('images/bolt.svg', 'Active Investments', const Color(0XFF00ADEE), 'See your current investments, invest more and get recommendations.', 'Active Invests', () => context.router.pushNamed('investments'), context),
-                buildBigIcons('images/Activity-big.svg', 'Quick Investments', const Color(0XFF00C566), 'Find invsestments that fit with your area of interest & get started!', 'Quick Invest', () => context.router.pushNamed('investments'), context),
+                buildBigIcons('images/bolt.svg', 'Active Investments', const Color(0XFF00ADEE), 'See your current investments, invest more and get recommendations.', 'Active Invests', () => context.router.push(const InvestmentPageRoute()), context),
+                buildBigIcons('images/Activity-big.svg', 'Quick Investments', const Color(0XFF00C566), 'Find invsestments that fit with your area of interest & get started!', 'Quick Invest', () => context.router.push(const InvestmentPageRoute()), context),
               ],
             ),
             const SizedBox(height: 10,),
