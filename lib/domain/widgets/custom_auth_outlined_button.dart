@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+
 import 'package:fortfolio/domain/constants/theme.dart';
 
 class CustomAuthOutlinedButton extends StatelessWidget {
   final String text;
   final void Function() onTap;
 
-  const CustomAuthOutlinedButton({required this.text, required this.onTap});
+  const CustomAuthOutlinedButton({
+    Key? key,
+    required this.text,
+    required this.onTap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

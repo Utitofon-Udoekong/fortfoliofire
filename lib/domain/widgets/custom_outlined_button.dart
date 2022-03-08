@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+
 import 'package:fortfolio/domain/constants/theme.dart';
 
 class CustomOutlinedButton extends StatelessWidget {
   final String text;
   final void Function() onTap;
 
-  const CustomOutlinedButton({required this.text, required this.onTap});
+  const CustomOutlinedButton({
+    Key? key,
+    required this.text,
+    required this.onTap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

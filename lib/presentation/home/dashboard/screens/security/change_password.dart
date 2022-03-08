@@ -5,7 +5,6 @@ import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
 import 'package:fortfolio/injection.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/security/cubit/security_cubit.dart';
-import 'package:fortfolio/presentation/routes/router.gr.dart';
 
 class ChangePassword extends StatelessWidget {
   const ChangePassword({Key? key}) : super(key: key);

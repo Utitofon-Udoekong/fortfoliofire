@@ -15,7 +15,6 @@ class VerifyBank extends StatefulWidget {
 
 class _VerifyBankState extends State<VerifyBank> {
   bool _isResendAgain = false;
-  bool _isLoading = false;
   late Timer _timer;
 
   int _start = 60;

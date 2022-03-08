@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -9,7 +11,7 @@ Future<double> getPrice(String id) async {
     var value = json['market_data']['current_price']['usd'].toString();
     return double.parse(value);
   } catch (e) {
-    print(e.toString());
+    log(e.toString());
   return 0.0;
   }
 }

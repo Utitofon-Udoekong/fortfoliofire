@@ -26,7 +26,6 @@ class FirebaseAuthFacade implements IAuthFacade {
       required this.firebaseAuth});
 
   @override
-  // TODO: implement authStateChanges
   Stream<AuthUserModel> get authStateChanges {
     return firebaseAuth.authStateChanges().map(
       (User? user) {
@@ -57,12 +56,6 @@ class FirebaseAuthFacade implements IAuthFacade {
       return user;
     });
   }
-
-  // @override
-  // Future<Option<AuthUserModel>> getSignedInUser() {
-  //   // TODO: implement getSignedInUser
-  //   throw UnimplementedError();
-  // }
 
   @override
   Future<Either<AuthFailure, Unit>> loginWithEmailAndPassword({required EmailAddress emailAddress, required Password password}) async{
@@ -177,14 +170,14 @@ class FirebaseAuthFacade implements IAuthFacade {
 
   @override
   Future<Option<Unit>> saveUserToDatabase({required AuthUserModel userModel}) async {
-    print(userModel);
+    log(userModel.toString());
     try {
       firestore.authUserCollection
           .doc(firebaseAuth.currentUser!.uid)
           .set(AuthUserModelDto.fromDomain(userModel).toJson());
       return some(unit);
     } catch (e) {
-      print("saveUserToDatabase error: $e");
+      log("saveUserToDatabase error: $e");
       return none();
     }
   }
@@ -269,10 +262,10 @@ class FirebaseAuthFacade implements IAuthFacade {
       final DocumentSnapshot snapshot =
           await firestore.authUserCollection.doc(id).get();
       if (snapshot.exists) {
-        print("authh getDatabaseUser EXISTS snapshot: ${snapshot.data()}");
+        log("authh getDatabaseUser EXISTS snapshot: ${snapshot.data()}");
         return some(AuthUserModelDto.fromFirestore(snapshot).toDomain());
       } else {
-        print("authh getDatabaseUser DOES NOT EXIST");
+        log("authh getDatabaseUser DOES NOT EXIST");
         return none();
       }
     } catch (e) {
@@ -292,7 +285,7 @@ class FirebaseAuthFacade implements IAuthFacade {
         final doc = query.docs[0];
         return some(AuthUserModelDto.fromFirestore(doc).toDomain());
       } else {
-        print("authh getDatabaseUserWithPhoneNumber DOES NOT EXIST");
+        log("authh getDatabaseUserWithPhoneNumber DOES NOT EXIST");
         return none();
       }
     } on FirebaseException catch (e) {

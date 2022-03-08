@@ -4,8 +4,8 @@ import 'package:fortfolio/domain/constants/theme.dart';
 class CustomIconFilledButton extends StatelessWidget {
   final String text;
   // final Future<void> Function() onTap;
-  final onTap;
-  final icon;
+  final Function() onTap;
+  final String icon;
 
   const CustomIconFilledButton(
       {Key? key, required this.text, required this.onTap, required this.icon})
@@ -30,7 +30,7 @@ class CustomIconFilledButton extends StatelessWidget {
               text,
               style: textButton.copyWith(color: kWhiteColor, fontSize: 17),
             ),
-            SizedBox(width: 20,),
+            const SizedBox(width: 20,),
             Image(image: AssetImage(icon), height: 23, width: 23,)
           ],
         ),

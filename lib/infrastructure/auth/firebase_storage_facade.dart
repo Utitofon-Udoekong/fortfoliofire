@@ -2,8 +2,6 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'dart:typed_data';
-import 'package:uuid/uuid.dart';
-import 'package:uuid/uuid_util.dart';
 
 import 'package:fortfolio/domain/auth/i_storage_facade.dart';
 import 'package:injectable/injectable.dart';

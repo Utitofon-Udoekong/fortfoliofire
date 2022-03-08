@@ -1,10 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fortfolio/domain/auth/status.dart';
-import 'package:fortfolio/domain/core/value_objects.dart';
-import 'package:fortfolio/domain/user/active_plan_item.dart';
-import 'package:fortfolio/domain/user/investment.dart';
-import 'package:fortfolio/domain/user/value_objects.dart';
-import 'package:fortfolio/domain/user/withdrawal_item.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../domain/auth/auth_user_model.dart';
@@ -25,6 +19,7 @@ class AuthUserModelDto with _$AuthUserModelDto {
     required double balance,
     required String email,
     required bool isVerified,
+    // ignore: invalid_annotation_target
     @JsonKey(fromJson: sendDateTimeFromJson, toJson: sendDateTimeToJson)
         required DateTime createdat,
   }) = _AuthUserModelDto;

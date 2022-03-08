@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 
 
@@ -65,9 +64,6 @@ class InvestmentPage extends StatelessWidget {
 
   Widget buildCard(String icon, String title, String minPrice, String roi,
       String currency, Function() onPressed) {
-    final svg = SvgPicture.asset(
-      'images/$icon.svg',
-    );
     return Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(6.0),

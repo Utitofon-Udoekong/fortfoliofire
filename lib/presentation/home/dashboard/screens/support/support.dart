@@ -69,7 +69,7 @@ class SupportPage extends StatelessWidget {
     return Container(
       // padding: EdgeInsets.all(3.0),
       decoration: const BoxDecoration(
-        color: const Color(0XFFF3F6F8),
+        color: Color(0XFFF3F6F8),
         shape: BoxShape.circle,
       ),
       width: 40,

@@ -14,7 +14,6 @@ import 'package:fortfolio/infrastructure/auth/dto/investment/investment_dto.dart
 import 'package:fortfolio/infrastructure/auth/dto/withdrawal/withdrawal_dto.dart';
 import 'package:fortfolio/infrastructure/core/firestore_helpers.dart';
 import 'package:injectable/injectable.dart';
-import 'package:uuid/uuid.dart';
 
 @LazySingleton(as: IFirestoreFacade)
 class FirebaseFirestoreFacade implements IFirestoreFacade {

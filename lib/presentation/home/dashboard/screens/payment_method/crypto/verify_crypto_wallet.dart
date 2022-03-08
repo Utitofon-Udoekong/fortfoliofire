@@ -15,7 +15,6 @@ class VerifyCryptoWallet extends StatefulWidget {
 
 class _VerifyCryptoWalletState extends State<VerifyCryptoWallet> {
   bool _isResendAgain = false;
-  bool _isLoading = false;
   late Timer _timer;
 
   int _start = 60;

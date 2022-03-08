@@ -4,7 +4,6 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:fortfolio/domain/auth/auth_failure.dart';
 import 'package:fortfolio/domain/auth/i_auth_facade.dart';
-import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
 import 'package:fortfolio/domain/auth/value_objects.dart';
 import 'package:fortfolio/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -16,14 +15,12 @@ part 'sign_up_form_cubit.freezed.dart';
 @injectable
 class SignUpFormCubit extends Cubit<SignUpFormState> {
   late final IAuthFacade _authFacade;
-  late final IFirestoreFacade _firestoreFacade;
   StreamSubscription<Either<AuthFailure, String>>?
       _phoneNumberSignInSubscription;
   final Duration verificationCodeTimeout = const Duration(seconds: 60);
   // SignUpFormCubit(this._authFacade, this._firestoreFacade) : super(SignUpFormState.initial());
   SignUpFormCubit() : super(SignUpFormState.initial()){
     _authFacade = getIt<IAuthFacade>();
-    _firestoreFacade = getIt<IFirestoreFacade>();
   }
 
   @override
