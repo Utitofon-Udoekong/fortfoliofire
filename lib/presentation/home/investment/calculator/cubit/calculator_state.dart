@@ -4,20 +4,29 @@ part of 'calculator_cubit.dart';
 class CalculatorState with _$CalculatorState {
   const factory CalculatorState({
     required int investmentAmount,
-    required String duration,
-    required int returnRate,
+    required int duration,
+    required double returnRate,
+    required int totalReturns,
     required String selectedPlan,
     required List<DropdownMenuItem<String>> dropdownItems,
-    required List<DropdownMenuItem<String>> durations,
+    required List<DropdownMenuItem<int>> durations,
   }) = _CalculatorState;
   factory CalculatorState.initial() => const CalculatorState(
-        dropdownItems: [],
-        duration: '',
-        durations: [],
+        dropdownItems: [
+          DropdownMenuItem(child: Text("FortDollar"), value: "FortDollar"),
+          DropdownMenuItem(child: Text("FortCrypto"), value: "FortCrypto"),
+          DropdownMenuItem(child: Text("FortShield"), value: "FortShield"),
+        ],
+        duration: 3,
+        durations: [
+          DropdownMenuItem(child: Text("3"), value: 3),
+          DropdownMenuItem(child: Text("6"), value: 6),
+          DropdownMenuItem(child: Text("12"), value: 9),
+        ],
         investmentAmount: 0,
-        returnRate: 30,
+        returnRate: 0.3,
+        totalReturns: 0,
         selectedPlan: 'FortDollar',
       );
   const CalculatorState._();
-  int get totalReturns => investmentAmount + (investmentAmount * int.parse(duration) * returnRate);
 }

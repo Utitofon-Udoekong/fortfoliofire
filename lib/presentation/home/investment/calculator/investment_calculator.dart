@@ -5,12 +5,14 @@ import 'package:fortfolio/domain/constants/theme.dart';
 
 import 'cubit/calculator_cubit.dart';
 
-class Calculator extends StatelessWidget{
+class Calculator extends StatelessWidget {
   const Calculator({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    
+    TextEditingController roi = TextEditingController();
+    roi.text = context.select((CalculatorCubit calculatorCubit) =>
+        calculatorCubit.state.returnRate.toString());
     return BlocProvider(
       create: (context) => CalculatorCubit(),
       child: SafeArea(
@@ -54,9 +56,6 @@ class Calculator extends StatelessWidget{
                                     fillColor: Color(0xFFF3F6F8),
                                     border: InputBorder.none,
                                     prefixIcon: Icon(Icons.attach_money)),
-                                // onChanged: (String amount){
-                                //   investmentAmount = int.parse(amount);
-                                // },
                                 onChanged: (String amount) => context
                                     .read<CalculatorCubit>()
                                     .investmentAmountChanged(
@@ -73,11 +72,12 @@ class Calculator extends StatelessWidget{
                               height: 5,
                             ),
                             BlocBuilder<CalculatorCubit, CalculatorState>(
-                              buildWhen: (previous, current) => previous.duration != current.duration,
+                              buildWhen: (previous, current) =>
+                                  previous.duration != current.duration,
                               builder: (context, state) {
                                 return DropdownButtonFormField(
                                   items: state.durations,
-                                  onChanged: (String? newValue) => context
+                                  onChanged: (int? newValue) => context
                                       .read<CalculatorCubit>()
                                       .durationChanged(duration: newValue!),
                                   value: state.duration,
@@ -94,36 +94,6 @@ class Calculator extends StatelessWidget{
                                 );
                               },
                             ),
-                            // TextFormField(
-                            //   initialValue: currentSliderValue.text,
-                            //   autocorrect: false,
-                            //   keyboardType: TextInputType.number,
-                            //   textInputAction: TextInputAction.next,
-                            //   decoration: InputDecoration(
-                            //       filled: true,
-                            //       fillColor: const Color(0xFFF3F6F8),
-                            //       border: InputBorder.none,
-                            //       suffix: Text(
-                            //         'Months',
-                            //         style: subTitle.copyWith(
-                            //             fontSize: 12, color: kgreyColor),
-                            //       )),
-                            //   onChanged: (String newInt){
-                            //     duration = int.parse(newInt);
-                            //   },
-                            // ),
-                            // Slider.adaptive(
-                            //   value: double.parse(currentSliderValue.text),
-                            //   onChanged: (double value) {
-                            //     setState(() {
-                            //       currentSliderValue.text = value.toString();
-                            //     });
-                            //   },
-                            //   min: 3,
-                            //   max: 12,
-                            //   divisions: 3,
-                            //   label: currentSliderValue.text
-                            // ),
                             const SizedBox(
                               height: 20,
                             ),
@@ -136,7 +106,8 @@ class Calculator extends StatelessWidget{
                               height: 5,
                             ),
                             BlocBuilder<CalculatorCubit, CalculatorState>(
-                              buildWhen: (previous, current) => previous.selectedPlan != current.selectedPlan,
+                              buildWhen: (previous, current) =>
+                                  previous.selectedPlan != current.selectedPlan,
                               builder: (context, state) {
                                 return DropdownButtonFormField(
                                   items: state.dropdownItems,
@@ -165,21 +136,16 @@ class Calculator extends StatelessWidget{
                             const SizedBox(
                               height: 5,
                             ),
-                            BlocBuilder<CalculatorCubit, CalculatorState>(
-                              buildWhen: (previous, current) => previous.returnRate != current.returnRate,
-                              builder: (context, state) {
-                                return TextFormField(
-                                  initialValue: state.returnRate.toString(),
-                                  autocorrect: false,
-                                  keyboardType: TextInputType.number,
-                                  textInputAction: TextInputAction.next,
-                                  decoration: const InputDecoration(
-                                      filled: true,
-                                      fillColor: Color(0xFFF3F6F8),
-                                      border: InputBorder.none,
-                                      suffixIcon: Icon(Icons.percent)),
-                                );
-                              },
+                            TextFormField(
+                              controller: roi,
+                              autocorrect: false,
+                              keyboardType: TextInputType.number,
+                              textInputAction: TextInputAction.next,
+                              decoration: const InputDecoration(
+                                  filled: true,
+                                  fillColor: Color(0xFFF3F6F8),
+                                  border: InputBorder.none,
+                                  suffixIcon: Icon(Icons.percent)),
                             ),
                             const SizedBox(
                               height: 20,
@@ -193,11 +159,13 @@ class Calculator extends StatelessWidget{
                                 return Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
-                                    buildtile('Starting Amount', '\$${state.investmentAmount}'),
+                                    buildtile('Starting Amount',
+                                        '\$${state.investmentAmount}'),
                                     const SizedBox(
                                       height: 7,
                                     ),
-                                    buildtile('Return Rate', '${state.returnRate}%'),
+                                    buildtile(
+                                        'Return Rate', '${state.returnRate * 100}%'),
                                     const SizedBox(
                                       height: 7,
                                     ),
@@ -230,23 +198,5 @@ class Calculator extends StatelessWidget{
         ),
       ],
     );
-  }
-
-  List<DropdownMenuItem<String>> get dropdownItems {
-    List<DropdownMenuItem<String>> menuItems = [
-      const DropdownMenuItem(child: Text("FortDollar"), value: "FortDollar"),
-      const DropdownMenuItem(child: Text("FortCrypto"), value: "FortCrypto"),
-      const DropdownMenuItem(child: Text("FortShield"), value: "FortShield"),
-    ];
-    return menuItems;
-  }
-
-  List<DropdownMenuItem<String>> get durations {
-    List<DropdownMenuItem<String>> durationList = [
-      const DropdownMenuItem(child: Text("3"), value: "3"),
-      const DropdownMenuItem(child: Text("6"), value: "6"),
-      const DropdownMenuItem(child: Text("12"), value: "12"),
-    ];
-    return durationList;
   }
 }

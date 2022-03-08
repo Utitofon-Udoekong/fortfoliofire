@@ -20,15 +20,17 @@ class _$CalculatorStateTearOff {
 
   _CalculatorState call(
       {required int investmentAmount,
-      required String duration,
-      required int returnRate,
+      required int duration,
+      required double returnRate,
+      required int totalReturns,
       required String selectedPlan,
       required List<DropdownMenuItem<String>> dropdownItems,
-      required List<DropdownMenuItem<String>> durations}) {
+      required List<DropdownMenuItem<int>> durations}) {
     return _CalculatorState(
       investmentAmount: investmentAmount,
       duration: duration,
       returnRate: returnRate,
+      totalReturns: totalReturns,
       selectedPlan: selectedPlan,
       dropdownItems: dropdownItems,
       durations: durations,
@@ -42,12 +44,13 @@ const $CalculatorState = _$CalculatorStateTearOff();
 /// @nodoc
 mixin _$CalculatorState {
   int get investmentAmount => throw _privateConstructorUsedError;
-  String get duration => throw _privateConstructorUsedError;
-  int get returnRate => throw _privateConstructorUsedError;
+  int get duration => throw _privateConstructorUsedError;
+  double get returnRate => throw _privateConstructorUsedError;
+  int get totalReturns => throw _privateConstructorUsedError;
   String get selectedPlan => throw _privateConstructorUsedError;
   List<DropdownMenuItem<String>> get dropdownItems =>
       throw _privateConstructorUsedError;
-  List<DropdownMenuItem<String>> get durations =>
+  List<DropdownMenuItem<int>> get durations =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -62,11 +65,12 @@ abstract class $CalculatorStateCopyWith<$Res> {
       _$CalculatorStateCopyWithImpl<$Res>;
   $Res call(
       {int investmentAmount,
-      String duration,
-      int returnRate,
+      int duration,
+      double returnRate,
+      int totalReturns,
       String selectedPlan,
       List<DropdownMenuItem<String>> dropdownItems,
-      List<DropdownMenuItem<String>> durations});
+      List<DropdownMenuItem<int>> durations});
 }
 
 /// @nodoc
@@ -83,6 +87,7 @@ class _$CalculatorStateCopyWithImpl<$Res>
     Object? investmentAmount = freezed,
     Object? duration = freezed,
     Object? returnRate = freezed,
+    Object? totalReturns = freezed,
     Object? selectedPlan = freezed,
     Object? dropdownItems = freezed,
     Object? durations = freezed,
@@ -95,10 +100,14 @@ class _$CalculatorStateCopyWithImpl<$Res>
       duration: duration == freezed
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       returnRate: returnRate == freezed
           ? _value.returnRate
           : returnRate // ignore: cast_nullable_to_non_nullable
+              as double,
+      totalReturns: totalReturns == freezed
+          ? _value.totalReturns
+          : totalReturns // ignore: cast_nullable_to_non_nullable
               as int,
       selectedPlan: selectedPlan == freezed
           ? _value.selectedPlan
@@ -111,7 +120,7 @@ class _$CalculatorStateCopyWithImpl<$Res>
       durations: durations == freezed
           ? _value.durations
           : durations // ignore: cast_nullable_to_non_nullable
-              as List<DropdownMenuItem<String>>,
+              as List<DropdownMenuItem<int>>,
     ));
   }
 }
@@ -125,11 +134,12 @@ abstract class _$CalculatorStateCopyWith<$Res>
   @override
   $Res call(
       {int investmentAmount,
-      String duration,
-      int returnRate,
+      int duration,
+      double returnRate,
+      int totalReturns,
       String selectedPlan,
       List<DropdownMenuItem<String>> dropdownItems,
-      List<DropdownMenuItem<String>> durations});
+      List<DropdownMenuItem<int>> durations});
 }
 
 /// @nodoc
@@ -148,6 +158,7 @@ class __$CalculatorStateCopyWithImpl<$Res>
     Object? investmentAmount = freezed,
     Object? duration = freezed,
     Object? returnRate = freezed,
+    Object? totalReturns = freezed,
     Object? selectedPlan = freezed,
     Object? dropdownItems = freezed,
     Object? durations = freezed,
@@ -160,10 +171,14 @@ class __$CalculatorStateCopyWithImpl<$Res>
       duration: duration == freezed
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       returnRate: returnRate == freezed
           ? _value.returnRate
           : returnRate // ignore: cast_nullable_to_non_nullable
+              as double,
+      totalReturns: totalReturns == freezed
+          ? _value.totalReturns
+          : totalReturns // ignore: cast_nullable_to_non_nullable
               as int,
       selectedPlan: selectedPlan == freezed
           ? _value.selectedPlan
@@ -176,7 +191,7 @@ class __$CalculatorStateCopyWithImpl<$Res>
       durations: durations == freezed
           ? _value.durations
           : durations // ignore: cast_nullable_to_non_nullable
-              as List<DropdownMenuItem<String>>,
+              as List<DropdownMenuItem<int>>,
     ));
   }
 }
@@ -188,6 +203,7 @@ class _$_CalculatorState extends _CalculatorState {
       {required this.investmentAmount,
       required this.duration,
       required this.returnRate,
+      required this.totalReturns,
       required this.selectedPlan,
       required this.dropdownItems,
       required this.durations})
@@ -196,19 +212,21 @@ class _$_CalculatorState extends _CalculatorState {
   @override
   final int investmentAmount;
   @override
-  final String duration;
+  final int duration;
   @override
-  final int returnRate;
+  final double returnRate;
+  @override
+  final int totalReturns;
   @override
   final String selectedPlan;
   @override
   final List<DropdownMenuItem<String>> dropdownItems;
   @override
-  final List<DropdownMenuItem<String>> durations;
+  final List<DropdownMenuItem<int>> durations;
 
   @override
   String toString() {
-    return 'CalculatorState(investmentAmount: $investmentAmount, duration: $duration, returnRate: $returnRate, selectedPlan: $selectedPlan, dropdownItems: $dropdownItems, durations: $durations)';
+    return 'CalculatorState(investmentAmount: $investmentAmount, duration: $duration, returnRate: $returnRate, totalReturns: $totalReturns, selectedPlan: $selectedPlan, dropdownItems: $dropdownItems, durations: $durations)';
   }
 
   @override
@@ -222,6 +240,8 @@ class _$_CalculatorState extends _CalculatorState {
             const DeepCollectionEquality()
                 .equals(other.returnRate, returnRate) &&
             const DeepCollectionEquality()
+                .equals(other.totalReturns, totalReturns) &&
+            const DeepCollectionEquality()
                 .equals(other.selectedPlan, selectedPlan) &&
             const DeepCollectionEquality()
                 .equals(other.dropdownItems, dropdownItems) &&
@@ -234,6 +254,7 @@ class _$_CalculatorState extends _CalculatorState {
       const DeepCollectionEquality().hash(investmentAmount),
       const DeepCollectionEquality().hash(duration),
       const DeepCollectionEquality().hash(returnRate),
+      const DeepCollectionEquality().hash(totalReturns),
       const DeepCollectionEquality().hash(selectedPlan),
       const DeepCollectionEquality().hash(dropdownItems),
       const DeepCollectionEquality().hash(durations));
@@ -247,25 +268,28 @@ class _$_CalculatorState extends _CalculatorState {
 abstract class _CalculatorState extends CalculatorState {
   const factory _CalculatorState(
       {required int investmentAmount,
-      required String duration,
-      required int returnRate,
+      required int duration,
+      required double returnRate,
+      required int totalReturns,
       required String selectedPlan,
       required List<DropdownMenuItem<String>> dropdownItems,
-      required List<DropdownMenuItem<String>> durations}) = _$_CalculatorState;
+      required List<DropdownMenuItem<int>> durations}) = _$_CalculatorState;
   const _CalculatorState._() : super._();
 
   @override
   int get investmentAmount;
   @override
-  String get duration;
+  int get duration;
   @override
-  int get returnRate;
+  double get returnRate;
+  @override
+  int get totalReturns;
   @override
   String get selectedPlan;
   @override
   List<DropdownMenuItem<String>> get dropdownItems;
   @override
-  List<DropdownMenuItem<String>> get durations;
+  List<DropdownMenuItem<int>> get durations;
   @override
   @JsonKey(ignore: true)
   _$CalculatorStateCopyWith<_CalculatorState> get copyWith =>
