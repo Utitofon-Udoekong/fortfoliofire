@@ -1,183 +1,217 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 
-class Calculator extends StatefulWidget {
+import 'cubit/calculator_cubit.dart';
+
+class Calculator extends StatelessWidget{
   const Calculator({Key? key}) : super(key: key);
 
   @override
-  _CalculatorState createState() => _CalculatorState();
-}
-
-class _CalculatorState extends State<Calculator> {
-  String selectedValue = "FortDollar";
-  TextEditingController investmentAmount = TextEditingController();
-  TextEditingController investmentDuration = TextEditingController();
-  double _currentSliderValue = 3;
-  @override
   Widget build(BuildContext context) {
-    final int roi = selectedValue == "FortDollar" ? 30 : selectedValue == "FortShield" ? 18 : 15;
-    final int investment = int.parse(investmentAmount.text);
-    return SafeArea(
-        child: Scaffold(
-            body: SingleChildScrollView(
-                child: Padding(
-                    padding: kDefaultPadding,
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          InkWell(
-                            onTap: () => context.router.pop(),
-                            child: const Icon(Icons.close),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          Text(
-                            "Investment Calaculator",
-                            style: titleText.copyWith(color: kBlackColor),
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          Text(
-                            'Investment Amount',
-                            style: subTitle.copyWith(
-                                fontSize: 13, color: kgreyColor),
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          TextFormField(
-                            controller: investmentAmount,
-                            autocorrect: false,
-                            keyboardType: TextInputType.number,
-                            textInputAction: TextInputAction.next,
-                            decoration: const InputDecoration(
-                                filled: true,
-                                fillColor: Color(0xFFF3F6F8),
-                                border: InputBorder.none,
-                                prefixIcon: Icon(Icons.attach_money)),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          Text(
-                            'Investment Duration',
-                            style: subTitle.copyWith(
-                                fontSize: 13, color: kgreyColor),
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          Slider.adaptive(
-                            value: _currentSliderValue,
-                            onChanged: (double value) {
-                              setState(() {
-                                _currentSliderValue = value;
-                              });
-                            },
-                            min: 3,
-                            max: 12,
-                            divisions: 3,
-                            label: _currentSliderValue.round().toString()
-                          ),
-                          TextFormField(
-                            controller: investmentDuration,
-                            autocorrect: false,
-                            keyboardType: TextInputType.number,
-                            textInputAction: TextInputAction.next,
-                            decoration: InputDecoration(
-                                filled: true,
-                                fillColor: const Color(0xFFF3F6F8),
-                                border: InputBorder.none,
-                                suffix: Text(
-                                  'Months',
-                                  style: subTitle.copyWith(
-                                      fontSize: 12, color: kgreyColor),
-                                )),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          Text(
-                            'Investment Plan',
-                            style: subTitle.copyWith(
-                                fontSize: 13, color: kgreyColor),
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          DropdownButtonFormField(
-                            items: dropdownItems,
-                            onChanged: (String? newValue) {
-                              setState(() {
-                                selectedValue = newValue!;
-                              });
-                            },
-                            value: selectedValue,
-                            decoration: const InputDecoration(
-                              filled: true,
-                              fillColor: Color(0xFFF3F6F8),
-                              border: InputBorder.none,
+    
+    return BlocProvider(
+      create: (context) => CalculatorCubit(),
+      child: SafeArea(
+          child: Scaffold(
+              body: SingleChildScrollView(
+                  child: Padding(
+                      padding: kDefaultPadding,
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            const SizedBox(
+                              height: 20,
                             ),
-                            icon: const Icon(Icons.keyboard_arrow_down),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          Text(
-                            'Return Rate',
-                            style: subTitle.copyWith(
-                                fontSize: 13, color: kgreyColor),
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          Text(
-                            '15 %',
-                            style: subTitle.copyWith(
-                                fontSize: 13, color: kgreyColor),
-                          ),
-                          TextFormField(
-                            autocorrect: false,
-                            keyboardType: TextInputType.number,
-                            textInputAction: TextInputAction.next,
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: const Color(0xFFF3F6F8),
-                              border: InputBorder.none,
-                              prefix: Text(roi.toString()),
-                              suffixIcon: const Icon(Icons.percent)
+                            InkWell(
+                              onTap: () => context.router.pop(),
+                              child: const Icon(Icons.close),
                             ),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          Text(
-                            'Result',
-                            style: titleText.copyWith(fontSize: 15),
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              buildtile('Starting Amount',
-                                  '\$${investmentAmount.text}'),
-                              const SizedBox(
-                                height: 7,
-                              ),
-                              buildtile('Return Rate', '30%'),
-                              const SizedBox(
-                                height: 7,
-                              ),
-                              buildtile(
-                                  'Total Interest', '\$${investment * roi}'),
-                            ],
-                          )
-                        ])))));
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Text(
+                              "Investment Calaculator",
+                              style: titleText.copyWith(color: kBlackColor),
+                            ),
+                            const SizedBox(
+                              height: 30,
+                            ),
+                            Text(
+                              'Investment Amount',
+                              style: subTitle.copyWith(
+                                  fontSize: 13, color: kgreyColor),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            TextFormField(
+                                autocorrect: false,
+                                keyboardType: TextInputType.number,
+                                decoration: const InputDecoration(
+                                    filled: true,
+                                    fillColor: Color(0xFFF3F6F8),
+                                    border: InputBorder.none,
+                                    prefixIcon: Icon(Icons.attach_money)),
+                                // onChanged: (String amount){
+                                //   investmentAmount = int.parse(amount);
+                                // },
+                                onChanged: (String amount) => context
+                                    .read<CalculatorCubit>()
+                                    .investmentAmountChanged(
+                                        investmentAmount: int.parse(amount))),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Text(
+                              'Investment Duration',
+                              style: subTitle.copyWith(
+                                  fontSize: 13, color: kgreyColor),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            BlocBuilder<CalculatorCubit, CalculatorState>(
+                              buildWhen: (previous, current) => previous.duration != current.duration,
+                              builder: (context, state) {
+                                return DropdownButtonFormField(
+                                  items: state.durations,
+                                  onChanged: (String? newValue) => context
+                                      .read<CalculatorCubit>()
+                                      .durationChanged(duration: newValue!),
+                                  value: state.duration,
+                                  decoration: InputDecoration(
+                                      filled: true,
+                                      fillColor: const Color(0xFFF3F6F8),
+                                      border: InputBorder.none,
+                                      suffix: Text(
+                                        'Months',
+                                        style: subTitle.copyWith(
+                                            fontSize: 12, color: kgreyColor),
+                                      )),
+                                  icon: const Icon(Icons.keyboard_arrow_down),
+                                );
+                              },
+                            ),
+                            // TextFormField(
+                            //   initialValue: currentSliderValue.text,
+                            //   autocorrect: false,
+                            //   keyboardType: TextInputType.number,
+                            //   textInputAction: TextInputAction.next,
+                            //   decoration: InputDecoration(
+                            //       filled: true,
+                            //       fillColor: const Color(0xFFF3F6F8),
+                            //       border: InputBorder.none,
+                            //       suffix: Text(
+                            //         'Months',
+                            //         style: subTitle.copyWith(
+                            //             fontSize: 12, color: kgreyColor),
+                            //       )),
+                            //   onChanged: (String newInt){
+                            //     duration = int.parse(newInt);
+                            //   },
+                            // ),
+                            // Slider.adaptive(
+                            //   value: double.parse(currentSliderValue.text),
+                            //   onChanged: (double value) {
+                            //     setState(() {
+                            //       currentSliderValue.text = value.toString();
+                            //     });
+                            //   },
+                            //   min: 3,
+                            //   max: 12,
+                            //   divisions: 3,
+                            //   label: currentSliderValue.text
+                            // ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Text(
+                              'Investment Plan',
+                              style: subTitle.copyWith(
+                                  fontSize: 13, color: kgreyColor),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            BlocBuilder<CalculatorCubit, CalculatorState>(
+                              buildWhen: (previous, current) => previous.selectedPlan != current.selectedPlan,
+                              builder: (context, state) {
+                                return DropdownButtonFormField(
+                                  items: state.dropdownItems,
+                                  onChanged: (String? selectedPlan) => context
+                                      .read<CalculatorCubit>()
+                                      .selectedPlanChanged(
+                                          selectedPlan: selectedPlan!),
+                                  value: state.selectedPlan,
+                                  decoration: const InputDecoration(
+                                    filled: true,
+                                    fillColor: Color(0xFFF3F6F8),
+                                    border: InputBorder.none,
+                                  ),
+                                  icon: const Icon(Icons.keyboard_arrow_down),
+                                );
+                              },
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Text(
+                              'Return Rate',
+                              style: subTitle.copyWith(
+                                  fontSize: 13, color: kgreyColor),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            BlocBuilder<CalculatorCubit, CalculatorState>(
+                              buildWhen: (previous, current) => previous.returnRate != current.returnRate,
+                              builder: (context, state) {
+                                return TextFormField(
+                                  initialValue: state.returnRate.toString(),
+                                  autocorrect: false,
+                                  keyboardType: TextInputType.number,
+                                  textInputAction: TextInputAction.next,
+                                  decoration: const InputDecoration(
+                                      filled: true,
+                                      fillColor: Color(0xFFF3F6F8),
+                                      border: InputBorder.none,
+                                      suffixIcon: Icon(Icons.percent)),
+                                );
+                              },
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Text(
+                              'Result',
+                              style: titleText.copyWith(fontSize: 15),
+                            ),
+                            BlocBuilder<CalculatorCubit, CalculatorState>(
+                              builder: (context, state) {
+                                return Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    buildtile('Starting Amount', '\$${state.investmentAmount}'),
+                                    const SizedBox(
+                                      height: 7,
+                                    ),
+                                    buildtile('Return Rate', '${state.returnRate}%'),
+                                    const SizedBox(
+                                      height: 7,
+                                    ),
+                                    buildtile('Total Interest',
+                                        '\$${state.totalReturns}'),
+                                  ],
+                                );
+                              },
+                            ),
+                            const SizedBox(
+                              height: 30,
+                            ),
+                          ]))))),
+    );
   }
 
   Widget buildtile(String title, String sub) {
@@ -205,5 +239,14 @@ class _CalculatorState extends State<Calculator> {
       const DropdownMenuItem(child: Text("FortShield"), value: "FortShield"),
     ];
     return menuItems;
+  }
+
+  List<DropdownMenuItem<String>> get durations {
+    List<DropdownMenuItem<String>> durationList = [
+      const DropdownMenuItem(child: Text("3"), value: "3"),
+      const DropdownMenuItem(child: Text("6"), value: "6"),
+      const DropdownMenuItem(child: Text("12"), value: "12"),
+    ];
+    return durationList;
   }
 }
