@@ -10,9 +10,6 @@ class Calculator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController roi = TextEditingController();
-    roi.text = context.select((CalculatorCubit calculatorCubit) =>
-        calculatorCubit.state.returnRate.toString());
     return BlocProvider(
       create: (context) => CalculatorCubit(),
       child: SafeArea(
@@ -48,18 +45,23 @@ class Calculator extends StatelessWidget {
                             const SizedBox(
                               height: 5,
                             ),
-                            TextFormField(
-                                autocorrect: false,
-                                keyboardType: TextInputType.number,
-                                decoration: const InputDecoration(
-                                    filled: true,
-                                    fillColor: Color(0xFFF3F6F8),
-                                    border: InputBorder.none,
-                                    prefixIcon: Icon(Icons.attach_money)),
-                                onChanged: (String amount) => context
-                                    .read<CalculatorCubit>()
-                                    .investmentAmountChanged(
-                                        investmentAmount: int.parse(amount))),
+                            BlocBuilder<CalculatorCubit, CalculatorState>(
+                              builder: (context, state) {
+                                return TextFormField(
+                                  autocorrect: false,
+                                  keyboardType: TextInputType.number,
+                                  decoration: const InputDecoration(
+                                      filled: true,
+                                      fillColor: Color(0xFFF3F6F8),
+                                      border: InputBorder.none,
+                                      prefixIcon: Icon(Icons.attach_money)),
+                                  onChanged: (String amount) => context
+                                      .read<CalculatorCubit>()
+                                      .investmentAmountChanged(
+                                          investmentAmount: int.parse(amount)),
+                                );
+                              },
+                            ),
                             const SizedBox(
                               height: 20,
                             ),
@@ -136,16 +138,41 @@ class Calculator extends StatelessWidget {
                             const SizedBox(
                               height: 5,
                             ),
-                            TextFormField(
-                              controller: roi,
-                              autocorrect: false,
-                              keyboardType: TextInputType.number,
-                              textInputAction: TextInputAction.next,
-                              decoration: const InputDecoration(
-                                  filled: true,
-                                  fillColor: Color(0xFFF3F6F8),
-                                  border: InputBorder.none,
-                                  suffixIcon: Icon(Icons.percent)),
+                            // BlocBuilder<CalculatorCubit, CalculatorState>(
+                            //   buildWhen: (previous, current) =>
+                            //       previous.returnRate != current.returnRate,
+                            //   builder: (context, state) {
+                            //     return TextFormField(
+                            //       initialValue: (state.returnRate.toInt() * 100).toString(),
+                            //       autocorrect: false,
+                            //       keyboardType: TextInputType.number,
+                            //       textInputAction: TextInputAction.next,
+                            //       decoration: const InputDecoration(
+                            //           filled: true,
+                            //           fillColor: Color(0xFFF3F6F8),
+                            //           border: InputBorder.none,
+                            //           suffixIcon: Icon(Icons.percent)),
+                            //     );
+                            //   },
+                            // ),
+                            BlocBuilder<CalculatorCubit, CalculatorState>(
+                              buildWhen: (previous, current) =>
+                                  previous.returnRate != current.returnRate,
+                              builder: (context, state) {
+                                return Container(
+                                  padding: const EdgeInsets.symmetric(horizontal: 3.0, vertical: 3.0),
+                                  decoration: const BoxDecoration(
+                                    color: Color(0xFFF3F6F8),
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: <Widget>[
+                                      Text((state.returnRate.toInt() * 100).toString()),
+                                      const Icon(Icons.percent, size: 15,)
+                                    ]
+                                  ),
+                                );
+                              },
                             ),
                             const SizedBox(
                               height: 20,
@@ -164,8 +191,8 @@ class Calculator extends StatelessWidget {
                                     const SizedBox(
                                       height: 7,
                                     ),
-                                    buildtile(
-                                        'Return Rate', '${state.returnRate * 100}%'),
+                                    buildtile('Return Rate',
+                                        '${state.returnRate.toInt() * 100}%'),
                                     const SizedBox(
                                       height: 7,
                                     ),

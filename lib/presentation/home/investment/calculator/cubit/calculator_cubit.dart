@@ -10,6 +10,7 @@ class CalculatorCubit extends Cubit<CalculatorState> {
 
   void investmentAmountChanged({required int investmentAmount}){
     emit(state.copyWith(investmentAmount: investmentAmount));
+    print(investmentAmount);
   }
   void durationChanged({required int duration}){
     emit(state.copyWith(duration: duration));
