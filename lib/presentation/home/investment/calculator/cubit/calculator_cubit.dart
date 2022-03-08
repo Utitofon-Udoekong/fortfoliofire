@@ -14,12 +14,14 @@ class CalculatorCubit extends Cubit<CalculatorState> {
   }
   void durationChanged({required int duration}){
     emit(state.copyWith(duration: duration));
+    totalReturnsChange();
   }
   void selectedPlanChanged({required String selectedPlan}){
     emit(state.copyWith(selectedPlan: selectedPlan));
     roiChange();
     totalReturnsChange();
   }
+
   void roiChange(){
     final selectedPlan = state.selectedPlan;
     switch (selectedPlan) {
