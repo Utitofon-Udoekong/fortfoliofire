@@ -10,7 +10,7 @@ class CalculatorCubit extends Cubit<CalculatorState> {
 
   void investmentAmountChanged({required int investmentAmount}){
     emit(state.copyWith(investmentAmount: investmentAmount));
-    print(investmentAmount);
+    totalReturnsChange();
   }
   void durationChanged({required int duration}){
     emit(state.copyWith(duration: duration));
@@ -24,13 +24,13 @@ class CalculatorCubit extends Cubit<CalculatorState> {
     final selectedPlan = state.selectedPlan;
     switch (selectedPlan) {
       case "FortDollar":
-        emit(state.copyWith(returnRate: 0.3));
+        emit(state.copyWith(returnRate: 30));
         break;
       case "FortShield":
-        emit(state.copyWith(returnRate: 0.18));
+        emit(state.copyWith(returnRate: 18));
         break;
       case "FortCrypto":
-        emit(state.copyWith(returnRate: 0.15));
+        emit(state.copyWith(returnRate: 15));
         break;
       default:
     }
@@ -38,8 +38,8 @@ class CalculatorCubit extends Cubit<CalculatorState> {
   void totalReturnsChange(){
     final int investmentAmount = state.investmentAmount;
     final int duration = state.duration;
-    final double returnRate = state.returnRate;
-    final int total = investmentAmount + (investmentAmount * duration * returnRate.toInt());
+    final int returnRate = state.returnRate;
+    final double total = investmentAmount + (investmentAmount * duration * (returnRate / 100));
     emit(state.copyWith(totalReturns: total));
   }
 }

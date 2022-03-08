@@ -21,8 +21,8 @@ class _$CalculatorStateTearOff {
   _CalculatorState call(
       {required int investmentAmount,
       required int duration,
-      required double returnRate,
-      required int totalReturns,
+      required int returnRate,
+      required double totalReturns,
       required String selectedPlan,
       required List<DropdownMenuItem<String>> dropdownItems,
       required List<DropdownMenuItem<int>> durations}) {
@@ -45,8 +45,8 @@ const $CalculatorState = _$CalculatorStateTearOff();
 mixin _$CalculatorState {
   int get investmentAmount => throw _privateConstructorUsedError;
   int get duration => throw _privateConstructorUsedError;
-  double get returnRate => throw _privateConstructorUsedError;
-  int get totalReturns => throw _privateConstructorUsedError;
+  int get returnRate => throw _privateConstructorUsedError;
+  double get totalReturns => throw _privateConstructorUsedError;
   String get selectedPlan => throw _privateConstructorUsedError;
   List<DropdownMenuItem<String>> get dropdownItems =>
       throw _privateConstructorUsedError;
@@ -66,8 +66,8 @@ abstract class $CalculatorStateCopyWith<$Res> {
   $Res call(
       {int investmentAmount,
       int duration,
-      double returnRate,
-      int totalReturns,
+      int returnRate,
+      double totalReturns,
       String selectedPlan,
       List<DropdownMenuItem<String>> dropdownItems,
       List<DropdownMenuItem<int>> durations});
@@ -104,11 +104,11 @@ class _$CalculatorStateCopyWithImpl<$Res>
       returnRate: returnRate == freezed
           ? _value.returnRate
           : returnRate // ignore: cast_nullable_to_non_nullable
-              as double,
+              as int,
       totalReturns: totalReturns == freezed
           ? _value.totalReturns
           : totalReturns // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       selectedPlan: selectedPlan == freezed
           ? _value.selectedPlan
           : selectedPlan // ignore: cast_nullable_to_non_nullable
@@ -135,8 +135,8 @@ abstract class _$CalculatorStateCopyWith<$Res>
   $Res call(
       {int investmentAmount,
       int duration,
-      double returnRate,
-      int totalReturns,
+      int returnRate,
+      double totalReturns,
       String selectedPlan,
       List<DropdownMenuItem<String>> dropdownItems,
       List<DropdownMenuItem<int>> durations});
@@ -175,11 +175,11 @@ class __$CalculatorStateCopyWithImpl<$Res>
       returnRate: returnRate == freezed
           ? _value.returnRate
           : returnRate // ignore: cast_nullable_to_non_nullable
-              as double,
+              as int,
       totalReturns: totalReturns == freezed
           ? _value.totalReturns
           : totalReturns // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       selectedPlan: selectedPlan == freezed
           ? _value.selectedPlan
           : selectedPlan // ignore: cast_nullable_to_non_nullable
@@ -214,9 +214,9 @@ class _$_CalculatorState extends _CalculatorState {
   @override
   final int duration;
   @override
-  final double returnRate;
+  final int returnRate;
   @override
-  final int totalReturns;
+  final double totalReturns;
   @override
   final String selectedPlan;
   @override
@@ -269,8 +269,8 @@ abstract class _CalculatorState extends CalculatorState {
   const factory _CalculatorState(
       {required int investmentAmount,
       required int duration,
-      required double returnRate,
-      required int totalReturns,
+      required int returnRate,
+      required double totalReturns,
       required String selectedPlan,
       required List<DropdownMenuItem<String>> dropdownItems,
       required List<DropdownMenuItem<int>> durations}) = _$_CalculatorState;
@@ -281,9 +281,9 @@ abstract class _CalculatorState extends CalculatorState {
   @override
   int get duration;
   @override
-  double get returnRate;
+  int get returnRate;
   @override
-  int get totalReturns;
+  double get totalReturns;
   @override
   String get selectedPlan;
   @override

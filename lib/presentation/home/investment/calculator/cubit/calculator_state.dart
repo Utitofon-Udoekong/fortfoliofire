@@ -5,8 +5,8 @@ class CalculatorState with _$CalculatorState {
   const factory CalculatorState({
     required int investmentAmount,
     required int duration,
-    required double returnRate,
-    required int totalReturns,
+    required int returnRate,
+    required double totalReturns,
     required String selectedPlan,
     required List<DropdownMenuItem<String>> dropdownItems,
     required List<DropdownMenuItem<int>> durations,
@@ -24,8 +24,8 @@ class CalculatorState with _$CalculatorState {
           DropdownMenuItem(child: Text("12"), value: 9),
         ],
         investmentAmount: 0,
-        returnRate: 0.3,
-        totalReturns: 0,
+        returnRate: 30,
+        totalReturns: 0.0,
         selectedPlan: 'FortDollar',
       );
   const CalculatorState._();

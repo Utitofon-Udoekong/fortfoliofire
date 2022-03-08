@@ -160,14 +160,14 @@ class Calculator extends StatelessWidget {
                                   previous.returnRate != current.returnRate,
                               builder: (context, state) {
                                 return Container(
-                                  padding: const EdgeInsets.symmetric(horizontal: 3.0, vertical: 3.0),
+                                  padding: const EdgeInsets.all(20.0),
                                   decoration: const BoxDecoration(
                                     color: Color(0xFFF3F6F8),
                                   ),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: <Widget>[
-                                      Text((state.returnRate.toInt() * 100).toString()),
+                                      Text(state.returnRate.toString()),
                                       const Icon(Icons.percent, size: 15,)
                                     ]
                                   ),
@@ -192,7 +192,7 @@ class Calculator extends StatelessWidget {
                                       height: 7,
                                     ),
                                     buildtile('Return Rate',
-                                        '${state.returnRate.toInt() * 100}%'),
+                                        '${state.returnRate}%'),
                                     const SizedBox(
                                       height: 7,
                                     ),
