@@ -164,7 +164,6 @@ class SignUpForm extends StatelessWidget {
                           ),
                           TextFormField(
                             decoration: const InputDecoration(
-                                errorText: "",
                                 filled: true,
                                 fillColor: Color(0xFFF3F6F8),
                                 border: InputBorder.none),
@@ -293,6 +292,9 @@ class SignUpForm extends StatelessWidget {
                                 disabled: !state.isValidState,
                               );
                             },
+                          ),
+                          const SizedBox(
+                            height: 30,
                           ),
                         ],
                       ),

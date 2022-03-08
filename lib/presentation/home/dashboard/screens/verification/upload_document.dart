@@ -7,7 +7,7 @@ import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
 import 'package:fortfolio/injection.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
- 
+
 import 'package:fortfolio/utils/utils.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -18,12 +18,12 @@ class UploadDocumentImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: kDefaultPadding,
-          child: BlocProvider(
-            create: (context) => getIt<UploadImageBloc>(),
+    return BlocProvider(
+      create: (context) => getIt<UploadImageBloc>(),
+      child: Scaffold(
+        body: SafeArea(
+          child: Padding(
+            padding: kDefaultPadding,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -134,7 +134,8 @@ class UploadDocumentImage extends StatelessWidget {
                 ),
                 CustomFilledButton(
                     text: 'NEXT',
-                    onTap: () => {context.router.push(const UtilityPageRoute())})
+                    onTap: () =>
+                        context.router.push(const UtilityPageRoute()))
               ],
             ),
           ),

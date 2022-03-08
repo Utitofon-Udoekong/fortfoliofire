@@ -9,18 +9,16 @@ import 'package:fortfolio/domain/widgets/loading_view.dart';
 import 'package:fortfolio/injection.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:auto_route/auto_route.dart';
- 
 
 class SignInFormEmail extends StatelessWidget {
-
   const SignInFormEmail({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final _formKey = GlobalKey<FormState>();
-    return Scaffold(
-      body: BlocProvider(
-        create: (BuildContext context) => getIt<SignInFormEmailCubit>(),
-        child: MultiBlocListener(
+    return BlocProvider(
+      create: (BuildContext context) => getIt<SignInFormEmailCubit>(),
+      child: Scaffold(
+        body: MultiBlocListener(
             listeners: [
               BlocListener<SignInFormEmailCubit, SignInFormEmailState>(
                 listener: (context, state) {
@@ -29,12 +27,16 @@ class SignInFormEmail extends StatelessWidget {
                       (either) => either.fold((failure) {
                             CustomSnackbar.showSnackBar(
                               context,
-                              failure.maybeMap(orElse: () => "",
-                              serverError: (_) => 'Encountered a server error',
-                              invalidEmailAndPasswordCombination: (_) => "Invalid email or Password",
-                              tooManyRequests: (_) => "Too Many Requests",
-                              emailAlreadyInUse: (_) => 'Email address already in use',
-                              smsTimeout: (_) => "Sms Timeout",
+                              failure.maybeMap(
+                                orElse: () => "",
+                                serverError: (_) =>
+                                    'Encountered a server error',
+                                invalidEmailAndPasswordCombination: (_) =>
+                                    "Invalid email or Password",
+                                tooManyRequests: (_) => "Too Many Requests",
+                                emailAlreadyInUse: (_) =>
+                                    'Email address already in use',
+                                smsTimeout: (_) => "Sms Timeout",
                                 sessionExpired: (_) => "Session Expired",
                                 invalidVerificationCode: (_) =>
                                     "Invalid Verification Code",
@@ -167,43 +169,47 @@ class SignInFormEmail extends StatelessWidget {
                               style: TextStyle(
                                   fontSize: 15, color: Color(0xFF656565)),
                             ),
-                            BlocBuilder<SignInFormEmailCubit, SignInFormEmailState>(builder: (context, state){
+                            BlocBuilder<SignInFormEmailCubit,
+                                    SignInFormEmailState>(
+                                builder: (context, state) {
                               return TextFormField(
-                              obscureText: true,
-                              decoration: InputDecoration(
-                                  filled: true,
-                                  fillColor: const Color(0xFFF3F6F8),
-                                  border: InputBorder.none,
-                                  suffixIcon: IconButton(
-                                    onPressed: () => context.read<SignInFormEmailCubit>().isObscureChanged(),
-                                    icon: state.isObscure
-                                        ? const Icon(
-                                            Icons.visibility,
-                                            color: kPrimaryColor,
-                                          )
-                                        : const Icon(
-                                            Icons.visibility_off,
-                                            color: kPrimaryColor,
-                                          ),
-                                  )),
-                              textInputAction: TextInputAction.done,
-                              onChanged: (value) => context
-                                  .read<SignInFormEmailCubit>()
-                                  .passwordChanged(passwordString: value),
-                              validator: (_) => context
-                                  .read<SignInFormEmailCubit>()
-                                  .state
-                                  .password
-                                  .value
-                                  .fold(
-                                    (f) => f.maybeMap(
-                                        auth: (value) {
-                                          return value.f.failedValue;
-                                        },
-                                        orElse: () => null),
-                                    (r) => null,
-                                  ),
-                            );
+                                obscureText: true,
+                                decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: const Color(0xFFF3F6F8),
+                                    border: InputBorder.none,
+                                    suffixIcon: IconButton(
+                                      onPressed: () => context
+                                          .read<SignInFormEmailCubit>()
+                                          .isObscureChanged(),
+                                      icon: state.isObscure
+                                          ? const Icon(
+                                              Icons.visibility,
+                                              color: kPrimaryColor,
+                                            )
+                                          : const Icon(
+                                              Icons.visibility_off,
+                                              color: kPrimaryColor,
+                                            ),
+                                    )),
+                                textInputAction: TextInputAction.done,
+                                onChanged: (value) => context
+                                    .read<SignInFormEmailCubit>()
+                                    .passwordChanged(passwordString: value),
+                                validator: (_) => context
+                                    .read<SignInFormEmailCubit>()
+                                    .state
+                                    .password
+                                    .value
+                                    .fold(
+                                      (f) => f.maybeMap(
+                                          auth: (value) {
+                                            return value.f.failedValue;
+                                          },
+                                          orElse: () => null),
+                                      (r) => null,
+                                    ),
+                              );
                             }),
                             const SizedBox(
                               height: 3.0,
@@ -226,17 +232,18 @@ class SignInFormEmail extends StatelessWidget {
                             const SizedBox(
                               height: 20,
                             ),
-                            BlocBuilder<SignInFormEmailCubit, SignInFormEmailState>(
+                            BlocBuilder<SignInFormEmailCubit,
+                                SignInFormEmailState>(
                               builder: (context, state) {
                                 return CustomAuthFilledButton(
-                                                          text: 'LOGIN',
-                                                          onTap: () => {
-                                                            context
-                                                                .read<SignInFormEmailCubit>()
-                                                                .signInWithEmailAndPasswordpressed(),
-                                                          },
-                                                          disabled: !state.isValidState,
-                                                        );
+                                  text: 'LOGIN',
+                                  onTap: () => {
+                                    context
+                                        .read<SignInFormEmailCubit>()
+                                        .signInWithEmailAndPasswordpressed(),
+                                  },
+                                  disabled: !state.isValidState,
+                                );
                               },
                             ),
                           ],
@@ -245,7 +252,6 @@ class SignInFormEmail extends StatelessWidget {
                 }
               }),
             ))),
-  
       ),
     );
   }

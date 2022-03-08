@@ -9,7 +9,7 @@ import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/injection.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/verification/bloc/upload_image_bloc.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
- 
+
 import 'package:fortfolio/utils/utils.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -18,12 +18,12 @@ class UploadUtilityDoc extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: kDefaultPadding,
-          child: BlocProvider.value(
-            value: getIt<UploadImageBloc>(),
+    return BlocProvider.value(
+      value: getIt<UploadImageBloc>(),
+      child: Scaffold(
+        body: SafeArea(
+          child: Padding(
+            padding: kDefaultPadding,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -88,16 +88,23 @@ class UploadUtilityDoc extends StatelessWidget {
                 const SizedBox(
                   height: 70,
                 ),
-                CustomFilledButton(text: 'VERIFY', onTap: () {
-                  final bool uploaded = context.read<UploadImageBloc>().state.response.isNotEmpty;
-                  if(uploaded){
-                    const duration = Duration(seconds: 2);
-                    CustomSnackbar.showSnackBar(context, "Documents uploaded successfully", false);
-                    Future.delayed(duration).then((_) {
-                      context.router.push(const VerificationSuccessRoute());
-                    });
-                  }
-                })
+                CustomFilledButton(
+                    text: 'VERIFY',
+                    onTap: () {
+                      final bool uploaded = context
+                          .read<UploadImageBloc>()
+                          .state
+                          .response
+                          .isNotEmpty;
+                      if (uploaded) {
+                        const duration = Duration(seconds: 2);
+                        CustomSnackbar.showSnackBar(
+                            context, "Documents uploaded successfully", false);
+                        Future.delayed(duration).then((_) {
+                          context.router.push(const VerificationSuccessRoute());
+                        });
+                      }
+                    })
               ],
             ),
           ),

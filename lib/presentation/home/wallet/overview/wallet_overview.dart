@@ -72,20 +72,20 @@ class WalletOverview extends StatelessWidget {
                             return state.showDigits
                                 ? Text('N${state.walletBalance * 560}',
                                     style: subTitle.copyWith(
-                                        fontSize: 14, color: kWhiteColor))
+                                        fontSize: 15, color: kWhiteColor))
                                 : Text((state.walletBalance * 560)
                                     .toString()
                                     .replaceAll(regExp, "*"),style: subTitle.copyWith(
-                                        fontSize: 14, color: kWhiteColor));
+                                        fontSize: 18, color: kWhiteColor));
                           } else {
                             return state.showDigits
                                 ? Text('\$${state.walletBalance}',
                                     style: subTitle.copyWith(
-                                        fontSize: 14, color: kWhiteColor))
+                                        fontSize: 15, color: kWhiteColor))
                                 : Text(state.walletBalance
                                     .toString()
                                     .replaceAll(regExp, "*"),style: subTitle.copyWith(
-                                        fontSize: 14, color: kWhiteColor));
+                                        fontSize: 18, color: kWhiteColor));
                           }
                         },
                       )

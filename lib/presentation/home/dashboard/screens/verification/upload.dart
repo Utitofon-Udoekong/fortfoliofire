@@ -54,9 +54,7 @@ class UploadPage extends StatelessWidget {
                   height: 50,
                 ),
                 GestureDetector(
-                  onTap: () => {
-                    context.router.push(const UploadDocumentImageRoute())
-                  },
+                  onTap: () => context.router.push(const UploadDocumentImageRoute()),
                   child: Container(
                     alignment: Alignment.center,
                     height: 48,

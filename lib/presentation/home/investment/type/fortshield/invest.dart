@@ -282,10 +282,10 @@ class _FortShieldInvestmentState extends State<FortShieldInvestment> {
                             showDialog(context: context, builder: (BuildContext context){
                               return AlertDialog(
                               title: const Text(
-                                  "Please confirm your investment transaction"),
+                                  "Please confirm your investment transaction", textAlign: TextAlign.center,),
                               titleTextStyle: titleText.copyWith(fontSize: 16),
                               content: const Text(
-                                  "You are about to invest in the selected investment plan, please confirm before proceedeing to pay."),
+                                  "You are about to invest in the selected investment plan, please confirm before proceedeing to pay.", textAlign: TextAlign.center,),
                               contentTextStyle: subTitle.copyWith(
                                   fontSize: 13, color: kgreyColor),
                               actions: [
@@ -319,11 +319,11 @@ class _FortShieldInvestmentState extends State<FortShieldInvestment> {
                               ],
                               backgroundColor: kWhiteColor,
                               titlePadding:
-                                  const EdgeInsets.symmetric(horizontal: 10.0),
+                                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15),
                               contentPadding:
-                                  const EdgeInsets.symmetric(horizontal: 10.0),
+                                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
                               actionsPadding:
-                                  const EdgeInsets.symmetric(horizontal: 10.0),
+                                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
                             );
                             });
                           },
