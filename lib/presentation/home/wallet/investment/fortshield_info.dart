@@ -62,8 +62,8 @@ class FortShieldInvestmentInfo extends StatelessWidget {
                       '${activeInvestments[index].planName} / ${activeInvestments[index].duration} month(s)',
                       'N${activeInvestments[index].amount}',
                       () {
-                        context.router.push(const WithdrawalPageRoute());
                         context.read<WalletCubit>().investmentToBeWithdrawnChanged(investmentToBeWithdrawn: activeInvestments[index]);
+                        context.router.push(const WithdrawalPageRoute());
                       });
                 }),
               ),

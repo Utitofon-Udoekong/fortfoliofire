@@ -138,23 +138,6 @@ class Calculator extends StatelessWidget {
                             const SizedBox(
                               height: 5,
                             ),
-                            // BlocBuilder<CalculatorCubit, CalculatorState>(
-                            //   buildWhen: (previous, current) =>
-                            //       previous.returnRate != current.returnRate,
-                            //   builder: (context, state) {
-                            //     return TextFormField(
-                            //       initialValue: (state.returnRate.toInt() * 100).toString(),
-                            //       autocorrect: false,
-                            //       keyboardType: TextInputType.number,
-                            //       textInputAction: TextInputAction.next,
-                            //       decoration: const InputDecoration(
-                            //           filled: true,
-                            //           fillColor: Color(0xFFF3F6F8),
-                            //           border: InputBorder.none,
-                            //           suffixIcon: Icon(Icons.percent)),
-                            //     );
-                            //   },
-                            // ),
                             BlocBuilder<CalculatorCubit, CalculatorState>(
                               buildWhen: (previous, current) =>
                                   previous.returnRate != current.returnRate,
@@ -181,6 +164,9 @@ class Calculator extends StatelessWidget {
                               'Result',
                               style: titleText.copyWith(fontSize: 15),
                             ),
+                            const SizedBox(
+                              height: 15,
+                            ),
                             BlocBuilder<CalculatorCubit, CalculatorState>(
                               builder: (context, state) {
                                 return Column(
@@ -192,7 +178,7 @@ class Calculator extends StatelessWidget {
                                       height: 7,
                                     ),
                                     buildtile('Return Rate',
-                                        '${state.returnRate}%'),
+                                        '${state.returnRate}% per annum'),
                                     const SizedBox(
                                       height: 7,
                                     ),
@@ -203,7 +189,7 @@ class Calculator extends StatelessWidget {
                               },
                             ),
                             const SizedBox(
-                              height: 30,
+                              height: 35,
                             ),
                           ]))))),
     );

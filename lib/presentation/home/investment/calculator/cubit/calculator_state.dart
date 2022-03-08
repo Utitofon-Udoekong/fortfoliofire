@@ -21,7 +21,7 @@ class CalculatorState with _$CalculatorState {
         durations: [
           DropdownMenuItem(child: Text("3"), value: 3),
           DropdownMenuItem(child: Text("6"), value: 6),
-          DropdownMenuItem(child: Text("12"), value: 9),
+          DropdownMenuItem(child: Text("12"), value: 12),
         ],
         investmentAmount: 0,
         returnRate: 30,

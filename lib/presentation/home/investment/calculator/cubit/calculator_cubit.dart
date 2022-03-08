@@ -41,7 +41,7 @@ class CalculatorCubit extends Cubit<CalculatorState> {
     final int investmentAmount = state.investmentAmount;
     final int duration = state.duration;
     final int returnRate = state.returnRate;
-    final double total = investmentAmount + (investmentAmount * duration * (returnRate / 100));
+    final double total = investmentAmount + (investmentAmount * ((returnRate/100) * (duration / 12)));
     emit(state.copyWith(totalReturns: total));
   }
 }
