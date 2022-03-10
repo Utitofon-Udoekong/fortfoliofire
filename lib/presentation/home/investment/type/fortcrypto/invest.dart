@@ -97,7 +97,8 @@ class FortCryptoInvestment extends StatelessWidget {
                               border: InputBorder.none,
                               suffixIcon: const Icon(Icons.keyboard_arrow_down),
                               suffixStyle: TextStyle(
-                                  color: Colors.grey.shade400, fontSize: 13)),
+                                  color: Colors.grey.shade400, fontSize: 13),
+                              ),
                           onChanged: (value) => context
                               .read<InvestmentCubit>()
                               .amountInvestedChanged(

@@ -50,15 +50,27 @@ class FortCryptoInvestmentInfo extends StatelessWidget {
                 Text("Active Investments",
                     style: subTitle.copyWith(fontSize: 12, color: kPrimaryColor)),
                 const SizedBox(height: 15),
-                ListView.builder(
+                SizedBox(
+                  height: 300,
+                  child: ListView.builder(
                     itemCount: activeInvestments.length,
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    scrollDirection: Axis.vertical,
                     itemBuilder: ((context, index) {
-                      return buildTile('${activeInvestments[index].planName} / ${activeInvestments[index].duration} month(s)', 'N${activeInvestments[index].amount}',() {
-                        context.read<WalletCubit>().investmentToBeWithdrawnChanged(investmentToBeWithdrawn: activeInvestments[index]);
+                      return buildTile(
+                          '${activeInvestments[index].planName} / ${activeInvestments[index].duration.toInt()} month(s)',
+                          'N${activeInvestments[index].amount}', () {
+                        context
+                            .read<WalletCubit>()
+                            .investmentToBeWithdrawnChanged(
+                                investmentToBeWithdrawn:
+                                    activeInvestments[index]);
                         context.router.push(const WithdrawalPageRoute());
                       });
                     }),
                   ),
+                ),
                 const Spacer(),
                 CustomOutlinedButton(
                           text: 'INVEST',

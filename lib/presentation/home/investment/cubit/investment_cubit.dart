@@ -15,8 +15,7 @@ part 'investment_cubit.freezed.dart';
 class InvestmentCubit extends Cubit<InvestmentState> {
   final IFirestoreFacade firestoreFacade ;
   final  IAuthFacade authFacade;
-  StreamSubscription? addSubscription;
-  InvestmentCubit(  this.authFacade, this.firestoreFacade) : super(InvestmentState.initial());
+  InvestmentCubit( this.authFacade, this.firestoreFacade) : super(InvestmentState.initial());
 
   void exchangeTypeChanged({required String exchangeType}) {
     emit(state.copyWith(exchangeType: exchangeType));
@@ -24,7 +23,6 @@ class InvestmentCubit extends Cubit<InvestmentState> {
 
   void isSelectedChanged({required int newIndex}) {
     int duration = 0;
-    // List<bool> newList = state.isSelected;
     var boolList = <bool>[false,false,false];
     List<bool> newList = List.from(boolList);
     duration = state.durations[newIndex];
@@ -48,6 +46,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     emit(state.copyWith(
       amountInvested: amountInvested
     ));
+    print(amountInvested.toString());
   }
   void roiChanged({required int roi}){
     emit(state.copyWith(
@@ -86,9 +85,4 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     }
   }
 
-   @override
-    Future<void> close() {
-      addSubscription?.cancel();
-      return super.close();
-    }
 }

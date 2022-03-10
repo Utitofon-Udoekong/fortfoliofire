@@ -12,7 +12,7 @@ class DomiciliaryAccount extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<InvestmentCubit>.value(
+    return BlocProvider.value(
       value: getIt<InvestmentCubit>(),
       child: Scaffold(
         body: SingleChildScrollView(
