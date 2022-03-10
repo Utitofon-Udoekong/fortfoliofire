@@ -7,7 +7,7 @@ import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/domain/widgets/loading_view.dart';
 import 'package:fortfolio/injection.dart';
- 
+
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:auto_route/auto_route.dart';
@@ -42,16 +42,19 @@ class _SignInFormPhoneState extends State<SignInFormPhone> {
                       () => null,
                       (failure) => CustomSnackbar.showSnackBar(
                         context,
-                        failure.maybeMap(orElse: () => "",
-                              serverError: (_) => 'Encountered a server error',
-                              invalidEmailAndPasswordCombination: (_) => "Invalid email or Password",
-                              tooManyRequests: (_) => "Too Many Requests",
-                              emailAlreadyInUse: (_) => 'Email address already in use',
-                              smsTimeout: (_) => "Sms Timeout",
-                                sessionExpired: (_) => "Session Expired",
-                                invalidVerificationCode: (_) =>
-                                    "Invalid Verification Code",
-                              ),
+                        failure.maybeMap(
+                          orElse: () => "",
+                          serverError: (_) => 'Encountered a server error',
+                          invalidEmailAndPasswordCombination: (_) =>
+                              "Invalid email or Password",
+                          tooManyRequests: (_) => "Too Many Requests",
+                          emailAlreadyInUse: (_) =>
+                              'Email address already in use',
+                          smsTimeout: (_) => "Sms Timeout",
+                          sessionExpired: (_) => "Session Expired",
+                          invalidVerificationCode: (_) =>
+                              "Invalid Verification Code",
+                        ),
                         true,
                       ),
                     );
@@ -134,32 +137,37 @@ class _SignInFormPhoneState extends State<SignInFormPhone> {
                                     )
                                   ],
                                 ),
-                                IntlPhoneField(
-                                  decoration: const InputDecoration(
-                                    border: InputBorder.none,
-                                    filled: true,
-                                    fillColor: Color(0xFFF3F6F8),
-                                  ),
-                                  initialCountryCode: 'NG',
-                                  keyboardType: TextInputType.phone,
-                                  textInputAction: TextInputAction.next,
-                                  onChanged: (value) => context
-                                      .read<SignInFormPhoneCubit>()
-                                      .phoneNumberChanged(
-                                          phoneNumber: value.completeNumber),
-                                  validator: (_) => context
-                                      .read<SignInFormPhoneCubit>()
-                                      .state
-                                      .phoneNumber
-                                      .value
-                                      .fold(
-                                        (f) => f.maybeMap(
-                                            auth: (value) {
-                                              return value.f.failedValue;
-                                            },
-                                            orElse: () => null),
-                                        (r) => null,
+                                BlocBuilder<SignInFormPhoneCubit, SignInFormPhoneState>(
+                                  builder: (context, state) {
+                                    return IntlPhoneField(
+                                      decoration: const InputDecoration(
+                                        border: InputBorder.none,
+                                        filled: true,
+                                        fillColor: Color(0xFFF3F6F8),
                                       ),
+                                      initialCountryCode: 'NG',
+                                      keyboardType: TextInputType.phone,
+                                      textInputAction: TextInputAction.next,
+                                      onChanged: (value) => context
+                                          .read<SignInFormPhoneCubit>()
+                                          .phoneNumberChanged(
+                                              phoneNumber:
+                                                  value.completeNumber),
+                                      validator: (_) => context
+                                          .read<SignInFormPhoneCubit>()
+                                          .state
+                                          .phoneNumber
+                                          .value
+                                          .fold(
+                                            (f) => f.maybeMap(
+                                                auth: (value) {
+                                                  return value.f.failedValue;
+                                                },
+                                                orElse: () => null),
+                                            (r) => null,
+                                          ),
+                                    );
+                                  },
                                 ),
                                 const SizedBox(
                                   height: 30,

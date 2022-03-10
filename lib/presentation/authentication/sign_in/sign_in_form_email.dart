@@ -136,30 +136,35 @@ class SignInFormEmail extends StatelessWidget {
                                 )
                               ],
                             ),
-                            TextFormField(
-                              decoration: const InputDecoration(
-                                  filled: true,
-                                  fillColor: Color(0xFFF3F6F8),
-                                  border: InputBorder.none),
-                              autocorrect: false,
-                              keyboardType: TextInputType.emailAddress,
-                              textInputAction: TextInputAction.next,
-                              onChanged: (value) => context
-                                  .read<SignInFormEmailCubit>()
-                                  .emailChanged(emailString: value),
-                              validator: (_) => context
-                                  .read<SignInFormEmailCubit>()
-                                  .state
-                                  .emailAddress
-                                  .value
-                                  .fold(
-                                    (f) => f.maybeMap(
-                                        auth: (value) {
-                                          return value.f.failedValue;
-                                        },
-                                        orElse: () => null),
-                                    (r) => null,
-                                  ),
+                            BlocBuilder<SignInFormEmailCubit, SignInFormEmailState>(
+                              buildWhen: (p,c) => p.emailAddress!= c.emailAddress,
+                              builder: (context, state) {
+                                return TextFormField(
+                                  decoration: const InputDecoration(
+                                      filled: true,
+                                      fillColor: Color(0xFFF3F6F8),
+                                      border: InputBorder.none),
+                                  autocorrect: false,
+                                  keyboardType: TextInputType.emailAddress,
+                                  textInputAction: TextInputAction.next,
+                                  onChanged: (value) => context
+                                      .read<SignInFormEmailCubit>()
+                                      .emailChanged(emailString: value),
+                                  validator: (_) => context
+                                      .read<SignInFormEmailCubit>()
+                                      .state
+                                      .emailAddress
+                                      .value
+                                      .fold(
+                                        (f) => f.maybeMap(
+                                            auth: (value) {
+                                              return value.f.failedValue;
+                                            },
+                                            orElse: () => null),
+                                        (r) => null,
+                                      ),
+                                );
+                              },
                             ),
                             const SizedBox(
                               height: 30,
@@ -171,46 +176,47 @@ class SignInFormEmail extends StatelessWidget {
                             ),
                             BlocBuilder<SignInFormEmailCubit,
                                     SignInFormEmailState>(
+                                buildWhen: (p, c) => p.isObscure != c.isObscure,
                                 builder: (context, state) {
-                              return TextFormField(
-                                obscureText: true,
-                                decoration: InputDecoration(
-                                    filled: true,
-                                    fillColor: const Color(0xFFF3F6F8),
-                                    border: InputBorder.none,
-                                    suffixIcon: IconButton(
-                                      onPressed: () => context
-                                          .read<SignInFormEmailCubit>()
-                                          .isObscureChanged(),
-                                      icon: state.isObscure
-                                          ? const Icon(
-                                              Icons.visibility,
-                                              color: kPrimaryColor,
-                                            )
-                                          : const Icon(
-                                              Icons.visibility_off,
-                                              color: kPrimaryColor,
-                                            ),
-                                    )),
-                                textInputAction: TextInputAction.done,
-                                onChanged: (value) => context
-                                    .read<SignInFormEmailCubit>()
-                                    .passwordChanged(passwordString: value),
-                                validator: (_) => context
-                                    .read<SignInFormEmailCubit>()
-                                    .state
-                                    .password
-                                    .value
-                                    .fold(
-                                      (f) => f.maybeMap(
-                                          auth: (value) {
-                                            return value.f.failedValue;
-                                          },
-                                          orElse: () => null),
-                                      (r) => null,
-                                    ),
-                              );
-                            }),
+                                  return TextFormField(
+                                    obscureText: state.isObscure,
+                                    decoration: InputDecoration(
+                                        filled: true,
+                                        fillColor: const Color(0xFFF3F6F8),
+                                        border: InputBorder.none,
+                                        suffixIcon: IconButton(
+                                          onPressed: () => context
+                                              .read<SignInFormEmailCubit>()
+                                              .isObscureChanged(),
+                                          icon: state.isObscure
+                                              ? const Icon(
+                                                  Icons.visibility,
+                                                  color: kPrimaryColor,
+                                                )
+                                              : const Icon(
+                                                  Icons.visibility_off,
+                                                  color: kPrimaryColor,
+                                                ),
+                                        )),
+                                    textInputAction: TextInputAction.done,
+                                    onChanged: (value) => context
+                                        .read<SignInFormEmailCubit>()
+                                        .passwordChanged(passwordString: value),
+                                    validator: (_) => context
+                                        .read<SignInFormEmailCubit>()
+                                        .state
+                                        .password
+                                        .value
+                                        .fold(
+                                          (f) => f.maybeMap(
+                                              auth: (value) {
+                                                return value.f.failedValue;
+                                              },
+                                              orElse: () => null),
+                                          (r) => null,
+                                        ),
+                                  );
+                                }),
                             const SizedBox(
                               height: 3.0,
                             ),

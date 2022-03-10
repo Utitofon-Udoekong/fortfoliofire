@@ -94,31 +94,37 @@ class SignUpForm extends StatelessWidget {
                             style: TextStyle(
                                 fontSize: 15, color: Color(0xFF656565)),
                           ),
-                          TextFormField(
-                            decoration: const InputDecoration(
-                                errorText: "",
-                                filled: true,
-                                fillColor: Color(0xFFF3F6F8),
-                                border: InputBorder.none),
-                            autocorrect: false,
-                            keyboardType: TextInputType.emailAddress,
-                            textInputAction: TextInputAction.next,
-                            onChanged: (value) => context
-                                .read<SignUpFormCubit>()
-                                .emailChanged(emailAddress: value),
-                            validator: (_) => context
-                                .read<SignUpFormCubit>()
-                                .state
-                                .emailAddress
-                                .value
-                                .fold(
-                                  (f) => f.maybeMap(
-                                      auth: (value) {
-                                        return value.f.failedValue;
-                                      },
-                                      orElse: () => null),
-                                  (r) => null,
-                                ),
+                          BlocBuilder<SignUpFormCubit, SignUpFormState>(
+                            buildWhen: (p, c) =>
+                                p.emailAddress != c.emailAddress,
+                            builder: (context, state) {
+                              return TextFormField(
+                                decoration: const InputDecoration(
+                                    errorText: "",
+                                    filled: true,
+                                    fillColor: Color(0xFFF3F6F8),
+                                    border: InputBorder.none),
+                                autocorrect: false,
+                                keyboardType: TextInputType.emailAddress,
+                                textInputAction: TextInputAction.next,
+                                onChanged: (value) => context
+                                    .read<SignUpFormCubit>()
+                                    .emailChanged(emailAddress: value),
+                                validator: (_) => context
+                                    .read<SignUpFormCubit>()
+                                    .state
+                                    .emailAddress
+                                    .value
+                                    .fold(
+                                      (f) => f.maybeMap(
+                                          auth: (value) {
+                                            return value.f.failedValue;
+                                          },
+                                          orElse: () => null),
+                                      (r) => null,
+                                    ),
+                              );
+                            },
                           ),
                           const SizedBox(
                             height: 30,
@@ -128,31 +134,37 @@ class SignUpForm extends StatelessWidget {
                             style: TextStyle(
                                 fontSize: 15, color: Color(0xFF656565)),
                           ),
-                          TextFormField(
-                            decoration: const InputDecoration(
-                                errorText: "",
-                                filled: true,
-                                fillColor: Color(0xFFF3F6F8),
-                                border: InputBorder.none),
-                            autocorrect: false,
-                            keyboardType: TextInputType.name,
-                            textInputAction: TextInputAction.next,
-                            onChanged: (value) => context
-                                .read<SignUpFormCubit>()
-                                .firstNameChanged(firstName: value),
-                            validator: (_) => context
-                                .read<SignUpFormCubit>()
-                                .state
-                                .firstName
-                                .value
-                                .fold(
-                                  (f) => f.maybeMap(
-                                      auth: (value) {
-                                        return value.f.failedValue;
-                                      },
-                                      orElse: () => null),
-                                  (r) => null,
-                                ),
+                          BlocBuilder<SignUpFormCubit, SignUpFormState>(
+                            buildWhen: (p, c) =>
+                                p.firstName != c.firstName,
+                            builder: (context, state) {
+                              return TextFormField(
+                                decoration: const InputDecoration(
+                                    errorText: "",
+                                    filled: true,
+                                    fillColor: Color(0xFFF3F6F8),
+                                    border: InputBorder.none),
+                                autocorrect: false,
+                                keyboardType: TextInputType.name,
+                                textInputAction: TextInputAction.next,
+                                onChanged: (value) => context
+                                    .read<SignUpFormCubit>()
+                                    .firstNameChanged(firstName: value),
+                                validator: (_) => context
+                                    .read<SignUpFormCubit>()
+                                    .state
+                                    .firstName
+                                    .value
+                                    .fold(
+                                      (f) => f.maybeMap(
+                                          auth: (value) {
+                                            return value.f.failedValue;
+                                          },
+                                          orElse: () => null),
+                                      (r) => null,
+                                    ),
+                              );
+                            },
                           ),
                           const SizedBox(
                             height: 30,
@@ -162,30 +174,36 @@ class SignUpForm extends StatelessWidget {
                             style: TextStyle(
                                 fontSize: 15, color: Color(0xFF656565)),
                           ),
-                          TextFormField(
-                            decoration: const InputDecoration(
-                                filled: true,
-                                fillColor: Color(0xFFF3F6F8),
-                                border: InputBorder.none),
-                            autocorrect: false,
-                            keyboardType: TextInputType.name,
-                            textInputAction: TextInputAction.next,
-                            onChanged: (value) => context
-                                .read<SignUpFormCubit>()
-                                .lastNameChanged(lastName: value),
-                            validator: (_) => context
-                                .read<SignUpFormCubit>()
-                                .state
-                                .lastName
-                                .value
-                                .fold(
-                                  (f) => f.maybeMap(
-                                      auth: (value) {
-                                        return value.f.failedValue;
-                                      },
-                                      orElse: () => null),
-                                  (r) => null,
-                                ),
+                          BlocBuilder<SignUpFormCubit, SignUpFormState>(
+                             buildWhen: (p, c) =>
+                                p.lastName != c.lastName,
+                            builder: (context, state) {
+                              return TextFormField(
+                                decoration: const InputDecoration(
+                                    filled: true,
+                                    fillColor: Color(0xFFF3F6F8),
+                                    border: InputBorder.none),
+                                autocorrect: false,
+                                keyboardType: TextInputType.name,
+                                textInputAction: TextInputAction.next,
+                                onChanged: (value) => context
+                                    .read<SignUpFormCubit>()
+                                    .lastNameChanged(lastName: value),
+                                validator: (_) => context
+                                    .read<SignUpFormCubit>()
+                                    .state
+                                    .lastName
+                                    .value
+                                    .fold(
+                                      (f) => f.maybeMap(
+                                          auth: (value) {
+                                            return value.f.failedValue;
+                                          },
+                                          orElse: () => null),
+                                      (r) => null,
+                                    ),
+                              );
+                            },
                           ),
                           const SizedBox(
                             height: 30,
@@ -196,9 +214,11 @@ class SignUpForm extends StatelessWidget {
                                 fontSize: 15, color: Color(0xFF656565)),
                           ),
                           BlocBuilder<SignUpFormCubit, SignUpFormState>(
+                             buildWhen: (p, c) =>
+                                p.isObscure != c.isObscure,
                               builder: (context, state) {
                             return TextFormField(
-                              obscureText: true,
+                              obscureText: state.isObscure,
                               decoration: InputDecoration(
                                   filled: true,
                                   fillColor: const Color(0xFFF3F6F8),
@@ -244,43 +264,50 @@ class SignUpForm extends StatelessWidget {
                             style: TextStyle(
                                 fontSize: 15, color: Color(0xFF656565)),
                           ),
-                          IntlPhoneField(
-                            decoration: const InputDecoration(
-                              border: InputBorder.none,
-                              filled: true,
-                              fillColor: Color(0xFFF3F6F8),
-                            ),
-                            initialCountryCode: 'NG',
-                            keyboardType: TextInputType.phone,
-                            textInputAction: TextInputAction.next,
-                            onChanged: (value) => context
-                                .read<SignUpFormCubit>()
-                                .phoneNumberChanged(
-                                    phoneNumber: value.toString()),
-                            validator: (_) => context
-                                .read<SignUpFormCubit>()
-                                .state
-                                .phoneNumber
-                                .value
-                                .fold(
-                                  (f) => f.maybeMap(
-                                      auth: (value) {
-                                        return value.f.failedValue;
-                                      },
-                                      orElse: () => null),
-                                  (r) => null,
+                          BlocBuilder<SignUpFormCubit, SignUpFormState>(
+                             buildWhen: (p, c) =>
+                                p.phoneNumber != c.phoneNumber,
+                            builder: (context, state) {
+                              return IntlPhoneField(
+                                decoration: const InputDecoration(
+                                  border: InputBorder.none,
+                                  filled: true,
+                                  fillColor: Color(0xFFF3F6F8),
                                 ),
-                            // .fold(
-                            //     (f) => f.maybeMap(
-                            //         invalidPhone: (_) => 'Invalid Phone Number',
-                            //         orElse: () => null),
-                            //     (r) => null),
+                                initialCountryCode: 'NG',
+                                keyboardType: TextInputType.phone,
+                                textInputAction: TextInputAction.next,
+                                onChanged: (value) => context
+                                    .read<SignUpFormCubit>()
+                                    .phoneNumberChanged(
+                                        phoneNumber: value.toString()),
+                                validator: (_) => context
+                                    .read<SignUpFormCubit>()
+                                    .state
+                                    .phoneNumber
+                                    .value
+                                    .fold(
+                                      (f) => f.maybeMap(
+                                          auth: (value) {
+                                            return value.f.failedValue;
+                                          },
+                                          orElse: () => null),
+                                      (r) => null,
+                                    ),
+                                // .fold(
+                                //     (f) => f.maybeMap(
+                                //         invalidPhone: (_) => 'Invalid Phone Number',
+                                //         orElse: () => null),
+                                //     (r) => null),
+                              );
+                            },
                           ),
                           const SizedBox(
                             height: 20,
                           ),
                           BlocBuilder<SignUpFormCubit, SignUpFormState>(
-                            buildWhen: (p,c) => p.isValidState != c.isValidState,
+                            buildWhen: (p, c) =>
+                                p.isValidState != c.isValidState,
                             builder: (context, state) {
                               return CustomAuthFilledButton(
                                 text: 'Register',

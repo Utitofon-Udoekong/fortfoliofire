@@ -4,6 +4,7 @@ import 'package:fortfolio/application/auth/sign_up_form/sign_up_form_cubit.dart'
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
+import 'package:fortfolio/injection.dart';
 import 'package:otp_text_field/otp_text_field.dart';
 import 'package:otp_text_field/style.dart';
 import 'package:auto_route/auto_route.dart';
@@ -17,7 +18,8 @@ class ConfirmSignupWithOTP extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
-      value: BlocProvider.of<SignUpFormCubit>(context),
+      value: getIt<SignUpFormCubit>(),
+      // value: BlocProvider.of<SignUpFormCubit>(context),
       child: Scaffold(
         body: SafeArea(
             child: SingleChildScrollView(
