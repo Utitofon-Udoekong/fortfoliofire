@@ -24,24 +24,14 @@ class InvestmentCubit extends Cubit<InvestmentState> {
 
   void isSelectedChanged({required int newIndex}) {
     int duration = 0;
-    List<bool> newList = state.isSelected;
-    for (int index = 0; index < state.isSelected.length; index++) {
-      if(index == newIndex){
-        newList[index] = true;
-        duration = state.durations[index];
-        emit(state.copyWith(
-          duration: duration.toDouble(),
-          isSelected: newList
-        ));
-        print(newIndex);
-      }else {
-        newList[index] = false;
-        emit(state.copyWith(
-          isSelected: newList
-        ));
-        print(newIndex);
-      }
-    }
+    // List<bool> newList = state.isSelected;
+    var boolList = <bool>[false,false,false];
+    List<bool> newList = List.from(boolList);
+    duration = state.durations[newIndex];
+    durationChanged(duration: duration.toDouble());
+    newList[newIndex] = true;
+    emit(state.copyWith(isSelected: newList));
+    print({newIndex,newList});
   }
 
   void planNameChanged({required String planName}){

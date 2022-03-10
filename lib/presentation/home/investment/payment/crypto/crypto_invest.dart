@@ -8,17 +8,12 @@ import 'package:fortfolio/injection.dart';
 
 import '../../cubit/investment_cubit.dart';
 
-class CryptoInvestmentPage extends StatefulWidget {
+class CryptoInvestmentPage extends StatelessWidget {
   const CryptoInvestmentPage({Key? key}) : super(key: key);
 
   @override
-  _CryptoInvestmentPageState createState() => _CryptoInvestmentPageState();
-}
-
-class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
-  @override
   Widget build(BuildContext context) {
-    return BlocProvider.value(
+    return BlocProvider<InvestmentCubit>.value(
       value: getIt<InvestmentCubit>(),
       child: Scaffold(
         body: SafeArea(

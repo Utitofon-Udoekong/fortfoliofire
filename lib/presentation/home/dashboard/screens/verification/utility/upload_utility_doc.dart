@@ -18,7 +18,7 @@ class UploadUtilityDoc extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider.value(
+    return BlocProvider<UploadImageBloc>.value(
       value: getIt<UploadImageBloc>(),
       child: Scaffold(
         body: SafeArea(

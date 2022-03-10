@@ -17,7 +17,7 @@ class InvestmentState with _$InvestmentState {
       }) = _InvestmentState;
   const InvestmentState._();
 
-  factory InvestmentState.initial() => const InvestmentState(
+  factory InvestmentState.initial() => InvestmentState(
         amountInvested: 0,
         method: '',
         planName: '',
@@ -26,8 +26,10 @@ class InvestmentState with _$InvestmentState {
         agreementAccepted: false,
         isLoading: false,
         exchangeType: "NGN",
-        isSelected: [false, true, false],
+        isSelected: List.from(boolList),
         durations: [3, 6, 9], 
         duration: 6
       );
 }
+
+var boolList = <bool>[false,true,false];
