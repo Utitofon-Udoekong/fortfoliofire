@@ -3,18 +3,14 @@ part of 'verification_cubit.dart';
 @freezed
 class VerificationState with _$VerificationState {
   const factory VerificationState({
-    required Uint8List frontFile,
-    required Uint8List backFile,
-    required Uint8List utilityFile,
     required bool submitting,
-    required String response
-  }) = _Initial;
+    required String response,
+    required String failure,
+  }) = _VerificationState;
   const VerificationState._();
-  factory VerificationState.empty() => VerificationState(
-    frontFile: Uint8List(BigInt.one.toInt()),
-    backFile: Uint8List(BigInt.one.toInt()),
-    utilityFile: Uint8List(BigInt.one.toInt()),
+  factory VerificationState.empty() => const VerificationState(
     submitting: false,
-    response: ""
+    response: "",
+    failure: ""
   );
 }
