@@ -13,4 +13,5 @@ class VerificationState with _$VerificationState {
     response: "",
     failure: ""
   );
+  bool get isValidState => response.isNotEmpty;
 }

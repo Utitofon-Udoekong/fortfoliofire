@@ -45,10 +45,7 @@ class UploadUtilityDoc extends StatelessWidget {
                   height: 40,
                 ),
                 buildTile(() {
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return SimpleDialog(
+                  var dialog = SimpleDialog(
                         title: const Text('Select Image'),
                         children: <Widget>[
                           SimpleDialogOption(
@@ -82,6 +79,10 @@ class UploadUtilityDoc extends StatelessWidget {
                           )
                         ],
                       );
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return dialog;
                     },
                   );
                 }),
