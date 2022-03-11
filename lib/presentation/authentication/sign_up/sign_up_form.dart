@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/application/auth/sign_up_form/sign_up_form_cubit.dart';
+import 'package:fortfolio/domain/auth/value_objects.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
@@ -95,17 +96,14 @@ class SignUpForm extends StatelessWidget {
                                 fontSize: 15, color: Color(0xFF656565)),
                           ),
                           BlocBuilder<SignUpFormCubit, SignUpFormState>(
-                            buildWhen: (p, c) =>
-                                p.emailAddress != c.emailAddress,
                             builder: (context, state) {
                               return TextFormField(
                                 decoration: const InputDecoration(
-                                    errorText: "",
                                     filled: true,
                                     fillColor: Color(0xFFF3F6F8),
                                     border: InputBorder.none),
                                 autocorrect: false,
-                                keyboardType: TextInputType.emailAddress,
+                                keyboardType: TextInputType.name,
                                 textInputAction: TextInputAction.next,
                                 onChanged: (value) => context
                                     .read<SignUpFormCubit>()
@@ -135,12 +133,9 @@ class SignUpForm extends StatelessWidget {
                                 fontSize: 15, color: Color(0xFF656565)),
                           ),
                           BlocBuilder<SignUpFormCubit, SignUpFormState>(
-                            buildWhen: (p, c) =>
-                                p.firstName != c.firstName,
                             builder: (context, state) {
                               return TextFormField(
                                 decoration: const InputDecoration(
-                                    errorText: "",
                                     filled: true,
                                     fillColor: Color(0xFFF3F6F8),
                                     border: InputBorder.none),
@@ -175,8 +170,6 @@ class SignUpForm extends StatelessWidget {
                                 fontSize: 15, color: Color(0xFF656565)),
                           ),
                           BlocBuilder<SignUpFormCubit, SignUpFormState>(
-                             buildWhen: (p, c) =>
-                                p.lastName != c.lastName,
                             builder: (context, state) {
                               return TextFormField(
                                 decoration: const InputDecoration(
@@ -213,12 +206,13 @@ class SignUpForm extends StatelessWidget {
                             style: TextStyle(
                                 fontSize: 15, color: Color(0xFF656565)),
                           ),
-                          BlocBuilder<SignUpFormCubit, SignUpFormState>(
-                             buildWhen: (p, c) =>
-                                p.isObscure != c.isObscure,
-                              builder: (context, state) {
-                            return TextFormField(
-                              obscureText: state.isObscure,
+                          BlocSelector<SignUpFormCubit, SignUpFormState, bool>(
+                            selector: (state) {
+                              return state.isObscure;
+                            },
+                            builder: (context, isObscure) {
+                              return TextFormField(
+                              obscureText: isObscure,
                               decoration: InputDecoration(
                                   filled: true,
                                   fillColor: const Color(0xFFF3F6F8),
@@ -227,7 +221,7 @@ class SignUpForm extends StatelessWidget {
                                     onPressed: () => context
                                         .read<SignUpFormCubit>()
                                         .isObscureChanged(),
-                                    icon: state.isObscure
+                                    icon: isObscure
                                         ? const Icon(
                                             Icons.visibility,
                                             color: kPrimaryColor,
@@ -255,7 +249,8 @@ class SignUpForm extends StatelessWidget {
                                     (r) => null,
                                   ),
                             );
-                          }),
+                            },
+                          ),
                           const SizedBox(
                             height: 30,
                           ),
@@ -294,21 +289,17 @@ class SignUpForm extends StatelessWidget {
                                           orElse: () => null),
                                       (r) => null,
                                     ),
-                                // .fold(
-                                //     (f) => f.maybeMap(
-                                //         invalidPhone: (_) => 'Invalid Phone Number',
-                                //         orElse: () => null),
-                                //     (r) => null),
                               );
                             },
                           ),
                           const SizedBox(
                             height: 20,
                           ),
-                          BlocBuilder<SignUpFormCubit, SignUpFormState>(
-                            buildWhen: (p, c) =>
-                                p.isValidState != c.isValidState,
-                            builder: (context, state) {
+                          BlocSelector<SignUpFormCubit, SignUpFormState, bool>(
+                            selector: (state) {
+                              return state.isValidState;
+                            },
+                            builder: (context, isValidState) {
                               return CustomAuthFilledButton(
                                 text: 'Register',
                                 onTap: () => {
@@ -316,7 +307,7 @@ class SignUpForm extends StatelessWidget {
                                       .read<SignUpFormCubit>()
                                       .registerWithEmailAndPasswordpressed()
                                 },
-                                disabled: !state.isValidState,
+                                disabled: !isValidState,
                               );
                             },
                           ),

@@ -11,7 +11,7 @@ import 'package:auto_route/auto_route.dart';
 
 import '../../../domain/widgets/countdown_timer.dart';
 
-class ConfirmSignupWithOTP extends StatelessWidget{
+class ConfirmSignupWithOTP extends StatelessWidget {
   final int smsCodeTimeoutSeconds = 120;
 
   const ConfirmSignupWithOTP({Key? key}) : super(key: key);
@@ -48,29 +48,35 @@ class ConfirmSignupWithOTP extends StatelessWidget{
                   const SizedBox(
                     height: 20,
                   ),
-                  OTPTextField(
-                    length: 6,
-                    width: MediaQuery.of(context).size.width - 34,
-                    fieldWidth: 58,
-                    style: titleText,
-                    textFieldAlignment: MainAxisAlignment.spaceAround,
-                    fieldStyle: FieldStyle.box,
-                    otpFieldStyle: OtpFieldStyle(
-                        backgroundColor: Colors.white,
-                        borderColor: kgreyColor,
-                        focusBorderColor: kPrimaryColor),
-                    keyboardType: TextInputType.number,
-                    onChanged: (value) => context.read<SignUpFormCubit>().smsCodeChanged(smsCode: value),
+                  BlocBuilder<SignUpFormCubit, SignUpFormState>(
+                    builder: (context, state) {
+                      return OTPTextField(
+                        length: 6,
+                        width: MediaQuery.of(context).size.width - 34,
+                        fieldWidth: 58,
+                        style: titleText,
+                        textFieldAlignment: MainAxisAlignment.spaceAround,
+                        fieldStyle: FieldStyle.box,
+                        otpFieldStyle: OtpFieldStyle(
+                            backgroundColor: Colors.white,
+                            borderColor: kgreyColor,
+                            focusBorderColor: kPrimaryColor),
+                        keyboardType: TextInputType.number,
+                        onChanged: (value) => context
+                            .read<SignUpFormCubit>()
+                            .smsCodeChanged(smsCode: value),
+                      );
+                    },
                   ),
                   const SizedBox(
                     height: 20,
                   ),
                   CustomAuthFilledButton(
-                    text:
-                        context.read<SignUpFormCubit>().state.isSubmitting
-                            ? 'VERIFYING'
-                            : 'VERIFY',
-                    onTap: () => context.read<SignUpFormCubit>().verifyOTPpressed(),
+                    text: context.read<SignUpFormCubit>().state.isSubmitting
+                        ? 'VERIFYING'
+                        : 'VERIFY',
+                    onTap: () =>
+                        context.read<SignUpFormCubit>().verifyOTPpressed(),
                     disabled:
                         context.read<SignUpFormCubit>().state.isSubmitting,
                   ),
@@ -78,14 +84,16 @@ class ConfirmSignupWithOTP extends StatelessWidget{
                     height: 30,
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 0),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 24, vertical: 0),
                     child: Row(
                       children: [
                         const Spacer(),
                         CountDownTimer(
                           smsCodeTimeoutSeconds: smsCodeTimeoutSeconds,
-                          onTimerCompleted: (){
-                            CustomSnackbar.showSnackBar(context, "SMS Code Timeout!", true);
+                          onTimerCompleted: () {
+                            CustomSnackbar.showSnackBar(
+                                context, "SMS Code Timeout!", true);
                             context.read<SignUpFormCubit>().reset();
                           },
                         ),
