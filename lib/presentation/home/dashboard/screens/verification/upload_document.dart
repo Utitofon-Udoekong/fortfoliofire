@@ -11,7 +11,8 @@ import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:fortfolio/utils/utils.dart';
 import 'package:image_picker/image_picker.dart';
 
-import 'bloc/upload_image_bloc.dart';
+import 'cubit/verification_cubit.dart';
+
 
 class UploadDocumentImage extends StatelessWidget {
   const UploadDocumentImage({Key? key}) : super(key: key);
@@ -19,7 +20,7 @@ class UploadDocumentImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<UploadImageBloc>(),
+      create: (context) => getIt<VerificationCubit>(),
       child: Scaffold(
         body: SafeArea(
           child: Padding(
@@ -59,8 +60,8 @@ class UploadDocumentImage extends StatelessWidget {
                                 Uint8List file =
                                     await pickImage(ImageSource.camera);
                                 context
-                                    .read<UploadImageBloc>()
-                                    .add(UploadImageEvent.frontPicked(file));
+                                    .read<VerificationCubit>()
+                                    .frontPicked(file: file);
                               }),
                           SimpleDialogOption(
                               padding: const EdgeInsets.all(20),
@@ -70,8 +71,8 @@ class UploadDocumentImage extends StatelessWidget {
                                 Uint8List file =
                                     await pickImage(ImageSource.gallery);
                                 context
-                                    .read<UploadImageBloc>()
-                                    .add(UploadImageEvent.frontPicked(file));
+                                    .read<VerificationCubit>()
+                                    .frontPicked(file: file);
                               }),
                           SimpleDialogOption(
                             padding: const EdgeInsets.all(20),
@@ -84,7 +85,7 @@ class UploadDocumentImage extends StatelessWidget {
                       );
                     },
                   );
-                }, context.read<UploadImageBloc>().state.response),
+                }, context.read<VerificationCubit>().state.response),
                 const SizedBox(
                   height: 10,
                 ),
@@ -103,8 +104,8 @@ class UploadDocumentImage extends StatelessWidget {
                                 Uint8List file =
                                     await pickImage(ImageSource.camera);
                                 context
-                                    .read<UploadImageBloc>()
-                                    .add(UploadImageEvent.backPicked(file));
+                                    .read<VerificationCubit>()
+                                    .backPicked(file: file);
                               }),
                           SimpleDialogOption(
                               padding: const EdgeInsets.all(20),
@@ -114,8 +115,8 @@ class UploadDocumentImage extends StatelessWidget {
                                 Uint8List file =
                                     await pickImage(ImageSource.gallery);
                                 context
-                                    .read<UploadImageBloc>()
-                                    .add(UploadImageEvent.backPicked(file));
+                                    .read<VerificationCubit>()
+                                    .backPicked(file: file);
                               }),
                           SimpleDialogOption(
                             padding: const EdgeInsets.all(20),
@@ -128,7 +129,7 @@ class UploadDocumentImage extends StatelessWidget {
                       );
                     },
                   );
-                }, context.read<UploadImageBloc>().state.response),
+                }, context.read<VerificationCubit>().state.response),
                 const SizedBox(
                   height: 60,
                 ),

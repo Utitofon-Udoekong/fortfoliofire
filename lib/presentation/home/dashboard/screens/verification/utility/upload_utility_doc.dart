@@ -7,7 +7,7 @@ import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/injection.dart';
-import 'package:fortfolio/presentation/home/dashboard/screens/verification/bloc/upload_image_bloc.dart';
+import 'package:fortfolio/presentation/home/dashboard/screens/verification/cubit/verification_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 
 import 'package:fortfolio/utils/utils.dart';
@@ -18,8 +18,8 @@ class UploadUtilityDoc extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<UploadImageBloc>.value(
-      value: getIt<UploadImageBloc>(),
+    return BlocProvider.value(
+      value: getIt<VerificationCubit>(),
       child: Scaffold(
         body: SafeArea(
           child: Padding(
@@ -59,8 +59,8 @@ class UploadUtilityDoc extends StatelessWidget {
                                 Uint8List file =
                                     await pickImage(ImageSource.camera);
                                 context
-                                    .read<UploadImageBloc>()
-                                    .add(UploadImageEvent.utitlityPicked(file));
+                                    .read<VerificationCubit>()
+                                    .utilityPicked(file: file);
                               }),
                           SimpleDialogOption(
                               padding: const EdgeInsets.all(20),
@@ -70,8 +70,8 @@ class UploadUtilityDoc extends StatelessWidget {
                                 Uint8List file =
                                     await pickImage(ImageSource.gallery);
                                 context
-                                    .read<UploadImageBloc>()
-                                    .add(UploadImageEvent.utitlityPicked(file));
+                                    .read<VerificationCubit>()
+                                    .utilityPicked(file: file);
                               }),
                           SimpleDialogOption(
                             padding: const EdgeInsets.all(20),
@@ -92,7 +92,7 @@ class UploadUtilityDoc extends StatelessWidget {
                     text: 'VERIFY',
                     onTap: () {
                       final bool uploaded = context
-                          .read<UploadImageBloc>()
+                          .read<VerificationCubit>()
                           .state
                           .response
                           .isNotEmpty;

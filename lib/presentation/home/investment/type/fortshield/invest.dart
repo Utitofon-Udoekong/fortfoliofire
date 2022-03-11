@@ -29,6 +29,7 @@ class _FortShieldInvestmentState extends State<FortShieldInvestment> {
     Text roi = const Text('30% returns');
     roi.style?.copyWith(color: kGreenColor);
     return BlocProvider(
+      lazy: false,
       create: (context) => getIt<InvestmentCubit>(),
       child: Scaffold(
         body: SafeArea(

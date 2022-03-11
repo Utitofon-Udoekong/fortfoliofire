@@ -106,6 +106,7 @@ class CryptoInvestmentPage extends StatelessWidget {
   Widget buildtile(String title, String subtitle) {
     return Flex(
       direction: Axis.vertical,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text(
           title,

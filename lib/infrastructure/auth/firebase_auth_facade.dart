@@ -129,7 +129,7 @@ class FirebaseAuthFacade implements IAuthFacade {
           .then((value) async {
         await firestore.authUserCollection
             .doc(firebaseAuth.currentUser!.uid)
-            .update({
+            .set({
           "email": emailAddressString,
           "phoneNumber": phoneNumber,
           "firstName": firstName.getOrCrash(),
@@ -154,16 +154,16 @@ class FirebaseAuthFacade implements IAuthFacade {
   }
 
   @override
-  Future<Either<AuthFailure, Unit>> resetPassword({required EmailAddress emailAddress}) async {
+  Future<Either<String,String>> resetPassword({required EmailAddress emailAddress}) async {
     final email = emailAddress.getOrCrash();
     try {
       await firebaseAuth.sendPasswordResetEmail(email: email);
-      return right(unit);
+      return right("Successful. Check your mail for a link to reset");
     } on FirebaseAuthException catch (e) {
       if (e.code == "auth/invalid-email") {
-        return left(const AuthFailure.invalidEmailAndPasswordCombination());
+        return left("Invalid email address");
       } else {
-        return left(const AuthFailure.serverError());
+        return left("Encountered a server error.");
       }
     }
   }

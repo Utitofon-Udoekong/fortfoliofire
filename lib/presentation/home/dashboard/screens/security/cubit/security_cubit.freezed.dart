@@ -18,8 +18,17 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$SecurityStateTearOff {
   const _$SecurityStateTearOff();
 
-  _Initial initial() {
-    return const _Initial();
+  _SecurityState call(
+      {required String emailAddress,
+      required bool showSnackbar,
+      required String failure,
+      required String success}) {
+    return _SecurityState(
+      emailAddress: emailAddress,
+      showSnackbar: showSnackbar,
+      failure: failure,
+      success: success,
+    );
   }
 }
 
@@ -28,37 +37,13 @@ const $SecurityState = _$SecurityStateTearOff();
 
 /// @nodoc
 mixin _$SecurityState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    required TResult orElse(),
-  }) =>
+  String get emailAddress => throw _privateConstructorUsedError;
+  bool get showSnackbar => throw _privateConstructorUsedError;
+  String get failure => throw _privateConstructorUsedError;
+  String get success => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $SecurityStateCopyWith<SecurityState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -67,6 +52,8 @@ abstract class $SecurityStateCopyWith<$Res> {
   factory $SecurityStateCopyWith(
           SecurityState value, $Res Function(SecurityState) then) =
       _$SecurityStateCopyWithImpl<$Res>;
+  $Res call(
+      {String emailAddress, bool showSnackbar, String failure, String success});
 }
 
 /// @nodoc
@@ -77,100 +64,154 @@ class _$SecurityStateCopyWithImpl<$Res>
   final SecurityState _value;
   // ignore: unused_field
   final $Res Function(SecurityState) _then;
-}
-
-/// @nodoc
-abstract class _$InitialCopyWith<$Res> {
-  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
-      __$InitialCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$InitialCopyWithImpl<$Res> extends _$SecurityStateCopyWithImpl<$Res>
-    implements _$InitialCopyWith<$Res> {
-  __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
-      : super(_value, (v) => _then(v as _Initial));
 
   @override
-  _Initial get _value => super._value as _Initial;
+  $Res call({
+    Object? emailAddress = freezed,
+    Object? showSnackbar = freezed,
+    Object? failure = freezed,
+    Object? success = freezed,
+  }) {
+    return _then(_value.copyWith(
+      emailAddress: emailAddress == freezed
+          ? _value.emailAddress
+          : emailAddress // ignore: cast_nullable_to_non_nullable
+              as String,
+      showSnackbar: showSnackbar == freezed
+          ? _value.showSnackbar
+          : showSnackbar // ignore: cast_nullable_to_non_nullable
+              as bool,
+      failure: failure == freezed
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as String,
+      success: success == freezed
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$SecurityStateCopyWith<$Res>
+    implements $SecurityStateCopyWith<$Res> {
+  factory _$SecurityStateCopyWith(
+          _SecurityState value, $Res Function(_SecurityState) then) =
+      __$SecurityStateCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {String emailAddress, bool showSnackbar, String failure, String success});
+}
+
+/// @nodoc
+class __$SecurityStateCopyWithImpl<$Res>
+    extends _$SecurityStateCopyWithImpl<$Res>
+    implements _$SecurityStateCopyWith<$Res> {
+  __$SecurityStateCopyWithImpl(
+      _SecurityState _value, $Res Function(_SecurityState) _then)
+      : super(_value, (v) => _then(v as _SecurityState));
+
+  @override
+  _SecurityState get _value => super._value as _SecurityState;
+
+  @override
+  $Res call({
+    Object? emailAddress = freezed,
+    Object? showSnackbar = freezed,
+    Object? failure = freezed,
+    Object? success = freezed,
+  }) {
+    return _then(_SecurityState(
+      emailAddress: emailAddress == freezed
+          ? _value.emailAddress
+          : emailAddress // ignore: cast_nullable_to_non_nullable
+              as String,
+      showSnackbar: showSnackbar == freezed
+          ? _value.showSnackbar
+          : showSnackbar // ignore: cast_nullable_to_non_nullable
+              as bool,
+      failure: failure == freezed
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as String,
+      success: success == freezed
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial();
+class _$_SecurityState extends _SecurityState {
+  const _$_SecurityState(
+      {required this.emailAddress,
+      required this.showSnackbar,
+      required this.failure,
+      required this.success})
+      : super._();
+
+  @override
+  final String emailAddress;
+  @override
+  final bool showSnackbar;
+  @override
+  final String failure;
+  @override
+  final String success;
 
   @override
   String toString() {
-    return 'SecurityState.initial()';
+    return 'SecurityState(emailAddress: $emailAddress, showSnackbar: $showSnackbar, failure: $failure, success: $success)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Initial);
+        (other.runtimeType == runtimeType &&
+            other is _SecurityState &&
+            const DeepCollectionEquality()
+                .equals(other.emailAddress, emailAddress) &&
+            const DeepCollectionEquality()
+                .equals(other.showSnackbar, showSnackbar) &&
+            const DeepCollectionEquality().equals(other.failure, failure) &&
+            const DeepCollectionEquality().equals(other.success, success));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(emailAddress),
+      const DeepCollectionEquality().hash(showSnackbar),
+      const DeepCollectionEquality().hash(failure),
+      const DeepCollectionEquality().hash(success));
 
+  @JsonKey(ignore: true)
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
+  _$SecurityStateCopyWith<_SecurityState> get copyWith =>
+      __$SecurityStateCopyWithImpl<_SecurityState>(this, _$identity);
 }
 
-abstract class _Initial implements SecurityState {
-  const factory _Initial() = _$_Initial;
+abstract class _SecurityState extends SecurityState {
+  const factory _SecurityState(
+      {required String emailAddress,
+      required bool showSnackbar,
+      required String failure,
+      required String success}) = _$_SecurityState;
+  const _SecurityState._() : super._();
+
+  @override
+  String get emailAddress;
+  @override
+  bool get showSnackbar;
+  @override
+  String get failure;
+  @override
+  String get success;
+  @override
+  @JsonKey(ignore: true)
+  _$SecurityStateCopyWith<_SecurityState> get copyWith =>
+      throw _privateConstructorUsedError;
 }

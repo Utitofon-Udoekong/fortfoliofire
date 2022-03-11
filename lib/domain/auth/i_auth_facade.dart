@@ -44,7 +44,7 @@ abstract class IAuthFacade {
   // verify user
   Future<void> verifyUser();
   // reset password
-  Future<Either<AuthFailure, Unit>> resetPassword({
+  Future<Either<String, String>> resetPassword({
     required EmailAddress emailAddress
   });
   // database changes

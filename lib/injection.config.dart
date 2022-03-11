@@ -23,18 +23,16 @@ import 'domain/auth/i_storage_facade.dart' as _i11;
 import 'infrastructure/auth/firebase_auth_facade.dart' as _i8;
 import 'infrastructure/auth/firebase_firestore_facade.dart' as _i10;
 import 'infrastructure/auth/firebase_storage_facade.dart' as _i12;
-import 'infrastructure/core/firebase_injectible.dart' as _i23;
+import 'infrastructure/core/firebase_injectible.dart' as _i22;
 import 'presentation/home/dashboard/screens/payment_method/bank/cubit/bank_address_cubit.dart'
-    as _i21;
+    as _i20;
 import 'presentation/home/dashboard/screens/payment_method/crypto/bloc/crypto_wallet_bloc.dart'
-    as _i22;
+    as _i21;
 import 'presentation/home/dashboard/screens/security/cubit/security_cubit.dart'
     as _i15;
-import 'presentation/home/dashboard/screens/verification/bloc/upload_image_bloc.dart'
-    as _i19;
 import 'presentation/home/investment/cubit/investment_cubit.dart' as _i13;
 import 'presentation/home/wallet/cubit/wallet_cubit.dart'
-    as _i20; // ignore_for_file: unnecessary_lambdas
+    as _i19; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -64,15 +62,13 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i16.SignInFormEmailCubit>(() => _i16.SignInFormEmailCubit());
   gh.factory<_i17.SignInFormPhoneCubit>(() => _i17.SignInFormPhoneCubit());
   gh.factory<_i18.SignUpFormCubit>(() => _i18.SignUpFormCubit());
-  gh.factory<_i19.UploadImageBloc>(
-      () => _i19.UploadImageBloc(get<_i11.IStorageFacade>()));
-  gh.factory<_i20.WalletCubit>(() =>
-      _i20.WalletCubit(get<_i9.IFirestoreFacade>(), get<_i7.IAuthFacade>()));
-  gh.factory<_i21.BankAddressCubit>(
-      () => _i21.BankAddressCubit(get<_i9.IFirestoreFacade>()));
-  gh.factory<_i22.CryptoWalletBloc>(
-      () => _i22.CryptoWalletBloc(get<_i9.IFirestoreFacade>()));
+  gh.factory<_i19.WalletCubit>(() =>
+      _i19.WalletCubit(get<_i9.IFirestoreFacade>(), get<_i7.IAuthFacade>()));
+  gh.factory<_i20.BankAddressCubit>(
+      () => _i20.BankAddressCubit(get<_i9.IFirestoreFacade>()));
+  gh.factory<_i21.CryptoWalletBloc>(
+      () => _i21.CryptoWalletBloc(get<_i9.IFirestoreFacade>()));
   return get;
 }
 
-class _$FirebaseInjectableModule extends _i23.FirebaseInjectableModule {}
+class _$FirebaseInjectableModule extends _i22.FirebaseInjectableModule {}

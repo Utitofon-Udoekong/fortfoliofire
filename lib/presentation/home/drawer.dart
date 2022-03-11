@@ -5,7 +5,7 @@ import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_icon_filled_button.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 // import 'package:fortfolio/presentation/routes/router.gr.dart';
- 
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MainDrawer extends StatelessWidget {
@@ -13,12 +13,16 @@ class MainDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String displayName = context.select((AuthCubit authCubit) => authCubit.state.userModel.displayName);
-    final String firstName = context.select((AuthCubit authCubit) => authCubit.state.userModel.firstName);
-    final String lastName = context.select((AuthCubit authCubit) => authCubit.state.userModel.lastName);
-    final String userId = context.select((AuthCubit authCubit) => authCubit.state.userModel.id);
-    final bool isVerified = context.select((AuthCubit authCubit) => authCubit.state.userModel.isVerified);
-    // final String displayName = context.select<AuthCubit, String>((cubit) => cubit.state.userModel.displayName);
+    final String displayName = context
+        .select((AuthCubit authCubit) => authCubit.state.userModel.displayName);
+    final String firstName = context
+        .select((AuthCubit authCubit) => authCubit.state.userModel.firstName);
+    final String lastName = context
+        .select((AuthCubit authCubit) => authCubit.state.userModel.lastName);
+    final String userId =
+        context.select((AuthCubit authCubit) => authCubit.state.userModel.id);
+    final bool isVerified = context
+        .select((AuthCubit authCubit) => authCubit.state.userModel.isVerified);
     return Drawer(
       backgroundColor: kWhiteColor,
       child: ListView(
@@ -64,11 +68,18 @@ class MainDrawer extends StatelessWidget {
                           style: subTitle.copyWith(
                               color: Colors.white, fontSize: 15),
                         ),
-                        isVerified ? const Icon(
-                          Icons.verified,
-                          color: kGreenColor,
-                          size: 13,
-                        ) : Text("Unverified", style: subTitle.copyWith(fontSize: 13, color: kWhiteColor.withOpacity(0.5)), )
+                        isVerified
+                            ? const Icon(
+                                Icons.verified,
+                                color: kGreenColor,
+                                size: 13,
+                              )
+                            : Text(
+                                "Unverified",
+                                style: subTitle.copyWith(
+                                    fontSize: 13,
+                                    color: kWhiteColor.withOpacity(0.5)),
+                              )
                       ],
                     )
                   ],
@@ -89,13 +100,21 @@ class MainDrawer extends StatelessWidget {
               color: kPrimaryColor,
             ),
           ),
-          const SizedBox(height: 10,),
-          buildtile(Icons.account_circle, 'Profile Settings', () => context.router.push(const ProfilePageRoute())),
-          buildtile(Icons.account_balance_wallet, 'Payment Method', () => context.router.push(const PaymentMethodRoute())),
-          buildtile(Icons.lock_open, 'Security', () => context.router.push(const SecurityRoute())),
-          buildtile(Icons.headset_mic, 'Help & Support', () => context.router.push(const SupportPageRoute())),
-          buildtile(Icons.error, 'Terms & Condition', () => context.router.push(const TACPageRoute())),
-          buildtile(Icons.verified, 'Account Verification', () => context.router.push(const VerificationPageRoute())),
+          const SizedBox(
+            height: 10,
+          ),
+          buildtile(Icons.account_circle, 'Profile Settings',
+              () => context.router.push(const ProfilePageRoute())),
+          buildtile(Icons.account_balance_wallet, 'Payment Method',
+              () => context.router.push(const PaymentMethodRoute())),
+          buildtile(Icons.lock_open, 'Security',
+              () => context.router.push(const SecurityRoute())),
+          buildtile(Icons.headset_mic, 'Help & Support',
+              () => context.router.push(const SupportPageRoute())),
+          buildtile(Icons.error, 'Terms & Condition',
+              () => context.router.push(const TACPageRoute())),
+          buildtile(Icons.verified, 'Account Verification',
+              () => context.router.push(const VerificationPageRoute())),
           const SizedBox(
             height: 54,
           ),
@@ -111,14 +130,27 @@ class MainDrawer extends StatelessWidget {
           const SizedBox(
             height: 40,
           ),
+          TextButton(
+              onPressed: () => showAboutDialog(
+                context: context,
+                applicationName: "Fortfolio",
+                applicationVersion: "0.0.1",
+                applicationIcon: const Image(image: AssetImage("images/logo.png"))
+              ),
+              child: Text("Version Info",
+                  style: subTitle.copyWith(
+                      color: const Color(0XFF242424), fontSize: 13))),
+          const SizedBox(
+            height: 5,
+          ),
           Align(
             alignment: Alignment.bottomLeft,
             child: Padding(
               padding: const EdgeInsets.only(left: 20),
               child: Text(
                 'Version 0.0.1',
-                style:
-                    subTitle.copyWith(color: const Color(0XFF242424), fontSize: 13),
+                style: subTitle.copyWith(
+                    color: const Color(0XFF242424), fontSize: 13),
               ),
             ),
           ),
@@ -150,7 +182,8 @@ class MainDrawer extends StatelessWidget {
             ),
             Text(
               text,
-              style: subTitle.copyWith(color: const Color(0XFF242424), fontSize: 15),
+              style: subTitle.copyWith(
+                  color: const Color(0XFF242424), fontSize: 15),
             )
           ],
         ),

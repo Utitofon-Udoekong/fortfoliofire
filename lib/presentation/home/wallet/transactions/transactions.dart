@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
@@ -12,7 +13,7 @@ class WalletTransactions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Stream<QuerySnapshot> _withdrawalStream =
-        FirebaseFirestore.instance.withdrawalsCollection.snapshots();
+        FirebaseFirestore.instance.authUserCollection.doc(FirebaseAuth.instance.currentUser!.uid).collection("withdrawals").snapshots();
     return Scaffold(
         body: SingleChildScrollView(
       child: Padding(

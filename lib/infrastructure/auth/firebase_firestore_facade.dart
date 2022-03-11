@@ -26,7 +26,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
   Future<Option<String>> addBank({required BankAddress bankAddress}) async {
     String docId = bankAddress.accountNumber + bankAddress.id;
     try {
-      await firestore.authUserCollection.doc(docId).set(BankAddressDTO.fromDomain(bankAddress).toJson());
+      await firestore.authUserCollection.doc(auth.currentUser!.uid).collection("address").doc(docId).set(BankAddressDTO.fromDomain(bankAddress).toJson());
       return some("Bank account added successfully");
     } on FirebaseException catch (e) {
       log("Code: ${e.code}, Message: ${e.message}");
@@ -38,7 +38,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
   Future<Option<String>> addCryptoWallet({required CryptoWallet cryptoWallet}) async {
     String docId = cryptoWallet.address + cryptoWallet.id;
     try {
-      await firestore.authUserCollection.doc(docId).set(CryptoWalletDTO.fromDomain(cryptoWallet).toJson());
+      await firestore.authUserCollection.doc(auth.currentUser!.uid).collection("address").doc(docId).set(CryptoWalletDTO.fromDomain(cryptoWallet).toJson());
       return some("Crypto wallet added successfully");
     } on FirebaseException catch (e) {
       log("Code: ${e.code}, Message: ${e.message}");
@@ -50,7 +50,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
   Future<Option<String>> addGeneralCryptoWallet({required CryptoWallet cryptoWallet}) async {
     String docId = cryptoWallet.address + cryptoWallet.id;
     try {
-      await firestore.authUserCollection.doc(docId).set(CryptoWalletDTO.fromDomain(cryptoWallet).toJson());
+      await firestore.authUserCollection.doc(auth.currentUser!.uid).collection("address").doc(docId).set(CryptoWalletDTO.fromDomain(cryptoWallet).toJson());
       return some("Crypto wallet added successfully");
     } on FirebaseException catch (e) {
       log("Code: ${e.code}, Message: ${e.message}");
@@ -63,7 +63,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
     String docId = investmentItem.traxId + investmentItem.uid;
     try {
       // investmentItem.uid = docId;
-      await firestore.investmentCollection.doc(docId).set(InvestmentItemDTO.fromDomain(investmentItem).toJson());
+      await firestore.authUserCollection.doc(auth.currentUser!.uid).collection("investments").doc(docId).set(InvestmentItemDTO.fromDomain(investmentItem).toJson());
       return some("Investment made. Awaiting approval");
     } on FirebaseException catch (e) {
       log("Code: ${e.code}, Message: ${e.message}");
@@ -75,7 +75,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
   Future<Option<String>> createWithdrawalTransaction({required WithdrawalItem withdrawalItem}) async{
     String docId = withdrawalItem.traxId + withdrawalItem.uid;
     try {
-      firestore.withdrawalsCollection.doc(docId).set(WithdrawalItemDTO.fromDomain(withdrawalItem).toJson());
+      firestore.authUserCollection.doc(auth.currentUser!.uid).collection("withdrawals").doc(docId).set(WithdrawalItemDTO.fromDomain(withdrawalItem).toJson());
       return some("Withdrawal submitted. Awaiting approval");
     } on FirebaseException catch (e) {
       log("Code: ${e.code}, Message: ${e.message}");
@@ -85,7 +85,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
 
   @override
   Future<Option<List<BankAddress>>> getBankAddress() async {
-    final query = await firestore.addressCollection.where("type", isEqualTo: "BANKADDRESS").get();
+    final query = await firestore.authUserCollection.doc().collection("address").where("type", isEqualTo: "BANKADDRESS").get();
     try {
       if (query.docs.isNotEmpty && query.docs[0].exists) {
         final docs = query.docs;
@@ -107,7 +107,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
 
   @override
   Future<Option<List<CryptoWallet>>> getCryptoWallets() async {
-    final query = await firestore.addressCollection.where("type", isEqualTo: "CRYPTOWALLET").get();
+    final query = await firestore.authUserCollection.doc(auth.currentUser!.uid).collection("address").where("type", isEqualTo: "CRYPTOWALLET").get();
     try {
      if (query.docs.isNotEmpty && query.docs[0].exists) {
         final docs = query.docs;
@@ -130,7 +130,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
 
   @override
   Future<Option<List<CryptoWallet>>> getGeneralCryptoWallets() async {
-    final query = await firestore.addressCollection.where("type", isEqualTo: "GENERALCRYPTOWALLET").get();
+    final query = await firestore.authUserCollection.doc(auth.currentUser!.uid).collection("address").where("type", isEqualTo: "GENERALCRYPTOWALLET").get();
     try {
      if (query.docs.isNotEmpty && query.docs[0].exists) {
         final docs = query.docs;
@@ -153,7 +153,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
 
   @override
   Future<Option<List<InvestmentItem>>> getFortDollarInvestments() async {
-    final query = await firestore.investmentCollection.where("planName",isEqualTo: "FortDollar").get();
+    final query = await firestore.authUserCollection.doc(auth.currentUser!.uid).collection("investments").where("planName",isEqualTo: "FortDollar").get();
     try {
       if(query.docs.isNotEmpty && query.docs[0].exists){
         final docs = query.docs;
@@ -175,7 +175,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
 
   @override
   Future<Option<List<InvestmentItem>>> getFortCryptoInvestments() async {
-    final query = await firestore.investmentCollection.where("planName",isEqualTo: "FortCrypto").get();
+    final query = await firestore.authUserCollection.doc(auth.currentUser!.uid).collection("investments").where("planName",isEqualTo: "FortCrypto").get();
     try {
       if(query.docs.isNotEmpty && query.docs[0].exists){
         final docs = query.docs;
@@ -197,7 +197,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
 
   @override
   Future<Option<List<InvestmentItem>>> getFortShieldInvestments() async {
-    final query = await firestore.investmentCollection.where("planName",isEqualTo: "FortShield").get();
+    final query = await firestore.authUserCollection.doc(auth.currentUser!.uid).collection("investments").where("planName",isEqualTo: "FortShield").get();
     try {
       if(query.docs.isNotEmpty && query.docs[0].exists){
         final docs = query.docs;
@@ -219,7 +219,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
   
   @override
   Future<Option<List<WithdrawalItem>>> getWithdrawals() async {
-    final query = await firestore.withdrawalsCollection.get();
+    final query = await firestore.authUserCollection.doc(auth.currentUser!.uid).collection("withdrawals").get();
     try {
       if(query.docs.isNotEmpty && query.docs[0].exists){
         var docs = query.docs;
@@ -241,7 +241,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
 
   @override
   Future<Option<String>> harvestInvestment({required String docId, required int amount}) async {
-    final query = firestore.investmentCollection.doc(docId);
+    final query = firestore.authUserCollection.doc(auth.currentUser!.uid).collection("investments").doc(docId);
     try {
       await query.update({
         "planYield": amount

@@ -21,6 +21,7 @@ class FortCryptoInvestment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
+      lazy: false,
       create: (context) => getIt<InvestmentCubit>(),
       child: Scaffold(
         body: SafeArea(
