@@ -66,7 +66,7 @@ class SignUpFormCubit extends Cubit<SignUpFormState> {
     emit(state.copyWith(isObscure: !newScure));
   }
   Future registerWithEmailAndPasswordpressed() async{
-    late Either<AuthFailure, Unit> failureOrSuccess;
+    Either<AuthFailure, Unit>? failureOrSuccess;
     final isEmailValid = state.emailAddress.isValid();
     final isPasswordValid = state.password.isValid();
     final isFirstNameValid = state.firstName.isValid();
@@ -83,6 +83,10 @@ class SignUpFormCubit extends Cubit<SignUpFormState> {
       failureOrSuccess = await _authFacade.registerWithEmailAndPassword(
           emailAddress: state.emailAddress, password: state.password, phone: state.phoneNumber, firstName: state.firstName, lastName: state.lastName);
     }
+
+    failureOrSuccess!.fold((l) => null, (r) {
+      
+    });
 
 
 

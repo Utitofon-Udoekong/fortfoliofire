@@ -1,18 +1,19 @@
-part of 'reset_password_bloc.dart';
+part of 'reset_password_cubit.dart';
+
 
 @freezed
 class ResetPasswordState with _$ResetPasswordState {
+  const ResetPasswordState._();
   const factory ResetPasswordState({
     required EmailAddress emailAddress,
     required bool isSubmitting,
-    required bool showErrorMessages,
-    required Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption
+    required String failure,
+    required String success,
   }) = _ResetPasswordState;
-
   factory ResetPasswordState.initial() => ResetPasswordState(
     emailAddress: EmailAddress(''),
-    showErrorMessages: false,
     isSubmitting: false,
-    authFailureOrSuccessOption: none(), 
+    failure: "",
+    success: ""
   );
 }
