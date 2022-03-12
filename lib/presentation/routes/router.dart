@@ -4,6 +4,7 @@ import 'package:fortfolio/presentation/authentication/forgot_password/reset_pass
 import 'package:fortfolio/presentation/authentication/sign_in/confirm_login_otp.dart';
 import 'package:fortfolio/presentation/authentication/sign_in/sign_in_form_email.dart';
 import 'package:fortfolio/presentation/authentication/sign_in/sign_in_form_phone.dart';
+import 'package:fortfolio/presentation/authentication/sign_up/confirm_signup_otp.dart';
 import 'package:fortfolio/presentation/authentication/sign_up/sign_up_form.dart';
 import 'package:fortfolio/presentation/home/dashboard/dashboard.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/bank/add_bank.dart';
@@ -54,6 +55,7 @@ import 'package:fortfolio/presentation/home/wallet/withdraw/withdrawal.dart';
 import 'package:fortfolio/presentation/splash/onboarding.dart';
 import 'package:fortfolio/presentation/splash/splash_Screen.dart';
 
+import '../authentication/sign_up/sign_up_form_phone.dart';
 import '../home/wallet/investment/fortcrypto_info.dart';
 import '../home/wallet/investment/fortshield_info.dart';
 
@@ -62,7 +64,9 @@ import '../home/wallet/investment/fortshield_info.dart';
   AutoRoute(page: OnboardingScreen),
   AutoRoute(page: SignInFormEmail),
   AutoRoute(page: SignInFormPhone),
+  AutoRoute(page: SignUpFormPhone),
   AutoRoute(page: ConfirmLoginWithOTP),
+  AutoRoute(page: ConfirmSignupWithOTP),
   AutoRoute(page: SignUpForm),
   AutoRoute(page: ResetPassword),
   AutoRoute(path: "notificationsPage", page: NotificationsPage),

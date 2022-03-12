@@ -114,10 +114,10 @@ class FirebaseAuthFacade implements IAuthFacade {
   }
 
   @override
-  Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword({required EmailAddress emailAddress, required Password password, required Phone phone, required UserName firstName, required UserName lastName}) async {
+  Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword({required EmailAddress emailAddress, required Password password, required UserName firstName, required UserName lastName}) async {
     final emailAddressString = emailAddress.getOrCrash();
     final passwordString = password.getOrCrash();
-    final phoneNumber = phone.getOrCrash();
+    final phoneNumber = firebaseAuth.currentUser!.phoneNumber;
     const timeout = Duration(seconds: 60);
     final fName = firstName.getOrCrash();
     final lName = lastName.getOrCrash();
@@ -127,21 +127,23 @@ class FirebaseAuthFacade implements IAuthFacade {
           .createUserWithEmailAndPassword(
               email: emailAddressString, password: passwordString)
           .then((value) async {
+        firebaseAuth.currentUser!.updateDisplayName(displayName);
         await firestore.authUserCollection
             .doc(firebaseAuth.currentUser!.uid)
             .set({
           "email": emailAddressString,
           "phoneNumber": phoneNumber,
-          "firstName": firstName.getOrCrash(),
-          "lastName": lastName.getOrCrash(),
+          "firstName": fName,
+          "lastName": lName,
           "balance": 0,
           "createdat": DateTime.now(),
           "isVerified": false,
           "id": UniqueId.fromUniqueString(value.user!.uid),
           "displayName": displayName
-        }).then((_) {
-          registerPhoneNumber(phoneNumber: Phone(phoneNumber), timeout: timeout);
         });
+        // .then((_) {
+        //   registerPhoneNumber(phoneNumber: Phone(phoneNumber), timeout: timeout);
+        // });
       });
       return right(unit);
     } on FirebaseAuthException catch (e) {

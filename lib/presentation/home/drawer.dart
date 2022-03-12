@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
@@ -13,8 +14,9 @@ class MainDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String displayName = context
-        .select((AuthCubit authCubit) => authCubit.state.userModel.displayName);
+    final String displayName = FirebaseAuth.instance.currentUser!.displayName.toString();
+    // final String displayName = context
+    //     .select((AuthCubit authCubit) => authCubit.state.userModel.displayName);
     final String firstName = context
         .select((AuthCubit authCubit) => authCubit.state.userModel.firstName);
     final String lastName = context
@@ -130,16 +132,6 @@ class MainDrawer extends StatelessWidget {
           const SizedBox(
             height: 40,
           ),
-          TextButton(
-              onPressed: () => showAboutDialog(
-                context: context,
-                applicationName: "Fortfolio",
-                applicationVersion: "0.0.1",
-                applicationIcon: const Image(image: AssetImage("images/logo.png"))
-              ),
-              child: Text("Version Info",
-                  style: subTitle.copyWith(
-                      color: const Color(0XFF242424), fontSize: 13))),
           const SizedBox(
             height: 5,
           ),
@@ -147,11 +139,16 @@ class MainDrawer extends StatelessWidget {
             alignment: Alignment.bottomLeft,
             child: Padding(
               padding: const EdgeInsets.only(left: 20),
-              child: Text(
-                'Version 0.0.1',
-                style: subTitle.copyWith(
-                    color: const Color(0XFF242424), fontSize: 13),
+              child: TextButton(
+              onPressed: () => showAboutDialog(
+                context: context,
+                applicationName: "Fortfolio",
+                applicationVersion: "0.0.1",
+                applicationIcon: const Image(image: AssetImage("images/logo.png"),width: 30,height: 30,)
               ),
+              child: Text("Version 0.0.1",
+                  style: subTitle.copyWith(
+                      color: const Color(0XFF242424), fontSize: 13))),
             ),
           ),
         ],

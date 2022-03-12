@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/application/auth/sign_in_form/phone/sign_in_form_phone_cubit.dart';
+import 'package:fortfolio/application/auth/sign_up_form/phone/sign_up_form_phone_cubit.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
@@ -12,20 +13,20 @@ import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 
-class SignInFormPhone extends StatefulWidget {
-  const SignInFormPhone({Key? key}) : super(key: key);
+class SignUpFormPhone extends StatefulWidget {
+  const SignUpFormPhone({Key? key}) : super(key: key);
 
   @override
-  State<SignInFormPhone> createState() => _SignInFormPhoneState();
+  State<SignUpFormPhone> createState() => _SignUpFormPhoneState();
 }
 
-class _SignInFormPhoneState extends State<SignInFormPhone> {
+class _SignUpFormPhoneState extends State<SignUpFormPhone> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: BlocProvider(
-            create: (context) => getIt<SignInFormPhoneCubit>(),
+            create: (context) => getIt<SignUpFormPhoneCubit>(),
             child: MultiBlocListener(
               listeners: [
                 BlocListener<AuthCubit, AuthState>(
@@ -35,7 +36,7 @@ class _SignInFormPhoneState extends State<SignInFormPhone> {
                     context.router.replace(const HomePageRoute());
                   },
                 ),
-                BlocListener<SignInFormPhoneCubit, SignInFormPhoneState>(
+                BlocListener<SignUpFormPhoneCubit, SignUpFormPhoneState>(
                   listenWhen: (p, c) => p.failureOption != c.failureOption,
                   listener: (context, state) {
                     state.failureOption.fold(
@@ -60,16 +61,14 @@ class _SignInFormPhoneState extends State<SignInFormPhone> {
                     );
                   },
                 ),
-                BlocListener<SignInFormPhoneCubit, SignInFormPhoneState>(
+                BlocListener<SignUpFormPhoneCubit, SignUpFormPhoneState>(
                   listenWhen: (p, c) =>
                       p.displaySmsCodeForm != p.displaySmsCodeForm,
-                  listener: (context, state) {
-                    context.router.replace(const ConfirmLoginWithOTPRoute());
-                  },
+                  listener: (context, state) => context.router.replace(const ConfirmSignupWithOTPRoute()),
                 )
               ],
               child: SafeArea(child: SingleChildScrollView(
-                child: BlocBuilder<SignInFormPhoneCubit, SignInFormPhoneState>(
+                child: BlocBuilder<SignUpFormPhoneCubit, SignUpFormPhoneState>(
                   builder: (context, state) {
                     if (state.displayLoadingIndicator) {
                       return const LoadingView();
@@ -137,7 +136,7 @@ class _SignInFormPhoneState extends State<SignInFormPhone> {
                                     )
                                   ],
                                 ),
-                                BlocBuilder<SignInFormPhoneCubit, SignInFormPhoneState>(
+                                BlocBuilder<SignUpFormPhoneCubit, SignUpFormPhoneState>(
                                   builder: (context, state) {
                                     return IntlPhoneField(
                                       decoration: const InputDecoration(
@@ -149,12 +148,12 @@ class _SignInFormPhoneState extends State<SignInFormPhone> {
                                       keyboardType: TextInputType.phone,
                                       textInputAction: TextInputAction.next,
                                       onChanged: (value) => context
-                                          .read<SignInFormPhoneCubit>()
+                                          .read<SignUpFormPhoneCubit>()
                                           .phoneNumberChanged(
                                               phoneNumber:
                                                   value.completeNumber),
                                       validator: (_) => context
-                                          .read<SignInFormPhoneCubit>()
+                                          .read<SignUpFormPhoneCubit>()
                                           .state
                                           .phoneNumber
                                           .value
@@ -176,15 +175,9 @@ class _SignInFormPhoneState extends State<SignInFormPhone> {
                                   text: state.phoneNumber.isValid()
                                       ? 'VERIFY OTP'
                                       : 'ENTER PHONE',
-                                  onTap: () => {
-                                    if (_formKey.currentState != null &&
-                                        _formKey.currentState!.validate())
-                                      {
-                                        context
-                                            .read<SignInFormPhoneCubit>()
-                                            .signInWithPhoneNumber(),
-                                      }
-                                  },
+                                  onTap: () => context
+                                            .read<SignUpFormPhoneCubit>()
+                                            .signUpWithPhoneNumber(),
                                   disabled: !state.phoneNumber.isValid(),
                                 ),
                               ],

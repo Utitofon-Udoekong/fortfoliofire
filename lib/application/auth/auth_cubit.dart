@@ -20,7 +20,7 @@ class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthState.empty()) {
     _authFacade = getIt<IAuthFacade>();
     _authUserSubscription =
-        _authFacade.authStateChanges.listen(_listenAuthStateChangesStream);
+        _authFacade.authStateChanges.listen(listenAuthStateChangesStream);
   }
   @override
   Future<void> close() async {
@@ -28,7 +28,7 @@ class AuthCubit extends Cubit<AuthState> {
     super.close();
   }
 
-  Future<void> _listenAuthStateChangesStream(AuthUserModel authUser) async {
+  Future<void> listenAuthStateChangesStream(AuthUserModel authUser) async {
     emit(
       state.copyWith(
         userModel: authUser,

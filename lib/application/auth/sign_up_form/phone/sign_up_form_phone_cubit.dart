@@ -10,23 +10,23 @@ import 'package:fortfolio/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-part 'sign_in_form_phone_state.dart';
-part 'sign_in_form_phone_cubit.freezed.dart';
+part 'sign_up_form_phone_state.dart';
+part 'sign_up_form_phone_cubit.freezed.dart';
 
 @injectable
-class SignInFormPhoneCubit extends Cubit<SignInFormPhoneState> {
+class SignUpFormPhoneCubit extends Cubit<SignUpFormPhoneState> {
   late final IAuthFacade _authFacade;
   StreamSubscription<Either<AuthFailure, String>>?
-      _phoneNumberSignInSubscription;
+      _phoneNumberSignUpSubscription;
   final Duration verificationCodeTimeout = const Duration(seconds: 60);
   final AuthCubit authCubit;
-  SignInFormPhoneCubit(this.authCubit) : super(SignInFormPhoneState.initial()) {
+  SignUpFormPhoneCubit(this.authCubit) : super(SignUpFormPhoneState.initial()) {
     _authFacade = getIt<IAuthFacade>();
   }
 
   @override
   Future<void> close() async {
-    await _phoneNumberSignInSubscription?.cancel();
+    await _phoneNumberSignUpSubscription?.cancel();
 
     return super.close();
   }
@@ -53,11 +53,11 @@ class SignInFormPhoneCubit extends Cubit<SignInFormPhoneState> {
     );
   }
 
-  void signInWithPhoneNumber() {
+  void signUpWithPhoneNumber() {
     emit(state.copyWith(isSubmitting: true, failureOption: none()));
 
-    _phoneNumberSignInSubscription = _authFacade
-        .signInWithPhoneNumber(
+    _phoneNumberSignUpSubscription = _authFacade
+        .registerPhoneNumber(
             phoneNumber: state.phoneNumber, timeout: verificationCodeTimeout)
         .listen(
           (Either<AuthFailure, String> failureOrVerificationId) =>

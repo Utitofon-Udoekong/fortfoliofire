@@ -17,7 +17,7 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
   void requestReset() async {
     emit(state.copyWith(isSubmitting: true, failure: "",success: ""));
     final emailAddress = state.emailAddress;
-    final reset = await authFacade.resetPassword(emailAddress: EmailAddress(emailAddress));
+    final reset = await authFacade.resetPassword(emailAddress: emailAddress);
     reset.fold((failure) {
       emit(state.copyWith(isSubmitting: false,failure: failure));
     }, (success) {

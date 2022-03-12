@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fortfolio/application/auth/sign_up_form/sign_up_form_cubit.dart';
+import 'package:fortfolio/application/auth/sign_up_form/email/sign_up_form_cubit.dart';
 import 'package:fortfolio/domain/auth/value_objects.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
@@ -252,47 +252,6 @@ class SignUpForm extends StatelessWidget {
                             },
                           ),
                           const SizedBox(
-                            height: 30,
-                          ),
-                          const Text(
-                            "Your Phone number",
-                            style: TextStyle(
-                                fontSize: 15, color: Color(0xFF656565)),
-                          ),
-                          BlocBuilder<SignUpFormCubit, SignUpFormState>(
-                             buildWhen: (p, c) =>
-                                p.phoneNumber != c.phoneNumber,
-                            builder: (context, state) {
-                              return IntlPhoneField(
-                                decoration: const InputDecoration(
-                                  border: InputBorder.none,
-                                  filled: true,
-                                  fillColor: Color(0xFFF3F6F8),
-                                ),
-                                initialCountryCode: 'NG',
-                                keyboardType: TextInputType.phone,
-                                textInputAction: TextInputAction.next,
-                                onChanged: (value) => context
-                                    .read<SignUpFormCubit>()
-                                    .phoneNumberChanged(
-                                        phoneNumber: value.toString()),
-                                validator: (_) => context
-                                    .read<SignUpFormCubit>()
-                                    .state
-                                    .phoneNumber
-                                    .value
-                                    .fold(
-                                      (f) => f.maybeMap(
-                                          auth: (value) {
-                                            return value.f.failedValue;
-                                          },
-                                          orElse: () => null),
-                                      (r) => null,
-                                    ),
-                              );
-                            },
-                          ),
-                          const SizedBox(
                             height: 20,
                           ),
                           BlocSelector<SignUpFormCubit, SignUpFormState, bool>(
@@ -302,11 +261,9 @@ class SignUpForm extends StatelessWidget {
                             builder: (context, isValidState) {
                               return CustomAuthFilledButton(
                                 text: 'Register',
-                                onTap: () => {
-                                  context
+                                onTap: () => context
                                       .read<SignUpFormCubit>()
-                                      .registerWithEmailAndPasswordpressed()
-                                },
+                                      .registerWithEmailAndPasswordpressed(),
                                 disabled: !isValidState,
                               );
                             },
