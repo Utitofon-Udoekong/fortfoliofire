@@ -18,13 +18,13 @@ class ResetPassword extends StatelessWidget {
         child: MultiBlocListener(
           listeners: [
             BlocListener<ResetPasswordCubit, ResetPasswordState>(
-              listenWhen: (p, c) => p.failure != c.failure,
+              listenWhen: (p, c) => p.failure != c.failure && c.failure.isNotEmpty,
               listener: (context, state) {
                 CustomSnackbar.showSnackBar(context, state.failure, true);
               },
             ),
             BlocListener<ResetPasswordCubit, ResetPasswordState>(
-              listenWhen: (p, c) => p.success != c.success,
+              listenWhen: (p, c) => p.success != c.success && c.success.isNotEmpty,
               listener: (context, state) {
                 CustomSnackbar.showSnackBar(context, state.success, false);
               },

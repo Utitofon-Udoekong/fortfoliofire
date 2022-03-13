@@ -20,48 +20,39 @@ class SignUpFormCubit extends Cubit<SignUpFormState> {
 
   void emailChanged({
     required String emailAddress,
-  }){
+  }) {
     emit(state.copyWith(emailAddress: EmailAddress(emailAddress)));
   }
-  void firstNameChanged({
-    required String firstName
-  }){
-    emit(state.copyWith(
-          firstName: UserName(firstName)));
+
+  void firstNameChanged({required String firstName}) {
+    emit(state.copyWith(firstName: UserName(firstName)));
   }
-  void lastNameChanged({
-    required String lastName
-  }){emit(state.copyWith(
-          lastName: UserName(lastName)));}
-  void passwordChanged({
-    required String password
-  }){
-    emit(state.copyWith(
-          password: Password(password)));
+
+  void lastNameChanged({required String lastName}) {
+    emit(state.copyWith(lastName: UserName(lastName)));
   }
-  void isObscureChanged(){
+
+  void passwordChanged({required String password}) {
+    emit(state.copyWith(password: Password(password)));
+  }
+
+  void isObscureChanged() {
     final newScure = state.isObscure;
     emit(state.copyWith(isObscure: !newScure));
   }
-  Future registerWithEmailAndPasswordpressed() async{
-    Either<AuthFailure, Unit>? failureOrSuccess;
-    final isEmailValid = state.emailAddress.isValid();
-    final isPasswordValid = state.password.isValid();
-    final isFirstNameValid = state.firstName.isValid();
-    final isLastNameValid = state.lastName.isValid();
 
-    if (isEmailValid && isPasswordValid && isFirstNameValid && isLastNameValid ) {
-      emit(state.copyWith(
-          isSubmitting: true, 
-          authFailureOrSuccessOption: none()
-          ));
-
-      failureOrSuccess = await _authFacade.registerWithEmailAndPassword(
-          emailAddress: state.emailAddress, password: state.password, firstName: state.firstName, lastName: state.lastName);
+  Future registerWithEmailAndPasswordpressed() async {
+    final validState = state.isValidState;
+    emit(state.copyWith(isSubmitting: true, failure: "",success:""));
+    if(validState){
+      final Either<String, String> failureOrSuccess = await _authFacade.registerWithEmailAndPassword(
+            emailAddress: state.emailAddress, password: state.password, firstName: state.firstName, lastName: state.lastName);
+      failureOrSuccess.fold((failure){
+        emit(state.copyWith(isSubmitting: false,failure: failure));
+      }, (success) {
+        emit(state.copyWith(isSubmitting: false,success: success));
+      });
     }
-    emit(state.copyWith(
-        showErrorMessages: true,
-        isSubmitting: true,
-        authFailureOrSuccessOption: optionOf(failureOrSuccess)));
+    emit(state.copyWith(showErrorMessages: true));
   }
 }

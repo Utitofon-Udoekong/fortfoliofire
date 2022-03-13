@@ -25,14 +25,14 @@ abstract class IAuthFacade {
     required String verificationId,
   });
   // registeruser
-  Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword({
+  Future<Either<String, String>> registerWithEmailAndPassword({
     required EmailAddress emailAddress,
     required Password password,
     required UserName firstName,
     required UserName lastName
   });
   // login user
-  Future<Either<AuthFailure, Unit>> loginWithEmailAndPassword({
+  Future<Either<String,String>> loginWithEmailAndPassword({
     required EmailAddress emailAddress,
     required Password password
   });

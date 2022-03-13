@@ -47,20 +47,17 @@ class SignInFormEmailCubit extends Cubit<SignInFormEmailState> {
   }
 
   Future signInWithEmailAndPasswordpressed() async{
-    emit(state.copyWith(isSubmitting: true, authFailureOrSuccessOption: none()));
-    late Either<AuthFailure, Unit> failureOrSuccess;
-    final isEmailValid = state.emailAddress.isValid();
-    final isPasswordValid = state.password.isValid();
-    if (isEmailValid && isPasswordValid) {
-      emit(state.copyWith(
-          isSubmitting: true, authFailureOrSuccessOption: none()));
-
-      failureOrSuccess = await _authFacade.loginWithEmailAndPassword(
+    final validState = state.isValidState;
+    emit(state.copyWith(isSubmitting: true, failure: "",success:""));
+    if(validState){
+      final Either<String, String> failureOrSuccess = await _authFacade.loginWithEmailAndPassword(
           emailAddress: state.emailAddress, password: state.password);
+      failureOrSuccess.fold((failure){
+        emit(state.copyWith(isSubmitting: false,failure: failure));
+      }, (success) {
+        emit(state.copyWith(isSubmitting: false,success: success));
+      });
     }
-    emit(state.copyWith(
-        showErrorMessages: true,
-        isSubmitting: true,
-        authFailureOrSuccessOption: optionOf(failureOrSuccess)));
+    emit(state.copyWith(showErrorMessages: true));
   }
 }

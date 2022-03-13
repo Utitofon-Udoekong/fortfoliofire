@@ -41,22 +41,7 @@ class SignInFormEmail extends StatelessWidget {
                                 invalidVerificationCode: (_) =>
                                     "Invalid Verification Code",
                               ),
-                              // failure.when(
-                              //   serverError: () => 'Encountered a server error',
-                              //   emailAlreadyInUse: () =>
-                              //       'Email address already in use',
-                              //   invalidEmailAndPassword: () =>
-                              //       'Invalid email and password',
-                              //   invalidPhoneNumber: () =>
-                              //       'Invalid Phone number',
-                              //   tooManyRequests: () => "Too Many Requests",
-                              //   deviceNotSupported: () =>
-                              //       "Device Not Supported",
-                              //   smsTimeout: () => "Sms Timeout",
-                              //   sessionExpired: () => "Session Expired",
-                              //   invalidVerificationCode: () =>
-                              //       "Invalid Verification Code",
-                              // ),
+                              
                               true,
                             );
                           }, (r) {}));

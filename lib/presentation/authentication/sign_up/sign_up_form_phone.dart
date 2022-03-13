@@ -64,7 +64,8 @@ class _SignUpFormPhoneState extends State<SignUpFormPhone> {
                 BlocListener<SignUpFormPhoneCubit, SignUpFormPhoneState>(
                   listenWhen: (p, c) =>
                       p.displaySmsCodeForm != p.displaySmsCodeForm,
-                  listener: (context, state) => context.router.replace(const ConfirmSignupWithOTPRoute()),
+                  listener: (context, state) =>
+                      context.router.replace(const ConfirmSignupWithOTPRoute()),
                 )
               ],
               child: SafeArea(child: SingleChildScrollView(
@@ -86,30 +87,34 @@ class _SignUpFormPhoneState extends State<SignUpFormPhone> {
                                 const SizedBox(
                                   height: 20,
                                 ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: <Widget>[
-                                    InkWell(
-                                      onTap: () => context.router.pop(),
-                                      child: const Icon(Icons.close),
-                                    ),
-                                    InkWell(
-                                      onTap: () => context.router
-                                          .push(const SignUpFormRoute()),
-                                      child: Text(
-                                        "Register",
-                                        style: subTitle.copyWith(
-                                            color: kPrimaryColor),
-                                      ),
-                                    )
-                                  ],
+                                InkWell(
+                                  onTap: () => context.router.pop(),
+                                  child: const Icon(Icons.close),
                                 ),
+                                // Row(
+                                //   mainAxisAlignment:
+                                //       MainAxisAlignment.spaceBetween,
+                                //   children: <Widget>[
+                                //     InkWell(
+                                //       onTap: () => context.router.pop(),
+                                //       child: const Icon(Icons.close),
+                                //     ),
+                                //     InkWell(
+                                //       onTap: () => context.router
+                                //           .push(const SignUpFormRoute()),
+                                //       child: Text(
+                                //         "Register",
+                                //         style: subTitle.copyWith(
+                                //             color: kPrimaryColor),
+                                //       ),
+                                //     )
+                                //   ],
+                                // ),
                                 const SizedBox(
                                   height: 40,
                                 ),
                                 Text(
-                                  "Hey, \nWelcome Back",
+                                  "Add a \nPhone number",
                                   style: titleText,
                                 ),
                                 const SizedBox(
@@ -136,7 +141,8 @@ class _SignUpFormPhoneState extends State<SignUpFormPhone> {
                                     )
                                   ],
                                 ),
-                                BlocBuilder<SignUpFormPhoneCubit, SignUpFormPhoneState>(
+                                BlocBuilder<SignUpFormPhoneCubit,
+                                    SignUpFormPhoneState>(
                                   builder: (context, state) {
                                     return IntlPhoneField(
                                       decoration: const InputDecoration(
@@ -176,8 +182,8 @@ class _SignUpFormPhoneState extends State<SignUpFormPhone> {
                                       ? 'VERIFY OTP'
                                       : 'ENTER PHONE',
                                   onTap: () => context
-                                            .read<SignUpFormPhoneCubit>()
-                                            .signUpWithPhoneNumber(),
+                                      .read<SignUpFormPhoneCubit>()
+                                      .signUpWithPhoneNumber(),
                                   disabled: !state.phoneNumber.isValid(),
                                 ),
                               ],

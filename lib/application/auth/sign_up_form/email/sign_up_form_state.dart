@@ -10,7 +10,8 @@ class SignUpFormState with _$SignUpFormState {
     required bool isSubmitting,
     required bool isObscure,
     required bool showErrorMessages,
-    required Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption,
+    required String failure,
+    required String success,
   }) = _SignUpFormState;
   const SignUpFormState._();
   factory SignUpFormState.initial() => SignUpFormState(
@@ -21,7 +22,8 @@ class SignUpFormState with _$SignUpFormState {
     showErrorMessages: false,
     isSubmitting: false,
     isObscure: false,
-    authFailureOrSuccessOption: none(), 
+    failure: "",
+    success: ""
   );
   bool get isValidState => emailAddress.isValid() && firstName.isValid() && lastName.isValid() && password.isValid();
 }

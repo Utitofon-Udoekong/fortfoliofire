@@ -8,15 +8,16 @@ class SignInFormEmailState with _$SignInFormEmailState {
       required bool isSubmitting,
       required bool isObscure,
       required bool showErrorMessages,
-      required Option<Either<AuthFailure, Unit>>
-          authFailureOrSuccessOption}) = _SignInFormEmailState;
+      required String failure,
+    required String success,}) = _SignInFormEmailState;
   const SignInFormEmailState._();
   factory SignInFormEmailState.initial() => SignInFormEmailState(
         emailAddress: EmailAddress(''),
     password: Password(''),
     showErrorMessages: false,
     isSubmitting: false,
-    authFailureOrSuccessOption: none(),
+    failure: "",
+    success: "",
     isObscure: false
       );
     

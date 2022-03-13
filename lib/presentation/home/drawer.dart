@@ -5,7 +5,6 @@ import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_icon_filled_button.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
-// import 'package:fortfolio/presentation/routes/router.gr.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,7 +13,7 @@ class MainDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String displayName = FirebaseAuth.instance.currentUser!.displayName.toString();
+    final String? displayName = FirebaseAuth.instance.currentUser!.displayName;
     // final String displayName = context
     //     .select((AuthCubit authCubit) => authCubit.state.userModel.displayName);
     final String firstName = context
@@ -44,7 +43,7 @@ class MainDrawer extends StatelessWidget {
                           shape: BoxShape.circle, color: Color(0XFFF5F7FA)),
                       child: CircleAvatar(
                         backgroundColor: const Color(0XFFE7E7E7),
-                        child: Text(displayName,
+                        child: Text(displayName.toString(),
                             style: const TextStyle(
                               fontSize: 25,
                               color: Color(0XFF242424),
@@ -131,9 +130,6 @@ class MainDrawer extends StatelessWidget {
           ),
           const SizedBox(
             height: 40,
-          ),
-          const SizedBox(
-            height: 5,
           ),
           Align(
             alignment: Alignment.bottomLeft,

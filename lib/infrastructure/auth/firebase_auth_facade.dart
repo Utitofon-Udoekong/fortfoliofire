@@ -58,18 +58,18 @@ class FirebaseAuthFacade implements IAuthFacade {
   }
 
   @override
-  Future<Either<AuthFailure, Unit>> loginWithEmailAndPassword({required EmailAddress emailAddress, required Password password}) async{
+  Future<Either<String,String>> loginWithEmailAndPassword({required EmailAddress emailAddress, required Password password}) async{
     final emailAddressString = emailAddress.getOrCrash();
     final passwordString = password.getOrCrash();
     try {
       await firebaseAuth.signInWithEmailAndPassword(
           email: emailAddressString, password: passwordString).then((cred) => getDatabaseUser(id: cred.user!.uid));
-      return right(unit);
+      return right("Login successful");
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found' || e.code == 'wrong-password') {
-        return left(const AuthFailure.invalidEmailAndPasswordCombination());
+        return left("Invalid email and password combination");
       } else {
-        return left(const AuthFailure.serverError());
+        return left("Encountered a server error");
       }
     }
   }
@@ -114,11 +114,10 @@ class FirebaseAuthFacade implements IAuthFacade {
   }
 
   @override
-  Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword({required EmailAddress emailAddress, required Password password, required UserName firstName, required UserName lastName}) async {
+  Future<Either<String, String>> registerWithEmailAndPassword({required EmailAddress emailAddress, required Password password, required UserName firstName, required UserName lastName}) async {
     final emailAddressString = emailAddress.getOrCrash();
     final passwordString = password.getOrCrash();
     final phoneNumber = firebaseAuth.currentUser!.phoneNumber;
-    const timeout = Duration(seconds: 60);
     final fName = firstName.getOrCrash();
     final lName = lastName.getOrCrash();
     var displayName = "${fName[0]}${lName[0]}";
@@ -141,16 +140,13 @@ class FirebaseAuthFacade implements IAuthFacade {
           "id": UniqueId.fromUniqueString(value.user!.uid),
           "displayName": displayName
         });
-        // .then((_) {
-        //   registerPhoneNumber(phoneNumber: Phone(phoneNumber), timeout: timeout);
-        // });
       });
-      return right(unit);
+      return right("Registration successfull successfully");
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
-        return left(const AuthFailure.emailAlreadyInUse());
+        return left("Email address already in use");
       } else {
-        return left(const AuthFailure.serverError());
+        return left("Encountered a server error");
       }
     }
   }
