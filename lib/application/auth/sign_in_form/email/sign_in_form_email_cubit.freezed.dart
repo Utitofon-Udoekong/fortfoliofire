@@ -24,14 +24,16 @@ class _$SignInFormEmailStateTearOff {
       required bool isSubmitting,
       required bool isObscure,
       required bool showErrorMessages,
-      required Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption}) {
+      required String failure,
+      required String success}) {
     return _SignInFormEmailState(
       emailAddress: emailAddress,
       password: password,
       isSubmitting: isSubmitting,
       isObscure: isObscure,
       showErrorMessages: showErrorMessages,
-      authFailureOrSuccessOption: authFailureOrSuccessOption,
+      failure: failure,
+      success: success,
     );
   }
 }
@@ -46,8 +48,8 @@ mixin _$SignInFormEmailState {
   bool get isSubmitting => throw _privateConstructorUsedError;
   bool get isObscure => throw _privateConstructorUsedError;
   bool get showErrorMessages => throw _privateConstructorUsedError;
-  Option<Either<AuthFailure, Unit>> get authFailureOrSuccessOption =>
-      throw _privateConstructorUsedError;
+  String get failure => throw _privateConstructorUsedError;
+  String get success => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SignInFormEmailStateCopyWith<SignInFormEmailState> get copyWith =>
@@ -65,7 +67,8 @@ abstract class $SignInFormEmailStateCopyWith<$Res> {
       bool isSubmitting,
       bool isObscure,
       bool showErrorMessages,
-      Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption});
+      String failure,
+      String success});
 }
 
 /// @nodoc
@@ -84,7 +87,8 @@ class _$SignInFormEmailStateCopyWithImpl<$Res>
     Object? isSubmitting = freezed,
     Object? isObscure = freezed,
     Object? showErrorMessages = freezed,
-    Object? authFailureOrSuccessOption = freezed,
+    Object? failure = freezed,
+    Object? success = freezed,
   }) {
     return _then(_value.copyWith(
       emailAddress: emailAddress == freezed
@@ -107,10 +111,14 @@ class _$SignInFormEmailStateCopyWithImpl<$Res>
           ? _value.showErrorMessages
           : showErrorMessages // ignore: cast_nullable_to_non_nullable
               as bool,
-      authFailureOrSuccessOption: authFailureOrSuccessOption == freezed
-          ? _value.authFailureOrSuccessOption
-          : authFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
-              as Option<Either<AuthFailure, Unit>>,
+      failure: failure == freezed
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as String,
+      success: success == freezed
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -128,7 +136,8 @@ abstract class _$SignInFormEmailStateCopyWith<$Res>
       bool isSubmitting,
       bool isObscure,
       bool showErrorMessages,
-      Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption});
+      String failure,
+      String success});
 }
 
 /// @nodoc
@@ -149,7 +158,8 @@ class __$SignInFormEmailStateCopyWithImpl<$Res>
     Object? isSubmitting = freezed,
     Object? isObscure = freezed,
     Object? showErrorMessages = freezed,
-    Object? authFailureOrSuccessOption = freezed,
+    Object? failure = freezed,
+    Object? success = freezed,
   }) {
     return _then(_SignInFormEmailState(
       emailAddress: emailAddress == freezed
@@ -172,10 +182,14 @@ class __$SignInFormEmailStateCopyWithImpl<$Res>
           ? _value.showErrorMessages
           : showErrorMessages // ignore: cast_nullable_to_non_nullable
               as bool,
-      authFailureOrSuccessOption: authFailureOrSuccessOption == freezed
-          ? _value.authFailureOrSuccessOption
-          : authFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
-              as Option<Either<AuthFailure, Unit>>,
+      failure: failure == freezed
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as String,
+      success: success == freezed
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -189,7 +203,8 @@ class _$_SignInFormEmailState extends _SignInFormEmailState {
       required this.isSubmitting,
       required this.isObscure,
       required this.showErrorMessages,
-      required this.authFailureOrSuccessOption})
+      required this.failure,
+      required this.success})
       : super._();
 
   @override
@@ -203,11 +218,13 @@ class _$_SignInFormEmailState extends _SignInFormEmailState {
   @override
   final bool showErrorMessages;
   @override
-  final Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption;
+  final String failure;
+  @override
+  final String success;
 
   @override
   String toString() {
-    return 'SignInFormEmailState(emailAddress: $emailAddress, password: $password, isSubmitting: $isSubmitting, isObscure: $isObscure, showErrorMessages: $showErrorMessages, authFailureOrSuccessOption: $authFailureOrSuccessOption)';
+    return 'SignInFormEmailState(emailAddress: $emailAddress, password: $password, isSubmitting: $isSubmitting, isObscure: $isObscure, showErrorMessages: $showErrorMessages, failure: $failure, success: $success)';
   }
 
   @override
@@ -223,8 +240,8 @@ class _$_SignInFormEmailState extends _SignInFormEmailState {
             const DeepCollectionEquality().equals(other.isObscure, isObscure) &&
             const DeepCollectionEquality()
                 .equals(other.showErrorMessages, showErrorMessages) &&
-            const DeepCollectionEquality().equals(
-                other.authFailureOrSuccessOption, authFailureOrSuccessOption));
+            const DeepCollectionEquality().equals(other.failure, failure) &&
+            const DeepCollectionEquality().equals(other.success, success));
   }
 
   @override
@@ -235,7 +252,8 @@ class _$_SignInFormEmailState extends _SignInFormEmailState {
       const DeepCollectionEquality().hash(isSubmitting),
       const DeepCollectionEquality().hash(isObscure),
       const DeepCollectionEquality().hash(showErrorMessages),
-      const DeepCollectionEquality().hash(authFailureOrSuccessOption));
+      const DeepCollectionEquality().hash(failure),
+      const DeepCollectionEquality().hash(success));
 
   @JsonKey(ignore: true)
   @override
@@ -251,8 +269,8 @@ abstract class _SignInFormEmailState extends SignInFormEmailState {
       required bool isSubmitting,
       required bool isObscure,
       required bool showErrorMessages,
-      required Option<Either<AuthFailure, Unit>>
-          authFailureOrSuccessOption}) = _$_SignInFormEmailState;
+      required String failure,
+      required String success}) = _$_SignInFormEmailState;
   const _SignInFormEmailState._() : super._();
 
   @override
@@ -266,7 +284,9 @@ abstract class _SignInFormEmailState extends SignInFormEmailState {
   @override
   bool get showErrorMessages;
   @override
-  Option<Either<AuthFailure, Unit>> get authFailureOrSuccessOption;
+  String get failure;
+  @override
+  String get success;
   @override
   @JsonKey(ignore: true)
   _$SignInFormEmailStateCopyWith<_SignInFormEmailState> get copyWith =>

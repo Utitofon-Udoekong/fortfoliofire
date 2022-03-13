@@ -26,7 +26,8 @@ class _$SignUpFormStateTearOff {
       required bool isSubmitting,
       required bool isObscure,
       required bool showErrorMessages,
-      required Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption}) {
+      required String failure,
+      required String success}) {
     return _SignUpFormState(
       emailAddress: emailAddress,
       firstName: firstName,
@@ -35,7 +36,8 @@ class _$SignUpFormStateTearOff {
       isSubmitting: isSubmitting,
       isObscure: isObscure,
       showErrorMessages: showErrorMessages,
-      authFailureOrSuccessOption: authFailureOrSuccessOption,
+      failure: failure,
+      success: success,
     );
   }
 }
@@ -52,8 +54,8 @@ mixin _$SignUpFormState {
   bool get isSubmitting => throw _privateConstructorUsedError;
   bool get isObscure => throw _privateConstructorUsedError;
   bool get showErrorMessages => throw _privateConstructorUsedError;
-  Option<Either<AuthFailure, Unit>> get authFailureOrSuccessOption =>
-      throw _privateConstructorUsedError;
+  String get failure => throw _privateConstructorUsedError;
+  String get success => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SignUpFormStateCopyWith<SignUpFormState> get copyWith =>
@@ -73,7 +75,8 @@ abstract class $SignUpFormStateCopyWith<$Res> {
       bool isSubmitting,
       bool isObscure,
       bool showErrorMessages,
-      Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption});
+      String failure,
+      String success});
 }
 
 /// @nodoc
@@ -94,7 +97,8 @@ class _$SignUpFormStateCopyWithImpl<$Res>
     Object? isSubmitting = freezed,
     Object? isObscure = freezed,
     Object? showErrorMessages = freezed,
-    Object? authFailureOrSuccessOption = freezed,
+    Object? failure = freezed,
+    Object? success = freezed,
   }) {
     return _then(_value.copyWith(
       emailAddress: emailAddress == freezed
@@ -125,10 +129,14 @@ class _$SignUpFormStateCopyWithImpl<$Res>
           ? _value.showErrorMessages
           : showErrorMessages // ignore: cast_nullable_to_non_nullable
               as bool,
-      authFailureOrSuccessOption: authFailureOrSuccessOption == freezed
-          ? _value.authFailureOrSuccessOption
-          : authFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
-              as Option<Either<AuthFailure, Unit>>,
+      failure: failure == freezed
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as String,
+      success: success == freezed
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -148,7 +156,8 @@ abstract class _$SignUpFormStateCopyWith<$Res>
       bool isSubmitting,
       bool isObscure,
       bool showErrorMessages,
-      Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption});
+      String failure,
+      String success});
 }
 
 /// @nodoc
@@ -171,7 +180,8 @@ class __$SignUpFormStateCopyWithImpl<$Res>
     Object? isSubmitting = freezed,
     Object? isObscure = freezed,
     Object? showErrorMessages = freezed,
-    Object? authFailureOrSuccessOption = freezed,
+    Object? failure = freezed,
+    Object? success = freezed,
   }) {
     return _then(_SignUpFormState(
       emailAddress: emailAddress == freezed
@@ -202,10 +212,14 @@ class __$SignUpFormStateCopyWithImpl<$Res>
           ? _value.showErrorMessages
           : showErrorMessages // ignore: cast_nullable_to_non_nullable
               as bool,
-      authFailureOrSuccessOption: authFailureOrSuccessOption == freezed
-          ? _value.authFailureOrSuccessOption
-          : authFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
-              as Option<Either<AuthFailure, Unit>>,
+      failure: failure == freezed
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as String,
+      success: success == freezed
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -221,7 +235,8 @@ class _$_SignUpFormState extends _SignUpFormState {
       required this.isSubmitting,
       required this.isObscure,
       required this.showErrorMessages,
-      required this.authFailureOrSuccessOption})
+      required this.failure,
+      required this.success})
       : super._();
 
   @override
@@ -239,11 +254,13 @@ class _$_SignUpFormState extends _SignUpFormState {
   @override
   final bool showErrorMessages;
   @override
-  final Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption;
+  final String failure;
+  @override
+  final String success;
 
   @override
   String toString() {
-    return 'SignUpFormState(emailAddress: $emailAddress, firstName: $firstName, lastName: $lastName, password: $password, isSubmitting: $isSubmitting, isObscure: $isObscure, showErrorMessages: $showErrorMessages, authFailureOrSuccessOption: $authFailureOrSuccessOption)';
+    return 'SignUpFormState(emailAddress: $emailAddress, firstName: $firstName, lastName: $lastName, password: $password, isSubmitting: $isSubmitting, isObscure: $isObscure, showErrorMessages: $showErrorMessages, failure: $failure, success: $success)';
   }
 
   @override
@@ -261,8 +278,8 @@ class _$_SignUpFormState extends _SignUpFormState {
             const DeepCollectionEquality().equals(other.isObscure, isObscure) &&
             const DeepCollectionEquality()
                 .equals(other.showErrorMessages, showErrorMessages) &&
-            const DeepCollectionEquality().equals(
-                other.authFailureOrSuccessOption, authFailureOrSuccessOption));
+            const DeepCollectionEquality().equals(other.failure, failure) &&
+            const DeepCollectionEquality().equals(other.success, success));
   }
 
   @override
@@ -275,7 +292,8 @@ class _$_SignUpFormState extends _SignUpFormState {
       const DeepCollectionEquality().hash(isSubmitting),
       const DeepCollectionEquality().hash(isObscure),
       const DeepCollectionEquality().hash(showErrorMessages),
-      const DeepCollectionEquality().hash(authFailureOrSuccessOption));
+      const DeepCollectionEquality().hash(failure),
+      const DeepCollectionEquality().hash(success));
 
   @JsonKey(ignore: true)
   @override
@@ -292,8 +310,8 @@ abstract class _SignUpFormState extends SignUpFormState {
       required bool isSubmitting,
       required bool isObscure,
       required bool showErrorMessages,
-      required Option<Either<AuthFailure, Unit>>
-          authFailureOrSuccessOption}) = _$_SignUpFormState;
+      required String failure,
+      required String success}) = _$_SignUpFormState;
   const _SignUpFormState._() : super._();
 
   @override
@@ -311,7 +329,9 @@ abstract class _SignUpFormState extends SignUpFormState {
   @override
   bool get showErrorMessages;
   @override
-  Option<Either<AuthFailure, Unit>> get authFailureOrSuccessOption;
+  String get failure;
+  @override
+  String get success;
   @override
   @JsonKey(ignore: true)
   _$SignUpFormStateCopyWith<_SignUpFormState> get copyWith =>

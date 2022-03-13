@@ -10,7 +10,7 @@ class LoadingView extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Container(
       decoration: BoxDecoration(
-        color: kPrimaryColor.withOpacity(0.9),
+        color: kPrimaryColor.withOpacity(0.45),
       ),
       width: size.width,
       height: size.height,

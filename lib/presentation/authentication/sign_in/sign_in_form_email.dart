@@ -21,30 +21,17 @@ class SignInFormEmail extends StatelessWidget {
         body: MultiBlocListener(
             listeners: [
               BlocListener<SignInFormEmailCubit, SignInFormEmailState>(
+                listenWhen: (p, c) =>
+                    p.failure != c.failure && c.failure.isNotEmpty,
                 listener: (context, state) {
-                  state.authFailureOrSuccessOption.fold(
-                      () {},
-                      (either) => either.fold((failure) {
-                            CustomSnackbar.showSnackBar(
-                              context,
-                              failure.maybeMap(
-                                orElse: () => "",
-                                serverError: (_) =>
-                                    'Encountered a server error',
-                                invalidEmailAndPasswordCombination: (_) =>
-                                    "Invalid email or Password",
-                                tooManyRequests: (_) => "Too Many Requests",
-                                emailAlreadyInUse: (_) =>
-                                    'Email address already in use',
-                                smsTimeout: (_) => "Sms Timeout",
-                                sessionExpired: (_) => "Session Expired",
-                                invalidVerificationCode: (_) =>
-                                    "Invalid Verification Code",
-                              ),
-                              
-                              true,
-                            );
-                          }, (r) {}));
+                  CustomSnackbar.showSnackBar(context, state.failure, true);
+                },
+              ),
+              BlocListener<SignInFormEmailCubit, SignInFormEmailState>(
+                listenWhen: (p, c) =>
+                    p.success != c.success && c.success.isNotEmpty,
+                listener: (context, state) {
+                  CustomSnackbar.showSnackBar(context, state.success, true);
                 },
               ),
               BlocListener<AuthCubit, AuthState>(
@@ -121,8 +108,10 @@ class SignInFormEmail extends StatelessWidget {
                                 )
                               ],
                             ),
-                            BlocBuilder<SignInFormEmailCubit, SignInFormEmailState>(
-                              buildWhen: (p,c) => p.emailAddress!= c.emailAddress,
+                            BlocBuilder<SignInFormEmailCubit,
+                                SignInFormEmailState>(
+                              buildWhen: (p, c) =>
+                                  p.emailAddress != c.emailAddress,
                               builder: (context, state) {
                                 return TextFormField(
                                   decoration: const InputDecoration(
