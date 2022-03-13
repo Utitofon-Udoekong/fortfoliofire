@@ -80,6 +80,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
       });
     }catch (e) {
       emit(state.copyWith(isLoading: false));
+      print(e);
       log(e.toString());
     }
   }
