@@ -14,12 +14,6 @@ class WalletOverview extends StatelessWidget {
   Widget build(BuildContext context) {
     final regExp = RegExp(r".");
     final eye = SvgPicture.asset('images/eye.svg', width: 20);
-    // final fortDollarActive = context.select(
-    //     (WalletCubit walletCubit) => walletCubit.state.isFortDollarActive);
-    // final fortShieldActive = context.select(
-    //     (WalletCubit walletCubit) => walletCubit.state.isFortShieldActive);
-    // final fortCryptoActive = context.select(
-    //     (WalletCubit walletCubit) => walletCubit.state.isFortCryptoActive);
     final fortCryptoBalance = context.select((WalletCubit walletCubit) =>
         walletCubit.state.fortCryptoInvestmentBalance);
     final fortShieldBalance = context.select((WalletCubit walletCubit) =>
@@ -53,7 +47,7 @@ class WalletOverview extends StatelessWidget {
                               style: subTitle.copyWith(
                                   fontSize: 14, color: kWhiteColor)),
                           const SizedBox(
-                            width: 10,
+                            width: 5,
                           ),
                           IconButton(
                               onPressed: () => context
@@ -97,7 +91,6 @@ class WalletOverview extends StatelessWidget {
                     decoration: BoxDecoration(
                         border: Border.all(
                           color: kWhiteColor,
-                          // width: 1.5,
                         ),
                         borderRadius: BorderRadius.circular(5.0)),
                     child: GestureDetector(

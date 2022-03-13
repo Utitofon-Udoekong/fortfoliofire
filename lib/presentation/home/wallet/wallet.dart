@@ -28,57 +28,58 @@ class _WalletState extends State<Wallet> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-      body: Padding(
-        padding: kDefaultPadding,
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height,
-          child: Column(
-            children: <Widget>[
-              Container(
-                width: MediaQuery.of(context).size.height,
-                decoration: const BoxDecoration(
-                  color: Colors.transparent,
-                ),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(5),
-                      child: TabBar(
-                        unselectedLabelColor: const Color(0XFF656565),
-                        labelColor: kBlackColor,
-                        indicator: const BoxDecoration(
-                            border: Border(
-                                bottom: BorderSide(
-                                    color: kPrimaryColor, width: 3.0))),
-                        controller: _tabController,
-                        tabs: const [
-                          Tab(
-                            text: 'Overview',
-                          ),
-                          Tab(
-                            text: 'Transactions',
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+    return Scaffold(
+      body: SafeArea(
+        child: Padding(
+          padding: kDefaultPadding,
+          child: SizedBox(
+        height: MediaQuery.of(context).size.height,
+        child: Column(
+          children: <Widget>[
+            Container(
+              width: MediaQuery.of(context).size.height,
+              decoration: const BoxDecoration(
+                color: Colors.transparent,
               ),
-              Expanded(
-                child: TabBarView(
-                  controller: _tabController,
-                  children: const <Widget>[
-                    WalletOverviewEngine(),
-                    WalletTransactions()
-                  ],
-                ),
-              )
-            ],
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(5),
+                    child: TabBar(
+                      unselectedLabelColor: const Color(0XFF656565),
+                      labelColor: kBlackColor,
+                      indicator: const BoxDecoration(
+                          border: Border(
+                              bottom: BorderSide(
+                                  color: kPrimaryColor, width: 3.0))),
+                      controller: _tabController,
+                      tabs: const [
+                        Tab(
+                          text: 'Overview',
+                        ),
+                        Tab(
+                          text: 'Transactions',
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: TabBarView(
+                controller: _tabController,
+                children: const <Widget>[
+                  WalletOverviewEngine(),
+                  WalletTransactions()
+                ],
+              ),
+            )
+          ],
+        ),
           ),
         ),
       ),
-    ));
+    );
   }
 }

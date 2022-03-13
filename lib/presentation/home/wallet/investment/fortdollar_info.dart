@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
-import 'package:fortfolio/domain/user/investment.dart';
 import 'package:fortfolio/domain/widgets/custom_outlined_button.dart';
 import 'package:fortfolio/injection.dart';
 import 'package:fortfolio/presentation/home/wallet/cubit/wallet_cubit.dart';
@@ -35,9 +34,12 @@ class FortDollarInvestmentInfo extends StatelessWidget {
                     onTap: () => context.router.pop(),
                     child: const Icon(Icons.close),
                   ),
-                  Text("Fortdollar",
-                      style: titleText.copyWith(
-                          fontSize: 18, fontWeight: FontWeight.w700),textAlign: TextAlign.center,)
+                  Text(
+                    "Fortdollar",
+                    style: titleText.copyWith(
+                        fontSize: 18, fontWeight: FontWeight.w700),
+                    textAlign: TextAlign.center,
+                  )
                 ]),
                 const SizedBox(height: 30),
                 Text("Total", style: subTitle.copyWith(fontSize: 12)),
@@ -91,7 +93,6 @@ class FortDollarInvestmentInfo extends StatelessWidget {
   }
 }
 
-
 Widget buildTile(String title, String amount, Function() ontap) {
   return Container(
       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 8),
@@ -103,7 +104,6 @@ Widget buildTile(String title, String amount, Function() ontap) {
         children: [
           Flex(
             direction: Axis.vertical,
-            // mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(

@@ -23,7 +23,7 @@ var titleText = GoogleFonts.raleway(
 var subTitle = GoogleFonts.raleway(
   fontSize: 18,
   fontWeight: FontWeight.w300,
-  color: kSecondaryColor
+  color: kSecondaryColor,
 );
 var textButton = GoogleFonts.raleway(
   fontSize: 16,

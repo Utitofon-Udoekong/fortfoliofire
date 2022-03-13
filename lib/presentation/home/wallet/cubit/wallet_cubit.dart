@@ -31,6 +31,7 @@ class WalletCubit extends Cubit<WalletState> {
 
   void investmentToBeWithdrawnChanged({required InvestmentItem investmentToBeWithdrawn}) {
     emit(state.copyWith(investmentToBeWithdrawn: investmentToBeWithdrawn));
+    print(investmentToBeWithdrawn);
   }
 
   void withdrawalMethodChanged({required String withdrawalMethod}) {

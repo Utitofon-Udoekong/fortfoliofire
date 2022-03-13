@@ -99,8 +99,9 @@ class SelectWithdrawalMethod extends StatelessWidget {
                                 height: 30,
                               ),
                               Text(
-                                'No payment method added yet. Add new',
+                                'No payment method added yet',
                                 style: subTitle,
+                                textAlign: TextAlign.center,
                               ),
                               const SizedBox(
                                 height: 8,

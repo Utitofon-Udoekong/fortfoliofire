@@ -13,9 +13,9 @@ class MainDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String? displayName = FirebaseAuth.instance.currentUser!.displayName;
-    // final String displayName = context
-    //     .select((AuthCubit authCubit) => authCubit.state.userModel.displayName);
+    // final String? displayName = FirebaseAuth.instance.currentUser!.displayName;
+    final String displayName = context
+        .select((AuthCubit authCubit) => authCubit.state.userModel.displayName);
     final String firstName = context
         .select((AuthCubit authCubit) => authCubit.state.userModel.firstName);
     final String lastName = context
@@ -43,7 +43,7 @@ class MainDrawer extends StatelessWidget {
                           shape: BoxShape.circle, color: Color(0XFFF5F7FA)),
                       child: CircleAvatar(
                         backgroundColor: const Color(0XFFE7E7E7),
-                        child: Text(displayName.toString(),
+                        child: Text(displayName,
                             style: const TextStyle(
                               fontSize: 25,
                               color: Color(0XFF242424),
@@ -141,7 +141,7 @@ class MainDrawer extends StatelessWidget {
                 context: context,
                 applicationName: "Fortfolio",
                 applicationVersion: "0.0.1",
-                applicationIcon: const Image(image: AssetImage("images/logo.png"),width: 30,height: 30,)
+                applicationIcon: const Image(image: AssetImage("images/logo.png"),width: 50,height: 50,)
               ),
               child: Text("Version 0.0.1",
                   style: subTitle.copyWith(

@@ -29,7 +29,6 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     durationChanged(duration: duration.toDouble());
     newList[newIndex] = true;
     emit(state.copyWith(isSelected: newList));
-    print({newIndex,newList});
   }
 
   void planNameChanged({required String planName}){

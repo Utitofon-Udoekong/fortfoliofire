@@ -32,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final svg = SvgPicture.asset('images/logo.svg',semanticsLabel: 'logo',);
+    // final svg = SvgPicture.asset('images/logo.svg',semanticsLabel: 'logo',);
     return BlocListener<AuthCubit, AuthState>(
       listenWhen: (previous, current) => 
         previous.isUserCheckedFromAuthFacade != current.isUserCheckedFromAuthFacade &&
