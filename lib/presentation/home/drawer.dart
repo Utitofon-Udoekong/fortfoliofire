@@ -69,6 +69,7 @@ class MainDrawer extends StatelessWidget {
                           style: subTitle.copyWith(
                               color: Colors.white, fontSize: 15),
                         ),
+                        const SizedBox(width: 10.0,),
                         isVerified
                             ? const Icon(
                                 Icons.verified,
@@ -85,16 +86,16 @@ class MainDrawer extends StatelessWidget {
                     )
                   ],
                 ),
-                Align(
-                  heightFactor: 2.5,
-                  alignment: Alignment.topRight,
-                  child: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.bedtime_rounded,
-                        color: kWhiteColor,
-                      )),
-                )
+                // Align(
+                //   heightFactor: 2.5,
+                //   alignment: Alignment.topRight,
+                //   child: IconButton(
+                //       onPressed: () {},
+                //       icon: const Icon(
+                //         Icons.bedtime_rounded,
+                //         color: kWhiteColor,
+                //       )),
+                // )
               ],
             ),
             decoration: const BoxDecoration(
