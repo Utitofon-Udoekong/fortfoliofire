@@ -35,26 +35,26 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
   }
 
   @override
-  Future<Option<String>> addCryptoWallet({required CryptoWallet cryptoWallet}) async {
+  Future<Either<String,String>> addCryptoWallet({required CryptoWallet cryptoWallet}) async {
     String docId = cryptoWallet.address + cryptoWallet.id;
     try {
       await firestore.authUserCollection.doc(auth.currentUser!.uid).collection("address").doc(docId).set(CryptoWalletDTO.fromDomain(cryptoWallet).toJson());
-      return some("Crypto wallet added successfully");
+      return right("Crypto wallet added successfully");
     } on FirebaseException catch (e) {
       log("Code: ${e.code}, Message: ${e.message}");
-      return some('Unable to add wallet');
+      return left('Unable to add wallet');
     }
   }
 
   @override
-  Future<Option<String>> addGeneralCryptoWallet({required CryptoWallet cryptoWallet}) async {
+  Future<Either<String,String>> addGeneralCryptoWallet({required CryptoWallet cryptoWallet}) async {
     String docId = cryptoWallet.address + cryptoWallet.id;
     try {
       await firestore.authUserCollection.doc(auth.currentUser!.uid).collection("address").doc(docId).set(CryptoWalletDTO.fromDomain(cryptoWallet).toJson());
-      return some("Crypto wallet added successfully");
+      return right("Crypto wallet added successfully");
     } on FirebaseException catch (e) {
       log("Code: ${e.code}, Message: ${e.message}");
-      return some('Unable to add wallet');
+      return left('Unable to add wallet');
     }
   }
 

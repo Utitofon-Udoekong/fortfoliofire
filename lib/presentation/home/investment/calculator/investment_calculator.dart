@@ -183,6 +183,11 @@ class Calculator extends StatelessWidget {
                                       height: 7,
                                     ),
                                     buildtile('Total Interest',
+                                        '\$${state.totalReturns - state.investmentAmount}'),
+                                    const SizedBox(
+                                      height: 7,
+                                    ),
+                                    buildtile('Total Returns',
                                         '\$${state.totalReturns}'),
                                   ],
                                 );

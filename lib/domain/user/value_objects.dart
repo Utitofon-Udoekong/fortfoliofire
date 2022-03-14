@@ -19,27 +19,6 @@ class ItemName extends ValueObject<String> {
   const ItemName._(this.value);
 }
 
-class PlanList3<T> extends ValueObject<KtList<T>> {
-  @override
-  final Either<ValueFailure<KtList<T>>, KtList<T>> value;
-
-  static const maxLength = 3;
-  factory PlanList3(KtList<T> input) {
-    assert(input.size > 0);
-    return PlanList3._(
-      validateMaxListLength(input, maxLength),
-    );
-  }
-
-  const PlanList3._(this.value);
-  int get length {
-    return value.getOrElse(() => emptyList()).size;
-  }
-  bool get isFull {
-    return length == maxLength;
-  }
-}
-
 class ItemList<T> extends ValueObject<KtList<T>> {
   @override
   final Either<ValueFailure<KtList<T>>, KtList<T>> value;

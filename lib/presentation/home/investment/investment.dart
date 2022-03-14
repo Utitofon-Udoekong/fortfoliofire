@@ -64,92 +64,95 @@ class InvestmentPage extends StatelessWidget {
 
   Widget buildCard(String icon, String title, String minPrice, String roi,
       String currency, Function() onPressed) {
-    return Container(
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(6.0),
-          color: const Color.fromRGBO(246, 249, 255, 0.55)),
-      padding: const EdgeInsets.symmetric(horizontal: 7.0, vertical: 12.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Flex(
-                direction: Axis.horizontal,
-                children: <Widget>[
-                  Image(image: AssetImage("images/$icon.png")),
-                  const SizedBox(
-                    width: 8,
-                  ),
-                  Flex(
-                    direction: Axis.vertical,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        title,
-                        style: titleText.copyWith(
-                            fontSize: 15, fontWeight: FontWeight.w700),
-                      ),
-                      Text.rich(TextSpan(
-                          text: 'up to ',
-                          children: <TextSpan>[
-                            TextSpan(
-                                text: '$roi returns',
-                                style: subTitle.copyWith(
-                                  color: kGreenColor,
-                                  fontSize: 12,
-                                )),
-                            const TextSpan(text: 'per annum'),
-                          ],
-                          style: subTitle.copyWith(
-                            fontSize: 12,
-                          )))
-                    ],
-                  ),
-                ],
-              ),
-              Text(
-                '6 - 12 months',
-                style: subTitle.copyWith(fontSize: 12, color: kGreenColor),
-              )
-            ],
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Text(
-            'Accepted currency: $currency',
-            style: subTitle.copyWith(fontSize: 14, color: kBlackColor),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Text.rich(TextSpan(
-              text: 'Minimum Investment     ',
-              style: subTitle.copyWith(fontSize: 15, color: kBlackColor),
-              children: [
-                TextSpan(
-                    text: minPrice,
-                    style: subTitle.copyWith(fontWeight: FontWeight.w600))
-              ])),
-          TextButton(
-              onPressed: onPressed,
-              child: Flex(
-                direction: Axis.horizontal,
-                children: <Widget>[
-                  Text(
-                    'Learn more',
-                    style: subTitle.copyWith(fontSize: 15, color: kGreenColor),
-                  ),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  const Icon(Icons.arrow_right_alt, color: kGreenColor)
-                ],
-              )),
-        ],
+    return InkWell(
+      onTap: onPressed,
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(6.0),
+            color: const Color.fromRGBO(246, 249, 255, 0.55)),
+        padding: const EdgeInsets.symmetric(horizontal: 7.0, vertical: 12.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Flex(
+                  direction: Axis.horizontal,
+                  children: <Widget>[
+                    Image(image: AssetImage("images/$icon.png")),
+                    const SizedBox(
+                      width: 8,
+                    ),
+                    Flex(
+                      direction: Axis.vertical,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          title,
+                          style: titleText.copyWith(
+                              fontSize: 15, fontWeight: FontWeight.w700),
+                        ),
+                        Text.rich(TextSpan(
+                            text: 'up to ',
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: '$roi returns',
+                                  style: subTitle.copyWith(
+                                    color: kGreenColor,
+                                    fontSize: 12,
+                                  )),
+                              const TextSpan(text: 'per annum'),
+                            ],
+                            style: subTitle.copyWith(
+                              fontSize: 12,
+                            )))
+                      ],
+                    ),
+                  ],
+                ),
+                Text(
+                  '6 - 12 months',
+                  style: subTitle.copyWith(fontSize: 12, color: kGreenColor),
+                )
+              ],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Text(
+              'Accepted currency: $currency',
+              style: subTitle.copyWith(fontSize: 14, color: kBlackColor),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Text.rich(TextSpan(
+                text: 'Minimum Investment     ',
+                style: subTitle.copyWith(fontSize: 15, color: kBlackColor),
+                children: [
+                  TextSpan(
+                      text: minPrice,
+                      style: subTitle.copyWith(fontWeight: FontWeight.w600))
+                ])),
+            TextButton(
+                onPressed: onPressed,
+                child: Flex(
+                  direction: Axis.horizontal,
+                  children: <Widget>[
+                    Text(
+                      'Learn more',
+                      style: subTitle.copyWith(fontSize: 15, color: kGreenColor),
+                    ),
+                    const SizedBox(
+                      width: 15,
+                    ),
+                    const Icon(Icons.arrow_right_alt, color: kGreenColor)
+                  ],
+                )),
+          ],
+        ),
       ),
     );
   }

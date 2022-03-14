@@ -1,4 +1,4 @@
-part of 'crypto_wallet_bloc.dart';
+part of 'crypto_wallet_cubit.dart';
 
 @freezed
 class CryptoWalletState with _$CryptoWalletState {
@@ -8,18 +8,20 @@ class CryptoWalletState with _$CryptoWalletState {
     required String network,
     required String address,
     required String platform,
-    required String response,
+    required String failure,
+    required String success,
     required bool isGeneral,
     required bool isloading,
   }) = _CryptoWalletState;
   const CryptoWalletState._();
-  factory CryptoWalletState.inital() => const CryptoWalletState(
+  factory CryptoWalletState.empty() => const CryptoWalletState(
     coin: "",
     walletLabel: "",
     network: "",
     address: "",
     platform: "",
-    response: "",
+    failure: "",
+    success: "",
     isGeneral: false,
     isloading: false
   );

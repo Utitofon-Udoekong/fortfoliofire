@@ -28,7 +28,7 @@ import 'infrastructure/auth/firebase_storage_facade.dart' as _i12;
 import 'infrastructure/core/firebase_injectible.dart' as _i24;
 import 'presentation/home/dashboard/screens/payment_method/bank/cubit/bank_address_cubit.dart'
     as _i22;
-import 'presentation/home/dashboard/screens/payment_method/crypto/bloc/crypto_wallet_bloc.dart'
+import 'presentation/home/dashboard/screens/payment_method/crypto/cubit/crypto_wallet_cubit.dart'
     as _i23;
 import 'presentation/home/dashboard/screens/security/cubit/security_cubit.dart'
     as _i15;
@@ -76,8 +76,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       _i21.WalletCubit(get<_i9.IFirestoreFacade>(), get<_i7.IAuthFacade>()));
   gh.factory<_i22.BankAddressCubit>(
       () => _i22.BankAddressCubit(get<_i9.IFirestoreFacade>()));
-  gh.factory<_i23.CryptoWalletBloc>(
-      () => _i23.CryptoWalletBloc(get<_i9.IFirestoreFacade>()));
+  gh.factory<_i23.CryptoWalletCubit>(
+      () => _i23.CryptoWalletCubit(get<_i9.IFirestoreFacade>()));
   return get;
 }
 

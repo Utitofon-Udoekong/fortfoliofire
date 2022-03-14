@@ -21,13 +21,15 @@ class SignUpForm extends StatelessWidget {
           child: MultiBlocListener(
             listeners: [
               BlocListener<SignUpFormCubit, SignUpFormState>(
-                listenWhen: (p, c) => p.failure != c.failure && c.failure.isNotEmpty,
+                listenWhen: (p, c) =>
+                    p.failure != c.failure && c.failure.isNotEmpty,
                 listener: (context, state) {
                   CustomSnackbar.showSnackBar(context, state.failure, true);
                 },
               ),
               BlocListener<SignUpFormCubit, SignUpFormState>(
-                listenWhen: (p, c) => p.success != c.success && c.success.isNotEmpty,
+                listenWhen: (p, c) =>
+                    p.success != c.success && c.success.isNotEmpty,
                 listener: (context, state) {
                   CustomSnackbar.showSnackBar(context, state.success, false);
                 },
@@ -106,13 +108,11 @@ class SignUpForm extends StatelessWidget {
                                         .emailAddress
                                         .value
                                         .fold(
-                                          (f) => f.maybeMap(
-                                              auth: (value) {
-                                                return value.f.failedValue;
-                                              },
-                                              orElse: () => null),
-                                          (r) => null,
-                                        ),
+                                            (f) => f.maybeMap(
+                                                invalidEmail: (_) =>
+                                                    "Invalid email address.",
+                                                orElse: () => null),
+                                            (r) => null),
                                   );
                                 },
                               ),
@@ -144,9 +144,8 @@ class SignUpForm extends StatelessWidget {
                                         .value
                                         .fold(
                                           (f) => f.maybeMap(
-                                              auth: (value) {
-                                                return value.f.failedValue;
-                                              },
+                                              shortName: (_) =>
+                                                  "Name is too short",
                                               orElse: () => null),
                                           (r) => null,
                                         ),
@@ -181,9 +180,8 @@ class SignUpForm extends StatelessWidget {
                                         .value
                                         .fold(
                                           (f) => f.maybeMap(
-                                              auth: (value) {
-                                                return value.f.failedValue;
-                                              },
+                                              shortName: (_) =>
+                                                  "Name is too short",
                                               orElse: () => null),
                                           (r) => null,
                                         ),
@@ -207,30 +205,28 @@ class SignUpForm extends StatelessWidget {
                                   return TextFormField(
                                     obscureText: isObscure,
                                     decoration: InputDecoration(
-                                        filled: true,
-                                        fillColor: const Color(0xFFF3F6F8),
-                                        border: InputBorder.none,
-                                        suffixIcon: IconButton(
-                                          onPressed: () => context
-                                              .read<SignUpFormCubit>()
-                                              .isObscureChanged(),
-                                          icon: isObscure
-                                              ? const Icon(
-                                                  Icons.visibility,
-                                                  color: kPrimaryColor,
-                                                )
-                                              : const Icon(
-                                                  Icons.visibility_off,
-                                                  color: kPrimaryColor,
-                                                ),
-                                        ),
-                                        hintText:
-                                            "",
-                                        hintStyle: TextStyle(
-                                            fontSize: 12,
-                                            color:
-                                                kgreyColor.withOpacity(0.4)),
-                                                ),
+                                      filled: true,
+                                      fillColor: const Color(0xFFF3F6F8),
+                                      border: InputBorder.none,
+                                      suffixIcon: IconButton(
+                                        onPressed: () => context
+                                            .read<SignUpFormCubit>()
+                                            .isObscureChanged(),
+                                        icon: isObscure
+                                            ? const Icon(
+                                                Icons.visibility,
+                                                color: kPrimaryColor,
+                                              )
+                                            : const Icon(
+                                                Icons.visibility_off,
+                                                color: kPrimaryColor,
+                                              ),
+                                      ),
+                                      hintText: "ABCdef@123",
+                                      hintStyle: TextStyle(
+                                          fontSize: 12,
+                                          color: kgreyColor.withOpacity(0.4)),
+                                    ),
                                     textInputAction: TextInputAction.done,
                                     onChanged: (value) => context
                                         .read<SignUpFormCubit>()
@@ -242,9 +238,8 @@ class SignUpForm extends StatelessWidget {
                                         .value
                                         .fold(
                                           (f) => f.maybeMap(
-                                              auth: (value) {
-                                                return value.f.failedValue;
-                                              },
+                                              invalidPassword: (_) =>
+                                                  "Invalid password. Must contain upper and lowercase letters, special chractersand numbers, at least 8 characters long.",
                                               orElse: () => null),
                                           (r) => null,
                                         ),

@@ -114,30 +114,27 @@ class SignInFormEmail extends StatelessWidget {
                                   p.emailAddress != c.emailAddress,
                               builder: (context, state) {
                                 return TextFormField(
-                                  decoration: const InputDecoration(
-                                      filled: true,
-                                      fillColor: Color(0xFFF3F6F8),
-                                      border: InputBorder.none),
-                                  autocorrect: false,
-                                  keyboardType: TextInputType.emailAddress,
-                                  textInputAction: TextInputAction.next,
-                                  onChanged: (value) => context
-                                      .read<SignInFormEmailCubit>()
-                                      .emailChanged(emailString: value),
-                                  validator: (_) => context
-                                      .read<SignInFormEmailCubit>()
-                                      .state
-                                      .emailAddress
-                                      .value
-                                      .fold(
-                                        (f) => f.maybeMap(
-                                            auth: (value) {
-                                              return value.f.failedValue;
-                                            },
-                                            orElse: () => null),
-                                        (r) => null,
-                                      ),
-                                );
+                                    decoration: const InputDecoration(
+                                        filled: true,
+                                        fillColor: Color(0xFFF3F6F8),
+                                        border: InputBorder.none),
+                                    autocorrect: false,
+                                    keyboardType: TextInputType.emailAddress,
+                                    textInputAction: TextInputAction.next,
+                                    onChanged: (value) => context
+                                        .read<SignInFormEmailCubit>()
+                                        .emailChanged(emailString: value),
+                                    validator: (_) => context
+                                        .read<SignInFormEmailCubit>()
+                                        .state
+                                        .emailAddress
+                                        .value
+                                        .fold(
+                                            (f) => f.maybeMap(
+                                                invalidEmail: (_) =>
+                                                    "Invalid email address.",
+                                                orElse: () => null),
+                                            (r) => null));
                               },
                             ),
                             const SizedBox(
@@ -158,6 +155,11 @@ class SignInFormEmail extends StatelessWidget {
                                         filled: true,
                                         fillColor: const Color(0xFFF3F6F8),
                                         border: InputBorder.none,
+                                        hintText: "ABCdef@123",
+                                        hintStyle: TextStyle(
+                                            fontSize: 12,
+                                            color:
+                                                kgreyColor.withOpacity(0.4)),
                                         suffixIcon: IconButton(
                                           onPressed: () => context
                                               .read<SignInFormEmailCubit>()
@@ -183,9 +185,7 @@ class SignInFormEmail extends StatelessWidget {
                                         .value
                                         .fold(
                                           (f) => f.maybeMap(
-                                              auth: (value) {
-                                                return value.f.failedValue;
-                                              },
+                                              invalidPassword: (_) => "Invalid password. Must contain upper and lowercase letters, special chractersand numbers, at least 8 characters long.",
                                               orElse: () => null),
                                           (r) => null,
                                         ),

@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
 import 'package:fortfolio/domain/user/crypto_wallet.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/crypto/networks.dart';
@@ -6,38 +7,36 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:uuid/uuid.dart';
 
-part 'crypto_wallet_event.dart';
+
 part 'crypto_wallet_state.dart';
-part 'crypto_wallet_bloc.freezed.dart';
+part 'crypto_wallet_cubit.freezed.dart';
 
 @injectable
-class CryptoWalletBloc extends Bloc<CryptoWalletEvent, CryptoWalletState> {
+class CryptoWalletCubit extends Cubit<CryptoWalletState> {
   final IFirestoreFacade firestoreFacade;
-  CryptoWalletBloc(this.firestoreFacade) : super(CryptoWalletState.inital()) {
-    on<CryptoWalletEvent>(_crytptoWalletEvents);
+  CryptoWalletCubit(this.firestoreFacade) : super(CryptoWalletState.empty());
+
+  void coinChanged({required String coin}){
+    emit(state.copyWith(coin: coin));
+  }
+  void isGeneralChanged({required bool isGeneral}){
+    emit(state.copyWith(isGeneral: isGeneral));
+  }
+  void addressChanged({required String address}){
+    emit(state.copyWith(address: address));
+  }
+  void networkChanged({required String network}){
+    emit(state.copyWith(network: network));
+  }
+  void platformChanged({required String platform}){
+    emit(state.copyWith(platform: platform));
+  }
+  void walletLabelChanged({required String walletLabel}){
+    emit(state.copyWith(walletLabel: walletLabel));
   }
 
-  _crytptoWalletEvents(
-      CryptoWalletEvent event, Emitter<CryptoWalletState> emit) async* {
-    yield* event.map(coinChanged: (e) async* {
-      yield state.copyWith(coin: e.coin);
-    }, isGeneralChanged: (e) async* {
-      yield state.copyWith(isGeneral: e.isGeneral);
-    }, addressChanged: (e) async* {
-      yield state.copyWith(address: e.address);
-    }, networkChanged: (e) async* {
-      yield state.copyWith(network: e.network);
-    }, platformChanged: (e) async* {
-      yield state.copyWith(platform: e.platform);
-    }, walletLabelChanged: (e) async* {
-      yield state.copyWith(walletLabel: e.walletLabel);
-    }, addWalletClicked: (_) async* {
-      _performWalletAddition();
-    });
-  }
-
-  _performWalletAddition() async* {
-    yield state.copyWith(isloading: true);
+  void performWalletAddition() async {
+    emit(state.copyWith(isloading: true));
     final bool isGeneral = state.isGeneral;
     final String walletLabel = state.walletLabel;
     final String coin = state.coin;
@@ -57,11 +56,13 @@ class CryptoWalletBloc extends Bloc<CryptoWalletEvent, CryptoWalletState> {
       try {
         final response = await firestoreFacade.addGeneralCryptoWallet(
             cryptoWallet: cryptoWallet);
-        response.fold(() => null, (response) async* {
-          yield state.copyWith(response: response, isloading: false);
+        response.fold((failure) {
+          emit(state.copyWith(failure: failure, isloading: false));
+        }, (success) async {
+          emit(state.copyWith(success: success, isloading: false));
         });
       } catch (e) {
-        yield state.copyWith(response: e.toString(), isloading: false);
+        print(e);
       }
     } else {
       CryptoWallet cryptoWallet = CryptoWallet(
@@ -75,11 +76,13 @@ class CryptoWalletBloc extends Bloc<CryptoWalletEvent, CryptoWalletState> {
       try {
         final response =
             await firestoreFacade.addCryptoWallet(cryptoWallet: cryptoWallet);
-        response.fold(() => null, (response) async* {
-          yield state.copyWith(response: response, isloading: false);
+        response.fold((failure) {
+          emit(state.copyWith(failure: failure, isloading: false));
+        }, (success) async {
+          emit(state.copyWith(success: success, isloading: false));
         });
       } catch (e) {
-        yield state.copyWith(response: e.toString(), isloading: false);
+        print(e);
       }
     }
   }

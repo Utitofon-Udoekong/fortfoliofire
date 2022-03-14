@@ -158,19 +158,17 @@ class _SignUpFormPhoneState extends State<SignUpFormPhone> {
                                           .phoneNumberChanged(
                                               phoneNumber:
                                                   value.completeNumber),
-                                      validator: (_) => context
-                                          .read<SignUpFormPhoneCubit>()
-                                          .state
-                                          .phoneNumber
-                                          .value
-                                          .fold(
-                                            (f) => f.maybeMap(
-                                                auth: (value) {
-                                                  return value.f.failedValue;
-                                                },
-                                                orElse: () => null),
-                                            (r) => null,
-                                          ),
+                                      // validator: (_) => context
+                                      //     .read<SignUpFormPhoneCubit>()
+                                      //     .state
+                                      //     .phoneNumber
+                                      //     .value
+                                      //     .fold(
+                                      //       (f) => f.maybeMap(
+                                      //           invalidPhone: (_),
+                                      //           orElse: () => null),
+                                      //       (r) => null,
+                                      //     ),
                                     );
                                   },
                                 ),

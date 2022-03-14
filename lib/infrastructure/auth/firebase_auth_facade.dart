@@ -159,7 +159,9 @@ class FirebaseAuthFacade implements IAuthFacade {
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
         return left("Email address already in use");
-      } else {
+      } else if (e.code == 'operation-not-allowed') {
+        return left("Operation is not permitted at the moment");
+      }else {
         return left("Encountered a server error");
       }
     }
