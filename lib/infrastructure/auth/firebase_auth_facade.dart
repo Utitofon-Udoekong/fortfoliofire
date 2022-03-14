@@ -121,7 +121,6 @@ class FirebaseAuthFacade implements IAuthFacade {
     final fName = firstName.getOrCrash();
     final lName = lastName.getOrCrash();
     var displayName = "${fName[0]}${lName[0]}";
-    final success = "";
     try {
       await firebaseAuth
           .createUserWithEmailAndPassword(
@@ -140,7 +139,7 @@ class FirebaseAuthFacade implements IAuthFacade {
           displayName: displayName
         );
         await saveUserToDatabase(userModel: authUserModel).then((value) => value.fold(() => null, (success){
-          return success = "Registration successfull";
+          return success;
         }));
         // await firestore.authUserCollection
         //     .doc(firebaseAuth.currentUser!.uid)
@@ -156,7 +155,7 @@ class FirebaseAuthFacade implements IAuthFacade {
         //   "displayName": displayName
         // });
       });
-      return right(success);
+      return right("Registration successful");
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
         return left("Email address already in use");
