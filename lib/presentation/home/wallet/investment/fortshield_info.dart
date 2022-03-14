@@ -4,9 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_outlined_button.dart';
 import 'package:fortfolio/injection.dart';
+import 'package:fortfolio/presentation/home/wallet/cubit/wallet_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
-
-import '../cubit/wallet_cubit.dart';
 
 class FortShieldInvestmentInfo extends StatelessWidget {
   const FortShieldInvestmentInfo({Key? key}) : super(key: key);
@@ -26,35 +25,41 @@ class FortShieldInvestmentInfo extends StatelessWidget {
             child: SingleChildScrollView(
           child: Padding(
             padding: kDefaultPadding,
-            child: Column(children: <Widget>[
-              Row(children: <Widget>[
-                InkWell(
-                  onTap: () => context.router.pop(),
-                  child: const Icon(Icons.close),
-                ),
-                Center(
-                    child: Text("Fortshield",
-                        style: titleText.copyWith(
-                            fontSize: 18, fontWeight: FontWeight.w700)))
-              ]),
-              const SizedBox(height: 30),
-              Text("Total", style: subTitle.copyWith(fontSize: 12)),
-              const SizedBox(height: 8),
-              Text(balance.toString(),
-                  style: titleText.copyWith(
-                      fontSize: 16, fontWeight: FontWeight.w500)),
-              const SizedBox(height: 30),
-              Text("Available for yield",
-                  style: subTitle.copyWith(fontSize: 12)),
-              const SizedBox(height: 8),
-              Text(yield.toString(),
-                  style: titleText.copyWith(
-                      fontSize: 16, fontWeight: FontWeight.w500)),
-              const SizedBox(height: 30),
-              Text("Active Investments",
-                  style: subTitle.copyWith(fontSize: 12, color: kPrimaryColor)),
-              const SizedBox(height: 15),
-              SizedBox(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                const SizedBox(height: 30),
+                Row(children: <Widget>[
+                  InkWell(
+                    onTap: () => context.router.pop(),
+                    child: const Icon(Icons.close),
+                  ),
+                  Text(
+                    "Fortshield",
+                    style: titleText.copyWith(
+                        fontSize: 18, fontWeight: FontWeight.w700),
+                    textAlign: TextAlign.center,
+                  )
+                ]),
+                const SizedBox(height: 30),
+                Text("Total", style: subTitle.copyWith(fontSize: 12)),
+                const SizedBox(height: 8),
+                Text("\$ ${balance.toString()}",
+                    style: titleText.copyWith(
+                        fontSize: 16, fontWeight: FontWeight.w500)),
+                const SizedBox(height: 30),
+                Text("Available for yield",
+                    style: subTitle.copyWith(fontSize: 12)),
+                const SizedBox(height: 8),
+                Text("\$ ${yield.toString()}",
+                    style: titleText.copyWith(
+                        fontSize: 16, fontWeight: FontWeight.w500)),
+                const SizedBox(height: 30),
+                Text("Active Investments",
+                    style:
+                        subTitle.copyWith(fontSize: 12, color: kPrimaryColor)),
+                const SizedBox(height: 15),
+                SizedBox(
                   height: 300,
                   child: ListView.builder(
                     itemCount: activeInvestments.length,
@@ -75,11 +80,12 @@ class FortShieldInvestmentInfo extends StatelessWidget {
                     }),
                   ),
                 ),
-              CustomOutlinedButton(
-                  text: 'INVEST',
-                  onTap: () =>
-                      context.router.push(const FortShieldInvestmentRoute())),
-            ]),
+                CustomOutlinedButton(
+                    text: 'INVEST',
+                    onTap: () =>
+                        context.router.push(const FortShieldInvestmentRoute())),
+              ],
+            ),
           ),
         )),
       ),
@@ -98,6 +104,7 @@ Widget buildTile(String title, String amount, Function() ontap) {
         children: [
           Flex(
             direction: Axis.vertical,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 title,
@@ -115,7 +122,6 @@ Widget buildTile(String title, String amount, Function() ontap) {
               alignment: Alignment.center,
               height: 48,
               width: 100,
-              // width: double.infinity,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color: kPrimaryColor,

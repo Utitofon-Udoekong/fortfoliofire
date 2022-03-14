@@ -83,7 +83,7 @@ class FortDollarInvestmentInfo extends StatelessWidget {
                 CustomOutlinedButton(
                     text: 'INVEST',
                     onTap: () =>
-                        context.router.push(const FortShieldInvestmentRoute())),
+                        context.router.push(const FortDollarInvestmentRoute())),
               ],
             ),
           ),

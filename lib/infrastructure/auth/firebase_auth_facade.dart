@@ -127,19 +127,31 @@ class FirebaseAuthFacade implements IAuthFacade {
               email: emailAddressString, password: passwordString)
           .then((value) async {
         firebaseAuth.currentUser!.updateDisplayName(displayName);
-        await firestore.authUserCollection
-            .doc(firebaseAuth.currentUser!.uid)
-            .set({
-          "email": emailAddressString,
-          "phoneNumber": phoneNumber,
-          "firstName": fName,
-          "lastName": lName,
-          "balance": 0,
-          "createdat": DateTime.now(),
-          "isVerified": false,
-          "id": UniqueId.fromUniqueString(value.user!.uid),
-          "displayName": displayName
-        });
+        AuthUserModel authUserModel = AuthUserModel(
+          email: emailAddressString,
+          phoneNumber: phoneNumber.toString(),
+          firstName: fName,
+          lastName: lName,
+          balance: 0,
+          createdat: DateTime.now(),
+          isVerified: false,
+          id: value.user!.uid,
+          displayName: displayName
+        );
+        await saveUserToDatabase(userModel: authUserModel);
+        // await firestore.authUserCollection
+        //     .doc(firebaseAuth.currentUser!.uid)
+        //     .set({
+        //   "email": emailAddressString,
+        //   "phoneNumber": phoneNumber,
+        //   "firstName": fName,
+        //   "lastName": lName,
+        //   "balance": 0,
+        //   "createdat": DateTime.now(),
+        //   "isVerified": false,
+        //   "id": UniqueId.fromUniqueString(value.user!.uid),
+        //   "displayName": displayName
+        // });
       });
       return right("Registration successfull successfully");
     } on FirebaseAuthException catch (e) {

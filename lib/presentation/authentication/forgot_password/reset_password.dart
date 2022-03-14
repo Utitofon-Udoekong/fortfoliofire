@@ -110,14 +110,14 @@ class ResetPassword extends StatelessWidget {
                             height: 50,
                           ),
                           BlocBuilder<ResetPasswordCubit, ResetPasswordState>(
-                            buildWhen: (p, c) => p.isSubmitting != c.isSubmitting,
+                            buildWhen: (p, c) => p.emailAddress != c.emailAddress,
                             builder: (context, state) {
                               return CustomAuthFilledButton(
                                 text: 'RESET PASSWORD',
                                 onTap: () => context
                                     .read<ResetPasswordCubit>()
                                     .requestReset(),
-                                disabled: state.isSubmitting,
+                                disabled: state.emailAddress.isValid(),
                               );
                             },
                           ),

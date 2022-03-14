@@ -23,7 +23,7 @@ Either<ValueFailure<String>, String> validatePassword(String input){
 }
 
 Either<ValueFailure<String>, String> validateUserName(String input){
-  if(input.length >= 6){
+  if(input.length >= 2){
     return right(input);
   }else {
     return left(ValueFailure.auth(AuthValueFailure.shortName(failedValue: input)));

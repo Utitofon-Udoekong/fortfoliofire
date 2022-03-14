@@ -54,10 +54,19 @@ class SignInFormEmailCubit extends Cubit<SignInFormEmailState> {
           emailAddress: state.emailAddress, password: state.password);
       failureOrSuccess.fold((failure){
         emit(state.copyWith(isSubmitting: false,failure: failure));
+        reset();
       }, (success) {
         emit(state.copyWith(isSubmitting: false,success: success));
+        reset();
       });
     }
     emit(state.copyWith(showErrorMessages: true));
+  }
+
+  void reset(){
+    emit(state.copyWith(
+      emailAddress: EmailAddress(""),
+      password: Password("")
+    ));
   }
 }

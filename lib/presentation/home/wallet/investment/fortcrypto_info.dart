@@ -12,26 +12,34 @@ class FortCryptoInvestmentInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final balance = context.select((WalletCubit walletCubit) => walletCubit.state.fortCryptoInvestmentBalance);
-    final yield = context.select((WalletCubit walletCubit) => walletCubit.state.fortCryptoYieldBalance);
-    final activeInvestments = context.select((WalletCubit walletCubit) => walletCubit.state.fortCryptoInvestments);
+    final balance = context.select((WalletCubit walletCubit) =>
+        walletCubit.state.fortCryptoInvestmentBalance);
+    final yield = context.select(
+        (WalletCubit walletCubit) => walletCubit.state.fortCryptoYieldBalance);
+    final activeInvestments = context.select(
+        (WalletCubit walletCubit) => walletCubit.state.fortCryptoInvestments);
     return BlocProvider.value(
       value: getIt<WalletCubit>(),
       child: Scaffold(
-          body: SafeArea(
-              child: SingleChildScrollView(
-            child: Padding(
-              padding: kDefaultPadding,
-              child: Column(children: <Widget>[
+        body: SafeArea(
+            child: SingleChildScrollView(
+          child: Padding(
+            padding: kDefaultPadding,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                const SizedBox(height: 30),
                 Row(children: <Widget>[
                   InkWell(
                     onTap: () => context.router.pop(),
                     child: const Icon(Icons.close),
                   ),
-                  Center(
-                      child: Text("Fortcrypto",
-                          style: titleText.copyWith(
-                              fontSize: 18, fontWeight: FontWeight.w700)))
+                  Text(
+                    "Fortcrytpo",
+                    style: titleText.copyWith(
+                        fontSize: 18, fontWeight: FontWeight.w700),
+                    textAlign: TextAlign.center,
+                  )
                 ]),
                 const SizedBox(height: 30),
                 Text("Total", style: subTitle.copyWith(fontSize: 12)),
@@ -43,12 +51,13 @@ class FortCryptoInvestmentInfo extends StatelessWidget {
                 Text("Available for yield",
                     style: subTitle.copyWith(fontSize: 12)),
                 const SizedBox(height: 8),
-                Text("\$${yield.toString()}",
+                Text("\$ ${yield.toString()}",
                     style: titleText.copyWith(
                         fontSize: 16, fontWeight: FontWeight.w500)),
                 const SizedBox(height: 30),
                 Text("Active Investments",
-                    style: subTitle.copyWith(fontSize: 12, color: kPrimaryColor)),
+                    style:
+                        subTitle.copyWith(fontSize: 12, color: kPrimaryColor)),
                 const SizedBox(height: 15),
                 SizedBox(
                   height: 300,
@@ -71,15 +80,15 @@ class FortCryptoInvestmentInfo extends StatelessWidget {
                     }),
                   ),
                 ),
-                const Spacer(),
                 CustomOutlinedButton(
-                          text: 'INVEST',
-                          onTap: () =>
-                              context.router.push(const FortShieldInvestmentRoute())),
-              ]),
+                    text: 'INVEST',
+                    onTap: () =>
+                        context.router.push(const FortCryptoInvestmentRoute())),
+              ],
             ),
-          )),
-        ),
+          ),
+        )),
+      ),
     );
   }
 }
@@ -95,6 +104,7 @@ Widget buildTile(String title, String amount, Function() ontap) {
         children: [
           Flex(
             direction: Axis.vertical,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 title,
@@ -109,18 +119,18 @@ Widget buildTile(String title, String amount, Function() ontap) {
           GestureDetector(
             onTap: ontap,
             child: Container(
-                alignment: Alignment.center,
-                height: 48,
-                width: 100,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: kPrimaryColor,
-                ),
-                child: Text(
-                  'Withdraw',
-                  style: textButton.copyWith(color: kWhiteColor, fontSize: 15),
-                ),
+              alignment: Alignment.center,
+              height: 48,
+              width: 100,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: kPrimaryColor,
               ),
+              child: Text(
+                'Withdraw',
+                style: textButton.copyWith(color: kWhiteColor, fontSize: 15),
+              ),
+            ),
           ),
         ],
       ));

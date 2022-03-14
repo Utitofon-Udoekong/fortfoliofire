@@ -262,10 +262,7 @@ class FortCryptoInvestment extends StatelessWidget {
                       return CustomAuthFilledButton(
                           text: 'INVEST NOW',
                           onTap: () {
-                            showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return AlertDialog(
+                            var dialog = AlertDialog(
                                     title: const Text(
                                       "Please confirm your investment transaction",
                                       textAlign: TextAlign.center,
@@ -316,6 +313,10 @@ class FortCryptoInvestment extends StatelessWidget {
                                     actionsPadding: const EdgeInsets.symmetric(
                                         horizontal: 10.0, vertical: 10),
                                   );
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return dialog;
                                 });
                           },
                           disabled: !state.agreementAccepted);

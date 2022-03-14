@@ -280,8 +280,7 @@ class _FortShieldInvestmentState extends State<FortShieldInvestment> {
                       return CustomAuthFilledButton(
                           text: 'INVEST NOW',
                           onTap: () {
-                            showDialog(context: context, builder: (BuildContext context){
-                              return AlertDialog(
+                            var dialog = AlertDialog(
                               title: const Text(
                                   "Please confirm your investment transaction", textAlign: TextAlign.center,),
                               titleTextStyle: titleText.copyWith(fontSize: 16),
@@ -326,6 +325,8 @@ class _FortShieldInvestmentState extends State<FortShieldInvestment> {
                               actionsPadding:
                                   const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
                             );
+                            showDialog(context: context, builder: (BuildContext context){
+                              return dialog;
                             });
                           },
                           disabled: !state.agreementAccepted);

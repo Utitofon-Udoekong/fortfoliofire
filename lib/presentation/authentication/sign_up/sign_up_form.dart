@@ -225,11 +225,12 @@ class SignUpForm extends StatelessWidget {
                                                 ),
                                         ),
                                         hintText:
-                                            "Password must be atleast 8 charcaters, contain a number, lower and uppercase letters, with a special character(@,#)",
+                                            "",
                                         hintStyle: TextStyle(
                                             fontSize: 12,
                                             color:
-                                                kgreyColor.withOpacity(0.4))),
+                                                kgreyColor.withOpacity(0.4)),
+                                                ),
                                     textInputAction: TextInputAction.done,
                                     onChanged: (value) => context
                                         .read<SignUpFormCubit>()
