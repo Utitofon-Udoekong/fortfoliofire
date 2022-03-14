@@ -46,7 +46,7 @@ class Dashboard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                buildSmallIcons('images/Activity-small.svg', 'Investments', () => context.router.push(const InvestmentPageRoute())),
+                buildSmallIcons('images/Activity-small.svg', 'Investments', () => context.pushRoute(const InvestmentPageRoute())),
                 buildSmallIcons('images/Swap.svg', 'Transactions', () => context.router.push(const DashboardTransactionsRoute())),
                 buildSmallIcons('images/Chart.svg', 'Invest Calculator', () => context.router.push(const CalculatorRoute())),
               ],
@@ -67,8 +67,8 @@ class Dashboard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                buildBigIcons('images/bolt.svg', 'Active Investments', const Color(0XFF00ADEE), 'See your current investments, invest more and get recommendations.', 'Active Invests', () => context.router.push(const InvestmentPageRoute()), context),
-                buildBigIcons('images/Activity-big.svg', 'Quick Investments', const Color(0XFF00C566), 'Find invsestments that fit with your area of interest & get started!', 'Quick Invest', () => context.router.push(const InvestmentPageRoute()), context),
+                buildBigIcons('images/bolt.svg', 'Active Investments', const Color(0XFF00ADEE), 'See your current investments, invest more and get recommendations.', 'Active Invests', () => context.pushRoute(const InvestmentPageRoute()), context),
+                buildBigIcons('images/Activity-big.svg', 'Quick Investments', const Color(0XFF00C566), 'Find invsestments that fit with your area of interest & get started!', 'Quick Invest', () => context.pushRoute(const InvestmentPageRoute()), context),
               ],
             ),
             const SizedBox(height: 10,),

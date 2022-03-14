@@ -126,11 +126,12 @@ class MainDrawer extends StatelessWidget {
                 text: 'LOGOUT',
                 onTap: () {
                   context.router.pop();
+                  context.replaceRoute(const OnboardingScreenRoute());
                 },
                 icon: 'images/logout.png'),
           ),
           const SizedBox(
-            height: 40,
+            height: 30,
           ),
           Align(
             alignment: Alignment.bottomLeft,
