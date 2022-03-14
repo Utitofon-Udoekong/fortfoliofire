@@ -121,6 +121,7 @@ class FirebaseAuthFacade implements IAuthFacade {
     final fName = firstName.getOrCrash();
     final lName = lastName.getOrCrash();
     var displayName = "${fName[0]}${lName[0]}";
+    final success = "";
     try {
       await firebaseAuth
           .createUserWithEmailAndPassword(
@@ -138,7 +139,9 @@ class FirebaseAuthFacade implements IAuthFacade {
           id: value.user!.uid,
           displayName: displayName
         );
-        await saveUserToDatabase(userModel: authUserModel);
+        await saveUserToDatabase(userModel: authUserModel).then((value) => value.fold(() => null, (success){
+          return success = "Registration successfull";
+        }));
         // await firestore.authUserCollection
         //     .doc(firebaseAuth.currentUser!.uid)
         //     .set({
@@ -153,7 +156,7 @@ class FirebaseAuthFacade implements IAuthFacade {
         //   "displayName": displayName
         // });
       });
-      return right("Registration successfull successfully");
+      return right(success);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
         return left("Email address already in use");
@@ -179,13 +182,13 @@ class FirebaseAuthFacade implements IAuthFacade {
   }
 
   @override
-  Future<Option<Unit>> saveUserToDatabase({required AuthUserModel userModel}) async {
+  Future<Option<String>> saveUserToDatabase({required AuthUserModel userModel}) async {
     log(userModel.toString());
     try {
       firestore.authUserCollection
           .doc(firebaseAuth.currentUser!.uid)
           .set(AuthUserModelDto.fromDomain(userModel).toJson());
-      return some(unit);
+      return some("Registration successful");
     } catch (e) {
       log("saveUserToDatabase error: $e");
       return none();

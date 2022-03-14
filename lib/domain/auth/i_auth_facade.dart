@@ -49,7 +49,7 @@ abstract class IAuthFacade {
   // database changes
   Stream<AuthUserModel> databaseUserChanges({required String userId});
   // saveUserToDatabase
-  Future<Option<Unit>> saveUserToDatabase({
+  Future<Option<String>> saveUserToDatabase({
     required AuthUserModel userModel,
   });
   // mr robot
