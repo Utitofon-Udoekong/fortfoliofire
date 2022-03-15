@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/application/auth/sign_up_form/email/sign_up_form_cubit.dart';
 import 'package:fortfolio/domain/auth/value_objects.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
@@ -32,6 +33,7 @@ class SignUpForm extends StatelessWidget {
                     p.success != c.success && c.success.isNotEmpty,
                 listener: (context, state) {
                   CustomSnackbar.showSnackBar(context, state.success, false);
+                  context.router.push(const SignUpFormPhoneRoute());
                 },
               ),
             ],
@@ -243,6 +245,7 @@ class SignUpForm extends StatelessWidget {
                                               orElse: () => null),
                                           (r) => null,
                                         ),
+                                        maxLines: 3,
                                   );
                                 },
                               ),

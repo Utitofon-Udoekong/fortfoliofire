@@ -21,9 +21,7 @@ class FirebaseAuthFacade implements IAuthFacade {
   final FirebaseAuth firebaseAuth;
   final FirebaseFirestore firestore;
 
-  FirebaseAuthFacade(
-      {required this.firestore,
-      required this.firebaseAuth});
+  FirebaseAuthFacade({required this.firestore, required this.firebaseAuth});
 
   @override
   Stream<AuthUserModel> get authStateChanges {
@@ -58,12 +56,15 @@ class FirebaseAuthFacade implements IAuthFacade {
   }
 
   @override
-  Future<Either<String,String>> loginWithEmailAndPassword({required EmailAddress emailAddress, required Password password}) async{
+  Future<Either<String, String>> loginWithEmailAndPassword(
+      {required EmailAddress emailAddress, required Password password}) async {
     final emailAddressString = emailAddress.getOrCrash();
     final passwordString = password.getOrCrash();
     try {
-      await firebaseAuth.signInWithEmailAndPassword(
-          email: emailAddressString, password: passwordString).then((cred) => getDatabaseUser(id: cred.user!.uid));
+      await firebaseAuth
+          .signInWithEmailAndPassword(
+              email: emailAddressString, password: passwordString)
+          .then((cred) => getDatabaseUser(id: cred.user!.uid));
       return right("Login successful");
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found' || e.code == 'wrong-password') {
@@ -75,7 +76,8 @@ class FirebaseAuthFacade implements IAuthFacade {
   }
 
   @override
-  Stream<Either<AuthFailure, String>> registerPhoneNumber({required Phone phoneNumber, required Duration timeout}) async* {
+  Stream<Either<AuthFailure, String>> registerPhoneNumber(
+      {required Phone phoneNumber, required Duration timeout}) async* {
     final StreamController<Either<AuthFailure, String>> streamController =
         StreamController<Either<AuthFailure, String>>();
 
@@ -114,10 +116,14 @@ class FirebaseAuthFacade implements IAuthFacade {
   }
 
   @override
-  Future<Either<String, String>> registerWithEmailAndPassword({required EmailAddress emailAddress, required Password password, required UserName firstName, required UserName lastName}) async {
+  Future<Either<String, String>> registerWithEmailAndPassword(
+      {required EmailAddress emailAddress,
+      required Password password,
+      required UserName firstName,
+      required UserName lastName}) async {
     final emailAddressString = emailAddress.getOrCrash();
     final passwordString = password.getOrCrash();
-    final phoneNumber = firebaseAuth.currentUser!.phoneNumber;
+    // final phoneNumber = firebaseAuth.currentUser.phoneNumber.;
     final fName = firstName.getOrCrash();
     final lName = lastName.getOrCrash();
     var displayName = "${fName[0]}${lName[0]}";
@@ -126,34 +132,19 @@ class FirebaseAuthFacade implements IAuthFacade {
           .createUserWithEmailAndPassword(
               email: emailAddressString, password: passwordString)
           .then((value) async {
-        firebaseAuth.currentUser!.updateDisplayName(displayName);
+        await firebaseAuth.currentUser!.updateDisplayName(displayName);
         AuthUserModel authUserModel = AuthUserModel(
-          email: emailAddressString,
-          phoneNumber: phoneNumber.toString(),
-          firstName: fName,
-          lastName: lName,
-          balance: 0,
-          createdat: DateTime.now(),
-          isVerified: false,
-          id: value.user!.uid,
-          displayName: displayName
-        );
-        await saveUserToDatabase(userModel: authUserModel).then((value) => value.fold(() => null, (success){
-          return success;
-        }));
-        // await firestore.authUserCollection
-        //     .doc(firebaseAuth.currentUser!.uid)
-        //     .set({
-        //   "email": emailAddressString,
-        //   "phoneNumber": phoneNumber,
-        //   "firstName": fName,
-        //   "lastName": lName,
-        //   "balance": 0,
-        //   "createdat": DateTime.now(),
-        //   "isVerified": false,
-        //   "id": UniqueId.fromUniqueString(value.user!.uid),
-        //   "displayName": displayName
-        // });
+            email: emailAddressString,
+            phoneNumber: "phoneNumber",
+            firstName: fName,
+            lastName: lName,
+            balance: 0,
+            createdat: DateTime.now(),
+            isVerified: false,
+            id: value.user!.uid,
+            displayName: displayName);
+            log(authUserModel.toString());
+        await saveUserToDatabase(userModel: authUserModel);
       });
       return right("Registration successful");
     } on FirebaseAuthException catch (e) {
@@ -161,14 +152,15 @@ class FirebaseAuthFacade implements IAuthFacade {
         return left("Email address already in use");
       } else if (e.code == 'operation-not-allowed') {
         return left("Operation is not permitted at the moment");
-      }else {
+      } else {
         return left("Encountered a server error");
       }
     }
   }
 
   @override
-  Future<Either<String,String>> resetPassword({required EmailAddress emailAddress}) async {
+  Future<Either<String, String>> resetPassword(
+      {required EmailAddress emailAddress}) async {
     final email = emailAddress.getOrCrash();
     try {
       await firebaseAuth.sendPasswordResetEmail(email: email);
@@ -183,10 +175,11 @@ class FirebaseAuthFacade implements IAuthFacade {
   }
 
   @override
-  Future<Option<String>> saveUserToDatabase({required AuthUserModel userModel}) async {
+  Future<Option<String>> saveUserToDatabase(
+      {required AuthUserModel userModel}) async {
     log(userModel.toString());
     try {
-      firestore.authUserCollection
+      await firestore.authUserCollection
           .doc(firebaseAuth.currentUser!.uid)
           .set(AuthUserModelDto.fromDomain(userModel).toJson());
       return some("Registration successful");
@@ -197,7 +190,8 @@ class FirebaseAuthFacade implements IAuthFacade {
   }
 
   @override
-  Stream<Either<AuthFailure, String>> signInWithPhoneNumber({required Phone phoneNumber, required Duration timeout}) async* {
+  Stream<Either<AuthFailure, String>> signInWithPhoneNumber(
+      {required Phone phoneNumber, required Duration timeout}) async* {
     final StreamController<Either<AuthFailure, String>> streamController =
         StreamController<Either<AuthFailure, String>>();
 
@@ -237,7 +231,8 @@ class FirebaseAuthFacade implements IAuthFacade {
   Future<void> signOut() async => await firebaseAuth.signOut();
 
   @override
-  Future<Either<AuthFailure, Unit>> verifySmsCode({required String smsCode, required String verificationId}) async {
+  Future<Either<AuthFailure, Unit>> verifySmsCode(
+      {required String smsCode, required String verificationId}) async {
     try {
       final PhoneAuthCredential phoneAuthCredential =
           PhoneAuthProvider.credential(
@@ -257,7 +252,8 @@ class FirebaseAuthFacade implements IAuthFacade {
   }
 
   @override
-  Future<void> verifyUser() async => await firebaseAuth.currentUser!.sendEmailVerification();
+  Future<void> verifyUser() async =>
+      await firebaseAuth.currentUser!.sendEmailVerification();
 
   @override
   Future<Either<AuthFailure, Unit>> signInAnonymously() async {
@@ -309,6 +305,5 @@ class FirebaseAuthFacade implements IAuthFacade {
   }
 
   @override
-  String getUserId() => firebaseAuth.currentUser!.uid; 
-
+  String getUserId() => firebaseAuth.currentUser!.uid;
 }

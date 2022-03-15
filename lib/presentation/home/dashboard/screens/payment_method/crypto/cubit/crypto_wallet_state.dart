@@ -12,6 +12,7 @@ class CryptoWalletState with _$CryptoWalletState {
     required String success,
     required bool isGeneral,
     required bool isloading,
+    required int? selectedNetwork
   }) = _CryptoWalletState;
   const CryptoWalletState._();
   factory CryptoWalletState.empty() => const CryptoWalletState(
@@ -23,7 +24,8 @@ class CryptoWalletState with _$CryptoWalletState {
     failure: "",
     success: "",
     isGeneral: false,
-    isloading: false
+    isloading: false,
+    selectedNetwork: 1
   );
 
   bool get isValidState => walletLabel.isNotEmpty && coin.isNotEmpty && network.isNotEmpty && address.isNotEmpty && platform.isNotEmpty;

@@ -9,15 +9,8 @@ import 'package:fortfolio/injection.dart';
 import 'cubit/crypto_wallet_cubit.dart';
 import 'networks.dart';
 
-class AddCryptoWallet extends StatefulWidget {
+class AddCryptoWallet extends StatelessWidget {
   const AddCryptoWallet({Key? key}) : super(key: key);
-
-  @override
-  State<AddCryptoWallet> createState() => _AddCryptoWalletState();
-}
-
-class _AddCryptoWalletState extends State<AddCryptoWallet> {
-  int? _value = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +51,8 @@ class _AddCryptoWalletState extends State<AddCryptoWallet> {
                   style: TextStyle(fontSize: 15, color: Color(0xFF656565)),
                 ),
                 BlocBuilder<CryptoWalletCubit, CryptoWalletState>(
-                  buildWhen: (previous, current) => previous.coin != current.coin,
+                  buildWhen: (previous, current) =>
+                      previous.coin != current.coin,
                   builder: (context, state) {
                     return TextFormField(
                       autocorrect: false,
@@ -114,12 +108,11 @@ class _AddCryptoWalletState extends State<AddCryptoWallet> {
                 const SizedBox(
                   height: 30,
                 ),
-                BlocBuilder<CryptoWalletCubit, CryptoWalletState>(
-                    buildWhen: (previous, current) =>
-                        previous.network != current.network,
-                    builder: (context, state) {
+                BlocSelector<CryptoWalletCubit, CryptoWalletState, bool>(
+                    selector: (state) => state.isGeneral,
+                    builder: (context, isGeneral) {
                       return Visibility(
-                          visible: state.isGeneral,
+                          visible: isGeneral,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
@@ -128,36 +121,40 @@ class _AddCryptoWalletState extends State<AddCryptoWallet> {
                                 style: TextStyle(
                                     fontSize: 15, color: Color(0xFF656565)),
                               ),
-                              Wrap(
-                                children: network
-                                    .map((item) {
-                                      return ChoiceChip(
-                                        label: Text(
-                                          item.title,
-                                          style: subTitle.copyWith(
-                                              color: kgreyColor, fontSize: 12),
-                                        ),
-                                        selected: _value == item.index,
-                                        onSelected: (bool selected) {
-                                          setState(() {
-                                            _value =
-                                                selected ? item.index : null;
-                                            final coinNetwork =
-                                                network[item.index].title;
-                                            context
-                                                .read<CryptoWalletCubit>()
-                                                .networkChanged(
-                                                    network: coinNetwork);
-                                          });
-                                        },
-                                        labelStyle: const TextStyle(
-                                            backgroundColor:
-                                                Colors.transparent),
-                                        backgroundColor: Colors.transparent,
-                                      );
-                                    })
-                                    .cast<Widget>()
-                                    .toList(),
+                              BlocSelector<CryptoWalletCubit, CryptoWalletState,int?>(
+                                selector: (state) => state.selectedNetwork,
+                                builder: (context, selectedNetwork) {
+                                  return Wrap(
+                                    children: network
+                                        .map((item) {
+                                          return ChoiceChip(
+                                            label: Text(
+                                              item.title,
+                                              style: subTitle.copyWith(
+                                                  color: kgreyColor,
+                                                  fontSize: 12),
+                                            ),
+                                            selected: selectedNetwork == item.index,
+                                            onSelected: (bool selected) {
+                                              final value = selected ? item.index : null;
+                                              context.read<CryptoWalletCubit>().selectedNetworkChanged(selectedNetwork: value);
+                                                final coinNetwork =
+                                                    network[item.index].title;
+                                                context
+                                                    .read<CryptoWalletCubit>()
+                                                    .networkChanged(
+                                                        network: coinNetwork);
+                                            },
+                                            labelStyle: const TextStyle(
+                                                backgroundColor:
+                                                    Colors.transparent),
+                                            backgroundColor: Colors.transparent,
+                                          );
+                                        })
+                                        .cast<Widget>()
+                                        .toList(),
+                                  );
+                                },
                               )
                             ],
                           ));

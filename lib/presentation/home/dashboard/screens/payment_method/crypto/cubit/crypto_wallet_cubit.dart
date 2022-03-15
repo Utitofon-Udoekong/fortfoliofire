@@ -34,6 +34,9 @@ class CryptoWalletCubit extends Cubit<CryptoWalletState> {
   void walletLabelChanged({required String walletLabel}){
     emit(state.copyWith(walletLabel: walletLabel));
   }
+  void selectedNetworkChanged({required int? selectedNetwork}){
+    emit(state.copyWith(selectedNetwork: selectedNetwork));
+  }
 
   void performWalletAddition() async {
     emit(state.copyWith(isloading: true));

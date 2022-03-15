@@ -46,9 +46,7 @@ class SignUpFormPhoneCubit extends Cubit<SignUpFormPhoneState> {
   void reset() {
     emit(
       state.copyWith(
-        failureOption: none(),
-        verificationIdOption: none(),
-        isSubmitting: false,
+        phoneNumber: Phone("")
       ),
     );
   }
@@ -68,6 +66,7 @@ class SignUpFormPhoneCubit extends Cubit<SignUpFormPhoneState> {
                 state.copyWith(
                     failureOption: some(failure), isSubmitting: false),
               );
+              reset();
             },
             (String verificationId) {
               // Catch this in Bloc Listener and take the user to SMS code entry page.

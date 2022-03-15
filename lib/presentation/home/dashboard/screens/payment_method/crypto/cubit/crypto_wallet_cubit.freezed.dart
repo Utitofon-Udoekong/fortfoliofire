@@ -27,7 +27,8 @@ class _$CryptoWalletStateTearOff {
       required String failure,
       required String success,
       required bool isGeneral,
-      required bool isloading}) {
+      required bool isloading,
+      required int? selectedNetwork}) {
     return _CryptoWalletState(
       walletLabel: walletLabel,
       coin: coin,
@@ -38,6 +39,7 @@ class _$CryptoWalletStateTearOff {
       success: success,
       isGeneral: isGeneral,
       isloading: isloading,
+      selectedNetwork: selectedNetwork,
     );
   }
 }
@@ -56,6 +58,7 @@ mixin _$CryptoWalletState {
   String get success => throw _privateConstructorUsedError;
   bool get isGeneral => throw _privateConstructorUsedError;
   bool get isloading => throw _privateConstructorUsedError;
+  int? get selectedNetwork => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CryptoWalletStateCopyWith<CryptoWalletState> get copyWith =>
@@ -76,7 +79,8 @@ abstract class $CryptoWalletStateCopyWith<$Res> {
       String failure,
       String success,
       bool isGeneral,
-      bool isloading});
+      bool isloading,
+      int? selectedNetwork});
 }
 
 /// @nodoc
@@ -99,6 +103,7 @@ class _$CryptoWalletStateCopyWithImpl<$Res>
     Object? success = freezed,
     Object? isGeneral = freezed,
     Object? isloading = freezed,
+    Object? selectedNetwork = freezed,
   }) {
     return _then(_value.copyWith(
       walletLabel: walletLabel == freezed
@@ -137,6 +142,10 @@ class _$CryptoWalletStateCopyWithImpl<$Res>
           ? _value.isloading
           : isloading // ignore: cast_nullable_to_non_nullable
               as bool,
+      selectedNetwork: selectedNetwork == freezed
+          ? _value.selectedNetwork
+          : selectedNetwork // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -157,7 +166,8 @@ abstract class _$CryptoWalletStateCopyWith<$Res>
       String failure,
       String success,
       bool isGeneral,
-      bool isloading});
+      bool isloading,
+      int? selectedNetwork});
 }
 
 /// @nodoc
@@ -182,6 +192,7 @@ class __$CryptoWalletStateCopyWithImpl<$Res>
     Object? success = freezed,
     Object? isGeneral = freezed,
     Object? isloading = freezed,
+    Object? selectedNetwork = freezed,
   }) {
     return _then(_CryptoWalletState(
       walletLabel: walletLabel == freezed
@@ -220,6 +231,10 @@ class __$CryptoWalletStateCopyWithImpl<$Res>
           ? _value.isloading
           : isloading // ignore: cast_nullable_to_non_nullable
               as bool,
+      selectedNetwork: selectedNetwork == freezed
+          ? _value.selectedNetwork
+          : selectedNetwork // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -236,7 +251,8 @@ class _$_CryptoWalletState extends _CryptoWalletState {
       required this.failure,
       required this.success,
       required this.isGeneral,
-      required this.isloading})
+      required this.isloading,
+      required this.selectedNetwork})
       : super._();
 
   @override
@@ -257,10 +273,12 @@ class _$_CryptoWalletState extends _CryptoWalletState {
   final bool isGeneral;
   @override
   final bool isloading;
+  @override
+  final int? selectedNetwork;
 
   @override
   String toString() {
-    return 'CryptoWalletState(walletLabel: $walletLabel, coin: $coin, network: $network, address: $address, platform: $platform, failure: $failure, success: $success, isGeneral: $isGeneral, isloading: $isloading)';
+    return 'CryptoWalletState(walletLabel: $walletLabel, coin: $coin, network: $network, address: $address, platform: $platform, failure: $failure, success: $success, isGeneral: $isGeneral, isloading: $isloading, selectedNetwork: $selectedNetwork)';
   }
 
   @override
@@ -277,7 +295,9 @@ class _$_CryptoWalletState extends _CryptoWalletState {
             const DeepCollectionEquality().equals(other.failure, failure) &&
             const DeepCollectionEquality().equals(other.success, success) &&
             const DeepCollectionEquality().equals(other.isGeneral, isGeneral) &&
-            const DeepCollectionEquality().equals(other.isloading, isloading));
+            const DeepCollectionEquality().equals(other.isloading, isloading) &&
+            const DeepCollectionEquality()
+                .equals(other.selectedNetwork, selectedNetwork));
   }
 
   @override
@@ -291,7 +311,8 @@ class _$_CryptoWalletState extends _CryptoWalletState {
       const DeepCollectionEquality().hash(failure),
       const DeepCollectionEquality().hash(success),
       const DeepCollectionEquality().hash(isGeneral),
-      const DeepCollectionEquality().hash(isloading));
+      const DeepCollectionEquality().hash(isloading),
+      const DeepCollectionEquality().hash(selectedNetwork));
 
   @JsonKey(ignore: true)
   @override
@@ -309,7 +330,8 @@ abstract class _CryptoWalletState extends CryptoWalletState {
       required String failure,
       required String success,
       required bool isGeneral,
-      required bool isloading}) = _$_CryptoWalletState;
+      required bool isloading,
+      required int? selectedNetwork}) = _$_CryptoWalletState;
   const _CryptoWalletState._() : super._();
 
   @override
@@ -330,6 +352,8 @@ abstract class _CryptoWalletState extends CryptoWalletState {
   bool get isGeneral;
   @override
   bool get isloading;
+  @override
+  int? get selectedNetwork;
   @override
   @JsonKey(ignore: true)
   _$CryptoWalletStateCopyWith<_CryptoWalletState> get copyWith =>

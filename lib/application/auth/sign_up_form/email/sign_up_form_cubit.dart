@@ -49,12 +49,11 @@ class SignUpFormCubit extends Cubit<SignUpFormState> {
             emailAddress: state.emailAddress, password: state.password, firstName: state.firstName, lastName: state.lastName);
       failureOrSuccess.fold((failure){
         emit(state.copyWith(isSubmitting: false,failure: failure));
-        reset();
       }, (success) {
         emit(state.copyWith(isSubmitting: false,success: success));
-        reset();
       });
     }
+    reset();
     emit(state.copyWith(showErrorMessages: true));
   }
   void reset(){
