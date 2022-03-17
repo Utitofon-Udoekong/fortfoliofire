@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
@@ -64,10 +63,15 @@ class MainDrawer extends StatelessWidget {
                     Flex(
                       direction: Axis.horizontal,
                       children: [
-                        Text(
-                          'ID: $userId',
-                          style: subTitle.copyWith(
-                              color: Colors.white, fontSize: 15),
+                        Expanded(
+                          child: Text(
+                            'ID: $userId',
+                            style: subTitle.copyWith(
+                                color: Colors.white, fontSize: 15),
+                                overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                              softWrap: false,
+                          ),
                         ),
                         const SizedBox(width: 10.0,),
                         isVerified

@@ -4,7 +4,6 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fortfolio/domain/core/value_objects.dart';
 import 'package:injectable/injectable.dart';
 
 import 'package:fortfolio/domain/auth/auth_failure.dart';
@@ -13,6 +12,7 @@ import 'package:fortfolio/domain/auth/i_auth_facade.dart';
 import 'package:fortfolio/domain/auth/value_objects.dart';
 import 'package:fortfolio/infrastructure/auth/firebase_user_mapper.dart';
 import 'package:fortfolio/infrastructure/core/firestore_helpers.dart';
+import 'package:uuid/uuid.dart';
 
 import 'dto/auth_user_model_dto.dart';
 
@@ -87,6 +87,10 @@ class FirebaseAuthFacade implements IAuthFacade {
         verificationCompleted: (PhoneAuthCredential credential) async {
           // ANDROID ONLY!
           firebaseAuth.currentUser!.linkWithCredential(credential);
+          await firestore.authUserCollection
+          .doc(firebaseAuth.currentUser!.uid).update({
+            "phoneNumber": phoneNumber.getOrCrash()
+          });
           // link with the auto-generated credential.
         },
         codeSent: (String verificationId, int? resendToken) async {
@@ -127,6 +131,7 @@ class FirebaseAuthFacade implements IAuthFacade {
     final fName = firstName.getOrCrash();
     final lName = lastName.getOrCrash();
     var displayName = "${fName[0]}${lName[0]}";
+    var uuid = const Uuid().v4();
     try {
       await firebaseAuth
           .createUserWithEmailAndPassword(
@@ -135,13 +140,13 @@ class FirebaseAuthFacade implements IAuthFacade {
         await firebaseAuth.currentUser!.updateDisplayName(displayName);
         AuthUserModel authUserModel = AuthUserModel(
             email: emailAddressString,
-            phoneNumber: "phoneNumber",
+            phoneNumber: "+123456",
             firstName: fName,
             lastName: lName,
             balance: 0,
             createdat: DateTime.now(),
             isVerified: false,
-            id: value.user!.uid,
+            id: uuid,
             displayName: displayName);
             log(authUserModel.toString());
         await saveUserToDatabase(userModel: authUserModel);

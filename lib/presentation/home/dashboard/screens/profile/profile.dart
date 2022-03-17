@@ -136,8 +136,13 @@ class ProfilePage extends StatelessWidget {
           border: Border(bottom: BorderSide(color: Color(0XFFF3F6F8)))),
       child: Row(
         children: <Widget>[
-          Text(leading,
-              style: subTitle.copyWith(color: kBlackColor, fontSize: 15)),
+          Expanded(
+            child: Text(leading,
+                style: subTitle.copyWith(color: kBlackColor, fontSize: 15),
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+                softWrap: false,),
+          ),
           const Spacer(),
           trailexist ? trailing : const Spacer()
         ],
