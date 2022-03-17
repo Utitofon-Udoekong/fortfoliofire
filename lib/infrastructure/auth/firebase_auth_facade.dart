@@ -127,7 +127,6 @@ class FirebaseAuthFacade implements IAuthFacade {
       required UserName lastName}) async {
     final emailAddressString = emailAddress.getOrCrash();
     final passwordString = password.getOrCrash();
-    // final phoneNumber = firebaseAuth.currentUser.phoneNumber.;
     final fName = firstName.getOrCrash();
     final lName = lastName.getOrCrash();
     var displayName = "${fName[0]}${lName[0]}";
