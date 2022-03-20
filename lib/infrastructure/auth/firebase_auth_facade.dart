@@ -136,19 +136,19 @@ class FirebaseAuthFacade implements IAuthFacade {
           .createUserWithEmailAndPassword(
               email: emailAddressString, password: passwordString)
           .then((value) async {
-        await firebaseAuth.currentUser!.updateDisplayName(displayName);
-        AuthUserModel authUserModel = AuthUserModel(
-            email: emailAddressString,
-            phoneNumber: "+123456",
-            firstName: fName,
-            lastName: lName,
-            balance: 0,
-            createdat: DateTime.now(),
-            isVerified: false,
-            id: uuid,
-            displayName: displayName);
-            log(authUserModel.toString());
-        await saveUserToDatabase(userModel: authUserModel);
+            AuthUserModel authUserModel = AuthUserModel(
+                email: emailAddressString,
+                phoneNumber: "+123456",
+                firstName: fName,
+                lastName: lName,
+                balance: 0,
+                createdat: DateTime.now(),
+                isVerified: false,
+                id: uuid,
+                displayName: displayName);
+                log(authUserModel.toString());
+            await saveUserToDatabase(userModel: authUserModel, uid: value.user!.uid);
+            await firebaseAuth.currentUser!.updateDisplayName(displayName);
       });
       return right("Registration successful");
     } on FirebaseAuthException catch (e) {
@@ -180,11 +180,11 @@ class FirebaseAuthFacade implements IAuthFacade {
 
   @override
   Future<Option<String>> saveUserToDatabase(
-      {required AuthUserModel userModel}) async {
+      {required AuthUserModel userModel, required String uid}) async {
     log(userModel.toString());
     try {
       await firestore.authUserCollection
-          .doc(firebaseAuth.currentUser!.uid)
+          .doc(uid)
           .set(AuthUserModelDto.fromDomain(userModel).toJson());
       return some("Registration successful");
     } catch (e) {

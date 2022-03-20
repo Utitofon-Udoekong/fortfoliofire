@@ -51,6 +51,7 @@ abstract class IAuthFacade {
   // saveUserToDatabase
   Future<Option<String>> saveUserToDatabase({
     required AuthUserModel userModel,
+    required String uid
   });
   // mr robot
   Future<Either<AuthFailure, Unit>> signInAnonymously();

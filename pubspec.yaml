@@ -29,7 +29,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.0.1
+  flutter_bloc: ^8.0.3
   otp_text_field: ^1.1.1
   intl_phone_field: ^3.0.0
   fpdart: ^0.0.14

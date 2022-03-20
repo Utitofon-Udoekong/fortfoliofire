@@ -19,7 +19,11 @@ class App extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => getIt<WalletCubit>(),
+          lazy: false
         ),
+        BlocProvider(
+          create: (context) => getIt<InternetCubit>(),
+        )
       ],
       child: MaterialApp.router(
         title: 'Fortfolio',

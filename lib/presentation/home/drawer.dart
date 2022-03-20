@@ -12,7 +12,6 @@ class MainDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final String? displayName = FirebaseAuth.instance.currentUser!.displayName;
     final String displayName = context
         .select((AuthCubit authCubit) => authCubit.state.userModel.displayName);
     final String firstName = context
