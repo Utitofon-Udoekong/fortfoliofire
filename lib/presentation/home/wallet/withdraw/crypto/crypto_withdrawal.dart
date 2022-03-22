@@ -13,78 +13,75 @@ class CryptoWithdrawal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider.value(
-      value: getIt<WalletCubit>(),
-      child: Scaffold(
-        body: SafeArea(
-          child: Padding(
-            padding: kDefaultPadding,
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  InkWell(
-                    onTap: () => context.router.pop(),
-                    child: const Icon(Icons.close),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "Withdrawal",
-                    style: titleText,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    'Select the wallet you are withdrawing to',
-                    style: subTitle.copyWith(color: kgreyColor),
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  BlocBuilder<WalletCubit, WalletState>(
-                    builder: (context, state) {
-                      Widget tiles = buildtile("", () => null);
-                      if (state.isNotGeneral) {
-                        for (var element in state.cryptoAddresses) {
-                          tiles = buildtile(element.address, () => context.read<WalletCubit>().withdrawalDetailsChanged(withdrawalDetails: element.toMap()));
-                        }
-                        return tiles;
-                      } else if (state.isGeneral) {
-                        for (var element in state.generalCryptoAddresses) {
-                          tiles = buildtile(element.address, () => context.read<WalletCubit>().withdrawalDetailsChanged(withdrawalDetails: element.toMap()));
-                        }
-                        return tiles;
-                      } else {
-                        var addressess = state.cryptoAddresses +
-                            state.generalCryptoAddresses;
-                        for (var element in addressess) {
-                          CryptoWallet cryptoWallet = CryptoWallet(walletLabel: element.walletLabel, address: element.address, coin: element.coin, network: element.network, platform: element.platform, type: element.type, id: element.id);
-                          tiles = buildtile(element.address, () => context.read<WalletCubit>().withdrawalDetailsChanged(withdrawalDetails: cryptoWallet.toMap()));
-                        }
-                        return tiles;
+    return Scaffold(
+      body: SafeArea(
+        child: Padding(
+          padding: kDefaultPadding,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                const SizedBox(
+                  height: 20,
+                ),
+                InkWell(
+                  onTap: () => context.router.pop(),
+                  child: const Icon(Icons.close),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  "Withdrawal",
+                  style: titleText,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  'Select the wallet you are withdrawing to',
+                  style: subTitle.copyWith(color: kgreyColor),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                BlocBuilder<WalletCubit, WalletState>(
+                  builder: (context, state) {
+                    Widget tiles = buildtile("", () => null);
+                    if (state.isNotGeneral) {
+                      for (var element in state.cryptoAddresses) {
+                        tiles = buildtile(element.address, () => context.read<WalletCubit>().withdrawalDetailsChanged(withdrawalDetails: element.toMap()));
                       }
-                    },
-                  ),
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  Center(
-                    child: TextButton(
-                        onPressed: () => context.router.push(const AddCryptoWalletRoute()),
-                        child: Text(
-                          'Add a new wallet',
-                          style: subTitle.copyWith(
-                              fontSize: 13, color: kPrimaryColor),
-                        )),
-                  )
-                ],
-              ),
+                      return tiles;
+                    } else if (state.isGeneral) {
+                      for (var element in state.generalCryptoAddresses) {
+                        tiles = buildtile(element.address, () => context.read<WalletCubit>().withdrawalDetailsChanged(withdrawalDetails: element.toMap()));
+                      }
+                      return tiles;
+                    } else {
+                      var addressess = state.cryptoAddresses +
+                          state.generalCryptoAddresses;
+                      for (var element in addressess) {
+                        CryptoWallet cryptoWallet = CryptoWallet(walletLabel: element.walletLabel, address: element.address, coin: element.coin, network: element.network, platform: element.platform, type: element.type, id: element.id);
+                        tiles = buildtile(element.address, () => context.read<WalletCubit>().withdrawalDetailsChanged(withdrawalDetails: cryptoWallet.toMap()));
+                      }
+                      return tiles;
+                    }
+                  },
+                ),
+                const SizedBox(
+                  height: 50,
+                ),
+                Center(
+                  child: TextButton(
+                      onPressed: () => context.router.push(const AddCryptoWalletRoute()),
+                      child: Text(
+                        'Add a new wallet',
+                        style: subTitle.copyWith(
+                            fontSize: 13, color: kPrimaryColor),
+                      )),
+                )
+              ],
             ),
           ),
         ),

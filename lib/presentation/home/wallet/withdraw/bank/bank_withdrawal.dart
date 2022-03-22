@@ -13,61 +13,58 @@ class BankWithdrawal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider.value(
-      value: getIt<WalletCubit>(),
-      child: Scaffold(
-        body: SafeArea(
-          child: Padding(
-            padding: kDefaultPadding,
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  InkWell(
-                    onTap: () => context.router.pop(),
-                    child: const Icon(Icons.close),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "Withdrawal",
-                    style: titleText,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    'Select the bank you are withdrawing to',
-                    style: subTitle.copyWith(color: kgreyColor),
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  BlocBuilder<WalletCubit, WalletState>(builder: (context, state){
-                    Widget tiles = buildtile("", () => null);
-                    for (var element in state.bankAddresses) {
-                      tiles = buildtile(element.accountNumber, () => context.read<WalletCubit>().withdrawalDetailsChanged(withdrawalDetails: element.toMap()));
-                     }
-                     return tiles;
-                   }),
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  Center(
-                    child: TextButton(
-                        onPressed: () => context.router.push(const AddBankRoute()),
-                        child: Text(
-                          'Add a new bank',
-                          style: subTitle.copyWith(
-                              fontSize: 13, color: kPrimaryColor),
-                        )),
-                  )
-                ],
-              ),
+    return Scaffold(
+      body: SafeArea(
+        child: Padding(
+          padding: kDefaultPadding,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                const SizedBox(
+                  height: 20,
+                ),
+                InkWell(
+                  onTap: () => context.router.pop(),
+                  child: const Icon(Icons.close),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  "Withdrawal",
+                  style: titleText,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  'Select the bank you are withdrawing to',
+                  style: subTitle.copyWith(color: kgreyColor),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                BlocBuilder<WalletCubit, WalletState>(builder: (context, state){
+                  Widget tiles = buildtile("", () => null);
+                  for (var element in state.bankAddresses) {
+                    tiles = buildtile(element.accountNumber, () => context.read<WalletCubit>().withdrawalDetailsChanged(withdrawalDetails: element.toMap()));
+                   }
+                   return tiles;
+                 }),
+                const SizedBox(
+                  height: 50,
+                ),
+                Center(
+                  child: TextButton(
+                      onPressed: () => context.router.push(const AddBankRoute()),
+                      child: Text(
+                        'Add a new bank',
+                        style: subTitle.copyWith(
+                            fontSize: 13, color: kPrimaryColor),
+                      )),
+                )
+              ],
             ),
           ),
         ),

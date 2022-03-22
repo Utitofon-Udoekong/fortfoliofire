@@ -18,77 +18,74 @@ class FortCryptoInvestmentInfo extends StatelessWidget {
         (WalletCubit walletCubit) => walletCubit.state.fortCryptoYieldBalance);
     final activeInvestments = context.select(
         (WalletCubit walletCubit) => walletCubit.state.fortCryptoInvestments);
-    return BlocProvider.value(
-      value: getIt<WalletCubit>(),
-      child: Scaffold(
-        body: SafeArea(
-            child: SingleChildScrollView(
-          child: Padding(
-            padding: kDefaultPadding,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                const SizedBox(height: 30),
-                Row(children: <Widget>[
-                  InkWell(
-                    onTap: () => context.router.pop(),
-                    child: const Icon(Icons.close),
-                  ),
-                  Text(
-                    "Fortcrytpo",
-                    style: titleText.copyWith(
-                        fontSize: 18, fontWeight: FontWeight.w700),
-                    textAlign: TextAlign.center,
-                  )
-                ]),
-                const SizedBox(height: 30),
-                Text("Total", style: subTitle.copyWith(fontSize: 12)),
-                const SizedBox(height: 8),
-                Text("\$ ${balance.toString()}",
-                    style: titleText.copyWith(
-                        fontSize: 16, fontWeight: FontWeight.w500)),
-                const SizedBox(height: 30),
-                Text("Available for yield",
-                    style: subTitle.copyWith(fontSize: 12)),
-                const SizedBox(height: 8),
-                Text("\$ ${yield.toString()}",
-                    style: titleText.copyWith(
-                        fontSize: 16, fontWeight: FontWeight.w500)),
-                const SizedBox(height: 30),
-                Text("Active Investments",
-                    style:
-                        subTitle.copyWith(fontSize: 12, color: kPrimaryColor)),
-                const SizedBox(height: 15),
-                SizedBox(
-                  height: 300,
-                  child: ListView.builder(
-                    itemCount: activeInvestments.length,
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    itemBuilder: ((context, index) {
-                      return buildTile(
-                          '${activeInvestments[index].planName} / ${activeInvestments[index].duration.toInt()} month(s)',
-                          'N${activeInvestments[index].amount}', () {
-                        context
-                            .read<WalletCubit>()
-                            .investmentToBeWithdrawnChanged(
-                                investmentToBeWithdrawn:
-                                    activeInvestments[index]);
-                        context.router.push(const WithdrawalPageRoute());
-                      });
-                    }),
-                  ),
+    return Scaffold(
+      body: SafeArea(
+          child: SingleChildScrollView(
+        child: Padding(
+          padding: kDefaultPadding,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              const SizedBox(height: 30),
+              Row(children: <Widget>[
+                InkWell(
+                  onTap: () => context.router.pop(),
+                  child: const Icon(Icons.close),
                 ),
-                CustomOutlinedButton(
-                    text: 'INVEST',
-                    onTap: () =>
-                        context.router.push(const FortCryptoInvestmentRoute())),
-              ],
-            ),
+                Text(
+                  "Fortcrytpo",
+                  style: titleText.copyWith(
+                      fontSize: 18, fontWeight: FontWeight.w700),
+                  textAlign: TextAlign.center,
+                )
+              ]),
+              const SizedBox(height: 30),
+              Text("Total", style: subTitle.copyWith(fontSize: 12)),
+              const SizedBox(height: 8),
+              Text("\$ ${balance.toString()}",
+                  style: titleText.copyWith(
+                      fontSize: 16, fontWeight: FontWeight.w500)),
+              const SizedBox(height: 30),
+              Text("Available for yield",
+                  style: subTitle.copyWith(fontSize: 12)),
+              const SizedBox(height: 8),
+              Text("\$ ${yield.toString()}",
+                  style: titleText.copyWith(
+                      fontSize: 16, fontWeight: FontWeight.w500)),
+              const SizedBox(height: 30),
+              Text("Active Investments",
+                  style:
+                      subTitle.copyWith(fontSize: 12, color: kPrimaryColor)),
+              const SizedBox(height: 15),
+              SizedBox(
+                height: 300,
+                child: ListView.builder(
+                  itemCount: activeInvestments.length,
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
+                  itemBuilder: ((context, index) {
+                    return buildTile(
+                        '${activeInvestments[index].planName} / ${activeInvestments[index].duration.toInt()} month(s)',
+                        'N${activeInvestments[index].amount}', () {
+                      context
+                          .read<WalletCubit>()
+                          .investmentToBeWithdrawnChanged(
+                              investmentToBeWithdrawn:
+                                  activeInvestments[index]);
+                      context.router.push(const WithdrawalPageRoute());
+                    });
+                  }),
+                ),
+              ),
+              CustomOutlinedButton(
+                  text: 'INVEST',
+                  onTap: () =>
+                      context.router.push(const FortCryptoInvestmentRoute())),
+            ],
           ),
-        )),
-      ),
+        ),
+      )),
     );
   }
 }
