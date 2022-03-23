@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/application/internet/cubit/internet_cubit.dart';
 import 'package:fortfolio/injection.dart';
+import 'package:fortfolio/presentation/home/investment/cubit/investment_cubit.dart';
 import 'package:fortfolio/presentation/home/wallet/cubit/wallet_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 
@@ -20,6 +21,10 @@ class App extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => getIt<WalletCubit>(),
+          lazy: false
+        ),
+        BlocProvider(
+          create: (context) => getIt<InvestmentCubit>(),
           lazy: false
         ),
         BlocProvider(

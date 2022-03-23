@@ -1,9 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/domain/auth/auth_user_model.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
+import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
  
 
@@ -88,11 +90,18 @@ class ProfilePage extends StatelessWidget {
                     ),
                     buildtile(
                         'ID: ${authUserModel.id}',
-                        const Icon(
+                        IconButton(onPressed: (){
+                          Clipboard.setData(
+                                  ClipboardData(text: authUserModel.id))
+                              .then((_) {
+                            CustomSnackbar.showSnackBar(
+                                context, "Text copied", false);
+                          });
+                        }, icon: const Icon(
                           Icons.file_copy_rounded,
                           color: kPrimaryColor,
                           size: 15,
-                        ),
+                        )),
                         true),
                     buildtile(authUserModel.email, const Spacer(), false),
                     const SizedBox(
