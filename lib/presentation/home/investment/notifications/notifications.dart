@@ -42,7 +42,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
               const SizedBox(
                 height: 20,
               ),
-              // omo(),
+              omo(),
               const SizedBox(
                 height: 20,
               ),

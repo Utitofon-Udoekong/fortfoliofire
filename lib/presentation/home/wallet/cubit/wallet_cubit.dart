@@ -76,7 +76,7 @@ class WalletCubit extends Cubit<WalletState> {
         planYield += element.planYield;
         amount += element.amount;
       }
-      emit(state.copyWith(fortShieldYieldBalance: planYield, fortShieldInvestmentBalance: amount));
+      emit(state.copyWith(fortCryptoYieldBalance: planYield, fortCryptoInvestmentBalance: amount));
   }
 
   void initWalletBalance(){
