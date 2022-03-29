@@ -66,7 +66,7 @@ class MainDrawer extends StatelessWidget {
                           child: Text(
                             'ID: $userId',
                             style: subTitle.copyWith(
-                                color: Colors.white, fontSize: 15),
+                                color: Color.fromARGB(255, 145, 71, 71), fontSize: 15),
                                 overflow: TextOverflow.ellipsis,
                               maxLines: 1,
                               softWrap: false,
