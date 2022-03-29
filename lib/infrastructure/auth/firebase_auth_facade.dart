@@ -61,11 +61,10 @@ class FirebaseAuthFacade implements IAuthFacade {
     final emailAddressString = emailAddress.getOrCrash();
     final passwordString = password.getOrCrash();
     try {
-      await firebaseAuth
+      final signInPhase = await firebaseAuth
           .signInWithEmailAndPassword(
-              email: emailAddressString, password: passwordString)
-          .then((cred) => getDatabaseUser(id: cred.user!.uid));
-      return right("Login successful");
+              email: emailAddressString, password: passwordString);
+      return right(signInPhase.user!.uid);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found' || e.code == 'wrong-password') {
         return left("Invalid email and password combination");

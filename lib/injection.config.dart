@@ -70,7 +70,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i16.ResetPasswordCubit(get<_i8.IAuthFacade>()));
   gh.factory<_i17.SecurityCubit>(
       () => _i17.SecurityCubit(get<_i8.IAuthFacade>()));
-  gh.factory<_i18.SignInFormEmailCubit>(() => _i18.SignInFormEmailCubit());
+  gh.factory<_i18.SignInFormEmailCubit>(() =>
+      _i18.SignInFormEmailCubit(get<_i8.IAuthFacade>(), get<_i3.AuthCubit>()));
   gh.factory<_i19.SignInFormPhoneCubit>(
       () => _i19.SignInFormPhoneCubit(get<_i3.AuthCubit>()));
   gh.factory<_i20.SignUpFormCubit>(

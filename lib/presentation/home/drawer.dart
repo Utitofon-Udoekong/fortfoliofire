@@ -29,76 +29,61 @@ class MainDrawer extends StatelessWidget {
         children: <Widget>[
           DrawerHeader(
             padding: kDefaultPadding,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Container(
-                      decoration: const BoxDecoration(
-                          shape: BoxShape.circle, color: Color(0XFFF5F7FA)),
-                      child: CircleAvatar(
-                        backgroundColor: const Color(0XFFE7E7E7),
-                        child: Text(displayName,
-                            style: const TextStyle(
-                              fontSize: 25,
-                              color: Color(0XFF242424),
-                            )),
-                      ),
-                      padding: const EdgeInsets.all(5.0),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: Text(
-                        '$firstName $lastName',
-                        style: titleText.copyWith(
-                            color: Colors.white,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    ),
-                    Flex(
-                      direction: Axis.horizontal,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            'ID: $userId',
-                            style: subTitle.copyWith(
-                                color: const Color.fromARGB(255, 145, 71, 71), fontSize: 15),
-                                overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
-                              softWrap: false,
-                          ),
-                        ),
-                        const SizedBox(width: 10.0,),
-                        isVerified
-                            ? const Icon(
-                                Icons.verified,
-                                color: kGreenColor,
-                                size: 13,
-                              )
-                            : Text(
-                                "Unverified",
-                                style: subTitle.copyWith(
-                                    fontSize: 13,
-                                    color: kWhiteColor.withOpacity(0.5)),
-                              )
-                      ],
-                    )
-                  ],
+                Container(
+                  decoration: const BoxDecoration(
+                      shape: BoxShape.circle, color: Color(0XFFF5F7FA)),
+                  child: CircleAvatar(
+                    backgroundColor: const Color(0XFFE7E7E7),
+                    child: Text(displayName,
+                        style: const TextStyle(
+                          fontSize: 25,
+                          color: Color(0XFF242424),
+                        )),
+                  ),
+                  padding: const EdgeInsets.all(5.0),
                 ),
-                // Align(
-                //   heightFactor: 2.5,
-                //   alignment: Alignment.topRight,
-                //   child: IconButton(
-                //       onPressed: () {},
-                //       icon: const Icon(
-                //         Icons.bedtime_rounded,
-                //         color: kWhiteColor,
-                //       )),
-                // )
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Text(
+                    '$firstName $lastName',
+                    style: titleText.copyWith(
+                        color: Colors.white,
+                        fontSize: 25,
+                        fontWeight: FontWeight.w500),
+                  ),
+                ),
+                Flex(
+                  direction: Axis.horizontal,
+                  children: [
+                    Expanded(
+                      child: Text(
+                        'ID: $userId',
+                        style: subTitle.copyWith(
+                            color: const Color.fromARGB(255, 145, 71, 71), fontSize: 15),
+                            overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                          softWrap: false,
+                      ),
+                    ),
+                    const SizedBox(width: 10.0,),
+                    isVerified
+                        ? const Icon(
+                            Icons.verified,
+                            color: kGreenColor,
+                            size: 13,
+                          )
+                        : Text(
+                            "Unverified",
+                            style: subTitle.copyWith(
+                                fontSize: 13,
+                                color: kWhiteColor.withOpacity(0.5)),
+                          )
+                  ],
+                )
               ],
             ),
             decoration: const BoxDecoration(
