@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
+import 'package:fortfolio/presentation/home/investment/cubit/investment_cubit.dart';
 
 class CryptoInvestmentPage extends StatelessWidget {
   const CryptoInvestmentPage({Key? key}) : super(key: key);
@@ -71,8 +74,8 @@ class CryptoInvestmentPage extends StatelessWidget {
                           buildtile('Wallet Address', 'x45566778899990000'),
                           IconButton(
                               onPressed: () {
-                                Clipboard.setData(const ClipboardData(
-                                        text: "0627767963"))
+                                Clipboard.setData(
+                                        const ClipboardData(text: "0627767963"))
                                     .then((_) {
                                   CustomSnackbar.showSnackBar(
                                       context, "Text copied", false);
@@ -88,6 +91,12 @@ class CryptoInvestmentPage extends StatelessWidget {
                     ],
                   ),
                 ),
+                const SizedBox(
+            height: 30,
+          ),
+                CustomFilledButton(
+                    text: 'I HAVE PAID',
+                    onTap: () => context.read<InvestmentCubit>().iHavePaid())
               ],
             ),
           ),

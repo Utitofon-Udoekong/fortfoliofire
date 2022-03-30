@@ -289,7 +289,7 @@ class WalletOverview extends StatelessWidget {
               title,
               style: titleText.copyWith(fontSize: 15),
             ),
-            const Spacer(),
+            const SizedBox(width: double.infinity,),
             showDigits
                 ? Text(
                     balance,

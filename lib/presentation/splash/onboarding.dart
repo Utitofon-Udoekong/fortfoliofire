@@ -29,11 +29,7 @@ int selectedpage = 0;
 class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   void initState() {
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
-      context.watch<InternetCubit>().connectivityStreamSubscription;
-    });
     super.initState();
-    
   }
   @override
   Widget build(BuildContext context) {

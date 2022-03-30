@@ -18,7 +18,8 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     WidgetsBinding.instance!.addPostFrameCallback((_) {
-      final bool isUserLoggedIn = context.read<AuthCubit>().state.isLoggedIn;
+      final bool isUserLoggedIn = context.watch<AuthCubit>().state.isLoggedIn;
+      context.read<InternetCubit>().monitorInternetConnection();
       final bool isUserCheckedFromAuthService =
           context.read<AuthCubit>().state.isUserCheckedFromAuthFacade;
       if (isUserLoggedIn) {
