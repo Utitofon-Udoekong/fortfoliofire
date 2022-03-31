@@ -283,6 +283,10 @@ class FortDollarInvestment extends StatelessWidget {
                                         .read<InvestmentCubit>()
                                         .planNameChanged(
                                             planName: "FortDollar");
+                                    context
+                                        .read<InvestmentCubit>()
+                                        .exchangeTypeChanged(
+                                            exchangeType: "USD");
                                     context.router.push(
                                         const SelectInvestmentMethodRoute());
                                   }),

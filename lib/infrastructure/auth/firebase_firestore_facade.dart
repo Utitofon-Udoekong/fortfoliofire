@@ -230,7 +230,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
         }
         return some(newDocs);
       }else{
-        log("authh getDatabaseUserWithPhoneNumber DOES NOT EXIST");
+        log("withdrawals DOES NOT EXIST");
         return none();
       }
     } on FirebaseException catch (e) {

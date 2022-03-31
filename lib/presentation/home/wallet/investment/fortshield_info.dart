@@ -57,7 +57,7 @@ class FortShieldInvestmentInfo extends StatelessWidget {
                       subTitle.copyWith(fontSize: 12, color: kPrimaryColor)),
               const SizedBox(height: 15),
               SizedBox(
-                height: activeInvestments.length * 100,
+                height: activeInvestments.length * 100 + 50,
                 child: ListView.builder(
                   itemCount: activeInvestments.length,
                   physics: const NeverScrollableScrollPhysics(),

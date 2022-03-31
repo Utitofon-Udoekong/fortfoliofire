@@ -1,5 +1,6 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
+const { response } = require("express");
 admin.initializeApp();
 
 // // Create and Deploy Your First Cloud Functions
@@ -11,5 +12,9 @@ admin.initializeApp();
 // });
 
 exports.incrementInvestment = functions.firestore.document("authUsers/{uid}/investments/{docId}").onCreate(async snapshot => {
-        
+    
+})
+
+exports.startInvestment = functions.https.onRequest((request, response) => {
+    
 })

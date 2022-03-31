@@ -14,6 +14,9 @@ class DomiciliaryAccount extends StatelessWidget {
     final int amountInvested = context.select(
         (InvestmentCubit investmentCubit) =>
             investmentCubit.state.amountInvested);
+    final String exchangeType = context.select(
+        (InvestmentCubit investmentCubit) =>
+            investmentCubit.state.exchangeType);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -31,7 +34,9 @@ class DomiciliaryAccount extends StatelessWidget {
                       decoration: TextDecoration.lineThrough),
                 ),
                 Text(
-                  '${amountInvested * 560}',
+                  exchangeType == "USD"
+                      ? '${amountInvested * 560}'
+                      : '$amountInvested',
                   style: subTitle.copyWith(color: kBlackColor, fontSize: 14),
                 ),
               ],
@@ -63,7 +68,9 @@ class DomiciliaryAccount extends StatelessWidget {
                       decoration: TextDecoration.lineThrough),
                 ),
                 Text(
-                  '$amountInvested',
+                  exchangeType == "USD"
+                      ? amountInvested.toStringAsFixed(2)
+                      : (amountInvested / 560).toStringAsFixed(2),
                   style: subTitle.copyWith(color: kBlackColor, fontSize: 14),
                 ),
               ],

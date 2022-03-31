@@ -42,7 +42,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
               const SizedBox(
                 height: 20,
               ),
-              omo(),
+              buildFromOmO(),
               const SizedBox(
                 height: 20,
               ),
@@ -88,6 +88,10 @@ class _NotificationsPageState extends State<NotificationsPage> {
         },
       );
     });
+  }
+
+  Widget buildFromOmO(){
+    return omo();
   }
 
   Widget buildtile(selected) {

@@ -80,7 +80,7 @@ class FortCryptoInvestment extends StatelessWidget {
                   height: 10,
                 ),
                 BlocBuilder<InvestmentCubit, InvestmentState>(
-                  buildWhen: (p,c) => p.amountInvested != c.amountInvested,
+                  buildWhen: (p, c) => p.amountInvested != c.amountInvested,
                   builder: (context, state) {
                     return ClipRRect(
                       borderRadius: BorderRadius.circular(10),
@@ -89,13 +89,13 @@ class FortCryptoInvestment extends StatelessWidget {
                         keyboardType: TextInputType.number,
                         textInputAction: TextInputAction.next,
                         decoration: InputDecoration(
-                            filled: true,
-                            fillColor: const Color(0xFFF3F6F8),
-                            border: InputBorder.none,
-                            suffixIcon: const Icon(Icons.keyboard_arrow_down),
-                            suffixStyle: TextStyle(
-                                color: Colors.grey.shade400, fontSize: 13),
-                            ),
+                          filled: true,
+                          fillColor: const Color(0xFFF3F6F8),
+                          border: InputBorder.none,
+                          suffixIcon: const Icon(Icons.keyboard_arrow_down),
+                          suffixStyle: TextStyle(
+                              color: Colors.grey.shade400, fontSize: 13),
+                        ),
                         onChanged: (value) => context
                             .read<InvestmentCubit>()
                             .amountInvestedChanged(
@@ -126,8 +126,7 @@ class FortCryptoInvestment extends StatelessWidget {
                       renderBorder: false,
                       children: <Widget>[
                         Container(
-                          padding:
-                              const EdgeInsets.symmetric(horizontal: 8.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
                               color: kPrimaryColor),
@@ -139,8 +138,7 @@ class FortCryptoInvestment extends StatelessWidget {
                           alignment: Alignment.center,
                         ),
                         Container(
-                          padding:
-                              const EdgeInsets.symmetric(horizontal: 8.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
                               color: kPrimaryColor),
@@ -152,8 +150,7 @@ class FortCryptoInvestment extends StatelessWidget {
                           alignment: Alignment.center,
                         ),
                         Container(
-                          padding:
-                              const EdgeInsets.symmetric(horizontal: 8.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
                               color: kPrimaryColor),
@@ -259,56 +256,58 @@ class FortCryptoInvestment extends StatelessWidget {
                         text: 'INVEST NOW',
                         onTap: () {
                           var dialog = AlertDialog(
-                                  title: const Text(
-                                    "Please confirm your investment transaction",
-                                    textAlign: TextAlign.center,
+                            title: const Text(
+                              "Please confirm your investment transaction",
+                              textAlign: TextAlign.center,
+                            ),
+                            titleTextStyle: titleText.copyWith(fontSize: 16),
+                            content: const Text(
+                              "You are about to invest in the selected investment plan, please confirm before proceedeing to pay.",
+                              textAlign: TextAlign.center,
+                            ),
+                            contentTextStyle: subTitle.copyWith(
+                                fontSize: 13, color: kgreyColor),
+                            actions: [
+                              CustomFilledButton(
+                                  text: "CONFIRM",
+                                  onTap: () {
+                                    context
+                                        .read<InvestmentCubit>()
+                                        .planNameChanged(
+                                            planName: "FortCrypto");
+                                    context
+                                        .read<InvestmentCubit>()
+                                        .exchangeTypeChanged(
+                                            exchangeType: "USD");
+                                    context.router.push(
+                                        const SelectInvestmentMethodRoute());
+                                  }),
+                              InkWell(
+                                onTap: () => context.router.pop(),
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  height: 48,
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: kWhiteColor,
                                   ),
-                                  titleTextStyle:
-                                      titleText.copyWith(fontSize: 16),
-                                  content: const Text(
-                                    "You are about to invest in the selected investment plan, please confirm before proceedeing to pay.",
-                                    textAlign: TextAlign.center,
+                                  child: Text(
+                                    "CANCEL",
+                                    style:
+                                        textButton.copyWith(color: kRedColor),
                                   ),
-                                  contentTextStyle: subTitle.copyWith(
-                                      fontSize: 13, color: kgreyColor),
-                                  actions: [
-                                    CustomFilledButton(
-                                        text: "CONFIRM",
-                                        onTap: () {
-                                          context
-                                              .read<InvestmentCubit>()
-                                              .planNameChanged(
-                                                  planName: "FortCrypto");
-                                          context.router.push(
-                                              const SelectInvestmentMethodRoute());
-                                        }),
-                                    InkWell(
-                                      onTap: () => context.router.pop(),
-                                      child: Container(
-                                        alignment: Alignment.center,
-                                        height: 48,
-                                        width: double.infinity,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          color: kWhiteColor,
-                                        ),
-                                        child: Text(
-                                          "CANCEL",
-                                          style: textButton.copyWith(
-                                              color: kRedColor),
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                  backgroundColor: kWhiteColor,
-                                  titlePadding: const EdgeInsets.symmetric(
-                                      horizontal: 10.0, vertical: 15),
-                                  contentPadding: const EdgeInsets.symmetric(
-                                      horizontal: 10.0, vertical: 10),
-                                  actionsPadding: const EdgeInsets.symmetric(
-                                      horizontal: 10.0, vertical: 10),
-                                );
+                                ),
+                              )
+                            ],
+                            backgroundColor: kWhiteColor,
+                            titlePadding: const EdgeInsets.symmetric(
+                                horizontal: 10.0, vertical: 15),
+                            contentPadding: const EdgeInsets.symmetric(
+                                horizontal: 10.0, vertical: 10),
+                            actionsPadding: const EdgeInsets.symmetric(
+                                horizontal: 10.0, vertical: 10),
+                          );
                           showDialog(
                               context: context,
                               builder: (BuildContext context) {

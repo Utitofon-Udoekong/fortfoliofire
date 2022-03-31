@@ -6,7 +6,6 @@ import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
 import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
 import 'package:fortfolio/domain/widgets/labelled_checkbox.dart';
-import 'package:fortfolio/injection.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:timelines/timelines.dart';
 
@@ -19,8 +18,6 @@ class FortShieldInvestment extends StatelessWidget{
   const FortShieldInvestment({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    Text roi = const Text('30% returns');
-    roi.style?.copyWith(color: kGreenColor);
     return Scaffold(
       body: SafeArea(
         child: Padding(
