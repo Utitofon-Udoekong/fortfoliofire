@@ -72,5 +72,17 @@ class Phone extends ValueObject<String> {
   );
 
 }
+class Amount extends ValueObject<String> {
+  @override
+  final Either<ValueFailure<String>, String> value;
+
+  factory Amount( input, minLength) {
+    return Amount._(
+      validateAmount(input, minLength)
+    );
+  }
+
+  const Amount._(this.value);
+}
 
 

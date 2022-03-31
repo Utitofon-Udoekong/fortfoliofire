@@ -54,6 +54,14 @@ Either<ValueFailure<KtList<T>>, KtList<T>> validateMaxListLength<T>(KtList<T> in
   }
 }
 
+Either<ValueFailure<String>, String> validateAmount<T>(String input,int minLength){
+  if(input.length >= minLength || !int.parse(input).isNaN){
+    return right(input);
+  }else {
+    return left(ValueFailure.invalidAmount(failedValue: input,min: minLength));
+  }
+}
+
 
 
 

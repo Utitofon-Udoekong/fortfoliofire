@@ -56,7 +56,7 @@ class Dashboard extends StatelessWidget {
                       buildSmallIcons(
                           'images/Activity-small.svg',
                           'Investments',
-                          () => context.pushRoute(const InvestmentPageRoute())),
+                          () => context.replaceRoute(const InvestmentPageRoute())),
                       buildSmallIcons(
                           'images/Swap.svg',
                           'Transactions',
@@ -89,7 +89,7 @@ class Dashboard extends StatelessWidget {
                           const Color(0XFF00ADEE),
                           'See your current investments, invest more and get recommendations.',
                           'Active Invests',
-                          () => context.pushRoute(const InvestmentPageRoute()),
+                          () => context.replaceRoute(const InvestmentPageRoute()),
                           context),
                       buildBigIcons(
                           'images/Activity-big.svg',
@@ -97,7 +97,7 @@ class Dashboard extends StatelessWidget {
                           const Color(0XFF00C566),
                           'Find invsestments that fit with your area of interest & get started!',
                           'Quick Invest',
-                          () => context.pushRoute(const InvestmentPageRoute()),
+                          () => context.replaceRoute(const InvestmentPageRoute()),
                           context),
                     ],
                   ),

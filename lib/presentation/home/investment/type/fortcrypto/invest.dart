@@ -101,7 +101,7 @@ class FortCryptoInvestment extends StatelessWidget {
                             .read<InvestmentCubit>()
                             .amountInvestedChanged(
                                 amountInvested: int.parse(value)),
-                        validator: (String? value) => int.parse(value!) < 1e6 ? 'Minimum investment is \$1,000' : null,
+                        validator: (String? value) => int.parse(value!) < 1e3  ? 'Minimum investment is \$1,000' : int.parse(value).isNaN ? 'Invalid amount' : null,
                       ),
                     );
                   },

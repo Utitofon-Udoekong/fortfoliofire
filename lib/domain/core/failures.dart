@@ -11,6 +11,8 @@ abstract class ValueFailure<T> with _$ValueFailure<T> {
   const factory ValueFailure.shortName({required T failedValue,}) = ShortName<T>;
   const factory ValueFailure.empty({required T failedValue,}) = Empty<T>;
   const factory ValueFailure.listTooLong({ required T failedValue, required int max }) = ListTooLong<T>;
+  const factory ValueFailure.invalidAmount({ required T failedValue, required int min }) = InvalidAmount<T>;
+
 }
 
 

@@ -245,7 +245,6 @@ class SignUpForm extends StatelessWidget {
                                               orElse: () => null),
                                           (r) => null,
                                         ),
-                                        maxLines: 3,
                                   );
                                 },
                               ),
