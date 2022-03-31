@@ -279,11 +279,21 @@ class FortCryptoInvestment extends StatelessWidget {
                                         .read<InvestmentCubit>()
                                         .exchangeTypeChanged(
                                             exchangeType: "USD");
+                                    context
+                                      .read<InvestmentCubit>()
+                                      .agreementAcceptedChanged(
+                                          agreementAccepted: false);
                                     context.router.push(
                                         const SelectInvestmentMethodRoute());
                                   }),
                               InkWell(
-                                onTap: () => context.router.pop(),
+                                onTap: () {
+                                  context.router.pop();
+                                  context
+                                      .read<InvestmentCubit>()
+                                      .agreementAcceptedChanged(
+                                          agreementAccepted: false);
+                                },
                                 child: Container(
                                   alignment: Alignment.center,
                                   height: 48,

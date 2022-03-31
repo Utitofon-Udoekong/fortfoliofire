@@ -13,8 +13,7 @@ import '../../cubit/investment_cubit.dart';
 
 const kTileHeight = 40.0;
 
-class FortShieldInvestment extends StatelessWidget{
-
+class FortShieldInvestment extends StatelessWidget {
   const FortShieldInvestment({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -148,8 +147,7 @@ class FortShieldInvestment extends StatelessWidget{
                       children: <Widget>[
                         const SizedBox(width: 0),
                         Container(
-                          padding:
-                              const EdgeInsets.symmetric(horizontal: 8.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
                               color: kPrimaryColor),
@@ -161,8 +159,7 @@ class FortShieldInvestment extends StatelessWidget{
                           alignment: Alignment.center,
                         ),
                         Container(
-                          padding:
-                              const EdgeInsets.symmetric(horizontal: 8.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
                               color: kPrimaryColor),
@@ -269,10 +266,14 @@ class FortShieldInvestment extends StatelessWidget{
                         onTap: () {
                           var dialog = AlertDialog(
                             title: const Text(
-                                "Please confirm your investment transaction", textAlign: TextAlign.center,),
+                              "Please confirm your investment transaction",
+                              textAlign: TextAlign.center,
+                            ),
                             titleTextStyle: titleText.copyWith(fontSize: 16),
                             content: const Text(
-                                "You are about to invest in the selected investment plan, please confirm before proceedeing to pay.", textAlign: TextAlign.center,),
+                              "You are about to invest in the selected investment plan, please confirm before proceedeing to pay.",
+                              textAlign: TextAlign.center,
+                            ),
                             contentTextStyle: subTitle.copyWith(
                                 fontSize: 13, color: kgreyColor),
                             actions: [
@@ -283,11 +284,21 @@ class FortShieldInvestment extends StatelessWidget{
                                         .read<InvestmentCubit>()
                                         .planNameChanged(
                                             planName: "FortShield");
+                                    context
+                                        .read<InvestmentCubit>()
+                                        .agreementAcceptedChanged(
+                                            agreementAccepted: false);
                                     context.router.push(
                                         const SelectInvestmentMethodRoute());
                                   }),
                               InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  context.router.pop();
+                                  context
+                                      .read<InvestmentCubit>()
+                                      .agreementAcceptedChanged(
+                                          agreementAccepted: false);
+                                },
                                 child: Container(
                                   alignment: Alignment.center,
                                   height: 48,
@@ -305,16 +316,18 @@ class FortShieldInvestment extends StatelessWidget{
                               )
                             ],
                             backgroundColor: kWhiteColor,
-                            titlePadding:
-                                const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15),
-                            contentPadding:
-                                const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
-                            actionsPadding:
-                                const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
+                            titlePadding: const EdgeInsets.symmetric(
+                                horizontal: 10.0, vertical: 15),
+                            contentPadding: const EdgeInsets.symmetric(
+                                horizontal: 10.0, vertical: 10),
+                            actionsPadding: const EdgeInsets.symmetric(
+                                horizontal: 10.0, vertical: 10),
                           );
-                          showDialog(context: context, builder: (BuildContext context){
-                            return dialog;
-                          });
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return dialog;
+                              });
                         },
                         disabled: !state.agreementAccepted);
                   },
