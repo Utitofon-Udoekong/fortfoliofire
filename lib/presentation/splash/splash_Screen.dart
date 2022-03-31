@@ -15,23 +15,23 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
 
-  @override
-  void initState() {
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
-      final bool isUserLoggedIn = context.watch<AuthCubit>().state.isLoggedIn;
-      context.read<InternetCubit>().monitorInternetConnection();
-      final bool isUserCheckedFromAuthService =
-          context.read<AuthCubit>().state.isUserCheckedFromAuthFacade;
-      if (isUserLoggedIn) {
-        context.router.replace(const HomePageRoute());
-      } else if (!isUserLoggedIn && isUserCheckedFromAuthService) {
-        context.router.replace(const OnboardingScreenRoute());
-      }
+  // @override
+  // void initState() {
+  //   WidgetsBinding.instance!.addPostFrameCallback((_) {
+  //     final bool isUserLoggedIn = context.watch<AuthCubit>().state.isLoggedIn;
+  //     context.read<InternetCubit>().monitorInternetConnection();
+  //     final bool isUserCheckedFromAuthService =
+  //         context.read<AuthCubit>().state.isUserCheckedFromAuthFacade;
+  //     if (isUserLoggedIn) {
+  //       context.router.replace(const HomePageRoute());
+  //     } else if (!isUserLoggedIn && isUserCheckedFromAuthService) {
+  //       context.router.replace(const OnboardingScreenRoute());
+  //     }
       
-    });
+  //   });
 
-    super.initState();
-  }
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {

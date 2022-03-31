@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
-import 'package:fortfolio/domain/core/value_objects.dart';
 import 'package:fortfolio/domain/user/investment.dart';
-import 'package:fortfolio/domain/user/value_objects.dart';
+import 'package:fortfolio/utils/pages.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 
@@ -24,6 +22,7 @@ abstract class InvestmentItemDTO implements _$InvestmentItemDTO {
     required double duration,
     required String status,
     required int planYield,
+    required String paymentMethod
   }) = _InvestmentItemDTO;
 
   factory InvestmentItemDTO.fromDomain(InvestmentItem investmentItem) {
@@ -39,6 +38,7 @@ abstract class InvestmentItemDTO implements _$InvestmentItemDTO {
       status: '',
       traxId: '',
       uid: '',
+      paymentMethod: ''
     );
   }
 
@@ -69,6 +69,7 @@ extension InvestmentItemDTOX on InvestmentItemDTO {
       status: status,
       traxId: traxId,
       uid: uid,
+      paymentMethod: paymentMethod
     );
   }
 }

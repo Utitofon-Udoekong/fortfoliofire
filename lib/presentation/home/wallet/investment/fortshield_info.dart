@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_outlined_button.dart';
-import 'package:fortfolio/injection.dart';
 import 'package:fortfolio/presentation/home/wallet/cubit/wallet_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 
@@ -58,7 +57,7 @@ class FortShieldInvestmentInfo extends StatelessWidget {
                       subTitle.copyWith(fontSize: 12, color: kPrimaryColor)),
               const SizedBox(height: 15),
               SizedBox(
-                height: 300,
+                height: activeInvestments.length * 100,
                 child: ListView.builder(
                   itemCount: activeInvestments.length,
                   physics: const NeverScrollableScrollPhysics(),

@@ -46,13 +46,13 @@ class WalletState with _$WalletState {
     generalCryptoAddresses: [
     ],
     fortDollarInvestments: [
-      InvestmentItem(description: "description", uid: "uid", amount: 30, traxId: "traxId", roi: 0, planName: "fortdollar", paymentDate: DateTime.now(), dueDate: DateTime.now(), duration: 3, status: "status", planYield: 6)
+      InvestmentItem(description: "description", uid: "uid", amount: 30, traxId: "traxId", roi: 0, planName: "fortdollar", paymentDate: DateTime.now(), dueDate: DateTime.now(), duration: 3, status: "status", planYield: 6, paymentMethod: "Bank")
     ],
     fortCryptoInvestments: [
-      InvestmentItem(description: "description", uid: "uid", amount: 30, traxId: "traxId", roi: 0, planName: "fortcrypto", paymentDate: DateTime.now(), dueDate: DateTime.now(), duration: 3, status: "status", planYield: 6)
+      InvestmentItem(description: "description", uid: "uid", amount: 30, traxId: "traxId", roi: 0, planName: "fortcrypto", paymentDate: DateTime.now(), dueDate: DateTime.now(), duration: 3, status: "status", planYield: 6, paymentMethod: "Bank")
     ],
     fortShieldInvestments: [
-      InvestmentItem(description: "description", uid: "uid", amount: 30, traxId: "traxId", roi: 0, planName: "fortshield", paymentDate: DateTime.now(), dueDate: DateTime.now(), duration: 3, status: "status", planYield: 6)
+      InvestmentItem(description: "description", uid: "uid", amount: 30, traxId: "traxId", roi: 0, planName: "fortshield", paymentDate: DateTime.now(), dueDate: DateTime.now(), duration: 3, status: "status", planYield: 6, paymentMethod: "Bank")
     ],
     withdrawals: [],
     exchange: "NGN",

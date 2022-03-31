@@ -29,7 +29,8 @@ class _$InvestmentItemTearOff {
       required DateTime dueDate,
       required double duration,
       required String status,
-      required int planYield}) {
+      required int planYield,
+      required String paymentMethod}) {
     return _InvestmentItem(
       description: description,
       uid: uid,
@@ -42,6 +43,7 @@ class _$InvestmentItemTearOff {
       duration: duration,
       status: status,
       planYield: planYield,
+      paymentMethod: paymentMethod,
     );
   }
 }
@@ -62,6 +64,7 @@ mixin _$InvestmentItem {
   double get duration => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   int get planYield => throw _privateConstructorUsedError;
+  String get paymentMethod => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $InvestmentItemCopyWith<InvestmentItem> get copyWith =>
@@ -84,7 +87,8 @@ abstract class $InvestmentItemCopyWith<$Res> {
       DateTime dueDate,
       double duration,
       String status,
-      int planYield});
+      int planYield,
+      String paymentMethod});
 }
 
 /// @nodoc
@@ -109,6 +113,7 @@ class _$InvestmentItemCopyWithImpl<$Res>
     Object? duration = freezed,
     Object? status = freezed,
     Object? planYield = freezed,
+    Object? paymentMethod = freezed,
   }) {
     return _then(_value.copyWith(
       description: description == freezed
@@ -155,6 +160,10 @@ class _$InvestmentItemCopyWithImpl<$Res>
           ? _value.planYield
           : planYield // ignore: cast_nullable_to_non_nullable
               as int,
+      paymentMethod: paymentMethod == freezed
+          ? _value.paymentMethod
+          : paymentMethod // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -177,7 +186,8 @@ abstract class _$InvestmentItemCopyWith<$Res>
       DateTime dueDate,
       double duration,
       String status,
-      int planYield});
+      int planYield,
+      String paymentMethod});
 }
 
 /// @nodoc
@@ -204,6 +214,7 @@ class __$InvestmentItemCopyWithImpl<$Res>
     Object? duration = freezed,
     Object? status = freezed,
     Object? planYield = freezed,
+    Object? paymentMethod = freezed,
   }) {
     return _then(_InvestmentItem(
       description: description == freezed
@@ -250,6 +261,10 @@ class __$InvestmentItemCopyWithImpl<$Res>
           ? _value.planYield
           : planYield // ignore: cast_nullable_to_non_nullable
               as int,
+      paymentMethod: paymentMethod == freezed
+          ? _value.paymentMethod
+          : paymentMethod // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -268,7 +283,8 @@ class _$_InvestmentItem extends _InvestmentItem {
       required this.dueDate,
       required this.duration,
       required this.status,
-      required this.planYield})
+      required this.planYield,
+      required this.paymentMethod})
       : super._();
 
   @override
@@ -293,10 +309,12 @@ class _$_InvestmentItem extends _InvestmentItem {
   final String status;
   @override
   final int planYield;
+  @override
+  final String paymentMethod;
 
   @override
   String toString() {
-    return 'InvestmentItem(description: $description, uid: $uid, amount: $amount, traxId: $traxId, roi: $roi, planName: $planName, paymentDate: $paymentDate, dueDate: $dueDate, duration: $duration, status: $status, planYield: $planYield)';
+    return 'InvestmentItem(description: $description, uid: $uid, amount: $amount, traxId: $traxId, roi: $roi, planName: $planName, paymentDate: $paymentDate, dueDate: $dueDate, duration: $duration, status: $status, planYield: $planYield, paymentMethod: $paymentMethod)';
   }
 
   @override
@@ -316,7 +334,9 @@ class _$_InvestmentItem extends _InvestmentItem {
             const DeepCollectionEquality().equals(other.dueDate, dueDate) &&
             const DeepCollectionEquality().equals(other.duration, duration) &&
             const DeepCollectionEquality().equals(other.status, status) &&
-            const DeepCollectionEquality().equals(other.planYield, planYield));
+            const DeepCollectionEquality().equals(other.planYield, planYield) &&
+            const DeepCollectionEquality()
+                .equals(other.paymentMethod, paymentMethod));
   }
 
   @override
@@ -332,7 +352,8 @@ class _$_InvestmentItem extends _InvestmentItem {
       const DeepCollectionEquality().hash(dueDate),
       const DeepCollectionEquality().hash(duration),
       const DeepCollectionEquality().hash(status),
-      const DeepCollectionEquality().hash(planYield));
+      const DeepCollectionEquality().hash(planYield),
+      const DeepCollectionEquality().hash(paymentMethod));
 
   @JsonKey(ignore: true)
   @override
@@ -352,7 +373,8 @@ abstract class _InvestmentItem extends InvestmentItem {
       required DateTime dueDate,
       required double duration,
       required String status,
-      required int planYield}) = _$_InvestmentItem;
+      required int planYield,
+      required String paymentMethod}) = _$_InvestmentItem;
   const _InvestmentItem._() : super._();
 
   @override
@@ -377,6 +399,8 @@ abstract class _InvestmentItem extends InvestmentItem {
   String get status;
   @override
   int get planYield;
+  @override
+  String get paymentMethod;
   @override
   @JsonKey(ignore: true)
   _$InvestmentItemCopyWith<_InvestmentItem> get copyWith =>

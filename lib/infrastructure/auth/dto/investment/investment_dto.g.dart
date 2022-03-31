@@ -19,6 +19,7 @@ _$_InvestmentItemDTO _$$_InvestmentItemDTOFromJson(Map<String, dynamic> json) =>
       duration: (json['duration'] as num).toDouble(),
       status: json['status'] as String,
       planYield: json['planYield'] as int,
+      paymentMethod: json['paymentMethod'] as String,
     );
 
 Map<String, dynamic> _$$_InvestmentItemDTOToJson(
@@ -35,4 +36,5 @@ Map<String, dynamic> _$$_InvestmentItemDTOToJson(
       'duration': instance.duration,
       'status': instance.status,
       'planYield': instance.planYield,
+      'paymentMethod': instance.paymentMethod,
     };

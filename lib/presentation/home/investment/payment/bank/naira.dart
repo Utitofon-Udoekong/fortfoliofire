@@ -11,32 +11,30 @@ class NairaAccount extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final int amountInvested = context.select(
+        (InvestmentCubit investmentCubit) =>
+            investmentCubit.state.amountInvested);
     return Scaffold(
       body: SingleChildScrollView(
           child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          BlocBuilder<InvestmentCubit, InvestmentState>(
-            builder: (context, state) {
-              return Flex(
-                direction: Axis.horizontal,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Text(
-                    'N',
-                    style: subTitle.copyWith(
-                        color: kBlackColor,
-                        fontSize: 14,
-                        decoration: TextDecoration.lineThrough),
-                  ),
-                  Text(
-                    '${state.amountInvested}',
-                    style:
-                        subTitle.copyWith(color: kBlackColor, fontSize: 14),
-                  ),
-                ],
-              );
-            },
+          Flex(
+            direction: Axis.horizontal,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                'N',
+                style: subTitle.copyWith(
+                    color: kBlackColor,
+                    fontSize: 14,
+                    decoration: TextDecoration.lineThrough),
+              ),
+              Text(
+                '$amountInvested',
+                style: subTitle.copyWith(color: kBlackColor, fontSize: 14),
+              ),
+            ],
           ),
           Row(children: <Widget>[
             const Expanded(child: Divider()),
@@ -64,14 +62,9 @@ class NairaAccount extends StatelessWidget {
                     fontSize: 14,
                     decoration: TextDecoration.lineThrough),
               ),
-              BlocBuilder<InvestmentCubit, InvestmentState>(
-                builder: (context, state) {
-                  return Text(
-                    '${state.amountInvested / 560} ',
-                    style:
-                        subTitle.copyWith(color: kBlackColor, fontSize: 14),
-                  );
-                },
+              Text(
+                '${amountInvested / 560} ',
+                style: subTitle.copyWith(color: kBlackColor, fontSize: 14),
               ),
             ],
           ),
@@ -100,8 +93,7 @@ class NairaAccount extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.0),
-                border:
-                    Border.all(width: 1.5, color: const Color(0XFFF3F6F8))),
+                border: Border.all(width: 1.5, color: const Color(0XFFF3F6F8))),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[

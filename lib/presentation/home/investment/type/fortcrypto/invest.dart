@@ -122,7 +122,7 @@ class FortCryptoInvestment extends StatelessWidget {
                       selectedColor: Colors.white,
                       color: Colors.white70,
                       isSelected: state.isSelected,
-                      fillColor: const Color.fromRGBO(243, 246, 248, 0.6),
+                      // fillColor: const Color.fromRGBO(243, 246, 248, 0.6),
                       renderBorder: false,
                       children: <Widget>[
                         Container(
@@ -253,7 +253,7 @@ class FortCryptoInvestment extends StatelessWidget {
                 ),
                 BlocBuilder<InvestmentCubit, InvestmentState>(
                   buildWhen: (previous, current) =>
-                      previous.agreementAccepted != current.agreementAccepted,
+                      previous.isValid != current.isValid,
                   builder: (context, state) {
                     return CustomAuthFilledButton(
                         text: 'INVEST NOW',
@@ -315,7 +315,7 @@ class FortCryptoInvestment extends StatelessWidget {
                                 return dialog;
                               });
                         },
-                        disabled: !state.agreementAccepted);
+                        disabled: !state.isValid);
                   },
                 ),
                 const SizedBox(

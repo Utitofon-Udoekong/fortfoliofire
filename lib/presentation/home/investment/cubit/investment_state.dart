@@ -7,19 +7,18 @@ class InvestmentState with _$InvestmentState {
       required double duration,
       required int amountInvested,
       required int roi,
-      required String method,
       required String response,
       required bool agreementAccepted,
       required bool isLoading,
       required String exchangeType,
       required List<bool> isSelected,
       required List<int> durations,
+      required String paymentMethod
       }) = _InvestmentState;
   const InvestmentState._();
 
   factory InvestmentState.initial() => InvestmentState(
         amountInvested: 0,
-        method: '',
         planName: '',
         roi: 0,
         response: "",
@@ -28,8 +27,10 @@ class InvestmentState with _$InvestmentState {
         exchangeType: "NGN",
         isSelected: List.from(boolList),
         durations: [3, 6, 9], 
-        duration: 6
+        duration: 6,
+        paymentMethod: 'Bank'
       );
+    bool get isValid => planName.isNotEmpty && !duration.isNaN && !amountInvested.isNaN && agreementAccepted;
 }
 
 var boolList = <bool>[false,true,false];

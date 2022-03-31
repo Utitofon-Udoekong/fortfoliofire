@@ -27,10 +27,10 @@ int selectedpage = 0;
 //   _pageController.jumpToPage(2);
 // }
 class _OnboardingScreenState extends State<OnboardingScreen> {
-  @override
-  void initState() {
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  // }
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;

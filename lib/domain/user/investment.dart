@@ -17,6 +17,7 @@ abstract class InvestmentItem implements _$InvestmentItem {
     required double duration,
     required String status,
     required int planYield,
+    required String paymentMethod,
   }) = _InvestmentItem;
 
   factory InvestmentItem.empty() => InvestmentItem(
@@ -31,6 +32,7 @@ abstract class InvestmentItem implements _$InvestmentItem {
         status: '',
         traxId: '',
         uid: '',
+        paymentMethod: ''
       );
   
 }

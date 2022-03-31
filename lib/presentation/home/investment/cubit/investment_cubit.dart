@@ -52,9 +52,9 @@ class InvestmentCubit extends Cubit<InvestmentState> {
       roi: roi
     ));
   }
-  void methodChanged({required String method}){
+  void paymentMethodChanged({required String paymentMethod}){
     emit(state.copyWith(
-      method: method
+      paymentMethod: paymentMethod
     ));
   }
   void agreementAcceptedChanged({required bool agreementAccepted}) {
@@ -72,7 +72,8 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     final String traxId = const Uuid().v4();
     final String uid = authFacade.getUserId();
     final dueDate = paymentDate.add(Duration(hours: duration.toInt()));
-    InvestmentItem investmentItem = InvestmentItem(description: description, uid: uid, amount: amount, traxId: traxId, roi: roi, planName: planName, paymentDate: paymentDate, dueDate: dueDate, duration: duration, status: status, planYield: 0);
+    final paymentMethod = state.paymentMethod;
+    InvestmentItem investmentItem = InvestmentItem(description: description, uid: uid, amount: amount, traxId: traxId, roi: roi, planName: planName, paymentDate: paymentDate, dueDate: dueDate, duration: duration, status: status, planYield: 0, paymentMethod: paymentMethod);
     final response = await firestoreFacade.createInvestmentTransaction(investmentItem: investmentItem);
     try{
       response.fold(() => null, (response) {
