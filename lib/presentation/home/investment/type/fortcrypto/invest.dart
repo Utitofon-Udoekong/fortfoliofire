@@ -7,6 +7,7 @@ import 'package:timelines/timelines.dart';
 
 import 'package:fortfolio/domain/constants/order.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
+import 'package:flutter/services.dart';
 import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
 import 'package:fortfolio/domain/widgets/labelled_checkbox.dart';
 
@@ -86,6 +87,8 @@ class FortCryptoInvestment extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                       child: TextFormField(
                         autocorrect: false,
+                        keyboardType: TextInputType.number,
+                        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                         textInputAction: TextInputAction.next,
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         decoration: InputDecoration(
