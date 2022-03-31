@@ -5,13 +5,15 @@ class AuthState with _$AuthState {
   const factory AuthState({
     required AuthUserModel userModel,
     required bool isUserCheckedFromAuthFacade,
+    required bool isloggedIn
   }) = _AuthState;
   const AuthState._();
 
   factory AuthState.empty() => AuthState(
         userModel: AuthUserModel.empty(),
         isUserCheckedFromAuthFacade: false,
+        isloggedIn: false
       );
 
-  bool get isLoggedIn => userModel.phoneNumber.isNotEmpty;
+  bool get isLoggedIn => isloggedIn;
 }

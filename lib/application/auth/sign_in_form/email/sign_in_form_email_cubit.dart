@@ -57,6 +57,7 @@ class SignInFormEmailCubit extends Cubit<SignInFormEmailState> {
       }, (userId) async{
         final userModel = await _authFacade.getDatabaseUser(id: userId);
         userModel.fold(() => null, (authUser) => authCubit.listenAuthStateChangesStream(authUser));
+        authCubit.loggedInChanged(loggedIn: true);
         emit(state.copyWith(isSubmitting: false,success: "Login successful"));
         reset();
       });

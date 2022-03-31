@@ -146,8 +146,8 @@ class FirebaseAuthFacade implements IAuthFacade {
                 id: uuid,
                 displayName: displayName);
                 log(authUserModel.toString());
-            await saveUserToDatabase(userModel: authUserModel, uid: value.user!.uid);
             await firebaseAuth.currentUser!.updateDisplayName(displayName);
+            await saveUserToDatabase(userModel: authUserModel, uid: value.user!.uid);
       });
       return right("Registration successful");
     } on FirebaseAuthException catch (e) {

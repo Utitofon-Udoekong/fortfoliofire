@@ -105,6 +105,7 @@ class SignUpFormPhoneCubit extends Cubit<SignUpFormPhoneState> {
           (_) async {
             final usermodel = await _authFacade.getDatabaseUserWithPhoneNumber(phoneNumber: state.phoneNumber.getOrCrash());
             usermodel.fold(() => null, (user) => authCubit.listenAuthStateChangesStream(user));
+            authCubit.loggedInChanged(loggedIn: true);
             emit(state.copyWith(isSubmitting: false));
             // Verification completed successfully case.
             // Bloc Listener in the UI should listen to Auth Listener State and if user is authenticated and not anonymous, we should take them to Registration page or Feed Page.

@@ -37,6 +37,10 @@ class AuthCubit extends Cubit<AuthState> {
     );
   }
 
+  void loggedInChanged({required bool loggedIn}){
+    emit(state.copyWith(isloggedIn: loggedIn));
+  }
+
   Future<void> signOut() async {
     await _authFacade.signOut();
   }
