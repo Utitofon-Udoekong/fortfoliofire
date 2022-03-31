@@ -88,6 +88,7 @@ class FortCryptoInvestment extends StatelessWidget {
                         autocorrect: false,
                         keyboardType: TextInputType.number,
                         textInputAction: TextInputAction.next,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: const Color(0xFFF3F6F8),
@@ -100,6 +101,7 @@ class FortCryptoInvestment extends StatelessWidget {
                             .read<InvestmentCubit>()
                             .amountInvestedChanged(
                                 amountInvested: int.parse(value)),
+                        validator: (String? value) => int.parse(value!) < 1e6 ? 'Minimum investment is \$1,000' : null,
                       ),
                     );
                   },
@@ -279,21 +281,11 @@ class FortCryptoInvestment extends StatelessWidget {
                                         .read<InvestmentCubit>()
                                         .exchangeTypeChanged(
                                             exchangeType: "USD");
-                                    context
-                                      .read<InvestmentCubit>()
-                                      .agreementAcceptedChanged(
-                                          agreementAccepted: false);
                                     context.router.push(
                                         const SelectInvestmentMethodRoute());
                                   }),
                               InkWell(
-                                onTap: () {
-                                  context.router.pop();
-                                  context
-                                      .read<InvestmentCubit>()
-                                      .agreementAcceptedChanged(
-                                          agreementAccepted: false);
-                                },
+                                onTap: () => context.router.pop(),
                                 child: Container(
                                   alignment: Alignment.center,
                                   height: 48,

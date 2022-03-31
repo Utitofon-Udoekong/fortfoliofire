@@ -82,6 +82,7 @@ class FortShieldInvestment extends StatelessWidget {
                       child: TextFormField(
                         autocorrect: false,
                         keyboardType: TextInputType.number,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
                         textInputAction: TextInputAction.next,
                         decoration: InputDecoration(
                           filled: true,
@@ -120,6 +121,7 @@ class FortShieldInvestment extends StatelessWidget {
                             .read<InvestmentCubit>()
                             .amountInvestedChanged(
                                 amountInvested: int.parse(value)),
+                        validator: (String? value) => int.parse(value!) < 1e6 ? 'Minimum investment is N1,000,000' : null,
                       ),
                     );
                   },
@@ -292,13 +294,7 @@ class FortShieldInvestment extends StatelessWidget {
                                         const SelectInvestmentMethodRoute());
                                   }),
                               InkWell(
-                                onTap: () {
-                                  context.router.pop();
-                                  context
-                                      .read<InvestmentCubit>()
-                                      .agreementAcceptedChanged(
-                                          agreementAccepted: false);
-                                },
+                                onTap: () => context.router.pop(),
                                 child: Container(
                                   alignment: Alignment.center,
                                   height: 48,
