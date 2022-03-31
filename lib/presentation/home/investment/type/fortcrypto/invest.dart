@@ -86,7 +86,6 @@ class FortCryptoInvestment extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                       child: TextFormField(
                         autocorrect: false,
-                        keyboardType: TextInputType.number,
                         textInputAction: TextInputAction.next,
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         decoration: InputDecoration(

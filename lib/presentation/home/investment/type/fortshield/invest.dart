@@ -81,7 +81,6 @@ class FortShieldInvestment extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                       child: TextFormField(
                         autocorrect: false,
-                        keyboardType: TextInputType.number,
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         textInputAction: TextInputAction.next,
                         decoration: InputDecoration(

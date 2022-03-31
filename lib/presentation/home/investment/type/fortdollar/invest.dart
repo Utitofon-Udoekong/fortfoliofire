@@ -84,7 +84,6 @@ class FortDollarInvestment extends StatelessWidget {
                       child: TextFormField(
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         autocorrect: false,
-                        keyboardType: TextInputType.number,
                         textInputAction: TextInputAction.next,
                         decoration: InputDecoration(
                             filled: true,
