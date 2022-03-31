@@ -20,6 +20,7 @@ class WalletOverview extends StatelessWidget {
         walletCubit.state.fortShieldInvestmentBalance);
     final fortDollarBalance = context.select((WalletCubit walletCubit) =>
         walletCubit.state.fortDollarInvestmentBalance);
+        final selectedExchange = context.select((WalletCubit cubit) => cubit.state.exchange);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -119,7 +120,7 @@ class WalletOverview extends StatelessWidget {
                                               .read<WalletCubit>()
                                               .exchangeChanged(exchange: "NGN");
                                           context.router.pop();
-                                        }),
+                                        },selectedExchange, "NGN"),
                                         const SizedBox(
                                           height: 16,
                                         ),
@@ -128,7 +129,7 @@ class WalletOverview extends StatelessWidget {
                                               .read<WalletCubit>()
                                               .exchangeChanged(exchange: "USD");
                                           context.router.pop();
-                                        }),
+                                        },selectedExchange, "USD"),
                                         const SizedBox(
                                           height: 16,
                                         ),
@@ -137,7 +138,7 @@ class WalletOverview extends StatelessWidget {
                                               .read<WalletCubit>()
                                               .exchangeChanged(exchange: "BTC");
                                           context.router.pop();
-                                        }),
+                                        },selectedExchange, "BTC"),
                                       ],
                                     ),
                                   ),
@@ -249,7 +250,7 @@ class WalletOverview extends StatelessWidget {
     );
   }
 
-  Widget buildtile(String icon, String title, Function() ontap) {
+  Widget buildtile(String icon, String title, Function() ontap, String seletedExchange, String exchange) {
     return GestureDetector(
       onTap: ontap,
       child: Row(
@@ -264,8 +265,8 @@ class WalletOverview extends StatelessWidget {
                 color: kBlackColor, fontWeight: FontWeight.w600, fontSize: 15),
           ),
           const Spacer(),
-          const Icon(
-            Icons.circle_outlined,
+          Icon(
+            seletedExchange == exchange ? Icons.circle_rounded : Icons.circle_outlined,
             color: klightblue,
           )
         ],

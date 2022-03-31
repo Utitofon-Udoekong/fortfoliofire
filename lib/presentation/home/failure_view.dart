@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
+import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
 
 class FailureView extends StatelessWidget {
   const FailureView({ Key? key, this.title = "Error", this.message = "Something went wrong", required this.onpressed }) : super(key: key);
@@ -7,23 +9,20 @@ class FailureView extends StatelessWidget {
   final Function() onpressed;
   @override
   Widget build(BuildContext context) {
+    final svg = SvgPicture.asset("images/disonnected.svg");
     return Container(
       margin: const EdgeInsets.all(20),
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(
-              Icons.error,
-              color: Colors.red,
-              size: 50,
-            ),
+            svg,
             const SizedBox(height: 4,),
             Text(title, style: titleText,),
             const SizedBox(height: 2,),
             Text(message, style: subTitle,),
             const SizedBox(height: 2,),
-            ElevatedButton(onPressed: onpressed, child: const Text('Retry'))
+            CustomFilledButton(text: "Retry", onTap: onpressed)
           ],
         ),
       ),

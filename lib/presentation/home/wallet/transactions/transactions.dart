@@ -23,10 +23,8 @@ class WalletTransactions extends StatelessWidget {
             builder:
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (snapshot.hasError) {
-                return FailureView(onpressed: () => {});
-                // return Text('Something went wrong');
+                return FailureView(onpressed: () => snapshot.requireData);
               }
-
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const LoadingView();
               }

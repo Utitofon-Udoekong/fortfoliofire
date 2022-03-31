@@ -1,85 +1,132 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fortfolio/application/internet/cubit/internet_cubit.dart';
 // import 'package:carousel_slider/carousel_slider.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
- 
 
 class Dashboard extends StatelessWidget {
   const Dashboard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Padding(
-        padding: kDefaultPadding,
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            // Obx(() {
-            //   if (controller.isDataProcessing.value) {
-            //     return Container(
-            //       margin: const EdgeInsets.all(8),
-            //       child: const CircularProgressIndicator(),
-            //     );
-            //   } else {
-            //     if (controller.isDataError.value) {
-            //       return FailureView(
-            //         onpressed: () => controller.getPopular(),
-            //       );
-            //     } else {
-            //       return CarouselSlider(
-            //           items: generateSlider(),
-            //           options: CarouselOptions(
-            //             autoPlay: true,
-            //             aspectRatio: 2.0,
-            //           ));
-            //     }
-            //   }
-            // }),
-            const SizedBox(
-              height: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                buildSmallIcons('images/Activity-small.svg', 'Investments', () => context.pushRoute(const InvestmentPageRoute())),
-                buildSmallIcons('images/Swap.svg', 'Transactions', () => context.router.push(const DashboardTransactionsRoute())),
-                buildSmallIcons('images/Chart.svg', 'Invest Calculator', () => context.router.push(const CalculatorRoute())),
-              ],
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            const Text('Quick Actions', style: TextStyle(
-              color: Color(0XFF212529),
-              fontSize: 15,
-              fontWeight: FontWeight.w600
-            ),
-            textAlign: TextAlign.left,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                buildBigIcons('images/bolt.svg', 'Active Investments', const Color(0XFF00ADEE), 'See your current investments, invest more and get recommendations.', 'Active Invests', () => context.pushRoute(const InvestmentPageRoute()), context),
-                buildBigIcons('images/Activity-big.svg', 'Quick Investments', const Color(0XFF00C566), 'Find invsestments that fit with your area of interest & get started!', 'Quick Invest', () => context.pushRoute(const InvestmentPageRoute()), context),
-              ],
-            ),
-            const SizedBox(height: 10,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                buildBigIcons('images/support.svg', 'Need Help? Get Support', const Color(0XFF00ADEE), 'Contact our personnels available to help you with any thing on our app.', 'Get help', () => context.router.push(const SupportPageRoute()), context),
-                buildBigIcons('images/Profile.svg', 'Access Your Profile', const Color(0XFF00ADEE), 'See your transactions, settings & update your preferences.', 'Access Profile', () => context.router.push(const ProfilePageRoute()), context),
-              ],
-            ),
-          ]),
+    return BlocListener<InternetCubit, InternetState>(
+      listener: (context, state) {
+        if(state.disconnected){
+          context.router.push(const NoInternetPageRoute());
+        }
+      },
+      child: SafeArea(
+        child: Padding(
+          padding: kDefaultPadding,
+          child: SingleChildScrollView(
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  // Obx(() {
+                  //   if (controller.isDataProcessing.value) {
+                  //     return Container(
+                  //       margin: const EdgeInsets.all(8),
+                  //       child: const CircularProgressIndicator(),
+                  //     );
+                  //   } else {
+                  //     if (controller.isDataError.value) {
+                  //       return FailureView(
+                  //         onpressed: () => controller.getPopular(),
+                  //       );
+                  //     } else {
+                  //       return CarouselSlider(
+                  //           items: generateSlider(),
+                  //           options: CarouselOptions(
+                  //             autoPlay: true,
+                  //             aspectRatio: 2.0,
+                  //           ));
+                  //     }
+                  //   }
+                  // }),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      buildSmallIcons(
+                          'images/Activity-small.svg',
+                          'Investments',
+                          () => context.pushRoute(const InvestmentPageRoute())),
+                      buildSmallIcons(
+                          'images/Swap.svg',
+                          'Transactions',
+                          () => context.router
+                              .push(const DashboardTransactionsRoute())),
+                      buildSmallIcons('images/Chart.svg', 'Invest Calculator',
+                          () => context.router.push(const CalculatorRoute())),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  const Text(
+                    'Quick Actions',
+                    style: TextStyle(
+                        color: Color(0XFF212529),
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600),
+                    textAlign: TextAlign.left,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      buildBigIcons(
+                          'images/bolt.svg',
+                          'Active Investments',
+                          const Color(0XFF00ADEE),
+                          'See your current investments, invest more and get recommendations.',
+                          'Active Invests',
+                          () => context.pushRoute(const InvestmentPageRoute()),
+                          context),
+                      buildBigIcons(
+                          'images/Activity-big.svg',
+                          'Quick Investments',
+                          const Color(0XFF00C566),
+                          'Find invsestments that fit with your area of interest & get started!',
+                          'Quick Invest',
+                          () => context.pushRoute(const InvestmentPageRoute()),
+                          context),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      buildBigIcons(
+                          'images/support.svg',
+                          'Need Help? Get Support',
+                          const Color(0XFF00ADEE),
+                          'Contact our personnels available to help you with any thing on our app.',
+                          'Get help',
+                          () => context.router.push(const SupportPageRoute()),
+                          context),
+                      buildBigIcons(
+                          'images/Profile.svg',
+                          'Access Your Profile',
+                          const Color(0XFF00ADEE),
+                          'See your transactions, settings & update your preferences.',
+                          'Access Profile',
+                          () => context.router.push(const ProfilePageRoute()),
+                          context),
+                    ],
+                  ),
+                ]),
+          ),
         ),
       ),
     );
@@ -142,8 +189,8 @@ class Dashboard extends StatelessWidget {
     );
   }
 
-  Widget buildBigIcons(
-      String icon, String title, color, String description, String hypertext, Function()? ontap, BuildContext context) {
+  Widget buildBigIcons(String icon, String title, color, String description,
+      String hypertext, Function()? ontap, BuildContext context) {
     final Widget svg = SvgPicture.asset(
       icon,
       semanticsLabel: title,
@@ -165,7 +212,8 @@ class Dashboard extends StatelessWidget {
           ),
           Text(
             title,
-            style: subTitle.copyWith(color: color, fontSize: 15, fontWeight: FontWeight.w600),
+            style: subTitle.copyWith(
+                color: color, fontSize: 15, fontWeight: FontWeight.w600),
           ),
           const SizedBox(
             height: 5,
