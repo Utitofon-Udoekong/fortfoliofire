@@ -93,6 +93,9 @@ class DomiciliaryAccount extends StatelessWidget {
                   color: kgreyColor,
                   fontSize: 13,
                 )),
+                const SizedBox(
+            height: 15,
+          ),
             Container(
               padding: const EdgeInsets.all(8.0),
               decoration: BoxDecoration(
