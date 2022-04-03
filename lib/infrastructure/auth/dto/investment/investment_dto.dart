@@ -16,6 +16,7 @@ abstract class InvestmentItemDTO implements _$InvestmentItemDTO {
     required int amount,
     required String traxId,
     required int roi,
+    required int numberOfDays,
     required String planName,
     required DateTime paymentDate,
     required DateTime dueDate,
@@ -34,6 +35,7 @@ abstract class InvestmentItemDTO implements _$InvestmentItemDTO {
       duration: 0.0,
       paymentDate: DateTime.fromMillisecondsSinceEpoch(0),
       planYield: 0,
+      numberOfDays: 0,
       roi: 0,
       status: '',
       traxId: '',
@@ -69,7 +71,8 @@ extension InvestmentItemDTOX on InvestmentItemDTO {
       status: status,
       traxId: traxId,
       uid: uid,
-      paymentMethod: paymentMethod
+      paymentMethod: paymentMethod,
+      numberOfDays: numberOfDays
     );
   }
 }

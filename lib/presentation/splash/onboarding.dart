@@ -30,6 +30,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   void initState() {
     // final internetConnectionState = context.watch<InternetCubit>();
+    final connected = 
     super.initState();
   }
   @override

@@ -6,6 +6,7 @@ import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
 import 'package:fortfolio/domain/user/investment.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:uuid/uuid.dart';
 
 part 'investment_state.dart';
@@ -32,6 +33,18 @@ class InvestmentCubit extends Cubit<InvestmentState> {
   }
 
   void planNameChanged({required String planName}){
+    switch (planName) {
+      case "FortDollar":
+        emit(state.copyWith(roi: 30));
+        break;
+      case "FortShield":
+        emit(state.copyWith(roi: 18));
+        break;
+      case "FortCrypto":
+        emit(state.copyWith(roi: 15));
+        break;
+      default:
+    }
     emit(state.copyWith(
       planName: planName
     ));
@@ -61,6 +74,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     emit(state.copyWith(agreementAccepted: agreementAccepted));
   }
   void iHavePaid() async {
+    
     emit(state.copyWith(isLoading: true));
     final String description = state.planName + "Investment";
     final int amount = state.amountInvested;
@@ -71,9 +85,10 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     const String status = "pending";
     final String traxId = const Uuid().v4();
     final String uid = authFacade.getUserId();
-    final dueDate = paymentDate.add(Duration(hours: duration.toInt()));
+    final dueDate = Jiffy(paymentDate).add(months: duration.toInt()).dateTime;
+    final int numberOfDays = dueDate.difference(paymentDate).inDays;
     final paymentMethod = state.paymentMethod;
-    InvestmentItem investmentItem = InvestmentItem(description: description, uid: uid, amount: amount, traxId: traxId, roi: roi, planName: planName, paymentDate: paymentDate, dueDate: dueDate, duration: duration, status: status, planYield: 0, paymentMethod: paymentMethod);
+    InvestmentItem investmentItem = InvestmentItem(description: description, uid: uid, amount: amount, traxId: traxId, roi: roi, planName: planName, paymentDate: paymentDate, dueDate: dueDate, duration: duration, status: status, planYield: 0, paymentMethod: paymentMethod,numberOfDays: numberOfDays);
     final response = await firestoreFacade.createInvestmentTransaction(investmentItem: investmentItem);
     try{
       response.fold(() => null, (response) {

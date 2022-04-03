@@ -64,7 +64,7 @@ mixin _$AuthUserModelDto {
   double get balance => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   bool get isVerified =>
-      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
+      throw _privateConstructorUsedError; 
   @JsonKey(fromJson: sendDateTimeFromJson, toJson: sendDateTimeToJson)
   DateTime get createdat => throw _privateConstructorUsedError;
 
@@ -272,7 +272,7 @@ class _$_AuthUserModelDto implements _AuthUserModelDto {
   final String email;
   @override
   final bool isVerified;
-  @override // ignore: invalid_annotation_target
+  @override 
   @JsonKey(fromJson: sendDateTimeFromJson, toJson: sendDateTimeToJson)
   final DateTime createdat;
 
@@ -356,7 +356,7 @@ abstract class _AuthUserModelDto implements AuthUserModelDto {
   String get email;
   @override
   bool get isVerified;
-  @override // ignore: invalid_annotation_target
+  @override 
   @JsonKey(fromJson: sendDateTimeFromJson, toJson: sendDateTimeToJson)
   DateTime get createdat;
   @override
