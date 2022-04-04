@@ -29,11 +29,10 @@ int selectedpage = 0;
 // }
 class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
-  void initState() async {
-    final connectivityResult = await Connectivity().checkConnectivity();
-    if(connectivityResult == ConnectivityResult.none){
-      context.router.replace(const NoInternetPageRoute());
-    }
+  void initState() {
+    // if(connectivityResult == ConnectivityResult.none){
+    //   context.router.replace(const NoInternetPageRoute());
+    // }
     super.initState();
   }
   @override
