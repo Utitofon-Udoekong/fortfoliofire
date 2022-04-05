@@ -74,7 +74,12 @@ exports.scheduleInvestmentFor12Months = functions.pubsub.schedule('0 0 * */12 *'
 })
 
 
-
-exports.startInvestment = functions.https.onRequest((request, response) => {
-
+exports.endInvestment = functions.firestore.document("/authUsers/{uid}/investments/{docId}").onCreate(async (snapshot, context) => {
+    const documentData = snapshot.data();
+    const startDate = documentData["paymentDate"]
+    const dueDate = documentData["dueDate"]
+    const date =  new Date()
+    const today = date.toLocaleString()
+    
+    
 })
