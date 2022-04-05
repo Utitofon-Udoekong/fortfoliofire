@@ -11,16 +11,18 @@ class CustomFilledButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      child: Container(
-        alignment: Alignment.center,
-        height: 48,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: kPrimaryColor,
-        ),
-        child: Text(text,
-        style: textButton.copyWith(color: kWhiteColor),
+      child: Ink(
+        child: Container(
+          alignment: Alignment.center,
+          height: 48,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: kPrimaryColor,
+          ),
+          child: Text(text,
+          style: textButton.copyWith(color: kWhiteColor),
+          ),
         ),
       ),
     );

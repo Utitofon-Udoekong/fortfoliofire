@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/application/auth/auth_cubit.dart';
-import 'package:fortfolio/application/internet/cubit/internet_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -18,7 +17,6 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     WidgetsBinding.instance!.addPostFrameCallback((_) {
       final bool isUserLoggedIn = context.read<AuthCubit>().state.isLoggedIn;
-      context.read<InternetCubit>().monitorInternetConnection();
       final bool isUserCheckedFromAuthService =
           context.read<AuthCubit>().state.isUserCheckedFromAuthFacade;
       if (isUserLoggedIn) {

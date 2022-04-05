@@ -1,8 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fortfolio/application/internet/cubit/internet_cubit.dart';
 import 'package:fortfolio/domain/constants/onboarding_model.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
@@ -30,9 +27,7 @@ int selectedpage = 0;
 class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   void initState() {
-    // if(connectivityResult == ConnectivityResult.none){
-    //   context.router.replace(const NoInternetPageRoute());
-    // }
+    
     super.initState();
   }
   @override
