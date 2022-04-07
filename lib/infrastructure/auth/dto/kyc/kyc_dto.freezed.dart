@@ -25,14 +25,12 @@ class _$KYCItemDTOTearOff {
   _KYCItemDTO call(
       {required String fullName,
       required String id,
-      required String downloadUrl,
-      required Map<String, dynamic> documents,
+      required List<Map<String, dynamic>> documents,
       required DateTime submitted,
       required String status}) {
     return _KYCItemDTO(
       fullName: fullName,
       id: id,
-      downloadUrl: downloadUrl,
       documents: documents,
       submitted: submitted,
       status: status,
@@ -51,8 +49,8 @@ const $KYCItemDTO = _$KYCItemDTOTearOff();
 mixin _$KYCItemDTO {
   String get fullName => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
-  String get downloadUrl => throw _privateConstructorUsedError;
-  Map<String, dynamic> get documents => throw _privateConstructorUsedError;
+  List<Map<String, dynamic>> get documents =>
+      throw _privateConstructorUsedError;
   DateTime get submitted => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
 
@@ -70,8 +68,7 @@ abstract class $KYCItemDTOCopyWith<$Res> {
   $Res call(
       {String fullName,
       String id,
-      String downloadUrl,
-      Map<String, dynamic> documents,
+      List<Map<String, dynamic>> documents,
       DateTime submitted,
       String status});
 }
@@ -88,7 +85,6 @@ class _$KYCItemDTOCopyWithImpl<$Res> implements $KYCItemDTOCopyWith<$Res> {
   $Res call({
     Object? fullName = freezed,
     Object? id = freezed,
-    Object? downloadUrl = freezed,
     Object? documents = freezed,
     Object? submitted = freezed,
     Object? status = freezed,
@@ -102,14 +98,10 @@ class _$KYCItemDTOCopyWithImpl<$Res> implements $KYCItemDTOCopyWith<$Res> {
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      downloadUrl: downloadUrl == freezed
-          ? _value.downloadUrl
-          : downloadUrl // ignore: cast_nullable_to_non_nullable
-              as String,
       documents: documents == freezed
           ? _value.documents
           : documents // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>,
+              as List<Map<String, dynamic>>,
       submitted: submitted == freezed
           ? _value.submitted
           : submitted // ignore: cast_nullable_to_non_nullable
@@ -131,8 +123,7 @@ abstract class _$KYCItemDTOCopyWith<$Res> implements $KYCItemDTOCopyWith<$Res> {
   $Res call(
       {String fullName,
       String id,
-      String downloadUrl,
-      Map<String, dynamic> documents,
+      List<Map<String, dynamic>> documents,
       DateTime submitted,
       String status});
 }
@@ -151,7 +142,6 @@ class __$KYCItemDTOCopyWithImpl<$Res> extends _$KYCItemDTOCopyWithImpl<$Res>
   $Res call({
     Object? fullName = freezed,
     Object? id = freezed,
-    Object? downloadUrl = freezed,
     Object? documents = freezed,
     Object? submitted = freezed,
     Object? status = freezed,
@@ -165,14 +155,10 @@ class __$KYCItemDTOCopyWithImpl<$Res> extends _$KYCItemDTOCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      downloadUrl: downloadUrl == freezed
-          ? _value.downloadUrl
-          : downloadUrl // ignore: cast_nullable_to_non_nullable
-              as String,
       documents: documents == freezed
           ? _value.documents
           : documents // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>,
+              as List<Map<String, dynamic>>,
       submitted: submitted == freezed
           ? _value.submitted
           : submitted // ignore: cast_nullable_to_non_nullable
@@ -191,7 +177,6 @@ class _$_KYCItemDTO extends _KYCItemDTO {
   const _$_KYCItemDTO(
       {required this.fullName,
       required this.id,
-      required this.downloadUrl,
       required this.documents,
       required this.submitted,
       required this.status})
@@ -205,9 +190,7 @@ class _$_KYCItemDTO extends _KYCItemDTO {
   @override
   final String id;
   @override
-  final String downloadUrl;
-  @override
-  final Map<String, dynamic> documents;
+  final List<Map<String, dynamic>> documents;
   @override
   final DateTime submitted;
   @override
@@ -215,7 +198,7 @@ class _$_KYCItemDTO extends _KYCItemDTO {
 
   @override
   String toString() {
-    return 'KYCItemDTO(fullName: $fullName, id: $id, downloadUrl: $downloadUrl, documents: $documents, submitted: $submitted, status: $status)';
+    return 'KYCItemDTO(fullName: $fullName, id: $id, documents: $documents, submitted: $submitted, status: $status)';
   }
 
   @override
@@ -225,8 +208,6 @@ class _$_KYCItemDTO extends _KYCItemDTO {
             other is _KYCItemDTO &&
             const DeepCollectionEquality().equals(other.fullName, fullName) &&
             const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality()
-                .equals(other.downloadUrl, downloadUrl) &&
             const DeepCollectionEquality().equals(other.documents, documents) &&
             const DeepCollectionEquality().equals(other.submitted, submitted) &&
             const DeepCollectionEquality().equals(other.status, status));
@@ -237,7 +218,6 @@ class _$_KYCItemDTO extends _KYCItemDTO {
       runtimeType,
       const DeepCollectionEquality().hash(fullName),
       const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(downloadUrl),
       const DeepCollectionEquality().hash(documents),
       const DeepCollectionEquality().hash(submitted),
       const DeepCollectionEquality().hash(status));
@@ -257,8 +237,7 @@ abstract class _KYCItemDTO extends KYCItemDTO {
   const factory _KYCItemDTO(
       {required String fullName,
       required String id,
-      required String downloadUrl,
-      required Map<String, dynamic> documents,
+      required List<Map<String, dynamic>> documents,
       required DateTime submitted,
       required String status}) = _$_KYCItemDTO;
   const _KYCItemDTO._() : super._();
@@ -271,9 +250,7 @@ abstract class _KYCItemDTO extends KYCItemDTO {
   @override
   String get id;
   @override
-  String get downloadUrl;
-  @override
-  Map<String, dynamic> get documents;
+  List<Map<String, dynamic>> get documents;
   @override
   DateTime get submitted;
   @override

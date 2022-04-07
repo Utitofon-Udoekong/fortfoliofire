@@ -86,14 +86,14 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
   }
 
   @override
-  Future<Option<String>> createKYC({required KYCItem kycItem}) async {
+  Future<Either<String,String>> createKYC({required KYCItem kycItem}) async {
     String id = kycItem.id;
     try {
       await firestore.authUserCollection.doc(auth.currentUser!.uid).collection("kyc").doc(id).set(KYCItemDTO.fromDomain(kycItem).toJson());
-      return some("KYC Documents submitted");
+      return right("KYC Documents submitted");
     } on FirebaseException catch (e) {
       log("Code: ${e.code}, Message: ${e.message}");
-      return some('Unable to submit documents at the moment');
+      return left('Unable to submit documents at the moment');
     }
   }
 

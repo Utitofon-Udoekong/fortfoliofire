@@ -22,5 +22,5 @@ abstract class IFirestoreFacade {
   Future<Option<List<InvestmentItem>>> getFortCryptoInvestments();
   Future<Option<List<WithdrawalItem>>> getWithdrawals();
   Future<Option<String>> createWithdrawalTransaction( {required WithdrawalItem withdrawalItem});
-  Future<Option<String>> createKYC( {required KYCItem kycItem});
+  Future<Either<String,String>> createKYC( {required KYCItem kycItem});
 }

@@ -12,8 +12,7 @@ abstract class KYCItemDTO implements _$KYCItemDTO {
   const factory KYCItemDTO({
     required String fullName,
     required String id,
-    required String downloadUrl,
-    required Map<String, dynamic> documents,
+    required List<Map<String, dynamic>> documents,
     required DateTime submitted,
     required String status
   }) = _KYCItemDTO;
@@ -22,7 +21,6 @@ abstract class KYCItemDTO implements _$KYCItemDTO {
     return KYCItemDTO(
       fullName: kycItem.fullName,
     id: kycItem.id,
-    downloadUrl: kycItem.downloadUrl,
     documents: kycItem.documents,
     submitted: kycItem.submitted,
     status: kycItem.status
@@ -47,7 +45,6 @@ extension KYCItemDTOX on KYCItemDTO {
     return KYCItem(
       fullName: fullName,
     id: id,
-    downloadUrl: downloadUrl,
     documents: documents,
     submitted: submitted,
     status: status

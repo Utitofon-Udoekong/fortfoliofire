@@ -21,14 +21,12 @@ class _$KYCItemTearOff {
   _KYCItem call(
       {required String fullName,
       required String id,
-      required String downloadUrl,
-      required Map<String, dynamic> documents,
+      required List<Map<String, dynamic>> documents,
       required DateTime submitted,
       required String status}) {
     return _KYCItem(
       fullName: fullName,
       id: id,
-      downloadUrl: downloadUrl,
       documents: documents,
       submitted: submitted,
       status: status,
@@ -43,8 +41,8 @@ const $KYCItem = _$KYCItemTearOff();
 mixin _$KYCItem {
   String get fullName => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
-  String get downloadUrl => throw _privateConstructorUsedError;
-  Map<String, dynamic> get documents => throw _privateConstructorUsedError;
+  List<Map<String, dynamic>> get documents =>
+      throw _privateConstructorUsedError;
   DateTime get submitted => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
 
@@ -59,8 +57,7 @@ abstract class $KYCItemCopyWith<$Res> {
   $Res call(
       {String fullName,
       String id,
-      String downloadUrl,
-      Map<String, dynamic> documents,
+      List<Map<String, dynamic>> documents,
       DateTime submitted,
       String status});
 }
@@ -77,7 +74,6 @@ class _$KYCItemCopyWithImpl<$Res> implements $KYCItemCopyWith<$Res> {
   $Res call({
     Object? fullName = freezed,
     Object? id = freezed,
-    Object? downloadUrl = freezed,
     Object? documents = freezed,
     Object? submitted = freezed,
     Object? status = freezed,
@@ -91,14 +87,10 @@ class _$KYCItemCopyWithImpl<$Res> implements $KYCItemCopyWith<$Res> {
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      downloadUrl: downloadUrl == freezed
-          ? _value.downloadUrl
-          : downloadUrl // ignore: cast_nullable_to_non_nullable
-              as String,
       documents: documents == freezed
           ? _value.documents
           : documents // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>,
+              as List<Map<String, dynamic>>,
       submitted: submitted == freezed
           ? _value.submitted
           : submitted // ignore: cast_nullable_to_non_nullable
@@ -119,8 +111,7 @@ abstract class _$KYCItemCopyWith<$Res> implements $KYCItemCopyWith<$Res> {
   $Res call(
       {String fullName,
       String id,
-      String downloadUrl,
-      Map<String, dynamic> documents,
+      List<Map<String, dynamic>> documents,
       DateTime submitted,
       String status});
 }
@@ -138,7 +129,6 @@ class __$KYCItemCopyWithImpl<$Res> extends _$KYCItemCopyWithImpl<$Res>
   $Res call({
     Object? fullName = freezed,
     Object? id = freezed,
-    Object? downloadUrl = freezed,
     Object? documents = freezed,
     Object? submitted = freezed,
     Object? status = freezed,
@@ -152,14 +142,10 @@ class __$KYCItemCopyWithImpl<$Res> extends _$KYCItemCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      downloadUrl: downloadUrl == freezed
-          ? _value.downloadUrl
-          : downloadUrl // ignore: cast_nullable_to_non_nullable
-              as String,
       documents: documents == freezed
           ? _value.documents
           : documents // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>,
+              as List<Map<String, dynamic>>,
       submitted: submitted == freezed
           ? _value.submitted
           : submitted // ignore: cast_nullable_to_non_nullable
@@ -178,7 +164,6 @@ class _$_KYCItem extends _KYCItem {
   const _$_KYCItem(
       {required this.fullName,
       required this.id,
-      required this.downloadUrl,
       required this.documents,
       required this.submitted,
       required this.status})
@@ -189,9 +174,7 @@ class _$_KYCItem extends _KYCItem {
   @override
   final String id;
   @override
-  final String downloadUrl;
-  @override
-  final Map<String, dynamic> documents;
+  final List<Map<String, dynamic>> documents;
   @override
   final DateTime submitted;
   @override
@@ -199,7 +182,7 @@ class _$_KYCItem extends _KYCItem {
 
   @override
   String toString() {
-    return 'KYCItem(fullName: $fullName, id: $id, downloadUrl: $downloadUrl, documents: $documents, submitted: $submitted, status: $status)';
+    return 'KYCItem(fullName: $fullName, id: $id, documents: $documents, submitted: $submitted, status: $status)';
   }
 
   @override
@@ -209,8 +192,6 @@ class _$_KYCItem extends _KYCItem {
             other is _KYCItem &&
             const DeepCollectionEquality().equals(other.fullName, fullName) &&
             const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality()
-                .equals(other.downloadUrl, downloadUrl) &&
             const DeepCollectionEquality().equals(other.documents, documents) &&
             const DeepCollectionEquality().equals(other.submitted, submitted) &&
             const DeepCollectionEquality().equals(other.status, status));
@@ -221,7 +202,6 @@ class _$_KYCItem extends _KYCItem {
       runtimeType,
       const DeepCollectionEquality().hash(fullName),
       const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(downloadUrl),
       const DeepCollectionEquality().hash(documents),
       const DeepCollectionEquality().hash(submitted),
       const DeepCollectionEquality().hash(status));
@@ -236,8 +216,7 @@ abstract class _KYCItem extends KYCItem {
   const factory _KYCItem(
       {required String fullName,
       required String id,
-      required String downloadUrl,
-      required Map<String, dynamic> documents,
+      required List<Map<String, dynamic>> documents,
       required DateTime submitted,
       required String status}) = _$_KYCItem;
   const _KYCItem._() : super._();
@@ -247,9 +226,7 @@ abstract class _KYCItem extends KYCItem {
   @override
   String get id;
   @override
-  String get downloadUrl;
-  @override
-  Map<String, dynamic> get documents;
+  List<Map<String, dynamic>> get documents;
   @override
   DateTime get submitted;
   @override

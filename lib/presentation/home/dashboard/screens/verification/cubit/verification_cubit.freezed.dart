@@ -20,12 +20,18 @@ class _$VerificationStateTearOff {
 
   _VerificationState call(
       {required bool submitting,
-      required String response,
-      required String failure}) {
+      required String failure,
+      required String success,
+      required String frontFile,
+      required String backFile,
+      required String utilityFile}) {
     return _VerificationState(
       submitting: submitting,
-      response: response,
       failure: failure,
+      success: success,
+      frontFile: frontFile,
+      backFile: backFile,
+      utilityFile: utilityFile,
     );
   }
 }
@@ -36,8 +42,11 @@ const $VerificationState = _$VerificationStateTearOff();
 /// @nodoc
 mixin _$VerificationState {
   bool get submitting => throw _privateConstructorUsedError;
-  String get response => throw _privateConstructorUsedError;
   String get failure => throw _privateConstructorUsedError;
+  String get success => throw _privateConstructorUsedError;
+  String get frontFile => throw _privateConstructorUsedError;
+  String get backFile => throw _privateConstructorUsedError;
+  String get utilityFile => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $VerificationStateCopyWith<VerificationState> get copyWith =>
@@ -49,7 +58,13 @@ abstract class $VerificationStateCopyWith<$Res> {
   factory $VerificationStateCopyWith(
           VerificationState value, $Res Function(VerificationState) then) =
       _$VerificationStateCopyWithImpl<$Res>;
-  $Res call({bool submitting, String response, String failure});
+  $Res call(
+      {bool submitting,
+      String failure,
+      String success,
+      String frontFile,
+      String backFile,
+      String utilityFile});
 }
 
 /// @nodoc
@@ -64,21 +79,36 @@ class _$VerificationStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? submitting = freezed,
-    Object? response = freezed,
     Object? failure = freezed,
+    Object? success = freezed,
+    Object? frontFile = freezed,
+    Object? backFile = freezed,
+    Object? utilityFile = freezed,
   }) {
     return _then(_value.copyWith(
       submitting: submitting == freezed
           ? _value.submitting
           : submitting // ignore: cast_nullable_to_non_nullable
               as bool,
-      response: response == freezed
-          ? _value.response
-          : response // ignore: cast_nullable_to_non_nullable
-              as String,
       failure: failure == freezed
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
+              as String,
+      success: success == freezed
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as String,
+      frontFile: frontFile == freezed
+          ? _value.frontFile
+          : frontFile // ignore: cast_nullable_to_non_nullable
+              as String,
+      backFile: backFile == freezed
+          ? _value.backFile
+          : backFile // ignore: cast_nullable_to_non_nullable
+              as String,
+      utilityFile: utilityFile == freezed
+          ? _value.utilityFile
+          : utilityFile // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -91,7 +121,13 @@ abstract class _$VerificationStateCopyWith<$Res>
           _VerificationState value, $Res Function(_VerificationState) then) =
       __$VerificationStateCopyWithImpl<$Res>;
   @override
-  $Res call({bool submitting, String response, String failure});
+  $Res call(
+      {bool submitting,
+      String failure,
+      String success,
+      String frontFile,
+      String backFile,
+      String utilityFile});
 }
 
 /// @nodoc
@@ -108,21 +144,36 @@ class __$VerificationStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? submitting = freezed,
-    Object? response = freezed,
     Object? failure = freezed,
+    Object? success = freezed,
+    Object? frontFile = freezed,
+    Object? backFile = freezed,
+    Object? utilityFile = freezed,
   }) {
     return _then(_VerificationState(
       submitting: submitting == freezed
           ? _value.submitting
           : submitting // ignore: cast_nullable_to_non_nullable
               as bool,
-      response: response == freezed
-          ? _value.response
-          : response // ignore: cast_nullable_to_non_nullable
-              as String,
       failure: failure == freezed
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
+              as String,
+      success: success == freezed
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as String,
+      frontFile: frontFile == freezed
+          ? _value.frontFile
+          : frontFile // ignore: cast_nullable_to_non_nullable
+              as String,
+      backFile: backFile == freezed
+          ? _value.backFile
+          : backFile // ignore: cast_nullable_to_non_nullable
+              as String,
+      utilityFile: utilityFile == freezed
+          ? _value.utilityFile
+          : utilityFile // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -132,19 +183,30 @@ class __$VerificationStateCopyWithImpl<$Res>
 
 class _$_VerificationState extends _VerificationState {
   const _$_VerificationState(
-      {required this.submitting, required this.response, required this.failure})
+      {required this.submitting,
+      required this.failure,
+      required this.success,
+      required this.frontFile,
+      required this.backFile,
+      required this.utilityFile})
       : super._();
 
   @override
   final bool submitting;
   @override
-  final String response;
-  @override
   final String failure;
+  @override
+  final String success;
+  @override
+  final String frontFile;
+  @override
+  final String backFile;
+  @override
+  final String utilityFile;
 
   @override
   String toString() {
-    return 'VerificationState(submitting: $submitting, response: $response, failure: $failure)';
+    return 'VerificationState(submitting: $submitting, failure: $failure, success: $success, frontFile: $frontFile, backFile: $backFile, utilityFile: $utilityFile)';
   }
 
   @override
@@ -154,16 +216,23 @@ class _$_VerificationState extends _VerificationState {
             other is _VerificationState &&
             const DeepCollectionEquality()
                 .equals(other.submitting, submitting) &&
-            const DeepCollectionEquality().equals(other.response, response) &&
-            const DeepCollectionEquality().equals(other.failure, failure));
+            const DeepCollectionEquality().equals(other.failure, failure) &&
+            const DeepCollectionEquality().equals(other.success, success) &&
+            const DeepCollectionEquality().equals(other.frontFile, frontFile) &&
+            const DeepCollectionEquality().equals(other.backFile, backFile) &&
+            const DeepCollectionEquality()
+                .equals(other.utilityFile, utilityFile));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(submitting),
-      const DeepCollectionEquality().hash(response),
-      const DeepCollectionEquality().hash(failure));
+      const DeepCollectionEquality().hash(failure),
+      const DeepCollectionEquality().hash(success),
+      const DeepCollectionEquality().hash(frontFile),
+      const DeepCollectionEquality().hash(backFile),
+      const DeepCollectionEquality().hash(utilityFile));
 
   @JsonKey(ignore: true)
   @override
@@ -174,16 +243,25 @@ class _$_VerificationState extends _VerificationState {
 abstract class _VerificationState extends VerificationState {
   const factory _VerificationState(
       {required bool submitting,
-      required String response,
-      required String failure}) = _$_VerificationState;
+      required String failure,
+      required String success,
+      required String frontFile,
+      required String backFile,
+      required String utilityFile}) = _$_VerificationState;
   const _VerificationState._() : super._();
 
   @override
   bool get submitting;
   @override
-  String get response;
-  @override
   String get failure;
+  @override
+  String get success;
+  @override
+  String get frontFile;
+  @override
+  String get backFile;
+  @override
+  String get utilityFile;
   @override
   @JsonKey(ignore: true)
   _$VerificationStateCopyWith<_VerificationState> get copyWith =>

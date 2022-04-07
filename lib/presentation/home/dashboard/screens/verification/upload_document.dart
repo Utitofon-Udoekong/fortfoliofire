@@ -87,7 +87,7 @@ class UploadDocumentImage extends StatelessWidget {
                           return dialog;
                         },
                       );
-                    }, context.read<VerificationCubit>().state.response);
+                    }, context.read<VerificationCubit>().state.frontFile);
                   },
                 ),
                 const SizedBox(
@@ -123,7 +123,7 @@ class UploadDocumentImage extends StatelessWidget {
                               }),
                           SimpleDialogOption(
                             padding: const EdgeInsets.all(20),
-                            child: const Text("Cancel"),
+                            child: const Text("Cancel",style: TextStyle(color: kRedColor)),
                             onPressed: () {
                               Navigator.pop(context);
                             },
@@ -136,7 +136,7 @@ class UploadDocumentImage extends StatelessWidget {
                           return dialog;
                         },
                       );
-                    }, context.read<VerificationCubit>().state.response);
+                    }, context.read<VerificationCubit>().state.backFile);
                   },
                 ),
                 const SizedBox(

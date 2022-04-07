@@ -6,7 +6,6 @@ abstract class KYCItem implements _$KYCItem {
   const factory KYCItem({
     required String fullName,
     required String id,
-    required String downloadUrl,
     required List<Map<String, dynamic>> documents,
     required DateTime submitted,
     required String status
@@ -14,7 +13,6 @@ abstract class KYCItem implements _$KYCItem {
   factory KYCItem.empty() => KYCItem(
     fullName: "",
     id: "",
-    downloadUrl: "",
     documents: List.empty(growable: true),
     submitted: DateTime.now(),
     status: ""
