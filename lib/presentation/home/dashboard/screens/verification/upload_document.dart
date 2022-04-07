@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
+import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/injection.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 
@@ -21,141 +22,164 @@ class UploadDocumentImage extends StatelessWidget {
     return BlocProvider(
       create: (context) => getIt<VerificationCubit>(),
       child: Scaffold(
-        body: SafeArea(
-          child: Padding(
-            padding: kDefaultPadding,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                const SizedBox(
-                  height: 20,
-                ),
-                InkWell(
-                  onTap: () => context.router.pop(),
-                  child: const Icon(Icons.close),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  "Upload Document",
-                  style: titleText,
-                ),
-                const SizedBox(
-                  height: 40,
-                ),
-                BlocBuilder<VerificationCubit, VerificationState>(
-                  builder: (context, state) {
-                    return buildTile(() {
-                      var dialog = SimpleDialog(
-                        title: const Text('Select Front Image'),
-                        children: <Widget>[
-                          SimpleDialogOption(
+        body: MultiBlocListener(
+          listeners: [
+            BlocListener<VerificationCubit, VerificationState>(
+              listenWhen: (p, c) =>
+                  p.failure != c.failure && c.failure.isNotEmpty,
+              listener: (context, state) {
+                CustomSnackbar.showSnackBar(context, state.failure, true);
+              },
+            ),
+            BlocListener<VerificationCubit, VerificationState>(
+              listenWhen: (p, c) =>
+                  p.success != c.success && c.success.isNotEmpty,
+              listener: (context, state) {
+                CustomSnackbar.showSnackBar(context, state.success, false);
+                // context.router.push(const VerificationSuccessRoute());
+              },
+            ),
+          ],
+          child: SafeArea(
+            child: Padding(
+              padding: kDefaultPadding,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  InkWell(
+                    onTap: () => context.router.pop(),
+                    child: const Icon(Icons.close),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    "Upload Document",
+                    style: titleText,
+                  ),
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  BlocBuilder<VerificationCubit, VerificationState>(
+                    builder: (context, state) {
+                      return buildTile(() {
+                        var dialog = SimpleDialog(
+                          title: const Text('Select Front Image'),
+                          children: <Widget>[
+                            SimpleDialogOption(
+                                padding: const EdgeInsets.all(20),
+                                child: const Text('Take a photo'),
+                                onPressed: () async {
+                                  Navigator.pop(context);
+                                  Uint8List file =
+                                      await pickImage(ImageSource.camera);
+                                  context
+                                      .read<VerificationCubit>()
+                                      .frontPicked(file: file);
+                                }),
+                            SimpleDialogOption(
+                                padding: const EdgeInsets.all(20),
+                                child: const Text('Choose from Gallery'),
+                                onPressed: () async {
+                                  Navigator.of(context).pop();
+                                  Uint8List file =
+                                      await pickImage(ImageSource.gallery);
+                                  context
+                                      .read<VerificationCubit>()
+                                      .frontPicked(file: file);
+                                }),
+                            SimpleDialogOption(
                               padding: const EdgeInsets.all(20),
-                              child: const Text('Take a photo'),
-                              onPressed: () async {
+                              child: const Text(
+                                "Cancel",
+                                style: TextStyle(color: kRedColor),
+                              ),
+                              onPressed: () {
                                 Navigator.pop(context);
-                                Uint8List file =
-                                    await pickImage(ImageSource.camera);
-                                context
-                                    .read<VerificationCubit>()
-                                    .frontPicked(file: file);
-                              }),
-                          SimpleDialogOption(
+                              },
+                            )
+                          ],
+                        );
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return dialog;
+                          },
+                        );
+                      }, context.read<VerificationCubit>().state.frontFile);
+                    },
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  BlocBuilder<VerificationCubit, VerificationState>(
+                    builder: (context, state) {
+                      return buildTile(() {
+                        var dialog = SimpleDialog(
+                          title: const Text('Select Back Image'),
+                          children: <Widget>[
+                            SimpleDialogOption(
+                                padding: const EdgeInsets.all(20),
+                                child: const Text('Take a photo'),
+                                onPressed: () async {
+                                  Navigator.pop(context);
+                                  Uint8List file =
+                                      await pickImage(ImageSource.camera);
+                                  context
+                                      .read<VerificationCubit>()
+                                      .backPicked(file: file);
+                                }),
+                            SimpleDialogOption(
+                                padding: const EdgeInsets.all(20),
+                                child: const Text('Choose from Gallery'),
+                                onPressed: () async {
+                                  Navigator.of(context).pop();
+                                  Uint8List file =
+                                      await pickImage(ImageSource.gallery);
+                                  context
+                                      .read<VerificationCubit>()
+                                      .backPicked(file: file);
+                                }),
+                            SimpleDialogOption(
                               padding: const EdgeInsets.all(20),
-                              child: const Text('Choose from Gallery'),
-                              onPressed: () async {
-                                Navigator.of(context).pop();
-                                Uint8List file =
-                                    await pickImage(ImageSource.gallery);
-                                context
-                                    .read<VerificationCubit>()
-                                    .frontPicked(file: file);
-                              }),
-                          SimpleDialogOption(
-                            padding: const EdgeInsets.all(20),
-                            child: const Text("Cancel",style: TextStyle(color: kRedColor),),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                          )
-                        ],
-                      );
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return dialog;
-                        },
-                      );
-                    }, context.read<VerificationCubit>().state.frontFile);
-                  },
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                BlocBuilder<VerificationCubit, VerificationState>(
-                  builder: (context, state) {
-                    return buildTile(() {
-                      var dialog = SimpleDialog(
-                        title: const Text('Select Back Image'),
-                        children: <Widget>[
-                          SimpleDialogOption(
-                              padding: const EdgeInsets.all(20),
-                              child: const Text('Take a photo'),
-                              onPressed: () async {
+                              child: const Text("Cancel",
+                                  style: TextStyle(color: kRedColor)),
+                              onPressed: () {
                                 Navigator.pop(context);
-                                Uint8List file =
-                                    await pickImage(ImageSource.camera);
-                                context
-                                    .read<VerificationCubit>()
-                                    .backPicked(file: file);
-                              }),
-                          SimpleDialogOption(
-                              padding: const EdgeInsets.all(20),
-                              child: const Text('Choose from Gallery'),
-                              onPressed: () async {
-                                Navigator.of(context).pop();
-                                Uint8List file =
-                                    await pickImage(ImageSource.gallery);
-                                context
-                                    .read<VerificationCubit>()
-                                    .backPicked(file: file);
-                              }),
-                          SimpleDialogOption(
-                            padding: const EdgeInsets.all(20),
-                            child: const Text("Cancel",style: TextStyle(color: kRedColor)),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                          )
-                        ],
+                              },
+                            )
+                          ],
+                        );
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return dialog;
+                          },
+                        );
+                      }, context.read<VerificationCubit>().state.backFile);
+                    },
+                  ),
+                  const SizedBox(
+                    height: 60,
+                  ),
+                  BlocSelector<VerificationCubit, VerificationState, bool>(
+                    selector: (state) {
+                      return state.isValidState;
+                    },
+                    builder: (context, isValidState) {
+                      return CustomAuthFilledButton(
+                        text: 'NEXT',
+                        onTap: () =>
+                            context.router.push(const UtilityPageRoute()),
+                        disabled: !isValidState,
                       );
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return dialog;
-                        },
-                      );
-                    }, context.read<VerificationCubit>().state.backFile);
-                  },
-                ),
-                const SizedBox(
-                  height: 60,
-                ),
-                BlocSelector<VerificationCubit, VerificationState, bool>(
-                  selector: (state) {
-                    return state.isValidState;
-                  },
-                  builder: (context, isValidState) {
-                    return CustomAuthFilledButton(
-                      text: 'NEXT',
-                      onTap: () =>
-                          context.router.push(const UtilityPageRoute()),
-                      disabled: !isValidState,
-                    );
-                  },
-                )
-              ],
+                    },
+                  )
+                ],
+              ),
             ),
           ),
         ),
