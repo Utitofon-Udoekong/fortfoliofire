@@ -10,6 +10,8 @@ _$_WithdrawalItemDTO _$$_WithdrawalItemDTOFromJson(Map<String, dynamic> json) =>
     _$_WithdrawalItemDTO(
       description: json['description'] as String,
       amount: json['amount'] as int,
+      duration: json['duration'] as int,
+      roi: json['roi'] as int,
       traxId: json['traxId'] as String,
       uid: json['uid'] as String,
       planName: json['planName'] as String,
@@ -23,6 +25,8 @@ Map<String, dynamic> _$$_WithdrawalItemDTOToJson(
     <String, dynamic>{
       'description': instance.description,
       'amount': instance.amount,
+      'duration': instance.duration,
+      'roi': instance.roi,
       'traxId': instance.traxId,
       'uid': instance.uid,
       'planName': instance.planName,

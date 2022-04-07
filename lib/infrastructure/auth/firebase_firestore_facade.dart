@@ -61,27 +61,27 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
   }
 
   @override
-  Future<Option<String>> createInvestmentTransaction({required InvestmentItem investmentItem}) async {
+  Future<Either<String,String>> createInvestmentTransaction({required InvestmentItem investmentItem}) async {
     String docId = investmentItem.traxId + investmentItem.uid;
     try {
       // investmentItem.uid = docId;
       await firestore.authUserCollection.doc(auth.currentUser!.uid).collection("investments").doc(docId).set(InvestmentItemDTO.fromDomain(investmentItem).toJson());
-      return some("Investment made. Awaiting approval");
+      return right("Investment made. Awaiting approval");
     } on FirebaseException catch (e) {
       log("Code: ${e.code}, Message: ${e.message}");
-      return some('Unable to create transaction at the moment');
+      return left('Unable to create transaction at the moment');
     }
   }
 
   @override
-  Future<Option<String>> createWithdrawalTransaction({required WithdrawalItem withdrawalItem}) async{
+  Future<Either<String,String>> createWithdrawalTransaction({required WithdrawalItem withdrawalItem}) async{
     String docId = withdrawalItem.traxId + withdrawalItem.uid;
     try {
       await firestore.authUserCollection.doc(auth.currentUser!.uid).collection("withdrawals").doc(docId).set(WithdrawalItemDTO.fromDomain(withdrawalItem).toJson());
-      return some("Withdrawal submitted. Awaiting approval");
+      return right("Withdrawal submitted. Awaiting approval");
     } on FirebaseException catch (e) {
       log("Code: ${e.code}, Message: ${e.message}");
-      return some('Unable to create withdrawals at the moment');
+      return left('Unable to create withdrawals at the moment');
     }
   }
 
@@ -254,16 +254,16 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
   }
 
   @override
-  Future<Option<String>> harvestInvestment({required String docId, required int amount}) async {
+  Future<Either<String,String>> harvestInvestment({required String docId, required int amount}) async {
     final query = firestore.authUserCollection.doc(auth.currentUser!.uid).collection("investments").doc(docId);
     try {
       await query.update({
         "planYield": amount
       });
-      return some('Investment harvested');
+      return right('Investment harvested');
     } on FirebaseException catch (e) {
       log("Code: ${e.code}, Message: ${e.message}");
-      return some('Unable to harvest');
+      return left('Unable to harvest');
     }
   }
 

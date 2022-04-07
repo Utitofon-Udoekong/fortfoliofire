@@ -12,6 +12,8 @@ abstract class WithdrawalItemDTO implements _$WithdrawalItemDTO {
   const factory WithdrawalItemDTO({
     required String description,
     required int amount,
+    required int duration,
+    required int roi,
     required String traxId,
     required String uid,
     required String planName,
@@ -23,6 +25,8 @@ abstract class WithdrawalItemDTO implements _$WithdrawalItemDTO {
   factory WithdrawalItemDTO.fromDomain(WithdrawalItem withdrawalItem) {
     return WithdrawalItemDTO(
       amount: withdrawalItem.amount,
+      duration: withdrawalItem.duration,
+      roi: withdrawalItem.roi,
       planName: withdrawalItem.planName,
       createdat: withdrawalItem.createdat,
       description: withdrawalItem.description,
@@ -50,6 +54,8 @@ extension WithdrawalItemDTOX on WithdrawalItemDTO {
   WithdrawalItem toDomain() {
     return WithdrawalItem(
       amount: amount,
+      duration: duration,
+      roi: roi,
       planName: planName,
       createdat: createdat,
       description: description,

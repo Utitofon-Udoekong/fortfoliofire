@@ -19,5 +19,5 @@ class VerificationState with _$VerificationState {
     utilityFile: "",
     success: ""
   );
-  bool get isValidState => frontFile.isNotEmpty && backFile.isNotEmpty && utilityFile.isNotEmpty;
+  bool get isValidState => frontFile.isNotEmpty && backFile.isNotEmpty;
 }

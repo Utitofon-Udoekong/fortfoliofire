@@ -95,7 +95,7 @@ class FortCryptoInvestment extends StatelessWidget {
                           filled: true,
                           fillColor: const Color(0xFFF3F6F8),
                           border: InputBorder.none,
-                          suffixIcon: const Icon(Icons.keyboard_arrow_down),
+                          suffixIcon: const Icon(Icons.attach_money, size: 13,),
                           suffixStyle: TextStyle(
                               color: Colors.grey.shade400, fontSize: 13),
                         ),
@@ -124,7 +124,7 @@ class FortCryptoInvestment extends StatelessWidget {
                   builder: (context, state) {
                     return ToggleButtons(
                       selectedColor: Colors.white,
-                      color: Colors.white70,
+                      color: kPrimaryColor,
                       isSelected: state.isSelected,
                       // fillColor: const Color.fromRGBO(243, 246, 248, 0.6),
                       renderBorder: false,
@@ -133,7 +133,9 @@ class FortCryptoInvestment extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
-                              color: kPrimaryColor),
+                              color: state.duration == 3 ? kPrimaryColor : kWhiteColor,
+                              border: Border.all(color: state.duration == 3 ? kPrimaryColor : kWhiteColor, width: state.duration == 3 ? 1.0 : 0.0),
+                              ),
                           margin: const EdgeInsets.only(right: 30),
                           child: const Text(
                             '3 months',
@@ -145,7 +147,8 @@ class FortCryptoInvestment extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
-                              color: kPrimaryColor),
+                              color: state.duration == 6 ? kPrimaryColor : kWhiteColor,
+                              border: Border.all(color: state.duration == 6 ? kPrimaryColor : kWhiteColor, width: state.duration == 6 ? 1.0 : 0.0),),
                           margin: const EdgeInsets.only(right: 30),
                           child: const Text(
                             '6 months',
@@ -157,7 +160,8 @@ class FortCryptoInvestment extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
-                              color: kPrimaryColor),
+                              color: state.duration == 12 ? kPrimaryColor : kWhiteColor,
+                              border: Border.all(color: state.duration == 12 ? kPrimaryColor : kWhiteColor, width: state.duration == 12 ? 1.0 : 0.0),),
                           child: const Text(
                             '12 months',
                             style: TextStyle(fontSize: 13),
@@ -284,7 +288,7 @@ class FortCryptoInvestment extends StatelessWidget {
                                         .exchangeTypeChanged(
                                             exchangeType: "USD");
                                     context.router.push(
-                                        const SelectInvestmentMethodRoute());
+                                        const BankInvestmentPageRoute());
                                   }),
                               InkWell(
                                 onTap: () => context.router.pop(),

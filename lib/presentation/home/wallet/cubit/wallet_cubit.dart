@@ -1,15 +1,15 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:fortfolio/domain/auth/i_auth_facade.dart';
 import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
-import 'package:fortfolio/domain/auth/status.dart';
 import 'package:fortfolio/domain/user/bank_address.dart';
 import 'package:fortfolio/domain/user/crypto_wallet.dart';
 import 'package:fortfolio/domain/user/investment.dart';
+import 'package:fortfolio/domain/user/transaction_item.dart';
 import 'package:fortfolio/domain/user/withdrawal_item.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:nanoid/nanoid.dart';
 import 'package:uuid/uuid.dart';
 
 part 'wallet_state.dart';
@@ -18,8 +18,7 @@ part 'wallet_cubit.freezed.dart';
 @injectable
 class WalletCubit extends Cubit<WalletState> {
   final IFirestoreFacade firestoreFacade;
-  final IAuthFacade authFacade;
-  WalletCubit(this.firestoreFacade, this.authFacade) : super(WalletState.initial());
+  WalletCubit(this.firestoreFacade) : super(WalletState.initial());
 
   void investmentPlanChanged({required String investmentPlan}) {
     emit(state.copyWith(investmentPlan: investmentPlan));
@@ -183,6 +182,20 @@ class WalletCubit extends Cubit<WalletState> {
     });
   }
 
+  void initTransactions() {
+    var investments = state.fortDollarInvestments + state.fortCryptoInvestments + state.fortShieldInvestments;
+    var withdrawals = state.withdrawals;
+    var transactions = state.transactions;
+
+    for(var investment in investments){
+      transactions.add(TransactionItem(withdrawalItem: null,investmentItem: investment));
+    }
+    for (var withdrawal in withdrawals){
+      transactions.add(TransactionItem(withdrawalItem: withdrawal,investmentItem: null));
+    }
+    emit(state.copyWith(transactions: transactions));
+  }
+
   void withdrawalDetailsChanged(
       {required Map<String, dynamic> withdrawalDetails}) {
     emit(state.copyWith(withdrawalDetails: withdrawalDetails));
@@ -192,9 +205,11 @@ class WalletCubit extends Cubit<WalletState> {
     final String investmentPlan = state.investmentPlan;
     final String description = "$investmentPlan withdrawal".toUpperCase();
     final int amount = state.investmentToBeWithdrawn.amount;
+    final double duration = state.investmentToBeWithdrawn.duration;
+    final int roi = state.investmentToBeWithdrawn.roi;
     final String paymentMethod = state.withdrawalMethod;
-    final traxId = const Uuid().v4();
-    final String uid = authFacade.getUserId();
+    final traxId = const Uuid().v4().substring(0,7);
+    final String uid = nanoid(8);
     WithdrawalItem withdrawalItem = WithdrawalItem(
       description: description,
       amount: amount,
@@ -203,12 +218,16 @@ class WalletCubit extends Cubit<WalletState> {
       status: "Pending",
       createdat: DateTime.now(),
       paymentMethod: paymentMethod,
-      uid: uid
+      uid: uid, 
+      duration: duration.toInt(),
+      roi: roi
     );
     final response = await firestoreFacade.createWithdrawalTransaction(withdrawalItem: withdrawalItem);
     try {
-      response.fold(() => null, (response){
-        emit(state.copyWith(response: response));
+      response.fold((failure){
+        emit(state.copyWith(failure: failure));
+      }, (success){
+        emit(state.copyWith(success: success));
       });
     } catch (e) {
       log(e.toString());
@@ -216,10 +235,13 @@ class WalletCubit extends Cubit<WalletState> {
   }
 
   void harvestInvestment({required String docId, required int amount}) async {
+    emit(state.copyWith(loading: true));
     final response = await firestoreFacade.harvestInvestment(docId: docId, amount: amount);
     try {
-      response.fold(() => null,(response){
-        emit(state.copyWith(response: response));
+      response.fold((failure){
+        emit(state.copyWith(loading: false, failure: failure));
+      },(success){
+        emit(state.copyWith(loading: false, success: success));
       });
     } catch (e) {
       log(e.toString());
@@ -230,7 +252,8 @@ class WalletCubit extends Cubit<WalletState> {
     emit(state.copyWith(
         investmentPlan: "",
         withdrawalMethod: "",
-        response: "",
+        failure: "",
+        success: "",
         withdrawalDetails: {}));
   }
 }

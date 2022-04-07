@@ -26,7 +26,9 @@ class _$WithdrawalItemTearOff {
       required String planName,
       required String status,
       required DateTime createdat,
-      required String paymentMethod}) {
+      required String paymentMethod,
+      required int duration,
+      required int roi}) {
     return _WithdrawalItem(
       description: description,
       amount: amount,
@@ -36,6 +38,8 @@ class _$WithdrawalItemTearOff {
       status: status,
       createdat: createdat,
       paymentMethod: paymentMethod,
+      duration: duration,
+      roi: roi,
     );
   }
 }
@@ -53,6 +57,8 @@ mixin _$WithdrawalItem {
   String get status => throw _privateConstructorUsedError;
   DateTime get createdat => throw _privateConstructorUsedError;
   String get paymentMethod => throw _privateConstructorUsedError;
+  int get duration => throw _privateConstructorUsedError;
+  int get roi => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $WithdrawalItemCopyWith<WithdrawalItem> get copyWith =>
@@ -72,7 +78,9 @@ abstract class $WithdrawalItemCopyWith<$Res> {
       String planName,
       String status,
       DateTime createdat,
-      String paymentMethod});
+      String paymentMethod,
+      int duration,
+      int roi});
 }
 
 /// @nodoc
@@ -94,6 +102,8 @@ class _$WithdrawalItemCopyWithImpl<$Res>
     Object? status = freezed,
     Object? createdat = freezed,
     Object? paymentMethod = freezed,
+    Object? duration = freezed,
+    Object? roi = freezed,
   }) {
     return _then(_value.copyWith(
       description: description == freezed
@@ -128,6 +138,14 @@ class _$WithdrawalItemCopyWithImpl<$Res>
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
               as String,
+      duration: duration == freezed
+          ? _value.duration
+          : duration // ignore: cast_nullable_to_non_nullable
+              as int,
+      roi: roi == freezed
+          ? _value.roi
+          : roi // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -147,7 +165,9 @@ abstract class _$WithdrawalItemCopyWith<$Res>
       String planName,
       String status,
       DateTime createdat,
-      String paymentMethod});
+      String paymentMethod,
+      int duration,
+      int roi});
 }
 
 /// @nodoc
@@ -171,6 +191,8 @@ class __$WithdrawalItemCopyWithImpl<$Res>
     Object? status = freezed,
     Object? createdat = freezed,
     Object? paymentMethod = freezed,
+    Object? duration = freezed,
+    Object? roi = freezed,
   }) {
     return _then(_WithdrawalItem(
       description: description == freezed
@@ -205,6 +227,14 @@ class __$WithdrawalItemCopyWithImpl<$Res>
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
               as String,
+      duration: duration == freezed
+          ? _value.duration
+          : duration // ignore: cast_nullable_to_non_nullable
+              as int,
+      roi: roi == freezed
+          ? _value.roi
+          : roi // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -220,7 +250,9 @@ class _$_WithdrawalItem extends _WithdrawalItem {
       required this.planName,
       required this.status,
       required this.createdat,
-      required this.paymentMethod})
+      required this.paymentMethod,
+      required this.duration,
+      required this.roi})
       : super._();
 
   @override
@@ -239,10 +271,14 @@ class _$_WithdrawalItem extends _WithdrawalItem {
   final DateTime createdat;
   @override
   final String paymentMethod;
+  @override
+  final int duration;
+  @override
+  final int roi;
 
   @override
   String toString() {
-    return 'WithdrawalItem(description: $description, amount: $amount, traxId: $traxId, uid: $uid, planName: $planName, status: $status, createdat: $createdat, paymentMethod: $paymentMethod)';
+    return 'WithdrawalItem(description: $description, amount: $amount, traxId: $traxId, uid: $uid, planName: $planName, status: $status, createdat: $createdat, paymentMethod: $paymentMethod, duration: $duration, roi: $roi)';
   }
 
   @override
@@ -259,7 +295,9 @@ class _$_WithdrawalItem extends _WithdrawalItem {
             const DeepCollectionEquality().equals(other.status, status) &&
             const DeepCollectionEquality().equals(other.createdat, createdat) &&
             const DeepCollectionEquality()
-                .equals(other.paymentMethod, paymentMethod));
+                .equals(other.paymentMethod, paymentMethod) &&
+            const DeepCollectionEquality().equals(other.duration, duration) &&
+            const DeepCollectionEquality().equals(other.roi, roi));
   }
 
   @override
@@ -272,7 +310,9 @@ class _$_WithdrawalItem extends _WithdrawalItem {
       const DeepCollectionEquality().hash(planName),
       const DeepCollectionEquality().hash(status),
       const DeepCollectionEquality().hash(createdat),
-      const DeepCollectionEquality().hash(paymentMethod));
+      const DeepCollectionEquality().hash(paymentMethod),
+      const DeepCollectionEquality().hash(duration),
+      const DeepCollectionEquality().hash(roi));
 
   @JsonKey(ignore: true)
   @override
@@ -289,7 +329,9 @@ abstract class _WithdrawalItem extends WithdrawalItem {
       required String planName,
       required String status,
       required DateTime createdat,
-      required String paymentMethod}) = _$_WithdrawalItem;
+      required String paymentMethod,
+      required int duration,
+      required int roi}) = _$_WithdrawalItem;
   const _WithdrawalItem._() : super._();
 
   @override
@@ -308,6 +350,10 @@ abstract class _WithdrawalItem extends WithdrawalItem {
   DateTime get createdat;
   @override
   String get paymentMethod;
+  @override
+  int get duration;
+  @override
+  int get roi;
   @override
   @JsonKey(ignore: true)
   _$WithdrawalItemCopyWith<_WithdrawalItem> get copyWith =>

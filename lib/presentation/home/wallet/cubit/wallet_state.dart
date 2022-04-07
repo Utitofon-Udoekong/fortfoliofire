@@ -2,65 +2,88 @@ part of 'wallet_cubit.dart';
 
 @freezed
 class WalletState with _$WalletState {
-  const factory WalletState({
-    required String investmentPlan,
-    required int walletBalance,
-    required int fortDollarInvestmentBalance,
-    required int fortCryptoInvestmentBalance,
-    required int fortShieldInvestmentBalance,
-    required int fortDollarYieldBalance,
-    required int fortCryptoYieldBalance,
-    required int fortShieldYieldBalance,
-    required String withdrawalMethod,
-    required String response,
-    required Map<String, dynamic> withdrawalDetails,
-    required InvestmentItem investmentToBeWithdrawn,
-    required List<BankAddress> bankAddresses,
-    required List<CryptoWallet> cryptoAddresses,
-    required List<CryptoWallet> generalCryptoAddresses,
-    required List<InvestmentItem> fortDollarInvestments,
-    required List<InvestmentItem> fortCryptoInvestments,
-    required List<InvestmentItem> fortShieldInvestments,
-    required List<WithdrawalItem> withdrawals,
-    required String exchange,
-    required bool showDigits
-  }) = _WalletState;
+  const factory WalletState(
+      {required String investmentPlan,
+      required int walletBalance,
+      required bool loading,
+      required int fortDollarInvestmentBalance,
+      required int fortCryptoInvestmentBalance,
+      required int fortShieldInvestmentBalance,
+      required int fortDollarYieldBalance,
+      required int fortCryptoYieldBalance,
+      required int fortShieldYieldBalance,
+      required String withdrawalMethod,
+      required String failure,
+      required String success,
+      required Map<String, dynamic> withdrawalDetails,
+      required InvestmentItem investmentToBeWithdrawn,
+      required List<BankAddress> bankAddresses,
+      required List<CryptoWallet> cryptoAddresses,
+      required List<CryptoWallet> generalCryptoAddresses,
+      required List<InvestmentItem> fortDollarInvestments,
+      required List<InvestmentItem> fortCryptoInvestments,
+      required List<InvestmentItem> fortShieldInvestments,
+      required List<WithdrawalItem> withdrawals,
+      required List<TransactionItem> transactions,
+      required String exchange,
+      required bool showDigits}) = _WalletState;
   const WalletState._();
   factory WalletState.initial() => WalletState(
-    investmentPlan: "",
-    walletBalance: 0,
-    fortDollarInvestmentBalance: 0,
-    fortCryptoInvestmentBalance: 0,
-    fortShieldInvestmentBalance: 0,
-    fortDollarYieldBalance: 0,
-    fortCryptoYieldBalance: 0,
-    fortShieldYieldBalance: 0,
-    withdrawalMethod: "",
-    investmentToBeWithdrawn: InvestmentItem.empty(),
-    withdrawalDetails: {},
-    response: "",
-    bankAddresses: [
-    ],
-    cryptoAddresses: [
-    ],
-    generalCryptoAddresses: [
-    ],
-    fortDollarInvestments: [
-      InvestmentItem(description: "description", uid: "uid", amount: 30, traxId: "traxId", roi: 0, planName: "fortdollar", paymentDate: DateTime.now(), dueDate: DateTime.now(), duration: 3, status: "status", planYield: 6, paymentMethod: "Bank", numberOfDays: 0)
-    ],
-    fortCryptoInvestments: [
-      InvestmentItem(description: "description", uid: "uid", amount: 30, traxId: "traxId", roi: 0, planName: "fortcrypto", paymentDate: DateTime.now(), dueDate: DateTime.now(), duration: 3, status: "status", planYield: 6, paymentMethod: "Bank", numberOfDays: 0)
-    ],
-    fortShieldInvestments: [
-      InvestmentItem(description: "description", uid: "uid", amount: 30, traxId: "traxId", roi: 0, planName: "fortshield", paymentDate: DateTime.now(), dueDate: DateTime.now(), duration: 3, status: "status", planYield: 6, paymentMethod: "Bank", numberOfDays: 0)
-    ],
-    withdrawals: [],
-    exchange: "NGN",
-    showDigits: false
-  );
-  bool get isGeneral => cryptoAddresses.isEmpty && generalCryptoAddresses.isNotEmpty;
-  bool get isNotGeneral => cryptoAddresses.isNotEmpty && generalCryptoAddresses.isEmpty;
-  bool get paymentMethodExists => cryptoAddresses.isNotEmpty && generalCryptoAddresses.isNotEmpty && bankAddresses.isNotEmpty;
+      investmentPlan: "",
+      loading: false,
+      walletBalance: 0,
+      fortDollarInvestmentBalance: 0,
+      fortCryptoInvestmentBalance: 0,
+      fortShieldInvestmentBalance: 0,
+      fortDollarYieldBalance: 0,
+      fortCryptoYieldBalance: 0,
+      fortShieldYieldBalance: 0,
+      withdrawalMethod: "",
+      investmentToBeWithdrawn: InvestmentItem.empty(),
+      withdrawalDetails: {},
+      failure: "",
+      success: "",
+      bankAddresses: [],
+      cryptoAddresses: [],
+      generalCryptoAddresses: [],
+      fortDollarInvestments: [
+        InvestmentItem( description: "description", uid: "uid", amount: 30, traxId: "traxId", roi: 0, planName: "fortdollar", paymentDate: DateTime.now(), dueDate: DateTime.now(), duration: 3, status: "status", planYield: 6, paymentMethod: "Bank", numberOfDays: 0)
+      ],
+      fortCryptoInvestments: [
+        InvestmentItem( description: "description", uid: "uid", amount: 30, traxId: "traxId", roi: 0, planName: "fortcrypto", paymentDate: DateTime.now(), dueDate: DateTime.now(), duration: 3, status: "status", planYield: 6, paymentMethod: "Bank", numberOfDays: 0)
+      ],
+      fortShieldInvestments: [
+        InvestmentItem( description: "description", uid: "uid", amount: 30, traxId: "traxId", roi: 0, planName: "fortshield", paymentDate: DateTime.now(), dueDate: DateTime.now(), duration: 3, status: "status", planYield: 6, paymentMethod: "Bank", numberOfDays: 0)
+      ],
+      withdrawals: [
+        WithdrawalItem( description: "description", amount: 20, traxId: "traxId", uid: "uid", planName: "fortDollar", status: "Pending", createdat: DateTime.now(), paymentMethod: "Bank", duration: 6, roi: 15),
+        WithdrawalItem( description: "description", amount: 40, traxId: "traxId", uid: "uid", planName: "FortCrypto", status: "Pending", createdat: DateTime.now(), paymentMethod: "crypto", duration: 12, roi: 30),
+        WithdrawalItem( description: "description", amount: 60, traxId: "traxId", uid: "uid", planName: "FortShield", status: "Pending", createdat: DateTime.now(), paymentMethod: "Bank", duration: 3, roi: 18)
+      ],
+      exchange: "NGN",
+      showDigits: false,
+      transactions: [
+        TransactionItem(
+          withdrawalItem: WithdrawalItem( description: "description", amount: 20, traxId: "traxId", uid: "uid", planName: "fortDollar", status: "Pending", createdat: DateTime.now(), paymentMethod: "Bank", duration: 6, roi: 15),
+          investmentItem: InvestmentItem( description: "description", uid: "uid", amount: 30, traxId: "traxId", roi: 0, planName: "fortshield", paymentDate: DateTime.now(), dueDate: DateTime.now(), duration: 3, status: "status", planYield: 6, paymentMethod: "Bank", numberOfDays: 0),
+        ),
+        TransactionItem(
+          withdrawalItem: WithdrawalItem( description: "description", amount: 40, traxId: "traxId", uid: "uid", planName: "FortCrypto", status: "Pending", createdat: DateTime.now(), paymentMethod: "crypto", duration: 12, roi: 30),
+          investmentItem: InvestmentItem( description: "description", uid: "uid", amount: 30, traxId: "traxId", roi: 0, planName: "fortshield", paymentDate: DateTime.now(), dueDate: DateTime.now(), duration: 3, status: "status", planYield: 6, paymentMethod: "Bank", numberOfDays: 0),
+        ),
+        TransactionItem(
+          withdrawalItem: WithdrawalItem( description: "description", amount: 60, traxId: "traxId", uid: "uid", planName: "FortShield", status: "Pending", createdat: DateTime.now(), paymentMethod: "Bank", duration: 3, roi: 18),
+          investmentItem: InvestmentItem( description: "description", uid: "uid", amount: 30, traxId: "traxId", roi: 0, planName: "fortshield", paymentDate: DateTime.now(), dueDate: DateTime.now(), duration: 3, status: "status", planYield: 6, paymentMethod: "Bank", numberOfDays: 0),
+        ),
+      ]);
+  bool get isGeneral =>
+      cryptoAddresses.isEmpty && generalCryptoAddresses.isNotEmpty;
+  bool get isNotGeneral =>
+      cryptoAddresses.isNotEmpty && generalCryptoAddresses.isEmpty;
+  bool get paymentMethodExists =>
+      cryptoAddresses.isNotEmpty &&
+      generalCryptoAddresses.isNotEmpty &&
+      bankAddresses.isNotEmpty;
   bool get isFortDollarActive => fortDollarInvestments.isNotEmpty;
   bool get isFortShieldActive => fortShieldInvestments.isNotEmpty;
   bool get isFortCryptoActive => fortCryptoInvestments.isNotEmpty;

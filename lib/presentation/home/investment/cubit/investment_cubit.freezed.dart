@@ -23,7 +23,8 @@ class _$InvestmentStateTearOff {
       required double duration,
       required int amountInvested,
       required int roi,
-      required String response,
+      required String failure,
+      required String success,
       required bool agreementAccepted,
       required bool isLoading,
       required String exchangeType,
@@ -35,7 +36,8 @@ class _$InvestmentStateTearOff {
       duration: duration,
       amountInvested: amountInvested,
       roi: roi,
-      response: response,
+      failure: failure,
+      success: success,
       agreementAccepted: agreementAccepted,
       isLoading: isLoading,
       exchangeType: exchangeType,
@@ -55,7 +57,8 @@ mixin _$InvestmentState {
   double get duration => throw _privateConstructorUsedError;
   int get amountInvested => throw _privateConstructorUsedError;
   int get roi => throw _privateConstructorUsedError;
-  String get response => throw _privateConstructorUsedError;
+  String get failure => throw _privateConstructorUsedError;
+  String get success => throw _privateConstructorUsedError;
   bool get agreementAccepted => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   String get exchangeType => throw _privateConstructorUsedError;
@@ -78,7 +81,8 @@ abstract class $InvestmentStateCopyWith<$Res> {
       double duration,
       int amountInvested,
       int roi,
-      String response,
+      String failure,
+      String success,
       bool agreementAccepted,
       bool isLoading,
       String exchangeType,
@@ -102,7 +106,8 @@ class _$InvestmentStateCopyWithImpl<$Res>
     Object? duration = freezed,
     Object? amountInvested = freezed,
     Object? roi = freezed,
-    Object? response = freezed,
+    Object? failure = freezed,
+    Object? success = freezed,
     Object? agreementAccepted = freezed,
     Object? isLoading = freezed,
     Object? exchangeType = freezed,
@@ -127,9 +132,13 @@ class _$InvestmentStateCopyWithImpl<$Res>
           ? _value.roi
           : roi // ignore: cast_nullable_to_non_nullable
               as int,
-      response: response == freezed
-          ? _value.response
-          : response // ignore: cast_nullable_to_non_nullable
+      failure: failure == freezed
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as String,
+      success: success == freezed
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
               as String,
       agreementAccepted: agreementAccepted == freezed
           ? _value.agreementAccepted
@@ -171,7 +180,8 @@ abstract class _$InvestmentStateCopyWith<$Res>
       double duration,
       int amountInvested,
       int roi,
-      String response,
+      String failure,
+      String success,
       bool agreementAccepted,
       bool isLoading,
       String exchangeType,
@@ -197,7 +207,8 @@ class __$InvestmentStateCopyWithImpl<$Res>
     Object? duration = freezed,
     Object? amountInvested = freezed,
     Object? roi = freezed,
-    Object? response = freezed,
+    Object? failure = freezed,
+    Object? success = freezed,
     Object? agreementAccepted = freezed,
     Object? isLoading = freezed,
     Object? exchangeType = freezed,
@@ -222,9 +233,13 @@ class __$InvestmentStateCopyWithImpl<$Res>
           ? _value.roi
           : roi // ignore: cast_nullable_to_non_nullable
               as int,
-      response: response == freezed
-          ? _value.response
-          : response // ignore: cast_nullable_to_non_nullable
+      failure: failure == freezed
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as String,
+      success: success == freezed
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
               as String,
       agreementAccepted: agreementAccepted == freezed
           ? _value.agreementAccepted
@@ -262,7 +277,8 @@ class _$_InvestmentState extends _InvestmentState {
       required this.duration,
       required this.amountInvested,
       required this.roi,
-      required this.response,
+      required this.failure,
+      required this.success,
       required this.agreementAccepted,
       required this.isLoading,
       required this.exchangeType,
@@ -280,7 +296,9 @@ class _$_InvestmentState extends _InvestmentState {
   @override
   final int roi;
   @override
-  final String response;
+  final String failure;
+  @override
+  final String success;
   @override
   final bool agreementAccepted;
   @override
@@ -296,7 +314,7 @@ class _$_InvestmentState extends _InvestmentState {
 
   @override
   String toString() {
-    return 'InvestmentState(planName: $planName, duration: $duration, amountInvested: $amountInvested, roi: $roi, response: $response, agreementAccepted: $agreementAccepted, isLoading: $isLoading, exchangeType: $exchangeType, isSelected: $isSelected, durations: $durations, paymentMethod: $paymentMethod)';
+    return 'InvestmentState(planName: $planName, duration: $duration, amountInvested: $amountInvested, roi: $roi, failure: $failure, success: $success, agreementAccepted: $agreementAccepted, isLoading: $isLoading, exchangeType: $exchangeType, isSelected: $isSelected, durations: $durations, paymentMethod: $paymentMethod)';
   }
 
   @override
@@ -309,7 +327,8 @@ class _$_InvestmentState extends _InvestmentState {
             const DeepCollectionEquality()
                 .equals(other.amountInvested, amountInvested) &&
             const DeepCollectionEquality().equals(other.roi, roi) &&
-            const DeepCollectionEquality().equals(other.response, response) &&
+            const DeepCollectionEquality().equals(other.failure, failure) &&
+            const DeepCollectionEquality().equals(other.success, success) &&
             const DeepCollectionEquality()
                 .equals(other.agreementAccepted, agreementAccepted) &&
             const DeepCollectionEquality().equals(other.isLoading, isLoading) &&
@@ -329,7 +348,8 @@ class _$_InvestmentState extends _InvestmentState {
       const DeepCollectionEquality().hash(duration),
       const DeepCollectionEquality().hash(amountInvested),
       const DeepCollectionEquality().hash(roi),
-      const DeepCollectionEquality().hash(response),
+      const DeepCollectionEquality().hash(failure),
+      const DeepCollectionEquality().hash(success),
       const DeepCollectionEquality().hash(agreementAccepted),
       const DeepCollectionEquality().hash(isLoading),
       const DeepCollectionEquality().hash(exchangeType),
@@ -349,7 +369,8 @@ abstract class _InvestmentState extends InvestmentState {
       required double duration,
       required int amountInvested,
       required int roi,
-      required String response,
+      required String failure,
+      required String success,
       required bool agreementAccepted,
       required bool isLoading,
       required String exchangeType,
@@ -367,7 +388,9 @@ abstract class _InvestmentState extends InvestmentState {
   @override
   int get roi;
   @override
-  String get response;
+  String get failure;
+  @override
+  String get success;
   @override
   bool get agreementAccepted;
   @override

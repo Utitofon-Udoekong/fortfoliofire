@@ -63,7 +63,7 @@ class MainDrawer extends StatelessWidget {
                       child: Text(
                         'ID: $userId',
                         style: subTitle.copyWith(
-                            color: const Color.fromARGB(255, 145, 71, 71), fontSize: 15),
+                            color: kWhiteColor, fontSize: 15),
                             overflow: TextOverflow.ellipsis,
                           maxLines: 1,
                           softWrap: false,
@@ -80,7 +80,7 @@ class MainDrawer extends StatelessWidget {
                             "Unverified",
                             style: subTitle.copyWith(
                                 fontSize: 13,
-                                color: kWhiteColor.withOpacity(0.5)),
+                                color: const Color.fromARGB(255, 177, 22, 22)),
                           )
                   ],
                 )

@@ -1,12 +1,11 @@
-import 'dart:async';
 import 'dart:developer';
 import 'package:bloc/bloc.dart';
-import 'package:fortfolio/domain/auth/i_auth_facade.dart';
 import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
 import 'package:fortfolio/domain/user/investment.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:jiffy/jiffy.dart';
+import 'package:nanoid/nanoid.dart';
 import 'package:uuid/uuid.dart';
 
 part 'investment_state.dart';
@@ -15,8 +14,7 @@ part 'investment_cubit.freezed.dart';
 @injectable
 class InvestmentCubit extends Cubit<InvestmentState> {
   final IFirestoreFacade firestoreFacade ;
-  final  IAuthFacade authFacade;
-  InvestmentCubit( this.authFacade, this.firestoreFacade) : super(InvestmentState.initial());
+  InvestmentCubit( this.firestoreFacade) : super(InvestmentState.initial());
 
   void exchangeTypeChanged({required String exchangeType}) {
     emit(state.copyWith(exchangeType: exchangeType));
@@ -83,20 +81,21 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     final int roi = state.roi;
     final double duration = state.duration;
     const String status = "pending";
-    final String traxId = const Uuid().v4();
-    final String uid = authFacade.getUserId();
+    final String traxId = const Uuid().v4().substring(0,7);
+    final String uid = nanoid(8);
     final dueDate = Jiffy(paymentDate).add(months: duration.toInt()).dateTime;
     final int numberOfDays = dueDate.difference(paymentDate).inDays;
     final paymentMethod = state.paymentMethod;
     InvestmentItem investmentItem = InvestmentItem(description: description, uid: uid, amount: amount, traxId: traxId, roi: roi, planName: planName, paymentDate: paymentDate, dueDate: dueDate, duration: duration, status: status, planYield: 0, paymentMethod: paymentMethod,numberOfDays: numberOfDays);
     final response = await firestoreFacade.createInvestmentTransaction(investmentItem: investmentItem);
     try{
-      response.fold(() => null, (response) {
-        emit(state.copyWith(isLoading: false, response: response));
+      response.fold((failure){
+        emit(state.copyWith(isLoading: false, failure: failure));
+      }, (success) {
+        emit(state.copyWith(isLoading: false, success: success));
       });
     }catch (e) {
       emit(state.copyWith(isLoading: false));
-      print(e);
       log(e.toString());
     }
   }

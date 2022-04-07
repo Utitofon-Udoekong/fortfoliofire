@@ -13,12 +13,15 @@ abstract class WithdrawalItem implements _$WithdrawalItem {
     required String status,
     required DateTime createdat,
     required String paymentMethod,
-    // add duration
+    required int duration,
+    required int roi,
     // add roi
   }) = _WithdrawalItem;
 
   factory WithdrawalItem.empty() => WithdrawalItem(
         amount: 0,
+        duration: 0,
+        roi: 0,
         createdat: DateTime.now(),
         description: '',
         paymentMethod: '',

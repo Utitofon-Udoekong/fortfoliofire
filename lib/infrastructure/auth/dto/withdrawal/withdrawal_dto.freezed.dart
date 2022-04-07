@@ -25,6 +25,8 @@ class _$WithdrawalItemDTOTearOff {
   _WithdrawalItemDTO call(
       {required String description,
       required int amount,
+      required int duration,
+      required int roi,
       required String traxId,
       required String uid,
       required String planName,
@@ -34,6 +36,8 @@ class _$WithdrawalItemDTOTearOff {
     return _WithdrawalItemDTO(
       description: description,
       amount: amount,
+      duration: duration,
+      roi: roi,
       traxId: traxId,
       uid: uid,
       planName: planName,
@@ -55,6 +59,8 @@ const $WithdrawalItemDTO = _$WithdrawalItemDTOTearOff();
 mixin _$WithdrawalItemDTO {
   String get description => throw _privateConstructorUsedError;
   int get amount => throw _privateConstructorUsedError;
+  int get duration => throw _privateConstructorUsedError;
+  int get roi => throw _privateConstructorUsedError;
   String get traxId => throw _privateConstructorUsedError;
   String get uid => throw _privateConstructorUsedError;
   String get planName => throw _privateConstructorUsedError;
@@ -76,6 +82,8 @@ abstract class $WithdrawalItemDTOCopyWith<$Res> {
   $Res call(
       {String description,
       int amount,
+      int duration,
+      int roi,
       String traxId,
       String uid,
       String planName,
@@ -97,6 +105,8 @@ class _$WithdrawalItemDTOCopyWithImpl<$Res>
   $Res call({
     Object? description = freezed,
     Object? amount = freezed,
+    Object? duration = freezed,
+    Object? roi = freezed,
     Object? traxId = freezed,
     Object? uid = freezed,
     Object? planName = freezed,
@@ -112,6 +122,14 @@ class _$WithdrawalItemDTOCopyWithImpl<$Res>
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
+              as int,
+      duration: duration == freezed
+          ? _value.duration
+          : duration // ignore: cast_nullable_to_non_nullable
+              as int,
+      roi: roi == freezed
+          ? _value.roi
+          : roi // ignore: cast_nullable_to_non_nullable
               as int,
       traxId: traxId == freezed
           ? _value.traxId
@@ -151,6 +169,8 @@ abstract class _$WithdrawalItemDTOCopyWith<$Res>
   $Res call(
       {String description,
       int amount,
+      int duration,
+      int roi,
       String traxId,
       String uid,
       String planName,
@@ -174,6 +194,8 @@ class __$WithdrawalItemDTOCopyWithImpl<$Res>
   $Res call({
     Object? description = freezed,
     Object? amount = freezed,
+    Object? duration = freezed,
+    Object? roi = freezed,
     Object? traxId = freezed,
     Object? uid = freezed,
     Object? planName = freezed,
@@ -189,6 +211,14 @@ class __$WithdrawalItemDTOCopyWithImpl<$Res>
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
+              as int,
+      duration: duration == freezed
+          ? _value.duration
+          : duration // ignore: cast_nullable_to_non_nullable
+              as int,
+      roi: roi == freezed
+          ? _value.roi
+          : roi // ignore: cast_nullable_to_non_nullable
               as int,
       traxId: traxId == freezed
           ? _value.traxId
@@ -224,6 +254,8 @@ class _$_WithdrawalItemDTO extends _WithdrawalItemDTO {
   const _$_WithdrawalItemDTO(
       {required this.description,
       required this.amount,
+      required this.duration,
+      required this.roi,
       required this.traxId,
       required this.uid,
       required this.planName,
@@ -240,6 +272,10 @@ class _$_WithdrawalItemDTO extends _WithdrawalItemDTO {
   @override
   final int amount;
   @override
+  final int duration;
+  @override
+  final int roi;
+  @override
   final String traxId;
   @override
   final String uid;
@@ -254,7 +290,7 @@ class _$_WithdrawalItemDTO extends _WithdrawalItemDTO {
 
   @override
   String toString() {
-    return 'WithdrawalItemDTO(description: $description, amount: $amount, traxId: $traxId, uid: $uid, planName: $planName, status: $status, createdat: $createdat, paymentMethod: $paymentMethod)';
+    return 'WithdrawalItemDTO(description: $description, amount: $amount, duration: $duration, roi: $roi, traxId: $traxId, uid: $uid, planName: $planName, status: $status, createdat: $createdat, paymentMethod: $paymentMethod)';
   }
 
   @override
@@ -265,6 +301,8 @@ class _$_WithdrawalItemDTO extends _WithdrawalItemDTO {
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
             const DeepCollectionEquality().equals(other.amount, amount) &&
+            const DeepCollectionEquality().equals(other.duration, duration) &&
+            const DeepCollectionEquality().equals(other.roi, roi) &&
             const DeepCollectionEquality().equals(other.traxId, traxId) &&
             const DeepCollectionEquality().equals(other.uid, uid) &&
             const DeepCollectionEquality().equals(other.planName, planName) &&
@@ -279,6 +317,8 @@ class _$_WithdrawalItemDTO extends _WithdrawalItemDTO {
       runtimeType,
       const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(amount),
+      const DeepCollectionEquality().hash(duration),
+      const DeepCollectionEquality().hash(roi),
       const DeepCollectionEquality().hash(traxId),
       const DeepCollectionEquality().hash(uid),
       const DeepCollectionEquality().hash(planName),
@@ -301,6 +341,8 @@ abstract class _WithdrawalItemDTO extends WithdrawalItemDTO {
   const factory _WithdrawalItemDTO(
       {required String description,
       required int amount,
+      required int duration,
+      required int roi,
       required String traxId,
       required String uid,
       required String planName,
@@ -316,6 +358,10 @@ abstract class _WithdrawalItemDTO extends WithdrawalItemDTO {
   String get description;
   @override
   int get amount;
+  @override
+  int get duration;
+  @override
+  int get roi;
   @override
   String get traxId;
   @override

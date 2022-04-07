@@ -154,7 +154,8 @@ class FortShieldInvestment extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
-                              color: kPrimaryColor),
+                              color: state.duration == 6 ? kPrimaryColor : kWhiteColor,
+                              border: Border.all(color: state.duration == 6 ? kPrimaryColor : kWhiteColor, width: state.duration == 6 ? 1.0 : 0.0),),
                           margin: const EdgeInsets.only(right: 30),
                           child: const Text(
                             '6 months',
@@ -166,7 +167,8 @@ class FortShieldInvestment extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
-                              color: kPrimaryColor),
+                              color: state.duration == 12 ? kPrimaryColor : kWhiteColor,
+                              border: Border.all(color: state.duration == 12 ? kPrimaryColor : kWhiteColor, width: state.duration == 12 ? 1.0 : 0.0),),
                           child: const Text(
                             '12 months',
                             style: TextStyle(fontSize: 13),
@@ -263,7 +265,7 @@ class FortShieldInvestment extends StatelessWidget {
                 ),
                 BlocBuilder<InvestmentCubit, InvestmentState>(
                   buildWhen: (previous, current) =>
-                      previous.agreementAccepted != current.agreementAccepted,
+                      previous.isValid != current.isValid,
                   builder: (context, state) {
                     return CustomAuthFilledButton(
                         text: 'INVEST NOW',
@@ -327,7 +329,7 @@ class FortShieldInvestment extends StatelessWidget {
                                 return dialog;
                               });
                         },
-                        disabled: !state.agreementAccepted);
+                        disabled: !state.isValid);
                   },
                 ),
                 const SizedBox(

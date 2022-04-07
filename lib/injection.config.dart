@@ -58,8 +58,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       get<_i5.FirebaseFirestore>(), get<_i4.FirebaseAuth>()));
   gh.lazySingleton<_i11.IStorageFacade>(() => _i12.FirebaseStorageFacade(
       get<_i4.FirebaseAuth>(), get<_i6.FirebaseStorage>()));
-  gh.factory<_i13.InvestmentCubit>(() => _i13.InvestmentCubit(
-      get<_i7.IAuthFacade>(), get<_i9.IFirestoreFacade>()));
+  gh.factory<_i13.InvestmentCubit>(
+      () => _i13.InvestmentCubit(get<_i9.IFirestoreFacade>()));
   gh.factory<_i14.ResetPasswordCubit>(
       () => _i14.ResetPasswordCubit(get<_i7.IAuthFacade>()));
   gh.factory<_i15.SecurityCubit>(
@@ -76,8 +76,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       get<_i11.IStorageFacade>(),
       get<_i9.IFirestoreFacade>(),
       get<_i21.AuthUserModel>()));
-  gh.factory<_i22.WalletCubit>(() =>
-      _i22.WalletCubit(get<_i9.IFirestoreFacade>(), get<_i7.IAuthFacade>()));
+  gh.factory<_i22.WalletCubit>(
+      () => _i22.WalletCubit(get<_i9.IFirestoreFacade>()));
   gh.factory<_i23.BankAddressCubit>(
       () => _i23.BankAddressCubit(get<_i9.IFirestoreFacade>()));
   gh.factory<_i24.CryptoWalletCubit>(

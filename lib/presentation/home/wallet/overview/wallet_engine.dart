@@ -14,6 +14,7 @@ class _WalletOverviewEngineState extends State<WalletOverviewEngine> {
   @override
   void initState() {
     context.read<WalletCubit>().initWalletBalance();
+    context.read<WalletCubit>().initTransactions();
     super.initState();
   }
 
