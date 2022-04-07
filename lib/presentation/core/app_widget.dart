@@ -38,7 +38,14 @@ class App extends StatelessWidget {
                       routeInformationParser: _appRouter.defaultRouteParser(),
                       routerDelegate: _appRouter.delegate(),
                     )
-                  : const NoInternetPage();
+                  : MaterialApp(
+                      title: 'Fortfolio',
+                      debugShowCheckedModeBanner: false,
+                      theme: ThemeData(
+                        primarySwatch: Colors.blue,
+                      ),
+                      home: const NoInternetPage(),
+                    );
             }));
   }
 }
