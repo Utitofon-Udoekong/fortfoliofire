@@ -28,19 +28,19 @@ abstract class InvestmentItemDTO implements _$InvestmentItemDTO {
 
   factory InvestmentItemDTO.fromDomain(InvestmentItem investmentItem) {
     return InvestmentItemDTO(
-      amount: 0,
-      planName: '',
-      description: '',
-      dueDate: DateTime.fromMillisecondsSinceEpoch(0),
-      duration: 0.0,
-      paymentDate: DateTime.fromMillisecondsSinceEpoch(0),
-      planYield: 0,
-      numberOfDays: 0,
-      roi: 0,
-      status: '',
-      traxId: '',
-      uid: '',
-      paymentMethod: ''
+      amount: investmentItem.amount,
+      planName: investmentItem.planName,
+      description: investmentItem.description,
+      dueDate: investmentItem.dueDate,
+      duration: investmentItem.duration,
+      paymentDate: investmentItem.paymentDate,
+      planYield: investmentItem.planYield,
+      numberOfDays: investmentItem.numberOfDays,
+      roi: investmentItem.roi,
+      status: investmentItem.status,
+      traxId: investmentItem.traxId,
+      uid: investmentItem.uid,
+      paymentMethod: investmentItem.paymentMethod
     );
   }
 

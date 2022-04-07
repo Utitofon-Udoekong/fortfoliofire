@@ -31,7 +31,7 @@ abstract class InvestmentItem implements _$InvestmentItem {
         planName: '',
         planYield: 0,
         roi: 0,
-        status: '',
+        status: 'Pending',
         traxId: '',
         uid: '',
         paymentMethod: ''

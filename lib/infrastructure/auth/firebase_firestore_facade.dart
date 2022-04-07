@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:dartz/dartz.dart';
 import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
+import 'package:fortfolio/domain/user/kyc_item.dart';
 import 'package:fortfolio/domain/user/withdrawal_item.dart';
 import 'package:fortfolio/domain/user/investment.dart';
 import 'package:fortfolio/domain/user/crypto_wallet.dart';
@@ -11,6 +12,7 @@ import 'package:fortfolio/domain/user/bank_address.dart';
 import 'package:fortfolio/infrastructure/auth/dto/bank_address/bank_address_dto.dart';
 import 'package:fortfolio/infrastructure/auth/dto/crypto_address/crypto_address.dart';
 import 'package:fortfolio/infrastructure/auth/dto/investment/investment_dto.dart';
+import 'package:fortfolio/infrastructure/auth/dto/kyc/kyc_dto.dart';
 import 'package:fortfolio/infrastructure/auth/dto/withdrawal/withdrawal_dto.dart';
 import 'package:fortfolio/infrastructure/core/firestore_helpers.dart';
 import 'package:injectable/injectable.dart';
@@ -75,11 +77,23 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
   Future<Option<String>> createWithdrawalTransaction({required WithdrawalItem withdrawalItem}) async{
     String docId = withdrawalItem.traxId + withdrawalItem.uid;
     try {
-      firestore.authUserCollection.doc(auth.currentUser!.uid).collection("withdrawals").doc(docId).set(WithdrawalItemDTO.fromDomain(withdrawalItem).toJson());
+      await firestore.authUserCollection.doc(auth.currentUser!.uid).collection("withdrawals").doc(docId).set(WithdrawalItemDTO.fromDomain(withdrawalItem).toJson());
       return some("Withdrawal submitted. Awaiting approval");
     } on FirebaseException catch (e) {
       log("Code: ${e.code}, Message: ${e.message}");
       return some('Unable to create withdrawals at the moment');
+    }
+  }
+
+  @override
+  Future<Option<String>> createKYC({required KYCItem kycItem}) async {
+    String id = kycItem.id;
+    try {
+      await firestore.authUserCollection.doc(auth.currentUser!.uid).collection("kyc").doc(id).set(KYCItemDTO.fromDomain(kycItem).toJson());
+      return some("KYC Documents submitted");
+    } on FirebaseException catch (e) {
+      log("Code: ${e.code}, Message: ${e.message}");
+      return some('Unable to submit documents at the moment');
     }
   }
 
@@ -252,4 +266,6 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
       return some('Unable to harvest');
     }
   }
+
+
 }

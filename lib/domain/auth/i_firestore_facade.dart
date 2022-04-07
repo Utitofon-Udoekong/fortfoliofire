@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:fortfolio/domain/user/bank_address.dart';
 import 'package:fortfolio/domain/user/crypto_wallet.dart';
 import 'package:fortfolio/domain/user/investment.dart';
+import 'package:fortfolio/domain/user/kyc_item.dart';
 import 'package:fortfolio/domain/user/withdrawal_item.dart';
 
 
@@ -21,4 +22,5 @@ abstract class IFirestoreFacade {
   Future<Option<List<InvestmentItem>>> getFortCryptoInvestments();
   Future<Option<List<WithdrawalItem>>> getWithdrawals();
   Future<Option<String>> createWithdrawalTransaction( {required WithdrawalItem withdrawalItem});
+  Future<Option<String>> createKYC( {required KYCItem kycItem});
 }

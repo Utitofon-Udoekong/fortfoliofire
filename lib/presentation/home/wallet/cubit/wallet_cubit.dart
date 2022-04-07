@@ -200,7 +200,7 @@ class WalletCubit extends Cubit<WalletState> {
       amount: amount,
       traxId: traxId,
       planName: investmentPlan,
-      status: Status.processing,
+      status: "Pending",
       createdat: DateTime.now(),
       paymentMethod: paymentMethod,
       uid: uid

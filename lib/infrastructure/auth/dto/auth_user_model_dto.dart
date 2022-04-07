@@ -38,7 +38,6 @@ class AuthUserModelDto with _$AuthUserModelDto {
       firstName: userModel.firstName,
       isVerified: userModel.isVerified,
       lastName: userModel.lastName,
-      // status: userModel.statusString,
     );
   }
 

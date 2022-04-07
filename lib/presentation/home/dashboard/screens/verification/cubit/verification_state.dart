@@ -6,12 +6,17 @@ class VerificationState with _$VerificationState {
     required bool submitting,
     required String response,
     required String failure,
+    required String success,
+    required Uint8List frontFile,
+    required Uint8List backFile,
+    required Uint8List utilityFile,
   }) = _VerificationState;
   const VerificationState._();
-  factory VerificationState.empty() => const VerificationState(
+  factory VerificationState.empty() => VerificationState(
     submitting: false,
     response: "",
-    failure: ""
+    failure: "",
+    frontFile: Uint8List
   );
   bool get isValidState => response.isNotEmpty;
 }

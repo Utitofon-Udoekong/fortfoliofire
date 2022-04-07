@@ -22,14 +22,14 @@ abstract class WithdrawalItemDTO implements _$WithdrawalItemDTO {
 
   factory WithdrawalItemDTO.fromDomain(WithdrawalItem withdrawalItem) {
     return WithdrawalItemDTO(
-      amount: 0,
-      planName: '',
-      createdat: DateTime.now(),
-      description: '',
-      paymentMethod: '',
-      status: '',
-      traxId: '',
-      uid: '',
+      amount: withdrawalItem.amount,
+      planName: withdrawalItem.planName,
+      createdat: withdrawalItem.createdat,
+      description: withdrawalItem.description,
+      paymentMethod: withdrawalItem.paymentMethod,
+      status: withdrawalItem.status,
+      traxId: withdrawalItem.traxId,
+      uid: withdrawalItem.uid,
     );
   }
 
@@ -54,7 +54,7 @@ extension WithdrawalItemDTOX on WithdrawalItemDTO {
       createdat: createdat,
       description: description,
       paymentMethod: paymentMethod,
-      status: Status.values.firstWhere((element) => element.name == status),
+      status: status,
       traxId: traxId,
       uid: uid
     );

@@ -15,7 +15,8 @@ class FirebaseStorageFacade implements IStorageFacade {
   @override
   Future<Either<String, String>> uploadImageToStorage({required String childName, required Uint8List file}) async {
     Reference ref =
-        storage.ref("KYC_DOCUMENTS").child(auth.currentUser!.uid).child(childName);
+        storage.ref("KYC_DOCUMENTS").child(childName);
+        // storage.ref("KYC_DOCUMENTS").child(auth.currentUser!.uid).child(childName);
     try {
       UploadTask uploadTask = ref.putData(
         file

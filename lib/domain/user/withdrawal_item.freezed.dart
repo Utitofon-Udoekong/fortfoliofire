@@ -24,7 +24,7 @@ class _$WithdrawalItemTearOff {
       required String traxId,
       required String uid,
       required String planName,
-      required Status status,
+      required String status,
       required DateTime createdat,
       required String paymentMethod}) {
     return _WithdrawalItem(
@@ -50,7 +50,7 @@ mixin _$WithdrawalItem {
   String get traxId => throw _privateConstructorUsedError;
   String get uid => throw _privateConstructorUsedError;
   String get planName => throw _privateConstructorUsedError;
-  Status get status => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
   DateTime get createdat => throw _privateConstructorUsedError;
   String get paymentMethod => throw _privateConstructorUsedError;
 
@@ -70,7 +70,7 @@ abstract class $WithdrawalItemCopyWith<$Res> {
       String traxId,
       String uid,
       String planName,
-      Status status,
+      String status,
       DateTime createdat,
       String paymentMethod});
 }
@@ -119,7 +119,7 @@ class _$WithdrawalItemCopyWithImpl<$Res>
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as Status,
+              as String,
       createdat: createdat == freezed
           ? _value.createdat
           : createdat // ignore: cast_nullable_to_non_nullable
@@ -145,7 +145,7 @@ abstract class _$WithdrawalItemCopyWith<$Res>
       String traxId,
       String uid,
       String planName,
-      Status status,
+      String status,
       DateTime createdat,
       String paymentMethod});
 }
@@ -196,7 +196,7 @@ class __$WithdrawalItemCopyWithImpl<$Res>
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as Status,
+              as String,
       createdat: createdat == freezed
           ? _value.createdat
           : createdat // ignore: cast_nullable_to_non_nullable
@@ -234,7 +234,7 @@ class _$_WithdrawalItem extends _WithdrawalItem {
   @override
   final String planName;
   @override
-  final Status status;
+  final String status;
   @override
   final DateTime createdat;
   @override
@@ -287,7 +287,7 @@ abstract class _WithdrawalItem extends WithdrawalItem {
       required String traxId,
       required String uid,
       required String planName,
-      required Status status,
+      required String status,
       required DateTime createdat,
       required String paymentMethod}) = _$_WithdrawalItem;
   const _WithdrawalItem._() : super._();
@@ -303,7 +303,7 @@ abstract class _WithdrawalItem extends WithdrawalItem {
   @override
   String get planName;
   @override
-  Status get status;
+  String get status;
   @override
   DateTime get createdat;
   @override
