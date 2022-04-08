@@ -115,7 +115,7 @@ class ResetPassword extends StatelessWidget {
                                 onTap: () => context
                                     .read<ResetPasswordCubit>()
                                     .requestReset(),
-                                disabled: state.emailAddress.isValid(),
+                                disabled: !state.emailAddress.isValid(),
                               );
                             },
                           ),
