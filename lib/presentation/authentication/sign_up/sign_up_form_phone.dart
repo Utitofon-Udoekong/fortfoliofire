@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/application/auth/auth_cubit.dart';
-import 'package:fortfolio/application/auth/sign_in_form/phone/sign_in_form_phone_cubit.dart';
 import 'package:fortfolio/application/auth/sign_up_form/phone/sign_up_form_phone_cubit.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
@@ -63,7 +62,7 @@ class _SignUpFormPhoneState extends State<SignUpFormPhone> {
                 ),
                 BlocListener<SignUpFormPhoneCubit, SignUpFormPhoneState>(
                   listenWhen: (p, c) =>
-                      p.displaySmsCodeForm != p.displaySmsCodeForm,
+                      p.displaySmsCodeForm != c.displaySmsCodeForm,
                   listener: (context, state) =>
                       context.router.replace(const ConfirmSignupWithOTPRoute()),
                 )
