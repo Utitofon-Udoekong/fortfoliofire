@@ -24,36 +24,27 @@ class App extends StatelessWidget {
           BlocProvider(
               create: (context) => getIt<InvestmentCubit>(), lazy: false),
         ],
-        child: MaterialApp.router(
-          title: 'Fortfolio',
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-          ),
-          routeInformationParser: _appRouter.defaultRouteParser(),
-          routerDelegate: _appRouter.delegate(),
-        ));
+        child: StreamBuilder(
+            stream: Connectivity().onConnectivityChanged,
+            builder: (context, AsyncSnapshot<ConnectivityResult> snapshot) {
+              return snapshot.data == ConnectivityResult.mobile ||
+                      snapshot.data == ConnectivityResult.wifi
+                  ? MaterialApp.router(
+                      title: 'Fortfolio',
+                      debugShowCheckedModeBanner: false,
+                      theme: ThemeData(
+                        primarySwatch: Colors.blue,
+                      ),
+                      routeInformationParser: _appRouter.defaultRouteParser(),
+                      routerDelegate: _appRouter.delegate(),
+                    )
+                  : WidgetsApp(
+                      debugShowCheckedModeBanner: false,
+                      builder: (context, widget) {
+                        return const NoInternetPage();
+                      },
+                      color: Colors.blue,
+                    );
+            }));
   }
-  // StreamBuilder(
-  //           stream: Connectivity().onConnectivityChanged,
-  //           builder: (context, AsyncSnapshot<ConnectivityResult> snapshot) {
-  //             return snapshot.data == ConnectivityResult.mobile ||
-  //                     snapshot.data == ConnectivityResult.wifi
-  // ? MaterialApp.router(
-  //     title: 'Fortfolio',
-  //     debugShowCheckedModeBanner: false,
-  //     theme: ThemeData(
-  //       primarySwatch: Colors.blue,
-  //     ),
-  //     routeInformationParser: _appRouter.defaultRouteParser(),
-  //     routerDelegate: _appRouter.delegate(),
-  //   )
-  //                 : WidgetsApp(
-  //                   debugShowCheckedModeBanner: false,
-  //                     builder: (context, widget) {
-  //                       return const NoInternetPage();
-  //                     },
-  //                     color: Colors.blue,
-  //                   );
-  //           })
 }
