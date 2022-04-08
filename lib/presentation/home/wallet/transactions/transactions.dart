@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
@@ -143,7 +142,7 @@ class WalletTransactions extends StatelessWidget {
         var dialog = Dialog(
           backgroundColor: Colors.transparent,
           child: ClipPath(
-            clipper: PointsClipper(),
+            clipper: RPSCustomClipper(),
             child: Container(
               decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.only(topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0))),
               padding: const EdgeInsets.all(18.0),
@@ -344,7 +343,7 @@ class WalletTransactions extends StatelessWidget {
         var dialog = Dialog(
           backgroundColor: Colors.transparent,
           child: ClipPath(
-            clipper: PointsClipper(),
+            clipper: RPSCustomClipper(),
             child: Container(
               decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.only(topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0))),
               padding: const EdgeInsets.all(18.0),
@@ -529,35 +528,28 @@ class WalletTransactions extends StatelessWidget {
   }
 }
 
-class RPSCustomPainter extends CustomPainter {
+class RPSCustomClipper extends CustomClipper<Path> {
   @override
-  void paint(Canvas canvas, Size size) {
-    Paint paint0 = Paint()
-      ..color = const Color.fromARGB(255, 33, 150, 243)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 2.7;
+  Path getClip(Size size) {
+    var smallLineLength = size.width / 20;
+    const  smallLineHeight = 20;
+    var path = Path();
 
-    // Size(WIDTH,(WIDTH*0.625).toDouble()),
-    Path path0 = Path();
-    path0.moveTo(size.width * 0.2512500, size.height * 0.8000000);
-    path0.lineTo(size.width * 0.2737500, size.height * 0.7580000);
-    path0.lineTo(size.width * 0.3000000, size.height * 0.8000000);
-    path0.lineTo(size.width * 0.3237500, size.height * 0.7580000);
-    path0.lineTo(size.width * 0.3475000, size.height * 0.7980000);
-    path0.lineTo(size.width * 0.3737500, size.height * 0.7600000);
-    path0.lineTo(size.width * 0.3975000, size.height * 0.8000000);
-    path0.lineTo(size.width * 0.4250000, size.height * 0.7620000);
-    path0.lineTo(size.width * 0.4500000, size.height * 0.7960000);
-    path0.lineTo(size.width * 0.4750000, size.height * 0.7600000);
-    path0.lineTo(size.width * 0.5000000, size.height * 0.8000000);
-    path0.lineTo(size.width * 0.5250000, size.height * 0.7600000);
-    path0.lineTo(size.width * 0.5512500, size.height * 0.7980000);
+    path.lineTo(0, size.height);
+    for (int i = 1; i <= 16; i++) {
+      if (i % 2 == 0) {
+        path.lineTo(smallLineLength * i, size.height);
+      } else {
+        path.lineTo(smallLineLength * i, size.height - smallLineHeight);
+        
+      }
+    }
+    path.lineTo(size.width, 0);
+    path.close();
 
-    canvas.drawPath(path0, paint0);
+    return path;
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return true;
-  }
+  bool shouldReclip(CustomClipper old) => false;
 }
