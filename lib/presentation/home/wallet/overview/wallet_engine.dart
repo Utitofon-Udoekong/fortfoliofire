@@ -15,6 +15,9 @@ class _WalletOverviewEngineState extends State<WalletOverviewEngine> {
   void initState() {
     context.read<WalletCubit>().initWalletBalance();
     context.read<WalletCubit>().initTransactions();
+    context.read<WalletCubit>().initFortDollar();
+    context.read<WalletCubit>().initFortShield();
+    context.read<WalletCubit>().initFortCrypto();
     super.initState();
   }
 

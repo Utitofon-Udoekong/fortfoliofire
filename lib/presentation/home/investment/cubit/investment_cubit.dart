@@ -56,7 +56,6 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     emit(state.copyWith(
       amountInvested: amountInvested
     ));
-    print(amountInvested.toString());
   }
   void roiChanged({required int roi}){
     emit(state.copyWith(
@@ -98,6 +97,14 @@ class InvestmentCubit extends Cubit<InvestmentState> {
       emit(state.copyWith(isLoading: false));
       log(e.toString());
     }
+  }
+
+  void reset (){
+    emit(state.copyWith(
+      amountInvested: 0,
+      planName: "",
+      agreementAccepted: false
+    ));
   }
 
 }

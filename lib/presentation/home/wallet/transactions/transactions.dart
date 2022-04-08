@@ -20,102 +20,112 @@ class WalletTransactions extends StatelessWidget {
       semanticsLabel: 'Blank Wallet',
     );
     return Scaffold(
-        body: transactions.isEmpty ? Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            const SizedBox(
-              height: 50,
-            ),
-            svg,
-            const SizedBox(
-              height: 30,
-            ),
-            Text(
-              'No Transactions recorded yet. Make an investment to get started',
-              style: subTitle,
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            CustomFilledButton(text: "GET STARTED", onTap: () => context.router.push(const InvestmentPageRoute()))
-          ],
-        ),
-      ) : SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: transactions.map((document) {
-              // withdrawal variables
-              String withDescription = "";
-              int withAmount = 0;
-              String withStatus = "";
-              String withId = "";
-              String withPaymentMethod = "";
-              DateTime withcreatedat = DateTime.now();
-              int withduration = 0;
-              int withroi = 0;
+        body: transactions.isEmpty
+            ? Center(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    svg,
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    Text(
+                      'No Transactions recorded yet. Make an investment to get started',
+                      style: subTitle,
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    CustomFilledButton(
+                        text: "GET STARTED",
+                        onTap: () =>
+                            context.router.push(const InvestmentPageRoute()))
+                  ],
+                ),
+              )
+            : SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: transactions.map((document) {
+                        // withdrawal variables
+                        String withDescription = "";
+                        int withAmount = 0;
+                        String withStatus = "";
+                        String withId = "";
+                        String withPaymentMethod = "";
+                        DateTime withcreatedat = DateTime.now();
+                        int withduration = 0;
+                        int withroi = 0;
 
-              // investment variables
-              String invDescription = "";
-              int invAmount = 0;
-              String invStatus = "";
-              String invId = "";
-              String invPaymentMethod = "";
-              DateTime invcreatedat = DateTime.now();
-              double invduration = 0.0;
-              int invroi = 0;
+                        // investment variables
+                        String invDescription = "";
+                        int invAmount = 0;
+                        String invStatus = "";
+                        String invId = "";
+                        String invPaymentMethod = "";
+                        DateTime invcreatedat = DateTime.now();
+                        double invduration = 0.0;
+                        int invroi = 0;
 
-              if (document.investmentItem != null &&
-                  document.withdrawalItem == null) {
-                invDescription = document.investmentItem!.description;
-                invAmount = document.investmentItem!.amount;
-                invStatus = document.investmentItem!.status;
-                invId = document.investmentItem!.traxId;
-                invPaymentMethod = document.investmentItem!.paymentMethod;
-                invcreatedat = document.investmentItem!.paymentDate;
-                invduration = document.investmentItem!.duration;
-                invroi = document.investmentItem!.roi;
-              } else if (document.investmentItem != null &&
-                  document.investmentItem == null) {
-                withDescription = document.withdrawalItem!.description;
-                withAmount = document.withdrawalItem!.amount;
-                withStatus = document.withdrawalItem!.status;
-                withId = document.withdrawalItem!.traxId;
-                withPaymentMethod = document.withdrawalItem!.paymentMethod;
-                withcreatedat = document.withdrawalItem!.createdat;
-                withduration = document.withdrawalItem!.duration;
-                withroi = document.withdrawalItem!.roi;
-              }
+                        if (document.investmentItem != null &&
+                            document.withdrawalItem == null) {
+                          invDescription = document.investmentItem!.description;
+                          invAmount = document.investmentItem!.amount;
+                          invStatus = document.investmentItem!.status;
+                          invId = document.investmentItem!.traxId;
+                          invPaymentMethod =
+                              document.investmentItem!.paymentMethod;
+                          invcreatedat = document.investmentItem!.paymentDate;
+                          invduration = document.investmentItem!.duration;
+                          invroi = document.investmentItem!.roi;
+                        } else if (document.withdrawalItem != null &&
+                            document.investmentItem == null) {
+                          withDescription =
+                              document.withdrawalItem!.description;
+                          withAmount = document.withdrawalItem!.amount;
+                          withStatus = document.withdrawalItem!.status;
+                          withId = document.withdrawalItem!.traxId;
+                          withPaymentMethod =
+                              document.withdrawalItem!.paymentMethod;
+                          withcreatedat = document.withdrawalItem!.createdat;
+                          withduration = document.withdrawalItem!.duration;
+                          withroi = document.withdrawalItem!.roi;
+                        }
 
-              return Column(
-                children: [
-                  document.withdrawalItem != null
-                      ? buildWithdrawalTile(
-                          amount: withAmount.toString(),
-                          date: withcreatedat,
-                          duration: withduration,
-                          id: withId,
-                          paymentMethod: withPaymentMethod,
-                          status: withStatus,
-                          roi: withroi,
-                          title: withDescription)
-                      : buildInvestmentTile(
-                          amount: invAmount.toString(),
-                          date: invcreatedat,
-                          duration: invduration,
-                          id: invId,
-                          paymentMethod: invPaymentMethod,
-                          status: invStatus,
-                          roi: invroi,
-                          title: invDescription),
-                  const Divider()
-                ],
-              );
-            }).toList()),
-      ),
-    ));
+                        return Column(
+                          children: [
+                            document.withdrawalItem != null
+                                ? buildWithdrawalTile(
+                                    amount: withAmount.toString(),
+                                    date: withcreatedat,
+                                    duration: withduration,
+                                    id: withId,
+                                    paymentMethod: withPaymentMethod,
+                                    status: withStatus,
+                                    roi: withroi,
+                                    title: withDescription,
+                                    context: context)
+                                : buildInvestmentTile(
+                                    amount: invAmount.toString(),
+                                    date: invcreatedat,
+                                    duration: invduration,
+                                    id: invId,
+                                    paymentMethod: invPaymentMethod,
+                                    status: invStatus,
+                                    roi: invroi,
+                                    title: invDescription,
+                                    context: context),
+                            const Divider()
+                          ],
+                        );
+                      }).toList()..shuffle()),
+                ),
+              ));
   }
 
   Widget buildWithdrawalTile(
@@ -126,15 +136,17 @@ class WalletTransactions extends StatelessWidget {
       required int roi,
       required DateTime date,
       required String id,
-      required String paymentMethod}) {
+      required String paymentMethod,
+      required BuildContext context}) {
     return GestureDetector(
       onTap: () {
-        Dialog(
+        var dialog = Dialog(
           backgroundColor: Colors.transparent,
           child: ClipPath(
             clipper: PointsClipper(),
             child: Container(
-              decoration: const BoxDecoration(color: Colors.white),
+              decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.only(topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0))),
+              padding: const EdgeInsets.all(18.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -243,6 +255,11 @@ class WalletTransactions extends StatelessWidget {
             ),
           ),
         );
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return dialog;
+            });
       },
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 12.0),
@@ -289,9 +306,9 @@ class WalletTransactions extends StatelessWidget {
                   amount,
                   style: titleText.copyWith(
                       fontSize: 20,
-                      color: status == "successful"
+                      color: status == "Successful"
                           ? const Color(0XFF00C566)
-                          : status == "pending"
+                          : status == "Pending"
                               ? const Color.fromARGB(239, 226, 167, 4)
                               : const Color(0XFFDF1414),
                       fontWeight: FontWeight.w700),
@@ -320,15 +337,17 @@ class WalletTransactions extends StatelessWidget {
       required DateTime date,
       required String id,
       required int roi,
-      required String paymentMethod}) {
+      required String paymentMethod,
+      required BuildContext context}) {
     return GestureDetector(
       onTap: () {
-        Dialog(
+        var dialog = Dialog(
           backgroundColor: Colors.transparent,
           child: ClipPath(
             clipper: PointsClipper(),
             child: Container(
-              decoration: const BoxDecoration(color: Colors.white),
+              decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.only(topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0))),
+              padding: const EdgeInsets.all(18.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -373,7 +392,7 @@ class WalletTransactions extends StatelessWidget {
                     height: 5,
                   ),
                   Text(
-                    "N$amount",
+                    "\$$amount",
                     style: titleText.copyWith(color: kBlackColor, fontSize: 15),
                   ),
                   const SizedBox(
@@ -437,6 +456,9 @@ class WalletTransactions extends StatelessWidget {
             ),
           ),
         );
+        showDialog(context: context, builder: (context){
+          return dialog;
+        });
       },
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 12.0),
@@ -483,9 +505,9 @@ class WalletTransactions extends StatelessWidget {
                   amount,
                   style: titleText.copyWith(
                       fontSize: 20,
-                      color: status == "successful"
+                      color: status == "Successful"
                           ? const Color(0XFF00C566)
-                          : status == "pending"
+                          : status == "Pending"
                               ? const Color.fromARGB(239, 226, 167, 4)
                               : const Color(0XFFDF1414),
                       fontWeight: FontWeight.w700),

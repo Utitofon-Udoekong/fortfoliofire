@@ -31,7 +31,10 @@ class FortDollarInvestment extends StatelessWidget {
                   height: 20,
                 ),
                 InkWell(
-                  onTap: () => context.router.pop(),
+                  onTap: () {
+                    context.router.pop();
+                    context.read<InvestmentCubit>().reset();
+                  },
                   child: const Icon(Icons.close),
                 ),
                 const SizedBox(
@@ -99,7 +102,7 @@ class FortDollarInvestment extends StatelessWidget {
                             .read<InvestmentCubit>()
                             .amountInvestedChanged(
                                 amountInvested: int.parse(value)),
-                        validator: (String? value) => int.parse(value!) < 1e3  ? 'Minimum investment is \$1,000' : int.parse(value).isNaN ? 'Invalid amount' : null,
+                        validator: (String? value) => int.tryParse(value!) == null ? 'Field cannot be empty' : int.parse(value) < 1e3  ? 'Minimum investment is \$1,000' : int.parse(value).isNaN ? 'Invalid amount' : null,
                       ),
                     );
                   },
@@ -122,9 +125,8 @@ class FortDollarInvestment extends StatelessWidget {
                   builder: (context, state) {
                     return ToggleButtons(
                       selectedColor: Colors.white,
-                      color: Colors.white70,
+                      color: kPrimaryColor,
                       isSelected: state.isSelected,
-                      fillColor: const Color.fromRGBO(243, 246, 248, 0.6),
                       renderBorder: false,
                       children: <Widget>[
                         Ink(
@@ -135,7 +137,7 @@ class FortDollarInvestment extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(6),
                                 color: state.duration == 3 ? kPrimaryColor : kWhiteColor,
                               border: Border.all(color: state.duration == 3 ? kPrimaryColor : kWhiteColor, width: state.duration == 3 ? 1.0 : 0.0),),
-                            margin: const EdgeInsets.only(right: 30),
+                            margin: const EdgeInsets.only(right: 28),
                             child: const Text(
                               '3 months',
                               style: TextStyle(fontSize: 13),
@@ -143,36 +145,32 @@ class FortDollarInvestment extends StatelessWidget {
                             alignment: Alignment.center,
                           ),
                         ),
-                        Ink(
-                          child: Container(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 8.0),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(6),
-                                color: state.duration == 6 ? kPrimaryColor : kWhiteColor,
-                              border: Border.all(color: state.duration == 6 ? kPrimaryColor : kWhiteColor, width: state.duration == 6 ? 1.0 : 0.0),),
-                            margin: const EdgeInsets.only(right: 30),
-                            child: const Text(
-                              '6 months',
-                              style: TextStyle(fontSize: 13),
-                            ),
-                            alignment: Alignment.center,
+                        Container(
+                          padding:
+                              const EdgeInsets.symmetric(horizontal: 8.0),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(6),
+                              color: state.duration == 6 ? kPrimaryColor : kWhiteColor,
+                            border: Border.all(color: state.duration == 6 ? kPrimaryColor : kWhiteColor, width: state.duration == 6 ? 1.0 : 0.0),),
+                          margin: const EdgeInsets.only(right: 28),
+                          child: const Text(
+                            '6 months',
+                            style: TextStyle(fontSize: 13),
                           ),
+                          alignment: Alignment.center,
                         ),
-                        Ink(
-                          child: Container(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 8.0),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(6),
-                                color: state.duration == 12 ? kPrimaryColor : kWhiteColor,
-                              border: Border.all(color: state.duration == 12 ? kPrimaryColor : kWhiteColor, width: state.duration == 12 ? 1.0 : 0.0),),
-                            child: const Text(
-                              '12 months',
-                              style: TextStyle(fontSize: 13),
-                            ),
-                            alignment: Alignment.center,
+                        Container(
+                          padding:
+                              const EdgeInsets.symmetric(horizontal: 8.0),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(6),
+                              color: state.duration == 12 ? kPrimaryColor : kWhiteColor,
+                            border: Border.all(color: state.duration == 12 ? kPrimaryColor : kWhiteColor, width: state.duration == 12 ? 2.0 : 0.0),),
+                          child: const Text(
+                            '12 months',
+                            style: TextStyle(fontSize: 13),
                           ),
+                          alignment: Alignment.center,
                         ),
                       ],
                       onPressed: (int newIndex) => context

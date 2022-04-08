@@ -32,7 +32,10 @@ class FortCryptoInvestment extends StatelessWidget {
                   height: 20,
                 ),
                 InkWell(
-                  onTap: () => context.router.pop(),
+                  onTap: () {
+                    context.router.pop();
+                    context.read<InvestmentCubit>().reset();
+                  },
                   child: const Icon(Icons.close),
                 ),
                 const SizedBox(
@@ -103,7 +106,7 @@ class FortCryptoInvestment extends StatelessWidget {
                             .read<InvestmentCubit>()
                             .amountInvestedChanged(
                                 amountInvested: int.parse(value)),
-                        validator: (String? value) => int.parse(value!) < 1e3  ? 'Minimum investment is \$1,000' : int.parse(value).isNaN ? 'Invalid amount' : null,
+                        validator: (String? value) => int.tryParse(value!) == null ? 'Field cannot be empty' : int.parse(value) < 1e3  ? 'Minimum investment is \$1,000' : int.parse(value).isNaN ? 'Invalid amount' : null,
                       ),
                     );
                   },
@@ -126,7 +129,6 @@ class FortCryptoInvestment extends StatelessWidget {
                       selectedColor: Colors.white,
                       color: kPrimaryColor,
                       isSelected: state.isSelected,
-                      // fillColor: const Color.fromRGBO(243, 246, 248, 0.6),
                       renderBorder: false,
                       children: <Widget>[
                         Container(
@@ -136,7 +138,7 @@ class FortCryptoInvestment extends StatelessWidget {
                               color: state.duration == 3 ? kPrimaryColor : kWhiteColor,
                               border: Border.all(color: state.duration == 3 ? kPrimaryColor : kWhiteColor, width: state.duration == 3 ? 1.0 : 0.0),
                               ),
-                          margin: const EdgeInsets.only(right: 30),
+                          margin: const EdgeInsets.only(right: 29),
                           child: const Text(
                             '3 months',
                             style: TextStyle(fontSize: 13),
@@ -149,7 +151,7 @@ class FortCryptoInvestment extends StatelessWidget {
                               borderRadius: BorderRadius.circular(6),
                               color: state.duration == 6 ? kPrimaryColor : kWhiteColor,
                               border: Border.all(color: state.duration == 6 ? kPrimaryColor : kWhiteColor, width: state.duration == 6 ? 1.0 : 0.0),),
-                          margin: const EdgeInsets.only(right: 30),
+                          margin: const EdgeInsets.only(right: 29),
                           child: const Text(
                             '6 months',
                             style: TextStyle(fontSize: 13),

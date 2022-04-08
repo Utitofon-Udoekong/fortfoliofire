@@ -16,6 +16,7 @@ const kTileHeight = 40.0;
 
 class FortShieldInvestment extends StatelessWidget {
   const FortShieldInvestment({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +31,10 @@ class FortShieldInvestment extends StatelessWidget {
                   height: 20,
                 ),
                 InkWell(
-                  onTap: () => context.router.pop(),
+                  onTap: () {
+                    context.router.pop();
+                    context.read<InvestmentCubit>().reset();
+                  },
                   child: const Icon(Icons.close),
                 ),
                 const SizedBox(
@@ -123,7 +127,7 @@ class FortShieldInvestment extends StatelessWidget {
                             .read<InvestmentCubit>()
                             .amountInvestedChanged(
                                 amountInvested: int.parse(value)),
-                        validator: (String? value) => int.parse(value!) < 1e6  ? 'Minimum investment is N1,000,000' : int.parse(value).isNaN ? 'Invalid amount' : null,
+                        validator: (String? value) => int.tryParse(value!) == null ? 'Field cannot be empty' : int.parse(value) < 1e3  ? 'Minimum investment is \$1,000' : int.parse(value).isNaN ? 'Invalid amount' : null,
                       ),
                     );
                   },
@@ -144,9 +148,8 @@ class FortShieldInvestment extends StatelessWidget {
                   builder: (context, state) {
                     return ToggleButtons(
                       selectedColor: Colors.white,
-                      color: Colors.white70,
+                      color: kPrimaryColor,
                       isSelected: state.isSelected,
-                      fillColor: const Color.fromRGBO(243, 246, 248, 0.6),
                       renderBorder: false,
                       children: <Widget>[
                         const SizedBox(width: 0),

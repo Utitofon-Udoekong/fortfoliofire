@@ -28,11 +28,11 @@ class InvestmentState with _$InvestmentState {
         isLoading: false,
         exchangeType: "NGN",
         isSelected: List.from(boolList),
-        durations: [3, 6, 9], 
+        durations: [3, 6, 12], 
         duration: 6,
         paymentMethod: 'Bank'
       );
-    bool get isValid => planName.isNotEmpty && !duration.isNaN && !amountInvested.isNaN && agreementAccepted;
+    bool get isValid => !duration.isNaN && !amountInvested.isNaN && agreementAccepted;
 }
 
 var boolList = <bool>[false,true,false];

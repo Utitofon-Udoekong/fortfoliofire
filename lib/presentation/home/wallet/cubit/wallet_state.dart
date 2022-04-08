@@ -47,18 +47,18 @@ class WalletState with _$WalletState {
       cryptoAddresses: [],
       generalCryptoAddresses: [],
       fortDollarInvestments: [
-        InvestmentItem( description: "description", uid: "uid", amount: 30, traxId: "traxId", roi: 0, planName: "fortdollar", paymentDate: DateTime.now(), dueDate: DateTime.now(), duration: 3, status: "status", planYield: 6, paymentMethod: "Bank", numberOfDays: 0)
+        InvestmentItem( description: "fortdolls inv", uid: "uid", amount: 30, traxId: "traxId", roi: 0, planName: "fortdollar", paymentDate: DateTime.now(), dueDate: DateTime.now(), duration: 3, status: "Pending", planYield: 6, paymentMethod: "Bank", numberOfDays: 0)
       ],
       fortCryptoInvestments: [
-        InvestmentItem( description: "description", uid: "uid", amount: 30, traxId: "traxId", roi: 0, planName: "fortcrypto", paymentDate: DateTime.now(), dueDate: DateTime.now(), duration: 3, status: "status", planYield: 6, paymentMethod: "Bank", numberOfDays: 0)
+        InvestmentItem( description: "fortcrypto inv", uid: "uid", amount: 30, traxId: "traxId", roi: 0, planName: "fortcrypto", paymentDate: DateTime.now(), dueDate: DateTime.now(), duration: 6, status: "Successful", planYield: 6, paymentMethod: "Bank", numberOfDays: 0)
       ],
       fortShieldInvestments: [
-        InvestmentItem( description: "description", uid: "uid", amount: 30, traxId: "traxId", roi: 0, planName: "fortshield", paymentDate: DateTime.now(), dueDate: DateTime.now(), duration: 3, status: "status", planYield: 6, paymentMethod: "Bank", numberOfDays: 0)
+        InvestmentItem( description: "fortshiled inv", uid: "uid", amount: 30, traxId: "traxId", roi: 0, planName: "fortshield", paymentDate: DateTime.now(), dueDate: DateTime.now(), duration: 12, status: "Cancelled", planYield: 6, paymentMethod: "Bank", numberOfDays: 0)
       ],
       withdrawals: [
-        WithdrawalItem( description: "description", amount: 20, traxId: "traxId", uid: "uid", planName: "fortDollar", status: "Pending", createdat: DateTime.now(), paymentMethod: "Bank", duration: 6, roi: 15),
-        WithdrawalItem( description: "description", amount: 40, traxId: "traxId", uid: "uid", planName: "FortCrypto", status: "Pending", createdat: DateTime.now(), paymentMethod: "crypto", duration: 12, roi: 30),
-        WithdrawalItem( description: "description", amount: 60, traxId: "traxId", uid: "uid", planName: "FortShield", status: "Pending", createdat: DateTime.now(), paymentMethod: "Bank", duration: 3, roi: 18)
+        WithdrawalItem( description: "withdrawal", amount: 20, traxId: "traxId", uid: "uid", planName: "fortDollar", status: "Pending", createdat: DateTime.now(), paymentMethod: "Bank", duration: 6, roi: 15),
+        WithdrawalItem( description: "withdrawal", amount: 40, traxId: "traxId", uid: "uid", planName: "FortCrypto", status: "Successful", createdat: DateTime.now(), paymentMethod: "crypto", duration: 12, roi: 30),
+        WithdrawalItem( description: "withdrawal", amount: 60, traxId: "traxId", uid: "uid", planName: "FortShield", status: "Cancelled", createdat: DateTime.now(), paymentMethod: "Bank", duration: 3, roi: 18)
       ],
       exchange: "NGN",
       showDigits: false,
