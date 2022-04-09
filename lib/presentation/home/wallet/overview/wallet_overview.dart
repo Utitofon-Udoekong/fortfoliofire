@@ -210,7 +210,6 @@ class WalletOverview extends StatelessWidget {
                   visible: state.isFortDollarActive,
                   child: buildcard('FortDollar', 'fortdollar', () {
                     context.read<WalletCubit>().initFortDollarInvestments();
-                    context.read<WalletCubit>().initFortDollar();
                     context.router.push(const FortDollarInvestmentInfoRoute());
                   }, fortDollarBalance.toString(), state.showDigits),
                 );
@@ -225,7 +224,6 @@ class WalletOverview extends StatelessWidget {
                   visible: state.isFortCryptoActive,
                   child: buildcard('FortCrypto', 'fortcrypto', () {
                     context.read<WalletCubit>().initFortCryptoInvestments();
-                    context.read<WalletCubit>().initFortCrypto();
                     context.router.push(const FortCryptoInvestmentInfoRoute());
                   }, fortCryptoBalance.toString(), state.showDigits),
                 );
@@ -240,7 +238,6 @@ class WalletOverview extends StatelessWidget {
                   visible: state.isFortShieldActive,
                   child: buildcard('FortShield', 'fortshield', () {
                     context.read<WalletCubit>().initFortShieldInvestments();
-                    context.read<WalletCubit>().initFortShield();
                     context.router.push(const FortShieldInvestmentInfoRoute());
                   }, fortShieldBalance.toString(), state.showDigits),
                 );
@@ -305,7 +302,7 @@ class WalletOverview extends StatelessWidget {
             ),
             showDigits
                 ? Text(
-                    balance,
+                    '\$$balance',
                     style: titleText.copyWith(fontSize: 14),
                   )
                 : Text(

@@ -96,32 +96,27 @@ class WalletTransactions extends StatelessWidget {
                           withroi = document.withdrawalItem!.roi;
                         }
 
-                        return Column(
-                          children: [
-                            document.withdrawalItem != null
-                                ? buildWithdrawalTile(
-                                    amount: withAmount.toString(),
-                                    date: withcreatedat,
-                                    duration: withduration,
-                                    id: withId,
-                                    paymentMethod: withPaymentMethod,
-                                    status: withStatus,
-                                    roi: withroi,
-                                    title: withDescription,
-                                    context: context)
-                                : buildInvestmentTile(
-                                    amount: invAmount.toString(),
-                                    date: invcreatedat,
-                                    duration: invduration,
-                                    id: invId,
-                                    paymentMethod: invPaymentMethod,
-                                    status: invStatus,
-                                    roi: invroi,
-                                    title: invDescription,
-                                    context: context),
-                            const Divider()
-                          ],
-                        );
+                        return document.withdrawalItem != null
+                            ? buildWithdrawalTile(
+                                amount: withAmount.toString(),
+                                date: withcreatedat,
+                                duration: withduration,
+                                id: withId,
+                                paymentMethod: withPaymentMethod,
+                                status: withStatus,
+                                roi: withroi,
+                                title: withDescription,
+                                context: context)
+                            : buildInvestmentTile(
+                                amount: invAmount.toString(),
+                                date: invcreatedat,
+                                duration: invduration,
+                                id: invId,
+                                paymentMethod: invPaymentMethod,
+                                status: invStatus,
+                                roi: invroi,
+                                title: invDescription,
+                                context: context);
                       }).toList()..shuffle()),
                 ),
               ));
@@ -286,7 +281,7 @@ class WalletTransactions extends StatelessWidget {
                       text: "$roi% returns",
                       style: subTitle.copyWith(
                           fontSize: 12, color: kgreyColor.withOpacity(0.4))),
-                  TextSpan(text: "● $duration months")
+                  TextSpan(text: " ● $duration months")
                 ])),
                 const SizedBox(
                   height: 8,
@@ -485,7 +480,7 @@ class WalletTransactions extends StatelessWidget {
                       text: "$roi% returns",
                       style: subTitle.copyWith(
                           fontSize: 12, color: kgreyColor.withOpacity(0.4))),
-                  TextSpan(text: "● $duration months")
+                  TextSpan(text: " ● $duration months")
                 ])),
                 const SizedBox(
                   height: 8,
@@ -536,7 +531,7 @@ class RPSCustomClipper extends CustomClipper<Path> {
     var path = Path();
 
     path.lineTo(0, size.height);
-    for (int i = 1; i <= 16; i++) {
+    for (int i = 1; i <= 20; i++) {
       if (i % 2 == 0) {
         path.lineTo(smallLineLength * i, size.height);
       } else {

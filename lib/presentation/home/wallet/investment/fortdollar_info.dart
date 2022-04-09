@@ -66,7 +66,7 @@ class FortDollarInvestmentInfo extends StatelessWidget {
                   itemBuilder: ((context, index) {
                     return buildTile(
                         '${activeInvestments[index].planName} / ${activeInvestments[index].duration.toInt()} month(s)',
-                        'N${activeInvestments[index].amount}', () {
+                        '\$${activeInvestments[index].amount}', () {
                       context
                           .read<WalletCubit>()
                           .investmentToBeWithdrawnChanged(

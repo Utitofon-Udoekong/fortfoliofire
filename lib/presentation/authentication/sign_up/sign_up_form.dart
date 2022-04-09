@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/application/auth/sign_up_form/email/sign_up_form_cubit.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
@@ -31,7 +32,13 @@ class SignUpForm extends StatelessWidget {
                     p.success != c.success && c.success.isNotEmpty,
                 listener: (context, state) {
                   CustomSnackbar.showSnackBar(context, state.success, false);
-                  context.router.push(const SignUpFormPhoneRoute());
+                },
+              ),
+              BlocListener<AuthCubit, AuthState>(
+                listenWhen: (p, c) =>
+                    p.isLoggedIn != c.isLoggedIn && c.isLoggedIn,
+                listener: (context, state) {
+                  context.router.replace(const HomePageRoute());
                 },
               ),
             ],

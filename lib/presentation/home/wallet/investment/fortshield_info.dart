@@ -41,14 +41,14 @@ class FortShieldInvestmentInfo extends StatelessWidget {
               const SizedBox(height: 30),
               Text("Total", style: subTitle.copyWith(fontSize: 12)),
               const SizedBox(height: 8),
-              Text("\$ ${balance.toString()}",
+              Text("N${balance.toString()}",
                   style: titleText.copyWith(
                       fontSize: 16, fontWeight: FontWeight.w500)),
               const SizedBox(height: 30),
               Text("Available for yield",
                   style: subTitle.copyWith(fontSize: 12)),
               const SizedBox(height: 8),
-              Text("\$ ${yield.toString()}",
+              Text("N ${yield.toString()}",
                   style: titleText.copyWith(
                       fontSize: 16, fontWeight: FontWeight.w500)),
               const SizedBox(height: 30),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fortfolio/application/auth/auth_cubit.dart';
 // import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/application/auth/sign_in_form/email/sign_in_form_email_cubit.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
@@ -32,15 +33,15 @@ class SignInFormEmail extends StatelessWidget {
                     p.success != c.success && c.success.isNotEmpty,
                 listener: (context, state) {
                   CustomSnackbar.showSnackBar(context, state.success, false);
-                  context.router.replace(const HomePageRoute());
                 },
               ),
-              // BlocListener<AuthCubit, AuthState>(
-              //   listenWhen: (p, c) =>
-              //       p.isLoggedIn != c.isLoggedIn && c.isLoggedIn,
-              //   listener: (context, state) {
-              //   },
-              // )
+              BlocListener<AuthCubit, AuthState>(
+                listenWhen: (p, c) =>
+                    p.isLoggedIn != c.isLoggedIn && c.isLoggedIn,
+                listener: (context, state) {
+                  context.router.replace(const HomePageRoute());
+                },
+              )
             ],
             child: BlocBuilder<SignInFormEmailCubit, SignInFormEmailState>(
                 builder: (context, state) {
