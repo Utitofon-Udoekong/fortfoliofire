@@ -41,7 +41,7 @@ class HomePage extends StatelessWidget {
               alignment: Alignment.center,
               height: 30,
               child: IconButton(
-                  onPressed: () => context.router.push(const NotificationsPageRoute()),
+                  onPressed: () => context.router.push(const DashboardTransactionsRoute()),
                   icon: const Icon(
                     Icons.notifications,
                     size: 15,

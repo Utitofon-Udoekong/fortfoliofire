@@ -20,108 +20,127 @@ class DashboardTransactions extends StatelessWidget {
     );
     return Scaffold(
         body: SafeArea(
-          child: transactions.isEmpty
-            ? Center(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    const SizedBox(
-                      height: 50,
+            child: transactions.isEmpty
+                ? Center(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        const SizedBox(
+                          height: 50,
+                        ),
+                        svg,
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        Text(
+                          'No Transactions recorded yet. Make an investment to get started',
+                          style: subTitle,
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        CustomFilledButton(
+                            text: "GET STARTED",
+                            onTap: () => context.router
+                                .push(const InvestmentPageRoute()))
+                      ],
                     ),
-                    svg,
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    Text(
-                      'No Transactions recorded yet. Make an investment to get started',
-                      style: subTitle,
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    CustomFilledButton(
-                        text: "GET STARTED",
-                        onTap: () =>
-                            context.router.push(const InvestmentPageRoute()))
-                  ],
-                ),
-              )
-            : SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: transactions.map((document) {
-                        // withdrawal variables
-                        String withDescription = "";
-                        int withAmount = 0;
-                        String withStatus = "";
-                        String withId = "";
-                        String withPaymentMethod = "";
-                        DateTime withcreatedat = DateTime.now();
-                        int withduration = 0;
-                        int withroi = 0;
+                  )
+                : SingleChildScrollView(
+                    child: Padding(
+                      padding: kDefaultPadding,
+                      child: Column(
+                        children: [
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          InkWell(
+                            onTap: () => context.router.pop(),
+                            child: const Icon(Icons.close),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: transactions.map((document) {
+                                // withdrawal variables
+                                String withDescription = "";
+                                int withAmount = 0;
+                                String withStatus = "";
+                                String withId = "";
+                                String withPaymentMethod = "";
+                                DateTime withcreatedat = DateTime.now();
+                                int withduration = 0;
+                                int withroi = 0;
 
-                        // investment variables
-                        String invDescription = "";
-                        int invAmount = 0;
-                        String invStatus = "";
-                        String invId = "";
-                        String invPaymentMethod = "";
-                        DateTime invcreatedat = DateTime.now();
-                        double invduration = 0.0;
-                        int invroi = 0;
+                                // investment variables
+                                String invDescription = "";
+                                int invAmount = 0;
+                                String invStatus = "";
+                                String invId = "";
+                                String invPaymentMethod = "";
+                                DateTime invcreatedat = DateTime.now();
+                                double invduration = 0.0;
+                                int invroi = 0;
 
-                        if (document.investmentItem != null &&
-                            document.withdrawalItem == null) {
-                          invDescription = document.investmentItem!.description;
-                          invAmount = document.investmentItem!.amount;
-                          invStatus = document.investmentItem!.status;
-                          invId = document.investmentItem!.traxId;
-                          invPaymentMethod =
-                              document.investmentItem!.paymentMethod;
-                          invcreatedat = document.investmentItem!.paymentDate;
-                          invduration = document.investmentItem!.duration;
-                          invroi = document.investmentItem!.roi;
-                        } else if (document.withdrawalItem != null &&
-                            document.investmentItem == null) {
-                          withDescription =
-                              document.withdrawalItem!.description;
-                          withAmount = document.withdrawalItem!.amount;
-                          withStatus = document.withdrawalItem!.status;
-                          withId = document.withdrawalItem!.traxId;
-                          withPaymentMethod =
-                              document.withdrawalItem!.paymentMethod;
-                          withcreatedat = document.withdrawalItem!.createdat;
-                          withduration = document.withdrawalItem!.duration;
-                          withroi = document.withdrawalItem!.roi;
-                        }
+                                if (document.investmentItem != null &&
+                                    document.withdrawalItem == null) {
+                                  invDescription =
+                                      document.investmentItem!.description;
+                                  invAmount = document.investmentItem!.amount;
+                                  invStatus = document.investmentItem!.status;
+                                  invId = document.investmentItem!.traxId;
+                                  invPaymentMethod =
+                                      document.investmentItem!.paymentMethod;
+                                  invcreatedat =
+                                      document.investmentItem!.paymentDate;
+                                  invduration =
+                                      document.investmentItem!.duration;
+                                  invroi = document.investmentItem!.roi;
+                                } else if (document.withdrawalItem != null &&
+                                    document.investmentItem == null) {
+                                  withDescription =
+                                      document.withdrawalItem!.description;
+                                  withAmount = document.withdrawalItem!.amount;
+                                  withStatus = document.withdrawalItem!.status;
+                                  withId = document.withdrawalItem!.traxId;
+                                  withPaymentMethod =
+                                      document.withdrawalItem!.paymentMethod;
+                                  withcreatedat =
+                                      document.withdrawalItem!.createdat;
+                                  withduration =
+                                      document.withdrawalItem!.duration;
+                                  withroi = document.withdrawalItem!.roi;
+                                }
 
-                        return document.withdrawalItem != null
-                            ? buildWithdrawalTile(
-                                amount: withAmount.toString(),
-                                date: withcreatedat,
-                                duration: withduration,
-                                id: withId,
-                                paymentMethod: withPaymentMethod,
-                                status: withStatus,
-                                roi: withroi,
-                                title: withDescription,
-                                context: context)
-                            : buildInvestmentTile(
-                                amount: invAmount.toString(),
-                                date: invcreatedat,
-                                duration: invduration,
-                                id: invId,
-                                paymentMethod: invPaymentMethod,
-                                status: invStatus,
-                                roi: invroi,
-                                title: invDescription,
-                                context: context);
-                      }).toList()..shuffle()),
-                ),
-              )
-        ));
+                                return document.withdrawalItem != null
+                                    ? buildWithdrawalTile(
+                                        amount: withAmount.toString(),
+                                        date: withcreatedat,
+                                        duration: withduration,
+                                        id: withId,
+                                        paymentMethod: withPaymentMethod,
+                                        status: withStatus,
+                                        roi: withroi,
+                                        title: withDescription,
+                                        context: context)
+                                    : buildInvestmentTile(
+                                        amount: invAmount.toString(),
+                                        date: invcreatedat,
+                                        duration: invduration,
+                                        id: invId,
+                                        paymentMethod: invPaymentMethod,
+                                        status: invStatus,
+                                        roi: invroi,
+                                        title: invDescription,
+                                        context: context);
+                              }).toList()
+                                ..shuffle()),
+                        ],
+                      ),
+                    ),
+                  )));
   }
 
   Widget buildWithdrawalTile(
@@ -141,7 +160,11 @@ class DashboardTransactions extends StatelessWidget {
           child: ClipPath(
             clipper: RPSCustomClipper(),
             child: Container(
-              decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.only(topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0))),
+              decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10.0),
+                      topRight: Radius.circular(10.0))),
               padding: const EdgeInsets.all(18.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -342,7 +365,11 @@ class DashboardTransactions extends StatelessWidget {
           child: ClipPath(
             clipper: RPSCustomClipper(),
             child: Container(
-              decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.only(topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0))),
+              decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10.0),
+                      topRight: Radius.circular(10.0))),
               padding: const EdgeInsets.all(18.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -452,9 +479,11 @@ class DashboardTransactions extends StatelessWidget {
             ),
           ),
         );
-        showDialog(context: context, builder: (context){
-          return dialog;
-        });
+        showDialog(
+            context: context,
+            builder: (context) {
+              return dialog;
+            });
       },
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 12.0),
@@ -529,7 +558,7 @@ class RPSCustomClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     var smallLineLength = size.width / 20;
-    const  smallLineHeight = 20;
+    const smallLineHeight = 20;
     var path = Path();
 
     path.lineTo(0, size.height);
@@ -538,7 +567,6 @@ class RPSCustomClipper extends CustomClipper<Path> {
         path.lineTo(smallLineLength * i, size.height);
       } else {
         path.lineTo(smallLineLength * i, size.height - smallLineHeight);
-        
       }
     }
     path.lineTo(size.width, 0);
