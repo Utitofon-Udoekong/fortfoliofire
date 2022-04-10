@@ -19,7 +19,8 @@ class DashboardTransactions extends StatelessWidget {
       semanticsLabel: 'Blank Wallet',
     );
     return Scaffold(
-        body: transactions.isEmpty
+        body: SafeArea(
+          child: transactions.isEmpty
             ? Center(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -119,7 +120,8 @@ class DashboardTransactions extends StatelessWidget {
                                 context: context);
                       }).toList()..shuffle()),
                 ),
-              ));
+              )
+        ));
   }
 
   Widget buildWithdrawalTile(
