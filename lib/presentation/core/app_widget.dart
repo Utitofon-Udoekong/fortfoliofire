@@ -27,14 +27,8 @@ class App extends StatelessWidget {
         child: StreamBuilder(
             stream: Connectivity().onConnectivityChanged,
             builder: (context, AsyncSnapshot<ConnectivityResult> snapshot) {
-              return snapshot.data == ConnectivityResult.none
-                  ? WidgetsApp(
-                      debugShowCheckedModeBanner: false,
-                      builder: (context, widget) {
-                        return const NoInternetPage();
-                      },
-                      color: Colors.blue,
-                    ): MaterialApp.router(
+              return snapshot.data == ConnectivityResult.mobile || snapshot.data == ConnectivityResult.wifi
+                  ? MaterialApp.router(
                       title: 'Fortfolio',
                       debugShowCheckedModeBanner: false,
                       theme: ThemeData(
@@ -42,6 +36,12 @@ class App extends StatelessWidget {
                       ),
                       routeInformationParser: _appRouter.defaultRouteParser(),
                       routerDelegate: _appRouter.delegate(),
+                    ) : WidgetsApp(
+                      debugShowCheckedModeBanner: false,
+                      builder: (context, widget) {
+                        return const NoInternetPage();
+                      },
+                      color: Colors.blue,
                     );
             }));
   }
