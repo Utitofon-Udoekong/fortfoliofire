@@ -43,7 +43,7 @@ class DomiciliaryAccount extends StatelessWidget {
                         Text(
                           exchangeType == "USD"
                               ? '${amountInvested * 560}'
-                              : '',
+                              : '$amountInvested',
                           style: subTitle.copyWith(
                               color: kBlackColor, fontSize: 14),
                         ),

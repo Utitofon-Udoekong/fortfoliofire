@@ -3,70 +3,103 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/user/investment.dart';
+import 'package:fortfolio/domain/widgets/loading_view.dart';
 import 'package:fortfolio/presentation/home/wallet/cubit/wallet_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
- 
 
 class WithdrawalPage extends StatelessWidget {
   const WithdrawalPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final InvestmentItem withdrawalItem = context.select((WalletCubit walletCubit) => walletCubit.state.investmentToBeWithdrawn);
-    final bool harvested = context.select((WalletCubit walletCubit) => walletCubit.state.investmentToBeWithdrawn.planYield == 0);
+    final InvestmentItem withdrawalItem = context.select(
+        (WalletCubit walletCubit) => walletCubit.state.investmentToBeWithdrawn);
+    final bool harvested = context.select((WalletCubit walletCubit) =>
+        walletCubit.state.investmentToBeWithdrawn.planYield == 0);
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: kDefaultPadding,
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                const SizedBox(
-                  height: 20,
+      body: BlocSelector<WalletCubit, WalletState, bool>(
+        selector: (state) {
+          return state.loading;
+        },
+        builder: (context, loading) {
+          if (loading) {
+            return const LoadingView();
+          } else {
+            return SafeArea(
+              child: Padding(
+                padding: kDefaultPadding,
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      InkWell(
+                        onTap: () => context.router.pop(),
+                        child: const Icon(Icons.close),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                        "Withdraw",
+                        style: titleText,
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        'Select where you want to withdraw from. Withdrawals have a time lock of 7 days.',
+                        style:
+                            subTitle.copyWith(color: kgreyColor, fontSize: 15),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        'Note that all rewards must be harvested before investments can be withdrawn',
+                        style:
+                            subTitle.copyWith(color: kgreyColor, fontSize: 15),
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      buildTile(
+                          'Invested',
+                          withdrawalItem.amount,
+                          'Withdraw',
+                          () => harvested
+                              ? context.router
+                                  .push(const SelectWithdrawalMethodRoute())
+                              : null,
+                          harvested
+                              ? kPrimaryColor
+                              : const Color.fromRGBO(3, 66, 109, 0.65)),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      buildTile(
+                          'Reward',
+                          withdrawalItem.planYield,
+                          'Harvest',
+                          () => context.read<WalletCubit>().harvestInvestment(
+                              docId: withdrawalItem.traxId + withdrawalItem.uid,
+                              amount: withdrawalItem.amount),
+                          kPrimaryColor)
+                    ],
+                  ),
                 ),
-                InkWell(
-                  onTap: () => context.router.pop(),
-                  child: const Icon(Icons.close),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  "Withdraw",
-                  style: titleText,
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  'Select where you want to withdraw from. Withdrawals have a time lock of 7 days.',
-                  style: subTitle.copyWith(color: kgreyColor, fontSize: 15),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  'Note that all rewards must be harvested before investments can be withdrawn',
-                  style: subTitle.copyWith(color: kgreyColor, fontSize: 15),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                buildTile('Invested', withdrawalItem.amount, 'Withdraw', () => harvested ? context.router.push(const SelectWithdrawalMethodRoute()) : null, harvested ? kPrimaryColor : const Color.fromRGBO(3, 66, 109, 0.65)),
-                const SizedBox(
-                  height: 20,
-                ),
-                buildTile('Reward', withdrawalItem.planYield, 'Harvest', () => context.read<WalletCubit>().harvestInvestment(docId: withdrawalItem.traxId + withdrawalItem.uid, amount: withdrawalItem.amount), kPrimaryColor)
-              ],
-            ),
-          ),
-        ),
+              ),
+            );
+          }
+        },
       ),
     );
   }
 
-  Widget buildTile(String title, int amount, String type, Function() ontap, Color color) {
+  Widget buildTile(
+      String title, int amount, String type, Function() ontap, Color color) {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(

@@ -40,7 +40,7 @@ class NairaAccount extends StatelessWidget {
                           decoration: TextDecoration.lineThrough),
                     ),
                     Text(
-                      exchangeType == "USD" ? '${amountInvested * 560}' : '',
+                      exchangeType == "USD" ? '${amountInvested * 560}' : '$amountInvested',
                       style:
                           subTitle.copyWith(color: kBlackColor, fontSize: 14),
                     ),
