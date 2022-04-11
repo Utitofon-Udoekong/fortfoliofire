@@ -49,7 +49,7 @@ class MainDrawer extends StatelessWidget {
                   padding: const EdgeInsets.all(5.0),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  padding: const EdgeInsets.symmetric(vertical: 5),
                   child: Text(
                     '$firstName $lastName',
                     style: titleText.copyWith(
@@ -87,10 +87,10 @@ class MainDrawer extends StatelessWidget {
                             "Unverified",
                             style: subTitle.copyWith(
                                 fontSize: 13,
-                                color: Colors.yellow[700],
+                                color: Colors.black54,
                                 fontWeight: FontWeight.w500),
                           ),
-                          backgroundColor: const Color.fromARGB(255, 252, 252, 175),)
+                          backgroundColor: const Color.fromARGB(144, 252, 252, 189),)
                   ],
                 )
               ],
