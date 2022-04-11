@@ -38,11 +38,13 @@ class MainDrawer extends StatelessWidget {
                       shape: BoxShape.circle, color: Color(0XFFF5F7FA)),
                   child: CircleAvatar(
                     backgroundColor: const Color(0XFFE7E7E7),
-                    child: Text(displayName,
-                        style: const TextStyle(
-                          fontSize: 25,
-                          color: Color(0XFF242424),
-                        )),
+                    child: Center(
+                      child: Text(displayName,
+                          style: const TextStyle(
+                            fontSize: 25,
+                            color: Color(0XFF242424),
+                          )),
+                    ),
                   ),
                   padding: const EdgeInsets.all(5.0),
                 ),
@@ -64,24 +66,31 @@ class MainDrawer extends StatelessWidget {
                         'ID: $userId',
                         style: subTitle.copyWith(
                             color: kWhiteColor, fontSize: 15),
-                            overflow: TextOverflow.ellipsis,
                           maxLines: 1,
                           softWrap: false,
                       ),
                     ),
                     const SizedBox(width: 10.0,),
                     isVerified
-                        ? const Icon(
+                        ? Chip(avatar: const Icon(
                             Icons.verified,
                             color: kGreenColor,
                             size: 13,
-                          )
-                        : Text(
+                          ), label: Text(
                             "Unverified",
                             style: subTitle.copyWith(
                                 fontSize: 13,
-                                color: const Color.fromARGB(255, 177, 22, 22)),
-                          )
+                                color: kGreenColor),
+                          ),
+                          backgroundColor: Colors.greenAccent[100],)
+                        : Chip(label: Text(
+                            "Unverified",
+                            style: subTitle.copyWith(
+                                fontSize: 13,
+                                color: Colors.yellow[700],
+                                fontWeight: FontWeight.w500),
+                          ),
+                          backgroundColor: const Color.fromARGB(255, 252, 252, 175),)
                   ],
                 )
               ],
