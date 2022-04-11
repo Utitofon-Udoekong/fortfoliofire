@@ -14,7 +14,7 @@ class DomiciliaryAccount extends StatelessWidget {
   Widget build(BuildContext context) {
     final int amountInvested = context.select(
         (InvestmentCubit investmentCubit) =>
-            investmentCubit.state.amountInvested);
+            investmentCubit.state.amountInvested!);
     final String exchangeType = context.select(
         (InvestmentCubit investmentCubit) =>
             investmentCubit.state.exchangeType);

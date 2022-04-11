@@ -21,7 +21,7 @@ class _$InvestmentStateTearOff {
   _InvestmentState call(
       {required String planName,
       required double duration,
-      required int amountInvested,
+      required int? amountInvested,
       required int roi,
       required String failure,
       required String success,
@@ -55,7 +55,7 @@ const $InvestmentState = _$InvestmentStateTearOff();
 mixin _$InvestmentState {
   String get planName => throw _privateConstructorUsedError;
   double get duration => throw _privateConstructorUsedError;
-  int get amountInvested => throw _privateConstructorUsedError;
+  int? get amountInvested => throw _privateConstructorUsedError;
   int get roi => throw _privateConstructorUsedError;
   String get failure => throw _privateConstructorUsedError;
   String get success => throw _privateConstructorUsedError;
@@ -79,7 +79,7 @@ abstract class $InvestmentStateCopyWith<$Res> {
   $Res call(
       {String planName,
       double duration,
-      int amountInvested,
+      int? amountInvested,
       int roi,
       String failure,
       String success,
@@ -127,7 +127,7 @@ class _$InvestmentStateCopyWithImpl<$Res>
       amountInvested: amountInvested == freezed
           ? _value.amountInvested
           : amountInvested // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       roi: roi == freezed
           ? _value.roi
           : roi // ignore: cast_nullable_to_non_nullable
@@ -178,7 +178,7 @@ abstract class _$InvestmentStateCopyWith<$Res>
   $Res call(
       {String planName,
       double duration,
-      int amountInvested,
+      int? amountInvested,
       int roi,
       String failure,
       String success,
@@ -228,7 +228,7 @@ class __$InvestmentStateCopyWithImpl<$Res>
       amountInvested: amountInvested == freezed
           ? _value.amountInvested
           : amountInvested // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       roi: roi == freezed
           ? _value.roi
           : roi // ignore: cast_nullable_to_non_nullable
@@ -292,7 +292,7 @@ class _$_InvestmentState extends _InvestmentState {
   @override
   final double duration;
   @override
-  final int amountInvested;
+  final int? amountInvested;
   @override
   final int roi;
   @override
@@ -367,7 +367,7 @@ abstract class _InvestmentState extends InvestmentState {
   const factory _InvestmentState(
       {required String planName,
       required double duration,
-      required int amountInvested,
+      required int? amountInvested,
       required int roi,
       required String failure,
       required String success,
@@ -384,7 +384,7 @@ abstract class _InvestmentState extends InvestmentState {
   @override
   double get duration;
   @override
-  int get amountInvested;
+  int? get amountInvested;
   @override
   int get roi;
   @override
