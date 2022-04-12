@@ -74,6 +74,10 @@ class DashboardTransactions extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
+                  Text("Transactions", style: titleText,),
+                  const SizedBox(
+                    height: 20,
+                  ),
                   Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: transactions.map((document) {

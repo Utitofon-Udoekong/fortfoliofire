@@ -7,6 +7,7 @@ import 'package:fortfolio/presentation/authentication/sign_in/sign_in_form_phone
 import 'package:fortfolio/presentation/authentication/sign_up/confirm_signup_otp.dart';
 import 'package:fortfolio/presentation/authentication/sign_up/sign_up_form.dart';
 import 'package:fortfolio/presentation/home/dashboard/dashboard.dart';
+import 'package:fortfolio/presentation/home/dashboard/screens/notifications/notification_engine.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/bank/add_bank.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/bank/bank_wallet.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/bank/verify_bank.dart';
@@ -30,7 +31,7 @@ import 'package:fortfolio/presentation/home/dashboard/screens/verification/verif
 import 'package:fortfolio/presentation/home/home_page.dart';
 import 'package:fortfolio/presentation/home/investment/calculator/investment_calculator.dart';
 import 'package:fortfolio/presentation/home/investment/investment.dart';
-import 'package:fortfolio/presentation/home/investment/notifications/notifications.dart';
+import 'package:fortfolio/presentation/home/dashboard/screens/notifications/notifications.dart';
 import 'package:fortfolio/presentation/home/investment/payment/bank/bank_invest.dart';
 import 'package:fortfolio/presentation/home/investment/payment/bank/domiciliary.dart';
 import 'package:fortfolio/presentation/home/investment/payment/bank/naira.dart';
@@ -71,6 +72,7 @@ import '../home/wallet/investment/fortshield_info.dart';
   AutoRoute(page: SignUpForm),
   AutoRoute(page: ResetPassword),
   AutoRoute(path: "notificationsPage", page: NotificationsPage),
+  AutoRoute(page: NotificationEngine),
   AutoRoute(path: "profilePage", page: ProfilePage),
   AutoRoute(path: "dashboardTransactions", page: DashboardTransactions),
   AutoRoute(path: "calculator", page: Calculator),
