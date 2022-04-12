@@ -3,10 +3,12 @@ import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
 import 'package:fortfolio/domain/user/notification_item.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:nanoid/nanoid.dart';
+import 'package:injectable/injectable.dart';
 
 part 'notification_state.dart';
 part 'notification_cubit.freezed.dart';
 
+@injectable
 class NotificationCubit extends Cubit<NotificationState> {
   final IFirestoreFacade firestoreFacade;
   NotificationCubit(this.firestoreFacade) : super(NotificationState.empty());
