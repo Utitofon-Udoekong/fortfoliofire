@@ -79,8 +79,8 @@ class DomiciliaryAccount extends StatelessWidget {
                         ),
                         Text(
                           exchangeType == "USD"
-                              ? formatter.format(amountInvested.toStringAsFixed(2))
-                              : formatter.format((amountInvested / 560).toStringAsFixed(2)),
+                              ? formatter.format(amountInvested)
+                              : formatter.format(amountInvested / 560),
                           style: subTitle.copyWith(
                               color: kBlackColor, fontSize: 14),
                         ),

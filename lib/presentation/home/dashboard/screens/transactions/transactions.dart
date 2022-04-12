@@ -247,7 +247,11 @@ class DashboardTransactions extends StatelessWidget {
                   ),
                   Text(
                     status,
-                    style: titleText.copyWith(color: kGreenColor, fontSize: 15),
+                    style: titleText.copyWith(color: status == "Successful"
+                          ? kGreenColor
+                          : status == "Pending"
+                              ? const Color.fromARGB(239, 226, 167, 4)
+                              : const Color(0XFFDF1414), fontSize: 15),
                   ),
                   const SizedBox(
                     height: 20,
@@ -384,7 +388,7 @@ class DashboardTransactions extends StatelessWidget {
                 children: [
                   Container(
                     child: const Icon(
-                      Icons.north_east_rounded,
+                      Icons.south_west_rounded,
                       color: Color.fromRGBO(16, 180, 107, 1),
                     ),
                     padding: const EdgeInsets.all(3.0),
@@ -452,7 +456,11 @@ class DashboardTransactions extends StatelessWidget {
                   ),
                   Text(
                     status,
-                    style: titleText.copyWith(color: kGreenColor, fontSize: 15),
+                    style: titleText.copyWith(color: status == "Successful"
+                          ? const Color(0XFF00C566)
+                          : status == "Pending"
+                              ? const Color.fromARGB(239, 226, 167, 4)
+                              : const Color(0XFFDF1414), fontSize: 15),
                   ),
                   const SizedBox(
                     height: 20,
