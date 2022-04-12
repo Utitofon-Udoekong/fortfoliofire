@@ -36,7 +36,7 @@ class NotificationCubit extends Cubit<NotificationState> {
   void deleteNotification({required NotificationItem notificationItem}) async{
     // await firestoreFacade.deleteNotification(notificationItem: notificationItem);
     final notifications = state.notifications;
-    notifications.remove(notificationItem);
+    notifications.removeWhere((item) => item.id == notificationItem.id);
     emit(state.copyWith(notifications: notifications));
   }
 

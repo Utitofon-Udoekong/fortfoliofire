@@ -108,21 +108,23 @@ class NotificationsPage extends StatelessWidget {
       onLongPress: selectNotification,
       onTap: selected ? deSelectNotification : null,
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 12.0),
+              margin: const EdgeInsets.only(bottom: 10.0),
+        padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 6.0),
         decoration: BoxDecoration(
-          color: selected ? const Color(0XFFF4FBFF) : const Color(0XFFF3F6F8),
+          color: selected ? const Color(0XFFF4FBFF) : kWhiteColor,
         ),
         child: Row(
           children: <Widget>[
             Container(
                 alignment: Alignment.center,
-                padding: const EdgeInsets.all(4.0),
+                padding: const EdgeInsets.all(3.5),
                 decoration: BoxDecoration(
                     color: const Color(0XFFF2FFF9),
                     borderRadius: BorderRadius.circular(10.0)),
                 child: const Icon(
                   Icons.north_east,
                   color: kGreenColor,
+                  size: 13,
                 )),
             const SizedBox(
               width: 8,
@@ -137,7 +139,7 @@ class NotificationsPage extends StatelessWidget {
                 Text(
                   '$title $status',
                   style: titleText.copyWith(
-                      fontSize: 14,
+                      fontSize: 12.5,
                       fontWeight: FontWeight.w500,
                       color: kBlackColor),
                 )
