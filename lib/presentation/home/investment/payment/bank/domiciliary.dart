@@ -6,6 +6,7 @@ import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/domain/widgets/loading_view.dart';
 import 'package:fortfolio/presentation/home/investment/cubit/investment_cubit.dart';
+import 'package:intl/intl.dart';
 
 class DomiciliaryAccount extends StatelessWidget {
   const DomiciliaryAccount({Key? key}) : super(key: key);
@@ -14,10 +15,11 @@ class DomiciliaryAccount extends StatelessWidget {
   Widget build(BuildContext context) {
     final int amountInvested = context.select(
         (InvestmentCubit investmentCubit) =>
-            investmentCubit.state.amountInvested!);
+            investmentCubit.state.amountInvested);
     final String exchangeType = context.select(
         (InvestmentCubit investmentCubit) =>
             investmentCubit.state.exchangeType);
+    final formatter = NumberFormat("#,##0.00", "en_US");
     return Scaffold(
       body: BlocBuilder<InvestmentCubit, InvestmentState>(
         builder: (context, state) {
@@ -42,8 +44,8 @@ class DomiciliaryAccount extends StatelessWidget {
                         ),
                         Text(
                           exchangeType == "USD"
-                              ? '${amountInvested * 560}'
-                              : '$amountInvested',
+                              ? formatter.format(amountInvested * 560)
+                              : formatter.format(amountInvested),
                           style: subTitle.copyWith(
                               color: kBlackColor, fontSize: 14),
                         ),
@@ -73,13 +75,12 @@ class DomiciliaryAccount extends StatelessWidget {
                           '\$',
                           style: subTitle.copyWith(
                               color: kBlackColor,
-                              fontSize: 14,
-                              decoration: TextDecoration.lineThrough),
+                              fontSize: 14),
                         ),
                         Text(
                           exchangeType == "USD"
-                              ? amountInvested.toStringAsFixed(2)
-                              : (amountInvested / 560).toStringAsFixed(2),
+                              ? formatter.format(amountInvested.toStringAsFixed(2))
+                              : formatter.format((amountInvested / 560).toStringAsFixed(2)),
                           style: subTitle.copyWith(
                               color: kBlackColor, fontSize: 14),
                         ),

@@ -5,7 +5,7 @@ class InvestmentState with _$InvestmentState {
   const factory InvestmentState(
       {required String planName,
       required double duration,
-      required int? amountInvested,
+      required int amountInvested,
       required int roi,
       required String failure,
       required String success,
@@ -19,7 +19,7 @@ class InvestmentState with _$InvestmentState {
   const InvestmentState._();
 
   factory InvestmentState.initial() => InvestmentState(
-        amountInvested: null,
+        amountInvested: 0,
         planName: '',
         roi: 0,
         failure: "",
@@ -32,7 +32,7 @@ class InvestmentState with _$InvestmentState {
         duration: 6,
         paymentMethod: 'Bank'
       );
-    bool get isValid => !duration.isNaN && amountInvested!.isFinite && agreementAccepted;
+    bool get isValid => !duration.isNaN && amountInvested.isFinite && agreementAccepted && amountInvested.toString().isNotEmpty;
 }
 
 var boolList = <bool>[false,true,false];

@@ -56,6 +56,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     emit(state.copyWith(
       amountInvested: amountInvested
     ));
+    print({amountInvested,amountInvested.toString(),amountInvested.toString().isNotEmpty});
   }
   void roiChanged({required int roi}){
     emit(state.copyWith(
@@ -74,7 +75,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     
     emit(state.copyWith(isLoading: true));
     final String description = state.planName + "Investment";
-    final int? amount = state.amountInvested;
+    final int amount = state.amountInvested;
     final DateTime paymentDate = DateTime.now();
     final String planName = state.planName;
     final int roi = state.roi;
@@ -85,7 +86,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     final dueDate = Jiffy(paymentDate).add(months: duration.toInt()).dateTime;
     final int numberOfDays = dueDate.difference(paymentDate).inDays;
     final paymentMethod = state.paymentMethod;
-    InvestmentItem investmentItem = InvestmentItem(description: description, uid: uid, amount: amount!, traxId: traxId, roi: roi, planName: planName, paymentDate: paymentDate, dueDate: dueDate, duration: duration, status: status, planYield: 0, paymentMethod: paymentMethod,numberOfDays: numberOfDays);
+    InvestmentItem investmentItem = InvestmentItem(description: description, uid: uid, amount: amount, traxId: traxId, roi: roi, planName: planName, paymentDate: paymentDate, dueDate: dueDate, duration: duration, status: status, planYield: 0, paymentMethod: paymentMethod,numberOfDays: numberOfDays);
     final response = await firestoreFacade.createInvestmentTransaction(investmentItem: investmentItem);
     try{
       response.fold((failure){
