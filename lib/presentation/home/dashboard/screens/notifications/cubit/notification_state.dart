@@ -47,6 +47,6 @@ class NotificationState with _$NotificationState {
         status: "pending",
         title: "",
         type: "",
-        selectedNotifications: []
+        selectedNotifications: List<NotificationItem>.empty(growable: true)
       );
 }

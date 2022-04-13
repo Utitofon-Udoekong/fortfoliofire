@@ -117,7 +117,7 @@ class WalletTransactions extends StatelessWidget {
                                 roi: invroi,
                                 title: invDescription,
                                 context: context);
-                      }).toList()..shuffle()),
+                      }).toList()),
                 ),
               ));
   }
@@ -214,7 +214,11 @@ class WalletTransactions extends StatelessWidget {
                   ),
                   Text(
                     status,
-                    style: titleText.copyWith(color: kGreenColor, fontSize: 15),
+                    style: titleText.copyWith(color: status == "Successful"
+                          ? const Color(0XFF00C566)
+                          : status == "Pending"
+                              ? const Color.fromARGB(239, 226, 167, 4)
+                              : const Color(0XFFDF1414), fontSize: 15),
                   ),
                   const SizedBox(
                     height: 20,
@@ -313,7 +317,11 @@ class WalletTransactions extends StatelessWidget {
                 Text(status,
                     style: subTitle.copyWith(
                         fontSize: 12,
-                        color: kgreyColor,
+                        color: status == "Successful"
+                          ? const Color(0XFF00C566)
+                          : status == "Pending"
+                              ? const Color.fromARGB(239, 226, 167, 4)
+                              : const Color(0XFFDF1414),
                         fontWeight: FontWeight.w500))
               ],
             )
@@ -415,7 +423,11 @@ class WalletTransactions extends StatelessWidget {
                   ),
                   Text(
                     status,
-                    style: titleText.copyWith(color: kGreenColor, fontSize: 15),
+                    style: titleText.copyWith(color: status == "Successful"
+                          ? const Color(0XFF00C566)
+                          : status == "Pending"
+                              ? const Color.fromARGB(239, 226, 167, 4)
+                              : const Color(0XFFDF1414), fontSize: 15),
                   ),
                   const SizedBox(
                     height: 20,
@@ -512,7 +524,11 @@ class WalletTransactions extends StatelessWidget {
                 Text(status,
                     style: subTitle.copyWith(
                         fontSize: 12,
-                        color: kgreyColor,
+                        color: status == "Successful"
+                          ? const Color(0XFF00C566)
+                          : status == "Pending"
+                              ? const Color.fromARGB(239, 226, 167, 4)
+                              : const Color(0XFFDF1414),
                         fontWeight: FontWeight.w500))
               ],
             )

@@ -147,8 +147,7 @@ class DashboardTransactions extends StatelessWidget {
                                 roi: invroi,
                                 title: invDescription,
                                 context: context);
-                      }).toList()
-                        ..shuffle()),
+                      }).toList()),
                 ],
               ),
             ),
@@ -172,11 +171,7 @@ class DashboardTransactions extends StatelessWidget {
           child: ClipPath(
             clipper: RPSCustomClipper(),
             child: Container(
-              decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(10.0),
-                      topRight: Radius.circular(10.0))),
+              decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.only(topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0))),
               padding: const EdgeInsets.all(18.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -252,7 +247,7 @@ class DashboardTransactions extends StatelessWidget {
                   Text(
                     status,
                     style: titleText.copyWith(color: status == "Successful"
-                          ? kGreenColor
+                          ? const Color(0XFF00C566)
                           : status == "Pending"
                               ? const Color.fromARGB(239, 226, 167, 4)
                               : const Color(0XFFDF1414), fontSize: 15),
@@ -354,7 +349,11 @@ class DashboardTransactions extends StatelessWidget {
                 Text(status,
                     style: subTitle.copyWith(
                         fontSize: 12,
-                        color: kgreyColor,
+                        color: status == "Successful"
+                          ? const Color(0XFF00C566)
+                          : status == "Pending"
+                              ? const Color.fromARGB(239, 226, 167, 4)
+                              : const Color(0XFFDF1414),
                         fontWeight: FontWeight.w500))
               ],
             )
@@ -381,18 +380,14 @@ class DashboardTransactions extends StatelessWidget {
           child: ClipPath(
             clipper: RPSCustomClipper(),
             child: Container(
-              decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(10.0),
-                      topRight: Radius.circular(10.0))),
+              decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.only(topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0))),
               padding: const EdgeInsets.all(18.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
                     child: const Icon(
-                      Icons.south_west_rounded,
+                      Icons.north_east_rounded,
                       color: Color.fromRGBO(16, 180, 107, 1),
                     ),
                     padding: const EdgeInsets.all(3.0),
@@ -499,11 +494,9 @@ class DashboardTransactions extends StatelessWidget {
             ),
           ),
         );
-        showDialog(
-            context: context,
-            builder: (context) {
-              return dialog;
-            });
+        showDialog(context: context, builder: (context){
+          return dialog;
+        });
       },
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 12.0),
@@ -563,7 +556,11 @@ class DashboardTransactions extends StatelessWidget {
                 Text(status,
                     style: subTitle.copyWith(
                         fontSize: 12,
-                        color: kgreyColor,
+                        color: status == "Successful"
+                          ? const Color(0XFF00C566)
+                          : status == "Pending"
+                              ? const Color.fromARGB(239, 226, 167, 4)
+                              : const Color(0XFFDF1414),
                         fontWeight: FontWeight.w500))
               ],
             )
