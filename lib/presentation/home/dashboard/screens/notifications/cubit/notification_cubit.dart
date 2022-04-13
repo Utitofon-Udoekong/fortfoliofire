@@ -29,14 +29,16 @@ class NotificationCubit extends Cubit<NotificationState> {
 
   void deSelectNotification({required NotificationItem notificationItem}){
     final selectedNotifications = state.selectedNotifications;
-    selectedNotifications.remove(notificationItem);
+    final item = selectedNotifications.firstWhere((element) => element.id == notificationItem.id);
+    selectedNotifications.remove(item);
     emit(state.copyWith(selectedNotifications: selectedNotifications));
   }
 
   void deleteNotification({required NotificationItem notificationItem}) async{
     // await firestoreFacade.deleteNotification(notificationItem: notificationItem);
     final notifications = state.notifications;
-    notifications.removeWhere((item) => item.id == notificationItem.id);
+    final item = notifications.firstWhere((element) => element.id == notificationItem.id);
+    notifications.remove(item);
     emit(state.copyWith(notifications: notifications));
   }
 

@@ -17,7 +17,9 @@ import 'package:fortfolio/infrastructure/auth/dto/kyc/kyc_dto.dart';
 import 'package:fortfolio/infrastructure/auth/dto/notification/notification_dto.dart';
 import 'package:fortfolio/infrastructure/auth/dto/withdrawal/withdrawal_dto.dart';
 import 'package:fortfolio/infrastructure/core/firestore_helpers.dart';
+import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:injectable/injectable.dart';
+import 'package:nanoid/nanoid.dart';
 
 @LazySingleton(as: IFirestoreFacade)
 class FirebaseFirestoreFacade implements IFirestoreFacade {
@@ -79,12 +81,20 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
   @override
   Future<Either<String, String>> createInvestmentTransaction(
       {required InvestmentItem investmentItem}) async {
+        String docId = investmentItem.uid + investmentItem.traxId;
     try {
       await firestore.authUserCollection
           .doc(auth.currentUser!.uid)
           .collection("investments")
-          .doc()
+          .doc(docId)
           .set(InvestmentItemDTO.fromDomain(investmentItem).toJson());
+      NotificationItem notificationItem = NotificationItem(
+          createdat: investmentItem.paymentDate,
+          title: investmentItem.description,
+          type: "Investment",
+          id: nanoid(8),
+          status: investmentItem.status);
+      await createNotification(notificationItem: notificationItem);
       return right("Investment made. Awaiting approval");
     } on FirebaseException catch (e) {
       log("Code: ${e.code}, Message: ${e.message}");
@@ -95,12 +105,21 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
   @override
   Future<Either<String, String>> createWithdrawalTransaction(
       {required WithdrawalItem withdrawalItem}) async {
+        String docId = withdrawalItem.uid + withdrawalItem.traxId;
     try {
       await firestore.authUserCollection
           .doc(auth.currentUser!.uid)
           .collection("withdrawals")
-          .doc()
+          .doc(docId)
           .set(WithdrawalItemDTO.fromDomain(withdrawalItem).toJson());
+      NotificationItem notificationItem = NotificationItem(
+        id: nanoid(8),
+        type: "Withdrawal",
+        title: withdrawalItem.description,
+        createdat: withdrawalItem.createdat,
+        status: withdrawalItem.status,
+      );
+      await createNotification(notificationItem: notificationItem);
       return right("Withdrawal submitted. Awaiting approval");
     } on FirebaseException catch (e) {
       log("Code: ${e.code}, Message: ${e.message}");
@@ -110,7 +129,6 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
 
   @override
   Future<Either<String, String>> createKYC({required KYCItem kycItem}) async {
-    String id = kycItem.id;
     try {
       await firestore.authUserCollection
           .doc(auth.currentUser!.uid)
@@ -391,7 +409,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
         .where("id", isEqualTo: notificationItem.id)
         .get();
     try {
-      for(var doc in notification.docs){
+      for (var doc in notification.docs) {
         batch.delete(doc.reference);
       }
       return right("Notification deleted successfully");
