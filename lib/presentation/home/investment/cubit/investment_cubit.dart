@@ -17,6 +17,14 @@ class InvestmentCubit extends Cubit<InvestmentState> {
   InvestmentCubit( this.firestoreFacade) : super(InvestmentState.initial());
 
   void exchangeTypeChanged({required String exchangeType}) {
+    final String planName = state.planName;
+    if(exchangeType == "NGN" && planName == "FortShield"){
+      emit(state.copyWith(baseAmount: 1000000));
+    }else if(exchangeType == "USD" && planName == "FortShield"){
+      emit(state.copyWith(baseAmount: (1000000 / 560).round()));
+    }else{
+      emit(state.copyWith(baseAmount: 1000));
+    }
     emit(state.copyWith(exchangeType: exchangeType));
   }
 

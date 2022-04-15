@@ -14,7 +14,8 @@ class InvestmentState with _$InvestmentState {
       required String exchangeType,
       required List<bool> isSelected,
       required List<int> durations,
-      required String paymentMethod
+      required String paymentMethod,
+      required int baseAmount
       }) = _InvestmentState;
   const InvestmentState._();
 
@@ -22,6 +23,7 @@ class InvestmentState with _$InvestmentState {
         amountInvested: 0,
         planName: '',
         roi: 0,
+        baseAmount: 1000,
         failure: "",
         success: "",
         agreementAccepted: false,
@@ -32,7 +34,7 @@ class InvestmentState with _$InvestmentState {
         duration: 6,
         paymentMethod: 'Bank'
       );
-    bool get isValid => !duration.isNaN && amountInvested.isFinite && agreementAccepted && amountInvested.toString().isNotEmpty;
+    bool get isValid => !duration.isNaN && amountInvested.isFinite && agreementAccepted && amountInvested >= baseAmount;
 }
 
 var boolList = <bool>[false,true,false];

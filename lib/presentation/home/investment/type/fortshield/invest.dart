@@ -127,7 +127,7 @@ class FortShieldInvestment extends StatelessWidget {
                             .read<InvestmentCubit>()
                             .amountInvestedChanged(
                                 amountInvested: int.parse(value)),
-                        validator: (String? value) => int.tryParse(value!) == null ? 'Field cannot be empty' : int.parse(value) < (state.exchangeType == 'NGN' ? 1e6 : 1e3)  ? 'Minimum investment is ${state.exchangeType == 'NGN' ? 'N1,000,000': '\$${(1e6 /560).toStringAsFixed(1)}'}' : int.parse(value).isNaN ? 'Invalid amount' : null,
+                        validator: (String? value) => int.tryParse(value!) == null ? 'Field cannot be empty' : int.parse(value) < state.baseAmount  ? 'Minimum investment is ${state.exchangeType == 'NGN' ? 'N1,000,000': '\$${(1e6 /560).round()}'}' : int.parse(value).isNaN ? 'Invalid amount' : null,
                       ),
                     );
                   },
@@ -162,7 +162,7 @@ class FortShieldInvestment extends StatelessWidget {
                           margin: const EdgeInsets.only(right: 30),
                           child: const Text(
                             '6 months',
-                            style: TextStyle(fontSize: 13),
+                            style: TextStyle(fontSize: 15),
                           ),
                           alignment: Alignment.center,
                         ),
@@ -174,7 +174,7 @@ class FortShieldInvestment extends StatelessWidget {
                               border: Border.all(color: state.duration == 12 ? kPrimaryColor : kWhiteColor, width: state.duration == 12 ? 1.0 : 0.0),),
                           child: const Text(
                             '12 months',
-                            style: TextStyle(fontSize: 13),
+                            style: TextStyle(fontSize: 15),
                           ),
                           alignment: Alignment.center,
                         ),
