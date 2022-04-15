@@ -118,6 +118,7 @@ class FortCrypto extends StatelessWidget {
                     itemCount: plans.length,
                     itemBuilder: (context, index) {
                       return Container(
+                        width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6.0),
                             color: const Color.fromRGBO(246, 249, 255, 0.55)),

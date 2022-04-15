@@ -77,10 +77,13 @@ class FortCryptoInvestmentInfo extends StatelessWidget {
                   }),
                 ),
               ),
-              CustomOutlinedButton(
-                  text: 'INVEST',
-                  onTap: () =>
-                      context.router.push(const FortCryptoInvestmentRoute())),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: CustomOutlinedButton(
+                    text: 'INVEST',
+                    onTap: () =>
+                        context.router.push(const FortCryptoInvestmentRoute())),
+              ),
             ],
           ),
         ),

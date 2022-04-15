@@ -105,12 +105,15 @@ class BankWithdrawal extends StatelessWidget {
                             return state.withdrawalDetails;
                           },
                           builder: (context, withdrawalDetails) {
-                            return CustomAuthFilledButton(
-                              text: "WITHDRAW",
-                              onTap: () => context
-                                  .read<WalletCubit>()
-                                  .makeWithdrawalTransaction(),
-                              disabled: withdrawalDetails.isEmpty,
+                            return Align(
+                              alignment: Alignment.bottomCenter,
+                              child: CustomAuthFilledButton(
+                                text: "WITHDRAW",
+                                onTap: () => context
+                                    .read<WalletCubit>()
+                                    .makeWithdrawalTransaction(),
+                                disabled: withdrawalDetails.isEmpty,
+                              ),
                             );
                           },
                         )

@@ -192,7 +192,7 @@ class WalletOverview extends StatelessWidget {
               direction: Axis.horizontal,
               children: const <Widget>[
                 Text(
-                  'Investment Packages',
+                  'Current Investments',
                   style: TextStyle(
                       color: Color(0XFF535454),
                       fontSize: 20,
