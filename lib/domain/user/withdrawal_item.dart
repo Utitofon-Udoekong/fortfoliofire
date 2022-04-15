@@ -13,6 +13,7 @@ abstract class WithdrawalItem implements _$WithdrawalItem {
     required String status,
     required DateTime createdat,
     required String paymentMethod,
+    required String currency,
     required int duration,
     required int roi,
     // add roi
@@ -25,6 +26,7 @@ abstract class WithdrawalItem implements _$WithdrawalItem {
         createdat: DateTime.now(),
         description: '',
         paymentMethod: '',
+        currency: '\$',
         planName: '',
         status: "Pending",
         traxId: '',

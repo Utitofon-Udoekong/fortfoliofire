@@ -18,6 +18,7 @@ _$_WithdrawalItemDTO _$$_WithdrawalItemDTOFromJson(Map<String, dynamic> json) =>
       status: json['status'] as String,
       createdat: DateTime.parse(json['createdat'] as String),
       paymentMethod: json['paymentMethod'] as String,
+      currency: json['currency'] as String,
     );
 
 Map<String, dynamic> _$$_WithdrawalItemDTOToJson(
@@ -33,4 +34,5 @@ Map<String, dynamic> _$$_WithdrawalItemDTOToJson(
       'status': instance.status,
       'createdat': instance.createdat.toIso8601String(),
       'paymentMethod': instance.paymentMethod,
+      'currency': instance.currency,
     };

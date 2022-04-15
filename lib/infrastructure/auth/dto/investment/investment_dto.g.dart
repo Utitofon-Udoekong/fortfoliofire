@@ -19,6 +19,7 @@ _$_InvestmentItemDTO _$$_InvestmentItemDTOFromJson(Map<String, dynamic> json) =>
       dueDate: DateTime.parse(json['dueDate'] as String),
       duration: (json['duration'] as num).toDouble(),
       status: json['status'] as String,
+      currency: json['currency'] as String,
       planYield: json['planYield'] as int,
       paymentMethod: json['paymentMethod'] as String,
     );
@@ -37,6 +38,7 @@ Map<String, dynamic> _$$_InvestmentItemDTOToJson(
       'dueDate': instance.dueDate.toIso8601String(),
       'duration': instance.duration,
       'status': instance.status,
+      'currency': instance.currency,
       'planYield': instance.planYield,
       'paymentMethod': instance.paymentMethod,
     };

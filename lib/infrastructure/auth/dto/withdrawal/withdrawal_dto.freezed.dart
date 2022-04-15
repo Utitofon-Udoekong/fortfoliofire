@@ -32,7 +32,8 @@ class _$WithdrawalItemDTOTearOff {
       required String planName,
       required String status,
       required DateTime createdat,
-      required String paymentMethod}) {
+      required String paymentMethod,
+      required String currency}) {
     return _WithdrawalItemDTO(
       description: description,
       amount: amount,
@@ -44,6 +45,7 @@ class _$WithdrawalItemDTOTearOff {
       status: status,
       createdat: createdat,
       paymentMethod: paymentMethod,
+      currency: currency,
     );
   }
 
@@ -67,6 +69,7 @@ mixin _$WithdrawalItemDTO {
   String get status => throw _privateConstructorUsedError;
   DateTime get createdat => throw _privateConstructorUsedError;
   String get paymentMethod => throw _privateConstructorUsedError;
+  String get currency => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -89,7 +92,8 @@ abstract class $WithdrawalItemDTOCopyWith<$Res> {
       String planName,
       String status,
       DateTime createdat,
-      String paymentMethod});
+      String paymentMethod,
+      String currency});
 }
 
 /// @nodoc
@@ -113,6 +117,7 @@ class _$WithdrawalItemDTOCopyWithImpl<$Res>
     Object? status = freezed,
     Object? createdat = freezed,
     Object? paymentMethod = freezed,
+    Object? currency = freezed,
   }) {
     return _then(_value.copyWith(
       description: description == freezed
@@ -155,6 +160,10 @@ class _$WithdrawalItemDTOCopyWithImpl<$Res>
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
               as String,
+      currency: currency == freezed
+          ? _value.currency
+          : currency // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -176,7 +185,8 @@ abstract class _$WithdrawalItemDTOCopyWith<$Res>
       String planName,
       String status,
       DateTime createdat,
-      String paymentMethod});
+      String paymentMethod,
+      String currency});
 }
 
 /// @nodoc
@@ -202,6 +212,7 @@ class __$WithdrawalItemDTOCopyWithImpl<$Res>
     Object? status = freezed,
     Object? createdat = freezed,
     Object? paymentMethod = freezed,
+    Object? currency = freezed,
   }) {
     return _then(_WithdrawalItemDTO(
       description: description == freezed
@@ -244,6 +255,10 @@ class __$WithdrawalItemDTOCopyWithImpl<$Res>
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
               as String,
+      currency: currency == freezed
+          ? _value.currency
+          : currency // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -261,7 +276,8 @@ class _$_WithdrawalItemDTO extends _WithdrawalItemDTO {
       required this.planName,
       required this.status,
       required this.createdat,
-      required this.paymentMethod})
+      required this.paymentMethod,
+      required this.currency})
       : super._();
 
   factory _$_WithdrawalItemDTO.fromJson(Map<String, dynamic> json) =>
@@ -287,10 +303,12 @@ class _$_WithdrawalItemDTO extends _WithdrawalItemDTO {
   final DateTime createdat;
   @override
   final String paymentMethod;
+  @override
+  final String currency;
 
   @override
   String toString() {
-    return 'WithdrawalItemDTO(description: $description, amount: $amount, duration: $duration, roi: $roi, traxId: $traxId, uid: $uid, planName: $planName, status: $status, createdat: $createdat, paymentMethod: $paymentMethod)';
+    return 'WithdrawalItemDTO(description: $description, amount: $amount, duration: $duration, roi: $roi, traxId: $traxId, uid: $uid, planName: $planName, status: $status, createdat: $createdat, paymentMethod: $paymentMethod, currency: $currency)';
   }
 
   @override
@@ -309,7 +327,8 @@ class _$_WithdrawalItemDTO extends _WithdrawalItemDTO {
             const DeepCollectionEquality().equals(other.status, status) &&
             const DeepCollectionEquality().equals(other.createdat, createdat) &&
             const DeepCollectionEquality()
-                .equals(other.paymentMethod, paymentMethod));
+                .equals(other.paymentMethod, paymentMethod) &&
+            const DeepCollectionEquality().equals(other.currency, currency));
   }
 
   @override
@@ -324,7 +343,8 @@ class _$_WithdrawalItemDTO extends _WithdrawalItemDTO {
       const DeepCollectionEquality().hash(planName),
       const DeepCollectionEquality().hash(status),
       const DeepCollectionEquality().hash(createdat),
-      const DeepCollectionEquality().hash(paymentMethod));
+      const DeepCollectionEquality().hash(paymentMethod),
+      const DeepCollectionEquality().hash(currency));
 
   @JsonKey(ignore: true)
   @override
@@ -348,7 +368,8 @@ abstract class _WithdrawalItemDTO extends WithdrawalItemDTO {
       required String planName,
       required String status,
       required DateTime createdat,
-      required String paymentMethod}) = _$_WithdrawalItemDTO;
+      required String paymentMethod,
+      required String currency}) = _$_WithdrawalItemDTO;
   const _WithdrawalItemDTO._() : super._();
 
   factory _WithdrawalItemDTO.fromJson(Map<String, dynamic> json) =
@@ -374,6 +395,8 @@ abstract class _WithdrawalItemDTO extends WithdrawalItemDTO {
   DateTime get createdat;
   @override
   String get paymentMethod;
+  @override
+  String get currency;
   @override
   @JsonKey(ignore: true)
   _$WithdrawalItemDTOCopyWith<_WithdrawalItemDTO> get copyWith =>

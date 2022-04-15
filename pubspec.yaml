@@ -31,11 +31,12 @@ dependencies:
     sdk: flutter
   flutter_bloc: ^8.0.1
   otp_text_field: ^1.1.1
+  shared_preferences: ^2.0.13
   intl_phone_field: ^3.0.0
   fpdart: ^0.0.14
   google_fonts: ^2.1.1
   carousel_slider: ^4.0.0
-  cached_network_image: ^3.2.0
+  uuid: ^3.0.6
   flutter_svg: ^1.0.0
   timelines: ^0.1.0
   json_annotation: ^4.4.0

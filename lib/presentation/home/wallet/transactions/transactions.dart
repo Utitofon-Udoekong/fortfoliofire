@@ -57,6 +57,7 @@ class WalletTransactions extends StatelessWidget {
                         String withStatus = "";
                         String withId = "";
                         String withPaymentMethod = "";
+                        String withCurrency = "\$";
                         DateTime withcreatedat = DateTime.now();
                         int withduration = 0;
                         int withroi = 0;
@@ -66,6 +67,7 @@ class WalletTransactions extends StatelessWidget {
                         int invAmount = 0;
                         String invStatus = "";
                         String invId = "";
+                        String invCurrency = "\$";
                         String invPaymentMethod = "";
                         DateTime invcreatedat = DateTime.now();
                         double invduration = 0.0;
@@ -77,6 +79,7 @@ class WalletTransactions extends StatelessWidget {
                           invAmount = document.investmentItem!.amount;
                           invStatus = document.investmentItem!.status;
                           invId = document.investmentItem!.traxId;
+                          invCurrency = document.investmentItem!.currency;
                           invPaymentMethod =
                               document.investmentItem!.paymentMethod;
                           invcreatedat = document.investmentItem!.paymentDate;
@@ -89,6 +92,7 @@ class WalletTransactions extends StatelessWidget {
                           withAmount = document.withdrawalItem!.amount;
                           withStatus = document.withdrawalItem!.status;
                           withId = document.withdrawalItem!.traxId;
+                          withCurrency = document.withdrawalItem!.currency;
                           withPaymentMethod =
                               document.withdrawalItem!.paymentMethod;
                           withcreatedat = document.withdrawalItem!.createdat;
@@ -106,7 +110,8 @@ class WalletTransactions extends StatelessWidget {
                                 status: withStatus,
                                 roi: withroi,
                                 title: withDescription,
-                                context: context)
+                                context: context,
+                                currency: withCurrency)
                             : buildInvestmentTile(
                                 amount: invAmount.toString(),
                                 date: invcreatedat,
@@ -116,6 +121,7 @@ class WalletTransactions extends StatelessWidget {
                                 status: invStatus,
                                 roi: invroi,
                                 title: invDescription,
+                                currency: invCurrency,
                                 context: context);
                       }).toList()),
                 ),
@@ -131,6 +137,7 @@ class WalletTransactions extends StatelessWidget {
       required DateTime date,
       required String id,
       required String paymentMethod,
+      required String currency,
       required BuildContext context}) {
     return GestureDetector(
       onTap: () {
@@ -185,7 +192,7 @@ class WalletTransactions extends StatelessWidget {
                     height: 5,
                   ),
                   Text(
-                    "N$amount",
+                    "$currency$amount",
                     style: titleText.copyWith(color: kBlackColor, fontSize: 15),
                   ),
                   const SizedBox(
@@ -284,7 +291,7 @@ class WalletTransactions extends StatelessWidget {
                   TextSpan(
                       text: "$roi% returns",
                       style: subTitle.copyWith(
-                          fontSize: 12, color: kgreyColor.withOpacity(0.4))),
+                          fontSize: 12, color: kgreyColor.withOpacity(0.7))),
                   TextSpan(text: " ● $duration months")
                 ])),
                 const SizedBox(
@@ -297,11 +304,11 @@ class WalletTransactions extends StatelessWidget {
             ),
             // Spacer(),
             Flex(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.end,
               direction: Axis.vertical,
               children: <Widget>[
                 Text(
-                  amount,
+                  "$currency$amount",
                   style: titleText.copyWith(
                       fontSize: 20,
                       color: status == "Successful"
@@ -340,6 +347,7 @@ class WalletTransactions extends StatelessWidget {
       required String id,
       required int roi,
       required String paymentMethod,
+      required String currency,
       required BuildContext context}) {
     return GestureDetector(
       onTap: () {
@@ -394,7 +402,7 @@ class WalletTransactions extends StatelessWidget {
                     height: 5,
                   ),
                   Text(
-                    "\$$amount",
+                    "$currency$amount",
                     style: titleText.copyWith(color: kBlackColor, fontSize: 15),
                   ),
                   const SizedBox(
@@ -504,11 +512,11 @@ class WalletTransactions extends StatelessWidget {
             ),
             // Spacer(),
             Flex(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.end,
               direction: Axis.vertical,
               children: <Widget>[
                 Text(
-                  amount,
+                  "$currency$amount",
                   style: titleText.copyWith(
                       fontSize: 20,
                       color: status == "Successful"

@@ -30,6 +30,7 @@ class _$InvestmentItemTearOff {
       required DateTime dueDate,
       required double duration,
       required String status,
+      required String currency,
       required int planYield,
       required String paymentMethod}) {
     return _InvestmentItem(
@@ -44,6 +45,7 @@ class _$InvestmentItemTearOff {
       dueDate: dueDate,
       duration: duration,
       status: status,
+      currency: currency,
       planYield: planYield,
       paymentMethod: paymentMethod,
     );
@@ -66,6 +68,7 @@ mixin _$InvestmentItem {
   DateTime get dueDate => throw _privateConstructorUsedError;
   double get duration => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
+  String get currency => throw _privateConstructorUsedError;
   int get planYield => throw _privateConstructorUsedError;
   String get paymentMethod => throw _privateConstructorUsedError;
 
@@ -91,6 +94,7 @@ abstract class $InvestmentItemCopyWith<$Res> {
       DateTime dueDate,
       double duration,
       String status,
+      String currency,
       int planYield,
       String paymentMethod});
 }
@@ -117,6 +121,7 @@ class _$InvestmentItemCopyWithImpl<$Res>
     Object? dueDate = freezed,
     Object? duration = freezed,
     Object? status = freezed,
+    Object? currency = freezed,
     Object? planYield = freezed,
     Object? paymentMethod = freezed,
   }) {
@@ -165,6 +170,10 @@ class _$InvestmentItemCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
+      currency: currency == freezed
+          ? _value.currency
+          : currency // ignore: cast_nullable_to_non_nullable
+              as String,
       planYield: planYield == freezed
           ? _value.planYield
           : planYield // ignore: cast_nullable_to_non_nullable
@@ -196,6 +205,7 @@ abstract class _$InvestmentItemCopyWith<$Res>
       DateTime dueDate,
       double duration,
       String status,
+      String currency,
       int planYield,
       String paymentMethod});
 }
@@ -224,6 +234,7 @@ class __$InvestmentItemCopyWithImpl<$Res>
     Object? dueDate = freezed,
     Object? duration = freezed,
     Object? status = freezed,
+    Object? currency = freezed,
     Object? planYield = freezed,
     Object? paymentMethod = freezed,
   }) {
@@ -272,6 +283,10 @@ class __$InvestmentItemCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
+      currency: currency == freezed
+          ? _value.currency
+          : currency // ignore: cast_nullable_to_non_nullable
+              as String,
       planYield: planYield == freezed
           ? _value.planYield
           : planYield // ignore: cast_nullable_to_non_nullable
@@ -299,6 +314,7 @@ class _$_InvestmentItem extends _InvestmentItem {
       required this.dueDate,
       required this.duration,
       required this.status,
+      required this.currency,
       required this.planYield,
       required this.paymentMethod})
       : super._();
@@ -326,13 +342,15 @@ class _$_InvestmentItem extends _InvestmentItem {
   @override
   final String status;
   @override
+  final String currency;
+  @override
   final int planYield;
   @override
   final String paymentMethod;
 
   @override
   String toString() {
-    return 'InvestmentItem(description: $description, uid: $uid, amount: $amount, traxId: $traxId, roi: $roi, numberOfDays: $numberOfDays, planName: $planName, paymentDate: $paymentDate, dueDate: $dueDate, duration: $duration, status: $status, planYield: $planYield, paymentMethod: $paymentMethod)';
+    return 'InvestmentItem(description: $description, uid: $uid, amount: $amount, traxId: $traxId, roi: $roi, numberOfDays: $numberOfDays, planName: $planName, paymentDate: $paymentDate, dueDate: $dueDate, duration: $duration, status: $status, currency: $currency, planYield: $planYield, paymentMethod: $paymentMethod)';
   }
 
   @override
@@ -354,6 +372,7 @@ class _$_InvestmentItem extends _InvestmentItem {
             const DeepCollectionEquality().equals(other.dueDate, dueDate) &&
             const DeepCollectionEquality().equals(other.duration, duration) &&
             const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality().equals(other.currency, currency) &&
             const DeepCollectionEquality().equals(other.planYield, planYield) &&
             const DeepCollectionEquality()
                 .equals(other.paymentMethod, paymentMethod));
@@ -373,6 +392,7 @@ class _$_InvestmentItem extends _InvestmentItem {
       const DeepCollectionEquality().hash(dueDate),
       const DeepCollectionEquality().hash(duration),
       const DeepCollectionEquality().hash(status),
+      const DeepCollectionEquality().hash(currency),
       const DeepCollectionEquality().hash(planYield),
       const DeepCollectionEquality().hash(paymentMethod));
 
@@ -395,6 +415,7 @@ abstract class _InvestmentItem extends InvestmentItem {
       required DateTime dueDate,
       required double duration,
       required String status,
+      required String currency,
       required int planYield,
       required String paymentMethod}) = _$_InvestmentItem;
   const _InvestmentItem._() : super._();
@@ -421,6 +442,8 @@ abstract class _InvestmentItem extends InvestmentItem {
   double get duration;
   @override
   String get status;
+  @override
+  String get currency;
   @override
   int get planYield;
   @override

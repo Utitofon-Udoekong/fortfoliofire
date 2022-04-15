@@ -27,6 +27,7 @@ class _$WithdrawalItemTearOff {
       required String status,
       required DateTime createdat,
       required String paymentMethod,
+      required String currency,
       required int duration,
       required int roi}) {
     return _WithdrawalItem(
@@ -38,6 +39,7 @@ class _$WithdrawalItemTearOff {
       status: status,
       createdat: createdat,
       paymentMethod: paymentMethod,
+      currency: currency,
       duration: duration,
       roi: roi,
     );
@@ -57,6 +59,7 @@ mixin _$WithdrawalItem {
   String get status => throw _privateConstructorUsedError;
   DateTime get createdat => throw _privateConstructorUsedError;
   String get paymentMethod => throw _privateConstructorUsedError;
+  String get currency => throw _privateConstructorUsedError;
   int get duration => throw _privateConstructorUsedError;
   int get roi => throw _privateConstructorUsedError;
 
@@ -79,6 +82,7 @@ abstract class $WithdrawalItemCopyWith<$Res> {
       String status,
       DateTime createdat,
       String paymentMethod,
+      String currency,
       int duration,
       int roi});
 }
@@ -102,6 +106,7 @@ class _$WithdrawalItemCopyWithImpl<$Res>
     Object? status = freezed,
     Object? createdat = freezed,
     Object? paymentMethod = freezed,
+    Object? currency = freezed,
     Object? duration = freezed,
     Object? roi = freezed,
   }) {
@@ -138,6 +143,10 @@ class _$WithdrawalItemCopyWithImpl<$Res>
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
               as String,
+      currency: currency == freezed
+          ? _value.currency
+          : currency // ignore: cast_nullable_to_non_nullable
+              as String,
       duration: duration == freezed
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
@@ -166,6 +175,7 @@ abstract class _$WithdrawalItemCopyWith<$Res>
       String status,
       DateTime createdat,
       String paymentMethod,
+      String currency,
       int duration,
       int roi});
 }
@@ -191,6 +201,7 @@ class __$WithdrawalItemCopyWithImpl<$Res>
     Object? status = freezed,
     Object? createdat = freezed,
     Object? paymentMethod = freezed,
+    Object? currency = freezed,
     Object? duration = freezed,
     Object? roi = freezed,
   }) {
@@ -227,6 +238,10 @@ class __$WithdrawalItemCopyWithImpl<$Res>
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
               as String,
+      currency: currency == freezed
+          ? _value.currency
+          : currency // ignore: cast_nullable_to_non_nullable
+              as String,
       duration: duration == freezed
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
@@ -251,6 +266,7 @@ class _$_WithdrawalItem extends _WithdrawalItem {
       required this.status,
       required this.createdat,
       required this.paymentMethod,
+      required this.currency,
       required this.duration,
       required this.roi})
       : super._();
@@ -272,13 +288,15 @@ class _$_WithdrawalItem extends _WithdrawalItem {
   @override
   final String paymentMethod;
   @override
+  final String currency;
+  @override
   final int duration;
   @override
   final int roi;
 
   @override
   String toString() {
-    return 'WithdrawalItem(description: $description, amount: $amount, traxId: $traxId, uid: $uid, planName: $planName, status: $status, createdat: $createdat, paymentMethod: $paymentMethod, duration: $duration, roi: $roi)';
+    return 'WithdrawalItem(description: $description, amount: $amount, traxId: $traxId, uid: $uid, planName: $planName, status: $status, createdat: $createdat, paymentMethod: $paymentMethod, currency: $currency, duration: $duration, roi: $roi)';
   }
 
   @override
@@ -296,6 +314,7 @@ class _$_WithdrawalItem extends _WithdrawalItem {
             const DeepCollectionEquality().equals(other.createdat, createdat) &&
             const DeepCollectionEquality()
                 .equals(other.paymentMethod, paymentMethod) &&
+            const DeepCollectionEquality().equals(other.currency, currency) &&
             const DeepCollectionEquality().equals(other.duration, duration) &&
             const DeepCollectionEquality().equals(other.roi, roi));
   }
@@ -311,6 +330,7 @@ class _$_WithdrawalItem extends _WithdrawalItem {
       const DeepCollectionEquality().hash(status),
       const DeepCollectionEquality().hash(createdat),
       const DeepCollectionEquality().hash(paymentMethod),
+      const DeepCollectionEquality().hash(currency),
       const DeepCollectionEquality().hash(duration),
       const DeepCollectionEquality().hash(roi));
 
@@ -330,6 +350,7 @@ abstract class _WithdrawalItem extends WithdrawalItem {
       required String status,
       required DateTime createdat,
       required String paymentMethod,
+      required String currency,
       required int duration,
       required int roi}) = _$_WithdrawalItem;
   const _WithdrawalItem._() : super._();
@@ -350,6 +371,8 @@ abstract class _WithdrawalItem extends WithdrawalItem {
   DateTime get createdat;
   @override
   String get paymentMethod;
+  @override
+  String get currency;
   @override
   int get duration;
   @override

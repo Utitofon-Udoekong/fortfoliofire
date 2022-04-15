@@ -17,6 +17,7 @@ abstract class InvestmentItem implements _$InvestmentItem {
     required DateTime dueDate,
     required double duration,
     required String status,
+    required String currency,
     required int planYield,
     required String paymentMethod,
   }) = _InvestmentItem;
@@ -34,6 +35,7 @@ abstract class InvestmentItem implements _$InvestmentItem {
         status: 'Pending',
         traxId: '',
         uid: '',
+        currency: '\$',
         paymentMethod: ''
       );
   

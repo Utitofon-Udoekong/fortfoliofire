@@ -22,6 +22,7 @@ abstract class InvestmentItemDTO implements _$InvestmentItemDTO {
     required DateTime dueDate,
     required double duration,
     required String status,
+    required String currency,
     required int planYield,
     required String paymentMethod
   }) = _InvestmentItemDTO;
@@ -30,6 +31,7 @@ abstract class InvestmentItemDTO implements _$InvestmentItemDTO {
     return InvestmentItemDTO(
       amount: investmentItem.amount,
       planName: investmentItem.planName,
+      currency: investmentItem.currency,
       description: investmentItem.description,
       dueDate: investmentItem.dueDate,
       duration: investmentItem.duration,
@@ -63,6 +65,7 @@ extension InvestmentItemDTOX on InvestmentItemDTO {
       amount: amount,
       planName: planName,
       description: description,
+      currency: currency,
       dueDate: dueDate,
       duration: duration,
       paymentDate: paymentDate,
