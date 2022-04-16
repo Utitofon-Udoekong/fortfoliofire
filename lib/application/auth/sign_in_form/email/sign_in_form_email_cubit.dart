@@ -1,0 +1,74 @@
+import 'dart:async';
+
+import 'package:bloc/bloc.dart';
+import 'package:dartz/dartz.dart';
+import 'package:fortfolio/application/auth/auth_cubit.dart';
+import 'package:fortfolio/domain/auth/auth_failure.dart';
+import 'package:fortfolio/domain/auth/i_auth_facade.dart';
+import 'package:fortfolio/domain/auth/value_objects.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
+
+part 'sign_in_form_email_state.dart';
+part 'sign_in_form_email_cubit.freezed.dart';
+
+@injectable
+class SignInFormEmailCubit extends Cubit<SignInFormEmailState> {
+  final IAuthFacade _authFacade;
+  final AuthCubit authCubit;
+  StreamSubscription<Either<AuthFailure, String>>?
+      _emailSignInSubscription;
+  SignInFormEmailCubit(this._authFacade, this.authCubit) : super(SignInFormEmailState.initial());
+
+  @override
+  Future<void> close() async {
+    await _emailSignInSubscription?.cancel();
+
+    return super.close();
+  }
+
+  void emailChanged({required String emailString}){
+    emit(state.copyWith(
+      emailAddress: EmailAddress(emailString)
+    ));
+  }
+
+  void passwordChanged({required String passwordString}){
+    emit(state.copyWith(
+      password: Password(passwordString)
+    ));
+  }
+  void isObscureChanged(){
+    final newScure = state.isObscure;
+    emit(state.copyWith(
+      isObscure: !newScure
+    ));
+  }
+
+  Future signInWithEmailAndPasswordpressed() async{
+    final validState = state.isValidState;
+    emit(state.copyWith(isSubmitting: true, failure: "",success:""));
+    if(validState){
+      final Either<String, String> failureOrSuccess = await _authFacade.loginWithEmailAndPassword(
+          emailAddress: state.emailAddress, password: state.password);
+      failureOrSuccess.fold((failure){
+        emit(state.copyWith(isSubmitting: false,failure: failure));
+        reset();
+      }, (userId) async{
+        final userModel = await _authFacade.getDatabaseUser(id: userId);
+        userModel.fold(() => null, (authUser) => authCubit.listenAuthStateChangesStream(authUser));
+        authCubit.loggedInChanged(loggedIn: true);
+        emit(state.copyWith(isSubmitting: false,success: "Login successful"));
+        reset();
+      });
+    }
+    emit(state.copyWith(showErrorMessages: true));
+  }
+
+  void reset(){
+    emit(state.copyWith(
+      emailAddress: EmailAddress(""),
+      password: Password("")
+    ));
+  }
+}
