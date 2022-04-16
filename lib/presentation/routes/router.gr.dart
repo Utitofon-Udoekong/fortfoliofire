@@ -346,72 +346,76 @@ class AppRouter extends _i61.RootStackRouter {
         _i61.RouteConfig(SignUpFormRoute.name, path: '/sign-up-form'),
         _i61.RouteConfig(ResetPasswordRoute.name, path: '/reset-password'),
         _i61.RouteConfig(NotificationsPageRoute.name,
-            path: 'notificationsPage'),
+            path: '/notifications-page'),
         _i61.RouteConfig(NotificationEngineRoute.name,
             path: '/notification-engine'),
-        _i61.RouteConfig(ProfilePageRoute.name, path: 'profilePage'),
+        _i61.RouteConfig(ProfilePageRoute.name, path: '/profile-page'),
         _i61.RouteConfig(DashboardTransactionsRoute.name,
-            path: 'dashboardTransactions'),
-        _i61.RouteConfig(CalculatorRoute.name, path: 'calculator'),
-        _i61.RouteConfig(SecurityRoute.name, path: 'security'),
-        _i61.RouteConfig(ChangePasswordRoute.name, path: 'changepassword'),
-        _i61.RouteConfig(AddBankRoute.name, path: 'addBank'),
-        _i61.RouteConfig(VerifyBankRoute.name, path: 'verifyBank'),
-        _i61.RouteConfig(AddCryptoWalletRoute.name, path: 'addCryptoWallet'),
+            path: '/dashboard-transactions'),
+        _i61.RouteConfig(CalculatorRoute.name, path: '/Calculator'),
+        _i61.RouteConfig(SecurityRoute.name, path: '/Security'),
+        _i61.RouteConfig(ChangePasswordRoute.name, path: '/change-password'),
+        _i61.RouteConfig(AddBankRoute.name, path: '/add-bank'),
+        _i61.RouteConfig(VerifyBankRoute.name, path: '/verify-bank'),
+        _i61.RouteConfig(AddCryptoWalletRoute.name, path: '/add-crypto-wallet'),
         _i61.RouteConfig(VerifyCryptoWalletRoute.name,
-            path: 'verifyCryptoWallet'),
-        _i61.RouteConfig(BankAddressRoute.name, path: 'bankPage'),
-        _i61.RouteConfig(CryptoWalletRoute.name, path: 'cryptoWalletPage'),
-        _i61.RouteConfig(PaymentMethodRoute.name, path: 'paymentmethod'),
-        _i61.RouteConfig(FAQPageRoute.name, path: 'faq'),
-        _i61.RouteConfig(SupportPageRoute.name, path: 'support'),
-        _i61.RouteConfig(TACPageRoute.name, path: 'tac'),
+            path: '/verify-crypto-wallet'),
+        _i61.RouteConfig(BankAddressRoute.name, path: '/bank-address'),
+        _i61.RouteConfig(CryptoWalletRoute.name, path: '/crypto-wallet'),
+        _i61.RouteConfig(PaymentMethodRoute.name, path: '/payment-method'),
+        _i61.RouteConfig(FAQPageRoute.name, path: '/f-aq-page'),
+        _i61.RouteConfig(SupportPageRoute.name, path: '/support-page'),
+        _i61.RouteConfig(TACPageRoute.name, path: '/t-ac-page'),
         _i61.RouteConfig(UploadDocumentImageRoute.name,
-            path: 'uploadDocumentImage'),
-        _i61.RouteConfig(UploadPageRoute.name, path: 'uploadPage'),
-        _i61.RouteConfig(UtilityPageRoute.name, path: 'utilityPage'),
+            path: '/upload-document-image'),
+        _i61.RouteConfig(UploadPageRoute.name, path: '/upload-page'),
+        _i61.RouteConfig(UtilityPageRoute.name, path: '/utility-page'),
         _i61.RouteConfig(UploadUtilityDocRoute.name,
-            path: 'uploadUtilityDocument'),
-        _i61.RouteConfig(VerificationPageRoute.name, path: 'verificationPage'),
+            path: '/upload-utility-doc'),
+        _i61.RouteConfig(VerificationPageRoute.name,
+            path: '/verification-page'),
         _i61.RouteConfig(VerificationSuccessRoute.name,
-            path: 'uploadVerificationSuccess'),
+            path: '/verification-success'),
         _i61.RouteConfig(SelectInvestmentMethodRoute.name,
-            path: 'selectInvestmentMethod'),
-        _i61.RouteConfig(BankInvestmentPageRoute.name, path: 'bankInvestment'),
-        _i61.RouteConfig(NairaAccountRoute.name, path: 'naira'),
-        _i61.RouteConfig(DomiciliaryAccountRoute.name, path: 'dollar'),
+            path: '/select-investment-method'),
+        _i61.RouteConfig(BankInvestmentPageRoute.name,
+            path: '/bank-investment-page'),
+        _i61.RouteConfig(NairaAccountRoute.name, path: '/naira-account'),
+        _i61.RouteConfig(DomiciliaryAccountRoute.name,
+            path: '/domiciliary-account'),
         _i61.RouteConfig(CryptoInvestmentPageRoute.name,
-            path: 'cryptoInvestment'),
-        _i61.RouteConfig(FortCryptoRoute.name, path: 'fortcrypto'),
+            path: '/crypto-investment-page'),
+        _i61.RouteConfig(FortCryptoRoute.name, path: '/fort-crypto'),
         _i61.RouteConfig(FortCryptoInvestmentRoute.name,
-            path: 'fortcryptoinvest'),
-        _i61.RouteConfig(FortDollarRoute.name, path: 'fortdollar'),
+            path: '/fort-crypto-investment'),
+        _i61.RouteConfig(FortDollarRoute.name, path: '/fort-dollar'),
         _i61.RouteConfig(FortDollarInvestmentRoute.name,
-            path: 'fortdollarinvest'),
-        _i61.RouteConfig(FortShieldRoute.name, path: 'fortshield'),
+            path: '/fort-dollar-investment'),
+        _i61.RouteConfig(FortShieldRoute.name, path: '/fort-shield'),
         _i61.RouteConfig(FortShieldInvestmentRoute.name,
-            path: 'fortshieldinvest'),
-        _i61.RouteConfig(WalletOverviewRoute.name, path: 'walletOverview'),
+            path: '/fort-shield-investment'),
+        _i61.RouteConfig(WalletOverviewRoute.name, path: '/wallet-overview'),
         _i61.RouteConfig(WalletOverviewEngineRoute.name,
-            path: 'walletOverviewEngine'),
+            path: '/wallet-overview-engine'),
         _i61.RouteConfig(WalletTransactionsRoute.name,
-            path: 'walletTransactions'),
+            path: '/wallet-transactions'),
         _i61.RouteConfig(SelectWithdrawalMethodRoute.name,
-            path: 'selectWithdrawalMethod'),
-        _i61.RouteConfig(BankWithdrawalRoute.name, path: 'bankwithdrawal'),
-        _i61.RouteConfig(CryptoWithdrawalRoute.name, path: 'cryptowithdrawal'),
+            path: '/select-withdrawal-method'),
+        _i61.RouteConfig(BankWithdrawalRoute.name, path: '/bank-withdrawal'),
+        _i61.RouteConfig(CryptoWithdrawalRoute.name,
+            path: '/crypto-withdrawal'),
         _i61.RouteConfig(FortDollarInvestmentInfoRoute.name,
-            path: 'fortdollarinvestinfo'),
+            path: '/fort-dollar-investment-info'),
         _i61.RouteConfig(FortShieldInvestmentInfoRoute.name,
-            path: 'fortshieldinvestinfo'),
+            path: '/fort-shield-investment-info'),
         _i61.RouteConfig(FortCryptoInvestmentInfoRoute.name,
-            path: 'fortcryptoinvestinfo'),
-        _i61.RouteConfig(WithdrawalPageRoute.name, path: 'withdrawPage'),
+            path: '/fort-crypto-investment-info'),
+        _i61.RouteConfig(WithdrawalPageRoute.name, path: '/withdrawal-page'),
         _i61.RouteConfig(WithdrawalSuccessRoute.name,
-            path: 'withdrawalSuccess'),
+            path: '/withdrawal-success'),
         _i61.RouteConfig(InvestmentSuccessRoute.name,
             path: '/investment-success'),
-        _i61.RouteConfig(NoInternetPageRoute.name, path: 'noInternet'),
+        _i61.RouteConfig(NoInternetPageRoute.name, path: '/no-internet-page'),
         _i61.RouteConfig(HomePageRoute.name, path: '/home', children: [
           _i61.RouteConfig(DashboardRoute.name,
               path: 'dashboard', parent: HomePageRoute.name),
@@ -507,7 +511,7 @@ class ResetPasswordRoute extends _i61.PageRouteInfo<void> {
 /// [_i10.NotificationsPage]
 class NotificationsPageRoute extends _i61.PageRouteInfo<void> {
   const NotificationsPageRoute()
-      : super(NotificationsPageRoute.name, path: 'notificationsPage');
+      : super(NotificationsPageRoute.name, path: '/notifications-page');
 
   static const String name = 'NotificationsPageRoute';
 }
@@ -524,7 +528,8 @@ class NotificationEngineRoute extends _i61.PageRouteInfo<void> {
 /// generated route for
 /// [_i12.ProfilePage]
 class ProfilePageRoute extends _i61.PageRouteInfo<void> {
-  const ProfilePageRoute() : super(ProfilePageRoute.name, path: 'profilePage');
+  const ProfilePageRoute()
+      : super(ProfilePageRoute.name, path: '/profile-page');
 
   static const String name = 'ProfilePageRoute';
 }
@@ -533,7 +538,7 @@ class ProfilePageRoute extends _i61.PageRouteInfo<void> {
 /// [_i13.DashboardTransactions]
 class DashboardTransactionsRoute extends _i61.PageRouteInfo<void> {
   const DashboardTransactionsRoute()
-      : super(DashboardTransactionsRoute.name, path: 'dashboardTransactions');
+      : super(DashboardTransactionsRoute.name, path: '/dashboard-transactions');
 
   static const String name = 'DashboardTransactionsRoute';
 }
@@ -541,7 +546,7 @@ class DashboardTransactionsRoute extends _i61.PageRouteInfo<void> {
 /// generated route for
 /// [_i14.Calculator]
 class CalculatorRoute extends _i61.PageRouteInfo<void> {
-  const CalculatorRoute() : super(CalculatorRoute.name, path: 'calculator');
+  const CalculatorRoute() : super(CalculatorRoute.name, path: '/Calculator');
 
   static const String name = 'CalculatorRoute';
 }
@@ -549,7 +554,7 @@ class CalculatorRoute extends _i61.PageRouteInfo<void> {
 /// generated route for
 /// [_i15.Security]
 class SecurityRoute extends _i61.PageRouteInfo<void> {
-  const SecurityRoute() : super(SecurityRoute.name, path: 'security');
+  const SecurityRoute() : super(SecurityRoute.name, path: '/Security');
 
   static const String name = 'SecurityRoute';
 }
@@ -558,7 +563,7 @@ class SecurityRoute extends _i61.PageRouteInfo<void> {
 /// [_i16.ChangePassword]
 class ChangePasswordRoute extends _i61.PageRouteInfo<void> {
   const ChangePasswordRoute()
-      : super(ChangePasswordRoute.name, path: 'changepassword');
+      : super(ChangePasswordRoute.name, path: '/change-password');
 
   static const String name = 'ChangePasswordRoute';
 }
@@ -566,7 +571,7 @@ class ChangePasswordRoute extends _i61.PageRouteInfo<void> {
 /// generated route for
 /// [_i17.AddBank]
 class AddBankRoute extends _i61.PageRouteInfo<void> {
-  const AddBankRoute() : super(AddBankRoute.name, path: 'addBank');
+  const AddBankRoute() : super(AddBankRoute.name, path: '/add-bank');
 
   static const String name = 'AddBankRoute';
 }
@@ -574,7 +579,7 @@ class AddBankRoute extends _i61.PageRouteInfo<void> {
 /// generated route for
 /// [_i18.VerifyBank]
 class VerifyBankRoute extends _i61.PageRouteInfo<void> {
-  const VerifyBankRoute() : super(VerifyBankRoute.name, path: 'verifyBank');
+  const VerifyBankRoute() : super(VerifyBankRoute.name, path: '/verify-bank');
 
   static const String name = 'VerifyBankRoute';
 }
@@ -583,7 +588,7 @@ class VerifyBankRoute extends _i61.PageRouteInfo<void> {
 /// [_i19.AddCryptoWallet]
 class AddCryptoWalletRoute extends _i61.PageRouteInfo<void> {
   const AddCryptoWalletRoute()
-      : super(AddCryptoWalletRoute.name, path: 'addCryptoWallet');
+      : super(AddCryptoWalletRoute.name, path: '/add-crypto-wallet');
 
   static const String name = 'AddCryptoWalletRoute';
 }
@@ -592,7 +597,7 @@ class AddCryptoWalletRoute extends _i61.PageRouteInfo<void> {
 /// [_i20.VerifyCryptoWallet]
 class VerifyCryptoWalletRoute extends _i61.PageRouteInfo<void> {
   const VerifyCryptoWalletRoute()
-      : super(VerifyCryptoWalletRoute.name, path: 'verifyCryptoWallet');
+      : super(VerifyCryptoWalletRoute.name, path: '/verify-crypto-wallet');
 
   static const String name = 'VerifyCryptoWalletRoute';
 }
@@ -600,7 +605,8 @@ class VerifyCryptoWalletRoute extends _i61.PageRouteInfo<void> {
 /// generated route for
 /// [_i21.BankAddress]
 class BankAddressRoute extends _i61.PageRouteInfo<void> {
-  const BankAddressRoute() : super(BankAddressRoute.name, path: 'bankPage');
+  const BankAddressRoute()
+      : super(BankAddressRoute.name, path: '/bank-address');
 
   static const String name = 'BankAddressRoute';
 }
@@ -609,7 +615,7 @@ class BankAddressRoute extends _i61.PageRouteInfo<void> {
 /// [_i22.CryptoWallet]
 class CryptoWalletRoute extends _i61.PageRouteInfo<void> {
   const CryptoWalletRoute()
-      : super(CryptoWalletRoute.name, path: 'cryptoWalletPage');
+      : super(CryptoWalletRoute.name, path: '/crypto-wallet');
 
   static const String name = 'CryptoWalletRoute';
 }
@@ -618,7 +624,7 @@ class CryptoWalletRoute extends _i61.PageRouteInfo<void> {
 /// [_i23.PaymentMethod]
 class PaymentMethodRoute extends _i61.PageRouteInfo<void> {
   const PaymentMethodRoute()
-      : super(PaymentMethodRoute.name, path: 'paymentmethod');
+      : super(PaymentMethodRoute.name, path: '/payment-method');
 
   static const String name = 'PaymentMethodRoute';
 }
@@ -626,7 +632,7 @@ class PaymentMethodRoute extends _i61.PageRouteInfo<void> {
 /// generated route for
 /// [_i24.FAQPage]
 class FAQPageRoute extends _i61.PageRouteInfo<void> {
-  const FAQPageRoute() : super(FAQPageRoute.name, path: 'faq');
+  const FAQPageRoute() : super(FAQPageRoute.name, path: '/f-aq-page');
 
   static const String name = 'FAQPageRoute';
 }
@@ -634,7 +640,8 @@ class FAQPageRoute extends _i61.PageRouteInfo<void> {
 /// generated route for
 /// [_i25.SupportPage]
 class SupportPageRoute extends _i61.PageRouteInfo<void> {
-  const SupportPageRoute() : super(SupportPageRoute.name, path: 'support');
+  const SupportPageRoute()
+      : super(SupportPageRoute.name, path: '/support-page');
 
   static const String name = 'SupportPageRoute';
 }
@@ -642,7 +649,7 @@ class SupportPageRoute extends _i61.PageRouteInfo<void> {
 /// generated route for
 /// [_i26.TACPage]
 class TACPageRoute extends _i61.PageRouteInfo<void> {
-  const TACPageRoute() : super(TACPageRoute.name, path: 'tac');
+  const TACPageRoute() : super(TACPageRoute.name, path: '/t-ac-page');
 
   static const String name = 'TACPageRoute';
 }
@@ -651,7 +658,7 @@ class TACPageRoute extends _i61.PageRouteInfo<void> {
 /// [_i27.UploadDocumentImage]
 class UploadDocumentImageRoute extends _i61.PageRouteInfo<void> {
   const UploadDocumentImageRoute()
-      : super(UploadDocumentImageRoute.name, path: 'uploadDocumentImage');
+      : super(UploadDocumentImageRoute.name, path: '/upload-document-image');
 
   static const String name = 'UploadDocumentImageRoute';
 }
@@ -659,7 +666,7 @@ class UploadDocumentImageRoute extends _i61.PageRouteInfo<void> {
 /// generated route for
 /// [_i28.UploadPage]
 class UploadPageRoute extends _i61.PageRouteInfo<void> {
-  const UploadPageRoute() : super(UploadPageRoute.name, path: 'uploadPage');
+  const UploadPageRoute() : super(UploadPageRoute.name, path: '/upload-page');
 
   static const String name = 'UploadPageRoute';
 }
@@ -667,7 +674,8 @@ class UploadPageRoute extends _i61.PageRouteInfo<void> {
 /// generated route for
 /// [_i29.UtilityPage]
 class UtilityPageRoute extends _i61.PageRouteInfo<void> {
-  const UtilityPageRoute() : super(UtilityPageRoute.name, path: 'utilityPage');
+  const UtilityPageRoute()
+      : super(UtilityPageRoute.name, path: '/utility-page');
 
   static const String name = 'UtilityPageRoute';
 }
@@ -676,7 +684,7 @@ class UtilityPageRoute extends _i61.PageRouteInfo<void> {
 /// [_i30.UploadUtilityDoc]
 class UploadUtilityDocRoute extends _i61.PageRouteInfo<void> {
   const UploadUtilityDocRoute()
-      : super(UploadUtilityDocRoute.name, path: 'uploadUtilityDocument');
+      : super(UploadUtilityDocRoute.name, path: '/upload-utility-doc');
 
   static const String name = 'UploadUtilityDocRoute';
 }
@@ -685,7 +693,7 @@ class UploadUtilityDocRoute extends _i61.PageRouteInfo<void> {
 /// [_i31.VerificationPage]
 class VerificationPageRoute extends _i61.PageRouteInfo<void> {
   const VerificationPageRoute()
-      : super(VerificationPageRoute.name, path: 'verificationPage');
+      : super(VerificationPageRoute.name, path: '/verification-page');
 
   static const String name = 'VerificationPageRoute';
 }
@@ -694,7 +702,7 @@ class VerificationPageRoute extends _i61.PageRouteInfo<void> {
 /// [_i32.VerificationSuccess]
 class VerificationSuccessRoute extends _i61.PageRouteInfo<void> {
   const VerificationSuccessRoute()
-      : super(VerificationSuccessRoute.name, path: 'uploadVerificationSuccess');
+      : super(VerificationSuccessRoute.name, path: '/verification-success');
 
   static const String name = 'VerificationSuccessRoute';
 }
@@ -703,7 +711,8 @@ class VerificationSuccessRoute extends _i61.PageRouteInfo<void> {
 /// [_i33.SelectInvestmentMethod]
 class SelectInvestmentMethodRoute extends _i61.PageRouteInfo<void> {
   const SelectInvestmentMethodRoute()
-      : super(SelectInvestmentMethodRoute.name, path: 'selectInvestmentMethod');
+      : super(SelectInvestmentMethodRoute.name,
+            path: '/select-investment-method');
 
   static const String name = 'SelectInvestmentMethodRoute';
 }
@@ -712,7 +721,7 @@ class SelectInvestmentMethodRoute extends _i61.PageRouteInfo<void> {
 /// [_i34.BankInvestmentPage]
 class BankInvestmentPageRoute extends _i61.PageRouteInfo<void> {
   const BankInvestmentPageRoute()
-      : super(BankInvestmentPageRoute.name, path: 'bankInvestment');
+      : super(BankInvestmentPageRoute.name, path: '/bank-investment-page');
 
   static const String name = 'BankInvestmentPageRoute';
 }
@@ -720,7 +729,8 @@ class BankInvestmentPageRoute extends _i61.PageRouteInfo<void> {
 /// generated route for
 /// [_i35.NairaAccount]
 class NairaAccountRoute extends _i61.PageRouteInfo<void> {
-  const NairaAccountRoute() : super(NairaAccountRoute.name, path: 'naira');
+  const NairaAccountRoute()
+      : super(NairaAccountRoute.name, path: '/naira-account');
 
   static const String name = 'NairaAccountRoute';
 }
@@ -729,7 +739,7 @@ class NairaAccountRoute extends _i61.PageRouteInfo<void> {
 /// [_i36.DomiciliaryAccount]
 class DomiciliaryAccountRoute extends _i61.PageRouteInfo<void> {
   const DomiciliaryAccountRoute()
-      : super(DomiciliaryAccountRoute.name, path: 'dollar');
+      : super(DomiciliaryAccountRoute.name, path: '/domiciliary-account');
 
   static const String name = 'DomiciliaryAccountRoute';
 }
@@ -738,7 +748,7 @@ class DomiciliaryAccountRoute extends _i61.PageRouteInfo<void> {
 /// [_i37.CryptoInvestmentPage]
 class CryptoInvestmentPageRoute extends _i61.PageRouteInfo<void> {
   const CryptoInvestmentPageRoute()
-      : super(CryptoInvestmentPageRoute.name, path: 'cryptoInvestment');
+      : super(CryptoInvestmentPageRoute.name, path: '/crypto-investment-page');
 
   static const String name = 'CryptoInvestmentPageRoute';
 }
@@ -746,7 +756,7 @@ class CryptoInvestmentPageRoute extends _i61.PageRouteInfo<void> {
 /// generated route for
 /// [_i38.FortCrypto]
 class FortCryptoRoute extends _i61.PageRouteInfo<void> {
-  const FortCryptoRoute() : super(FortCryptoRoute.name, path: 'fortcrypto');
+  const FortCryptoRoute() : super(FortCryptoRoute.name, path: '/fort-crypto');
 
   static const String name = 'FortCryptoRoute';
 }
@@ -755,7 +765,7 @@ class FortCryptoRoute extends _i61.PageRouteInfo<void> {
 /// [_i39.FortCryptoInvestment]
 class FortCryptoInvestmentRoute extends _i61.PageRouteInfo<void> {
   const FortCryptoInvestmentRoute()
-      : super(FortCryptoInvestmentRoute.name, path: 'fortcryptoinvest');
+      : super(FortCryptoInvestmentRoute.name, path: '/fort-crypto-investment');
 
   static const String name = 'FortCryptoInvestmentRoute';
 }
@@ -763,7 +773,7 @@ class FortCryptoInvestmentRoute extends _i61.PageRouteInfo<void> {
 /// generated route for
 /// [_i40.FortDollar]
 class FortDollarRoute extends _i61.PageRouteInfo<void> {
-  const FortDollarRoute() : super(FortDollarRoute.name, path: 'fortdollar');
+  const FortDollarRoute() : super(FortDollarRoute.name, path: '/fort-dollar');
 
   static const String name = 'FortDollarRoute';
 }
@@ -772,7 +782,7 @@ class FortDollarRoute extends _i61.PageRouteInfo<void> {
 /// [_i41.FortDollarInvestment]
 class FortDollarInvestmentRoute extends _i61.PageRouteInfo<void> {
   const FortDollarInvestmentRoute()
-      : super(FortDollarInvestmentRoute.name, path: 'fortdollarinvest');
+      : super(FortDollarInvestmentRoute.name, path: '/fort-dollar-investment');
 
   static const String name = 'FortDollarInvestmentRoute';
 }
@@ -780,7 +790,7 @@ class FortDollarInvestmentRoute extends _i61.PageRouteInfo<void> {
 /// generated route for
 /// [_i42.FortShield]
 class FortShieldRoute extends _i61.PageRouteInfo<void> {
-  const FortShieldRoute() : super(FortShieldRoute.name, path: 'fortshield');
+  const FortShieldRoute() : super(FortShieldRoute.name, path: '/fort-shield');
 
   static const String name = 'FortShieldRoute';
 }
@@ -789,7 +799,7 @@ class FortShieldRoute extends _i61.PageRouteInfo<void> {
 /// [_i43.FortShieldInvestment]
 class FortShieldInvestmentRoute extends _i61.PageRouteInfo<void> {
   const FortShieldInvestmentRoute()
-      : super(FortShieldInvestmentRoute.name, path: 'fortshieldinvest');
+      : super(FortShieldInvestmentRoute.name, path: '/fort-shield-investment');
 
   static const String name = 'FortShieldInvestmentRoute';
 }
@@ -798,7 +808,7 @@ class FortShieldInvestmentRoute extends _i61.PageRouteInfo<void> {
 /// [_i44.WalletOverview]
 class WalletOverviewRoute extends _i61.PageRouteInfo<void> {
   const WalletOverviewRoute()
-      : super(WalletOverviewRoute.name, path: 'walletOverview');
+      : super(WalletOverviewRoute.name, path: '/wallet-overview');
 
   static const String name = 'WalletOverviewRoute';
 }
@@ -807,7 +817,7 @@ class WalletOverviewRoute extends _i61.PageRouteInfo<void> {
 /// [_i45.WalletOverviewEngine]
 class WalletOverviewEngineRoute extends _i61.PageRouteInfo<void> {
   const WalletOverviewEngineRoute()
-      : super(WalletOverviewEngineRoute.name, path: 'walletOverviewEngine');
+      : super(WalletOverviewEngineRoute.name, path: '/wallet-overview-engine');
 
   static const String name = 'WalletOverviewEngineRoute';
 }
@@ -816,7 +826,7 @@ class WalletOverviewEngineRoute extends _i61.PageRouteInfo<void> {
 /// [_i46.WalletTransactions]
 class WalletTransactionsRoute extends _i61.PageRouteInfo<void> {
   const WalletTransactionsRoute()
-      : super(WalletTransactionsRoute.name, path: 'walletTransactions');
+      : super(WalletTransactionsRoute.name, path: '/wallet-transactions');
 
   static const String name = 'WalletTransactionsRoute';
 }
@@ -825,7 +835,8 @@ class WalletTransactionsRoute extends _i61.PageRouteInfo<void> {
 /// [_i47.SelectWithdrawalMethod]
 class SelectWithdrawalMethodRoute extends _i61.PageRouteInfo<void> {
   const SelectWithdrawalMethodRoute()
-      : super(SelectWithdrawalMethodRoute.name, path: 'selectWithdrawalMethod');
+      : super(SelectWithdrawalMethodRoute.name,
+            path: '/select-withdrawal-method');
 
   static const String name = 'SelectWithdrawalMethodRoute';
 }
@@ -834,7 +845,7 @@ class SelectWithdrawalMethodRoute extends _i61.PageRouteInfo<void> {
 /// [_i48.BankWithdrawal]
 class BankWithdrawalRoute extends _i61.PageRouteInfo<void> {
   const BankWithdrawalRoute()
-      : super(BankWithdrawalRoute.name, path: 'bankwithdrawal');
+      : super(BankWithdrawalRoute.name, path: '/bank-withdrawal');
 
   static const String name = 'BankWithdrawalRoute';
 }
@@ -843,7 +854,7 @@ class BankWithdrawalRoute extends _i61.PageRouteInfo<void> {
 /// [_i49.CryptoWithdrawal]
 class CryptoWithdrawalRoute extends _i61.PageRouteInfo<void> {
   const CryptoWithdrawalRoute()
-      : super(CryptoWithdrawalRoute.name, path: 'cryptowithdrawal');
+      : super(CryptoWithdrawalRoute.name, path: '/crypto-withdrawal');
 
   static const String name = 'CryptoWithdrawalRoute';
 }
@@ -852,7 +863,8 @@ class CryptoWithdrawalRoute extends _i61.PageRouteInfo<void> {
 /// [_i50.FortDollarInvestmentInfo]
 class FortDollarInvestmentInfoRoute extends _i61.PageRouteInfo<void> {
   const FortDollarInvestmentInfoRoute()
-      : super(FortDollarInvestmentInfoRoute.name, path: 'fortdollarinvestinfo');
+      : super(FortDollarInvestmentInfoRoute.name,
+            path: '/fort-dollar-investment-info');
 
   static const String name = 'FortDollarInvestmentInfoRoute';
 }
@@ -861,7 +873,8 @@ class FortDollarInvestmentInfoRoute extends _i61.PageRouteInfo<void> {
 /// [_i51.FortShieldInvestmentInfo]
 class FortShieldInvestmentInfoRoute extends _i61.PageRouteInfo<void> {
   const FortShieldInvestmentInfoRoute()
-      : super(FortShieldInvestmentInfoRoute.name, path: 'fortshieldinvestinfo');
+      : super(FortShieldInvestmentInfoRoute.name,
+            path: '/fort-shield-investment-info');
 
   static const String name = 'FortShieldInvestmentInfoRoute';
 }
@@ -870,7 +883,8 @@ class FortShieldInvestmentInfoRoute extends _i61.PageRouteInfo<void> {
 /// [_i52.FortCryptoInvestmentInfo]
 class FortCryptoInvestmentInfoRoute extends _i61.PageRouteInfo<void> {
   const FortCryptoInvestmentInfoRoute()
-      : super(FortCryptoInvestmentInfoRoute.name, path: 'fortcryptoinvestinfo');
+      : super(FortCryptoInvestmentInfoRoute.name,
+            path: '/fort-crypto-investment-info');
 
   static const String name = 'FortCryptoInvestmentInfoRoute';
 }
@@ -879,7 +893,7 @@ class FortCryptoInvestmentInfoRoute extends _i61.PageRouteInfo<void> {
 /// [_i53.WithdrawalPage]
 class WithdrawalPageRoute extends _i61.PageRouteInfo<void> {
   const WithdrawalPageRoute()
-      : super(WithdrawalPageRoute.name, path: 'withdrawPage');
+      : super(WithdrawalPageRoute.name, path: '/withdrawal-page');
 
   static const String name = 'WithdrawalPageRoute';
 }
@@ -888,7 +902,7 @@ class WithdrawalPageRoute extends _i61.PageRouteInfo<void> {
 /// [_i54.WithdrawalSuccess]
 class WithdrawalSuccessRoute extends _i61.PageRouteInfo<void> {
   const WithdrawalSuccessRoute()
-      : super(WithdrawalSuccessRoute.name, path: 'withdrawalSuccess');
+      : super(WithdrawalSuccessRoute.name, path: '/withdrawal-success');
 
   static const String name = 'WithdrawalSuccessRoute';
 }
@@ -906,7 +920,7 @@ class InvestmentSuccessRoute extends _i61.PageRouteInfo<void> {
 /// [_i56.NoInternetPage]
 class NoInternetPageRoute extends _i61.PageRouteInfo<void> {
   const NoInternetPageRoute()
-      : super(NoInternetPageRoute.name, path: 'noInternet');
+      : super(NoInternetPageRoute.name, path: '/no-internet-page');
 
   static const String name = 'NoInternetPageRoute';
 }
