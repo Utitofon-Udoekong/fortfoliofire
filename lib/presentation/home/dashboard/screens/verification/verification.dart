@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_icon_trailing_button.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
@@ -10,11 +12,33 @@ class VerificationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool isVerified = context.select((AuthCubit element) => element.state.userModel.isVerified);
     return Scaffold(
       body: SafeArea(
       child: Padding(
         padding: kDefaultPadding,
-        child: Column(
+        child: isVerified ? Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            const SizedBox(
+              height: 20,
+            ),
+            InkWell(
+              onTap: () => context.router.pop(),
+              child: const Icon(Icons.close),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Center(
+              child: Text(
+                "Account Verified",
+                style: titleText,
+              ),
+            ),
+            
+          ],
+        ) : Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             const SizedBox(
@@ -55,7 +79,7 @@ class VerificationPage extends StatelessWidget {
             ),
             const CustomIconTrailingButton(icon: 'license', title: 'Drivers License', page: UploadPageRoute() ),
           ],
-        ),
+        )
       ),
     ),
     );

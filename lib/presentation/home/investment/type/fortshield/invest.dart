@@ -136,7 +136,7 @@ class FortShieldInvestment extends StatelessWidget {
                   height: 20,
                 ),
                 Text(
-                  "Duration",
+                  "Select Investment Duration",
                   style: subTitle.copyWith(
                       color: const Color(0xFF656565), fontSize: 13),
                 ),
@@ -148,7 +148,7 @@ class FortShieldInvestment extends StatelessWidget {
                   builder: (context, state) {
                     return ToggleButtons(
                       selectedColor: Colors.white,
-                      color: kPrimaryColor,
+                      // color: kPrimaryColor,
                       isSelected: state.isSelected,
                       renderBorder: false,
                       children: <Widget>[

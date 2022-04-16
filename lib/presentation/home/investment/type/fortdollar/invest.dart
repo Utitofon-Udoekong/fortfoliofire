@@ -111,7 +111,7 @@ class FortDollarInvestment extends StatelessWidget {
                   height: 20,
                 ),
                 Text(
-                  "Duration",
+                  "Select Investment Duration",
                   style: subTitle.copyWith(
                       color: const Color(0xFF656565), fontSize: 13),
                 ),
@@ -125,25 +125,23 @@ class FortDollarInvestment extends StatelessWidget {
                   builder: (context, state) {
                     return ToggleButtons(
                       selectedColor: Colors.white,
-                      color: kPrimaryColor,
+                      // color: kPrimaryColor,
                       isSelected: state.isSelected,
                       renderBorder: false,
                       children: <Widget>[
-                        Ink(
-                          child: Container(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 8.0),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(6),
-                                color: state.duration == 3 ? kPrimaryColor : kWhiteColor,
-                              border: Border.all(color: state.duration == 3 ? kPrimaryColor : kWhiteColor, width: state.duration == 3 ? 1.0 : 0.0),),
-                            margin: const EdgeInsets.only(right: 28),
-                            child: const Text(
-                              '3 months',
-                              style: TextStyle(fontSize: 15),
-                            ),
-                            alignment: Alignment.center,
+                        Container(
+                          padding:
+                              const EdgeInsets.symmetric(horizontal: 8.0),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(6),
+                              color: state.duration == 3 ? kPrimaryColor : kWhiteColor,
+                            border: Border.all(color: state.duration == 3 ? kPrimaryColor : kWhiteColor, width: state.duration == 3 ? 1.0 : 0.0),),
+                          margin: const EdgeInsets.only(right: 28),
+                          child: const Text(
+                            '3 months',
+                            style: TextStyle(fontSize: 15),
                           ),
+                          alignment: Alignment.center,
                         ),
                         Container(
                           padding:
