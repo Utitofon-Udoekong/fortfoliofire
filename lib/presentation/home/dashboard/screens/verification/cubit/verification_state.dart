@@ -6,15 +6,15 @@ class VerificationState with _$VerificationState {
     required bool submitting,
     required String failure,
     required String success,
-    required String frontFile,
-    required String backFile,
-    required String utilityFile,
+    required Uint8List frontFile,
+    required Uint8List backFile,
+    required Uint8List utilityFile,
   }) = _VerificationState;
   const VerificationState._();
-  factory VerificationState.empty() => const VerificationState(
+  factory VerificationState.empty() => VerificationState(
     submitting: false,
     failure: "",
-    frontFile: "",
+    frontFile: Uint8List.fromList(),
     backFile: "",
     utilityFile: "",
     success: ""

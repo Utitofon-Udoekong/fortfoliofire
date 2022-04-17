@@ -15,7 +15,7 @@ class FirebaseStorageFacade implements IStorageFacade {
   @override
   Future<Either<String, String>> uploadImageToStorage({required String childName, required Uint8List file}) async {
     Reference ref =
-        storage.ref("KYC_DOCUMENTS").child(childName);
+        storage.ref("KYC_DOCUMENTS").child(auth.currentUser!.uid).child(childName);
     try {
       UploadTask uploadTask = ref.putData(
         file
@@ -32,6 +32,25 @@ class FirebaseStorageFacade implements IStorageFacade {
         return left('Server error encountered');
       }
       
+    }
+  }
+
+  @override
+  Future<Either<String, List<Reference>>> getNewsFromStorage() async {
+    Reference ref =
+        storage.ref("NEWS");
+    try{
+      final ListResult refList = await ref.listAll();
+      final List<Reference> newsList = refList.items;
+      return right(newsList);
+    } on FirebaseException catch (e) {
+      if (e.code == 'permission-denied') {
+        return left('User does not have permission to upload to the database.');
+      }else if (e.code == 'canceled'){
+        return left('Upload task has been cancelled');
+      }else{
+        return left('Server error encountered');
+      }
     }
   }
   

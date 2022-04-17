@@ -11,7 +11,7 @@ import 'package:fortfolio/domain/user/withdrawal_item.dart';
 abstract class IFirestoreFacade {
   Future<Either<String,String>> createInvestmentTransaction( {required InvestmentItem investmentItem});
   Future<Either<String,String>> harvestInvestment( {required String docId, required int amount});
-  Future<Option<String>> addBank({required BankAddress bankAddress});
+  Future<Either<String,String>> addBank({required BankAddress bankAddress});
   Future<Either<String,String>> addCryptoWallet({required CryptoWallet cryptoWallet});
   Future<Either<String,String>> addGeneralCryptoWallet({required CryptoWallet cryptoWallet});
   Future<Option<List<NotificationItem>>> getNotifications();

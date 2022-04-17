@@ -98,7 +98,7 @@ class InvestmentPage extends StatelessWidget {
                             text: 'up to ',
                             children: <TextSpan>[
                               TextSpan(
-                                  text: '$roi returns',
+                                  text: '$roi returns ',
                                   style: subTitle.copyWith(
                                     color: kGreenColor,
                                     fontSize: 12,

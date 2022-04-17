@@ -17,7 +17,6 @@ import 'package:fortfolio/infrastructure/auth/dto/kyc/kyc_dto.dart';
 import 'package:fortfolio/infrastructure/auth/dto/notification/notification_dto.dart';
 import 'package:fortfolio/infrastructure/auth/dto/withdrawal/withdrawal_dto.dart';
 import 'package:fortfolio/infrastructure/core/firestore_helpers.dart';
-import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:injectable/injectable.dart';
 import 'package:nanoid/nanoid.dart';
 
@@ -29,25 +28,25 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
   FirebaseFirestoreFacade(this.firestore, this.auth);
 
   @override
-  Future<Option<String>> addBank({required BankAddress bankAddress}) async {
-    String docId = bankAddress.accountNumber + bankAddress.id;
+  Future<Either<String,String>> addBank({required BankAddress bankAddress}) async {
+    String docId = bankAddress.trax + bankAddress.id;
     try {
       await firestore.authUserCollection
           .doc(auth.currentUser!.uid)
           .collection("address")
           .doc(docId)
           .set(BankAddressDTO.fromDomain(bankAddress).toJson());
-      return some("Bank account added successfully");
+      return right("Bank account added successfully");
     } on FirebaseException catch (e) {
       log("Code: ${e.code}, Message: ${e.message}");
-      return some('Unable to add wallet');
+      return left('Unable to add wallet');
     }
   }
 
   @override
   Future<Either<String, String>> addCryptoWallet(
       {required CryptoWallet cryptoWallet}) async {
-    String docId = cryptoWallet.address + cryptoWallet.id;
+    String docId = cryptoWallet.trax + cryptoWallet.id;
     try {
       await firestore.authUserCollection
           .doc(auth.currentUser!.uid)
@@ -64,7 +63,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
   @override
   Future<Either<String, String>> addGeneralCryptoWallet(
       {required CryptoWallet cryptoWallet}) async {
-    String docId = cryptoWallet.address + cryptoWallet.id;
+    String docId = cryptoWallet.trax + cryptoWallet.id;
     try {
       await firestore.authUserCollection
           .doc(auth.currentUser!.uid)

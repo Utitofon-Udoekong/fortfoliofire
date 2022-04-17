@@ -19,36 +19,17 @@ class VerificationCubit extends Cubit<VerificationState> {
   VerificationCubit(this.storageFacade, this.firestoreFacade, this.authCubit) : super(VerificationState.empty());
 
   void frontPicked({required Uint8List file}) async {
-    emit(state.copyWith(submitting: true,success: "",failure:""));
-    final response = await storageFacade.uploadImageToStorage(
-        childName: "FrontDocument", file: file);
-    response.fold((failure) {
-      emit(state.copyWith(submitting: false,failure: failure));
-    }, (response){
-      emit(state.copyWith(submitting: false,frontFile: response, success: "File uploaded"));
-    });
+    // final response = await storageFacade.uploadImageToStorage(
+    //     childName: "FrontDocument", file: file);
+      emit(state.copyWith(frontFile: file));
   }
 
   void backPicked({required Uint8List file}) async {
-    emit(state.copyWith(submitting: true,success: "",failure:""));
-    final response = await storageFacade.uploadImageToStorage(
-        childName: "BackDocument", file: file);
-    response.fold((failure) {
-      emit(state.copyWith(submitting: false,failure: failure));
-    }, (response){
-      emit(state.copyWith(submitting: false,backFile: response, success: "File uploaded"));
-    });
+    emit(state.copyWith(backFile: file));
   }
 
   void utilityPicked({required Uint8List file}) async {
-    emit(state.copyWith(submitting: true,success: "",failure:""));
-    final response = await storageFacade.uploadImageToStorage(
-        childName: "UtilityDocument", file: file);
-    response.fold((failure) {
-      emit(state.copyWith(submitting: false,failure: failure));
-    }, (response){
-      emit(state.copyWith(submitting: false, utilityFile: response, success: "File uploaded"));
-    });
+   emit(state.copyWith(utilityFile: file));
   }
 
   void submitKYC() async {

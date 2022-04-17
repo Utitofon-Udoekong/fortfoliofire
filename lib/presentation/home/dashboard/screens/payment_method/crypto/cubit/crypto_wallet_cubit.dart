@@ -1,10 +1,11 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
 import 'package:fortfolio/domain/user/crypto_wallet.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/crypto/networks.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:nanoid/nanoid.dart';
 import 'package:uuid/uuid.dart';
 
 
@@ -46,7 +47,8 @@ class CryptoWalletCubit extends Cubit<CryptoWalletState> {
     final String address = state.address;
     final String platform = state.platform;
     final String network = state.network;
-    final String id = const Uuid().v4();
+    final String id = const Uuid().v4().substring(0,7);
+    final String trax = nanoid(8);
     if (isGeneral) {
       CryptoWallet cryptoWallet = CryptoWallet(
           walletLabel: walletLabel,
@@ -55,6 +57,7 @@ class CryptoWalletCubit extends Cubit<CryptoWalletState> {
           network: network,
           platform: platform,
           id: id,
+          trax: trax,
           type: "GENERALCRYPTOWALLET");
       try {
         final response = await firestoreFacade.addGeneralCryptoWallet(
@@ -75,6 +78,7 @@ class CryptoWalletCubit extends Cubit<CryptoWalletState> {
           network: network,
           platform: platform,
           id: id,
+          trax: trax,
           type: "CRYPTOWALLET");
       try {
         final response =

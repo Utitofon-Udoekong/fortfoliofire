@@ -13,6 +13,7 @@ abstract class BankAddressDTO implements _$BankAddressDTO {
     required String accountNumber,
     required String userName,
     required String id,
+    required String trax,
     required String type,
   }) = _BankAddressDTO;
 
@@ -20,6 +21,7 @@ abstract class BankAddressDTO implements _$BankAddressDTO {
     return BankAddressDTO(
         accountNumber: bankAddress.accountNumber,
         bankName: bankAddress.bankName,
+        trax: bankAddress.trax,
         type: bankAddress.type,
         userName: bankAddress.userName,
         id: bankAddress.id);
@@ -45,6 +47,7 @@ extension BankAddressDTOX on BankAddressDTO {
         accountNumber: accountNumber,
         userName: userName,
         id: id,
+        trax: trax,
         type: type);
   }
 }

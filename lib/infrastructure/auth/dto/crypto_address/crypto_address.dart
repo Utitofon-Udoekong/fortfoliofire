@@ -16,6 +16,7 @@ abstract class CryptoWalletDTO implements _$CryptoWalletDTO {
     required String? network,
     required String platform,
     required String id,
+    required String trax,
     required String type,
   }) = _CryptoWalletDTO;
 
@@ -27,6 +28,7 @@ abstract class CryptoWalletDTO implements _$CryptoWalletDTO {
         platform: cryptoWallet.platform,
         type: cryptoWallet.type,
         id: cryptoWallet.id,
+        trax: cryptoWallet.trax,
         walletLabel: cryptoWallet.walletLabel);
   }
 
@@ -51,6 +53,7 @@ extension CryptoWalletDTOX on CryptoWalletDTO {
         coin: coin,
         network: network,
         platform: platform,
+        trax: trax,
         type: type,
         id: id);
   }

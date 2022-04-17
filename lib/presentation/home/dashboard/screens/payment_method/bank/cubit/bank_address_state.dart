@@ -7,7 +7,8 @@ class BankAddressState with _$BankAddressState {
     required String bankName,
     required String accountNumber,
     required bool isLoading,
-    required String response
+    required String failure,
+    required String success,
   }) = _BankAddressState;
   const BankAddressState._();
   factory BankAddressState.initial() => const BankAddressState(
@@ -15,7 +16,8 @@ class BankAddressState with _$BankAddressState {
     bankName: "",
     accountNumber: "",
     isLoading: false,
-    response: ""
+    failure: "",
+    success: ""
   );
-  bool get isValidState => bankName.isNotEmpty && accountNumber.isNotEmpty;
+  bool get isValidState => bankName.isNotEmpty && accountNumber.isNotEmpty && userName.isNotEmpty;
 }

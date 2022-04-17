@@ -12,21 +12,38 @@ class CryptoWalletState with _$CryptoWalletState {
     required String success,
     required bool isGeneral,
     required bool isloading,
-    required int? selectedNetwork
+    required int? selectedNetwork,
+    required List<DropdownMenuItem<String>> dropdownItems,
   }) = _CryptoWalletState;
   const CryptoWalletState._();
   factory CryptoWalletState.empty() => const CryptoWalletState(
-    coin: "",
-    walletLabel: "",
-    network: "",
-    address: "",
-    platform: "",
-    failure: "",
-    success: "",
-    isGeneral: false,
-    isloading: false,
-    selectedNetwork: 1
-  );
+        coin: "",
+        walletLabel: "",
+        network: "",
+        address: "",
+        platform: "",
+        failure: "",
+        success: "",
+        isGeneral: true,
+        isloading: false,
+        selectedNetwork: 1,
+        dropdownItems: [
+          DropdownMenuItem(child: Text("BTC"), value: "BTC"),
+          DropdownMenuItem(child: Text("BCH"), value: "BCH"),
+          DropdownMenuItem(child: Text("ETH"), value: "ETH"),
+          DropdownMenuItem(child: Text("LTC"), value: "LTC"),
+          DropdownMenuItem(child: Text("BNB"), value: "BNB"),
+          DropdownMenuItem(child: Text("SOL"), value: "SOL"),
+          DropdownMenuItem(child: Text("LUNA"), value: "LUNA"),
+          DropdownMenuItem(child: Text("ALGO"), value: "ALGO"),
+          DropdownMenuItem(child: Text("XRP"), value: "XRP"),
+        ],
+      );
 
-  bool get isValidState => walletLabel.isNotEmpty && coin.isNotEmpty && network.isNotEmpty && address.isNotEmpty && platform.isNotEmpty;
+  bool get isValidState =>
+      walletLabel.isNotEmpty &&
+      coin.isNotEmpty &&
+      network.isNotEmpty &&
+      address.isNotEmpty &&
+      platform.isNotEmpty;
 }
