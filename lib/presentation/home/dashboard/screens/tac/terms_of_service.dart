@@ -190,6 +190,6 @@ class TACPage extends StatelessWidget {
   }
 
   Widget buildbody(String text){
-    return Text(text,style: subTitle.copyWith(color: kgreyColor, fontSize: 13));
+    return Text(text,style: subTitle.copyWith(color: kgreyColor, fontSize: 15, fontWeight: FontWeight.w400,));
   }
 }

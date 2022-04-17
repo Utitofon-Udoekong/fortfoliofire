@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:bloc/bloc.dart';
@@ -19,18 +18,18 @@ class VerificationCubit extends Cubit<VerificationState> {
   final AuthCubit authCubit;
   VerificationCubit(this.storageFacade, this.firestoreFacade, this.authCubit) : super(VerificationState.empty());
 
-  void frontPicked({required File file}) async {
+  void frontPicked({required Uint8List file}) async {
     emit(state.copyWith(submitting: true,success: "",failure:""));
     final response = await storageFacade.uploadImageToStorage(
         childName: "FrontDocument", file: file);
     response.fold((failure) {
       emit(state.copyWith(submitting: false,failure: failure));
     }, (response){
-      emit(state.copyWith(submitting: false, frontFile: response, success: "File uploaded"));
+      emit(state.copyWith(submitting: false,frontFile: response, success: "File uploaded"));
     });
   }
 
-  void backPicked({required File file}) async {
+  void backPicked({required Uint8List file}) async {
     emit(state.copyWith(submitting: true,success: "",failure:""));
     final response = await storageFacade.uploadImageToStorage(
         childName: "BackDocument", file: file);
@@ -41,7 +40,7 @@ class VerificationCubit extends Cubit<VerificationState> {
     });
   }
 
-  void utilityPicked({required File file}) async {
+  void utilityPicked({required Uint8List file}) async {
     emit(state.copyWith(submitting: true,success: "",failure:""));
     final response = await storageFacade.uploadImageToStorage(
         childName: "UtilityDocument", file: file);

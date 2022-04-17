@@ -1,10 +1,10 @@
-import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
+import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
 import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/domain/widgets/loading_view.dart';
@@ -83,7 +83,7 @@ class UploadUtilityDoc extends StatelessWidget {
                                   child: const Text('Take a photo'),
                                   onPressed: () async {
                                     Navigator.pop(context);
-                                    File file =
+                                    Uint8List file =
                                         await pickImage(ImageSource.camera);
                                     context
                                         .read<VerificationCubit>()
@@ -94,7 +94,7 @@ class UploadUtilityDoc extends StatelessWidget {
                                   child: const Text('Choose from Gallery'),
                                   onPressed: () async {
                                     Navigator.of(context).pop();
-                                    File file =
+                                    Uint8List file =
                                         await pickImage(ImageSource.gallery);
                                     context
                                         .read<VerificationCubit>()

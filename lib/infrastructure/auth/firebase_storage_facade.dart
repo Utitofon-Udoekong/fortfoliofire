@@ -1,9 +1,7 @@
-import 'dart:io';
-
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:path/path.dart';
+import 'dart:typed_data';
 
 import 'package:fortfolio/domain/auth/i_storage_facade.dart';
 import 'package:injectable/injectable.dart';
@@ -15,13 +13,13 @@ class FirebaseStorageFacade implements IStorageFacade {
 
   FirebaseStorageFacade(this.auth, this.storage);
   @override
-  Future<Either<String, String>> uploadImageToStorage({required String childName, required File file}) async {
-    String filename = basename(file.path);
-    final destination = "KYC_DOCUMENTS/$childName";
+  Future<Either<String, String>> uploadImageToStorage({required String childName, required Uint8List file}) async {
     Reference ref =
-        storage.ref(destination).child(childName).child("file");
+        storage.ref("KYC_DOCUMENTS").child(childName);
     try {
-      UploadTask uploadTask = ref.putFile(file);
+      UploadTask uploadTask = ref.putData(
+        file
+      );
       TaskSnapshot snapshot = await uploadTask;
       String downloadUrl = await snapshot.ref.getDownloadURL();
       return right(downloadUrl);

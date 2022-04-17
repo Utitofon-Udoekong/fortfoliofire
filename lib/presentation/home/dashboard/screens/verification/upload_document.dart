@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:auto_route/auto_route.dart';
@@ -84,7 +83,7 @@ class UploadDocumentImage extends StatelessWidget {
                                       child: const Text('Take a photo'),
                                       onPressed: () async {
                                         Navigator.pop(context);
-                                        File file =
+                                        Uint8List file =
                                             await pickImage(ImageSource.camera);
                                         context
                                             .read<VerificationCubit>()
@@ -95,7 +94,7 @@ class UploadDocumentImage extends StatelessWidget {
                                       child: const Text('Choose from Gallery'),
                                       onPressed: () async {
                                         Navigator.of(context).pop();
-                                        File file = await pickImage(
+                                        Uint8List file = await pickImage(
                                             ImageSource.gallery);
                                         context
                                             .read<VerificationCubit>()
@@ -140,7 +139,7 @@ class UploadDocumentImage extends StatelessWidget {
                                       child: const Text('Take a photo'),
                                       onPressed: () async {
                                         Navigator.pop(context);
-                                        File file =
+                                        Uint8List file =
                                             await pickImage(ImageSource.camera);
                                         context
                                             .read<VerificationCubit>()
@@ -151,7 +150,7 @@ class UploadDocumentImage extends StatelessWidget {
                                       child: const Text('Choose from Gallery'),
                                       onPressed: () async {
                                         Navigator.of(context).pop();
-                                        File file = await pickImage(
+                                        Uint8List file = await pickImage(
                                             ImageSource.gallery);
                                         context
                                             .read<VerificationCubit>()
