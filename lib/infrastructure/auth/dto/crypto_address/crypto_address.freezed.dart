@@ -29,6 +29,7 @@ class _$CryptoWalletDTOTearOff {
       required String? network,
       required String platform,
       required String id,
+      required String trax,
       required String type}) {
     return _CryptoWalletDTO(
       walletLabel: walletLabel,
@@ -37,6 +38,7 @@ class _$CryptoWalletDTOTearOff {
       network: network,
       platform: platform,
       id: id,
+      trax: trax,
       type: type,
     );
   }
@@ -57,6 +59,7 @@ mixin _$CryptoWalletDTO {
   String? get network => throw _privateConstructorUsedError;
   String get platform => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
+  String get trax => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -77,6 +80,7 @@ abstract class $CryptoWalletDTOCopyWith<$Res> {
       String? network,
       String platform,
       String id,
+      String trax,
       String type});
 }
 
@@ -97,6 +101,7 @@ class _$CryptoWalletDTOCopyWithImpl<$Res>
     Object? network = freezed,
     Object? platform = freezed,
     Object? id = freezed,
+    Object? trax = freezed,
     Object? type = freezed,
   }) {
     return _then(_value.copyWith(
@@ -124,6 +129,10 @@ class _$CryptoWalletDTOCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
+      trax: trax == freezed
+          ? _value.trax
+          : trax // ignore: cast_nullable_to_non_nullable
+              as String,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -146,6 +155,7 @@ abstract class _$CryptoWalletDTOCopyWith<$Res>
       String? network,
       String platform,
       String id,
+      String trax,
       String type});
 }
 
@@ -168,6 +178,7 @@ class __$CryptoWalletDTOCopyWithImpl<$Res>
     Object? network = freezed,
     Object? platform = freezed,
     Object? id = freezed,
+    Object? trax = freezed,
     Object? type = freezed,
   }) {
     return _then(_CryptoWalletDTO(
@@ -195,6 +206,10 @@ class __$CryptoWalletDTOCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
+      trax: trax == freezed
+          ? _value.trax
+          : trax // ignore: cast_nullable_to_non_nullable
+              as String,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -213,6 +228,7 @@ class _$_CryptoWalletDTO extends _CryptoWalletDTO {
       required this.network,
       required this.platform,
       required this.id,
+      required this.trax,
       required this.type})
       : super._();
 
@@ -232,11 +248,13 @@ class _$_CryptoWalletDTO extends _CryptoWalletDTO {
   @override
   final String id;
   @override
+  final String trax;
+  @override
   final String type;
 
   @override
   String toString() {
-    return 'CryptoWalletDTO(walletLabel: $walletLabel, address: $address, coin: $coin, network: $network, platform: $platform, id: $id, type: $type)';
+    return 'CryptoWalletDTO(walletLabel: $walletLabel, address: $address, coin: $coin, network: $network, platform: $platform, id: $id, trax: $trax, type: $type)';
   }
 
   @override
@@ -251,6 +269,7 @@ class _$_CryptoWalletDTO extends _CryptoWalletDTO {
             const DeepCollectionEquality().equals(other.network, network) &&
             const DeepCollectionEquality().equals(other.platform, platform) &&
             const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.trax, trax) &&
             const DeepCollectionEquality().equals(other.type, type));
   }
 
@@ -263,6 +282,7 @@ class _$_CryptoWalletDTO extends _CryptoWalletDTO {
       const DeepCollectionEquality().hash(network),
       const DeepCollectionEquality().hash(platform),
       const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(trax),
       const DeepCollectionEquality().hash(type));
 
   @JsonKey(ignore: true)
@@ -284,6 +304,7 @@ abstract class _CryptoWalletDTO extends CryptoWalletDTO {
       required String? network,
       required String platform,
       required String id,
+      required String trax,
       required String type}) = _$_CryptoWalletDTO;
   const _CryptoWalletDTO._() : super._();
 
@@ -302,6 +323,8 @@ abstract class _CryptoWalletDTO extends CryptoWalletDTO {
   String get platform;
   @override
   String get id;
+  @override
+  String get trax;
   @override
   String get type;
   @override

@@ -28,7 +28,8 @@ class _$CryptoWalletStateTearOff {
       required String success,
       required bool isGeneral,
       required bool isloading,
-      required int? selectedNetwork}) {
+      required int? selectedNetwork,
+      required List<DropdownMenuItem<String>> dropdownItems}) {
     return _CryptoWalletState(
       walletLabel: walletLabel,
       coin: coin,
@@ -40,6 +41,7 @@ class _$CryptoWalletStateTearOff {
       isGeneral: isGeneral,
       isloading: isloading,
       selectedNetwork: selectedNetwork,
+      dropdownItems: dropdownItems,
     );
   }
 }
@@ -59,6 +61,8 @@ mixin _$CryptoWalletState {
   bool get isGeneral => throw _privateConstructorUsedError;
   bool get isloading => throw _privateConstructorUsedError;
   int? get selectedNetwork => throw _privateConstructorUsedError;
+  List<DropdownMenuItem<String>> get dropdownItems =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CryptoWalletStateCopyWith<CryptoWalletState> get copyWith =>
@@ -80,7 +84,8 @@ abstract class $CryptoWalletStateCopyWith<$Res> {
       String success,
       bool isGeneral,
       bool isloading,
-      int? selectedNetwork});
+      int? selectedNetwork,
+      List<DropdownMenuItem<String>> dropdownItems});
 }
 
 /// @nodoc
@@ -104,6 +109,7 @@ class _$CryptoWalletStateCopyWithImpl<$Res>
     Object? isGeneral = freezed,
     Object? isloading = freezed,
     Object? selectedNetwork = freezed,
+    Object? dropdownItems = freezed,
   }) {
     return _then(_value.copyWith(
       walletLabel: walletLabel == freezed
@@ -146,6 +152,10 @@ class _$CryptoWalletStateCopyWithImpl<$Res>
           ? _value.selectedNetwork
           : selectedNetwork // ignore: cast_nullable_to_non_nullable
               as int?,
+      dropdownItems: dropdownItems == freezed
+          ? _value.dropdownItems
+          : dropdownItems // ignore: cast_nullable_to_non_nullable
+              as List<DropdownMenuItem<String>>,
     ));
   }
 }
@@ -167,7 +177,8 @@ abstract class _$CryptoWalletStateCopyWith<$Res>
       String success,
       bool isGeneral,
       bool isloading,
-      int? selectedNetwork});
+      int? selectedNetwork,
+      List<DropdownMenuItem<String>> dropdownItems});
 }
 
 /// @nodoc
@@ -193,6 +204,7 @@ class __$CryptoWalletStateCopyWithImpl<$Res>
     Object? isGeneral = freezed,
     Object? isloading = freezed,
     Object? selectedNetwork = freezed,
+    Object? dropdownItems = freezed,
   }) {
     return _then(_CryptoWalletState(
       walletLabel: walletLabel == freezed
@@ -235,6 +247,10 @@ class __$CryptoWalletStateCopyWithImpl<$Res>
           ? _value.selectedNetwork
           : selectedNetwork // ignore: cast_nullable_to_non_nullable
               as int?,
+      dropdownItems: dropdownItems == freezed
+          ? _value.dropdownItems
+          : dropdownItems // ignore: cast_nullable_to_non_nullable
+              as List<DropdownMenuItem<String>>,
     ));
   }
 }
@@ -252,7 +268,8 @@ class _$_CryptoWalletState extends _CryptoWalletState {
       required this.success,
       required this.isGeneral,
       required this.isloading,
-      required this.selectedNetwork})
+      required this.selectedNetwork,
+      required this.dropdownItems})
       : super._();
 
   @override
@@ -275,10 +292,12 @@ class _$_CryptoWalletState extends _CryptoWalletState {
   final bool isloading;
   @override
   final int? selectedNetwork;
+  @override
+  final List<DropdownMenuItem<String>> dropdownItems;
 
   @override
   String toString() {
-    return 'CryptoWalletState(walletLabel: $walletLabel, coin: $coin, network: $network, address: $address, platform: $platform, failure: $failure, success: $success, isGeneral: $isGeneral, isloading: $isloading, selectedNetwork: $selectedNetwork)';
+    return 'CryptoWalletState(walletLabel: $walletLabel, coin: $coin, network: $network, address: $address, platform: $platform, failure: $failure, success: $success, isGeneral: $isGeneral, isloading: $isloading, selectedNetwork: $selectedNetwork, dropdownItems: $dropdownItems)';
   }
 
   @override
@@ -297,7 +316,9 @@ class _$_CryptoWalletState extends _CryptoWalletState {
             const DeepCollectionEquality().equals(other.isGeneral, isGeneral) &&
             const DeepCollectionEquality().equals(other.isloading, isloading) &&
             const DeepCollectionEquality()
-                .equals(other.selectedNetwork, selectedNetwork));
+                .equals(other.selectedNetwork, selectedNetwork) &&
+            const DeepCollectionEquality()
+                .equals(other.dropdownItems, dropdownItems));
   }
 
   @override
@@ -312,7 +333,8 @@ class _$_CryptoWalletState extends _CryptoWalletState {
       const DeepCollectionEquality().hash(success),
       const DeepCollectionEquality().hash(isGeneral),
       const DeepCollectionEquality().hash(isloading),
-      const DeepCollectionEquality().hash(selectedNetwork));
+      const DeepCollectionEquality().hash(selectedNetwork),
+      const DeepCollectionEquality().hash(dropdownItems));
 
   @JsonKey(ignore: true)
   @override
@@ -322,16 +344,18 @@ class _$_CryptoWalletState extends _CryptoWalletState {
 
 abstract class _CryptoWalletState extends CryptoWalletState {
   const factory _CryptoWalletState(
-      {required String walletLabel,
-      required String coin,
-      required String network,
-      required String address,
-      required String platform,
-      required String failure,
-      required String success,
-      required bool isGeneral,
-      required bool isloading,
-      required int? selectedNetwork}) = _$_CryptoWalletState;
+          {required String walletLabel,
+          required String coin,
+          required String network,
+          required String address,
+          required String platform,
+          required String failure,
+          required String success,
+          required bool isGeneral,
+          required bool isloading,
+          required int? selectedNetwork,
+          required List<DropdownMenuItem<String>> dropdownItems}) =
+      _$_CryptoWalletState;
   const _CryptoWalletState._() : super._();
 
   @override
@@ -354,6 +378,8 @@ abstract class _CryptoWalletState extends CryptoWalletState {
   bool get isloading;
   @override
   int? get selectedNetwork;
+  @override
+  List<DropdownMenuItem<String>> get dropdownItems;
   @override
   @JsonKey(ignore: true)
   _$CryptoWalletStateCopyWith<_CryptoWalletState> get copyWith =>

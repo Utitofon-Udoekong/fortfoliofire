@@ -22,9 +22,9 @@ class _$VerificationStateTearOff {
       {required bool submitting,
       required String failure,
       required String success,
-      required String frontFile,
-      required String backFile,
-      required String utilityFile}) {
+      required Uint8List frontFile,
+      required Uint8List backFile,
+      required Uint8List utilityFile}) {
     return _VerificationState(
       submitting: submitting,
       failure: failure,
@@ -44,9 +44,9 @@ mixin _$VerificationState {
   bool get submitting => throw _privateConstructorUsedError;
   String get failure => throw _privateConstructorUsedError;
   String get success => throw _privateConstructorUsedError;
-  String get frontFile => throw _privateConstructorUsedError;
-  String get backFile => throw _privateConstructorUsedError;
-  String get utilityFile => throw _privateConstructorUsedError;
+  Uint8List get frontFile => throw _privateConstructorUsedError;
+  Uint8List get backFile => throw _privateConstructorUsedError;
+  Uint8List get utilityFile => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $VerificationStateCopyWith<VerificationState> get copyWith =>
@@ -62,9 +62,9 @@ abstract class $VerificationStateCopyWith<$Res> {
       {bool submitting,
       String failure,
       String success,
-      String frontFile,
-      String backFile,
-      String utilityFile});
+      Uint8List frontFile,
+      Uint8List backFile,
+      Uint8List utilityFile});
 }
 
 /// @nodoc
@@ -101,15 +101,15 @@ class _$VerificationStateCopyWithImpl<$Res>
       frontFile: frontFile == freezed
           ? _value.frontFile
           : frontFile // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Uint8List,
       backFile: backFile == freezed
           ? _value.backFile
           : backFile // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Uint8List,
       utilityFile: utilityFile == freezed
           ? _value.utilityFile
           : utilityFile // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Uint8List,
     ));
   }
 }
@@ -125,9 +125,9 @@ abstract class _$VerificationStateCopyWith<$Res>
       {bool submitting,
       String failure,
       String success,
-      String frontFile,
-      String backFile,
-      String utilityFile});
+      Uint8List frontFile,
+      Uint8List backFile,
+      Uint8List utilityFile});
 }
 
 /// @nodoc
@@ -166,15 +166,15 @@ class __$VerificationStateCopyWithImpl<$Res>
       frontFile: frontFile == freezed
           ? _value.frontFile
           : frontFile // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Uint8List,
       backFile: backFile == freezed
           ? _value.backFile
           : backFile // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Uint8List,
       utilityFile: utilityFile == freezed
           ? _value.utilityFile
           : utilityFile // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Uint8List,
     ));
   }
 }
@@ -198,11 +198,11 @@ class _$_VerificationState extends _VerificationState {
   @override
   final String success;
   @override
-  final String frontFile;
+  final Uint8List frontFile;
   @override
-  final String backFile;
+  final Uint8List backFile;
   @override
-  final String utilityFile;
+  final Uint8List utilityFile;
 
   @override
   String toString() {
@@ -245,9 +245,9 @@ abstract class _VerificationState extends VerificationState {
       {required bool submitting,
       required String failure,
       required String success,
-      required String frontFile,
-      required String backFile,
-      required String utilityFile}) = _$_VerificationState;
+      required Uint8List frontFile,
+      required Uint8List backFile,
+      required Uint8List utilityFile}) = _$_VerificationState;
   const _VerificationState._() : super._();
 
   @override
@@ -257,11 +257,11 @@ abstract class _VerificationState extends VerificationState {
   @override
   String get success;
   @override
-  String get frontFile;
+  Uint8List get frontFile;
   @override
-  String get backFile;
+  Uint8List get backFile;
   @override
-  String get utilityFile;
+  Uint8List get utilityFile;
   @override
   @JsonKey(ignore: true)
   _$VerificationStateCopyWith<_VerificationState> get copyWith =>

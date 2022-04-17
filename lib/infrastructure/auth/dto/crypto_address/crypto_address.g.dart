@@ -14,6 +14,7 @@ _$_CryptoWalletDTO _$$_CryptoWalletDTOFromJson(Map<String, dynamic> json) =>
       network: json['network'] as String?,
       platform: json['platform'] as String,
       id: json['id'] as String,
+      trax: json['trax'] as String,
       type: json['type'] as String,
     );
 
@@ -25,5 +26,6 @@ Map<String, dynamic> _$$_CryptoWalletDTOToJson(_$_CryptoWalletDTO instance) =>
       'network': instance.network,
       'platform': instance.platform,
       'id': instance.id,
+      'trax': instance.trax,
       'type': instance.type,
     };

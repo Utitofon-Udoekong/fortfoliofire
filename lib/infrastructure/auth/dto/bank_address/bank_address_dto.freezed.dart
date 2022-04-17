@@ -27,12 +27,14 @@ class _$BankAddressDTOTearOff {
       required String accountNumber,
       required String userName,
       required String id,
+      required String trax,
       required String type}) {
     return _BankAddressDTO(
       bankName: bankName,
       accountNumber: accountNumber,
       userName: userName,
       id: id,
+      trax: trax,
       type: type,
     );
   }
@@ -51,6 +53,7 @@ mixin _$BankAddressDTO {
   String get accountNumber => throw _privateConstructorUsedError;
   String get userName => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
+  String get trax => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -69,6 +72,7 @@ abstract class $BankAddressDTOCopyWith<$Res> {
       String accountNumber,
       String userName,
       String id,
+      String trax,
       String type});
 }
 
@@ -87,6 +91,7 @@ class _$BankAddressDTOCopyWithImpl<$Res>
     Object? accountNumber = freezed,
     Object? userName = freezed,
     Object? id = freezed,
+    Object? trax = freezed,
     Object? type = freezed,
   }) {
     return _then(_value.copyWith(
@@ -105,6 +110,10 @@ class _$BankAddressDTOCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      trax: trax == freezed
+          ? _value.trax
+          : trax // ignore: cast_nullable_to_non_nullable
               as String,
       type: type == freezed
           ? _value.type
@@ -126,6 +135,7 @@ abstract class _$BankAddressDTOCopyWith<$Res>
       String accountNumber,
       String userName,
       String id,
+      String trax,
       String type});
 }
 
@@ -146,6 +156,7 @@ class __$BankAddressDTOCopyWithImpl<$Res>
     Object? accountNumber = freezed,
     Object? userName = freezed,
     Object? id = freezed,
+    Object? trax = freezed,
     Object? type = freezed,
   }) {
     return _then(_BankAddressDTO(
@@ -165,6 +176,10 @@ class __$BankAddressDTOCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
+      trax: trax == freezed
+          ? _value.trax
+          : trax // ignore: cast_nullable_to_non_nullable
+              as String,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -181,6 +196,7 @@ class _$_BankAddressDTO extends _BankAddressDTO {
       required this.accountNumber,
       required this.userName,
       required this.id,
+      required this.trax,
       required this.type})
       : super._();
 
@@ -196,11 +212,13 @@ class _$_BankAddressDTO extends _BankAddressDTO {
   @override
   final String id;
   @override
+  final String trax;
+  @override
   final String type;
 
   @override
   String toString() {
-    return 'BankAddressDTO(bankName: $bankName, accountNumber: $accountNumber, userName: $userName, id: $id, type: $type)';
+    return 'BankAddressDTO(bankName: $bankName, accountNumber: $accountNumber, userName: $userName, id: $id, trax: $trax, type: $type)';
   }
 
   @override
@@ -213,6 +231,7 @@ class _$_BankAddressDTO extends _BankAddressDTO {
                 .equals(other.accountNumber, accountNumber) &&
             const DeepCollectionEquality().equals(other.userName, userName) &&
             const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.trax, trax) &&
             const DeepCollectionEquality().equals(other.type, type));
   }
 
@@ -223,6 +242,7 @@ class _$_BankAddressDTO extends _BankAddressDTO {
       const DeepCollectionEquality().hash(accountNumber),
       const DeepCollectionEquality().hash(userName),
       const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(trax),
       const DeepCollectionEquality().hash(type));
 
   @JsonKey(ignore: true)
@@ -242,6 +262,7 @@ abstract class _BankAddressDTO extends BankAddressDTO {
       required String accountNumber,
       required String userName,
       required String id,
+      required String trax,
       required String type}) = _$_BankAddressDTO;
   const _BankAddressDTO._() : super._();
 
@@ -256,6 +277,8 @@ abstract class _BankAddressDTO extends BankAddressDTO {
   String get userName;
   @override
   String get id;
+  @override
+  String get trax;
   @override
   String get type;
   @override

@@ -92,7 +92,7 @@ class UploadDocumentImage extends StatelessWidget {
                           return dialog;
                         },
                       );
-                    }, context.read<VerificationCubit>().state.frontFile);
+                    }, context.read<VerificationCubit>().state.frontFile.toString());
                   },
                 ),
                 const SizedBox(
@@ -142,7 +142,7 @@ class UploadDocumentImage extends StatelessWidget {
                           return dialog;
                         },
                       );
-                    }, context.read<VerificationCubit>().state.backFile);
+                    }, context.read<VerificationCubit>().state.backFile.toString());
                   },
                 ),
                 const SizedBox(

@@ -23,12 +23,14 @@ class _$BankAddressTearOff {
       required String accountNumber,
       required String userName,
       required String id,
+      required String trax,
       required String type}) {
     return _BankAddress(
       bankName: bankName,
       accountNumber: accountNumber,
       userName: userName,
       id: id,
+      trax: trax,
       type: type,
     );
   }
@@ -43,6 +45,7 @@ mixin _$BankAddress {
   String get accountNumber => throw _privateConstructorUsedError;
   String get userName => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
+  String get trax => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -60,6 +63,7 @@ abstract class $BankAddressCopyWith<$Res> {
       String accountNumber,
       String userName,
       String id,
+      String trax,
       String type});
 }
 
@@ -77,6 +81,7 @@ class _$BankAddressCopyWithImpl<$Res> implements $BankAddressCopyWith<$Res> {
     Object? accountNumber = freezed,
     Object? userName = freezed,
     Object? id = freezed,
+    Object? trax = freezed,
     Object? type = freezed,
   }) {
     return _then(_value.copyWith(
@@ -95,6 +100,10 @@ class _$BankAddressCopyWithImpl<$Res> implements $BankAddressCopyWith<$Res> {
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      trax: trax == freezed
+          ? _value.trax
+          : trax // ignore: cast_nullable_to_non_nullable
               as String,
       type: type == freezed
           ? _value.type
@@ -116,6 +125,7 @@ abstract class _$BankAddressCopyWith<$Res>
       String accountNumber,
       String userName,
       String id,
+      String trax,
       String type});
 }
 
@@ -135,6 +145,7 @@ class __$BankAddressCopyWithImpl<$Res> extends _$BankAddressCopyWithImpl<$Res>
     Object? accountNumber = freezed,
     Object? userName = freezed,
     Object? id = freezed,
+    Object? trax = freezed,
     Object? type = freezed,
   }) {
     return _then(_BankAddress(
@@ -154,6 +165,10 @@ class __$BankAddressCopyWithImpl<$Res> extends _$BankAddressCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
+      trax: trax == freezed
+          ? _value.trax
+          : trax // ignore: cast_nullable_to_non_nullable
+              as String,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -170,6 +185,7 @@ class _$_BankAddress extends _BankAddress {
       required this.accountNumber,
       required this.userName,
       required this.id,
+      required this.trax,
       required this.type})
       : super._();
 
@@ -182,11 +198,13 @@ class _$_BankAddress extends _BankAddress {
   @override
   final String id;
   @override
+  final String trax;
+  @override
   final String type;
 
   @override
   String toString() {
-    return 'BankAddress(bankName: $bankName, accountNumber: $accountNumber, userName: $userName, id: $id, type: $type)';
+    return 'BankAddress(bankName: $bankName, accountNumber: $accountNumber, userName: $userName, id: $id, trax: $trax, type: $type)';
   }
 
   @override
@@ -199,6 +217,7 @@ class _$_BankAddress extends _BankAddress {
                 .equals(other.accountNumber, accountNumber) &&
             const DeepCollectionEquality().equals(other.userName, userName) &&
             const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.trax, trax) &&
             const DeepCollectionEquality().equals(other.type, type));
   }
 
@@ -209,6 +228,7 @@ class _$_BankAddress extends _BankAddress {
       const DeepCollectionEquality().hash(accountNumber),
       const DeepCollectionEquality().hash(userName),
       const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(trax),
       const DeepCollectionEquality().hash(type));
 
   @JsonKey(ignore: true)
@@ -223,6 +243,7 @@ abstract class _BankAddress extends BankAddress {
       required String accountNumber,
       required String userName,
       required String id,
+      required String trax,
       required String type}) = _$_BankAddress;
   const _BankAddress._() : super._();
 
@@ -234,6 +255,8 @@ abstract class _BankAddress extends BankAddress {
   String get userName;
   @override
   String get id;
+  @override
+  String get trax;
   @override
   String get type;
   @override
