@@ -1,6 +1,7 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fortfolio/application/app_lify_cycle/app_life_cycle_cubit.dart';
 import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/injection.dart';
 import 'package:fortfolio/presentation/home/investment/cubit/investment_cubit.dart';
@@ -20,6 +21,10 @@ class App extends StatelessWidget {
             create: (context) => getIt<AuthCubit>(),
             lazy: false,
           ),
+          BlocProvider(
+            create: (context) => getIt<AppLifeCycleCubit>(),
+            lazy: false,
+          ),
           BlocProvider(create: (context) => getIt<WalletCubit>(), lazy: false),
           BlocProvider(
               create: (context) => getIt<InvestmentCubit>(), lazy: false),
@@ -27,7 +32,8 @@ class App extends StatelessWidget {
         child: StreamBuilder(
             stream: Connectivity().onConnectivityChanged,
             builder: (context, AsyncSnapshot<ConnectivityResult> snapshot) {
-              return snapshot.data == ConnectivityResult.mobile || snapshot.data == ConnectivityResult.wifi
+              return snapshot.data == ConnectivityResult.mobile ||
+                      snapshot.data == ConnectivityResult.wifi
                   ? MaterialApp.router(
                       title: 'Fortfolio',
                       debugShowCheckedModeBanner: false,
@@ -36,7 +42,8 @@ class App extends StatelessWidget {
                       ),
                       routeInformationParser: _appRouter.defaultRouteParser(),
                       routerDelegate: _appRouter.delegate(),
-                    ) : WidgetsApp(
+                    )
+                  : WidgetsApp(
                       debugShowCheckedModeBanner: false,
                       builder: (context, widget) {
                         return const NoInternetPage();

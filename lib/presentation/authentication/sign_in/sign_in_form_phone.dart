@@ -62,7 +62,7 @@ class _SignInFormPhoneState extends State<SignInFormPhone> {
                 ),
                 BlocListener<SignInFormPhoneCubit, SignInFormPhoneState>(
                   listenWhen: (p, c) =>
-                      p.displaySmsCodeForm != p.displaySmsCodeForm,
+                      p.verificationIdOption != c.verificationIdOption,
                   listener: (context, state) {
                     context.router.replace(const ConfirmLoginWithOTPRoute());
                   },
