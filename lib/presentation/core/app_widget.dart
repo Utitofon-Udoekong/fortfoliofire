@@ -21,10 +21,10 @@ class App extends StatelessWidget {
             create: (context) => getIt<AuthCubit>(),
             lazy: false,
           ),
-          BlocProvider(
-            create: (context) => getIt<AppLifeCycleCubit>(),
-            lazy: false,
-          ),
+          // BlocProvider(
+          //   create: (context) => getIt<AppLifeCycleCubit>(),
+          //   lazy: false,
+          // ),
           BlocProvider(create: (context) => getIt<WalletCubit>(), lazy: false),
           BlocProvider(
               create: (context) => getIt<InvestmentCubit>(), lazy: false),
