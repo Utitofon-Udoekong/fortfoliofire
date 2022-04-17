@@ -34,20 +34,29 @@ class VerificationCubit extends Cubit<VerificationState> {
 
   void submitKYC() async {
     emit(state.copyWith(submitting: true,success: "",failure:""));
+    String front = "";
+    String back = "";
+    String utility = "";
     final frontDocument = state.frontFile;
     final backDocument = state.backFile;
     final utilityDocument = state.utilityFile;
+    final uploadfront = await storageFacade.uploadImageToStorage(childName: "FrontDocument", file: frontDocument);
+    final uploadBack = await storageFacade.uploadImageToStorage(childName: "BackDocument", file: backDocument);
+    final uploadUtility = await storageFacade.uploadImageToStorage(childName: "UtilityDocument", file: utilityDocument);
+    uploadfront.fold(() => null, (frontImage) => front = frontImage);
+    uploadBack.fold(() => null, (backImage) => back = backImage);
+    uploadUtility.fold(() => null, (utilityImage) => utility = utilityImage);
     final documents = [{
       "name": "FrontDocument",
-      "downloadUrl": frontDocument
+      "downloadUrl": front
     },
     {
       "name": "BackDocument",
-      "downloadUrl": backDocument
+      "downloadUrl": back
     },
     {
       "name": "UtilityDocument",
-      "downloadUrl": utilityDocument
+      "downloadUrl": utility
     }];
     KYCItem kycItem = KYCItem(fullName: "${authCubit.state.userModel.firstName} ${authCubit.state.userModel.lastName}", id: authCubit.state.userModel.id, documents: documents, submitted: DateTime.now(), status: "Pending");
     final response = await firestoreFacade.createKYC(kycItem: kycItem);

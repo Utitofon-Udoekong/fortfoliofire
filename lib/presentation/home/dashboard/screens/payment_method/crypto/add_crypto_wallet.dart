@@ -257,6 +257,9 @@ class AddCryptoWallet extends StatelessWidget {
                       );
                     },
                   ),
+                  const SizedBox(
+                    height: 20,
+                  ),
                 ],
               ),
             ),

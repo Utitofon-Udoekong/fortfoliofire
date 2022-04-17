@@ -171,7 +171,7 @@ class UploadDocumentImage extends StatelessWidget {
 
   Widget buildTile(Function() ontap, String previewLink) {
     return GestureDetector(
-      onTap: previewLink.isEmpty ? ontap : null,
+      onTap: ontap,
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 8),
         decoration: BoxDecoration(
@@ -187,7 +187,7 @@ class UploadDocumentImage extends StatelessWidget {
               width: 15,
             ),
             Text(
-              previewLink.isEmpty ? 'Select Image' : 'Selected',
+              previewLink.isEmpty ? 'Select Image' : 'Selected. Click to change',
               style: subTitle.copyWith(color: kgreyColor, fontSize: 13),
             )
           ],
