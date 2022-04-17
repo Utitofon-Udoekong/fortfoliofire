@@ -14,9 +14,9 @@ class VerificationState with _$VerificationState {
   factory VerificationState.empty() => VerificationState(
     submitting: false,
     failure: "",
-    frontFile: Uint8List.fromList(),
-    backFile: "",
-    utilityFile: "",
+    frontFile: Uint8List.fromList([BigInt.one.toInt()]),
+    backFile: Uint8List.fromList([BigInt.one.toInt()]),
+    utilityFile: Uint8List.fromList([BigInt.one.toInt()]),
     success: ""
   );
   bool get isValidState => frontFile.isNotEmpty && backFile.isNotEmpty;
