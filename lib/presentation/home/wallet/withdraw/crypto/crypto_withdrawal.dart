@@ -106,6 +106,7 @@ class CryptoWithdrawal extends StatelessWidget {
                                     network: element.network,
                                     platform: element.platform,
                                     type: element.type,
+                                    trax: element.trax,
                                     id: element.id);
                                 tiles = buildtile(
                                     element.address,

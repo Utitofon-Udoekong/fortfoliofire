@@ -44,8 +44,8 @@ class BankAddressCubit extends Cubit<BankAddressState> {
       });
       
     } catch (e) {
+      print(e);
       emit(state.copyWith(
-        response: e.toString(),
         isLoading: false
       ));
     }
