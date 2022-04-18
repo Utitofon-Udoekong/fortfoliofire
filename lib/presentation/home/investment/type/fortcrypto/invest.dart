@@ -217,12 +217,15 @@ class FortCryptoInvestment extends StatelessWidget {
                         return kTileHeight;
                       },
                       contentsBuilder: (_, index) {
-                        return timelineContent(
-                            order(endDate)[index].title,
-                            order(endDate)[index].subtitle,
-                            order(endDate)[index].tooltip,
-                            order(endDate)[index].tooltipText,
-                            );
+                        return Padding(
+                          padding: const EdgeInsets.only(left: 5.0),
+                          child: timelineContent(
+                              order(endDate)[index].title,
+                              order(endDate)[index].subtitle,
+                              order(endDate)[index].tooltip,
+                              order(endDate)[index].tooltipText,
+                              ),
+                        );
                       }),
                 ),
                 const SizedBox(
