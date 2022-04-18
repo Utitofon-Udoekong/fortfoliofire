@@ -57,7 +57,7 @@ class FortDollarInvestment extends StatelessWidget {
                     const Image(image: AssetImage('images/fortdollar.png')),
                     Text.rich(
                       TextSpan(
-                          text: 'up to',
+                          text: ' up to ',
                           children: <TextSpan>[
                             TextSpan(
                                 text: '30% returns',
@@ -156,7 +156,7 @@ class FortDollarInvestment extends StatelessWidget {
                                     : kWhiteColor,
                                 width: state.duration == 3 ? 1.0 : 0.0),
                           ),
-                          margin: const EdgeInsets.only(right: 14.5),
+                          margin: const EdgeInsets.only(right: 14),
                           child: const Text(
                             '3 months',
                             style: TextStyle(fontSize: 15),
@@ -176,7 +176,7 @@ class FortDollarInvestment extends StatelessWidget {
                                     : kWhiteColor,
                                 width: state.duration == 6 ? 1.0 : 0.0),
                           ),
-                          margin: const EdgeInsets.only(right: 14.5),
+                          margin: const EdgeInsets.only(right: 14),
                           child: const Text(
                             '6 months',
                             style: TextStyle(fontSize: 15),
@@ -281,7 +281,7 @@ class FortDollarInvestment extends StatelessWidget {
                   builder: (context, state) {
                     return LabeledCheckbox(
                         label:
-                            'I have read and I agree to Fortfolio Terms of Services Agreemet',
+                            'I have read and I agree to Fortfolio Terms of Services Agreement',
                         value: state.agreementAccepted,
                         onChanged: (value) {
                           context
@@ -318,10 +318,7 @@ class FortDollarInvestment extends StatelessWidget {
                               CustomFilledButton(
                                   text: "CONFIRM",
                                   onTap: () {
-                                    context
-                                        .read<InvestmentCubit>()
-                                        .planNameChanged(
-                                            planName: "FortDollar");
+                                    
                                     context.router.push(
                                         const SelectInvestmentMethodRoute());
                                   }),
@@ -386,10 +383,11 @@ class FortDollarInvestment extends StatelessWidget {
                 ),
                 height: 50,
                 padding: const EdgeInsets.all(8.0),
+                margin: const EdgeInsets.symmetric(horizontal: 10)
                 child: Text(title,
                     style: subTitle.copyWith(
                         fontSize: 13,
-                        color: kWhiteColor,
+                        color: kBlackColor,
                         decoration: TextDecoration.underline,
                         decorationStyle: TextDecorationStyle.dashed)),
               )

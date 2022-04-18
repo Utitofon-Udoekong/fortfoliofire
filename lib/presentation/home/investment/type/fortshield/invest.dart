@@ -56,7 +56,7 @@ class FortShieldInvestment extends StatelessWidget {
                     const Image(image: AssetImage('images/fortshield.png')),
                     Text.rich(
                       TextSpan(
-                          text: 'up to',
+                          text: ' up to ',
                           children: <TextSpan>[
                             TextSpan(
                                 text: '18% returns',
@@ -259,7 +259,7 @@ class FortShieldInvestment extends StatelessWidget {
                   builder: (context, state) {
                     return LabeledCheckbox(
                         label:
-                            'I have read and I agree to Fortfolio Terms of Services Agreemet',
+                            'I have read and I agree to Fortfolio Terms of Services Agreement',
                         value: state.agreementAccepted,
                         onChanged: (value) {
                           context
@@ -295,10 +295,6 @@ class FortShieldInvestment extends StatelessWidget {
                               CustomFilledButton(
                                   text: "CONFIRM",
                                   onTap: () {
-                                    context
-                                        .read<InvestmentCubit>()
-                                        .planNameChanged(
-                                            planName: "FortShield");
                                     context
                                         .read<InvestmentCubit>()
                                         .agreementAcceptedChanged(
@@ -370,7 +366,7 @@ class FortShieldInvestment extends StatelessWidget {
                 child: Text(title,
                     style: subTitle.copyWith(
                         fontSize: 13,
-                        color: kWhiteColor,
+                        color: kBlackColor,
                         decoration: TextDecoration.underline,
                         decorationStyle: TextDecorationStyle.dashed)),
               )

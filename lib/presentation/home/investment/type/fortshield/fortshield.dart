@@ -59,9 +59,8 @@ class FortShield extends StatelessWidget {
                 CustomFilledButton(
                     text: 'Invest',
                     onTap: () {
-                      context
-                          .read<InvestmentCubit>()
-                          .exchangeTypeChanged(exchangeType: "NGN");
+                      context.read<InvestmentCubit>().exchangeTypeChanged(exchangeType: "NGN");
+                      context.read<InvestmentCubit>().planNameChanged( planName: "FortShield");
                       context.router.push(const FortShieldInvestmentRoute());
                     }),
                 const SizedBox(

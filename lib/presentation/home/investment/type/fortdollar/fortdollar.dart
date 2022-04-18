@@ -60,6 +60,7 @@ class FortDollar extends StatelessWidget {
                 CustomFilledButton(
                     text: 'Invest',
                     onTap: () {
+                      context .read<InvestmentCubit>() .planNameChanged( planName: "FortDollar");
                       context
                           .read<InvestmentCubit>()
                           .exchangeTypeChanged(exchangeType: "USD");

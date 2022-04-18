@@ -58,7 +58,7 @@ class FortCryptoInvestment extends StatelessWidget {
                     const Image(image: AssetImage('images/fortcrypto.png')),
                     Text.rich(
                       TextSpan(
-                          text: 'up to',
+                          text: ' up to ',
                           children: <TextSpan>[
                             TextSpan(
                                 text: '15% returns',
@@ -140,7 +140,7 @@ class FortCryptoInvestment extends StatelessWidget {
                               color: state.duration == 3 ? kPrimaryColor : kWhiteColor,
                               border: Border.all(color: state.duration == 3 ? kPrimaryColor : kWhiteColor, width: state.duration == 3 ? 1.0 : 0.0),
                               ),
-                          margin: const EdgeInsets.only(right: 14.5),
+                          margin: const EdgeInsets.only(right: 14),
                           child: const Text(
                             '3 months',
                             style: TextStyle(fontSize: 15),
@@ -153,7 +153,7 @@ class FortCryptoInvestment extends StatelessWidget {
                               borderRadius: BorderRadius.circular(6),
                               color: state.duration == 6 ? kPrimaryColor : kWhiteColor,
                               border: Border.all(color: state.duration == 6 ? kPrimaryColor : kWhiteColor, width: state.duration == 6 ? 1.0 : 0.0),),
-                          margin: const EdgeInsets.only(right: 14.5),
+                          margin: const EdgeInsets.only(right: 14),
                           child: const Text(
                             '6 months',
                             style: TextStyle(fontSize: 15),
@@ -199,7 +199,7 @@ class FortCryptoInvestment extends StatelessWidget {
                         thickness: 3.0,
                       ),
                       indicatorTheme: const IndicatorThemeData(
-                          position: 0.5, color: kPrimaryColor)),
+                          position: 0.8, color: kPrimaryColor)),
                   builder: TimelineTileBuilder.connected(
                       itemCount: order(endDate).length,
                       indicatorBuilder: (context, index) {
@@ -251,7 +251,7 @@ class FortCryptoInvestment extends StatelessWidget {
                   builder: (context, state) {
                     return LabeledCheckbox(
                         label:
-                            'I have read and I agree to Fortfolio Terms of Services Agreemet',
+                            'I have read and I agree to Fortfolio Terms of Services Agreement',
                         value: state.agreementAccepted,
                         onChanged: (value) {
                           context
@@ -287,10 +287,6 @@ class FortCryptoInvestment extends StatelessWidget {
                               CustomFilledButton(
                                   text: "CONFIRM",
                                   onTap: () {
-                                    context
-                                        .read<InvestmentCubit>()
-                                        .planNameChanged(
-                                            planName: "FortCrypto");
                                     context.router.push(
                                         const BankInvestmentPageRoute());
                                   }),
@@ -358,7 +354,7 @@ class FortCryptoInvestment extends StatelessWidget {
                 child: Text(title,
                     style: subTitle.copyWith(
                         fontSize: 13,
-                        color: kWhiteColor,
+                        color: kBlackColor,
                         decoration: TextDecoration.underline,
                         decorationStyle: TextDecorationStyle.dashed)),
               )
