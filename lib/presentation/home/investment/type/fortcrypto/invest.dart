@@ -199,7 +199,7 @@ class FortCryptoInvestment extends StatelessWidget {
                         thickness: 3.0,
                       ),
                       indicatorTheme: const IndicatorThemeData(
-                          position: 0.8, color: kPrimaryColor)),
+                          position: 0.6, color: kPrimaryColor)),
                   builder: TimelineTileBuilder.connected(
                       itemCount: order(endDate).length,
                       indicatorBuilder: (context, index) {
