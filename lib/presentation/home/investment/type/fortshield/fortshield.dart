@@ -1,8 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/domain/constants/plans.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
+import 'package:fortfolio/presentation/home/investment/cubit/investment_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
  
 
@@ -57,6 +59,9 @@ class FortShield extends StatelessWidget {
                 CustomFilledButton(
                     text: 'Invest',
                     onTap: () {
+                      context
+                          .read<InvestmentCubit>()
+                          .exchangeTypeChanged(exchangeType: "NGN");
                       context.router.push(const FortShieldInvestmentRoute());
                     }),
                 const SizedBox(

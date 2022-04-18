@@ -26,6 +26,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
       emit(state.copyWith(baseAmount: 1000));
     }
     emit(state.copyWith(exchangeType: exchangeType));
+    print(exchangeType);
   }
 
   void isSelectedChanged({required int newIndex}) {

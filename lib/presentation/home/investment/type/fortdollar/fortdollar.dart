@@ -1,8 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/domain/constants/plans.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
+import 'package:fortfolio/presentation/home/investment/cubit/investment_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 
 class FortDollar extends StatelessWidget {
@@ -18,27 +20,29 @@ class FortDollar extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-              const SizedBox(
-                height: 20,
-              ),
-              InkWell(
-                onTap: () => context.router.pop(),
-                child: const Icon(Icons.close),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
+                const SizedBox(
+                  height: 20,
+                ),
+                InkWell(
+                  onTap: () => context.router.pop(),
+                  child: const Icon(Icons.close),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
                 Container(
                   width: MediaQuery.of(context).size.width,
                   height: 180,
                   decoration: const BoxDecoration(
-                      image: DecorationImage(image: AssetImage('images/estate.png'))),
-                  child: const Image(image: AssetImage('images/fortdollar.png')),
+                      image: DecorationImage(
+                          image: AssetImage('images/estate.png'))),
+                  child:
+                      const Image(image: AssetImage('images/fortdollar.png')),
                   alignment: Alignment.center,
                 ),
                 const SizedBox(
-                height: 20,
-              ),
+                  height: 20,
+                ),
                 Text(
                   'FortDollar Investment',
                   style: titleText.copyWith(fontSize: 18),
@@ -56,7 +60,10 @@ class FortDollar extends StatelessWidget {
                 CustomFilledButton(
                     text: 'Invest',
                     onTap: () {
-                      context.router.push(const FortDollarInvestmentRoute());
+                      context
+                          .read<InvestmentCubit>()
+                          .exchangeTypeChanged(exchangeType: "USD");
+                      context.router.push(const FortDollarInvestmentRoute());                      
                     }),
                 const SizedBox(
                   height: 20,
@@ -114,7 +121,7 @@ class FortDollar extends StatelessWidget {
                   height: 10,
                 ),
                 SizedBox(
-                  height: 200,
+                  height: 210,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     padding: const EdgeInsets.only(left: 16, right: 6),
@@ -138,7 +145,9 @@ class FortDollar extends StatelessWidget {
                                 Flex(
                                   direction: Axis.horizontal,
                                   children: <Widget>[
-                                    Image(image: AssetImage('images/${plans[index].icon}.png')),
+                                    Image(
+                                        image: AssetImage(
+                                            'images/${plans[index].icon}.png')),
                                     const SizedBox(
                                       width: 30,
                                     ),
@@ -222,7 +231,10 @@ class FortDollar extends StatelessWidget {
                       );
                     },
                   ),
-                )
+                ),
+              const SizedBox(
+                  height: 20,
+                ),
               ],
             ),
           ),

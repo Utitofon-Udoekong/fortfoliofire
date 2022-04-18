@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:timelines/timelines.dart';
 
 import 'package:fortfolio/domain/constants/order.dart';
@@ -20,6 +21,8 @@ class FortCryptoInvestment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final duration = context.select((InvestmentCubit element) => element.state.duration);
+    final endDate = Jiffy(DateTime.now()).add(months: duration.toInt()).yMMMMd;
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -127,7 +130,6 @@ class FortCryptoInvestment extends StatelessWidget {
                   builder: (context, state) {
                     return ToggleButtons(
                       selectedColor: Colors.white,
-                      // color: kPrimaryColor,
                       isSelected: state.isSelected,
                       renderBorder: false,
                       children: <Widget>[
@@ -138,7 +140,7 @@ class FortCryptoInvestment extends StatelessWidget {
                               color: state.duration == 3 ? kPrimaryColor : kWhiteColor,
                               border: Border.all(color: state.duration == 3 ? kPrimaryColor : kWhiteColor, width: state.duration == 3 ? 1.0 : 0.0),
                               ),
-                          margin: const EdgeInsets.only(right: 29),
+                          margin: const EdgeInsets.only(right: 14.5),
                           child: const Text(
                             '3 months',
                             style: TextStyle(fontSize: 15),
@@ -151,7 +153,7 @@ class FortCryptoInvestment extends StatelessWidget {
                               borderRadius: BorderRadius.circular(6),
                               color: state.duration == 6 ? kPrimaryColor : kWhiteColor,
                               border: Border.all(color: state.duration == 6 ? kPrimaryColor : kWhiteColor, width: state.duration == 6 ? 1.0 : 0.0),),
-                          margin: const EdgeInsets.only(right: 29),
+                          margin: const EdgeInsets.only(right: 14.5),
                           child: const Text(
                             '6 months',
                             style: TextStyle(fontSize: 15),
@@ -199,7 +201,7 @@ class FortCryptoInvestment extends StatelessWidget {
                       indicatorTheme: const IndicatorThemeData(
                           position: 0.5, color: kPrimaryColor)),
                   builder: TimelineTileBuilder.connected(
-                      itemCount: order.length,
+                      itemCount: order(endDate).length,
                       indicatorBuilder: (context, index) {
                         return const DotIndicator(
                           color: kPrimaryColor,
@@ -215,8 +217,8 @@ class FortCryptoInvestment extends StatelessWidget {
                         return kTileHeight;
                       },
                       contentsBuilder: (_, index) {
-                        return timelineContent(
-                            order[index].title, order[index].subtitle);
+                        return timelineContent(order(endDate)[index].title,
+                            order(endDate)[index].subtitle, order(endDate)[index].tooltip);
                       }),
                 ),
                 const SizedBox(
@@ -232,7 +234,7 @@ class FortCryptoInvestment extends StatelessWidget {
                           subTitle.copyWith(fontSize: 14, color: kBlackColor),
                     ),
                     Text(
-                      '35.5% ',
+                      '${15 * (duration/12)}% ',
                       style:
                           subTitle.copyWith(fontSize: 14, color: kGreenColor),
                     )
@@ -285,10 +287,6 @@ class FortCryptoInvestment extends StatelessWidget {
                                         .read<InvestmentCubit>()
                                         .planNameChanged(
                                             planName: "FortCrypto");
-                                    context
-                                        .read<InvestmentCubit>()
-                                        .exchangeTypeChanged(
-                                            exchangeType: "USD");
                                     context.router.push(
                                         const BankInvestmentPageRoute());
                                   }),
@@ -338,12 +336,18 @@ class FortCryptoInvestment extends StatelessWidget {
     );
   }
 
-  Widget timelineContent(String title, String subtitle) {
+  Widget timelineContent(String title, String subtitle, bool tooltip) {
     return Flex(
       direction: Axis.horizontal,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        Text(title, style: subTitle.copyWith(fontSize: 13, color: kBlackColor)),
+        Text(title,
+            style: subTitle.copyWith(
+                fontSize: 13,
+                color: kBlackColor,
+                decoration:
+                    tooltip ? TextDecoration.underline : TextDecoration.none,
+                decorationStyle: TextDecorationStyle.dashed)),
         Text(
           subtitle,
           style: subTitle.copyWith(fontSize: 13, color: kBlackColor),

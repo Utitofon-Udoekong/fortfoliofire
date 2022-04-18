@@ -8,6 +8,7 @@ import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
 import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
 import 'package:fortfolio/domain/widgets/labelled_checkbox.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:timelines/timelines.dart';
 
 import '../../cubit/investment_cubit.dart';
@@ -19,6 +20,8 @@ class FortShieldInvestment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final duration = context.select((InvestmentCubit element) => element.state.duration);
+    final endDate = Jiffy(DateTime.now()).add(months: duration.toInt()).yMMMMd;
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -127,7 +130,7 @@ class FortShieldInvestment extends StatelessWidget {
                             .read<InvestmentCubit>()
                             .amountInvestedChanged(
                                 amountInvested: int.parse(value)),
-                        validator: (String? value) => int.tryParse(value!) == null ? 'Field cannot be empty' : int.parse(value) < state.baseAmount  ? 'Minimum investment is ${state.exchangeType == 'NGN' ? 'N1,000,000': '\$${(1e6 /560).round()}'}' : int.parse(value).isNaN ? 'Invalid amount' : null,
+                        validator: (String? value) => int.tryParse(value!) == null ? 'Field cannot be empty' : int.parse(value) < state.baseAmount  ? 'Minimum investment is ${state.exchangeType == 'NGN' ? 'N1,000,000': '\$${state.baseAmount}'}' : int.parse(value).isNaN ? 'Invalid amount' : null,
                       ),
                     );
                   },
@@ -148,7 +151,6 @@ class FortShieldInvestment extends StatelessWidget {
                   builder: (context, state) {
                     return ToggleButtons(
                       selectedColor: Colors.white,
-                      // color: kPrimaryColor,
                       isSelected: state.isSelected,
                       renderBorder: false,
                       children: <Widget>[
@@ -207,7 +209,7 @@ class FortShieldInvestment extends StatelessWidget {
                       indicatorTheme: const IndicatorThemeData(
                           position: 0, color: kPrimaryColor)),
                   builder: TimelineTileBuilder.connected(
-                      itemCount: order.length,
+                      itemCount: order(endDate).length,
                       indicatorBuilder: (context, index) {
                         return const DotIndicator(
                           color: kPrimaryColor,
@@ -223,8 +225,8 @@ class FortShieldInvestment extends StatelessWidget {
                         return kTileHeight;
                       },
                       contentsBuilder: (_, index) {
-                        return timelineContent(
-                            order[index].title, order[index].subtitle);
+                        return timelineContent(order(endDate)[index].title,
+                            order(endDate)[index].subtitle, order(endDate)[index].tooltip);
                       }),
                 ),
                 const SizedBox(
@@ -240,7 +242,7 @@ class FortShieldInvestment extends StatelessWidget {
                           subTitle.copyWith(fontSize: 14, color: kBlackColor),
                     ),
                     Text(
-                      '35.5% ',
+                      '${18 * (duration/12)}% ',
                       style:
                           subTitle.copyWith(fontSize: 14, color: kGreenColor),
                     )
@@ -346,12 +348,18 @@ class FortShieldInvestment extends StatelessWidget {
     );
   }
 
-  Widget timelineContent(String title, String subtitle) {
+  Widget timelineContent(String title, String subtitle, bool tooltip) {
     return Flex(
       direction: Axis.horizontal,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        Text(title, style: subTitle.copyWith(fontSize: 13, color: kBlackColor)),
+        Text(title,
+            style: subTitle.copyWith(
+                fontSize: 13,
+                color: kBlackColor,
+                decoration:
+                    tooltip ? TextDecoration.underline : TextDecoration.none,
+                decorationStyle: TextDecorationStyle.dashed)),
         Text(
           subtitle,
           style: subTitle.copyWith(fontSize: 13, color: kBlackColor),

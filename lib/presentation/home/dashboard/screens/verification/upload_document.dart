@@ -92,7 +92,7 @@ class UploadDocumentImage extends StatelessWidget {
                           return dialog;
                         },
                       );
-                    }, context.read<VerificationCubit>().state.frontFile.toString());
+                    }, context.read<VerificationCubit>().state.frontFile);
                   },
                 ),
                 const SizedBox(
@@ -142,7 +142,7 @@ class UploadDocumentImage extends StatelessWidget {
                           return dialog;
                         },
                       );
-                    }, context.read<VerificationCubit>().state.backFile.toString());
+                    }, context.read<VerificationCubit>().state.backFile);
                   },
                 ),
                 const SizedBox(
@@ -169,7 +169,7 @@ class UploadDocumentImage extends StatelessWidget {
     );
   }
 
-  Widget buildTile(Function() ontap, String previewLink) {
+  Widget buildTile(Function() ontap, Uint8List previewLink) {
     return GestureDetector(
       onTap: ontap,
       child: Container(

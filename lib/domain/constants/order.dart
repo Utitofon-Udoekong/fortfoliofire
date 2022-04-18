@@ -1,30 +1,30 @@
+import 'package:jiffy/jiffy.dart';
+
 class OrderModel {
   final String title; 
   final String subtitle; 
+  final bool tooltip; 
+  String? tooltipText;
 
   
   OrderModel({
     required this.title,
     required this.subtitle,
+    required this.tooltip,
+    this.tooltipText
   });
 }
 
-List<OrderModel> order = <OrderModel>[
-  
-  OrderModel(
-    title: 'Investment date',
-    subtitle: '2021-12-27'
-  ),
-  OrderModel(
-    title: 'Value date',
-    subtitle: '2021-12-27'
-  ),
-  OrderModel(
-    title: 'Interest period',
-    subtitle: '1 Day'
-  ),
-  OrderModel(
-    title: 'Interest end date',
-    subtitle: '2027'
-  ),
-];
+
+List<OrderModel> order(String endDate){
+    List<OrderModel> order = <OrderModel>[
+      OrderModel(
+          title: 'Investment date',
+          subtitle: Jiffy(DateTime.now()).yMMMMd,
+          tooltip: false),
+      OrderModel(title: 'Value date', subtitle: endDate, tooltip: false),
+      OrderModel(title: 'Interest Frequency', subtitle: '1 month', tooltip: true, tooltipText: "Shows how often your interest will be available for harvest"),
+      OrderModel(title: 'Time-lock End', subtitle: Jiffy(DateTime.now()).add(months: 1).yMMMMd, tooltip: true, tooltipText: "Investment lock period ends,. User can withdraw at anytime from now."),
+    ];
+  return order;
+  }
