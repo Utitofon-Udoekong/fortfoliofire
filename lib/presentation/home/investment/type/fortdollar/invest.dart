@@ -383,7 +383,7 @@ class FortDollarInvestment extends StatelessWidget {
                 ),
                 height: 50,
                 padding: const EdgeInsets.all(8.0),
-                margin: const EdgeInsets.symmetric(horizontal: 10)
+                margin: const EdgeInsets.symmetric(horizontal: 10),
                 child: Text(title,
                     style: subTitle.copyWith(
                         fontSize: 13,
