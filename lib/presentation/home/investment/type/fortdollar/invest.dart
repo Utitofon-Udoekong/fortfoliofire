@@ -20,7 +20,8 @@ class FortDollarInvestment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final duration = context.select((InvestmentCubit element) => element.state.duration);
+    final duration =
+        context.select((InvestmentCubit element) => element.state.duration);
     final endDate = Jiffy(DateTime.now()).add(months: duration.toInt()).yMMMMd;
     return Scaffold(
       body: SafeArea(
@@ -246,8 +247,12 @@ class FortDollarInvestment extends StatelessWidget {
                         return kTileHeight;
                       },
                       contentsBuilder: (_, index) {
-                        return timelineContent(order(endDate)[index].title,
-                            order(endDate)[index].subtitle, order(endDate)[index].tooltip);
+                        return timelineContent(
+                            order(endDate)[index].title,
+                            order(endDate)[index].subtitle,
+                            order(endDate)[index].tooltip,
+                            order(endDate)[index].tooltipText,
+                            );
                       }),
                 ),
                 const SizedBox(
@@ -263,7 +268,7 @@ class FortDollarInvestment extends StatelessWidget {
                           subTitle.copyWith(fontSize: 14, color: kBlackColor),
                     ),
                     Text(
-                      '${30 * (duration/12)}% ',
+                      '${30 * (duration / 12)}% ',
                       style:
                           subTitle.copyWith(fontSize: 14, color: kGreenColor),
                     )
@@ -366,18 +371,33 @@ class FortDollarInvestment extends StatelessWidget {
     );
   }
 
-  Widget timelineContent(String title, String subtitle, bool tooltip) {
+  Widget timelineContent(
+      String title, String subtitle, bool tooltip, String? tooltipMessage) {
     return Flex(
       direction: Axis.horizontal,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        Text(title,
-            style: subTitle.copyWith(
-                fontSize: 13,
-                color: kBlackColor,
-                decoration:
-                    tooltip ? TextDecoration.underline : TextDecoration.none,
-                decorationStyle: TextDecorationStyle.dashed)),
+        tooltip
+            ? Tooltip(
+                message: tooltipMessage,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(6),
+                  color: kSecondaryColor
+                ),
+                height: 50,
+                padding: const EdgeInsets.all(8.0),
+                child: Text(title,
+                    style: subTitle.copyWith(
+                        fontSize: 13,
+                        color: kWhiteColor,
+                        decoration: TextDecoration.underline,
+                        decorationStyle: TextDecorationStyle.dashed)),
+              )
+            : Text(title,
+                style: subTitle.copyWith(
+                  fontSize: 13,
+                  color: kBlackColor,
+                )),
         Text(
           subtitle,
           style: subTitle.copyWith(fontSize: 13, color: kBlackColor),
@@ -385,6 +405,4 @@ class FortDollarInvestment extends StatelessWidget {
       ],
     );
   }
-
-  
 }
