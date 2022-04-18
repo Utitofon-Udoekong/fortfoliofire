@@ -53,13 +53,10 @@ dependencies:
   equatable: ^2.0.3
   dartz: ^0.10.1
   injectable: ^1.5.3
-  get_it: ^7.2.0
   auto_route: ^3.2.2
   salomon_bottom_bar: ^3.2.0
-  progress_indicators: ^1.0.0
   kt_dart: ^0.10.0
-  rxdart: ^0.27.3
-  provider: ^6.0.2
+  local_auth: ^2.0.0
   image_picker: ^0.8.4+8
   nanoid: ^1.0.0
 

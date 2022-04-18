@@ -1,7 +1,7 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fortfolio/application/app_lify_cycle/app_life_cycle_cubit.dart';
+import 'package:fortfolio/application/app_life_cycle/app_life_cycle_cubit.dart';
 import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/injection.dart';
 import 'package:fortfolio/presentation/home/investment/cubit/investment_cubit.dart';
@@ -9,9 +9,20 @@ import 'package:fortfolio/presentation/home/wallet/cubit/wallet_cubit.dart';
 import 'package:fortfolio/presentation/network/no_connection.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
   const App({Key? key}) : super(key: key);
 
+  @override
+  State<App> createState() => _AppState();
+}
+
+class _AppState extends State<App> with WidgetsBindingObserver {
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // TODO: implement didChangeAppLifecycleState
+    super.didChangeAppLifecycleState(state);
+  }
   @override
   Widget build(BuildContext context) {
     final _appRouter = AppRouter();
@@ -21,10 +32,10 @@ class App extends StatelessWidget {
             create: (context) => getIt<AuthCubit>(),
             lazy: false,
           ),
-          // BlocProvider(
-          //   create: (context) => getIt<AppLifeCycleCubit>(),
-          //   lazy: false,
-          // ),
+          BlocProvider(
+            create: (context) => getIt<AppLifeCycleCubit>(),
+            lazy: false,
+          ),
           BlocProvider(create: (context) => getIt<WalletCubit>(), lazy: false),
           BlocProvider(
               create: (context) => getIt<InvestmentCubit>(), lazy: false),

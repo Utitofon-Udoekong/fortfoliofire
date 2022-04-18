@@ -10,7 +10,7 @@ import 'package:firebase_storage/firebase_storage.dart' as _i7;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
-import 'application/app_lify_cycle/app_life_cycle_cubit.dart' as _i3;
+import 'application/app_life_cycle/app_life_cycle_cubit.dart' as _i3;
 import 'application/auth/auth_cubit.dart' as _i4;
 import 'application/auth/reset_password_form/reset_password_cubit.dart' as _i16;
 import 'application/auth/sign_in_form/email/sign_in_form_email_cubit.dart'
