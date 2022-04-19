@@ -1,3 +1,6 @@
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,6 +9,9 @@ import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
 import 'package:fortfolio/presentation/home/wallet/cubit/wallet_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:screenshot/screenshot.dart';
+import 'package:share_plus/share_plus.dart';
 
 class WalletTransactions extends StatelessWidget {
   const WalletTransactions({Key? key}) : super(key: key);
@@ -18,6 +24,8 @@ class WalletTransactions extends StatelessWidget {
       'images/blank-wallet.svg',
       semanticsLabel: 'Blank Wallet',
     );
+    ScreenshotController screenshotController = ScreenshotController();
+    double pixelRatio = MediaQuery.of(context).devicePixelRatio;
     return Scaffold(
         body: transactions.isEmpty
             ? Center(
@@ -111,7 +119,18 @@ class WalletTransactions extends StatelessWidget {
                                 roi: withroi,
                                 title: withDescription,
                                 context: context,
-                                currency: withCurrency)
+                                currency: withCurrency,
+                                screenshotController: screenshotController,
+                                ontap: () async {
+                                  await screenshotController.capture(pixelRatio: pixelRatio,delay: const Duration(milliseconds: 10)).then((Uint8List? image) async {
+                                    if (image != null) {
+                                      final directory = await getApplicationDocumentsDirectory();
+                                      final imagePath = await File('${directory.path}/image.png').create();
+                                      await imagePath.writeAsBytes(image);
+                                      await Share.shareFiles([imagePath.path]);
+                                    }
+                                  });
+                                })
                             : buildInvestmentTile(
                                 amount: invAmount.toString(),
                                 date: invcreatedat,
@@ -122,7 +141,18 @@ class WalletTransactions extends StatelessWidget {
                                 roi: invroi,
                                 title: invDescription,
                                 currency: invCurrency,
-                                context: context);
+                                context: context,
+                                screenshotController: screenshotController,
+                                ontap: () async {
+                                  await screenshotController.capture(pixelRatio: pixelRatio,delay: const Duration(milliseconds: 10)).then((Uint8List? image) async {
+                                    if (image != null) {
+                                      final directory = await getApplicationDocumentsDirectory();
+                                      final imagePath = await File('${directory.path}/image.png').create();
+                                      await imagePath.writeAsBytes(image);
+                                      await Share.shareFiles([imagePath.path]);
+                                    }
+                                  });
+                                });
                       }).toList()),
                 ),
               ));
@@ -138,124 +168,158 @@ class WalletTransactions extends StatelessWidget {
       required String id,
       required String paymentMethod,
       required String currency,
+      required ScreenshotController screenshotController,
+      required Function() ontap,
       required BuildContext context}) {
     return GestureDetector(
       onTap: () {
-        var dialog = Dialog(
-          backgroundColor: Colors.transparent,
-          child: ClipPath(
-            clipper: RPSCustomClipper(),
-            child: Container(
-              decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.only(topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0))),
-              padding: const EdgeInsets.all(18.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    child: const Icon(
-                      Icons.north_east_rounded,
-                      color: Color.fromRGBO(16, 180, 107, 1),
+        var dialog = Screenshot(
+          controller: screenshotController,
+          child: Dialog(
+            backgroundColor: Colors.transparent,
+            child: ClipPath(
+              clipper: RPSCustomClipper(),
+              child: Container(
+                decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(10.0),
+                        topRight: Radius.circular(10.0))),
+                padding: const EdgeInsets.all(18.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Flex(
+                      direction: Axis.horizontal,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          child: const Icon(
+                            Icons.north_east_rounded,
+                            color: Color.fromRGBO(16, 180, 107, 1),
+                          ),
+                          padding: const EdgeInsets.all(3.0),
+                          decoration: const BoxDecoration(
+                              color: Color(0XFFF0FFFA), shape: BoxShape.circle),
+                        ),
+                        GestureDetector(
+                          onTap: ontap,
+                          child: Container(
+                            child: const Icon(
+                              Icons.share,
+                              color: kgreyColor,
+                            ),
+                            padding: const EdgeInsets.all(3.0),
+                            decoration: const BoxDecoration(
+                                color: Color(0XFFF0FFFA), shape: BoxShape.circle),
+                          ),
+                        ),
+                      ],
                     ),
-                    padding: const EdgeInsets.all(3.0),
-                    decoration: const BoxDecoration(
-                        color: Color(0XFFF0FFFA), shape: BoxShape.circle),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    "Withdrawal",
-                    style: subTitle.copyWith(color: kgreyColor, fontSize: 14),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "Type of Transaction",
-                    style: subTitle.copyWith(color: kgreyColor, fontSize: 13),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    title,
-                    style: titleText.copyWith(color: kBlackColor, fontSize: 15),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "Amount",
-                    style: subTitle.copyWith(color: kgreyColor, fontSize: 13),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    "$currency$amount",
-                    style: titleText.copyWith(color: kBlackColor, fontSize: 15),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "Date",
-                    style: subTitle.copyWith(color: kgreyColor, fontSize: 13),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    date.toString(),
-                    style: titleText.copyWith(color: kBlackColor, fontSize: 15),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "Status",
-                    style: subTitle.copyWith(color: kgreyColor, fontSize: 13),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    status,
-                    style: titleText.copyWith(color: status == "Successful"
-                          ? const Color(0XFF00C566)
-                          : status == "Pending"
-                              ? const Color.fromARGB(239, 226, 167, 4)
-                              : const Color(0XFFDF1414), fontSize: 15),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "Transaction Reference",
-                    style: subTitle.copyWith(color: kgreyColor, fontSize: 13),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    id,
-                    style: titleText.copyWith(color: kGreenColor, fontSize: 15),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "Payment Method",
-                    style: subTitle.copyWith(color: kgreyColor, fontSize: 13),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    paymentMethod,
-                    style: titleText.copyWith(color: kGreenColor, fontSize: 15),
-                  ),
-                ],
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      "Withdrawal",
+                      style: subTitle.copyWith(color: kgreyColor, fontSize: 14),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      "Type of Transaction",
+                      style: subTitle.copyWith(color: kgreyColor, fontSize: 13),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      title,
+                      style:
+                          titleText.copyWith(color: kBlackColor, fontSize: 15),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      "Amount",
+                      style: subTitle.copyWith(color: kgreyColor, fontSize: 13),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      "$currency$amount",
+                      style:
+                          titleText.copyWith(color: kBlackColor, fontSize: 15),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      "Date",
+                      style: subTitle.copyWith(color: kgreyColor, fontSize: 13),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      date.toString(),
+                      style:
+                          titleText.copyWith(color: kBlackColor, fontSize: 15),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      "Status",
+                      style: subTitle.copyWith(color: kgreyColor, fontSize: 13),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      status,
+                      style: titleText.copyWith(
+                          color: status == "Successful"
+                              ? const Color(0XFF00C566)
+                              : status == "Pending"
+                                  ? const Color.fromARGB(239, 226, 167, 4)
+                                  : const Color(0XFFDF1414),
+                          fontSize: 15),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      "Transaction Reference",
+                      style: subTitle.copyWith(color: kgreyColor, fontSize: 13),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      id,
+                      style:
+                          titleText.copyWith(color: kGreenColor, fontSize: 15),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      "Payment Method",
+                      style: subTitle.copyWith(color: kgreyColor, fontSize: 13),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      paymentMethod,
+                      style:
+                          titleText.copyWith(color: kGreenColor, fontSize: 15),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -325,10 +389,10 @@ class WalletTransactions extends StatelessWidget {
                     style: subTitle.copyWith(
                         fontSize: 12,
                         color: status == "Successful"
-                          ? const Color(0XFF00C566)
-                          : status == "Pending"
-                              ? const Color.fromARGB(239, 226, 167, 4)
-                              : const Color(0XFFDF1414),
+                            ? const Color(0XFF00C566)
+                            : status == "Pending"
+                                ? const Color.fromARGB(239, 226, 167, 4)
+                                : const Color(0XFFDF1414),
                         fontWeight: FontWeight.w500))
               ],
             )
@@ -348,131 +412,167 @@ class WalletTransactions extends StatelessWidget {
       required int roi,
       required String paymentMethod,
       required String currency,
+      required ScreenshotController screenshotController,
+      required Function() ontap,
       required BuildContext context}) {
     return GestureDetector(
       onTap: () {
-        var dialog = Dialog(
-          backgroundColor: Colors.transparent,
-          child: ClipPath(
-            clipper: RPSCustomClipper(),
-            child: Container(
-              decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.only(topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0))),
-              padding: const EdgeInsets.all(18.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    child: const Icon(
-                      Icons.north_east_rounded,
-                      color: Color.fromRGBO(16, 180, 107, 1),
+        var dialog = Screenshot(
+          controller: screenshotController,
+          child: Dialog(
+            backgroundColor: Colors.transparent,
+            child: ClipPath(
+              clipper: RPSCustomClipper(),
+              child: Container(
+                decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(10.0),
+                        topRight: Radius.circular(10.0))),
+                padding: const EdgeInsets.all(18.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Flex(
+                      direction: Axis.horizontal,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          child: const Icon(
+                            Icons.north_east_rounded,
+                            color: Color.fromRGBO(16, 180, 107, 1),
+                          ),
+                          padding: const EdgeInsets.all(3.0),
+                          decoration: const BoxDecoration(
+                              color: Color(0XFFF0FFFA), shape: BoxShape.circle),
+                        ),
+                        GestureDetector(
+                          onTap: ontap,
+                          child: Container(
+                            child: const Icon(
+                              Icons.share,
+                              color: kgreyColor,
+                            ),
+                            padding: const EdgeInsets.all(3.0),
+                            decoration: const BoxDecoration(
+                                color: Color(0XFFF0FFFA), shape: BoxShape.circle),
+                          ),
+                        ),
+                      ],
                     ),
-                    padding: const EdgeInsets.all(3.0),
-                    decoration: const BoxDecoration(
-                        color: Color(0XFFF0FFFA), shape: BoxShape.circle),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    "Investment",
-                    style: subTitle.copyWith(color: kgreyColor, fontSize: 14),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "Type of Transaction",
-                    style: subTitle.copyWith(color: kgreyColor, fontSize: 13),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    title,
-                    style: titleText.copyWith(color: kBlackColor, fontSize: 15),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "Amount",
-                    style: subTitle.copyWith(color: kgreyColor, fontSize: 13),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    "$currency$amount",
-                    style: titleText.copyWith(color: kBlackColor, fontSize: 15),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "Date",
-                    style: subTitle.copyWith(color: kgreyColor, fontSize: 13),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    date.toString(),
-                    style: titleText.copyWith(color: kBlackColor, fontSize: 15),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "Status",
-                    style: subTitle.copyWith(color: kgreyColor, fontSize: 13),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    status,
-                    style: titleText.copyWith(color: status == "Successful"
-                          ? const Color(0XFF00C566)
-                          : status == "Pending"
-                              ? const Color.fromARGB(239, 226, 167, 4)
-                              : const Color(0XFFDF1414), fontSize: 15),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "Transaction Reference",
-                    style: subTitle.copyWith(color: kgreyColor, fontSize: 13),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    id,
-                    style: titleText.copyWith(color: kGreenColor, fontSize: 15),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "Payment Method",
-                    style: subTitle.copyWith(color: kgreyColor, fontSize: 13),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    paymentMethod,
-                    style: titleText.copyWith(color: kGreenColor, fontSize: 15),
-                  ),
-                ],
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      "Investment",
+                      style: subTitle.copyWith(color: kgreyColor, fontSize: 14),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      "Type of Transaction",
+                      style: subTitle.copyWith(color: kgreyColor, fontSize: 13),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      title,
+                      style:
+                          titleText.copyWith(color: kBlackColor, fontSize: 15),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      "Amount",
+                      style: subTitle.copyWith(color: kgreyColor, fontSize: 13),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      "$currency$amount",
+                      style:
+                          titleText.copyWith(color: kBlackColor, fontSize: 15),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      "Date",
+                      style: subTitle.copyWith(color: kgreyColor, fontSize: 13),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      date.toString(),
+                      style:
+                          titleText.copyWith(color: kBlackColor, fontSize: 15),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      "Status",
+                      style: subTitle.copyWith(color: kgreyColor, fontSize: 13),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      status,
+                      style: titleText.copyWith(
+                          color: status == "Successful"
+                              ? const Color(0XFF00C566)
+                              : status == "Pending"
+                                  ? const Color.fromARGB(239, 226, 167, 4)
+                                  : const Color(0XFFDF1414),
+                          fontSize: 15),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      "Transaction Reference",
+                      style: subTitle.copyWith(color: kgreyColor, fontSize: 13),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      id,
+                      style:
+                          titleText.copyWith(color: kGreenColor, fontSize: 15),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      "Payment Method",
+                      style: subTitle.copyWith(color: kgreyColor, fontSize: 13),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      paymentMethod,
+                      style:
+                          titleText.copyWith(color: kGreenColor, fontSize: 15),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
         );
-        showDialog(context: context, builder: (context){
-          return dialog;
-        });
+        showDialog(
+            context: context,
+            builder: (context) {
+              return dialog;
+            });
       },
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 12.0),
@@ -533,10 +633,10 @@ class WalletTransactions extends StatelessWidget {
                     style: subTitle.copyWith(
                         fontSize: 12,
                         color: status == "Successful"
-                          ? const Color(0XFF00C566)
-                          : status == "Pending"
-                              ? const Color.fromARGB(239, 226, 167, 4)
-                              : const Color(0XFFDF1414),
+                            ? const Color(0XFF00C566)
+                            : status == "Pending"
+                                ? const Color.fromARGB(239, 226, 167, 4)
+                                : const Color(0XFFDF1414),
                         fontWeight: FontWeight.w500))
               ],
             )
@@ -551,7 +651,7 @@ class RPSCustomClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     var smallLineLength = size.width / 20;
-    const  smallLineHeight = 20;
+    const smallLineHeight = 20;
     var path = Path();
 
     path.lineTo(0, size.height);
@@ -560,7 +660,6 @@ class RPSCustomClipper extends CustomClipper<Path> {
         path.lineTo(smallLineLength * i, size.height);
       } else {
         path.lineTo(smallLineLength * i, size.height - smallLineHeight);
-        
       }
     }
     path.lineTo(size.width, 0);

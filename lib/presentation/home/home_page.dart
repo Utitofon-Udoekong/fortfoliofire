@@ -75,7 +75,7 @@ class HomePage extends StatelessWidget {
               selectedColor: kPrimaryColor,
               unselectedColor: Colors.grey,
               icon: const Icon(
-                Icons.person,
+                Icons.stacked_bar_chart_rounded,
                 size: 20,
               ),
               title: const Text('Investment'),

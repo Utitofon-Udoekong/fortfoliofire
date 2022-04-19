@@ -24,8 +24,7 @@ class MainDrawer extends StatelessWidget {
         .select((AuthCubit authCubit) => authCubit.state.userModel.isVerified);
     return Drawer(
       backgroundColor: kWhiteColor,
-      child: ListView(
-        padding: EdgeInsets.zero,
+      child: Stack(
         children: <Widget>[
           DrawerHeader(
             padding: kDefaultPadding,
@@ -130,8 +129,10 @@ class MainDrawer extends StatelessWidget {
           const SizedBox(
             height: 30,
           ),
-          Align(
-            alignment: Alignment.bottomLeft,
+          Positioned(
+            bottom: 10,
+            left: 0,
+            // alignment: Alignment.bottomLeft,
             child: Padding(
               padding: const EdgeInsets.only(left: 20),
               child: TextButton(
