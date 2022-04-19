@@ -11,7 +11,15 @@ part 'bank_address_cubit.freezed.dart';
 @injectable
 class BankAddressCubit extends Cubit<BankAddressState> {
   final IFirestoreFacade firestoreFacade;
-  BankAddressCubit(this.firestoreFacade) : super(BankAddressState.initial());
+  BankAddressCubit(this.firestoreFacade) : super(BankAddressState.initial()){
+    initBank();
+  }
+  void initBank() async {
+    final addresses = await firestoreFacade.getBankAddress();
+    addresses.fold(() => null, (addressList){
+      emit(state.copyWith(bankAddresses: addressList));
+    });
+  }
   void userNameChanged({required String userName}){
     emit(state.copyWith(userName: userName));
   }

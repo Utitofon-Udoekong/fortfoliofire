@@ -69,58 +69,70 @@ class CryptoWithdrawal extends StatelessWidget {
                         const SizedBox(
                           height: 30,
                         ),
+                        
+                        // BlocBuilder<WalletCubit, WalletState>(
+                        //   builder: (context, state) {
+                        //     Widget tiles = buildtile("", () => null, "");
+                        //     if (state.isNotGeneral) {
+                        //       for (var element in state.cryptoAddresses) {
+                        //         tiles = buildtile(
+                        //             element.address,
+                        //             () => context
+                        //                 .read<WalletCubit>()
+                        //                 .withdrawalDetailsChanged(
+                        //                     withdrawalDetails: element.toMap()),
+                        //             element.walletLabel);
+                        //       }
+                        //       return tiles;
+                        //     } else if (state.isGeneral) {
+                        //       for (var element
+                        //           in state.generalCryptoAddresses) {
+                        //         tiles = buildtile(
+                        //             element.address,
+                        //             () => context
+                        //                 .read<WalletCubit>()
+                        //                 .withdrawalDetailsChanged(
+                        //                     withdrawalDetails: element.toMap()),
+                        //             element.walletLabel);
+                        //       }
+                        //       return tiles;
+                        //     } else {
+                        //       var addressess = state.cryptoAddresses +
+                        //           state.generalCryptoAddresses;
+                        //       for (var element in addressess) {
+                        //         CryptoWallet cryptoWallet = CryptoWallet(
+                        //             walletLabel: element.walletLabel,
+                        //             address: element.address,
+                        //             coin: element.coin,
+                        //             network: element.network,
+                        //             platform: element.platform,
+                        //             type: element.type,
+                        //             trax: element.trax,
+                        //             id: element.id);
+                        //         tiles = buildtile(
+                        //             element.address,
+                        //             element.walletLabel);
+                        //       }
+                        //       return tiles;
+                        //     }
+                        //   },
+                        // ),
                         BlocBuilder<WalletCubit, WalletState>(
                           builder: (context, state) {
-                            Widget tiles = buildtile("", () => null, "");
-                            if (state.isNotGeneral) {
-                              for (var element in state.cryptoAddresses) {
-                                tiles = buildtile(
-                                    element.address,
-                                    () => context
-                                        .read<WalletCubit>()
-                                        .withdrawalDetailsChanged(
-                                            withdrawalDetails: element.toMap()),
-                                    element.walletLabel);
-                              }
-                              return tiles;
-                            } else if (state.isGeneral) {
-                              for (var element
-                                  in state.generalCryptoAddresses) {
-                                tiles = buildtile(
-                                    element.address,
-                                    () => context
-                                        .read<WalletCubit>()
-                                        .withdrawalDetailsChanged(
-                                            withdrawalDetails: element.toMap()),
-                                    element.walletLabel);
-                              }
-                              return tiles;
-                            } else {
-                              var addressess = state.cryptoAddresses +
-                                  state.generalCryptoAddresses;
-                              for (var element in addressess) {
-                                CryptoWallet cryptoWallet = CryptoWallet(
-                                    walletLabel: element.walletLabel,
-                                    address: element.address,
-                                    coin: element.coin,
-                                    network: element.network,
-                                    platform: element.platform,
-                                    type: element.type,
-                                    trax: element.trax,
-                                    id: element.id);
-                                tiles = buildtile(
-                                    element.address,
-                                    () => context
-                                        .read<WalletCubit>()
-                                        .withdrawalDetailsChanged(
-                                            withdrawalDetails:
-                                                cryptoWallet.toMap()),
-                                    element.walletLabel);
-                              }
-                              return tiles;
-                            }
+                            var addressess = state.cryptoAddresses +
+                                state.generalCryptoAddresses;
+                            return Column(
+                              children: addressess.map((address) {
+                                return buildtile(
+                                    address.address,() => context
+                            .read<WalletCubit>()
+                            .withdrawalDetailsChanged(
+                                withdrawalDetails: address.toMap()), address.walletLabel);
+                              }).toList(),
+                            );
                           },
                         ),
+                        
                         const SizedBox(
                           height: 50,
                         ),

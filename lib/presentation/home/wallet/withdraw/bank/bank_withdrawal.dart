@@ -71,17 +71,17 @@ class BankWithdrawal extends StatelessWidget {
                         ),
                         BlocBuilder<WalletCubit, WalletState>(
                             builder: (context, state) {
-                          Widget tiles = buildtile("", () => null, "");
-                          for (var element in state.bankAddresses) {
-                            tiles = buildtile(
-                                element.accountNumber,
-                                () => context
-                                    .read<WalletCubit>()
-                                    .withdrawalDetailsChanged(
-                                        withdrawalDetails: element.toMap()),
-                                element.userName);
-                          }
-                          return tiles;
+                          return Column(
+                            children: state.bankAddresses.map((address) {
+                              return buildtile(
+                                  address.accountNumber,
+                                  () => context
+                                      .read<WalletCubit>()
+                                      .withdrawalDetailsChanged(
+                                          withdrawalDetails: address.toMap()),
+                                  address.userName);
+                            }).toList(),
+                          );
                         }),
                         const SizedBox(
                           height: 50,

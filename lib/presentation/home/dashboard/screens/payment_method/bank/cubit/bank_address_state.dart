@@ -9,6 +9,7 @@ class BankAddressState with _$BankAddressState {
     required bool isLoading,
     required String failure,
     required String success,
+    required List<BankAddress> bankAddresses,
   }) = _BankAddressState;
   const BankAddressState._();
   factory BankAddressState.initial() => const BankAddressState(
@@ -17,7 +18,13 @@ class BankAddressState with _$BankAddressState {
     accountNumber: "",
     isLoading: false,
     failure: "",
-    success: ""
+    success: "",
+    bankAddresses: [
+      BankAddress(bankName: "bankName", accountNumber: "65368567", userName: "userName", id: "id", trax: "trax", type: "BANKADDRESS"),
+      BankAddress(bankName: "bankName", accountNumber: "98249737", userName: "userName", id: "id", trax: "trax", type: "BANKADDRESS"),
+      BankAddress(bankName: "bankName", accountNumber: "23465453", userName: "userName", id: "id", trax: "trax", type: "BANKADDRESS"),
+    ],
   );
   bool get isValidState => bankName.isNotEmpty && accountNumber.isNotEmpty && userName.isNotEmpty;
+  bool get noAccount => bankAddresses.isEmpty;
 }

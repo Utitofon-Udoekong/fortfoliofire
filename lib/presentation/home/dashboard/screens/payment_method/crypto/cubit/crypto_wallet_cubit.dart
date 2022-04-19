@@ -17,6 +17,20 @@ class CryptoWalletCubit extends Cubit<CryptoWalletState> {
   final IFirestoreFacade firestoreFacade;
   CryptoWalletCubit(this.firestoreFacade) : super(CryptoWalletState.empty());
 
+  void initCryptoWallet() async {
+    var wallet = await firestoreFacade.getCryptoWallets();
+    wallet.fold(() => null, (cryptoAddresses) {
+      emit(state.copyWith(cryptoAddresses: cryptoAddresses));
+    });
+  }
+
+  void initGeneralCryptoWallet() async {
+    var wallet = await firestoreFacade.getGeneralCryptoWallets();
+    wallet.fold(() => null, (generalCryptoAddresses) {
+      emit(state.copyWith(generalCryptoAddresses: generalCryptoAddresses));
+    });
+  }
+
   void coinChanged({required String coin}){
     emit(state.copyWith(coin: coin));
   }

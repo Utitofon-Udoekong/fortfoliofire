@@ -158,28 +158,28 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
   }
 
   @override
-  Future<Option<List<NotificationItem>>> getNotifications() async {
-    final query = await firestore.authUserCollection
+  Stream<QuerySnapshot> getNotifications() async* {
+    yield* firestore.authUserCollection
         .doc(auth.currentUser!.uid)
         .collection("notifications")
-        .get();
-    try {
-      if (query.docs.isNotEmpty && query.docs[0].exists) {
-        final docs = query.docs;
-        final newDocs = List<NotificationItem>.empty();
-        for (var element in docs) {
-          final doc = NotificationItemDTO.fromFirestore(element).toDomain();
-          newDocs.add(doc);
-        }
-        return some(newDocs);
-      } else {
-        log("Notifications could not be retrieved at this moment");
-        return none();
-      }
-    } on FirebaseException catch (e) {
-      log("Code: ${e.code}, Message: ${e.message}");
-      return none();
-    }
+        .snapshots();
+    // try {
+    //   if (!isEmpty) {
+    //     final docs = query.docs;
+    //     final newDocs = List<NotificationItem>.empty();
+        // for (var element in docs) {
+        //   final doc = NotificationItemDTO.fromFirestore(element).toDomain();
+        //   newDocs.add(doc);
+        // }
+    //     return some(newDocs);
+    //   } else {
+    //     log("Notifications could not be retrieved at this moment");
+    //     return none();
+    //   }
+    // } on FirebaseException catch (e) {
+    //   log("Code: ${e.code}, Message: ${e.message}");
+    //   return none();
+    // }
   }
 
   @override

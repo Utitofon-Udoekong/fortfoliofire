@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
-import 'package:fortfolio/presentation/home/wallet/overview/wallet_engine.dart';
+import 'package:fortfolio/presentation/home/wallet/overview/wallet_overview.dart';
 
 import 'transactions/transactions.dart';
 
@@ -70,7 +70,7 @@ class _WalletState extends State<Wallet> with SingleTickerProviderStateMixin {
               child: TabBarView(
                 controller: _tabController,
                 children: const <Widget>[
-                  WalletOverviewEngine(),
+                  WalletOverview(),
                   WalletTransactions()
                 ],
               ),

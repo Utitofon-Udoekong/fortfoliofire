@@ -7,7 +7,6 @@ import 'package:fortfolio/presentation/authentication/sign_in/sign_in_form_phone
 import 'package:fortfolio/presentation/authentication/sign_up/confirm_signup_otp.dart';
 import 'package:fortfolio/presentation/authentication/sign_up/sign_up_form.dart';
 import 'package:fortfolio/presentation/home/dashboard/dashboard.dart';
-import 'package:fortfolio/presentation/home/dashboard/screens/notifications/notification_engine.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/bank/add_bank.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/bank/bank_wallet.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/bank/verify_bank.dart';
@@ -45,7 +44,6 @@ import 'package:fortfolio/presentation/home/investment/type/fortdollar/invest.da
 import 'package:fortfolio/presentation/home/investment/type/fortshield/fortshield.dart';
 import 'package:fortfolio/presentation/home/investment/type/fortshield/invest.dart';
 import 'package:fortfolio/presentation/home/wallet/investment/fortdollar_info.dart';
-import 'package:fortfolio/presentation/home/wallet/overview/wallet_engine.dart';
 import 'package:fortfolio/presentation/home/wallet/overview/wallet_overview.dart';
 import 'package:fortfolio/presentation/home/wallet/success.dart';
 import 'package:fortfolio/presentation/home/wallet/transactions/transactions.dart';
@@ -73,7 +71,6 @@ import '../home/wallet/investment/fortshield_info.dart';
   AutoRoute(page: SignUpForm),
   AutoRoute(page: ResetPassword),
   AutoRoute(page: NotificationsPage),
-  AutoRoute(page: NotificationEngine),
   AutoRoute( page: ProfilePage),
   AutoRoute( page: DashboardTransactions),
   AutoRoute( page: Calculator),
@@ -83,8 +80,8 @@ import '../home/wallet/investment/fortshield_info.dart';
   AutoRoute( page: VerifyBank),
   AutoRoute( page: AddCryptoWallet),
   AutoRoute( page: VerifyCryptoWallet),
-  AutoRoute( page: BankAddress),
-  AutoRoute( page: CryptoWallet),
+  AutoRoute( page: BankAddressPage),
+  AutoRoute( page: CryptoWalletPage),
   AutoRoute( page: PaymentMethod),
   AutoRoute( page: FAQPage),
   AutoRoute( page: SupportPage),
@@ -107,7 +104,6 @@ import '../home/wallet/investment/fortshield_info.dart';
   AutoRoute( page: FortShield),
   AutoRoute( page: FortShieldInvestment),
   AutoRoute( page: WalletOverview),
-  AutoRoute( page: WalletOverviewEngine),
   AutoRoute( page: WalletTransactions),
   
   AutoRoute( page: SelectWithdrawalMethod),

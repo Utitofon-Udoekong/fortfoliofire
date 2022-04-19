@@ -40,7 +40,10 @@ class NotificationsPage extends StatelessWidget {
                   ),
                   BlocBuilder<NotificationCubit, NotificationState>(
                     builder: (context, state) {
-                      return Column(
+                      if(state.notifications.isEmpty){
+                        return Text("No notifications at the moment", style: subTitle.copyWith(color: kBlackColor, fontSize: 15),);
+                      }else{
+                        return Column(
                         children: state.notifications.map((notification) {
                           return buildtile(
                             selected: state.selectedNotifications
@@ -64,6 +67,7 @@ class NotificationsPage extends StatelessWidget {
                           );
                         }).toList(),
                       );
+                      }
                     },
                   ),
                   const SizedBox(

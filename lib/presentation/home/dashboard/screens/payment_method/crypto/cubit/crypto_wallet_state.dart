@@ -14,6 +14,8 @@ class CryptoWalletState with _$CryptoWalletState {
     required bool isloading,
     required int? selectedNetwork,
     required List<DropdownMenuItem<String>> dropdownItems,
+    required List<CryptoWallet> cryptoAddresses,
+      required List<CryptoWallet> generalCryptoAddresses,
   }) = _CryptoWalletState;
   const CryptoWalletState._();
   factory CryptoWalletState.empty() => const CryptoWalletState(
@@ -27,6 +29,13 @@ class CryptoWalletState with _$CryptoWalletState {
         isGeneral: true,
         isloading: false,
         selectedNetwork: 1,
+        cryptoAddresses: [
+          CryptoWallet(walletLabel: "walletLabel", address: "address", coin: "BTC", network: "network", platform: "platform", type: "CRYPROWALLET", id: "id", trax: "2345632"),
+          CryptoWallet(walletLabel: "walletLabel", address: "address", coin: "BTC", network: "network", platform: "platform", type: "CRYPROWALLET", id: "id", trax: "2345632")
+        ],
+      generalCryptoAddresses: [
+        CryptoWallet(walletLabel: "walletLabel", address: "genaddress", coin: "BTC", network: "network", platform: "platform", type: "GENERALCRYPROWALLET", id: "id", trax: "2345632")
+      ],
         dropdownItems: [
           DropdownMenuItem(child: Text("BTC"), value: "BTC"),
           DropdownMenuItem(child: Text("BCH"), value: "BCH"),
@@ -46,4 +55,5 @@ class CryptoWalletState with _$CryptoWalletState {
       network.isNotEmpty &&
       address.isNotEmpty &&
       platform.isNotEmpty;
+  bool get emptyWallet => cryptoAddresses.isEmpty && generalCryptoAddresses.isEmpty;
 }

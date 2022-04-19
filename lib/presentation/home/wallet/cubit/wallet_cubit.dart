@@ -18,7 +18,13 @@ part 'wallet_cubit.freezed.dart';
 @injectable
 class WalletCubit extends Cubit<WalletState> {
   final IFirestoreFacade firestoreFacade;
-  WalletCubit(this.firestoreFacade) : super(WalletState.initial());
+  WalletCubit(this.firestoreFacade) : super(WalletState.initial()){
+    initFortDollarInvestments();
+    initFortShieldInvestments();
+    initFortCryptoInvestments();
+    initWalletBalance();
+    initTransactions();
+  }
 
   void investmentPlanChanged({required String investmentPlan}) {
     emit(state.copyWith(investmentPlan: investmentPlan));

@@ -24,7 +24,8 @@ class _$BankAddressStateTearOff {
       required String accountNumber,
       required bool isLoading,
       required String failure,
-      required String success}) {
+      required String success,
+      required List<BankAddress> bankAddresses}) {
     return _BankAddressState(
       userName: userName,
       bankName: bankName,
@@ -32,6 +33,7 @@ class _$BankAddressStateTearOff {
       isLoading: isLoading,
       failure: failure,
       success: success,
+      bankAddresses: bankAddresses,
     );
   }
 }
@@ -47,6 +49,7 @@ mixin _$BankAddressState {
   bool get isLoading => throw _privateConstructorUsedError;
   String get failure => throw _privateConstructorUsedError;
   String get success => throw _privateConstructorUsedError;
+  List<BankAddress> get bankAddresses => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $BankAddressStateCopyWith<BankAddressState> get copyWith =>
@@ -64,7 +67,8 @@ abstract class $BankAddressStateCopyWith<$Res> {
       String accountNumber,
       bool isLoading,
       String failure,
-      String success});
+      String success,
+      List<BankAddress> bankAddresses});
 }
 
 /// @nodoc
@@ -84,6 +88,7 @@ class _$BankAddressStateCopyWithImpl<$Res>
     Object? isLoading = freezed,
     Object? failure = freezed,
     Object? success = freezed,
+    Object? bankAddresses = freezed,
   }) {
     return _then(_value.copyWith(
       userName: userName == freezed
@@ -110,6 +115,10 @@ class _$BankAddressStateCopyWithImpl<$Res>
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
               as String,
+      bankAddresses: bankAddresses == freezed
+          ? _value.bankAddresses
+          : bankAddresses // ignore: cast_nullable_to_non_nullable
+              as List<BankAddress>,
     ));
   }
 }
@@ -127,7 +136,8 @@ abstract class _$BankAddressStateCopyWith<$Res>
       String accountNumber,
       bool isLoading,
       String failure,
-      String success});
+      String success,
+      List<BankAddress> bankAddresses});
 }
 
 /// @nodoc
@@ -149,6 +159,7 @@ class __$BankAddressStateCopyWithImpl<$Res>
     Object? isLoading = freezed,
     Object? failure = freezed,
     Object? success = freezed,
+    Object? bankAddresses = freezed,
   }) {
     return _then(_BankAddressState(
       userName: userName == freezed
@@ -175,6 +186,10 @@ class __$BankAddressStateCopyWithImpl<$Res>
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
               as String,
+      bankAddresses: bankAddresses == freezed
+          ? _value.bankAddresses
+          : bankAddresses // ignore: cast_nullable_to_non_nullable
+              as List<BankAddress>,
     ));
   }
 }
@@ -188,7 +203,8 @@ class _$_BankAddressState extends _BankAddressState {
       required this.accountNumber,
       required this.isLoading,
       required this.failure,
-      required this.success})
+      required this.success,
+      required this.bankAddresses})
       : super._();
 
   @override
@@ -203,10 +219,12 @@ class _$_BankAddressState extends _BankAddressState {
   final String failure;
   @override
   final String success;
+  @override
+  final List<BankAddress> bankAddresses;
 
   @override
   String toString() {
-    return 'BankAddressState(userName: $userName, bankName: $bankName, accountNumber: $accountNumber, isLoading: $isLoading, failure: $failure, success: $success)';
+    return 'BankAddressState(userName: $userName, bankName: $bankName, accountNumber: $accountNumber, isLoading: $isLoading, failure: $failure, success: $success, bankAddresses: $bankAddresses)';
   }
 
   @override
@@ -220,7 +238,9 @@ class _$_BankAddressState extends _BankAddressState {
                 .equals(other.accountNumber, accountNumber) &&
             const DeepCollectionEquality().equals(other.isLoading, isLoading) &&
             const DeepCollectionEquality().equals(other.failure, failure) &&
-            const DeepCollectionEquality().equals(other.success, success));
+            const DeepCollectionEquality().equals(other.success, success) &&
+            const DeepCollectionEquality()
+                .equals(other.bankAddresses, bankAddresses));
   }
 
   @override
@@ -231,7 +251,8 @@ class _$_BankAddressState extends _BankAddressState {
       const DeepCollectionEquality().hash(accountNumber),
       const DeepCollectionEquality().hash(isLoading),
       const DeepCollectionEquality().hash(failure),
-      const DeepCollectionEquality().hash(success));
+      const DeepCollectionEquality().hash(success),
+      const DeepCollectionEquality().hash(bankAddresses));
 
   @JsonKey(ignore: true)
   @override
@@ -246,7 +267,8 @@ abstract class _BankAddressState extends BankAddressState {
       required String accountNumber,
       required bool isLoading,
       required String failure,
-      required String success}) = _$_BankAddressState;
+      required String success,
+      required List<BankAddress> bankAddresses}) = _$_BankAddressState;
   const _BankAddressState._() : super._();
 
   @override
@@ -261,6 +283,8 @@ abstract class _BankAddressState extends BankAddressState {
   String get failure;
   @override
   String get success;
+  @override
+  List<BankAddress> get bankAddresses;
   @override
   @JsonKey(ignore: true)
   _$BankAddressStateCopyWith<_BankAddressState> get copyWith =>

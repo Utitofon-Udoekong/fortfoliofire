@@ -92,8 +92,8 @@ class _PaymentMethodState extends State<PaymentMethod>
                     child: TabBarView(
                       controller: _tabController,
                       children: const <Widget>[
-                        CryptoWallet(),
-                        BankAddress()
+                        CryptoWalletPage(),
+                        BankAddressPage()
                       ],
                     ),
                   )

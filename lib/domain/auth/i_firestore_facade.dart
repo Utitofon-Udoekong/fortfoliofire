@@ -1,4 +1,5 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:fortfolio/domain/user/bank_address.dart';
 import 'package:fortfolio/domain/user/crypto_wallet.dart';
@@ -14,7 +15,7 @@ abstract class IFirestoreFacade {
   Future<Either<String,String>> addBank({required BankAddress bankAddress});
   Future<Either<String,String>> addCryptoWallet({required CryptoWallet cryptoWallet});
   Future<Either<String,String>> addGeneralCryptoWallet({required CryptoWallet cryptoWallet});
-  Future<Option<List<NotificationItem>>> getNotifications();
+  Stream<QuerySnapshot> getNotifications();
   Future<Option<List<BankAddress>>> getBankAddress();
   Future<Option<List<CryptoWallet>>> getCryptoWallets();
   Future<Option<List<CryptoWallet>>> getGeneralCryptoWallets();
