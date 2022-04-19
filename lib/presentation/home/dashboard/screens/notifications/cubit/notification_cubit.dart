@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
 import 'package:fortfolio/domain/user/notification_item.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:nanoid/nanoid.dart';
+// import 'package:nanoid/nanoid.dart';
 import 'package:injectable/injectable.dart';
 
 part 'notification_state.dart';
@@ -35,20 +35,20 @@ class NotificationCubit extends Cubit<NotificationState> {
   }
 
   void deleteNotification({required NotificationItem notificationItem}) async{
-    // await firestoreFacade.deleteNotification(notificationItem: notificationItem);
-    final notifications = state.notifications;
-    final item = notifications.firstWhere((element) => element.id == notificationItem.id);
-    notifications.remove(item);
-    emit(state.copyWith(notifications: notifications));
+    await firestoreFacade.deleteNotification(notificationItem: notificationItem);
+    // final notifications = state.notifications;
+    // final item = notifications.firstWhere((element) => element.id == notificationItem.id);
+    // notifications.remove(item);
+    // emit(state.copyWith(notifications: notifications));
   }
 
   void deleteAllNotifications() async{
-    // await firestoreFacade.deleteAllNotifications();
-    final notifications = state.notifications;
+    await firestoreFacade.deleteAllNotifications();
+    // final notifications = state.notifications;
     final selectedNotifications = state.selectedNotifications;
-    notifications.clear();
+    // notifications.clear();
     selectedNotifications.clear();
-    emit(state.copyWith(notifications: notifications, selectedNotifications: selectedNotifications));
+    emit(state.copyWith(selectedNotifications: selectedNotifications));
   }
   
 }

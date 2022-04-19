@@ -66,7 +66,6 @@ class NotificationsPage extends StatelessWidget {
                       );
                     },
                   ),
-                  // buildFromOmO(),
                   const SizedBox(
                     height: 20,
                   ),

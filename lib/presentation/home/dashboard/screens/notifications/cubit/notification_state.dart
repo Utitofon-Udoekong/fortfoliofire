@@ -15,30 +15,30 @@ class NotificationState with _$NotificationState {
 
   factory NotificationState.empty() => NotificationState(
         notifications: [
-          NotificationItem(
-              id: nanoid(8),
-              type: "Investment",
-              title: "Fort Dollar Investment",
-              createdat: DateTime.now(),
-              status: "failed"),
-          NotificationItem(
-              id: nanoid(8),
-              type: "Withdrawal",
-              title: "Fort Dollar Withdrawal",
-              createdat: DateTime.now(),
-              status: "pending"),
-          NotificationItem(
-              id: nanoid(8),
-              type: "Investment",
-              title: "Fort Dollar Investment",
-              createdat: DateTime.now(),
-              status: "successfull"),
-          NotificationItem(
-              id: nanoid(8),
-              type: "Withdrawal",
-              title: "Fort Dollar Withdrawal",
-              createdat: DateTime.now(),
-              status: "pending"),
+          // NotificationItem(
+          //     id: nanoid(8),
+          //     type: "Investment",
+          //     title: "Fort Dollar Investment",
+          //     createdat: DateTime.now(),
+          //     status: "failed"),
+          // NotificationItem(
+          //     id: nanoid(8),
+          //     type: "Withdrawal",
+          //     title: "Fort Dollar Withdrawal",
+          //     createdat: DateTime.now(),
+          //     status: "pending"),
+          // NotificationItem(
+          //     id: nanoid(8),
+          //     type: "Investment",
+          //     title: "Fort Dollar Investment",
+          //     createdat: DateTime.now(),
+          //     status: "successfull"),
+          // NotificationItem(
+          //     id: nanoid(8),
+          //     type: "Withdrawal",
+          //     title: "Fort Dollar Withdrawal",
+          //     createdat: DateTime.now(),
+          //     status: "pending"),
         ],
         // notifications: List<NotificationItem>.empty(growable: true),
         loading: false,
