@@ -32,7 +32,6 @@ class CryptoWalletState with _$CryptoWalletState {
         cryptoAddresses: [
         ],
       generalCryptoAddresses: [
-        CryptoWallet(walletLabel: "walletLabel", address: "genaddress", coin: "BTC", network: "network", platform: "platform", type: "GENERALCRYPROWALLET", id: "id", trax: "2345632")
       ],
         dropdownItems: [
           DropdownMenuItem(child: Text("BTC"), value: "BTC"),

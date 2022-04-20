@@ -28,50 +28,46 @@ class DashboardTransactions extends StatelessWidget {
     double pixelRatio = MediaQuery.of(context).devicePixelRatio;
     return Scaffold(
         body: SafeArea(
-            child: Padding(
-      padding: kDefaultPadding,
-      child: transactions.isEmpty
-          ? Center(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  InkWell(
-                    onTap: () => context.router.pop(),
-                    child: const Icon(Icons.close),
-                  ),
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      svg,
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Text(
-                        'No Transactions recorded yet. Make an investment to get started',
-                        style: subTitle,
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      CustomFilledButton(
-                          text: "GET STARTED",
-                          onTap: () => context.router
-                              .push(const InvestmentPageRoute()))
-                    ],
-                  ),
-                ],
+            child: SingleChildScrollView(
+      child: Padding(
+          padding: kDefaultPadding,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              const SizedBox(
+                height: 20,
               ),
-            )
-          : SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Column(
+              InkWell(
+                onTap: () => context.router.pop(),
+                child: const Icon(Icons.close),
+              ),
+              const SizedBox(
+                height: 50,
+              ),
+              transactions.isEmpty
+                  ? Center(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          svg,
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          Text(
+                            'No Transactions recorded yet. Make an investment to get started',
+                            style: subTitle,
+                          ),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          CustomFilledButton(
+                              text: "GET STARTED",
+                              onTap: () => context.router
+                                  .push(const InvestmentPageRoute()))
+                        ],
+                      ),
+                    )
+                  : Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: transactions.map((document) {
                         // withdrawal variables
@@ -137,10 +133,18 @@ class DashboardTransactions extends StatelessWidget {
                                 currency: withCurrency,
                                 screenshotController: screenshotController,
                                 ontap: () async {
-                                  await screenshotController.capture(pixelRatio: pixelRatio,delay: const Duration(milliseconds: 10)).then((Uint8List? image) async {
+                                  await screenshotController
+                                      .capture(
+                                          pixelRatio: pixelRatio,
+                                          delay:
+                                              const Duration(milliseconds: 10))
+                                      .then((Uint8List? image) async {
                                     if (image != null) {
-                                      final directory = await getApplicationDocumentsDirectory();
-                                      final imagePath = await File('${directory.path}/image.png').create();
+                                      final directory =
+                                          await getApplicationDocumentsDirectory();
+                                      final imagePath = await File(
+                                              '${directory.path}/image.png')
+                                          .create();
                                       await imagePath.writeAsBytes(image);
                                       await Share.shareFiles([imagePath.path]);
                                     }
@@ -159,18 +163,26 @@ class DashboardTransactions extends StatelessWidget {
                                 context: context,
                                 screenshotController: screenshotController,
                                 ontap: () async {
-                                  await screenshotController.capture(pixelRatio: pixelRatio,delay: const Duration(milliseconds: 10)).then((Uint8List? image) async {
+                                  await screenshotController
+                                      .capture(
+                                          pixelRatio: pixelRatio,
+                                          delay:
+                                              const Duration(milliseconds: 10))
+                                      .then((Uint8List? image) async {
                                     if (image != null) {
-                                      final directory = await getApplicationDocumentsDirectory();
-                                      final imagePath = await File('${directory.path}/image.png').create();
+                                      final directory =
+                                          await getApplicationDocumentsDirectory();
+                                      final imagePath = await File(
+                                              '${directory.path}/image.png')
+                                          .create();
                                       await imagePath.writeAsBytes(image);
                                       await Share.shareFiles([imagePath.path]);
                                     }
                                   });
                                 });
                       }).toList()),
-                ),
-              ),
+            ],
+          )),
     )));
   }
 
@@ -227,7 +239,8 @@ class DashboardTransactions extends StatelessWidget {
                             ),
                             padding: const EdgeInsets.all(3.0),
                             decoration: const BoxDecoration(
-                                color: Color(0XFFF0FFFA), shape: BoxShape.circle),
+                                color: Color(0XFFF0FFFA),
+                                shape: BoxShape.circle),
                           ),
                         ),
                       ],
@@ -471,7 +484,8 @@ class DashboardTransactions extends StatelessWidget {
                             ),
                             padding: const EdgeInsets.all(3.0),
                             decoration: const BoxDecoration(
-                                color: Color(0XFFF0FFFA), shape: BoxShape.circle),
+                                color: Color(0XFFF0FFFA),
+                                shape: BoxShape.circle),
                           ),
                         ),
                       ],

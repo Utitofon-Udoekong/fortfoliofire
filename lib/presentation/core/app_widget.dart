@@ -66,7 +66,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
 
     final prevStateIsNotPaused = prevState != null &&
         AppLifecycleState.values[prevState] != AppLifecycleState.paused;
-
+  print(prevStateIsNotPaused);
     if (prevStateIsNotPaused) {
       print('inactive');
       sp.setInt(backgroundedTimeKey, DateTime.now().millisecondsSinceEpoch);
