@@ -52,6 +52,8 @@ class _FAQPageState extends State<FAQPage> {
 
   Widget _buildPanel() {
     return ExpansionPanelList.radio(
+      elevation: 0,
+      expandedHeaderPadding: const EdgeInsets.only(bottom: 10),
       expansionCallback: (int index, bool isExpanded) {
         setState(() {
           item[index].isExpanded = !isExpanded;
@@ -66,9 +68,10 @@ class _FAQPageState extends State<FAQPage> {
                 style: subTitle.copyWith(
                     fontSize: 18, color: const Color(0XFF535454)),
               ),
+              controlAffinity: ListTileControlAffinity.trailing,
               trailing: item.isExpanded ? const Icon(Icons.add) : const Icon(Icons.minimize),
               backgroundColor: const Color(0XFFF3F6F8),
-              tilePadding: const EdgeInsets.all(15.0),
+              // collapsedBackgroundColor: const Color(0XFFF3F6F8),
             );
             // return Container(
             //   padding: const EdgeInsets.all(10.0),
@@ -95,7 +98,7 @@ class _FAQPageState extends State<FAQPage> {
                   fontSize: 14, color: const Color(0XFF535454)),
             ),
           ),
-          value: item.isExpanded,
+          value: item.question,
         );
       }).toList(),
     );
