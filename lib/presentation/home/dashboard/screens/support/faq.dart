@@ -38,7 +38,7 @@ class _FAQPageState extends State<FAQPage> {
                 const SizedBox(
                   height: 40,
                 ),
-                buildTile(),
+                _buildPanel(),
                 const SizedBox(
                   height: 15,
                 ),
@@ -50,102 +50,87 @@ class _FAQPageState extends State<FAQPage> {
     );
   }
 
-  Widget buildTile() {
-    return Container(
-      decoration: BoxDecoration(
-          color: const Color(0XFFF3F6F8), borderRadius: BorderRadius.circular(6.0)),
-          margin: const EdgeInsets.only(bottom: 15.0),
-      child: ExpansionPanelList(
-        elevation: 0.0,
-        // expansionCallback: (int index, bool isExpanded) {
-        //   setState(() {
-        //     items[index].isExpanded = !isExpanded;
-        //   });
-        // },
-        children: items.map<ExpansionPanelRadio>((ItemModel item) {
-          return ExpansionPanelRadio(
-            canTapOnHeader: true,
-            value: item.question,
-            headerBuilder: (BuildContext context, bool isExpanded) {
-              return ExpansionTile(
-                title: Text(
-                  item.question,
-                  style: subTitle.copyWith(
-                      color: kBlackColor, fontWeight: FontWeight.w500),
-                ),
-              );
-            },
-            body: Container(
-              padding: const EdgeInsets.all(10.0),
-              margin: const EdgeInsets.only(top: 10),
-              decoration: BoxDecoration(
-                  color: const Color(0XFFF8F8F8),
-                  borderRadius: BorderRadius.circular(6.0)),
-              child: Text(
-                item.answer,
-                style:
-                    subTitle.copyWith(fontSize: 14, color: const Color(0XFF535454)),
+  Widget _buildPanel() {
+    return ExpansionPanelList.radio(
+      expansionCallback: (int index, bool isExpanded) {
+        setState(() {
+          item[index].isExpanded = !isExpanded;
+        });
+      },
+      children: item.map<ExpansionPanelRadio>((Item item) {
+        return ExpansionPanelRadio(
+          headerBuilder: (BuildContext context, bool isExpanded) {
+            return ExpansionTile(
+              title: Text(
+                item.question,
+                style: subTitle.copyWith(
+                    fontSize: 18, color: const Color(0XFF535454)),
               ),
+              trailing: item.isExpanded ? const Icon(Icons.add) : const Icon(Icons.minimize),
+              backgroundColor: const Color(0XFFF3F6F8),
+              tilePadding: const EdgeInsets.all(15.0),
+            );
+            // return Container(
+            //   padding: const EdgeInsets.all(10.0),
+            //   margin: const EdgeInsets.only(top: 10),
+            //   decoration: BoxDecoration(
+            //       color: const Color(0XFFF8F8F8),
+            //       borderRadius: BorderRadius.circular(6.0)),
+            // child: Text(
+            //   item.question,
+            //   style: subTitle.copyWith(
+            //       fontSize: 14, color: const Color(0XFF535454)),
+            // ),
+            // );
+          },
+          body: Container(
+            padding: const EdgeInsets.all(10.0),
+            margin: const EdgeInsets.only(top: 10),
+            decoration: BoxDecoration(
+                color: const Color(0XFFF8F8F8),
+                borderRadius: BorderRadius.circular(6.0)),
+            child: Text(
+              item.answer,
+              style: subTitle.copyWith(
+                  fontSize: 14, color: const Color(0XFF535454)),
             ),
-            // isExpanded: item.isExpanded,
-          );
-        }).toList(),
-      ),
-      // child: ExpansionTile(
-      //   title: Text(question, style: subTitle.copyWith(color: kBlackColor, fontWeight: FontWeight.w500),),
-      // children: <Widget>[
-      // Container(
-      //   padding: EdgeInsets.all(10.0),
-      //   decoration: BoxDecoration(
-      //     color: Color(0XFFF8F8F8),
-      //     borderRadius: BorderRadius.circular(6.0)
-      //   ),
-      //   child: Text(answer, style: subTitle.copyWith(fontSize: 14, color: Color(0XFF535454)),),
-      // )
-      //   ],
-      //   trailing: Icon(
-      //     _customTileExpanded ? Icons.remove : Icons.add,
-      //     color: kBlackColor,
-      //     size: 15,
-      //   ),
-      //   onExpansionChanged: (bool expanded) {
-      //     setState(() => _customTileExpanded = expanded);
-      //   },
-      // ),
+          ),
+          value: item.isExpanded,
+        );
+      }).toList(),
     );
   }
 }
 
-class ItemModel {
-  ItemModel({
+class Item {
+  Item({
     required this.answer,
     required this.question,
-    // this.isExpanded = false,
+    this.isExpanded = false,
   });
 
   String answer;
   String question;
-  // bool isExpanded;
+  bool isExpanded;
 }
 
-List<ItemModel> items = <ItemModel>[
-  ItemModel(
+List<Item> item = <Item>[
+  Item(
       question: 'Is the company regulated?',
       answer: 'We are registered under CAC RC:1742448'),
-  ItemModel(
+  Item(
       question: 'Do you give loans?',
       answer:
           'No we don\'t give loans but we give our investors a free asset finance'),
-  ItemModel(
+  Item(
       question: 'How does the company generate its profit?',
       answer:
           'Fortfolio generate their income from the businesses that we do which are; cryptocurrency trading, car windshield, e-commerce, POS services, real estate, social media management and Shortlets'),
-  ItemModel(
+  Item(
       question: 'Do you have a Physical Office?',
       answer: 'Yes, Suite 269 Road 5 Ikota shopping complex lagos'),
-  ItemModel(
-      question: 'What is the Minimum investment tenure?', answer: '6 months'),
-  ItemModel(
+  Item(question: 'What is the Minimum investment tenure?', answer: '6 months'),
+  Item(
       question: 'What is the minimum amount to invest?',
       answer: 'The minimum investment is 50,000 naira'),
 ];
