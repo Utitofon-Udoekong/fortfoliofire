@@ -24,7 +24,8 @@ class MainDrawer extends StatelessWidget {
         .select((AuthCubit authCubit) => authCubit.state.userModel.isVerified);
     return Drawer(
       backgroundColor: kWhiteColor,
-      child: Stack(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           DrawerHeader(
             padding: kDefaultPadding,
@@ -129,23 +130,18 @@ class MainDrawer extends StatelessWidget {
           const SizedBox(
             height: 30,
           ),
-          Positioned(
-            bottom: 10,
-            left: 0,
-            // alignment: Alignment.bottomLeft,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 20),
-              child: TextButton(
-              onPressed: () => showAboutDialog(
-                context: context,
-                applicationName: "Fortfolio",
-                applicationVersion: "0.0.1",
-                applicationIcon: const Image(image: AssetImage("images/logo.png"),width: 50,height: 50,)
-              ),
-              child: Text("Version 0.0.1",
-                  style: subTitle.copyWith(
-                      color: const Color(0XFF242424), fontSize: 13))),
+          Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: TextButton(
+            onPressed: () => showAboutDialog(
+              context: context,
+              applicationName: "Fortfolio",
+              applicationVersion: "0.0.1",
+              applicationIcon: const Image(image: AssetImage("images/logo.png"),width: 50,height: 50,)
             ),
+            child: Text("Version 0.0.1",
+                style: subTitle.copyWith(
+                    color: const Color(0XFF242424), fontSize: 13))),
           ),
         ],
       ),

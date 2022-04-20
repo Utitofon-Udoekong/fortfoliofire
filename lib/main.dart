@@ -14,6 +14,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   BlocOverrides.runZoned(() => runApp(const App()),blocObserver: AppBlocObserver());
+
 }
 
 

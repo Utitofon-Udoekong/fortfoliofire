@@ -3,8 +3,7 @@ import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:local_auth_android/types/auth_messages_android.dart';
-import 'package:local_auth/local_auth.dart';
+import 'package:fortfolio/infrastructure/auth/local_auth_api.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:fortfolio/application/auth/auth_cubit.dart';
@@ -62,7 +61,6 @@ class _AppState extends State<App> with WidgetsBindingObserver {
   }
 
   Future _inactive() async {
-    print('inactive');
     final sp = await SharedPreferences.getInstance();
     final prevState = sp.getInt(lastKnownStateKey);
 
@@ -70,6 +68,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
         AppLifecycleState.values[prevState] != AppLifecycleState.paused;
 
     if (prevStateIsNotPaused) {
+      print('inactive');
       sp.setInt(backgroundedTimeKey, DateTime.now().millisecondsSinceEpoch);
     }
 
@@ -80,40 +79,19 @@ class _AppState extends State<App> with WidgetsBindingObserver {
   Future _resumed() async {
     print('resumed');
     final sp = await SharedPreferences.getInstance();
-    var localAuth = LocalAuthentication();
-    const androidStrings = AndroidAuthMessages(
-      goToSettingsButton: 'settings',
-      goToSettingsDescription: 'Please set up your Touch ID.',
-    );
-    bool canCheckBiometrics = await localAuth.canCheckBiometrics;
-    List<BiometricType> availableBiometrics =
-        await localAuth.getAvailableBiometrics();
-
+    bool canCheckBiometrics = await LocalAuthApi.hasBiometrics();
     final bgTime = sp.getInt(backgroundedTimeKey) ?? 0;
+    print(bgTime);
     final allowedBackgroundTime = bgTime + pinLockMillis;
-    final shouldShowPIN =
-        DateTime.now().millisecondsSinceEpoch > allowedBackgroundTime;
+    print(bgTime);
+    final shouldShowPIN = DateTime.now().millisecondsSinceEpoch > allowedBackgroundTime;
 
     if (shouldShowPIN) {
       if (Platform.isAndroid) {
         if (canCheckBiometrics) {
-          if (availableBiometrics.contains(BiometricType.face) ||
-              availableBiometrics.contains(BiometricType.fingerprint)) {
-            await localAuth.authenticate(
-                localizedReason: 'Authenticate to continue',
-                options: const AuthenticationOptions(
-                  biometricOnly: true,
-                  stickyAuth: true,
-                ),
-                authMessages: [androidStrings]);
-          } else {
-            await localAuth.authenticate(
-                localizedReason: 'Authenticate to continue',
-                options: const AuthenticationOptions(
-                  biometricOnly: false,
-                  stickyAuth: true,
-                ),
-                authMessages: [androidStrings]);
+          bool didauthenticate = await LocalAuthApi.authenticate();
+          if (didauthenticate != true) {
+            exit(0);
           }
         }
       }

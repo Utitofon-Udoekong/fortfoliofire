@@ -30,8 +30,6 @@ class CryptoWalletState with _$CryptoWalletState {
         isloading: false,
         selectedNetwork: 1,
         cryptoAddresses: [
-          CryptoWallet(walletLabel: "walletLabel", address: "address", coin: "BTC", network: "network", platform: "platform", type: "CRYPROWALLET", id: "id", trax: "2345632"),
-          CryptoWallet(walletLabel: "walletLabel", address: "address", coin: "BTC", network: "network", platform: "platform", type: "CRYPROWALLET", id: "id", trax: "2345632")
         ],
       generalCryptoAddresses: [
         CryptoWallet(walletLabel: "walletLabel", address: "genaddress", coin: "BTC", network: "network", platform: "platform", type: "GENERALCRYPROWALLET", id: "id", trax: "2345632")

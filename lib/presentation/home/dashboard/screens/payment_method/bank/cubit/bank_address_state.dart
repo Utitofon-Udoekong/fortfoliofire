@@ -20,9 +20,6 @@ class BankAddressState with _$BankAddressState {
     failure: "",
     success: "",
     bankAddresses: [
-      BankAddress(bankName: "bankName", accountNumber: "65368567", userName: "userName", id: "id", trax: "trax", type: "BANKADDRESS"),
-      BankAddress(bankName: "bankName", accountNumber: "98249737", userName: "userName", id: "id", trax: "trax", type: "BANKADDRESS"),
-      BankAddress(bankName: "bankName", accountNumber: "23465453", userName: "userName", id: "id", trax: "trax", type: "BANKADDRESS"),
     ],
   );
   bool get isValidState => bankName.isNotEmpty && accountNumber.isNotEmpty && userName.isNotEmpty;
