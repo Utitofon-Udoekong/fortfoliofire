@@ -64,40 +64,33 @@ class MainDrawer extends StatelessWidget {
                     Expanded(
                       child: Text(
                         'ID: $userId',
-                        style:
-                            subTitle.copyWith(color: kWhiteColor, fontSize: 15),
-                        maxLines: 1,
-                        softWrap: false,
+                        style: subTitle.copyWith(
+                            color: kWhiteColor, fontSize: 15),
+                          maxLines: 1,
+                          softWrap: false,
                       ),
                     ),
-                    const SizedBox(
-                      width: 10.0,
-                    ),
+                    const SizedBox(width: 10.0,),
                     isVerified
-                        ? Chip(
-                            avatar: Icon(
-                              Icons.verified,
-                              color: Colors.green[600],
-                              size: 13,
-                            ),
-                            label: Text(
-                              "Verified",
-                              style: subTitle.copyWith(
-                                  fontSize: 13, color: Colors.green[600]),
-                            ),
-                            backgroundColor: Colors.green[100],
-                          )
-                        : Chip(
-                            label: Text(
-                              "Unverified",
-                              style: subTitle.copyWith(
-                                  fontSize: 13,
-                                  color: Colors.black54,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                            backgroundColor:
-                                const Color.fromARGB(33, 211, 211, 176),
-                          )
+                        ? Chip(avatar: Icon(
+                            Icons.verified,
+                            color: Colors.green[600],
+                            size: 13,
+                          ), label: Text(
+                            "Verified",
+                            style: subTitle.copyWith(
+                                fontSize: 13,
+                                color: Colors.green[600]),
+                          ),
+                          backgroundColor: Colors.green[100],)
+                        : Chip(label: Text(
+                            "Unverified",
+                            style: subTitle.copyWith(
+                                fontSize: 13,
+                                color: Colors.black54,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          backgroundColor: const Color.fromARGB(33, 211, 211, 176),)
                   ],
                 )
               ],
@@ -126,57 +119,29 @@ class MainDrawer extends StatelessWidget {
           ),
           Padding(
             padding: kDefaultPadding,
-            child: InkWell(
-              onTap: () {
-                context.router.pop();
-                context.replaceRoute(const OnboardingScreenRoute());
-              },
-              child: Container(
-                alignment: Alignment.center,
-                height: 48,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: kPrimaryColor,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "LOGOUT",
-                      style:
-                          textButton.copyWith(color: kWhiteColor, fontSize: 17),
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    const Icon(
-                      Icons.logout_rounded,
-                      color: kWhiteColor,
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            child: CustomIconFilledButton(
+                text: 'LOGOUT',
+                onTap: () {
+                  context.router.pop();
+                  context.replaceRoute(const OnboardingScreenRoute());
+                },
+                icon: 'images/logout.png'),
           ),
           const SizedBox(
-            height: 30,
+            height: 27,
           ),
           Padding(
             padding: const EdgeInsets.only(left: 20),
             child: TextButton(
-                onPressed: () => showAboutDialog(
-                    context: context,
-                    applicationName: "Fortfolio",
-                    applicationVersion: "0.0.1",
-                    applicationIcon: const Image(
-                      image: AssetImage("images/logo.png"),
-                      width: 50,
-                      height: 50,
-                    )),
-                child: Text("Version 0.0.1",
-                    style: subTitle.copyWith(
-                        color: const Color(0XFF242424), fontSize: 13))),
+            onPressed: () => showAboutDialog(
+              context: context,
+              applicationName: "Fortfolio",
+              applicationVersion: "0.0.1",
+              applicationIcon: const Image(image: AssetImage("images/logo.png"),width: 50,height: 50,)
+            ),
+            child: Text("Version 0.0.1",
+                style: subTitle.copyWith(
+                    color: const Color(0XFF242424), fontSize: 13))),
           ),
         ],
       ),

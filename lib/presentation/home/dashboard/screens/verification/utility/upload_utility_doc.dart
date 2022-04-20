@@ -58,7 +58,10 @@ class UploadUtilityDoc extends StatelessWidget {
                           height: 20,
                         ),
                         InkWell(
-                          onTap: () => context.router.pop(),
+                          onTap: () {
+                            context.router.pop();
+                            context.read<VerificationCubit>().reset();
+                          },
                           child: const Icon(Icons.close),
                         ),
                         const SizedBox(

@@ -59,7 +59,7 @@ class WalletOverview extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 10,
                       ),
                       BlocBuilder<WalletCubit, WalletState>(
                         // buildWhen: (p, c) => p.exchange != c.exchange,
@@ -74,7 +74,7 @@ class WalletOverview extends StatelessWidget {
                                         .toString()
                                         .replaceAll(regExp, "*"),
                                     style: subTitle.copyWith(
-                                        fontSize: 18, color: kWhiteColor));
+                                        fontSize: 23, color: kWhiteColor));
                           } else {
                             return state.showDigits
                                 ? Text('\$${state.walletBalance}',
@@ -85,7 +85,7 @@ class WalletOverview extends StatelessWidget {
                                         .toString()
                                         .replaceAll(regExp, "*"),
                                     style: subTitle.copyWith(
-                                        fontSize: 18, color: kWhiteColor));
+                                        fontSize: 23, color: kWhiteColor));
                           }
                         },
                       )
@@ -202,6 +202,20 @@ class WalletOverview extends StatelessWidget {
             ),
             const SizedBox(
               height: 30,
+            ),
+            BlocSelector<WalletCubit, WalletState, bool>(
+              selector: (state) {
+                return state.investmentExists;
+              },
+              builder: (context, investmentExists) {
+                return Visibility(
+                    visible: investmentExists,
+                    child: Text("You dont have any investments at the moment.",
+                        style: subTitle.copyWith(
+                          fontSize: 15,
+                          color: kBlackColor,
+                        )));
+              },
             ),
             // BUILD DIFFERENT PAGES TO SHOW BALANCE FOR THESE PLANS
             BlocBuilder<WalletCubit, WalletState>(

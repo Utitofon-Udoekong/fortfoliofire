@@ -66,4 +66,8 @@ class VerificationCubit extends Cubit<VerificationState> {
       emit(state.copyWith(submitting: false, success: success));
     });
   }
+
+  void reset(){
+    emit(state.copyWith(frontFile: Uint8List.fromList([]),backFile: Uint8List.fromList([]),utilityFile: Uint8List.fromList([])));
+  }
 }

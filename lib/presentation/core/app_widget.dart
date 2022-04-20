@@ -57,6 +57,8 @@ class _AppState extends State<App> with WidgetsBindingObserver {
 
   Future _paused() async {
     final sp = await SharedPreferences.getInstance();
+    print("paused");
+    sp.setInt(backgroundedTimeKey, DateTime.now().millisecondsSinceEpoch);
     sp.setInt(lastKnownStateKey, AppLifecycleState.paused.index);
   }
 
@@ -66,7 +68,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
 
     final prevStateIsNotPaused = prevState != null &&
         AppLifecycleState.values[prevState] != AppLifecycleState.paused;
-  print(prevStateIsNotPaused);
+    print(prevStateIsNotPaused);
     if (prevStateIsNotPaused) {
       print('inactive');
       sp.setInt(backgroundedTimeKey, DateTime.now().millisecondsSinceEpoch);
@@ -81,9 +83,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
     final sp = await SharedPreferences.getInstance();
     bool canCheckBiometrics = await LocalAuthApi.hasBiometrics();
     final bgTime = sp.getInt(backgroundedTimeKey) ?? 0;
-    print(bgTime);
     final allowedBackgroundTime = bgTime + pinLockMillis;
-    print(bgTime);
     final shouldShowPIN = DateTime.now().millisecondsSinceEpoch > allowedBackgroundTime;
 
     if (shouldShowPIN) {
