@@ -64,7 +64,9 @@ class _FAQPageState extends State<FAQPage> {
       children: item.map<CustomExpansionPanelRadio>((Item item) {
         return CustomExpansionPanelRadio(
           headerBuilder: (BuildContext context, bool isExpanded) {
-            return SizedBox(
+            return Container(
+              padding: const EdgeInsets.only(left: 10.0),
+              alignment: Alignment.centerLeft,
               child: Text(
                 item.question,
                 style: subTitle.copyWith(
