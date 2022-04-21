@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_icon_trailing_button.dart';
+import 'package:fortfolio/domain/widgets/custom_icon_trailing_function_button.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:url_launcher/link.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -36,6 +37,11 @@ class _SupportPageState extends State<SupportPage> {
     const String toLaunchIG =
         'https://instagram.com/fortfoliolimited_?igshid=YmMyMTA2M2Y=';
     const String toLaunchTwitter = 'https://twitter.com/Fortfolioltd';
+    final Uri email = Uri(
+      scheme: 'mailto',
+      path: 'support@fortfolio.info',
+    );
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -65,8 +71,8 @@ class _SupportPageState extends State<SupportPage> {
               const SizedBox(
                 height: 10,
               ),
-              const CustomIconTrailingButton(
-                  icon: 'mail', title: 'Send an email', page: FAQPageRoute()),
+              CustomIconTrailingFunctionButton(
+                  icon: 'mail', title: 'Send an email', ontap: () => launch(email.toString())),
               // const SizedBox(
               //   height: 10,
               // ),
