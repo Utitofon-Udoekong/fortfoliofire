@@ -34,7 +34,7 @@ class TACPage extends StatelessWidget {
               ),
               Text(
                 'Please read these terms and conditions carefully as they apply to your access and use of this website, and contain important information regarding your rights and obligations.',
-                style: subTitle.copyWith(color: kgreyColor, fontSize: 13),
+                style: subTitle.copyWith(color: kgreyColor, fontSize: 18),
               ),
               const SizedBox(
                 height: 30,
@@ -186,10 +186,10 @@ class TACPage extends StatelessWidget {
   }
 
   Widget buildtitle(String text){
-    return Text(text,style: subTitle.copyWith(fontWeight: FontWeight.w700, fontSize: 20, color: kBlackColor));
+    return Text(text,style: subTitle.copyWith(fontWeight: FontWeight.w700, fontSize: 24, color: kBlackColor));
   }
 
   Widget buildbody(String text){
-    return Text(text,style: subTitle.copyWith(color: kgreyColor, fontSize: 15, fontWeight: FontWeight.w400,));
+    return Text(text,style: subTitle.copyWith(color: kgreyColor, fontSize: 18, fontWeight: FontWeight.w400,));
   }
 }

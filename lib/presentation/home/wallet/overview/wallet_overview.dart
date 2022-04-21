@@ -195,7 +195,7 @@ class WalletOverview extends StatelessWidget {
                   'Current Investments',
                   style: TextStyle(
                       color: Color(0XFF535454),
-                      fontSize: 20,
+                      fontSize: 23,
                       fontWeight: FontWeight.w500),
                 ),
               ],
@@ -212,7 +212,7 @@ class WalletOverview extends StatelessWidget {
                     visible: !investmentExists,
                     child: Text("You dont have any investments at the moment.",
                         style: subTitle.copyWith(
-                          fontSize: 15,
+                          fontSize: 18,
                           color: kBlackColor,
                         )));
               },

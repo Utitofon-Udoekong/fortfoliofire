@@ -49,7 +49,11 @@ class WalletTransactions extends StatelessWidget {
                     CustomFilledButton(
                         text: "GET STARTED",
                         onTap: () =>
-                            context.router.push(const InvestmentPageRoute()))
+                        context.pushRoute(const HomePageRoute(
+                          children: [
+                            InvestmentPageRoute()
+                          ]
+                        )))
                   ],
                 ),
               )
