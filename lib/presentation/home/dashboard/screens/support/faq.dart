@@ -10,7 +10,7 @@ class FAQPage extends StatefulWidget {
 }
 
 class _FAQPageState extends State<FAQPage> {
-  // final bool _customTileExpanded = false;
+  bool _customTileExpanded = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,13 +54,14 @@ class _FAQPageState extends State<FAQPage> {
     return ExpansionPanelList.radio(
       elevation: 0,
       expandedHeaderPadding: const EdgeInsets.only(bottom: 10),
-      expansionCallback: (int index, bool isExpanded) {
-        setState(() {
-          item[index].isExpanded = !isExpanded;
-        });
-      },
+      // expansionCallback: (int index, bool isExpanded) {
+      //   setState(() {
+      //     item[index].isExpanded = !isExpanded;
+      //   });
+      // },
       children: item.map<ExpansionPanelRadio>((Item item) {
         return ExpansionPanelRadio(
+          backgroundColor: const Color(0XFFF3F6F8),
           headerBuilder: (BuildContext context, bool isExpanded) {
             return ExpansionTile(
               title: Text(
@@ -68,27 +69,19 @@ class _FAQPageState extends State<FAQPage> {
                 style: subTitle.copyWith(
                     fontSize: 18, color: const Color(0XFF535454)),
               ),
-              controlAffinity: ListTileControlAffinity.trailing,
-              trailing: item.isExpanded ? const Icon(Icons.add) : const Icon(Icons.minimize),
+              trailing: Icon(
+                _customTileExpanded ? Icons.remove : Icons.add,
+                color: kBlackColor,
+                size: 15,
+              ),
               backgroundColor: const Color(0XFFF3F6F8),
-              // collapsedBackgroundColor: const Color(0XFFF3F6F8),
+              onExpansionChanged: (bool expanded) {
+                setState(() => _customTileExpanded = expanded);
+              },
             );
-            // return Container(
-            //   padding: const EdgeInsets.all(10.0),
-            //   margin: const EdgeInsets.only(top: 10),
-            //   decoration: BoxDecoration(
-            //       color: const Color(0XFFF8F8F8),
-            //       borderRadius: BorderRadius.circular(6.0)),
-            // child: Text(
-            //   item.question,
-            //   style: subTitle.copyWith(
-            //       fontSize: 14, color: const Color(0XFF535454)),
-            // ),
-            // );
           },
           body: Container(
             padding: const EdgeInsets.all(10.0),
-            margin: const EdgeInsets.only(top: 10),
             decoration: BoxDecoration(
                 color: const Color(0XFFF8F8F8),
                 borderRadius: BorderRadius.circular(6.0)),
@@ -109,12 +102,12 @@ class Item {
   Item({
     required this.answer,
     required this.question,
-    this.isExpanded = false,
+    // this.isExpanded = false,
   });
 
   String answer;
   String question;
-  bool isExpanded;
+  // bool isExpanded;
 }
 
 List<Item> item = <Item>[
