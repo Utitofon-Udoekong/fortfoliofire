@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
+import 'package:fortfolio/domain/widgets/custom_expansion_panel.dart';
 
 class FAQPage extends StatefulWidget {
   const FAQPage({Key? key}) : super(key: key);
@@ -51,33 +52,24 @@ class _FAQPageState extends State<FAQPage> {
   }
 
   Widget _buildPanel() {
-    return ExpansionPanelList(
+    return CustomExpansionPanelList.radio(
       elevation: 0,
       expandedHeaderPadding: const EdgeInsets.only(bottom: 10),
       expansionCallback: (int index, bool isExpanded) {
         setState(() {
           item[index].isExpanded = !isExpanded;
+          _customTileExpanded = isExpanded;
         });
       },
-      children: item.map<ExpansionPanel>((Item item) {
-        return ExpansionPanel(
-          backgroundColor: const Color(0XFFF3F6F8),
+      children: item.map<CustomExpansionPanelRadio>((Item item) {
+        return CustomExpansionPanelRadio(
           headerBuilder: (BuildContext context, bool isExpanded) {
-            return ExpansionTile(
-              title: Text(
+            return SizedBox(
+              child: Text(
                 item.question,
                 style: subTitle.copyWith(
-                    fontSize: 18, color: const Color(0XFF535454)),
+                    fontSize: 16, color: const Color(0XFF535454)),
               ),
-              trailing: Icon(
-                _customTileExpanded ? Icons.remove : Icons.add,
-                color: kBlackColor,
-                size: 15,
-              ),
-              backgroundColor: const Color(0XFFF3F6F8),
-              onExpansionChanged: (bool expanded) {
-                setState(() => _customTileExpanded = expanded);
-              },
             );
           },
           body: Container(
@@ -91,7 +83,7 @@ class _FAQPageState extends State<FAQPage> {
                   fontSize: 14, color: const Color(0XFF535454)),
             ),
           ),
-          isExpanded: item.isExpanded,
+          value: item.question,
         );
       }).toList(),
     );

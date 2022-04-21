@@ -67,11 +67,11 @@ class _SupportPageState extends State<SupportPage> {
               ),
               const CustomIconTrailingButton(
                   icon: 'mail', title: 'Send an email', page: FAQPageRoute()),
-              const SizedBox(
-                height: 10,
-              ),
-              const CustomIconTrailingButton(
-                  icon: 'livechat', title: 'Live Chat', page: FAQPageRoute()),
+              // const SizedBox(
+              //   height: 10,
+              // ),
+              // const CustomIconTrailingButton(
+              //     icon: 'livechat', title: 'Live Chat', page: FAQPageRoute()),
               const SizedBox(
                 height: 60,
               ),
