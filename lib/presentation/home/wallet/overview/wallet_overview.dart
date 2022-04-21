@@ -209,7 +209,7 @@ class WalletOverview extends StatelessWidget {
               },
               builder: (context, investmentExists) {
                 return Visibility(
-                    visible: investmentExists,
+                    visible: !investmentExists,
                     child: Text("You dont have any investments at the moment.",
                         style: subTitle.copyWith(
                           fontSize: 15,

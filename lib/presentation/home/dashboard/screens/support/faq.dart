@@ -51,16 +51,16 @@ class _FAQPageState extends State<FAQPage> {
   }
 
   Widget _buildPanel() {
-    return ExpansionPanelList.radio(
+    return ExpansionPanelList(
       elevation: 0,
       expandedHeaderPadding: const EdgeInsets.only(bottom: 10),
-      // expansionCallback: (int index, bool isExpanded) {
-      //   setState(() {
-      //     item[index].isExpanded = !isExpanded;
-      //   });
-      // },
-      children: item.map<ExpansionPanelRadio>((Item item) {
-        return ExpansionPanelRadio(
+      expansionCallback: (int index, bool isExpanded) {
+        setState(() {
+          item[index].isExpanded = !isExpanded;
+        });
+      },
+      children: item.map<ExpansionPanel>((Item item) {
+        return ExpansionPanel(
           backgroundColor: const Color(0XFFF3F6F8),
           headerBuilder: (BuildContext context, bool isExpanded) {
             return ExpansionTile(
@@ -91,7 +91,7 @@ class _FAQPageState extends State<FAQPage> {
                   fontSize: 14, color: const Color(0XFF535454)),
             ),
           ),
-          value: item.question,
+          isExpanded: item.isExpanded,
         );
       }).toList(),
     );
@@ -102,12 +102,12 @@ class Item {
   Item({
     required this.answer,
     required this.question,
-    // this.isExpanded = false,
+    this.isExpanded = false,
   });
 
   String answer;
   String question;
-  // bool isExpanded;
+  bool isExpanded;
 }
 
 List<Item> item = <Item>[
