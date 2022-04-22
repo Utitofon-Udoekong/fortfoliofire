@@ -11,6 +11,7 @@ class DashboardCubit extends Cubit<DashboardState> {
   DashboardCubit(this.storageFacade) : super(DashboardState.initial());
 
   void initNews() async {
+    emit(state.copyWith(loading: true,failure: "", newsList: []));
     final newsList = await storageFacade.getNewsFromStorage();
     newsList.fold((failure) {
       emit(state.copyWith(failure: failure, loading: false));

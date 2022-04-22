@@ -7,7 +7,7 @@ class DashboardState with _$DashboardState {
     required bool loading,
     required String failure
   }) = _DashboardState;
-  factory DashboardState.initial() => DashboardState(
+  factory DashboardState.initial() => const DashboardState(
     newsList: [],
     loading: false,
     failure: ""

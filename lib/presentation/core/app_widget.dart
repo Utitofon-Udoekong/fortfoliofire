@@ -13,6 +13,8 @@ import 'package:fortfolio/presentation/home/wallet/cubit/wallet_cubit.dart';
 import 'package:fortfolio/presentation/network/no_connection.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 
+import '../home/dashboard/cubit/dashboard_cubit.dart';
+
 class App extends StatefulWidget {
   const App({Key? key}) : super(key: key);
 
@@ -108,6 +110,10 @@ class _AppState extends State<App> with WidgetsBindingObserver {
         providers: [
           BlocProvider(
             create: (context) => getIt<AuthCubit>(),
+            lazy: false,
+          ),
+          BlocProvider(
+            create: (context) => getIt<DashboardCubit>(),
             lazy: false,
           ),
           BlocProvider(create: (context) => getIt<WalletCubit>(), lazy: false),
