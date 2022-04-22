@@ -32,7 +32,7 @@ class SignUpForm extends StatelessWidget {
                     p.success != c.success && c.success.isNotEmpty,
                 listener: (context, state) {
                   CustomSnackbar.showSnackBar(context, state.success, false);
-                  Future.delayed(const Duration(seconds: 2),() => context.router.push(const SignUpFormPhoneRoute()));
+                  context.router.push(const SignUpFormPhoneRoute());
                 },
               ),
               BlocListener<AuthCubit, AuthState>(

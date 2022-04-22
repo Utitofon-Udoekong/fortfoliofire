@@ -64,7 +64,7 @@ class _SignUpFormPhoneState extends State<SignUpFormPhone> {
                   listenWhen: (p, c) =>
                       p.displaySmsCodeForm != c.displaySmsCodeForm,
                   listener: (context, state) =>
-                      context.router.replace(const ConfirmSignupWithOTPRoute()),
+                      context.router.push(const ConfirmSignupWithOTPRoute()),
                 )
               ],
               child: BlocBuilder<SignUpFormPhoneCubit, SignUpFormPhoneState>(
