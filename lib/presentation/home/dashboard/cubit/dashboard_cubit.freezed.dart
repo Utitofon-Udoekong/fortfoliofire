@@ -19,7 +19,7 @@ class _$DashboardStateTearOff {
   const _$DashboardStateTearOff();
 
   _DashboardState call(
-      {required List<Reference> newsList,
+      {required List<String> newsList,
       required bool loading,
       required String failure}) {
     return _DashboardState(
@@ -35,7 +35,7 @@ const $DashboardState = _$DashboardStateTearOff();
 
 /// @nodoc
 mixin _$DashboardState {
-  List<Reference> get newsList => throw _privateConstructorUsedError;
+  List<String> get newsList => throw _privateConstructorUsedError;
   bool get loading => throw _privateConstructorUsedError;
   String get failure => throw _privateConstructorUsedError;
 
@@ -49,7 +49,7 @@ abstract class $DashboardStateCopyWith<$Res> {
   factory $DashboardStateCopyWith(
           DashboardState value, $Res Function(DashboardState) then) =
       _$DashboardStateCopyWithImpl<$Res>;
-  $Res call({List<Reference> newsList, bool loading, String failure});
+  $Res call({List<String> newsList, bool loading, String failure});
 }
 
 /// @nodoc
@@ -71,7 +71,7 @@ class _$DashboardStateCopyWithImpl<$Res>
       newsList: newsList == freezed
           ? _value.newsList
           : newsList // ignore: cast_nullable_to_non_nullable
-              as List<Reference>,
+              as List<String>,
       loading: loading == freezed
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
@@ -91,7 +91,7 @@ abstract class _$DashboardStateCopyWith<$Res>
           _DashboardState value, $Res Function(_DashboardState) then) =
       __$DashboardStateCopyWithImpl<$Res>;
   @override
-  $Res call({List<Reference> newsList, bool loading, String failure});
+  $Res call({List<String> newsList, bool loading, String failure});
 }
 
 /// @nodoc
@@ -115,7 +115,7 @@ class __$DashboardStateCopyWithImpl<$Res>
       newsList: newsList == freezed
           ? _value.newsList
           : newsList // ignore: cast_nullable_to_non_nullable
-              as List<Reference>,
+              as List<String>,
       loading: loading == freezed
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
@@ -135,7 +135,7 @@ class _$_DashboardState implements _DashboardState {
       {required this.newsList, required this.loading, required this.failure});
 
   @override
-  final List<Reference> newsList;
+  final List<String> newsList;
   @override
   final bool loading;
   @override
@@ -171,12 +171,12 @@ class _$_DashboardState implements _DashboardState {
 
 abstract class _DashboardState implements DashboardState {
   const factory _DashboardState(
-      {required List<Reference> newsList,
+      {required List<String> newsList,
       required bool loading,
       required String failure}) = _$_DashboardState;
 
   @override
-  List<Reference> get newsList;
+  List<String> get newsList;
   @override
   bool get loading;
   @override

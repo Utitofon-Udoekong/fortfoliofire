@@ -38,13 +38,14 @@ class FirebaseStorageFacade implements IStorageFacade {
   @override
   Future<Either<String, List<Reference>>> getNewsFromStorage() async {
     Reference ref =
-        storage.ref().child("NEWS");
+        storage.ref("news");
     try{
       final ListResult refList = await ref.listAll();
       final List<Reference> newsList = refList.items;
       return right(newsList);
     } on FirebaseException catch (e) {
       if (e.code == 'permission-denied') {
+        // if request.auth != null && request.resource.size < 1 * 1024 * 1024;
         return left('User does not have permission to upload to the database.');
       }else if (e.code == 'canceled'){
         return left('Upload task has been cancelled');

@@ -12,6 +12,11 @@ class FailureView extends StatelessWidget {
     final svg = SvgPicture.asset("images/disonnected.svg");
     return Container(
       margin: const EdgeInsets.all(20),
+      // height: 80,
+      decoration: const BoxDecoration(
+        color: Color(0XFFF3F6F8),
+        borderRadius: BorderRadius.all(Radius.circular(10)),
+      ),
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

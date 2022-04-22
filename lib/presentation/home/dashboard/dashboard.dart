@@ -150,16 +150,15 @@ class Dashboard extends StatelessWidget {
     );
   }
 
-  List<Widget> generateSlider(BuildContext context, List<Reference> list) {
+  List<Widget> generateSlider(BuildContext context, List<String> list) {
     List<Widget> imageSlider = list
-        .map((Reference item) async {
-          var url = await item.getDownloadURL();
+        .map((String item) async {
           return Container(
             margin: const EdgeInsets.all(5),
             child: ClipRRect(
               borderRadius: const BorderRadius.all(Radius.circular(10)),
               child: CachedNetworkImage(
-                imageUrl: url,
+                imageUrl: item,
                 fit: BoxFit.cover,
                 width: MediaQuery.of(context).size.width,
                 placeholder: (context, url) => Container(color: Colors.grey),
