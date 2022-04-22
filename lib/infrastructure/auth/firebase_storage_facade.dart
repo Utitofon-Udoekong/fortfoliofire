@@ -38,7 +38,7 @@ class FirebaseStorageFacade implements IStorageFacade {
   @override
   Future<Either<String, List<Reference>>> getNewsFromStorage() async {
     Reference ref =
-        storage.ref("NEWS");
+        storage.ref().child("NEWS");
     try{
       final ListResult refList = await ref.listAll();
       final List<Reference> newsList = refList.items;

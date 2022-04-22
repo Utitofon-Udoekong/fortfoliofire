@@ -37,6 +37,7 @@ class _SupportPageState extends State<SupportPage> {
     const String toLaunchIG =
         'https://instagram.com/fortfoliolimited_?igshid=YmMyMTA2M2Y=';
     const String toLaunchTwitter = 'https://twitter.com/Fortfolioltd';
+    const String toLaunchFb = 'https://www.facebook.com/fortfolio.limited/';
     final Uri email = Uri(
       scheme: 'mailto',
       path: 'support@fortfolio.info',
@@ -86,7 +87,7 @@ class _SupportPageState extends State<SupportPage> {
                 children: <Widget>[
                   buildicon('images/instagram.svg', 'instagram',
                       toLaunchIG),
-                  buildicon('images/facebook.svg', 'facebook', "https://www.google.com"),
+                  buildicon('images/facebook.svg', 'facebook', toLaunchFb),
                   buildicon('images/twitter.svg', 'twitter',
                       toLaunchTwitter),
                 ],
