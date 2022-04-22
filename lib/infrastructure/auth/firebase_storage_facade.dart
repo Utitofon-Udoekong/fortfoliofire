@@ -45,7 +45,6 @@ class FirebaseStorageFacade implements IStorageFacade {
       return right(newsList);
     } on FirebaseException catch (e) {
       if (e.code == 'permission-denied') {
-        // if request.auth != null && request.resource.size < 1 * 1024 * 1024;
         return left('User does not have permission to upload to the database.');
       }else if (e.code == 'canceled'){
         return left('Upload task has been cancelled');

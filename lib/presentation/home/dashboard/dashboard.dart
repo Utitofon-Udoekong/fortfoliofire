@@ -159,7 +159,7 @@ class Dashboard extends StatelessWidget {
               borderRadius: const BorderRadius.all(Radius.circular(10)),
               child: CachedNetworkImage(
                 imageUrl: item,
-                fit: BoxFit.cover,
+                fit: BoxFit.fill,
                 width: MediaQuery.of(context).size.width,
                 placeholder: (context, url) => Container(color: Colors.grey),
                 errorWidget: (context, url, error) => const Icon(
