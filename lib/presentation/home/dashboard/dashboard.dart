@@ -152,7 +152,7 @@ class Dashboard extends StatelessWidget {
 
   List<Widget> generateSlider(BuildContext context, List<String> list) {
     List<Widget> imageSlider = list
-        .map((String item) async {
+        .map((String item) {
           return Container(
             margin: const EdgeInsets.all(5),
             child: ClipRRect(
