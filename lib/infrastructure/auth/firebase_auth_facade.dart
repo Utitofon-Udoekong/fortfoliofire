@@ -309,4 +309,42 @@ class FirebaseAuthFacade implements IAuthFacade {
 
   @override
   String getUserId() => firebaseAuth.currentUser!.uid;
+
+  @override
+  Future<void> updateEmail({required String newEmail}) async {
+    await firebaseAuth.currentUser!.updateEmail(newEmail).then((_) async {
+      await firebaseAuth.currentUser!.verifyBeforeUpdateEmail(newEmail);
+      firebaseAuth.applyActionCode(code);
+      
+    });
+  }
+  @override
+  Future<Either<String,String>> applyActionCode({required String code,required String newEmail}) async {
+    try {
+      await firebaseAuth.applyActionCode(code).then((_) async {
+        await firestore.authUserCollection.doc(firebaseAuth.currentUser!.uid).update({
+          "email": newEmail
+        });
+      });
+      return right("Email updated successfully");
+    } catch (e) {
+    }
+  }
+
+  @override
+  Future<void> updateName({required String firstName, required String lastName}) async {
+    var displayName = "${firstName[0]}${lastName[0]}";
+    await firestore.authUserCollection.doc(firebaseAuth.currentUser!.uid).update({
+      "firstName": firstName,
+      "lastName": lastName,
+      "displayName": displayName
+    });
+  }
+
+  @override
+  Stream<Either<String, String>> updatePhone({required Phone phoneNumber, required Duration timeout}) {
+    // TODO: implement updatePhone
+    throw UnimplementedError();
+  }
+
 }
