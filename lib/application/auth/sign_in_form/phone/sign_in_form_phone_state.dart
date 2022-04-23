@@ -3,7 +3,7 @@ part of 'sign_in_form_phone_cubit.dart';
 @freezed
 class SignInFormPhoneState with _$SignInFormPhoneState {
   const factory SignInFormPhoneState({
-    required Phone phoneNumber,
+    required String phoneNumber,
     required String smsCode,
     required Option<AuthFailure> failureOption,
     required String verificationId,
@@ -12,7 +12,7 @@ class SignInFormPhoneState with _$SignInFormPhoneState {
   }) = _SignInFormPhoneState;
   const SignInFormPhoneState._();
   factory SignInFormPhoneState.initial() => SignInFormPhoneState(
-        phoneNumber: Phone(''),
+        phoneNumber: "",
         smsCode: "",
         failureOption: none(),
         verificationId: "",

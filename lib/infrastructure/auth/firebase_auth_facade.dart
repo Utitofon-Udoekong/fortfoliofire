@@ -75,19 +75,19 @@ class FirebaseAuthFacade implements IAuthFacade {
 
   @override
   Stream<Either<AuthFailure, String>> registerPhoneNumber(
-      {required Phone phoneNumber, required Duration timeout}) async* {
+      {required String phoneNumber, required Duration timeout}) async* {
     final StreamController<Either<AuthFailure, String>> streamController =
         StreamController<Either<AuthFailure, String>>();
 
     await firebaseAuth.verifyPhoneNumber(
         timeout: timeout,
-        phoneNumber: phoneNumber.getOrCrash(),
+        phoneNumber: phoneNumber,
         verificationCompleted: (PhoneAuthCredential credential) async {
           // ANDROID ONLY!
           firebaseAuth.currentUser!.linkWithCredential(credential);
           await firestore.authUserCollection
               .doc(firebaseAuth.currentUser!.uid)
-              .update({"phoneNumber": phoneNumber.getOrCrash()});
+              .update({"phoneNumber": phoneNumber});
           // link with the auto-generated credential.
         },
         codeSent: (String verificationId, int? resendToken) async {
@@ -193,13 +193,13 @@ class FirebaseAuthFacade implements IAuthFacade {
 
   @override
   Stream<Either<AuthFailure, String>> signInWithPhoneNumber(
-      {required Phone phoneNumber, required Duration timeout}) async* {
+      {required String phoneNumber, required Duration timeout}) async* {
     final StreamController<Either<AuthFailure, String>> streamController =
         StreamController<Either<AuthFailure, String>>();
 
     await firebaseAuth.verifyPhoneNumber(
         timeout: timeout,
-        phoneNumber: phoneNumber.getOrCrash(),
+        phoneNumber: phoneNumber,
         verificationCompleted: (PhoneAuthCredential credential) async {
           firebaseAuth.signInWithCredential(credential);
         },
@@ -239,7 +239,6 @@ class FirebaseAuthFacade implements IAuthFacade {
       final PhoneAuthCredential phoneAuthCredential =
           PhoneAuthProvider.credential(
               smsCode: smsCode, verificationId: verificationId);
-
       await firebaseAuth.signInWithCredential(phoneAuthCredential);
       return right(unit);
     } on FirebaseAuthException catch (e) {
@@ -250,6 +249,26 @@ class FirebaseAuthFacade implements IAuthFacade {
         return left(const AuthFailure.invalidVerificationCode());
       }
       return left(const AuthFailure.serverError());
+    }
+  }
+
+  @override
+  Future<Either<String,String>> verifyPhoneUpdate(
+      {required String smsCode, required String verificationId}) async {
+    try {
+      final PhoneAuthCredential phoneAuthCredential =
+          PhoneAuthProvider.credential(
+              smsCode: smsCode, verificationId: verificationId);
+      await firebaseAuth.currentUser!.updatePhoneNumber(phoneAuthCredential);
+      return right("Phone number updated");
+    } on FirebaseAuthException catch (e) {
+      if (e.code == "session-expired") {
+        return left("Update session expired");
+      } else if (e.code == "invalid-verification-code" ||
+          e.code == "invalid-verification-code") {
+        return left("Invalid verification code");
+      }
+      return left("Server error encountered");
     }
   }
 
@@ -334,27 +353,32 @@ class FirebaseAuthFacade implements IAuthFacade {
 
 
   @override
-  Future<void> updateName(
+  Future<Either<String,String>> updateName(
       {required String firstName, required String lastName}) async {
     var displayName = "${firstName[0]}${lastName[0]}";
-    await firestore.authUserCollection
+    try {
+      await firestore.authUserCollection
         .doc(firebaseAuth.currentUser!.uid)
         .update({
       "firstName": firstName,
       "lastName": lastName,
       "displayName": displayName
     });
+    return right("Details updated successfully");
+    } on FirebaseException catch (e) {
+      return left("Srver error encountered");
+    }
   }
 
   @override
   Stream<Either<String, String>> updatePhone(
-      {required Phone phoneNumber, required Duration timeout}) async* {
+      {required String phoneNumber, required Duration timeout}) async* {
     final StreamController<Either<String, String>> streamController =
         StreamController<Either<String, String>>();
 
     await firebaseAuth.verifyPhoneNumber(
         timeout: timeout,
-        phoneNumber: phoneNumber.getOrCrash(),
+        phoneNumber: phoneNumber,
         verificationCompleted: (PhoneAuthCredential credential) async {
           // ANDROID ONLY!
           firebaseAuth.currentUser!.updatePhoneNumber(credential);

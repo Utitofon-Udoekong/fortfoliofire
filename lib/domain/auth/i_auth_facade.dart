@@ -11,16 +11,21 @@ abstract class IAuthFacade {
   Stream<AuthUserModel> get authStateChanges;
   // signin phone
   Stream<Either<AuthFailure, String>> signInWithPhoneNumber({
-    required Phone phoneNumber,
+    required String phoneNumber,
     required Duration timeout,
   });
   // signup phone
   Stream<Either<AuthFailure, String>> registerPhoneNumber({
-    required Phone phoneNumber,
+    required String phoneNumber,
     required Duration timeout,
   });
   // verifysms
   Future<Either<AuthFailure, Unit>> verifySmsCode({
+    required String smsCode,
+    required String verificationId,
+  });
+  // verifyphoneupdate
+  Future<Either<String, String>> verifyPhoneUpdate({
     required String smsCode,
     required String verificationId,
   });
@@ -43,9 +48,9 @@ abstract class IAuthFacade {
   // verify user
   Future<void> verifyUser();
   Future<Either<String,String>> updateEmail({required String newEmail});
-  Stream<Either<String, String>> updatePhone({required Phone phoneNumber,
+  Stream<Either<String, String>> updatePhone({required String phoneNumber,
     required Duration timeout,});
-  Future<void> updateName({required String firstName, required String lastName});
+  Future<Either<String,String>> updateName({required String firstName, required String lastName});
   // reset password
   Future<Either<String, String>> resetPassword({
     required EmailAddress emailAddress

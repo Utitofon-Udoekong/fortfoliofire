@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/application/auth/sign_in_form/phone/sign_in_form_phone_cubit.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
+import 'package:fortfolio/domain/core/validator_helpers.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/domain/widgets/loading_view.dart';
@@ -161,7 +162,7 @@ class _SignInFormPhoneState extends State<SignInFormPhone> {
                                     height: 30,
                                   ),
                                   CustomAuthFilledButton(
-                                    text: state.phoneNumber.isValid()
+                                    text: state.phoneNumber.isValidPhone()
                                         ? 'VERIFY OTP'
                                         : 'ENTER PHONE',
                                     onTap: () => {
@@ -173,7 +174,7 @@ class _SignInFormPhoneState extends State<SignInFormPhone> {
                                               .signInWithPhoneNumber(),
                                         }
                                     },
-                                    disabled: !state.phoneNumber.isValid(),
+                                    disabled: !state.phoneNumber.isValidPhone(),
                                   ),
                                 ],
                               ),

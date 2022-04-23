@@ -3,7 +3,7 @@ part of 'sign_up_form_phone_cubit.dart';
 @freezed
 class SignUpFormPhoneState with _$SignUpFormPhoneState {
   const factory SignUpFormPhoneState({
-    required Phone phoneNumber,
+    required String phoneNumber,
     required String smsCode,
     required Option<AuthFailure> failureOption,
     required String verificationId,

@@ -22,12 +22,22 @@ class _$ProfileStateTearOff {
       {required String firstName,
       required String lastName,
       required String email,
-      required String phoneNumber}) {
+      required String phoneNumber,
+      required String failure,
+      required String success,
+      required String smsCode,
+      required String verificationId,
+      required bool loading}) {
     return _ProfileState(
       firstName: firstName,
       lastName: lastName,
       email: email,
       phoneNumber: phoneNumber,
+      failure: failure,
+      success: success,
+      smsCode: smsCode,
+      verificationId: verificationId,
+      loading: loading,
     );
   }
 }
@@ -41,6 +51,11 @@ mixin _$ProfileState {
   String get lastName => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get phoneNumber => throw _privateConstructorUsedError;
+  String get failure => throw _privateConstructorUsedError;
+  String get success => throw _privateConstructorUsedError;
+  String get smsCode => throw _privateConstructorUsedError;
+  String get verificationId => throw _privateConstructorUsedError;
+  bool get loading => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProfileStateCopyWith<ProfileState> get copyWith =>
@@ -53,7 +68,15 @@ abstract class $ProfileStateCopyWith<$Res> {
           ProfileState value, $Res Function(ProfileState) then) =
       _$ProfileStateCopyWithImpl<$Res>;
   $Res call(
-      {String firstName, String lastName, String email, String phoneNumber});
+      {String firstName,
+      String lastName,
+      String email,
+      String phoneNumber,
+      String failure,
+      String success,
+      String smsCode,
+      String verificationId,
+      bool loading});
 }
 
 /// @nodoc
@@ -70,6 +93,11 @@ class _$ProfileStateCopyWithImpl<$Res> implements $ProfileStateCopyWith<$Res> {
     Object? lastName = freezed,
     Object? email = freezed,
     Object? phoneNumber = freezed,
+    Object? failure = freezed,
+    Object? success = freezed,
+    Object? smsCode = freezed,
+    Object? verificationId = freezed,
+    Object? loading = freezed,
   }) {
     return _then(_value.copyWith(
       firstName: firstName == freezed
@@ -88,6 +116,26 @@ class _$ProfileStateCopyWithImpl<$Res> implements $ProfileStateCopyWith<$Res> {
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
+      failure: failure == freezed
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as String,
+      success: success == freezed
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as String,
+      smsCode: smsCode == freezed
+          ? _value.smsCode
+          : smsCode // ignore: cast_nullable_to_non_nullable
+              as String,
+      verificationId: verificationId == freezed
+          ? _value.verificationId
+          : verificationId // ignore: cast_nullable_to_non_nullable
+              as String,
+      loading: loading == freezed
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -100,7 +148,15 @@ abstract class _$ProfileStateCopyWith<$Res>
       __$ProfileStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String firstName, String lastName, String email, String phoneNumber});
+      {String firstName,
+      String lastName,
+      String email,
+      String phoneNumber,
+      String failure,
+      String success,
+      String smsCode,
+      String verificationId,
+      bool loading});
 }
 
 /// @nodoc
@@ -119,6 +175,11 @@ class __$ProfileStateCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
     Object? lastName = freezed,
     Object? email = freezed,
     Object? phoneNumber = freezed,
+    Object? failure = freezed,
+    Object? success = freezed,
+    Object? smsCode = freezed,
+    Object? verificationId = freezed,
+    Object? loading = freezed,
   }) {
     return _then(_ProfileState(
       firstName: firstName == freezed
@@ -137,6 +198,26 @@ class __$ProfileStateCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
+      failure: failure == freezed
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as String,
+      success: success == freezed
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as String,
+      smsCode: smsCode == freezed
+          ? _value.smsCode
+          : smsCode // ignore: cast_nullable_to_non_nullable
+              as String,
+      verificationId: verificationId == freezed
+          ? _value.verificationId
+          : verificationId // ignore: cast_nullable_to_non_nullable
+              as String,
+      loading: loading == freezed
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -148,7 +229,12 @@ class _$_ProfileState implements _ProfileState {
       {required this.firstName,
       required this.lastName,
       required this.email,
-      required this.phoneNumber});
+      required this.phoneNumber,
+      required this.failure,
+      required this.success,
+      required this.smsCode,
+      required this.verificationId,
+      required this.loading});
 
   @override
   final String firstName;
@@ -158,10 +244,20 @@ class _$_ProfileState implements _ProfileState {
   final String email;
   @override
   final String phoneNumber;
+  @override
+  final String failure;
+  @override
+  final String success;
+  @override
+  final String smsCode;
+  @override
+  final String verificationId;
+  @override
+  final bool loading;
 
   @override
   String toString() {
-    return 'ProfileState(firstName: $firstName, lastName: $lastName, email: $email, phoneNumber: $phoneNumber)';
+    return 'ProfileState(firstName: $firstName, lastName: $lastName, email: $email, phoneNumber: $phoneNumber, failure: $failure, success: $success, smsCode: $smsCode, verificationId: $verificationId, loading: $loading)';
   }
 
   @override
@@ -173,7 +269,13 @@ class _$_ProfileState implements _ProfileState {
             const DeepCollectionEquality().equals(other.lastName, lastName) &&
             const DeepCollectionEquality().equals(other.email, email) &&
             const DeepCollectionEquality()
-                .equals(other.phoneNumber, phoneNumber));
+                .equals(other.phoneNumber, phoneNumber) &&
+            const DeepCollectionEquality().equals(other.failure, failure) &&
+            const DeepCollectionEquality().equals(other.success, success) &&
+            const DeepCollectionEquality().equals(other.smsCode, smsCode) &&
+            const DeepCollectionEquality()
+                .equals(other.verificationId, verificationId) &&
+            const DeepCollectionEquality().equals(other.loading, loading));
   }
 
   @override
@@ -182,7 +284,12 @@ class _$_ProfileState implements _ProfileState {
       const DeepCollectionEquality().hash(firstName),
       const DeepCollectionEquality().hash(lastName),
       const DeepCollectionEquality().hash(email),
-      const DeepCollectionEquality().hash(phoneNumber));
+      const DeepCollectionEquality().hash(phoneNumber),
+      const DeepCollectionEquality().hash(failure),
+      const DeepCollectionEquality().hash(success),
+      const DeepCollectionEquality().hash(smsCode),
+      const DeepCollectionEquality().hash(verificationId),
+      const DeepCollectionEquality().hash(loading));
 
   @JsonKey(ignore: true)
   @override
@@ -195,7 +302,12 @@ abstract class _ProfileState implements ProfileState {
       {required String firstName,
       required String lastName,
       required String email,
-      required String phoneNumber}) = _$_ProfileState;
+      required String phoneNumber,
+      required String failure,
+      required String success,
+      required String smsCode,
+      required String verificationId,
+      required bool loading}) = _$_ProfileState;
 
   @override
   String get firstName;
@@ -205,6 +317,16 @@ abstract class _ProfileState implements ProfileState {
   String get email;
   @override
   String get phoneNumber;
+  @override
+  String get failure;
+  @override
+  String get success;
+  @override
+  String get smsCode;
+  @override
+  String get verificationId;
+  @override
+  bool get loading;
   @override
   @JsonKey(ignore: true)
   _$ProfileStateCopyWith<_ProfileState> get copyWith =>

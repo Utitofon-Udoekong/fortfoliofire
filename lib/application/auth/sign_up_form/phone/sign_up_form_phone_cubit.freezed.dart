@@ -19,7 +19,7 @@ class _$SignUpFormPhoneStateTearOff {
   const _$SignUpFormPhoneStateTearOff();
 
   _SignUpFormPhoneState call(
-      {required Phone phoneNumber,
+      {required String phoneNumber,
       required String smsCode,
       required Option<AuthFailure> failureOption,
       required String verificationId,
@@ -41,7 +41,7 @@ const $SignUpFormPhoneState = _$SignUpFormPhoneStateTearOff();
 
 /// @nodoc
 mixin _$SignUpFormPhoneState {
-  Phone get phoneNumber => throw _privateConstructorUsedError;
+  String get phoneNumber => throw _privateConstructorUsedError;
   String get smsCode => throw _privateConstructorUsedError;
   Option<AuthFailure> get failureOption => throw _privateConstructorUsedError;
   String get verificationId => throw _privateConstructorUsedError;
@@ -59,7 +59,7 @@ abstract class $SignUpFormPhoneStateCopyWith<$Res> {
           $Res Function(SignUpFormPhoneState) then) =
       _$SignUpFormPhoneStateCopyWithImpl<$Res>;
   $Res call(
-      {Phone phoneNumber,
+      {String phoneNumber,
       String smsCode,
       Option<AuthFailure> failureOption,
       String verificationId,
@@ -89,7 +89,7 @@ class _$SignUpFormPhoneStateCopyWithImpl<$Res>
       phoneNumber: phoneNumber == freezed
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as Phone,
+              as String,
       smsCode: smsCode == freezed
           ? _value.smsCode
           : smsCode // ignore: cast_nullable_to_non_nullable
@@ -122,7 +122,7 @@ abstract class _$SignUpFormPhoneStateCopyWith<$Res>
       __$SignUpFormPhoneStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {Phone phoneNumber,
+      {String phoneNumber,
       String smsCode,
       Option<AuthFailure> failureOption,
       String verificationId,
@@ -154,7 +154,7 @@ class __$SignUpFormPhoneStateCopyWithImpl<$Res>
       phoneNumber: phoneNumber == freezed
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as Phone,
+              as String,
       smsCode: smsCode == freezed
           ? _value.smsCode
           : smsCode // ignore: cast_nullable_to_non_nullable
@@ -192,7 +192,7 @@ class _$_SignUpFormPhoneState extends _SignUpFormPhoneState {
       : super._();
 
   @override
-  final Phone phoneNumber;
+  final String phoneNumber;
   @override
   final String smsCode;
   @override
@@ -246,7 +246,7 @@ class _$_SignUpFormPhoneState extends _SignUpFormPhoneState {
 
 abstract class _SignUpFormPhoneState extends SignUpFormPhoneState {
   const factory _SignUpFormPhoneState(
-      {required Phone phoneNumber,
+      {required String phoneNumber,
       required String smsCode,
       required Option<AuthFailure> failureOption,
       required String verificationId,
@@ -255,7 +255,7 @@ abstract class _SignUpFormPhoneState extends SignUpFormPhoneState {
   const _SignUpFormPhoneState._() : super._();
 
   @override
-  Phone get phoneNumber;
+  String get phoneNumber;
   @override
   String get smsCode;
   @override

@@ -21,7 +21,7 @@ class ConfirmLoginWithOTP extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final phoneNumber = context.select((SignInFormPhoneCubit phoneCubit) =>
-        phoneCubit.state.phoneNumber.getOrCrash());
+        phoneCubit.state.phoneNumber);
     return BlocProvider.value(
       value: getIt<SignInFormPhoneCubit>(),
       child: Scaffold(
