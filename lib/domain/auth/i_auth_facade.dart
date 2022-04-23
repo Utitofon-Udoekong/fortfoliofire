@@ -42,8 +42,7 @@ abstract class IAuthFacade {
   // Future<Option<AuthUserModel>> getSignedInUser();
   // verify user
   Future<void> verifyUser();
-  Future<Either<String,String>> applyActionCode({required String code,required String newEmail});
-  Future<void> updateEmail({required String newEmail});
+  Future<Either<String,String>> updateEmail({required String newEmail});
   Stream<Either<String, String>> updatePhone({required Phone phoneNumber,
     required Duration timeout,});
   Future<void> updateName({required String firstName, required String lastName});

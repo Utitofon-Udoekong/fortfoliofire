@@ -6,8 +6,8 @@ import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/domain/auth/auth_user_model.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
+import 'package:fortfolio/presentation/home/dashboard/screens/profile/cubit/profile_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
- 
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -19,10 +19,10 @@ class ProfilePage extends StatelessWidget {
         body: Padding(
             padding: kDefaultPadding,
             child: BlocSelector<AuthCubit, AuthState, AuthUserModel>(
-              selector: (state){
+              selector: (state) {
                 return state.userModel;
               },
-              builder: (context, authUserModel){
+              builder: (context, authUserModel) {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
@@ -73,8 +73,8 @@ class ProfilePage extends StatelessWidget {
                                       fontSize: 13,
                                       decoration: TextDecoration.underline))
                               : TextButton(
-                                  onPressed: () =>
-                                      context.router.push(const VerificationPageRoute()),
+                                  onPressed: () => context.router
+                                      .push(const VerificationPageRoute()),
                                   child: Text('Account unverified',
                                       style: subTitle.copyWith(
                                           color: kBlackColor,
@@ -90,25 +90,27 @@ class ProfilePage extends StatelessWidget {
                     ),
                     buildtile(
                         'ID: ${authUserModel.id}',
-                        IconButton(onPressed: (){
-                          Clipboard.setData(
-                                  ClipboardData(text: authUserModel.id))
-                              .then((_) {
-                            CustomSnackbar.showSnackBar(
-                                context, "Text copied", false);
-                          });
-                        }, icon: const Icon(
-                          Icons.file_copy_rounded,
-                          color: kPrimaryColor,
-                          size: 15,
-                        )),
+                        IconButton(
+                            onPressed: () {
+                              Clipboard.setData(
+                                      ClipboardData(text: authUserModel.id))
+                                  .then((_) {
+                                CustomSnackbar.showSnackBar(
+                                    context, "Text copied", false);
+                              });
+                            },
+                            icon: const Icon(
+                              Icons.file_copy_rounded,
+                              color: kPrimaryColor,
+                              size: 15,
+                            )),
                         true),
                     buildtile(authUserModel.email, const Spacer(), false),
                     const SizedBox(
                       height: 10,
                     ),
                     buildtile(
-                      authUserModel.firstName,
+                        authUserModel.firstName,
                         Text(
                           authUserModel.lastName,
                           style: subTitle.copyWith(
@@ -146,11 +148,13 @@ class ProfilePage extends StatelessWidget {
       child: Row(
         children: <Widget>[
           Expanded(
-            child: Text(leading,
-                style: subTitle.copyWith(color: kBlackColor, fontSize: 15),
-                overflow: TextOverflow.ellipsis,
-                maxLines: 1,
-                softWrap: false,),
+            child: Text(
+              leading,
+              style: subTitle.copyWith(color: kBlackColor, fontSize: 15),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+              softWrap: false,
+            ),
           ),
           const Spacer(),
           trailexist ? trailing : const Spacer()
@@ -158,4 +162,61 @@ class ProfilePage extends StatelessWidget {
       ),
     );
   }
+
+  /// [TODO]
+  /// show edit name modal
+  showEditNameModal({required BuildContext context}) {
+    showModalBottomSheet<dynamic>(
+        isScrollControlled: true,
+        context: context,
+        builder: (BuildContext context) {
+          return SizedBox(
+            height: MediaQuery.of(context).size.height * 0.35,
+            child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  children: <Widget>[
+                    Text(
+                      'Edit User Name',
+                      style: titleText.copyWith(fontSize: 15),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    BlocBuilder<ProfileCubit, ProfileState>(
+                      builder: (context, state) {
+                        return TextFormField(
+                                autocorrect: false,
+                                keyboardType: TextInputType.name,
+                                textInputAction: TextInputAction.next,
+                                decoration: const InputDecoration(
+                                    filled: true,
+                                    fillColor: Color(0xFFF3F6F8),
+                                    border: InputBorder.none),
+                                onChanged: (value) => context
+                                    .read<ResetPasswordCubit>()
+                                    .emailAddressChanged(emailAddress: value),
+                                validator: (_) => context
+                                    .read<ResetPasswordCubit>()
+                                    .state
+                                    .emailAddress
+                                    .value
+                                    .fold(
+                                      (f) => f.maybeMap(
+                                          invalidEmail: (_) => "Invalid email address",
+                                          orElse: () => null),
+                                      (r) => null,
+                                    ),
+                              );
+                      },
+                    )
+                  ],
+                )),
+          );
+        },
+        backgroundColor: kWhiteColor);
+  }
+
+  /// show edit email modal
+  /// show edit phone modal
 }

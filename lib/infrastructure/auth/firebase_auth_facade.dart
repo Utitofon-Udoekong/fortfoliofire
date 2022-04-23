@@ -61,9 +61,8 @@ class FirebaseAuthFacade implements IAuthFacade {
     final emailAddressString = emailAddress.getOrCrash();
     final passwordString = password.getOrCrash();
     try {
-      final signInPhase = await firebaseAuth
-          .signInWithEmailAndPassword(
-              email: emailAddressString, password: passwordString);
+      final signInPhase = await firebaseAuth.signInWithEmailAndPassword(
+          email: emailAddressString, password: passwordString);
       return right(signInPhase.user!.uid);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found' || e.code == 'wrong-password') {
@@ -87,9 +86,8 @@ class FirebaseAuthFacade implements IAuthFacade {
           // ANDROID ONLY!
           firebaseAuth.currentUser!.linkWithCredential(credential);
           await firestore.authUserCollection
-          .doc(firebaseAuth.currentUser!.uid).update({
-            "phoneNumber": phoneNumber.getOrCrash()
-          });
+              .doc(firebaseAuth.currentUser!.uid)
+              .update({"phoneNumber": phoneNumber.getOrCrash()});
           // link with the auto-generated credential.
         },
         codeSent: (String verificationId, int? resendToken) async {
@@ -129,25 +127,26 @@ class FirebaseAuthFacade implements IAuthFacade {
     final fName = firstName.getOrCrash();
     final lName = lastName.getOrCrash();
     var displayName = "${fName[0]}${lName[0]}";
-    var uuid = const Uuid().v4().substring(0,7);
+    var uuid = const Uuid().v4().substring(0, 7);
     try {
       await firebaseAuth
           .createUserWithEmailAndPassword(
               email: emailAddressString, password: passwordString)
           .then((value) async {
-            AuthUserModel authUserModel = AuthUserModel(
-                email: emailAddressString,
-                phoneNumber: "+123456",
-                firstName: fName,
-                lastName: lName,
-                balance: 0,
-                createdat: DateTime.now(),
-                isVerified: false,
-                id: uuid,
-                displayName: displayName);
-                log(authUserModel.toString());
-            await firebaseAuth.currentUser!.updateDisplayName(displayName);
-            await saveUserToDatabase(userModel: authUserModel, uid: value.user!.uid);
+        AuthUserModel authUserModel = AuthUserModel(
+            email: emailAddressString,
+            phoneNumber: "+123456",
+            firstName: fName,
+            lastName: lName,
+            balance: 0,
+            createdat: DateTime.now(),
+            isVerified: false,
+            id: uuid,
+            displayName: displayName);
+        log(authUserModel.toString());
+        await firebaseAuth.currentUser!.updateDisplayName(displayName);
+        await saveUserToDatabase(
+            userModel: authUserModel, uid: value.user!.uid);
       });
       return right("Registration successful");
     } on FirebaseAuthException catch (e) {
@@ -311,30 +310,36 @@ class FirebaseAuthFacade implements IAuthFacade {
   String getUserId() => firebaseAuth.currentUser!.uid;
 
   @override
-  Future<void> updateEmail({required String newEmail}) async {
-    await firebaseAuth.currentUser!.updateEmail(newEmail).then((_) async {
-      await firebaseAuth.currentUser!.verifyBeforeUpdateEmail(newEmail);
-      firebaseAuth.applyActionCode(code);
-      
-    });
-  }
-  @override
-  Future<Either<String,String>> applyActionCode({required String code,required String newEmail}) async {
+  Future<Either<String, String>> updateEmail({required String newEmail}) async {
     try {
-      await firebaseAuth.applyActionCode(code).then((_) async {
-        await firestore.authUserCollection.doc(firebaseAuth.currentUser!.uid).update({
-          "email": newEmail
-        });
+      await firebaseAuth.currentUser!.updateEmail(newEmail).then((_) async {
+        await firestore.authUserCollection
+            .doc(firebaseAuth.currentUser!.uid)
+            .update({"email": newEmail});
       });
-      return right("Email updated successfully");
-    } catch (e) {
+        return right("Email verification sent");
+    } on FirebaseException catch (e) {
+      switch (e.code) {
+        case "invalid-email":
+          return left("Invalid email address");
+        case "email-already-in-use":
+          return left("Email already in use");
+        case "requires-recent-login":
+          return left("Login again to continue");
+        default:
+          return left("Server Error encounteres");
+      }
     }
   }
 
+
   @override
-  Future<void> updateName({required String firstName, required String lastName}) async {
+  Future<void> updateName(
+      {required String firstName, required String lastName}) async {
     var displayName = "${firstName[0]}${lastName[0]}";
-    await firestore.authUserCollection.doc(firebaseAuth.currentUser!.uid).update({
+    await firestore.authUserCollection
+        .doc(firebaseAuth.currentUser!.uid)
+        .update({
       "firstName": firstName,
       "lastName": lastName,
       "displayName": displayName
@@ -342,9 +347,41 @@ class FirebaseAuthFacade implements IAuthFacade {
   }
 
   @override
-  Stream<Either<String, String>> updatePhone({required Phone phoneNumber, required Duration timeout}) {
-    // TODO: implement updatePhone
-    throw UnimplementedError();
-  }
+  Stream<Either<String, String>> updatePhone(
+      {required Phone phoneNumber, required Duration timeout}) async* {
+    final StreamController<Either<String, String>> streamController =
+        StreamController<Either<String, String>>();
 
+    await firebaseAuth.verifyPhoneNumber(
+        timeout: timeout,
+        phoneNumber: phoneNumber.getOrCrash(),
+        verificationCompleted: (PhoneAuthCredential credential) async {
+          // ANDROID ONLY!
+          firebaseAuth.currentUser!.updatePhoneNumber(credential);
+        },
+        codeSent: (String verificationId, int? resendToken) async {
+          // Update the UI - wait for the user to enter the SMS code
+          streamController.add(right(verificationId));
+        },
+        codeAutoRetrievalTimeout: (String verificationId) {
+          // Auto-resolution timed out...
+          streamController.add(left("SMS Timeout"));
+        },
+        verificationFailed: (FirebaseAuthException e) {
+          late final Either<String, String> result;
+
+          if (e.code == 'invalid-phone-number') {
+            result = left("Invalid Phone Number");
+          } else if (e.code == 'too-many-requests') {
+            result = left("Too many Requests");
+          } else if (e.code == 'app-not-authorized') {
+            result = left("Device not suppported");
+          } else {
+            result = left("Server Error encountered");
+          }
+          streamController.add(result);
+        });
+
+    yield* streamController.stream;
+  }
 }
