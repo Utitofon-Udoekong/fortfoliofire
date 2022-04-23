@@ -6,7 +6,7 @@ class SignUpFormPhoneState with _$SignUpFormPhoneState {
     required Phone phoneNumber,
     required String smsCode,
     required Option<AuthFailure> failureOption,
-    required Option<String> verificationIdOption,
+    required String verificationId,
     required bool isSubmitting,
     required bool showErrorMessages,
   }) = _SignUpFormPhoneState;
@@ -15,11 +15,11 @@ class SignUpFormPhoneState with _$SignUpFormPhoneState {
         phoneNumber: Phone(''),
         smsCode: "",
         failureOption: none(),
-        verificationIdOption: none(),
+        verificationId: "",
         isSubmitting: false,
         showErrorMessages: false,
       );
-  bool get displayNextButton => verificationIdOption.isNone() && !isSubmitting;
-  bool get displaySmsCodeForm => verificationIdOption.isSome();
+  bool get displayNextButton => verificationId.isEmpty && !isSubmitting;
+  bool get displaySmsCodeForm => verificationId.isNotEmpty;
   bool get displayLoadingIndicator => !displayNextButton && !displaySmsCodeForm;
 }

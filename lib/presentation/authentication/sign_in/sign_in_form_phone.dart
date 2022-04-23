@@ -62,7 +62,7 @@ class _SignInFormPhoneState extends State<SignInFormPhone> {
                 ),
                 BlocListener<SignInFormPhoneCubit, SignInFormPhoneState>(
                   listenWhen: (p, c) =>
-                      p.verificationIdOption != c.verificationIdOption,
+                      p.verificationId != c.verificationId && c.verificationId.isNotEmpty,
                   listener: (context, state) {
                     context.router.replace(const ConfirmLoginWithOTPRoute());
                   },
@@ -154,19 +154,6 @@ class _SignInFormPhoneState extends State<SignInFormPhone> {
                                             .phoneNumberChanged(
                                                 phoneNumber:
                                                     value.completeNumber),
-                                        // validator: (_) => context
-                                        //     .read<SignInFormPhoneCubit>()
-                                        //     .state
-                                        //     .phoneNumber
-                                        //     .value
-                                        //     .fold(
-                                        //       (f) => f.maybeMap(
-                                        //           auth: (value) {
-                                        //             return value.f.failedValue;
-                                        //           },
-                                        //           orElse: () => null),
-                                        //       (r) => null,
-                                        //     ),
                                       );
                                     },
                                   ),

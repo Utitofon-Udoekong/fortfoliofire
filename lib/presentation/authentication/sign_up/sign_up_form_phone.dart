@@ -28,13 +28,6 @@ class _SignUpFormPhoneState extends State<SignUpFormPhone> {
             create: (context) => getIt<SignUpFormPhoneCubit>(),
             child: MultiBlocListener(
               listeners: [
-                BlocListener<AuthCubit, AuthState>(
-                  listenWhen: (p, c) =>
-                      p.isLoggedIn != c.isLoggedIn && c.isLoggedIn,
-                  listener: (context, state) {
-                    context.router.replace(const HomePageRoute());
-                  },
-                ),
                 BlocListener<SignUpFormPhoneCubit, SignUpFormPhoneState>(
                   listenWhen: (p, c) => p.failureOption != c.failureOption,
                   listener: (context, state) {
@@ -62,7 +55,7 @@ class _SignUpFormPhoneState extends State<SignUpFormPhone> {
                 ),
                 BlocListener<SignUpFormPhoneCubit, SignUpFormPhoneState>(
                   listenWhen: (p, c) =>
-                      p.displaySmsCodeForm != c.displaySmsCodeForm,
+                      p.verificationId != c.verificationId && c.displaySmsCodeForm,
                   listener: (context, state) =>
                       context.router.push(const ConfirmSignupWithOTPRoute()),
                 )
@@ -91,25 +84,6 @@ class _SignUpFormPhoneState extends State<SignUpFormPhone> {
                                     onTap: () => context.router.pop(),
                                     child: const Icon(Icons.close),
                                   ),
-                                  // Row(
-                                  //   mainAxisAlignment:
-                                  //       MainAxisAlignment.spaceBetween,
-                                  //   children: <Widget>[
-                                  //     InkWell(
-                                  //       onTap: () => context.router.pop(),
-                                  //       child: const Icon(Icons.close),
-                                  //     ),
-                                  //     InkWell(
-                                  //       onTap: () => context.router
-                                  //           .push(const SignUpFormRoute()),
-                                  //       child: Text(
-                                  //         "Register",
-                                  //         style: subTitle.copyWith(
-                                  //             color: kPrimaryColor),
-                                  //       ),
-                                  //     )
-                                  //   ],
-                                  // ),
                                   const SizedBox(
                                     height: 40,
                                   ),
@@ -158,17 +132,6 @@ class _SignUpFormPhoneState extends State<SignUpFormPhone> {
                                             .phoneNumberChanged(
                                                 phoneNumber:
                                                     value.completeNumber),
-                                        // validator: (_) => context
-                                        //     .read<SignUpFormPhoneCubit>()
-                                        //     .state
-                                        //     .phoneNumber
-                                        //     .value
-                                        //     .fold(
-                                        //       (f) => f.maybeMap(
-                                        //           invalidPhone: (_),
-                                        //           orElse: () => null),
-                                        //       (r) => null,
-                                        //     ),
                                       );
                                     },
                                   ),

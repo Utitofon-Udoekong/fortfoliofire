@@ -45,9 +45,7 @@ class SignUpFormPhoneCubit extends Cubit<SignUpFormPhoneState> {
 
   void reset() {
     emit(
-      state.copyWith(
-        phoneNumber: Phone("")
-      ),
+      state.copyWith(phoneNumber: Phone("")),
     );
   }
 
@@ -72,7 +70,7 @@ class SignUpFormPhoneCubit extends Cubit<SignUpFormPhoneState> {
               // Catch this in Bloc Listener and take the user to SMS code entry page.
               emit(
                 state.copyWith(
-                  verificationIdOption: some(verificationId),
+                  verificationId: verificationId,
                   isSubmitting: false,
                 ),
               );
@@ -81,39 +79,32 @@ class SignUpFormPhoneCubit extends Cubit<SignUpFormPhoneState> {
         );
   }
 
-  void verifySmsCode() {
-    state.verificationIdOption.fold(
-      () {
-        //Verification id does not exist. This should not happen.
-      },
-      (String verificationId) async {
+  void verifySmsCode() async {
+    emit(
+      state.copyWith(
+        isSubmitting: true,
+        failureOption: none(),
+      ),
+    );
+    final verificationId = state.verificationId;
+    final String phoneNumber = state.phoneNumber.getOrCrash();
+    final Either<AuthFailure, Unit> failureOrSuccess = await _authFacade
+        .verifySmsCode(smsCode: state.smsCode, verificationId: verificationId);
+    failureOrSuccess.fold(
+      (AuthFailure failure) {
         emit(
-          state.copyWith(
-            isSubmitting: true,
-            failureOption: none(),
-          ),
+          state.copyWith(failureOption: some(failure), isSubmitting: false),
         );
-        final Either<AuthFailure, Unit> failureOrSuccess =
-            await _authFacade.verifySmsCode(
-                smsCode: state.smsCode, verificationId: verificationId);
-        failureOrSuccess.fold(
-          (AuthFailure failure) {
-            emit(
-              state.copyWith(failureOption: some(failure), isSubmitting: false),
-            );
-          },
-          (_) async {
-            final usermodel = await _authFacade.getDatabaseUserWithPhoneNumber(phoneNumber: state.phoneNumber.getOrCrash());
-            usermodel.fold(() => null, (user) => authCubit.listenAuthStateChangesStream(user));
-            authCubit.loggedInChanged(loggedIn: true);
-            emit(state.copyWith(isSubmitting: false));
-            // Verification completed successfully case.
-            // Bloc Listener in the UI should listen to Auth Listener State and if user is authenticated and not anonymous, we should take them to Registration page or Feed Page.
-          },
-        );
+      },
+      (_) async {
+        final usermodel = await _authFacade.getDatabaseUserWithPhoneNumber(
+            phoneNumber: phoneNumber);
+        usermodel.fold(
+            () => null, (user) => authCubit.listenAuthStateChangesStream(user));
+        authCubit.loggedInChanged(loggedIn: true);
+        emit(state.copyWith(isSubmitting: false));
+        // Verification completed successfully case.
       },
     );
   }
-
-
 }

@@ -70,7 +70,7 @@ class _FAQPageState extends State<FAQPage> {
               child: Text(
                 item.question,
                 style: subTitle.copyWith(
-                    fontSize: 16, color: const Color(0XFF535454)),
+                    fontSize: 16, color: kBlackColor),
               ),
             );
           },
@@ -82,7 +82,7 @@ class _FAQPageState extends State<FAQPage> {
             child: Text(
               item.answer,
               style: subTitle.copyWith(
-                  fontSize: 14, color: const Color(0XFF535454)),
+                  fontSize: 14, color: kBlackColor),
             ),
           ),
           value: item.question,

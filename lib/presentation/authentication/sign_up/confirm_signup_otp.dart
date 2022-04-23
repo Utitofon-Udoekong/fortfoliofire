@@ -25,28 +25,40 @@ class ConfirmSignupWithOTP extends StatelessWidget {
     return BlocProvider.value(
       value: getIt<SignUpFormPhoneCubit>(),
       child: Scaffold(
-        body: BlocListener<SignUpFormPhoneCubit, SignUpFormPhoneState>(
-          listenWhen: (p, c) => p.failureOption != c.failureOption,
-          listener: (context, state) {
-            state.failureOption.fold(
-              () => null,
-              (failure) => CustomSnackbar.showSnackBar(
-                context,
-                failure.maybeMap(
-                  orElse: () => "",
-                  serverError: (_) => 'Encountered a server error',
-                  invalidEmailAndPasswordCombination: (_) =>
-                      "Invalid email or Password",
-                  tooManyRequests: (_) => "Too Many Requests",
-                  emailAlreadyInUse: (_) => 'Email address already in use',
-                  smsTimeout: (_) => "Sms Timeout",
-                  sessionExpired: (_) => "Session Expired",
-                  invalidVerificationCode: (_) => "Invalid Verification Code",
-                ),
-                true,
-              ),
-            );
-          },
+        body: MultiBlocListener(
+          listeners: [
+            BlocListener<SignUpFormPhoneCubit, SignUpFormPhoneState>(
+              listenWhen: (p, c) => p.failureOption != c.failureOption,
+              listener: (context, state) {
+                state.failureOption.fold(
+                  () => null,
+                  (failure) => CustomSnackbar.showSnackBar(
+                    context,
+                    failure.maybeMap(
+                      orElse: () => "",
+                      serverError: (_) => 'Encountered a server error',
+                      invalidEmailAndPasswordCombination: (_) =>
+                          "Invalid email or Password",
+                      tooManyRequests: (_) => "Too Many Requests",
+                      emailAlreadyInUse: (_) => 'Email address already in use',
+                      smsTimeout: (_) => "Sms Timeout",
+                      sessionExpired: (_) => "Session Expired",
+                      invalidVerificationCode: (_) =>
+                          "Invalid Verification Code",
+                    ),
+                    true,
+                  ),
+                );
+              },
+            ),
+            BlocListener<AuthCubit, AuthState>(
+              listenWhen: (p, c) =>
+                  p.isLoggedIn != c.isLoggedIn && c.isLoggedIn,
+              listener: (context, state) {
+                context.router.replace(const HomePageRoute());
+              },
+            ),
+          ],
           child: BlocBuilder<SignUpFormPhoneCubit, SignUpFormPhoneState>(
             builder: (context, state) {
               if (state.isSubmitting) {
@@ -73,7 +85,7 @@ class ConfirmSignupWithOTP extends StatelessWidget {
                             height: 20,
                           ),
                           Text(
-                            'We sent an OTP to the number $phoneNumber',
+                            'We sent an OTP to the number //',
                             style: titleText,
                           ),
                           const SizedBox(
