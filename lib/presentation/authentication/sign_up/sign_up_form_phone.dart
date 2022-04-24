@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/application/auth/sign_up_form/phone/sign_up_form_phone_cubit.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/core/validator_helpers.dart';
@@ -56,9 +55,10 @@ class _SignUpFormPhoneState extends State<SignUpFormPhone> {
                 ),
                 BlocListener<SignUpFormPhoneCubit, SignUpFormPhoneState>(
                   listenWhen: (p, c) =>
-                      p.verificationId != c.verificationId && c.displaySmsCodeForm,
+                      p.verificationId != c.verificationId &&
+                      c.displaySmsCodeForm,
                   listener: (context, state) =>
-                      context.router.push(const ConfirmSignupWithOTPRoute()),
+                      context.router.push(const ConfirmSignupEngineRoute()),
                 )
               ],
               child: BlocBuilder<SignUpFormPhoneCubit, SignUpFormPhoneState>(
@@ -95,26 +95,10 @@ class _SignUpFormPhoneState extends State<SignUpFormPhone> {
                                   const SizedBox(
                                     height: 30,
                                   ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      const Text(
-                                        "Your Phone Number",
-                                        style: TextStyle(
-                                            fontSize: 15,
-                                            color: Color(0xFF656565)),
-                                      ),
-                                      TextButton(
-                                        onPressed: () => context.router
-                                            .push(const SignInFormEmailRoute()),
-                                        child: const Text(
-                                          "Login with email",
-                                          style: TextStyle(
-                                              fontSize: 15, color: kPrimaryColor),
-                                        ),
-                                      )
-                                    ],
+                                  const Text(
+                                    "Your Phone Number",
+                                    style: TextStyle(
+                                        fontSize: 15, color: Color(0xFF656565)),
                                   ),
                                   BlocBuilder<SignUpFormPhoneCubit,
                                       SignUpFormPhoneState>(
@@ -150,7 +134,8 @@ class _SignUpFormPhoneState extends State<SignUpFormPhone> {
                                   ),
                                   CustomAuthFilledButton(
                                     text: "check otp page",
-                                    onTap: () => context.router.push(const ConfirmSignupWithOTPRoute()),
+                                    onTap: () => context.router
+                                        .push(const ConfirmSignupEngineRoute()),
                                     disabled: false,
                                   ),
                                 ],

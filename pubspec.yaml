@@ -30,7 +30,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.1
-  otp_text_field: ^1.1.1
+  otp_text_field: ^1.1.2
   shared_preferences: ^2.0.13
   intl_phone_field: ^3.0.0
   fpdart: ^0.0.14

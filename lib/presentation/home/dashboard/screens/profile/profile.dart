@@ -6,6 +6,7 @@ import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/domain/auth/auth_user_model.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/core/validator_helpers.dart';
+import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
 import 'package:fortfolio/domain/widgets/custom_loading_button.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/profile/cubit/profile_cubit.dart';
@@ -165,6 +166,11 @@ class ProfilePage extends StatelessWidget {
                               color: const Color(0XFF242424), fontSize: 13),
                         ),
                       ),
+                      CustomAuthFilledButton(
+                                    text: "chec otp page",
+                                    onTap: () => context.router.push(const ConfirmPhoneUpdateRoute()),
+                                    disabled: false,
+                                  ),
                     ],
                   );
                 },

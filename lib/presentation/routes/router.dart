@@ -1,9 +1,11 @@
 import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:fortfolio/presentation/authentication/forgot_password/reset_password.dart';
+import 'package:fortfolio/presentation/authentication/sign_in/confirm_engine.dart';
 import 'package:fortfolio/presentation/authentication/sign_in/confirm_login_otp.dart';
 import 'package:fortfolio/presentation/authentication/sign_in/sign_in_form_email.dart';
 import 'package:fortfolio/presentation/authentication/sign_in/sign_in_form_phone.dart';
+import 'package:fortfolio/presentation/authentication/sign_up/confirm_engine.dart';
 import 'package:fortfolio/presentation/authentication/sign_up/confirm_signup_otp.dart';
 import 'package:fortfolio/presentation/authentication/sign_up/sign_up_form.dart';
 import 'package:fortfolio/presentation/home/dashboard/dashboard.dart';
@@ -70,6 +72,8 @@ import '../home/wallet/investment/fortshield_info.dart';
   AutoRoute(page: ConfirmLoginWithOTP),
   AutoRoute(page: ConfirmSignupWithOTP),
   AutoRoute(page: ConfirmPhoneUpdate),
+  AutoRoute(page: ConfirmLoginEngine),
+  AutoRoute(page: ConfirmSignupEngine),
   AutoRoute(page: SignUpForm),
   AutoRoute(page: ResetPassword),
   AutoRoute(page: NotificationsPage),

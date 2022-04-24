@@ -19,43 +19,40 @@ class ConfirmLoginWithOTP extends StatelessWidget {
   const ConfirmLoginWithOTP({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final phoneNumber = context.select((SignInFormPhoneCubit phoneCubit) =>
-        phoneCubit.state.phoneNumber);
+    final phoneNumber = context.select(
+        (SignInFormPhoneCubit phoneCubit) => phoneCubit.state.phoneNumber);
     return Scaffold(
       body: MultiBlocListener(
         listeners: [
           BlocListener<AuthCubit, AuthState>(
-                listenWhen: (p, c) =>
-                    p.isLoggedIn != c.isLoggedIn && c.isLoggedIn,
-                listener: (context, state) {
-                  context.router.replace(const HomePageRoute());
-                },
-              ),
-              BlocListener<SignInFormPhoneCubit, SignInFormPhoneState>(
-                listenWhen: (p, c) => p.failureOption != c.failureOption,
-                listener: (context, state) {
-                  state.failureOption.fold(
-                    () => null,
-                    (failure) => CustomSnackbar.showSnackBar(
-                      context,
-                      failure.maybeMap(
-                        orElse: () => "",
-                        serverError: (_) => 'Encountered a server error',
-                        invalidEmailAndPasswordCombination: (_) =>
-                            "Invalid email or Password",
-                        tooManyRequests: (_) => "Too Many Requests",
-                        emailAlreadyInUse: (_) =>
-                            'Email address already in use',
-                        smsTimeout: (_) => "Sms Timeout",
-                        sessionExpired: (_) => "Session Expired",
-                        invalidVerificationCode: (_) =>
-                            "Invalid Verification Code",
-                      ),
-                      true,
-                    ),
-                  );
-                },
-              ),
+            listenWhen: (p, c) => p.isLoggedIn != c.isLoggedIn && c.isLoggedIn,
+            listener: (context, state) {
+              context.router.replace(const HomePageRoute());
+            },
+          ),
+          BlocListener<SignInFormPhoneCubit, SignInFormPhoneState>(
+            listenWhen: (p, c) => p.failureOption != c.failureOption,
+            listener: (context, state) {
+              state.failureOption.fold(
+                () => null,
+                (failure) => CustomSnackbar.showSnackBar(
+                  context,
+                  failure.maybeMap(
+                    orElse: () => "",
+                    serverError: (_) => 'Encountered a server error',
+                    invalidEmailAndPasswordCombination: (_) =>
+                        "Invalid email or Password",
+                    tooManyRequests: (_) => "Too Many Requests",
+                    emailAlreadyInUse: (_) => 'Email address already in use',
+                    smsTimeout: (_) => "Sms Timeout",
+                    sessionExpired: (_) => "Session Expired",
+                    invalidVerificationCode: (_) => "Invalid Verification Code",
+                  ),
+                  true,
+                ),
+              );
+            },
+          ),
         ],
         child: BlocBuilder<SignInFormPhoneCubit, SignInFormPhoneState>(
           builder: (context, state) {
@@ -66,93 +63,85 @@ class ConfirmLoginWithOTP extends StatelessWidget {
                   child: SingleChildScrollView(
                 child: Padding(
                   padding: kDefaultPadding,
-                  child: SizedBox(
-                    height: MediaQuery.of(context).size.height,
-                    width: double.infinity,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        IconButton(
-                          onPressed: () => context.router.pop(),
-                          icon: const Icon(Icons.close),
-                          iconSize: 18,
-                          color: kBlackColor,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      InkWell(
+                        onTap: () => context.router.pop(),
+                        child: const Icon(Icons.close),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                        'We sent an OTP to the number $phoneNumber',
+                        style: titleText.copyWith(fontSize: 20),
+                      ),
+                      const SizedBox(
+                        height: 50,
+                      ),
+                      BlocBuilder<SignInFormPhoneCubit, SignInFormPhoneState>(
+                        builder: (context, state) {
+                          return OTPTextField(
+                            length: 6,
+                            width: MediaQuery.of(context).size.width,
+                            fieldWidth: 40,
+                            style: titleText,
+                            textFieldAlignment: MainAxisAlignment.spaceAround,
+                            fieldStyle: FieldStyle.box,
+                            otpFieldStyle: OtpFieldStyle(
+                                backgroundColor: Colors.white,
+                                borderColor: kgreyColor,
+                                focusBorderColor: kPrimaryColor),
+                            keyboardType: TextInputType.number,
+                            onChanged: (value) => context
+                                .read<SignInFormPhoneCubit>()
+                                .smsCodeChanged(smsCode: value),
+                          );
+                        },
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      BlocSelector<SignInFormPhoneCubit, SignInFormPhoneState,
+                          bool>(
+                        selector: (state) {
+                          return state.phoneNumber.isNotEmpty;
+                        },
+                        builder: (context, validPhone) {
+                          return CustomAuthFilledButton(
+                            text: "VERIFY",
+                            onTap: () => context
+                                .read<SignInFormPhoneCubit>()
+                                .verifySmsCode(),
+                            disabled: validPhone,
+                          );
+                        },
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 24, vertical: 0),
+                        child: Row(
+                          children: [
+                            const Spacer(),
+                            CountDownTimer(
+                              smsCodeTimeoutSeconds: smsCodeTimeoutSeconds,
+                              onTimerCompleted: () {
+                                CustomSnackbar.showSnackBar(
+                                    context, "SMS Code Timeout!", true);
+                                context.read<SignInFormPhoneCubit>().reset();
+                              },
+                            ),
+                          ],
                         ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Text(
-                          'We sent an OTP to the number $phoneNumber',
-                          style: titleText,
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        BlocBuilder<SignInFormPhoneCubit,
-                            SignInFormPhoneState>(
-                          builder: (context, state) {
-                            return OTPTextField(
-                              length: 6,
-                              width: MediaQuery.of(context).size.width - 34,
-                              fieldWidth: 58,
-                              style: titleText,
-                              textFieldAlignment:
-                                  MainAxisAlignment.spaceAround,
-                              fieldStyle: FieldStyle.box,
-                              otpFieldStyle: OtpFieldStyle(
-                                  backgroundColor: Colors.white,
-                                  borderColor: kgreyColor,
-                                  focusBorderColor: kPrimaryColor),
-                              keyboardType: TextInputType.number,
-                              onChanged: (value) => context
-                                  .read<SignInFormPhoneCubit>()
-                                  .smsCodeChanged(smsCode: value),
-                            );
-                          },
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        BlocSelector<SignInFormPhoneCubit,
-                            SignInFormPhoneState, bool>(
-                          selector: (state) {
-                            return state.isSubmitting;
-                          },
-                          builder: (context, isSubmitting) {
-                            return CustomAuthFilledButton(
-                              text: isSubmitting ? 'VERIFYING' : 'VERIFY',
-                              onTap: () => context
-                                  .read<SignInFormPhoneCubit>()
-                                  .verifySmsCode(),
-                              disabled: isSubmitting,
-                            );
-                          },
-                        ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 24, vertical: 0),
-                          child: Row(
-                            children: [
-                              const Spacer(),
-                              CountDownTimer(
-                                smsCodeTimeoutSeconds: smsCodeTimeoutSeconds,
-                                onTimerCompleted: () {
-                                  CustomSnackbar.showSnackBar(
-                                      context, "SMS Code Timeout!", true);
-                                  context
-                                      .read<SignInFormPhoneCubit>()
-                                      .reset();
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ));
