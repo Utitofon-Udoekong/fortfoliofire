@@ -8,8 +8,9 @@ import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/domain/widgets/loading_view.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/profile/cubit/profile_cubit.dart';
-import 'package:otp_text_field/otp_text_field.dart';
-import 'package:otp_text_field/style.dart';
+import 'package:fortfolio/domain/widgets/otp_field/otp_box_style.dart';
+import 'package:fortfolio/domain/widgets/otp_field/otp_field_style.dart';
+import 'package:fortfolio/domain/widgets/otp_field/otp_text_field.dart';
 import 'package:auto_route/auto_route.dart';
 
 

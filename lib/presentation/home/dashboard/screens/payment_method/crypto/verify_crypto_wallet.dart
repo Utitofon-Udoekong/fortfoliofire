@@ -3,8 +3,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
-import 'package:otp_text_field/otp_text_field.dart';
-import 'package:otp_text_field/style.dart';
+import 'package:fortfolio/domain/widgets/otp_field/otp_box_style.dart';
+import 'package:fortfolio/domain/widgets/otp_field/otp_field_style.dart';
+import 'package:fortfolio/domain/widgets/otp_field/otp_text_field.dart';
 
 class VerifyCryptoWallet extends StatefulWidget {
   const VerifyCryptoWallet({Key? key}) : super(key: key);
