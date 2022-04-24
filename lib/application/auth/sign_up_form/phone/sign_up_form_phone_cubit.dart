@@ -40,12 +40,12 @@ class SignUpFormPhoneCubit extends Cubit<SignUpFormPhoneState> {
   void phoneNumberChanged({
     required String phoneNumber,
   }) {
-    emit(state.copyWith(phoneNumber: Phone(phoneNumber)));
+    emit(state.copyWith(phoneNumber: phoneNumber));
   }
 
   void reset() {
     emit(
-      state.copyWith(phoneNumber: Phone("")),
+      state.copyWith(phoneNumber: ""),
     );
   }
 
@@ -87,7 +87,7 @@ class SignUpFormPhoneCubit extends Cubit<SignUpFormPhoneState> {
       ),
     );
     final verificationId = state.verificationId;
-    final String phoneNumber = state.phoneNumber.getOrCrash();
+    final String phoneNumber = state.phoneNumber;
     final Either<AuthFailure, Unit> failureOrSuccess = await _authFacade
         .verifySmsCode(smsCode: state.smsCode, verificationId: verificationId);
     failureOrSuccess.fold(

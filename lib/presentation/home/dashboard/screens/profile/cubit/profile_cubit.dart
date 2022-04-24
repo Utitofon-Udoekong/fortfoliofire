@@ -31,6 +31,9 @@ class ProfileCubit extends Cubit<ProfileState> {
   void phoneNumberChanged({required String phoneNumber}) {
     emit(state.copyWith(phoneNumber: phoneNumber));
   }
+  void smsCodeChanged({required String smsCode}) {
+    emit(state.copyWith(smsCode: smsCode));
+  }
 
   void changeEmail() async {
     emit(state.copyWith(loading: true, failure: "", success: ""));
@@ -85,6 +88,17 @@ class ProfileCubit extends Cubit<ProfileState> {
           state.copyWith(success: success, loading: false),
         );
       },
+    );
+  }
+
+  void reset() {
+    emit(
+      state.copyWith(
+        failure: "",
+        smsCode: "",
+        loading: false,
+        success: ""
+      ),
     );
   }
 }

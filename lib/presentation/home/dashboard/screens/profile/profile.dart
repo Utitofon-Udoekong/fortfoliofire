@@ -36,6 +36,14 @@ class ProfilePage extends StatelessWidget {
               CustomSnackbar.showSnackBar(context, state.success, false);
             },
           ),
+          BlocListener<ProfileCubit, ProfileState>(
+            listenWhen: (previous, current) =>
+                previous.verificationId != current.verificationId &&
+                current.verificationId.isNotEmpty,
+            listener: (context, state) {
+              context.router.push(const ConfirmPhoneUpdateRoute());
+            },
+          ),
         ],
         child: SafeArea(
           child: Padding(
@@ -391,9 +399,9 @@ class ProfilePage extends StatelessWidget {
                       },
                       builder: (context, loading) {
                         return CustomLoadingButton(
-                            text: "CHANGE NAME",
+                            text: "CHANGE PHONE",
                             onTap: () =>
-                                context.read<ProfileCubit>().changeName(),
+                                context.read<ProfileCubit>().changePhone(),
                             disabled: loading);
                       },
                     )

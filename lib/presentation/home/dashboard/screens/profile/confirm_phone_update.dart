@@ -3,65 +3,52 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/application/auth/sign_up_form/phone/sign_up_form_phone_cubit.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
+import 'package:fortfolio/domain/widgets/countdown_timer.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/domain/widgets/loading_view.dart';
 import 'package:fortfolio/injection.dart';
+import 'package:fortfolio/presentation/home/dashboard/screens/profile/cubit/profile_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:otp_text_field/otp_text_field.dart';
 import 'package:otp_text_field/style.dart';
 import 'package:auto_route/auto_route.dart';
 
-import '../../../domain/widgets/countdown_timer.dart';
 
-class ConfirmSignupWithOTP extends StatelessWidget {
+class ConfirmPhoneUpdate extends StatelessWidget {
   final int smsCodeTimeoutSeconds = 60;
 
-  const ConfirmSignupWithOTP({Key? key}) : super(key: key);
+  const ConfirmPhoneUpdate({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final phoneNumber = context.select((SignUpFormPhoneCubit phoneCubit) =>
+    final phoneNumber = context.select((ProfileCubit phoneCubit) =>
         phoneCubit.state.phoneNumber);
     return BlocProvider.value(
-      value: getIt<SignUpFormPhoneCubit>(),
+      value: getIt<ProfileCubit>(),
       child: Scaffold(
         body: MultiBlocListener(
           listeners: [
-            BlocListener<SignUpFormPhoneCubit, SignUpFormPhoneState>(
-              listenWhen: (p, c) => p.failureOption != c.failureOption,
-              listener: (context, state) {
-                state.failureOption.fold(
-                  () => null,
-                  (failure) => CustomSnackbar.showSnackBar(
-                    context,
-                    failure.maybeMap(
-                      orElse: () => "",
-                      serverError: (_) => 'Encountered a server error',
-                      invalidEmailAndPasswordCombination: (_) =>
-                          "Invalid email or Password",
-                      tooManyRequests: (_) => "Too Many Requests",
-                      emailAlreadyInUse: (_) => 'Email address already in use',
-                      smsTimeout: (_) => "Sms Timeout",
-                      sessionExpired: (_) => "Session Expired",
-                      invalidVerificationCode: (_) =>
-                          "Invalid Verification Code",
-                    ),
-                    true,
-                  ),
-                );
-              },
-            ),
-            BlocListener<AuthCubit, AuthState>(
-              listenWhen: (p, c) =>
-                  p.isLoggedIn != c.isLoggedIn && c.isLoggedIn,
-              listener: (context, state) {
-                context.router.replace(const HomePageRoute());
-              },
-            ),
-          ],
-          child: BlocBuilder<SignUpFormPhoneCubit, SignUpFormPhoneState>(
+          BlocListener<ProfileCubit, ProfileState>(
+            listenWhen: (previous, current) =>
+                previous.failure != current.failure &&
+                current.failure.isNotEmpty,
+            listener: (context, state) {
+              CustomSnackbar.showSnackBar(context, state.failure, true);
+            },
+          ),
+          BlocListener<ProfileCubit, ProfileState>(
+            listenWhen: (previous, current) =>
+                previous.success != current.success &&
+                current.success.isNotEmpty,
+            listener: (context, state) {
+              CustomSnackbar.showSnackBar(context, state.success, false);
+              context.router.pop();
+            },
+          ),
+        ],
+          child: BlocBuilder<ProfileCubit, ProfileState>(
             builder: (context, state) {
-              if (state.isSubmitting) {
+              if (state.loading) {
                 return const LoadingView();
               } else {
                 return SafeArea(
@@ -85,14 +72,14 @@ class ConfirmSignupWithOTP extends StatelessWidget {
                             height: 20,
                           ),
                           Text(
-                            'We sent an OTP to the number //',
+                            'We sent an OTP to the number $phoneNumber',
                             style: titleText,
                           ),
                           const SizedBox(
                             height: 20,
                           ),
-                          BlocBuilder<SignUpFormPhoneCubit,
-                              SignUpFormPhoneState>(
+                          BlocBuilder<ProfileCubit,
+                              ProfileState>(
                             builder: (context, state) {
                               return OTPTextField(
                                 length: 6,
@@ -108,7 +95,7 @@ class ConfirmSignupWithOTP extends StatelessWidget {
                                     focusBorderColor: kPrimaryColor),
                                 keyboardType: TextInputType.number,
                                 onChanged: (value) => context
-                                    .read<SignUpFormPhoneCubit>()
+                                    .read<ProfileCubit>()
                                     .smsCodeChanged(smsCode: value),
                               );
                             },
@@ -116,18 +103,18 @@ class ConfirmSignupWithOTP extends StatelessWidget {
                           const SizedBox(
                             height: 20,
                           ),
-                          BlocSelector<SignUpFormPhoneCubit,
-                              SignUpFormPhoneState, bool>(
+                          BlocSelector<ProfileCubit,
+                              ProfileState, bool>(
                             selector: (state) {
-                              return state.isSubmitting;
+                              return state.loading;
                             },
-                            builder: (context, isSubmitting) {
+                            builder: (context, loading) {
                               return CustomAuthFilledButton(
-                                text: isSubmitting ? 'VERIFYING' : 'VERIFY',
+                                text: loading ? 'VERIFYING' : 'VERIFY',
                                 onTap: () => context
-                                    .read<SignUpFormPhoneCubit>()
+                                    .read<ProfileCubit>()
                                     .verifySmsCode(),
-                                disabled: isSubmitting,
+                                disabled: loading,
                               );
                             },
                           ),
@@ -146,7 +133,7 @@ class ConfirmSignupWithOTP extends StatelessWidget {
                                     CustomSnackbar.showSnackBar(
                                         context, "SMS Code Timeout!", true);
                                     context
-                                        .read<SignUpFormPhoneCubit>()
+                                        .read<ProfileCubit>()
                                         .reset();
                                   },
                                 ),

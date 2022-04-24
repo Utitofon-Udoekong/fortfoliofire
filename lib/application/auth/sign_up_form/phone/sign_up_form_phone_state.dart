@@ -12,7 +12,7 @@ class SignUpFormPhoneState with _$SignUpFormPhoneState {
   }) = _SignUpFormPhoneState;
   const SignUpFormPhoneState._();
   factory SignUpFormPhoneState.initial() => SignUpFormPhoneState(
-        phoneNumber: Phone(''),
+        phoneNumber: "",
         smsCode: "",
         failureOption: none(),
         verificationId: "",
