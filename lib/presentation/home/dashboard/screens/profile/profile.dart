@@ -228,6 +228,7 @@ class ProfilePage extends StatelessWidget {
       child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
                 'Edit Email Address',
@@ -257,17 +258,17 @@ class ProfilePage extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              // BlocSelector<ProfileCubit, ProfileState, bool>(
-              //   selector: (state) {
-              //     return state.loading;
-              //   },
-              //   builder: (context, loading) {
-              //     return CustomLoadingButton(
-              //         text: "CHANGE EMAIL",
-              //         onTap: () => context.read<ProfileCubit>().changeEmail(),
-              //         disabled: loading);
-              //   },
-              // )
+              BlocSelector<ProfileCubit, ProfileState, bool>(
+                selector: (state) {
+                  return state.loading;
+                },
+                builder: (context, loading) {
+                  return CustomLoadingButton(
+                      text: "CHANGE EMAIL",
+                      onTap: () => context.read<ProfileCubit>().changeEmail(),
+                      disabled: loading);
+                },
+              )
             ],
           )),
     );
@@ -283,10 +284,11 @@ class ProfilePage extends StatelessWidget {
 
   showEditNameModal({required BuildContext context}) {
     var dialog = SizedBox(
-      height: MediaQuery.of(context).size.height * 0.35,
+      height: MediaQuery.of(context).size.height * 0.40,
       child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
                 'Edit User Name',
@@ -333,17 +335,17 @@ class ProfilePage extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              // BlocSelector<ProfileCubit, ProfileState, bool>(
-              //   selector: (state) {
-              //     return state.loading;
-              //   },
-              //   builder: (context, loading) {
-              //     return CustomLoadingButton(
-              //         text: "CHANGE NAME",
-              //         onTap: () => context.read<ProfileCubit>().changeName(),
-              //         disabled: loading);
-              //   },
-              // )
+              BlocSelector<ProfileCubit, ProfileState, bool>(
+                selector: (state) {
+                  return state.loading;
+                },
+                builder: (context, loading) {
+                  return CustomLoadingButton(
+                      text: "CHANGE NAME",
+                      onTap: () => context.read<ProfileCubit>().changeName(),
+                      disabled: loading);
+                },
+              )
             ],
           )),
     );
@@ -359,10 +361,11 @@ class ProfilePage extends StatelessWidget {
 
   showEditPhoneModal({required BuildContext context}) {
     var dialog = SizedBox(
-      height: MediaQuery.of(context).size.height * 0.25,
+      height: MediaQuery.of(context).size.height * 0.35,
       child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
                 'Edit Phone Number',
@@ -391,17 +394,17 @@ class ProfilePage extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              // BlocSelector<ProfileCubit, ProfileState, bool>(
-              //   selector: (state) {
-              //     return state.loading;
-              //   },
-              //   builder: (context, loading) {
-              //     return CustomLoadingButton(
-              //         text: "CHANGE PHONE",
-              //         onTap: () => context.read<ProfileCubit>().changePhone(),
-              //         disabled: loading);
-              //   },
-              // )
+              BlocSelector<ProfileCubit, ProfileState, bool>(
+                selector: (state) {
+                  return state.loading;
+                },
+                builder: (context, loading) {
+                  return CustomLoadingButton(
+                      text: "CHANGE PHONE",
+                      onTap: () => context.read<ProfileCubit>().changePhone(),
+                      disabled: loading);
+                },
+              )
             ],
           )),
     );
