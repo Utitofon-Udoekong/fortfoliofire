@@ -123,20 +123,22 @@ class _SignUpFormPhoneState extends State<SignUpFormPhone> {
                                   const SizedBox(
                                     height: 30,
                                   ),
-                                  CustomAuthFilledButton(
-                                    text: state.phoneNumber.isValidPhone()
-                                        ? 'VERIFY OTP'
-                                        : 'ENTER PHONE',
-                                    onTap: () => context
-                                        .read<SignUpFormPhoneCubit>()
-                                        .signUpWithPhoneNumber(),
-                                    disabled: !state.phoneNumber.isValidPhone(),
-                                  ),
-                                  CustomAuthFilledButton(
-                                    text: "check otp page",
-                                    onTap: () => context.router
-                                        .push(const ConfirmSignupEngineRoute()),
-                                    disabled: false,
+                                  BlocSelector<SignUpFormPhoneCubit,
+                                      SignUpFormPhoneState,
+                                      bool>(
+                                    selector: (state) {
+                                      return state.phoneNumber.isValidPhone();
+                                    },
+                                    builder: (context, validPhone) {
+                                      return CustomAuthFilledButton(
+                                        text: "VERIFY OTP",
+                                        onTap: () => context
+                                            .read<SignUpFormPhoneCubit>()
+                                            .signUpWithPhoneNumber(),
+                                        disabled:
+                                            !validPhone,
+                                      );
+                                    },
                                   ),
                                 ],
                               ),

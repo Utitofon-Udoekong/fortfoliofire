@@ -275,11 +275,6 @@ class SignUpForm extends StatelessWidget {
                               const SizedBox(
                                 height: 30,
                               ),
-                              CustomAuthFilledButton(
-                                    text: "check phone page",
-                                    onTap: () => context.router.push(const SignUpFormPhoneRoute()),
-                                    disabled: false,
-                                  ),
                             ],
                           ),
                         )),

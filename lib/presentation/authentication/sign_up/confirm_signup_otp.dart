@@ -91,11 +91,10 @@ class ConfirmSignupWithOTP extends StatelessWidget {
                             width: MediaQuery.of(context).size.width,
                             fieldWidth: 38,
                             fieldHeight: 42,
-                            style: titleText,
+                            style: subTitle.copyWith(color: kPrimaryColor),
                             textFieldAlignment: MainAxisAlignment.spaceAround,
                             fieldStyle: FieldStyle.box,
                             otpFieldStyle: OtpFieldStyle(
-                                backgroundColor: Colors.white,
                                 borderColor: kgreyColor,
                                 focusBorderColor: kPrimaryColor),
                             keyboardType: TextInputType.number,

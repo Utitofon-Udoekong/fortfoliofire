@@ -161,25 +161,22 @@ class _SignInFormPhoneState extends State<SignInFormPhone> {
                                   const SizedBox(
                                     height: 30,
                                   ),
-                                  CustomAuthFilledButton(
-                                    text: state.phoneNumber.isValidPhone()
-                                        ? 'VERIFY OTP'
-                                        : 'ENTER PHONE',
-                                    onTap: () => {
-                                      if (_formKey.currentState != null &&
-                                          _formKey.currentState!.validate())
-                                        {
-                                          context
-                                              .read<SignInFormPhoneCubit>()
-                                              .signInWithPhoneNumber(),
-                                        }
+                                  BlocSelector<SignInFormPhoneCubit,
+                                      SignInFormPhoneState,
+                                      bool>(
+                                    selector: (state) {
+                                      return state.phoneNumber.isValidPhone();
                                     },
-                                    disabled: !state.phoneNumber.isValidPhone(),
-                                  ),
-                                  CustomAuthFilledButton(
-                                    text: "chec otp page",
-                                    onTap: () => context.router.push(const ConfirmLoginEngineRoute()),
-                                    disabled: false,
+                                    builder: (context, validPhone) {
+                                      return CustomAuthFilledButton(
+                                        text: "VERIFY OTP",
+                                        onTap: () => context
+                                            .read<SignInFormPhoneCubit>()
+                                            .signInWithPhoneNumber(),
+                                        disabled:
+                                            !validPhone,
+                                      );
+                                    },
                                   ),
                                 ],
                               ),
