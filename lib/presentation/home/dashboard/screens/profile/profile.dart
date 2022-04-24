@@ -141,74 +141,8 @@ class ProfilePage extends StatelessWidget {
                             () => null),
                             // authUserModel.email
                         buildtile("email", const Spacer(), false,
-                            () => showEditEmailModal(context: context)),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        buildtile(
-                            "firstName",
-                            // authUserModel.firstName,
-                            Text(
-                              "lastName",
-                              // authUserModel.lastName,
-                              style: subTitle.copyWith(
-                                  color: kBlackColor, fontSize: 15),
-                            ),
-                            true,
-                            () => showEditNameModal(context: context)),
-                            // authUserModel.phoneNumber,
-                        buildtile("phoneNumber", const Spacer(),
-                            false, () => showEditPhoneModal(context: context)),
-                        const SizedBox(
-                          height: 130,
-                        ),
-                        Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Text(
-                            'Fortfolio 2021',
-                            style: subTitle.copyWith(
-                                color: const Color(0XFF242424), fontSize: 13),
-                          ),
-                        ),
-                      ],
-                    );
-                  },
-                )),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget buildtile(
-      String leading, Widget trailing, bool trailexist, Function() ontap) {
-    return GestureDetector(
-      onTap: ontap,
-      child: Container(
-        padding: const EdgeInsets.all(10.0),
-        decoration: const BoxDecoration(
-            border: Border(bottom: BorderSide(color: Color(0XFFF3F6F8)))),
-        child: Row(
-          children: <Widget>[
-            Expanded(
-              child: Text(
-                leading,
-                style: subTitle.copyWith(color: kBlackColor, fontSize: 15),
-                overflow: TextOverflow.ellipsis,
-                maxLines: 1,
-                softWrap: false,
-              ),
-            ),
-            const Spacer(),
-            trailexist ? trailing : const Spacer()
-          ],
-        ),
-      ),
-    );
-  }
-
-  showEditEmailModal({required BuildContext context}) {
-    var dialog = SizedBox(
+                            () {
+                              var dialog = SizedBox(
             height: MediaQuery.of(context).size.height * 0.25,
             child: Padding(
                 padding: const EdgeInsets.all(20.0),
@@ -270,10 +204,22 @@ class ProfilePage extends StatelessWidget {
           return dialog;
         },
         backgroundColor: kWhiteColor);
-  }
-
-  showEditNameModal({required BuildContext context}) {
-    var dialog = SizedBox(
+                            }),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        buildtile(
+                            "firstName",
+                            // authUserModel.firstName,
+                            Text(
+                              "lastName",
+                              // authUserModel.lastName,
+                              style: subTitle.copyWith(
+                                  color: kBlackColor, fontSize: 15),
+                            ),
+                            true,
+                            () {
+                              var dialog = SizedBox(
             height: MediaQuery.of(context).size.height * 0.35,
             child: Padding(
                 padding: const EdgeInsets.all(20.0),
@@ -357,10 +303,11 @@ class ProfilePage extends StatelessWidget {
           return dialog;
         },
         backgroundColor: kWhiteColor);
-  }
-
-  showEditPhoneModal({required BuildContext context}) {
-    var dialog = SizedBox(
+                            }),
+                            // authUserModel.phoneNumber,
+                        buildtile("phoneNumber", const Spacer(),
+                            false, () {
+                               var dialog = SizedBox(
             height: MediaQuery.of(context).size.height * 0.25,
             child: Padding(
                 padding: const EdgeInsets.all(20.0),
@@ -421,5 +368,64 @@ class ProfilePage extends StatelessWidget {
           return dialog;
         },
         backgroundColor: kWhiteColor);
+                            }),
+                        const SizedBox(
+                          height: 130,
+                        ),
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Text(
+                            'Fortfolio 2021',
+                            style: subTitle.copyWith(
+                                color: const Color(0XFF242424), fontSize: 13),
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                )),
+          ),
+        ),
+      ),
+    );
   }
+
+  Widget buildtile(
+      String leading, Widget trailing, bool trailexist, Function() ontap) {
+    return GestureDetector(
+      onTap: ontap,
+      child: Container(
+        padding: const EdgeInsets.all(10.0),
+        decoration: const BoxDecoration(
+            border: Border(bottom: BorderSide(color: Color(0XFFF3F6F8)))),
+        child: Row(
+          children: <Widget>[
+            Expanded(
+              child: Text(
+                leading,
+                style: subTitle.copyWith(color: kBlackColor, fontSize: 15),
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+                softWrap: false,
+              ),
+            ),
+            const Spacer(),
+            trailexist ? trailing : const Spacer()
+          ],
+        ),
+      ),
+    );
+  }
+
+  // showEditEmailModal({required BuildContext context}) {
+    
+  // }
+
+  // showEditNameModal({required BuildContext context}) {
+    
+  // }
+
+  // showEditPhoneModal({required BuildContext context}) {
+   
+  // }
 }
