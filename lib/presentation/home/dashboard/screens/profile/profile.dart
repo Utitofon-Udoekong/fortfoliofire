@@ -139,21 +139,25 @@ class ProfilePage extends StatelessWidget {
                                 )),
                             true,
                             () => null),
-                        buildtile(authUserModel.email, const Spacer(), false,
+                            // authUserModel.email
+                        buildtile("email", const Spacer(), false,
                             () => showEditEmailModal(context: context)),
                         const SizedBox(
                           height: 10,
                         ),
                         buildtile(
-                            authUserModel.firstName,
+                            "firstName",
+                            // authUserModel.firstName,
                             Text(
-                              authUserModel.lastName,
+                              "lastName",
+                              // authUserModel.lastName,
                               style: subTitle.copyWith(
                                   color: kBlackColor, fontSize: 15),
                             ),
                             true,
                             () => showEditNameModal(context: context)),
-                        buildtile(authUserModel.phoneNumber, const Spacer(),
+                            // authUserModel.phoneNumber,
+                        buildtile("phoneNumber", const Spacer(),
                             false, () => showEditPhoneModal(context: context)),
                         const SizedBox(
                           height: 130,
@@ -204,12 +208,7 @@ class ProfilePage extends StatelessWidget {
   }
 
   showEditEmailModal({required BuildContext context}) {
-    showModalBottomSheet<dynamic>(
-        isScrollControlled: true,
-        isDismissible: false,
-        context: context,
-        builder: (BuildContext context) {
-          return SizedBox(
+    var dialog = SizedBox(
             height: MediaQuery.of(context).size.height * 0.25,
             child: Padding(
                 padding: const EdgeInsets.all(20.0),
@@ -263,17 +262,18 @@ class ProfilePage extends StatelessWidget {
                   ],
                 )),
           );
-        },
-        backgroundColor: kWhiteColor);
-  }
-
-  showEditNameModal({required BuildContext context}) {
     showModalBottomSheet<dynamic>(
         isScrollControlled: true,
         isDismissible: false,
         context: context,
         builder: (BuildContext context) {
-          return SizedBox(
+          return dialog;
+        },
+        backgroundColor: kWhiteColor);
+  }
+
+  showEditNameModal({required BuildContext context}) {
+    var dialog = SizedBox(
             height: MediaQuery.of(context).size.height * 0.35,
             child: Padding(
                 padding: const EdgeInsets.all(20.0),
@@ -349,17 +349,18 @@ class ProfilePage extends StatelessWidget {
                   ],
                 )),
           );
-        },
-        backgroundColor: kWhiteColor);
-  }
-
-  showEditPhoneModal({required BuildContext context}) {
     showModalBottomSheet<dynamic>(
         isScrollControlled: true,
         isDismissible: false,
         context: context,
         builder: (BuildContext context) {
-          return SizedBox(
+          return dialog;
+        },
+        backgroundColor: kWhiteColor);
+  }
+
+  showEditPhoneModal({required BuildContext context}) {
+    var dialog = SizedBox(
             height: MediaQuery.of(context).size.height * 0.25,
             child: Padding(
                 padding: const EdgeInsets.all(20.0),
@@ -412,6 +413,12 @@ class ProfilePage extends StatelessWidget {
                   ],
                 )),
           );
+    showModalBottomSheet<dynamic>(
+        isScrollControlled: true,
+        isDismissible: false,
+        context: context,
+        builder: (BuildContext context) {
+          return dialog;
         },
         backgroundColor: kWhiteColor);
   }
