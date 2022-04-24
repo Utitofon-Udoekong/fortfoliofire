@@ -16,7 +16,6 @@ import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/cry
 import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/payment_method.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/profile/confirm_phone_update.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/profile/profile.dart';
-import 'package:fortfolio/presentation/home/dashboard/screens/profile/profile_engine.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/security/change_password.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/security/security.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/support/faq.dart';
@@ -75,7 +74,6 @@ import '../home/wallet/investment/fortshield_info.dart';
   AutoRoute(page: ResetPassword),
   AutoRoute(page: NotificationsPage),
   AutoRoute( page: ProfilePage),
-  AutoRoute( page: ProfileEngine),
   AutoRoute( page: DashboardTransactions),
   AutoRoute( page: Calculator),
   AutoRoute( page: Security),

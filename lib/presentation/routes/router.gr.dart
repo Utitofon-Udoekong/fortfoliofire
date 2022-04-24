@@ -34,7 +34,6 @@ import '../home/dashboard/screens/payment_method/crypto/verify_crypto_wallet.dar
 import '../home/dashboard/screens/payment_method/payment_method.dart' as _i24;
 import '../home/dashboard/screens/profile/confirm_phone_update.dart' as _i8;
 import '../home/dashboard/screens/profile/profile.dart' as _i12;
-import '../home/dashboard/screens/profile/profile_engine.dart' as _i13;
 import '../home/dashboard/screens/security/change_password.dart' as _i17;
 import '../home/dashboard/screens/security/security.dart' as _i16;
 import '../home/dashboard/screens/support/faq.dart' as _i25;
@@ -132,10 +131,6 @@ class AppRouter extends _i61.RootStackRouter {
     ProfilePageRoute.name: (routeData) {
       return _i61.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i12.ProfilePage());
-    },
-    ProfileEngineRoute.name: (routeData) {
-      return _i61.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i13.ProfileEngine());
     },
     DashboardTransactionsRoute.name: (routeData) {
       return _i61.MaterialPageX<dynamic>(

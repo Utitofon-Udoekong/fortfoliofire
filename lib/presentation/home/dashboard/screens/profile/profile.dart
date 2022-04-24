@@ -265,7 +265,7 @@ class ProfilePage extends StatelessWidget {
                 )),
           );
     showModalBottomSheet<dynamic>(
-        isScrollControlled: true,
+        // isScrollControlled: true,
         isDismissible: false,
         context: context,
         builder: (BuildContext context) {
@@ -357,7 +357,7 @@ class ProfilePage extends StatelessWidget {
                 )),
           );
     showModalBottomSheet<dynamic>(
-        isScrollControlled: true,
+        // isScrollControlled: true,
         isDismissible: false,
         context: context,
         builder: (BuildContext context) {
@@ -425,7 +425,7 @@ class ProfilePage extends StatelessWidget {
                 )),
           );
     showModalBottomSheet<dynamic>(
-        isScrollControlled: true,
+        // isScrollControlled: true,
         isDismissible: false,
         context: context,
         builder: (BuildContext context) {
