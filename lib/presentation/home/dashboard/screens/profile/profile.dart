@@ -119,7 +119,7 @@ class ProfilePage extends StatelessWidget {
                         height: 30,
                       ),
                       buildtile(
-                          'ID: //${authUserModel.id}',
+                          'ID: ${authUserModel.id}',
                           IconButton(
                               onPressed: () {
                                 Clipboard.setData(
@@ -134,8 +134,9 @@ class ProfilePage extends StatelessWidget {
                                 color: kPrimaryColor,
                                 size: 15,
                               )),
-                          true),
-                      buildtile(authUserModel.email, const Spacer(), false),
+                          true,
+                          () => null),
+                      buildtile(authUserModel.email, const Spacer(), false, () => showEditEmailModal(context: context)),
                       const SizedBox(
                         height: 10,
                       ),
@@ -146,9 +147,9 @@ class ProfilePage extends StatelessWidget {
                             style: subTitle.copyWith(
                                 color: kBlackColor, fontSize: 15),
                           ),
-                          true),
+                          true, () => showEditNameModal(context: context)),
                       buildtile(
-                          authUserModel.phoneNumber, const Spacer(), false),
+                          authUserModel.phoneNumber, const Spacer(), false, () => showEditPhoneModal(context: context)),
                       const SizedBox(
                         height: 130,
                       ),
@@ -172,25 +173,28 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  Widget buildtile(String leading, Widget trailing, bool trailexist) {
-    return Container(
-      padding: const EdgeInsets.all(10.0),
-      decoration: const BoxDecoration(
-          border: Border(bottom: BorderSide(color: Color(0XFFF3F6F8)))),
-      child: Row(
-        children: <Widget>[
-          Expanded(
-            child: Text(
-              leading,
-              style: subTitle.copyWith(color: kBlackColor, fontSize: 15),
-              overflow: TextOverflow.ellipsis,
-              maxLines: 1,
-              softWrap: false,
+  Widget buildtile(String leading, Widget trailing, bool trailexist, Function() ontap) {
+    return GestureDetector(
+      onTap: ontap,
+      child: Container(
+        padding: const EdgeInsets.all(10.0),
+        decoration: const BoxDecoration(
+            border: Border(bottom: BorderSide(color: Color(0XFFF3F6F8)))),
+        child: Row(
+          children: <Widget>[
+            Expanded(
+              child: Text(
+                leading,
+                style: subTitle.copyWith(color: kBlackColor, fontSize: 15),
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+                softWrap: false,
+              ),
             ),
-          ),
-          const Spacer(),
-          trailexist ? trailing : const Spacer()
-        ],
+            const Spacer(),
+            trailexist ? trailing : const Spacer()
+          ],
+        ),
       ),
     );
   }
