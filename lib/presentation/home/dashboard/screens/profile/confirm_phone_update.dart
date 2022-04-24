@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fortfolio/application/auth/auth_cubit.dart';
-import 'package:fortfolio/application/auth/sign_up_form/phone/sign_up_form_phone_cubit.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/countdown_timer.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
@@ -80,8 +78,9 @@ class ConfirmPhoneUpdate extends StatelessWidget {
                           builder: (context, state) {
                             return OTPTextField(
                               length: 6,
-                              width: MediaQuery.of(context).size.width - 34,
-                              fieldWidth: 58,
+                              width: MediaQuery.of(context).size.width,
+                              fieldWidth: 38,
+                              fieldHeight: 42,
                               style: titleText,
                               textFieldAlignment:
                                   MainAxisAlignment.spaceAround,

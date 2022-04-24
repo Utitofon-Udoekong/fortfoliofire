@@ -90,6 +90,7 @@ class ConfirmSignupWithOTP extends StatelessWidget {
                             length: 6,
                             width: MediaQuery.of(context).size.width,
                             fieldWidth: 38,
+                            fieldHeight: 42,
                             style: titleText,
                             textFieldAlignment: MainAxisAlignment.spaceAround,
                             fieldStyle: FieldStyle.box,
