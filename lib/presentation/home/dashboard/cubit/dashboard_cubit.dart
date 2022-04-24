@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:fortfolio/domain/auth/i_storage_facade.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:injectable/injectable.dart';
 
 part 'dashboard_state.dart';

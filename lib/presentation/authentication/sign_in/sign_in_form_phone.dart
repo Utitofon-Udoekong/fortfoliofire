@@ -176,6 +176,11 @@ class _SignInFormPhoneState extends State<SignInFormPhone> {
                                     },
                                     disabled: !state.phoneNumber.isValidPhone(),
                                   ),
+                                  CustomAuthFilledButton(
+                                    text: "chec otp page",
+                                    onTap: () => context.router.push(const ConfirmLoginWithOTPRoute()),
+                                    disabled: false,
+                                  ),
                                 ],
                               ),
                             )),

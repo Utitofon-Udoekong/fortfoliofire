@@ -228,6 +228,11 @@ class SignInFormEmail extends StatelessWidget {
                                   );
                                 },
                               ),
+                              CustomAuthFilledButton(
+                                    text: "chec otp page",
+                                    onTap: () => context.router.push(const SignInFormPhoneRoute()),
+                                    disabled: false,
+                                  ),
                             ],
                           ),
                         )),
