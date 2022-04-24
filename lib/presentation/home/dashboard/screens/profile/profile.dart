@@ -161,9 +161,7 @@ class ProfilePage extends StatelessWidget {
                               color: const Color(0XFF242424), fontSize: 13),
                         ),
                       ),
-                      // Row(
-                      //   children: <Widget>[],
-                      // )
+                      
                     ],
                   );
                 },
