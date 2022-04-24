@@ -11,7 +11,7 @@ part 'dashboard_cubit.freezed.dart';
 class DashboardCubit extends Cubit<DashboardState> {
   final IStorageFacade storageFacade;
   DashboardCubit(this.storageFacade) : super(DashboardState.initial()){
-    initNews();
+    // initNews();
   }
 
   void initNews() async {
