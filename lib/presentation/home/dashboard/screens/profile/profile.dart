@@ -11,167 +11,173 @@ import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/profile/cubit/profile_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:fortfolio/injection.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: MultiBlocListener(
-        listeners: [
-          BlocListener<ProfileCubit, ProfileState>(
-            listenWhen: (previous, current) =>
-                previous.failure != current.failure &&
-                current.failure.isNotEmpty,
-            listener: (context, state) {
-              CustomSnackbar.showSnackBar(context, state.failure, true);
-            },
-          ),
-          BlocListener<ProfileCubit, ProfileState>(
-            listenWhen: (previous, current) =>
-                previous.success != current.success &&
-                current.success.isNotEmpty,
-            listener: (context, state) {
-              CustomSnackbar.showSnackBar(context, state.success, false);
-            },
-          ),
-          BlocListener<ProfileCubit, ProfileState>(
-            listenWhen: (previous, current) =>
-                previous.verificationId != current.verificationId &&
-                current.verificationId.isNotEmpty,
-            listener: (context, state) {
-              context.router.push(const ConfirmPhoneUpdateRoute());
-            },
-          ),
-        ],
-        child: SafeArea(
-          child: Padding(
-              padding: kDefaultPadding,
-              child: BlocSelector<AuthCubit, AuthState, AuthUserModel>(
-                selector: (state) {
-                  return state.userModel;
-                },
-                builder: (context, authUserModel) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      InkWell(
-                        onTap: () => context.router.pop(),
-                        child: const Icon(Icons.close),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        "Your Profile",
-                        style: titleText.copyWith(color: kBlackColor),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Center(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Container(
-                              width: 60,
-                              height: 60,
-                              decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Color(0XFFF5F7FA)),
-                              child: CircleAvatar(
-                                backgroundColor: const Color(0XFFE7E7E7),
-                                child: Text(authUserModel.displayName,
-                                    style: const TextStyle(
-                                      fontSize: 25,
-                                      color: Color(0XFF242424),
-                                    )),
+    return BlocProvider(
+      create: (context) => getIt<ProfileCubit>(),
+      child: Scaffold(
+        body: MultiBlocListener(
+          listeners: [
+            BlocListener<ProfileCubit, ProfileState>(
+              listenWhen: (previous, current) =>
+                  previous.failure != current.failure &&
+                  current.failure.isNotEmpty,
+              listener: (context, state) {
+                CustomSnackbar.showSnackBar(context, state.failure, true);
+              },
+            ),
+            BlocListener<ProfileCubit, ProfileState>(
+              listenWhen: (previous, current) =>
+                  previous.success != current.success &&
+                  current.success.isNotEmpty,
+              listener: (context, state) {
+                CustomSnackbar.showSnackBar(context, state.success, false);
+              },
+            ),
+            BlocListener<ProfileCubit, ProfileState>(
+              listenWhen: (previous, current) =>
+                  previous.verificationId != current.verificationId &&
+                  current.verificationId.isNotEmpty,
+              listener: (context, state) {
+                context.router.push(const ConfirmPhoneUpdateRoute());
+              },
+            ),
+          ],
+          child: SafeArea(
+            child: Padding(
+                padding: kDefaultPadding,
+                child: BlocSelector<AuthCubit, AuthState, AuthUserModel>(
+                  selector: (state) {
+                    return state.userModel;
+                  },
+                  builder: (context, authUserModel) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        InkWell(
+                          onTap: () => context.router.pop(),
+                          child: const Icon(Icons.close),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          "Your Profile",
+                          style: titleText.copyWith(color: kBlackColor),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Center(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: 60,
+                                height: 60,
+                                decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Color(0XFFF5F7FA)),
+                                child: CircleAvatar(
+                                  backgroundColor: const Color(0XFFE7E7E7),
+                                  child: Text(authUserModel.displayName,
+                                      style: const TextStyle(
+                                        fontSize: 25,
+                                        color: Color(0XFF242424),
+                                      )),
+                                ),
+                                padding: const EdgeInsets.all(5.0),
                               ),
-                              padding: const EdgeInsets.all(5.0),
-                            ),
-                            const SizedBox(
-                              height: 3,
-                            ),
-                            authUserModel.isVerified
-                                ? Text("Account Verified",
-                                    style: subTitle.copyWith(
-                                        color: kBlackColor,
-                                        fontSize: 13,
-                                        decoration: TextDecoration.underline))
-                                : TextButton(
-                                    onPressed: () => context.router
-                                        .push(const VerificationPageRoute()),
-                                    child: Text('Account unverified',
-                                        style: subTitle.copyWith(
-                                            color: kBlackColor,
-                                            fontSize: 13,
-                                            decoration:
-                                                TextDecoration.underline)),
-                                  )
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      buildtile(
-                          'ID: ${authUserModel.id}',
-                          IconButton(
-                              onPressed: () {
-                                Clipboard.setData(
-                                        ClipboardData(text: authUserModel.id))
-                                    .then((_) {
-                                  CustomSnackbar.showSnackBar(
-                                      context, "Text copied", false);
-                                });
-                              },
-                              icon: const Icon(
-                                Icons.file_copy_rounded,
-                                color: kPrimaryColor,
-                                size: 15,
-                              )),
-                          true,
-                          () => null),
-                      buildtile(authUserModel.email, const Spacer(), false, () => showEditEmailModal(context: context)),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      buildtile(
-                          authUserModel.firstName,
-                          Text(
-                            authUserModel.lastName,
-                            style: subTitle.copyWith(
-                                color: kBlackColor, fontSize: 15),
+                              const SizedBox(
+                                height: 3,
+                              ),
+                              authUserModel.isVerified
+                                  ? Text("Account Verified",
+                                      style: subTitle.copyWith(
+                                          color: kBlackColor,
+                                          fontSize: 13,
+                                          decoration: TextDecoration.underline))
+                                  : TextButton(
+                                      onPressed: () => context.router
+                                          .push(const VerificationPageRoute()),
+                                      child: Text('Account unverified',
+                                          style: subTitle.copyWith(
+                                              color: kBlackColor,
+                                              fontSize: 13,
+                                              decoration:
+                                                  TextDecoration.underline)),
+                                    )
+                            ],
                           ),
-                          true, () => showEditNameModal(context: context)),
-                      buildtile(
-                          authUserModel.phoneNumber, const Spacer(), false, () => showEditPhoneModal(context: context)),
-                      const SizedBox(
-                        height: 130,
-                      ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Text(
-                          'Fortfolio 2021',
-                          style: subTitle.copyWith(
-                              color: const Color(0XFF242424), fontSize: 13),
                         ),
-                      ),
-                      
-                    ],
-                  );
-                },
-              )),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        buildtile(
+                            'ID: ${authUserModel.id}',
+                            IconButton(
+                                onPressed: () {
+                                  Clipboard.setData(
+                                          ClipboardData(text: authUserModel.id))
+                                      .then((_) {
+                                    CustomSnackbar.showSnackBar(
+                                        context, "Text copied", false);
+                                  });
+                                },
+                                icon: const Icon(
+                                  Icons.file_copy_rounded,
+                                  color: kPrimaryColor,
+                                  size: 15,
+                                )),
+                            true,
+                            () => null),
+                        buildtile(authUserModel.email, const Spacer(), false,
+                            () => showEditEmailModal(context: context)),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        buildtile(
+                            authUserModel.firstName,
+                            Text(
+                              authUserModel.lastName,
+                              style: subTitle.copyWith(
+                                  color: kBlackColor, fontSize: 15),
+                            ),
+                            true,
+                            () => showEditNameModal(context: context)),
+                        buildtile(authUserModel.phoneNumber, const Spacer(),
+                            false, () => showEditPhoneModal(context: context)),
+                        const SizedBox(
+                          height: 130,
+                        ),
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Text(
+                            'Fortfolio 2021',
+                            style: subTitle.copyWith(
+                                color: const Color(0XFF242424), fontSize: 13),
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                )),
+          ),
         ),
       ),
     );
   }
 
-  Widget buildtile(String leading, Widget trailing, bool trailexist, Function() ontap) {
+  Widget buildtile(
+      String leading, Widget trailing, bool trailexist, Function() ontap) {
     return GestureDetector(
       onTap: ontap,
       child: Container(
