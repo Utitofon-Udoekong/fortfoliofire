@@ -165,9 +165,7 @@ class ProfilePage extends StatelessWidget {
                                               fontSize: 15,
                                               color: Color(0xFF656565)),
                                         ),
-                                        BlocBuilder<ProfileCubit, ProfileState>(
-                                          builder: (context, state) {
-                                            return TextFormField(
+                                        TextFormField(
                                                 autocorrect: false,
                                                 keyboardType: TextInputType
                                                     .emailAddress,
@@ -186,9 +184,7 @@ class ProfilePage extends StatelessWidget {
                                                     ? "Field cannot be empty"
                                                     : value.isValidEmail()
                                                         ? "Invalid email address"
-                                                        : null);
-                                          },
-                                        ),
+                                                        : null),
                                         const SizedBox(
                                           height: 10,
                                         ),
@@ -256,9 +252,7 @@ class ProfilePage extends StatelessWidget {
                                               fontSize: 15,
                                               color: Color(0xFF656565)),
                                         ),
-                                        BlocBuilder<ProfileCubit, ProfileState>(
-                                          builder: (context, state) {
-                                            return TextFormField(
+                                        TextFormField(
                                                 autocorrect: false,
                                                 keyboardType: TextInputType
                                                     .name,
@@ -276,9 +270,7 @@ class ProfilePage extends StatelessWidget {
                                                 validator: (value) => value!
                                                         .isEmpty
                                                     ? "Field cannot be empty"
-                                                    : null);
-                                          },
-                                        ),
+                                                    : null),
                                         const SizedBox(
                                           height: 6,
                                         ),
@@ -288,9 +280,7 @@ class ProfilePage extends StatelessWidget {
                                               fontSize: 15,
                                               color: Color(0xFF656565)),
                                         ),
-                                        BlocBuilder<ProfileCubit, ProfileState>(
-                                          builder: (context, state) {
-                                            return TextFormField(
+                                        TextFormField(
                                                 autocorrect: false,
                                                 keyboardType: TextInputType
                                                     .name,
@@ -308,9 +298,7 @@ class ProfilePage extends StatelessWidget {
                                                 validator: (value) => value!
                                                         .isEmpty
                                                     ? "Field cannot be empty"
-                                                    : null);
-                                          },
-                                        ),
+                                                    : null),
                                         const SizedBox(
                                           height: 10,
                                         ),
@@ -368,9 +356,7 @@ class ProfilePage extends StatelessWidget {
                                               fontSize: 15,
                                               color: Color(0xFF656565)),
                                         ),
-                                        BlocBuilder<ProfileCubit, ProfileState>(
-                                          builder: (context, state) {
-                                            return IntlPhoneField(
+                                        IntlPhoneField(
                                               decoration: const InputDecoration(
                                                 border: InputBorder.none,
                                                 filled: true,
@@ -385,9 +371,7 @@ class ProfilePage extends StatelessWidget {
                                                   .phoneNumberChanged(
                                                       phoneNumber:
                                                           value.completeNumber),
-                                            );
-                                          },
-                                        ),
+                                            ),
                                         const SizedBox(
                                           height: 10,
                                         ),
