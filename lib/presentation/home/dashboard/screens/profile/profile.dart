@@ -138,28 +138,24 @@ class ProfilePage extends StatelessWidget {
                               )),
                           true,
                           () => null),
-                          // authUserModel.email
-                      buildtile("email", const Spacer(), false,
+                      buildtile(authUserModel.email, const Spacer(), false,
                           () => showEditEmailModal(context: context)),
                       const SizedBox(
                         height: 10,
                       ),
                       buildtile(
-                          "firstName",
-                          // authUserModel.firstName,
+                          authUserModel.firstName,
                           Text(
-                            "lastName",
-                            // authUserModel.lastName,
+                            authUserModel.lastName,
                             style: subTitle.copyWith(
                                 color: kBlackColor, fontSize: 15),
                           ),
                           true,
                           () => showEditNameModal(context: context)),
-                          // authUserModel.phoneNumber,
-                      buildtile("phoneNumber", const Spacer(),
+                      buildtile(authUserModel.phoneNumber, const Spacer(),
                           false, () => showEditPhoneModal(context: context)),
                       const SizedBox(
-                        height: 130,
+                        height: 120,
                       ),
                       Align(
                         alignment: Alignment.bottomCenter,
