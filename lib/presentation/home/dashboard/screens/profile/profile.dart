@@ -11,7 +11,6 @@ import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/profile/cubit/profile_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-// import 'package:fortfolio/injection.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -206,10 +205,11 @@ class ProfilePage extends StatelessWidget {
 
   showEditEmailModal({required BuildContext context}) {
     var dialog = SizedBox(
-            height: MediaQuery.of(context).size.height * 0.25,
+            height: MediaQuery.of(context).size.height * 0.35,
             child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
                       'Edit Email Address',
@@ -253,7 +253,7 @@ class ProfilePage extends StatelessWidget {
                             text: "CHANGE EMAIL",
                             onTap: () =>
                                 context.read<ProfileCubit>().changeEmail(),
-                            disabled: loading);
+                            loading: loading);
                       },
                     )
                   ],
@@ -271,10 +271,11 @@ class ProfilePage extends StatelessWidget {
 
   showEditNameModal({required BuildContext context}) {
     var dialog = SizedBox(
-            height: MediaQuery.of(context).size.height * 0.35,
+            height: MediaQuery.of(context).size.height * 0.45,
             child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
                       'Edit User Name',
@@ -340,7 +341,7 @@ class ProfilePage extends StatelessWidget {
                             text: "CHANGE NAME",
                             onTap: () =>
                                 context.read<ProfileCubit>().changeName(),
-                            disabled: loading);
+                            loading: loading);
                       },
                     )
                   ],
@@ -362,6 +363,7 @@ class ProfilePage extends StatelessWidget {
             child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
                       'Edit Phone Number',
@@ -404,7 +406,7 @@ class ProfilePage extends StatelessWidget {
                             text: "CHANGE PHONE",
                             onTap: () =>
                                 context.read<ProfileCubit>().changePhone(),
-                            disabled: loading);
+                            loading: loading);
                       },
                     )
                   ],
