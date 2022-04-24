@@ -4,7 +4,6 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/infrastructure/auth/local_auth_api.dart';
-import 'package:fortfolio/presentation/home/dashboard/screens/profile/cubit/profile_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:fortfolio/application/auth/auth_cubit.dart';
@@ -118,7 +117,6 @@ class _AppState extends State<App> with WidgetsBindingObserver {
             lazy: false,
           ),
           BlocProvider(create: (context) => getIt<WalletCubit>(), lazy: false),
-          BlocProvider(create: (context) => getIt<ProfileCubit>(), lazy: false),
           BlocProvider(
               create: (context) => getIt<InvestmentCubit>(), lazy: false),
         ],

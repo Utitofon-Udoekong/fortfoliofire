@@ -26,6 +26,7 @@ class ProfilePage extends StatelessWidget {
                 current.failure.isNotEmpty,
             listener: (context, state) {
               CustomSnackbar.showSnackBar(context, state.failure, true);
+              context.router.pop();
             },
           ),
           BlocListener<ProfileCubit, ProfileState>(
@@ -34,6 +35,7 @@ class ProfilePage extends StatelessWidget {
                 current.success.isNotEmpty,
             listener: (context, state) {
               CustomSnackbar.showSnackBar(context, state.success, false);
+              context.router.pop();
             },
           ),
           BlocListener<ProfileCubit, ProfileState>(
@@ -208,55 +210,58 @@ class ProfilePage extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.35,
             child: Padding(
                 padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      'Edit Email Address',
-                      style: titleText.copyWith(fontSize: 15),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const Text(
-                      "Email address",
-                      style: TextStyle(fontSize: 15, color: Color(0xFF656565)),
-                    ),
-                    BlocBuilder<ProfileCubit, ProfileState>(
-                      builder: (context, state) {
-                        return TextFormField(
-                            autocorrect: false,
-                            keyboardType: TextInputType.emailAddress,
-                            decoration: const InputDecoration(
-                                filled: true,
-                                fillColor: Color(0xFFF3F6F8),
-                                border: InputBorder.none),
-                            onChanged: (value) => context
-                                .read<ProfileCubit>()
-                                .emailChanged(email: value),
-                            validator: (value) => value!.isEmpty
-                                ? "Field cannot be empty"
-                                : value.isValidEmail()
-                                    ? "Invalid email address"
-                                    : null);
-                      },
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    BlocSelector<ProfileCubit, ProfileState, bool>(
-                      selector: (state) {
-                        return state.loading;
-                      },
-                      builder: (context, loading) {
-                        return CustomLoadingButton(
-                            text: "CHANGE EMAIL",
-                            onTap: () =>
-                                context.read<ProfileCubit>().changeEmail(),
-                            loading: loading);
-                      },
-                    )
-                  ],
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        'Edit Email Address',
+                        style: titleText.copyWith(fontSize: 15),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      const Text(
+                        "Email address",
+                        style: TextStyle(fontSize: 15, color: Color(0xFF656565)),
+                      ),
+                      BlocSelector<ProfileCubit, ProfileState, String>(
+                        selector: (state) => state.email,
+                        builder: (context, state) {
+                          return TextFormField(
+                              autocorrect: false,
+                              keyboardType: TextInputType.emailAddress,
+                              decoration: const InputDecoration(
+                                  filled: true,
+                                  fillColor: Color(0xFFF3F6F8),
+                                  border: InputBorder.none),
+                              onChanged: (value) => context
+                                  .read<ProfileCubit>()
+                                  .emailChanged(email: value),
+                              validator: (value) => value!.isEmpty
+                                  ? "Field cannot be empty"
+                                  : value.isValidEmail()
+                                      ? "Invalid email address"
+                                      : null);
+                        },
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      BlocSelector<ProfileCubit, ProfileState, bool>(
+                        selector: (state) {
+                          return state.loading;
+                        },
+                        builder: (context, loading) {
+                          return CustomLoadingButton(
+                              text: "CHANGE EMAIL",
+                              onTap: () =>
+                                  context.read<ProfileCubit>().changeEmail(),
+                              loading: loading);
+                        },
+                      )
+                    ],
+                  ),
                 )),
           );
     showModalBottomSheet<dynamic>(
@@ -274,77 +279,81 @@ class ProfilePage extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.45,
             child: Padding(
                 padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      'Edit User Name',
-                      style: titleText.copyWith(fontSize: 15),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const Text(
-                      "First Name",
-                      style: TextStyle(fontSize: 15, color: Color(0xFF656565)),
-                    ),
-                    BlocBuilder<ProfileCubit, ProfileState>(
-                      builder: (context, state) {
-                        return TextFormField(
-                            autocorrect: false,
-                            keyboardType: TextInputType.name,
-                            decoration: const InputDecoration(
-                                filled: true,
-                                fillColor: Color(0xFFF3F6F8),
-                                border: InputBorder.none),
-                            onChanged: (value) => context
-                                .read<ProfileCubit>()
-                                .firstNameChanged(firstName: value),
-                            validator: (value) => value!.isEmpty
-                                ? "Field cannot be empty"
-                                : null);
-                      },
-                    ),
-                    const SizedBox(
-                      height: 6,
-                    ),
-                    const Text(
-                      "Last Name",
-                      style: TextStyle(fontSize: 15, color: Color(0xFF656565)),
-                    ),
-                    BlocBuilder<ProfileCubit, ProfileState>(
-                      builder: (context, state) {
-                        return TextFormField(
-                            autocorrect: false,
-                            keyboardType: TextInputType.name,
-                            decoration: const InputDecoration(
-                                filled: true,
-                                fillColor: Color(0xFFF3F6F8),
-                                border: InputBorder.none),
-                            onChanged: (value) => context
-                                .read<ProfileCubit>()
-                                .lastNameChanged(lastName: value),
-                            validator: (value) => value!.isEmpty
-                                ? "Field cannot be empty"
-                                : null);
-                      },
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    BlocSelector<ProfileCubit, ProfileState, bool>(
-                      selector: (state) {
-                        return state.loading;
-                      },
-                      builder: (context, loading) {
-                        return CustomLoadingButton(
-                            text: "CHANGE NAME",
-                            onTap: () =>
-                                context.read<ProfileCubit>().changeName(),
-                            loading: loading);
-                      },
-                    )
-                  ],
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        'Edit User Name',
+                        style: titleText.copyWith(fontSize: 15),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      const Text(
+                        "First Name",
+                        style: TextStyle(fontSize: 15, color: Color(0xFF656565)),
+                      ),
+                      BlocSelector<ProfileCubit, ProfileState, String>(
+                        selector: (state) => state.firstName,
+                        builder: (context, state) {
+                          return TextFormField(
+                              autocorrect: false,
+                              keyboardType: TextInputType.name,
+                              decoration: const InputDecoration(
+                                  filled: true,
+                                  fillColor: Color(0xFFF3F6F8),
+                                  border: InputBorder.none),
+                              onChanged: (value) => context
+                                  .read<ProfileCubit>()
+                                  .firstNameChanged(firstName: value),
+                              validator: (value) => value!.isEmpty
+                                  ? "Field cannot be empty"
+                                  : null);
+                        },
+                      ),
+                      const SizedBox(
+                        height: 6,
+                      ),
+                      const Text(
+                        "Last Name",
+                        style: TextStyle(fontSize: 15, color: Color(0xFF656565)),
+                      ),
+                      BlocSelector<ProfileCubit, ProfileState, String>(
+                        selector: (state) => state.lastName,
+                        builder: (context, state) {
+                          return TextFormField(
+                              autocorrect: false,
+                              keyboardType: TextInputType.name,
+                              decoration: const InputDecoration(
+                                  filled: true,
+                                  fillColor: Color(0xFFF3F6F8),
+                                  border: InputBorder.none),
+                              onChanged: (value) => context
+                                  .read<ProfileCubit>()
+                                  .lastNameChanged(lastName: value),
+                              validator: (value) => value!.isEmpty
+                                  ? "Field cannot be empty"
+                                  : null);
+                        },
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      BlocSelector<ProfileCubit, ProfileState, bool>(
+                        selector: (state) {
+                          return state.loading;
+                        },
+                        builder: (context, loading) {
+                          return CustomLoadingButton(
+                              text: "CHANGE NAME",
+                              onTap: () =>
+                                  context.read<ProfileCubit>().changeName(),
+                              loading: loading);
+                        },
+                      )
+                    ],
+                  ),
                 )),
           );
     showModalBottomSheet<dynamic>(
@@ -362,54 +371,57 @@ class ProfilePage extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.25,
             child: Padding(
                 padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      'Edit Phone Number',
-                      style: titleText.copyWith(fontSize: 15),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const Text(
-                      "Phone",
-                      style: TextStyle(fontSize: 15, color: Color(0xFF656565)),
-                    ),
-                    BlocBuilder<ProfileCubit, ProfileState>(
-                      builder: (context, state) {
-                        return IntlPhoneField(
-                          decoration: const InputDecoration(
-                            border: InputBorder.none,
-                            filled: true,
-                            fillColor: Color(0xFFF3F6F8),
-                          ),
-                          initialCountryCode: 'NG',
-                          keyboardType: TextInputType.phone,
-                          textInputAction: TextInputAction.next,
-                          onChanged: (value) => context
-                              .read<ProfileCubit>()
-                              .phoneNumberChanged(
-                                  phoneNumber: value.completeNumber),
-                        );
-                      },
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    BlocSelector<ProfileCubit, ProfileState, bool>(
-                      selector: (state) {
-                        return state.loading;
-                      },
-                      builder: (context, loading) {
-                        return CustomLoadingButton(
-                            text: "CHANGE PHONE",
-                            onTap: () =>
-                                context.read<ProfileCubit>().changePhone(),
-                            loading: loading);
-                      },
-                    )
-                  ],
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        'Edit Phone Number',
+                        style: titleText.copyWith(fontSize: 15),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      const Text(
+                        "Phone",
+                        style: TextStyle(fontSize: 15, color: Color(0xFF656565)),
+                      ),
+                      BlocSelector<ProfileCubit, ProfileState, String>(
+                        selector: (state) => state.phoneNumber,
+                        builder: (context, state) {
+                          return IntlPhoneField(
+                            decoration: const InputDecoration(
+                              border: InputBorder.none,
+                              filled: true,
+                              fillColor: Color(0xFFF3F6F8),
+                            ),
+                            initialCountryCode: 'NG',
+                            keyboardType: TextInputType.phone,
+                            textInputAction: TextInputAction.next,
+                            onChanged: (value) => context
+                                .read<ProfileCubit>()
+                                .phoneNumberChanged(
+                                    phoneNumber: value.completeNumber),
+                          );
+                        },
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      BlocSelector<ProfileCubit, ProfileState, bool>(
+                        selector: (state) {
+                          return state.loading;
+                        },
+                        builder: (context, loading) {
+                          return CustomLoadingButton(
+                              text: "CHANGE PHONE",
+                              onTap: () =>
+                                  context.read<ProfileCubit>().changePhone(),
+                              loading: loading);
+                        },
+                      )
+                    ],
+                  ),
                 )),
           );
     showModalBottomSheet<dynamic>(
