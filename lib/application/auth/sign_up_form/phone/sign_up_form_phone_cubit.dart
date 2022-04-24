@@ -35,6 +35,8 @@ class SignUpFormPhoneCubit extends Cubit<SignUpFormPhoneState> {
     required String smsCode,
   }) {
     emit(state.copyWith(smsCode: smsCode));
+    var id = state.verificationId;
+    print({smsCode, id});
   }
 
   void phoneNumberChanged({
@@ -103,7 +105,6 @@ class SignUpFormPhoneCubit extends Cubit<SignUpFormPhoneState> {
             () => null, (user) => authCubit.listenAuthStateChangesStream(user));
         authCubit.loggedInChanged(loggedIn: true);
         emit(state.copyWith(isSubmitting: false));
-        // Verification completed successfully case.
       },
     );
   }
