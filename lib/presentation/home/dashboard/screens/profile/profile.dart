@@ -197,8 +197,6 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  /// [TODO]
-  /// show edit email modal
   showEditEmailModal({required BuildContext context}) {
     showModalBottomSheet<dynamic>(
         isScrollControlled: true,
@@ -263,7 +261,6 @@ class ProfilePage extends StatelessWidget {
         backgroundColor: kWhiteColor);
   }
 
-  /// show edit name modal
   showEditNameModal({required BuildContext context}) {
     showModalBottomSheet<dynamic>(
         isScrollControlled: true,
@@ -350,7 +347,6 @@ class ProfilePage extends StatelessWidget {
         backgroundColor: kWhiteColor);
   }
 
-  /// show edit phone modal
   showEditPhoneModal({required BuildContext context}) {
     showModalBottomSheet<dynamic>(
         isScrollControlled: true,
