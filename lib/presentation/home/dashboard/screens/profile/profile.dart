@@ -207,7 +207,7 @@ class ProfilePage extends StatelessWidget {
 
   showEditEmailModal({required BuildContext context}) {
     var dialog = SizedBox(
-            height: MediaQuery.of(context).size.height * 0.35,
+            // height: MediaQuery.of(context).size.height * 0.35,
             child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: SingleChildScrollView(
@@ -276,7 +276,7 @@ class ProfilePage extends StatelessWidget {
 
   showEditNameModal({required BuildContext context}) {
     var dialog = SizedBox(
-            height: MediaQuery.of(context).size.height * 0.45,
+            // height: MediaQuery.of(context).size.height * 0.45,
             child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: SingleChildScrollView(
@@ -368,7 +368,7 @@ class ProfilePage extends StatelessWidget {
 
   showEditPhoneModal({required BuildContext context}) {
     var dialog = SizedBox(
-            height: MediaQuery.of(context).size.height * 0.25,
+            // height: MediaQuery.of(context).size.height * 0.25,
             child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: SingleChildScrollView(

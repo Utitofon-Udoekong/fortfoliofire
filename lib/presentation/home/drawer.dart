@@ -103,7 +103,7 @@ class MainDrawer extends StatelessWidget {
             height: 10,
           ),
           buildtile(Icons.account_circle, 'Profile Settings',
-              () => context.router.push(const ProfileEngineRoute())),
+              () => context.router.push(const ProfilePageRoute())),
           buildtile(Icons.account_balance_wallet, 'Payment Method',
               () => context.router.push(const PaymentMethodRoute())),
           buildtile(Icons.lock_open, 'Security',
