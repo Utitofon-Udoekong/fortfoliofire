@@ -10,17 +10,17 @@ abstract class IAuthFacade {
   // AuthState
   Stream<AuthUserModel> get authStateChanges;
   // signin phone
-  Stream<Either<AuthFailure, String>> signInWithPhoneNumber({
+  Stream<Either<String, String>> signInWithPhoneNumber({
     required String phoneNumber,
     required Duration timeout,
   });
   // signup phone
-  Stream<Either<AuthFailure, String>> registerPhoneNumber({
+  Stream<Either<String, String>> registerPhoneNumber({
     required String phoneNumber,
     required Duration timeout,
   });
   // verifysms
-  Future<Either<AuthFailure, Unit>> verifySmsCode({
+  Future<Either<String, String>> verifySmsCode({
     required String smsCode,
     required String verificationId,
   });

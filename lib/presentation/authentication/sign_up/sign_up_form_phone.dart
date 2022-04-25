@@ -29,28 +29,10 @@ class _SignUpFormPhoneState extends State<SignUpFormPhone> {
             child: MultiBlocListener(
               listeners: [
                 BlocListener<SignUpFormPhoneCubit, SignUpFormPhoneState>(
-                  listenWhen: (p, c) => p.failureOption != c.failureOption,
+                  listenWhen: (p, c) =>
+                      p.failure != c.failure && c.failure.isNotEmpty,
                   listener: (context, state) {
-                    state.failureOption.fold(
-                      () => null,
-                      (failure) => CustomSnackbar.showSnackBar(
-                        context,
-                        failure.maybeMap(
-                          orElse: () => "",
-                          serverError: (_) => 'Encountered a server error',
-                          invalidEmailAndPasswordCombination: (_) =>
-                              "Invalid email or Password",
-                          tooManyRequests: (_) => "Too Many Requests",
-                          emailAlreadyInUse: (_) =>
-                              'Email address already in use',
-                          smsTimeout: (_) => "Sms Timeout",
-                          sessionExpired: (_) => "Session Expired",
-                          invalidVerificationCode: (_) =>
-                              "Invalid Verification Code",
-                        ),
-                        true,
-                      ),
-                    );
+                    CustomSnackbar.showSnackBar(context, state.failure, true);
                   },
                 ),
                 BlocListener<SignUpFormPhoneCubit, SignUpFormPhoneState>(
@@ -124,8 +106,7 @@ class _SignUpFormPhoneState extends State<SignUpFormPhone> {
                                     height: 30,
                                   ),
                                   BlocSelector<SignUpFormPhoneCubit,
-                                      SignUpFormPhoneState,
-                                      bool>(
+                                      SignUpFormPhoneState, bool>(
                                     selector: (state) {
                                       return state.phoneNumber.isValidPhone();
                                     },
@@ -135,8 +116,7 @@ class _SignUpFormPhoneState extends State<SignUpFormPhone> {
                                         onTap: () => context
                                             .read<SignUpFormPhoneCubit>()
                                             .signUpWithPhoneNumber(),
-                                        disabled:
-                                            !validPhone,
+                                        disabled: !validPhone,
                                       );
                                     },
                                   ),

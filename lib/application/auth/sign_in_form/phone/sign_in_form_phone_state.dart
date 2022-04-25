@@ -5,8 +5,9 @@ class SignInFormPhoneState with _$SignInFormPhoneState {
   const factory SignInFormPhoneState({
     required String phoneNumber,
     required String smsCode,
-    required Option<AuthFailure> failureOption,
     required String verificationId,
+    required String failure,
+    required String success,
     required bool isSubmitting,
     required bool showErrorMessages,
   }) = _SignInFormPhoneState;
@@ -14,8 +15,9 @@ class SignInFormPhoneState with _$SignInFormPhoneState {
   factory SignInFormPhoneState.initial() => SignInFormPhoneState(
         phoneNumber: "",
         smsCode: "",
-        failureOption: none(),
         verificationId: "",
+        failure: "",
+        success: "",
         isSubmitting: false,
         showErrorMessages: false,
       );

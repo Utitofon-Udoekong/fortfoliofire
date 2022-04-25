@@ -37,33 +37,16 @@ class _SignInFormPhoneState extends State<SignInFormPhone> {
                   },
                 ),
                 BlocListener<SignInFormPhoneCubit, SignInFormPhoneState>(
-                  listenWhen: (p, c) => p.failureOption != c.failureOption,
+                  listenWhen: (p, c) =>
+                      p.failure != c.failure && c.failure.isNotEmpty,
                   listener: (context, state) {
-                    state.failureOption.fold(
-                      () => null,
-                      (failure) => CustomSnackbar.showSnackBar(
-                        context,
-                        failure.maybeMap(
-                          orElse: () => "",
-                          serverError: (_) => 'Encountered a server error',
-                          invalidEmailAndPasswordCombination: (_) =>
-                              "Invalid email or Password",
-                          tooManyRequests: (_) => "Too Many Requests",
-                          emailAlreadyInUse: (_) =>
-                              'Email address already in use',
-                          smsTimeout: (_) => "Sms Timeout",
-                          sessionExpired: (_) => "Session Expired",
-                          invalidVerificationCode: (_) =>
-                              "Invalid Verification Code",
-                        ),
-                        true,
-                      ),
-                    );
+                    CustomSnackbar.showSnackBar(context, state.failure, true);
                   },
                 ),
                 BlocListener<SignInFormPhoneCubit, SignInFormPhoneState>(
                   listenWhen: (p, c) =>
-                      p.verificationId != c.verificationId && c.verificationId.isNotEmpty,
+                      p.verificationId != c.verificationId &&
+                      c.verificationId.isNotEmpty,
                   listener: (context, state) {
                     context.router.replace(const ConfirmLoginEngineRoute());
                   },
@@ -134,12 +117,14 @@ class _SignInFormPhoneState extends State<SignInFormPhone> {
                                         child: const Text(
                                           "Login with email",
                                           style: TextStyle(
-                                              fontSize: 15, color: kPrimaryColor),
+                                              fontSize: 15,
+                                              color: kPrimaryColor),
                                         ),
                                       )
                                     ],
                                   ),
-                                  BlocBuilder<SignInFormPhoneCubit, SignInFormPhoneState>(
+                                  BlocBuilder<SignInFormPhoneCubit,
+                                      SignInFormPhoneState>(
                                     builder: (context, state) {
                                       return IntlPhoneField(
                                         decoration: const InputDecoration(
@@ -162,8 +147,7 @@ class _SignInFormPhoneState extends State<SignInFormPhone> {
                                     height: 30,
                                   ),
                                   BlocSelector<SignInFormPhoneCubit,
-                                      SignInFormPhoneState,
-                                      bool>(
+                                      SignInFormPhoneState, bool>(
                                     selector: (state) {
                                       return state.phoneNumber.isValidPhone();
                                     },
@@ -173,8 +157,7 @@ class _SignInFormPhoneState extends State<SignInFormPhone> {
                                         onTap: () => context
                                             .read<SignInFormPhoneCubit>()
                                             .signInWithPhoneNumber(),
-                                        disabled:
-                                            !validPhone,
+                                        disabled: !validPhone,
                                       );
                                     },
                                   ),

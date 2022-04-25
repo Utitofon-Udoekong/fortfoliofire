@@ -5,8 +5,9 @@ class SignUpFormPhoneState with _$SignUpFormPhoneState {
   const factory SignUpFormPhoneState({
     required String phoneNumber,
     required String smsCode,
-    required Option<AuthFailure> failureOption,
     required String verificationId,
+    required String failure,
+    required String success,
     required bool isSubmitting,
     required bool showErrorMessages,
   }) = _SignUpFormPhoneState;
@@ -14,8 +15,9 @@ class SignUpFormPhoneState with _$SignUpFormPhoneState {
   factory SignUpFormPhoneState.initial() => SignUpFormPhoneState(
         phoneNumber: "",
         smsCode: "",
-        failureOption: none(),
         verificationId: "",
+        failure: "",
+        success: "",
         isSubmitting: false,
         showErrorMessages: false,
       );

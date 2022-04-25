@@ -16,7 +16,7 @@ part 'sign_up_form_phone_cubit.freezed.dart';
 @injectable
 class SignUpFormPhoneCubit extends Cubit<SignUpFormPhoneState> {
   late final IAuthFacade _authFacade;
-  StreamSubscription<Either<AuthFailure, String>>?
+  StreamSubscription<Either<String, String>>?
       _phoneNumberSignUpSubscription;
   final Duration verificationCodeTimeout = const Duration(seconds: 60);
   final AuthCubit authCubit;
@@ -52,19 +52,19 @@ class SignUpFormPhoneCubit extends Cubit<SignUpFormPhoneState> {
   }
 
   void signUpWithPhoneNumber() {
-    emit(state.copyWith(isSubmitting: true, failureOption: none()));
+    emit(state.copyWith(isSubmitting: true, failure: "", success: ""));
 
     _phoneNumberSignUpSubscription = _authFacade
         .registerPhoneNumber(
             phoneNumber: state.phoneNumber, timeout: verificationCodeTimeout)
         .listen(
-          (Either<AuthFailure, String> failureOrVerificationId) =>
+          (Either<String, String> failureOrVerificationId) =>
               failureOrVerificationId.fold(
-            (AuthFailure failure) {
+            (String failure) {
               //This is the part where we receive failures like 'invalidPhoneNumber', 'smsTimeout' etc.
               emit(
                 state.copyWith(
-                    failureOption: some(failure), isSubmitting: false),
+                    failure: failure, isSubmitting: false),
               );
               reset();
             },
@@ -82,29 +82,24 @@ class SignUpFormPhoneCubit extends Cubit<SignUpFormPhoneState> {
   }
 
   void verifySmsCode() async {
-    emit(
-      state.copyWith(
-        isSubmitting: true,
-        failureOption: none(),
-      ),
-    );
+    emit(state.copyWith(isSubmitting: true, failure: "", success: ""));
     final verificationId = state.verificationId;
     final String phoneNumber = state.phoneNumber;
-    final Either<AuthFailure, Unit> failureOrSuccess = await _authFacade
+    final Either<String, String> failureOrSuccess = await _authFacade
         .verifySmsCode(smsCode: state.smsCode, verificationId: verificationId);
     failureOrSuccess.fold(
-      (AuthFailure failure) {
+      (String failure) {
         emit(
-          state.copyWith(failureOption: some(failure), isSubmitting: false),
+          state.copyWith(failure: failure, isSubmitting: false),
         );
       },
-      (_) async {
+      (success) async {
         final usermodel = await _authFacade.getDatabaseUserWithPhoneNumber(
             phoneNumber: phoneNumber);
         usermodel.fold(
             () => null, (user) => authCubit.listenAuthStateChangesStream(user));
         authCubit.loggedInChanged(loggedIn: true);
-        emit(state.copyWith(isSubmitting: false));
+        emit(state.copyWith(success: success, isSubmitting: false));
       },
     );
   }

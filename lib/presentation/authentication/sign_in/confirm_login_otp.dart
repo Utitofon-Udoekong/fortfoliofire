@@ -32,26 +32,17 @@ class ConfirmLoginWithOTP extends StatelessWidget {
             },
           ),
           BlocListener<SignInFormPhoneCubit, SignInFormPhoneState>(
-            listenWhen: (p, c) => p.failureOption != c.failureOption,
+            listenWhen: (p, c) =>
+                p.success != c.success && c.success.isNotEmpty,
             listener: (context, state) {
-              state.failureOption.fold(
-                () => null,
-                (failure) => CustomSnackbar.showSnackBar(
-                  context,
-                  failure.maybeMap(
-                    orElse: () => "",
-                    serverError: (_) => 'Encountered a server error',
-                    invalidEmailAndPasswordCombination: (_) =>
-                        "Invalid email or Password",
-                    tooManyRequests: (_) => "Too Many Requests",
-                    emailAlreadyInUse: (_) => 'Email address already in use',
-                    smsTimeout: (_) => "Sms Timeout",
-                    sessionExpired: (_) => "Session Expired",
-                    invalidVerificationCode: (_) => "Invalid Verification Code",
-                  ),
-                  true,
-                ),
-              );
+              CustomSnackbar.showSnackBar(context, state.success, false);
+            },
+          ),
+          BlocListener<SignInFormPhoneCubit, SignInFormPhoneState>(
+            listenWhen: (p, c) =>
+                p.failure != c.failure && c.failure.isNotEmpty,
+            listener: (context, state) {
+              CustomSnackbar.showSnackBar(context, state.failure, true);
             },
           ),
         ],

@@ -74,10 +74,10 @@ class FirebaseAuthFacade implements IAuthFacade {
   }
 
   @override
-  Stream<Either<AuthFailure, String>> registerPhoneNumber(
+  Stream<Either<String, String>> registerPhoneNumber(
       {required String phoneNumber, required Duration timeout}) async* {
-    final StreamController<Either<AuthFailure, String>> streamController =
-        StreamController<Either<AuthFailure, String>>();
+    final StreamController<Either<String, String>> streamController =
+        StreamController<Either<String, String>>();
 
     await firebaseAuth.verifyPhoneNumber(
         timeout: timeout,
@@ -96,19 +96,19 @@ class FirebaseAuthFacade implements IAuthFacade {
         },
         codeAutoRetrievalTimeout: (String verificationId) {
           // Auto-resolution timed out...
-          streamController.add(left(const AuthFailure.smsTimeout()));
+          streamController.add(left("SMS Code timeout"));
         },
         verificationFailed: (FirebaseAuthException e) {
-          late final Either<AuthFailure, String> result;
+          late final Either<String, String> result;
 
           if (e.code == 'invalid-phone-number') {
-            result = left(const AuthFailure.invalidPhoneNumber());
+            result = left("Invalid phone number");
           } else if (e.code == 'too-many-requests') {
-            result = left(const AuthFailure.tooManyRequests());
+            result = left("Too many requests at a time");
           } else if (e.code == 'app-not-authorized') {
-            result = left(const AuthFailure.deviceNotSupported());
+            result = left("Device not supported");
           } else {
-            result = left(const AuthFailure.serverError());
+            result = left("Server error encountered");
           }
           streamController.add(result);
         });
@@ -192,10 +192,10 @@ class FirebaseAuthFacade implements IAuthFacade {
   }
 
   @override
-  Stream<Either<AuthFailure, String>> signInWithPhoneNumber(
+  Stream<Either<String, String>> signInWithPhoneNumber(
       {required String phoneNumber, required Duration timeout}) async* {
-    final StreamController<Either<AuthFailure, String>> streamController =
-        StreamController<Either<AuthFailure, String>>();
+    final StreamController<Either<String, String>> streamController =
+        StreamController<Either<String, String>>();
 
     await firebaseAuth.verifyPhoneNumber(
         timeout: timeout,
@@ -209,19 +209,19 @@ class FirebaseAuthFacade implements IAuthFacade {
         },
         codeAutoRetrievalTimeout: (String verificationId) {
           // Auto-resolution timed out...
-          streamController.add(left(const AuthFailure.smsTimeout()));
+          streamController.add(left("SMS code timeout"));
         },
         verificationFailed: (FirebaseAuthException e) {
-          late final Either<AuthFailure, String> result;
+          late final Either<String, String> result;
 
           if (e.code == 'invalid-phone-number') {
-            result = left(const AuthFailure.invalidPhoneNumber());
+            result = left("Invalid phone number");
           } else if (e.code == 'too-many-requests') {
-            result = left(const AuthFailure.tooManyRequests());
+            result = left("Too many requests at a time");
           } else if (e.code == 'app-not-authorized') {
-            result = left(const AuthFailure.deviceNotSupported());
+            result = left("Device not supported");
           } else {
-            result = left(const AuthFailure.serverError());
+            result = left("Server error encountered");
           }
           streamController.add(result);
         });
@@ -233,22 +233,22 @@ class FirebaseAuthFacade implements IAuthFacade {
   Future<void> signOut() async => await firebaseAuth.signOut();
 
   @override
-  Future<Either<AuthFailure, Unit>> verifySmsCode(
+  Future<Either<String, String>> verifySmsCode(
       {required String smsCode, required String verificationId}) async {
     try {
       final PhoneAuthCredential phoneAuthCredential =
           PhoneAuthProvider.credential(
               smsCode: smsCode, verificationId: verificationId);
       await firebaseAuth.signInWithCredential(phoneAuthCredential);
-      return right(unit);
+      return right("Verification successful");
     } on FirebaseAuthException catch (e) {
       if (e.code == "session-expired") {
-        return left(const AuthFailure.sessionExpired());
+        return left("Session expired");
       } else if (e.code == "invalid-verification-code" ||
           e.code == "invalid-verification-code") {
-        return left(const AuthFailure.invalidVerificationCode());
+        return left("Invalid verification code");
       }
-      return left(const AuthFailure.serverError());
+      return left("Server error encountered");
     }
   }
 

@@ -21,15 +21,17 @@ class _$SignUpFormPhoneStateTearOff {
   _SignUpFormPhoneState call(
       {required String phoneNumber,
       required String smsCode,
-      required Option<AuthFailure> failureOption,
       required String verificationId,
+      required String failure,
+      required String success,
       required bool isSubmitting,
       required bool showErrorMessages}) {
     return _SignUpFormPhoneState(
       phoneNumber: phoneNumber,
       smsCode: smsCode,
-      failureOption: failureOption,
       verificationId: verificationId,
+      failure: failure,
+      success: success,
       isSubmitting: isSubmitting,
       showErrorMessages: showErrorMessages,
     );
@@ -43,8 +45,9 @@ const $SignUpFormPhoneState = _$SignUpFormPhoneStateTearOff();
 mixin _$SignUpFormPhoneState {
   String get phoneNumber => throw _privateConstructorUsedError;
   String get smsCode => throw _privateConstructorUsedError;
-  Option<AuthFailure> get failureOption => throw _privateConstructorUsedError;
   String get verificationId => throw _privateConstructorUsedError;
+  String get failure => throw _privateConstructorUsedError;
+  String get success => throw _privateConstructorUsedError;
   bool get isSubmitting => throw _privateConstructorUsedError;
   bool get showErrorMessages => throw _privateConstructorUsedError;
 
@@ -61,8 +64,9 @@ abstract class $SignUpFormPhoneStateCopyWith<$Res> {
   $Res call(
       {String phoneNumber,
       String smsCode,
-      Option<AuthFailure> failureOption,
       String verificationId,
+      String failure,
+      String success,
       bool isSubmitting,
       bool showErrorMessages});
 }
@@ -80,8 +84,9 @@ class _$SignUpFormPhoneStateCopyWithImpl<$Res>
   $Res call({
     Object? phoneNumber = freezed,
     Object? smsCode = freezed,
-    Object? failureOption = freezed,
     Object? verificationId = freezed,
+    Object? failure = freezed,
+    Object? success = freezed,
     Object? isSubmitting = freezed,
     Object? showErrorMessages = freezed,
   }) {
@@ -94,13 +99,17 @@ class _$SignUpFormPhoneStateCopyWithImpl<$Res>
           ? _value.smsCode
           : smsCode // ignore: cast_nullable_to_non_nullable
               as String,
-      failureOption: failureOption == freezed
-          ? _value.failureOption
-          : failureOption // ignore: cast_nullable_to_non_nullable
-              as Option<AuthFailure>,
       verificationId: verificationId == freezed
           ? _value.verificationId
           : verificationId // ignore: cast_nullable_to_non_nullable
+              as String,
+      failure: failure == freezed
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as String,
+      success: success == freezed
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
               as String,
       isSubmitting: isSubmitting == freezed
           ? _value.isSubmitting
@@ -124,8 +133,9 @@ abstract class _$SignUpFormPhoneStateCopyWith<$Res>
   $Res call(
       {String phoneNumber,
       String smsCode,
-      Option<AuthFailure> failureOption,
       String verificationId,
+      String failure,
+      String success,
       bool isSubmitting,
       bool showErrorMessages});
 }
@@ -145,8 +155,9 @@ class __$SignUpFormPhoneStateCopyWithImpl<$Res>
   $Res call({
     Object? phoneNumber = freezed,
     Object? smsCode = freezed,
-    Object? failureOption = freezed,
     Object? verificationId = freezed,
+    Object? failure = freezed,
+    Object? success = freezed,
     Object? isSubmitting = freezed,
     Object? showErrorMessages = freezed,
   }) {
@@ -159,13 +170,17 @@ class __$SignUpFormPhoneStateCopyWithImpl<$Res>
           ? _value.smsCode
           : smsCode // ignore: cast_nullable_to_non_nullable
               as String,
-      failureOption: failureOption == freezed
-          ? _value.failureOption
-          : failureOption // ignore: cast_nullable_to_non_nullable
-              as Option<AuthFailure>,
       verificationId: verificationId == freezed
           ? _value.verificationId
           : verificationId // ignore: cast_nullable_to_non_nullable
+              as String,
+      failure: failure == freezed
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as String,
+      success: success == freezed
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
               as String,
       isSubmitting: isSubmitting == freezed
           ? _value.isSubmitting
@@ -185,8 +200,9 @@ class _$_SignUpFormPhoneState extends _SignUpFormPhoneState {
   const _$_SignUpFormPhoneState(
       {required this.phoneNumber,
       required this.smsCode,
-      required this.failureOption,
       required this.verificationId,
+      required this.failure,
+      required this.success,
       required this.isSubmitting,
       required this.showErrorMessages})
       : super._();
@@ -196,9 +212,11 @@ class _$_SignUpFormPhoneState extends _SignUpFormPhoneState {
   @override
   final String smsCode;
   @override
-  final Option<AuthFailure> failureOption;
-  @override
   final String verificationId;
+  @override
+  final String failure;
+  @override
+  final String success;
   @override
   final bool isSubmitting;
   @override
@@ -206,7 +224,7 @@ class _$_SignUpFormPhoneState extends _SignUpFormPhoneState {
 
   @override
   String toString() {
-    return 'SignUpFormPhoneState(phoneNumber: $phoneNumber, smsCode: $smsCode, failureOption: $failureOption, verificationId: $verificationId, isSubmitting: $isSubmitting, showErrorMessages: $showErrorMessages)';
+    return 'SignUpFormPhoneState(phoneNumber: $phoneNumber, smsCode: $smsCode, verificationId: $verificationId, failure: $failure, success: $success, isSubmitting: $isSubmitting, showErrorMessages: $showErrorMessages)';
   }
 
   @override
@@ -218,9 +236,9 @@ class _$_SignUpFormPhoneState extends _SignUpFormPhoneState {
                 .equals(other.phoneNumber, phoneNumber) &&
             const DeepCollectionEquality().equals(other.smsCode, smsCode) &&
             const DeepCollectionEquality()
-                .equals(other.failureOption, failureOption) &&
-            const DeepCollectionEquality()
                 .equals(other.verificationId, verificationId) &&
+            const DeepCollectionEquality().equals(other.failure, failure) &&
+            const DeepCollectionEquality().equals(other.success, success) &&
             const DeepCollectionEquality()
                 .equals(other.isSubmitting, isSubmitting) &&
             const DeepCollectionEquality()
@@ -232,8 +250,9 @@ class _$_SignUpFormPhoneState extends _SignUpFormPhoneState {
       runtimeType,
       const DeepCollectionEquality().hash(phoneNumber),
       const DeepCollectionEquality().hash(smsCode),
-      const DeepCollectionEquality().hash(failureOption),
       const DeepCollectionEquality().hash(verificationId),
+      const DeepCollectionEquality().hash(failure),
+      const DeepCollectionEquality().hash(success),
       const DeepCollectionEquality().hash(isSubmitting),
       const DeepCollectionEquality().hash(showErrorMessages));
 
@@ -248,8 +267,9 @@ abstract class _SignUpFormPhoneState extends SignUpFormPhoneState {
   const factory _SignUpFormPhoneState(
       {required String phoneNumber,
       required String smsCode,
-      required Option<AuthFailure> failureOption,
       required String verificationId,
+      required String failure,
+      required String success,
       required bool isSubmitting,
       required bool showErrorMessages}) = _$_SignUpFormPhoneState;
   const _SignUpFormPhoneState._() : super._();
@@ -259,9 +279,11 @@ abstract class _SignUpFormPhoneState extends SignUpFormPhoneState {
   @override
   String get smsCode;
   @override
-  Option<AuthFailure> get failureOption;
-  @override
   String get verificationId;
+  @override
+  String get failure;
+  @override
+  String get success;
   @override
   bool get isSubmitting;
   @override
