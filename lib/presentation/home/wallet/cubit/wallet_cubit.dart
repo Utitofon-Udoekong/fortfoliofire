@@ -10,6 +10,7 @@ import 'package:fortfolio/domain/user/investment.dart';
 import 'package:fortfolio/domain/user/transaction_item.dart';
 import 'package:fortfolio/domain/user/withdrawal_item.dart';
 import 'package:fortfolio/infrastructure/auth/dto/investment/investment_dto.dart';
+import 'package:fortfolio/infrastructure/auth/dto/withdrawal/withdrawal_dto.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:nanoid/nanoid.dart';
@@ -26,6 +27,7 @@ class WalletCubit extends Cubit<WalletState> {
   StreamSubscription<QuerySnapshot>? _logsFortCryptoSubscription;
   WalletCubit(this.firestoreFacade) : super(WalletState.initial()){
     initInvestments();
+    initWithdrawals();
     initWalletBalance();
     initTransactions();
   }
@@ -205,7 +207,7 @@ class WalletCubit extends Cubit<WalletState> {
       }
     });
   }
-  
+
   void initFortCryptoInvestments() {
     _logsFortCryptoSubscription = firestoreFacade.getFortCryptoInvestments().listen((data) {
       final List<QueryDocumentSnapshot<Object?>> docs = data.docs;
@@ -216,6 +218,20 @@ class WalletCubit extends Cubit<WalletState> {
           fortCryptoInvestments.add(doc);
         }
         emit(state.copyWith(fortCryptoInvestments: fortCryptoInvestments));
+      }
+    });
+  }
+
+  void initWithdrawals() {
+    _logsFortCryptoSubscription = firestoreFacade.getWithdrawals().listen((data) {
+      final List<QueryDocumentSnapshot<Object?>> docs = data.docs;
+      List<WithdrawalItem> withdrawals = [];
+      if(data.size > 0){
+        for (var element in docs){
+          final doc = WithdrawalItemDTO.fromFirestore(element).toDomain();
+          withdrawals.add(doc);
+        }
+        emit(state.copyWith(withdrawals: withdrawals));
       }
     });
   }
@@ -295,5 +311,14 @@ class WalletCubit extends Cubit<WalletState> {
         failure: "",
         success: "",
         withdrawalDetails: {}));
+  }
+
+
+  @override
+  Future<void> close() async {
+    await _logsFortCryptoSubscription?.cancel();
+    await _logsFortDollarSubscription?.cancel();
+    await _logsFortShieldSubscription?.cancel();
+    return super.close();
   }
 }

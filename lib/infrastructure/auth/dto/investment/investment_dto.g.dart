@@ -10,6 +10,7 @@ _$_InvestmentItemDTO _$$_InvestmentItemDTOFromJson(Map<String, dynamic> json) =>
     _$_InvestmentItemDTO(
       description: json['description'] as String,
       uid: json['uid'] as String,
+      coin: json['coin'] as String?,
       amount: json['amount'] as int,
       traxId: json['traxId'] as String,
       roi: json['roi'] as int,
@@ -29,6 +30,7 @@ Map<String, dynamic> _$$_InvestmentItemDTOToJson(
     <String, dynamic>{
       'description': instance.description,
       'uid': instance.uid,
+      'coin': instance.coin,
       'amount': instance.amount,
       'traxId': instance.traxId,
       'roi': instance.roi,

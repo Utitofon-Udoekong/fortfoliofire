@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -93,44 +95,17 @@ class FortShieldInvestment extends StatelessWidget {
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.number,
                         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           filled: true,
-                          fillColor: const Color(0xFFF3F6F8),
+                          fillColor: Color(0xFFF3F6F8),
                           border: InputBorder.none,
-                          suffix: DropdownButton<String>(
-                              isDense: true,
-                              value: state.exchangeType,
-                              items: <String>[
-                                'NGN',
-                                'USD'
-                              ].map<DropdownMenuItem<String>>((String value) {
-                                return DropdownMenuItem<String>(
-                                  value: value,
-                                  child: Row(
-                                    children: <Widget>[
-                                      Image(
-                                          image: AssetImage(
-                                              "images/${value == "NGN" ? "9ja" : "usa"}.png")),
-                                      const SizedBox(
-                                        width: 15,
-                                      ),
-                                      Text(value),
-                                    ],
-                                  ),
-                                );
-                              }).toList(),
-                              onChanged: (onChanged) {
-                                context
-                                    .read<InvestmentCubit>()
-                                    .exchangeTypeChanged(
-                                        exchangeType: onChanged!);
-                              }),
+                          prefixIcon: Text("N", style: TextStyle(decoration: TextDecoration.lineThrough, fontSize: 15, color: kBlackColor),)
                         ),
                         onChanged: (value) => context
                             .read<InvestmentCubit>()
                             .amountInvestedChanged(
                                 amountInvested: int.parse(value)),
-                        validator: (String? value) => int.tryParse(value!) == null ? 'Field cannot be empty' : int.parse(value) < state.baseAmount  ? 'Minimum investment is ${state.exchangeType == 'NGN' ? 'N1,000,000': '\$${state.baseAmount}'}' : int.parse(value).isNaN ? 'Invalid amount' : null,
+                        validator: (String? value) => int.tryParse(value!) == null ? 'Field cannot be empty' : int.parse(value) < state.baseAmount  ? 'Minimum investment is N1,000,000' : int.parse(value).isNaN ? 'Invalid amount' : null,
                       ),
                     );
                   },

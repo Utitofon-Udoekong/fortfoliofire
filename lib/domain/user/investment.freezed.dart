@@ -21,6 +21,7 @@ class _$InvestmentItemTearOff {
   _InvestmentItem call(
       {required String description,
       required String uid,
+      String? coin,
       required int amount,
       required String traxId,
       required int roi,
@@ -36,6 +37,7 @@ class _$InvestmentItemTearOff {
     return _InvestmentItem(
       description: description,
       uid: uid,
+      coin: coin,
       amount: amount,
       traxId: traxId,
       roi: roi,
@@ -59,6 +61,7 @@ const $InvestmentItem = _$InvestmentItemTearOff();
 mixin _$InvestmentItem {
   String get description => throw _privateConstructorUsedError;
   String get uid => throw _privateConstructorUsedError;
+  String? get coin => throw _privateConstructorUsedError;
   int get amount => throw _privateConstructorUsedError;
   String get traxId => throw _privateConstructorUsedError;
   int get roi => throw _privateConstructorUsedError;
@@ -85,6 +88,7 @@ abstract class $InvestmentItemCopyWith<$Res> {
   $Res call(
       {String description,
       String uid,
+      String? coin,
       int amount,
       String traxId,
       int roi,
@@ -112,6 +116,7 @@ class _$InvestmentItemCopyWithImpl<$Res>
   $Res call({
     Object? description = freezed,
     Object? uid = freezed,
+    Object? coin = freezed,
     Object? amount = freezed,
     Object? traxId = freezed,
     Object? roi = freezed,
@@ -134,6 +139,10 @@ class _$InvestmentItemCopyWithImpl<$Res>
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String,
+      coin: coin == freezed
+          ? _value.coin
+          : coin // ignore: cast_nullable_to_non_nullable
+              as String?,
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -196,6 +205,7 @@ abstract class _$InvestmentItemCopyWith<$Res>
   $Res call(
       {String description,
       String uid,
+      String? coin,
       int amount,
       String traxId,
       int roi,
@@ -225,6 +235,7 @@ class __$InvestmentItemCopyWithImpl<$Res>
   $Res call({
     Object? description = freezed,
     Object? uid = freezed,
+    Object? coin = freezed,
     Object? amount = freezed,
     Object? traxId = freezed,
     Object? roi = freezed,
@@ -247,6 +258,10 @@ class __$InvestmentItemCopyWithImpl<$Res>
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String,
+      coin: coin == freezed
+          ? _value.coin
+          : coin // ignore: cast_nullable_to_non_nullable
+              as String?,
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -305,6 +320,7 @@ class _$_InvestmentItem extends _InvestmentItem {
   const _$_InvestmentItem(
       {required this.description,
       required this.uid,
+      this.coin,
       required this.amount,
       required this.traxId,
       required this.roi,
@@ -323,6 +339,8 @@ class _$_InvestmentItem extends _InvestmentItem {
   final String description;
   @override
   final String uid;
+  @override
+  final String? coin;
   @override
   final int amount;
   @override
@@ -350,7 +368,7 @@ class _$_InvestmentItem extends _InvestmentItem {
 
   @override
   String toString() {
-    return 'InvestmentItem(description: $description, uid: $uid, amount: $amount, traxId: $traxId, roi: $roi, numberOfDays: $numberOfDays, planName: $planName, paymentDate: $paymentDate, dueDate: $dueDate, duration: $duration, status: $status, currency: $currency, planYield: $planYield, paymentMethod: $paymentMethod)';
+    return 'InvestmentItem(description: $description, uid: $uid, coin: $coin, amount: $amount, traxId: $traxId, roi: $roi, numberOfDays: $numberOfDays, planName: $planName, paymentDate: $paymentDate, dueDate: $dueDate, duration: $duration, status: $status, currency: $currency, planYield: $planYield, paymentMethod: $paymentMethod)';
   }
 
   @override
@@ -361,6 +379,7 @@ class _$_InvestmentItem extends _InvestmentItem {
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
             const DeepCollectionEquality().equals(other.uid, uid) &&
+            const DeepCollectionEquality().equals(other.coin, coin) &&
             const DeepCollectionEquality().equals(other.amount, amount) &&
             const DeepCollectionEquality().equals(other.traxId, traxId) &&
             const DeepCollectionEquality().equals(other.roi, roi) &&
@@ -383,6 +402,7 @@ class _$_InvestmentItem extends _InvestmentItem {
       runtimeType,
       const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(uid),
+      const DeepCollectionEquality().hash(coin),
       const DeepCollectionEquality().hash(amount),
       const DeepCollectionEquality().hash(traxId),
       const DeepCollectionEquality().hash(roi),
@@ -406,6 +426,7 @@ abstract class _InvestmentItem extends InvestmentItem {
   const factory _InvestmentItem(
       {required String description,
       required String uid,
+      String? coin,
       required int amount,
       required String traxId,
       required int roi,
@@ -424,6 +445,8 @@ abstract class _InvestmentItem extends InvestmentItem {
   String get description;
   @override
   String get uid;
+  @override
+  String? get coin;
   @override
   int get amount;
   @override

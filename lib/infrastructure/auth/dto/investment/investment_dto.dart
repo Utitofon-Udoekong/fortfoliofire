@@ -13,6 +13,7 @@ abstract class InvestmentItemDTO implements _$InvestmentItemDTO {
   const factory InvestmentItemDTO({
     required String description,
     required String uid,
+    String? coin,
     required int amount,
     required String traxId,
     required int roi,
@@ -42,6 +43,7 @@ abstract class InvestmentItemDTO implements _$InvestmentItemDTO {
       status: investmentItem.status,
       traxId: investmentItem.traxId,
       uid: investmentItem.uid,
+      coin: investmentItem.coin,
       paymentMethod: investmentItem.paymentMethod
     );
   }
@@ -74,6 +76,7 @@ extension InvestmentItemDTOX on InvestmentItemDTO {
       status: status,
       traxId: traxId,
       uid: uid,
+      coin: coin,
       paymentMethod: paymentMethod,
       numberOfDays: numberOfDays
     );

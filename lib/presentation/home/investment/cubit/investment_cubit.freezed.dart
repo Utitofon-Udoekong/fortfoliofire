@@ -28,9 +28,11 @@ class _$InvestmentStateTearOff {
       required bool agreementAccepted,
       required bool isLoading,
       required String exchangeType,
+      required String coin,
       required List<bool> isSelected,
       required List<int> durations,
       required String paymentMethod,
+      required List<DropdownMenuItem<String>> dropdownItems,
       required int baseAmount}) {
     return _InvestmentState(
       planName: planName,
@@ -42,9 +44,11 @@ class _$InvestmentStateTearOff {
       agreementAccepted: agreementAccepted,
       isLoading: isLoading,
       exchangeType: exchangeType,
+      coin: coin,
       isSelected: isSelected,
       durations: durations,
       paymentMethod: paymentMethod,
+      dropdownItems: dropdownItems,
       baseAmount: baseAmount,
     );
   }
@@ -64,9 +68,12 @@ mixin _$InvestmentState {
   bool get agreementAccepted => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   String get exchangeType => throw _privateConstructorUsedError;
+  String get coin => throw _privateConstructorUsedError;
   List<bool> get isSelected => throw _privateConstructorUsedError;
   List<int> get durations => throw _privateConstructorUsedError;
   String get paymentMethod => throw _privateConstructorUsedError;
+  List<DropdownMenuItem<String>> get dropdownItems =>
+      throw _privateConstructorUsedError;
   int get baseAmount => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -89,9 +96,11 @@ abstract class $InvestmentStateCopyWith<$Res> {
       bool agreementAccepted,
       bool isLoading,
       String exchangeType,
+      String coin,
       List<bool> isSelected,
       List<int> durations,
       String paymentMethod,
+      List<DropdownMenuItem<String>> dropdownItems,
       int baseAmount});
 }
 
@@ -115,9 +124,11 @@ class _$InvestmentStateCopyWithImpl<$Res>
     Object? agreementAccepted = freezed,
     Object? isLoading = freezed,
     Object? exchangeType = freezed,
+    Object? coin = freezed,
     Object? isSelected = freezed,
     Object? durations = freezed,
     Object? paymentMethod = freezed,
+    Object? dropdownItems = freezed,
     Object? baseAmount = freezed,
   }) {
     return _then(_value.copyWith(
@@ -157,6 +168,10 @@ class _$InvestmentStateCopyWithImpl<$Res>
           ? _value.exchangeType
           : exchangeType // ignore: cast_nullable_to_non_nullable
               as String,
+      coin: coin == freezed
+          ? _value.coin
+          : coin // ignore: cast_nullable_to_non_nullable
+              as String,
       isSelected: isSelected == freezed
           ? _value.isSelected
           : isSelected // ignore: cast_nullable_to_non_nullable
@@ -169,6 +184,10 @@ class _$InvestmentStateCopyWithImpl<$Res>
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
               as String,
+      dropdownItems: dropdownItems == freezed
+          ? _value.dropdownItems
+          : dropdownItems // ignore: cast_nullable_to_non_nullable
+              as List<DropdownMenuItem<String>>,
       baseAmount: baseAmount == freezed
           ? _value.baseAmount
           : baseAmount // ignore: cast_nullable_to_non_nullable
@@ -194,9 +213,11 @@ abstract class _$InvestmentStateCopyWith<$Res>
       bool agreementAccepted,
       bool isLoading,
       String exchangeType,
+      String coin,
       List<bool> isSelected,
       List<int> durations,
       String paymentMethod,
+      List<DropdownMenuItem<String>> dropdownItems,
       int baseAmount});
 }
 
@@ -222,9 +243,11 @@ class __$InvestmentStateCopyWithImpl<$Res>
     Object? agreementAccepted = freezed,
     Object? isLoading = freezed,
     Object? exchangeType = freezed,
+    Object? coin = freezed,
     Object? isSelected = freezed,
     Object? durations = freezed,
     Object? paymentMethod = freezed,
+    Object? dropdownItems = freezed,
     Object? baseAmount = freezed,
   }) {
     return _then(_InvestmentState(
@@ -264,6 +287,10 @@ class __$InvestmentStateCopyWithImpl<$Res>
           ? _value.exchangeType
           : exchangeType // ignore: cast_nullable_to_non_nullable
               as String,
+      coin: coin == freezed
+          ? _value.coin
+          : coin // ignore: cast_nullable_to_non_nullable
+              as String,
       isSelected: isSelected == freezed
           ? _value.isSelected
           : isSelected // ignore: cast_nullable_to_non_nullable
@@ -276,6 +303,10 @@ class __$InvestmentStateCopyWithImpl<$Res>
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
               as String,
+      dropdownItems: dropdownItems == freezed
+          ? _value.dropdownItems
+          : dropdownItems // ignore: cast_nullable_to_non_nullable
+              as List<DropdownMenuItem<String>>,
       baseAmount: baseAmount == freezed
           ? _value.baseAmount
           : baseAmount // ignore: cast_nullable_to_non_nullable
@@ -297,9 +328,11 @@ class _$_InvestmentState extends _InvestmentState {
       required this.agreementAccepted,
       required this.isLoading,
       required this.exchangeType,
+      required this.coin,
       required this.isSelected,
       required this.durations,
       required this.paymentMethod,
+      required this.dropdownItems,
       required this.baseAmount})
       : super._();
 
@@ -322,17 +355,21 @@ class _$_InvestmentState extends _InvestmentState {
   @override
   final String exchangeType;
   @override
+  final String coin;
+  @override
   final List<bool> isSelected;
   @override
   final List<int> durations;
   @override
   final String paymentMethod;
   @override
+  final List<DropdownMenuItem<String>> dropdownItems;
+  @override
   final int baseAmount;
 
   @override
   String toString() {
-    return 'InvestmentState(planName: $planName, duration: $duration, amountInvested: $amountInvested, roi: $roi, failure: $failure, success: $success, agreementAccepted: $agreementAccepted, isLoading: $isLoading, exchangeType: $exchangeType, isSelected: $isSelected, durations: $durations, paymentMethod: $paymentMethod, baseAmount: $baseAmount)';
+    return 'InvestmentState(planName: $planName, duration: $duration, amountInvested: $amountInvested, roi: $roi, failure: $failure, success: $success, agreementAccepted: $agreementAccepted, isLoading: $isLoading, exchangeType: $exchangeType, coin: $coin, isSelected: $isSelected, durations: $durations, paymentMethod: $paymentMethod, dropdownItems: $dropdownItems, baseAmount: $baseAmount)';
   }
 
   @override
@@ -352,11 +389,14 @@ class _$_InvestmentState extends _InvestmentState {
             const DeepCollectionEquality().equals(other.isLoading, isLoading) &&
             const DeepCollectionEquality()
                 .equals(other.exchangeType, exchangeType) &&
+            const DeepCollectionEquality().equals(other.coin, coin) &&
             const DeepCollectionEquality()
                 .equals(other.isSelected, isSelected) &&
             const DeepCollectionEquality().equals(other.durations, durations) &&
             const DeepCollectionEquality()
                 .equals(other.paymentMethod, paymentMethod) &&
+            const DeepCollectionEquality()
+                .equals(other.dropdownItems, dropdownItems) &&
             const DeepCollectionEquality()
                 .equals(other.baseAmount, baseAmount));
   }
@@ -373,9 +413,11 @@ class _$_InvestmentState extends _InvestmentState {
       const DeepCollectionEquality().hash(agreementAccepted),
       const DeepCollectionEquality().hash(isLoading),
       const DeepCollectionEquality().hash(exchangeType),
+      const DeepCollectionEquality().hash(coin),
       const DeepCollectionEquality().hash(isSelected),
       const DeepCollectionEquality().hash(durations),
       const DeepCollectionEquality().hash(paymentMethod),
+      const DeepCollectionEquality().hash(dropdownItems),
       const DeepCollectionEquality().hash(baseAmount));
 
   @JsonKey(ignore: true)
@@ -395,9 +437,11 @@ abstract class _InvestmentState extends InvestmentState {
       required bool agreementAccepted,
       required bool isLoading,
       required String exchangeType,
+      required String coin,
       required List<bool> isSelected,
       required List<int> durations,
       required String paymentMethod,
+      required List<DropdownMenuItem<String>> dropdownItems,
       required int baseAmount}) = _$_InvestmentState;
   const _InvestmentState._() : super._();
 
@@ -420,11 +464,15 @@ abstract class _InvestmentState extends InvestmentState {
   @override
   String get exchangeType;
   @override
+  String get coin;
+  @override
   List<bool> get isSelected;
   @override
   List<int> get durations;
   @override
   String get paymentMethod;
+  @override
+  List<DropdownMenuItem<String>> get dropdownItems;
   @override
   int get baseAmount;
   @override

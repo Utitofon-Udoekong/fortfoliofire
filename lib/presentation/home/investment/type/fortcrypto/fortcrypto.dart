@@ -60,6 +60,7 @@ class FortCrypto extends StatelessWidget {
                     text: 'Invest',
                     onTap: () {
                       context.read<InvestmentCubit>().planNameChanged( planName: "FortCrypto");
+                      context.read<InvestmentCubit>().baseAmountChanged( baseAmount: 1000);
                       context
                           .read<InvestmentCubit>()
                           .exchangeTypeChanged(exchangeType: "USD");

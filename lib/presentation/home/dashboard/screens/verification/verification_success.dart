@@ -11,7 +11,7 @@ class VerificationSuccess extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Widget svg = SvgPicture.asset('images/shield.svg',
-        width: MediaQuery.of(context).size.width * 0.65);
+        width: MediaQuery.of(context).size.width * 0.45);
     return Scaffold(
       body: SafeArea(
       child: Container(
@@ -19,7 +19,7 @@ class VerificationSuccess extends StatelessWidget {
           color: Color(0XFF00ADEE)
         ),
         child: Column(
-            // mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               const SizedBox(
                 height: 20,
@@ -39,7 +39,7 @@ class VerificationSuccess extends StatelessWidget {
               ),
               Text(
                   "Your details have been received! You will be updated on the status of your verification soon.",
-                  style: titleText.copyWith(color: kWhiteColor),
+                  style: titleText.copyWith(color: kWhiteColor, fontSize: 20),
                   textAlign: TextAlign.center),
             ]),
       ),

@@ -64,6 +64,7 @@ class FortDollar extends StatelessWidget {
                       context
                           .read<InvestmentCubit>()
                           .exchangeTypeChanged(exchangeType: "USD");
+                      context.read<InvestmentCubit>().baseAmountChanged( baseAmount: 1000);
                       context.router.push(const FortDollarInvestmentRoute());                      
                     }),
                 const SizedBox(

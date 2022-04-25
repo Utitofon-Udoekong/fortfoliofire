@@ -61,6 +61,7 @@ class FortShield extends StatelessWidget {
                     onTap: () {
                       context.read<InvestmentCubit>().exchangeTypeChanged(exchangeType: "NGN");
                       context.read<InvestmentCubit>().planNameChanged( planName: "FortShield");
+                      context.read<InvestmentCubit>().baseAmountChanged( baseAmount: 1000000);
                       context.router.push(const FortShieldInvestmentRoute());
                     }),
                 const SizedBox(

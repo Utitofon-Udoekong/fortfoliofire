@@ -8,6 +8,7 @@ abstract class InvestmentItem implements _$InvestmentItem {
   const factory InvestmentItem({
     required String description,
     required String uid,
+    String? coin,
     required int amount,
     required String traxId,
     required int roi,
@@ -35,6 +36,7 @@ abstract class InvestmentItem implements _$InvestmentItem {
         status: 'Pending',
         traxId: '',
         uid: '',
+        coin: 'BTC',
         currency: '\$',
         paymentMethod: ''
       );
