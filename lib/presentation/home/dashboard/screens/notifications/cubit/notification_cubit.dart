@@ -2,12 +2,10 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dartz/dartz.dart';
 import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
 import 'package:fortfolio/domain/user/notification_item.dart';
 import 'package:fortfolio/infrastructure/auth/dto/notification/notification_dto.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-// import 'package:nanoid/nanoid.dart';
 import 'package:injectable/injectable.dart';
 
 part 'notification_state.dart';
@@ -18,12 +16,12 @@ class NotificationCubit extends Cubit<NotificationState> {
   final IFirestoreFacade firestoreFacade;
   StreamSubscription<QuerySnapshot>? _logsStreamSubscription;
   NotificationCubit(this.firestoreFacade) : super(NotificationState.empty()){
-    // initNotifications();
+    initNotifications();
   }
 
   void initNotifications() async {
     _logsStreamSubscription = firestoreFacade.getNotifications().listen((data) {
-      final docs = data.docs;
+      final List<QueryDocumentSnapshot<Object?>> docs = data.docs;
       List<NotificationItem> newdocs = [];
       if (data.size > 0) {
         for (var element in docs) {

@@ -39,6 +39,7 @@ class NotificationsPage extends StatelessWidget {
                     height: 20,
                   ),
                   BlocBuilder<NotificationCubit, NotificationState>(
+                    buildWhen: (previous, current) => previous.notifications != current.notifications,
                     builder: (context, state) {
                       if(state.notifications.isEmpty){
                         return Text("No notifications at the moment", style: subTitle.copyWith(color: kBlackColor, fontSize: 15),);
