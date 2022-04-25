@@ -152,7 +152,7 @@ class ProfilePage extends StatelessWidget {
                                 color: kBlackColor, fontSize: 15),
                           ),
                           true,
-                          () => showEditNameModal(context: context)),
+                          () => authUserModel.isVerified ? null : showEditNameModal(context: context)),
                       buildtile(authUserModel.phoneNumber, const Spacer(),
                           false, () => showEditPhoneModal(context: context)),
                       const SizedBox(
@@ -221,11 +221,14 @@ class ProfilePage extends StatelessWidget {
                         style: titleText.copyWith(fontSize: 15),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 25,
                       ),
                       const Text(
                         "Email address",
                         style: TextStyle(fontSize: 15, color: Color(0xFF656565)),
+                      ),
+                      const SizedBox(
+                        height: 5,
                       ),
                       BlocSelector<ProfileCubit, ProfileState, String>(
                         selector: (state) => state.email,
@@ -248,7 +251,7 @@ class ProfilePage extends StatelessWidget {
                         },
                       ),
                       const SizedBox(
-                        height: 10,
+                        height: 20,
                       ),
                       BlocSelector<ProfileCubit, ProfileState, bool>(
                         selector: (state) {
@@ -261,7 +264,10 @@ class ProfilePage extends StatelessWidget {
                                   context.read<ProfileCubit>().changeEmail(),
                               loading: loading);
                         },
-                      )
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
                     ],
                   ),
                 )),
@@ -290,11 +296,14 @@ class ProfilePage extends StatelessWidget {
                         style: titleText.copyWith(fontSize: 15),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 30,
                       ),
                       const Text(
                         "First Name",
                         style: TextStyle(fontSize: 15, color: Color(0xFF656565)),
+                      ),
+                      const SizedBox(
+                        height: 5,
                       ),
                       BlocSelector<ProfileCubit, ProfileState, String>(
                         selector: (state) => state.firstName,
@@ -315,11 +324,14 @@ class ProfilePage extends StatelessWidget {
                         },
                       ),
                       const SizedBox(
-                        height: 6,
+                        height: 10,
                       ),
                       const Text(
                         "Last Name",
                         style: TextStyle(fontSize: 15, color: Color(0xFF656565)),
+                      ),
+                      const SizedBox(
+                        height: 5,
                       ),
                       BlocSelector<ProfileCubit, ProfileState, String>(
                         selector: (state) => state.lastName,
@@ -340,7 +352,7 @@ class ProfilePage extends StatelessWidget {
                         },
                       ),
                       const SizedBox(
-                        height: 10,
+                        height: 20,
                       ),
                       BlocSelector<ProfileCubit, ProfileState, bool>(
                         selector: (state) {
@@ -353,7 +365,10 @@ class ProfilePage extends StatelessWidget {
                                   context.read<ProfileCubit>().changeName(),
                               loading: loading);
                         },
-                      )
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
                     ],
                   ),
                 )),
@@ -382,11 +397,14 @@ class ProfilePage extends StatelessWidget {
                         style: titleText.copyWith(fontSize: 15),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 30,
                       ),
                       const Text(
                         "Phone",
                         style: TextStyle(fontSize: 15, color: Color(0xFF656565)),
+                      ),
+                      const SizedBox(
+                        height: 5,
                       ),
                       BlocSelector<ProfileCubit, ProfileState, String>(
                         selector: (state) => state.phoneNumber,
@@ -408,7 +426,7 @@ class ProfilePage extends StatelessWidget {
                         },
                       ),
                       const SizedBox(
-                        height: 10,
+                        height: 20,
                       ),
                       BlocSelector<ProfileCubit, ProfileState, bool>(
                         selector: (state) {
@@ -421,7 +439,10 @@ class ProfilePage extends StatelessWidget {
                                   context.read<ProfileCubit>().changePhone(),
                               loading: loading);
                         },
-                      )
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
                     ],
                   ),
                 )),
