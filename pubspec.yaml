@@ -67,6 +67,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   cloud_functions: ^3.2.10
   jiffy: ^5.0.0
+  coinbase_commerce: ^0.0.3
 
 dev_dependencies:
   flutter_test:

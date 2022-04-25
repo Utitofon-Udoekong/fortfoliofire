@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:coinbase_commerce/coinbase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
@@ -24,6 +25,7 @@ class FortCryptoInvestment extends StatelessWidget {
     final duration =
         context.select((InvestmentCubit element) => element.state.duration);
     final endDate = Jiffy(DateTime.now()).add(months: duration.toInt()).yMMMMd;
+    Coinbase coinbase = Coinbase("1c8e5033-7c3d-4e3f-be76-f816ed0049e2");
     return Scaffold(
       body: SafeArea(
         child: Padding(

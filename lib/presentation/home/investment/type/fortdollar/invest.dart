@@ -323,7 +323,7 @@ class FortDollarInvestment extends StatelessWidget {
                                   onTap: () {
                                     
                                     context.router.push(
-                                        const SelectInvestmentMethodRoute());
+                                        const BankInvestmentPageRoute());
                                   }),
                               InkWell(
                                 onTap: () => context.router.pop(),

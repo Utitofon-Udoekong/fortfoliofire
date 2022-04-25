@@ -278,7 +278,7 @@ class FortShieldInvestment extends StatelessWidget {
                                         .agreementAcceptedChanged(
                                             agreementAccepted: false);
                                     context.router.push(
-                                        const SelectInvestmentMethodRoute());
+                                        const BankInvestmentPageRoute());
                                   }),
                               InkWell(
                                 onTap: () => context.router.pop(),

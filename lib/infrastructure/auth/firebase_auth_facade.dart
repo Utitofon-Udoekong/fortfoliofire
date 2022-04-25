@@ -126,7 +126,7 @@ class FirebaseAuthFacade implements IAuthFacade {
     final passwordString = password.getOrCrash();
     final fName = firstName.getOrCrash();
     final lName = lastName.getOrCrash();
-    var displayName = "${fName[0]}${lName[0]}";
+    var displayName = "${fName[0].toUpperCase()}${lName[0].toUpperCase()}";
     var uuid = const Uuid().v4().substring(0, 7);
     try {
       await firebaseAuth
