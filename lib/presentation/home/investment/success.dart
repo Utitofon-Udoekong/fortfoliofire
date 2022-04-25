@@ -15,7 +15,7 @@ class InvestmentSuccess extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final void resetWalletState = context.select((InvestmentCubit investmentCubit){
+    final void resetInvestmentState = context.select((InvestmentCubit investmentCubit){
        investmentCubit.reset();
        investmentCubit.close();
     });
@@ -27,10 +27,10 @@ class InvestmentSuccess extends StatelessWidget {
         const SizedBox(
           height: 20,
         ),
-        InkWell(
-          onTap: () => context.router.pop(),
-          child: const Icon(Icons.close),
-        ),
+        // InkWell(
+        //   onTap: () => context.router.pop(),
+        //   child: const Icon(Icons.close),
+        // ),
         const SizedBox(
           height: 80,
         ),
@@ -45,7 +45,10 @@ class InvestmentSuccess extends StatelessWidget {
         const SizedBox(
           height: 30,
         ),
-        CustomFilledButton(text: 'DONE', onTap: () => context.router.push(const InvestmentPageRoute()).then((_) => resetWalletState))
+        CustomFilledButton(text: 'DONE', onTap: () {
+          resetInvestmentState;
+          context.router.push(const InvestmentPageRoute());
+        })
       ]),
     );
   }

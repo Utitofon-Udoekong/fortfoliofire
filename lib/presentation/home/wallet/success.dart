@@ -27,10 +27,10 @@ class WithdrawalSuccess extends StatelessWidget {
         const SizedBox(
           height: 20,
         ),
-        InkWell(
-          onTap: () => context.router.pop(),
-          child: const Icon(Icons.close),
-        ),
+        // InkWell(
+        //   onTap: () => context.router.pop(),
+        //   child: const Icon(Icons.close),
+        // ),
         const SizedBox(
           height: 80,
         ),
@@ -45,7 +45,10 @@ class WithdrawalSuccess extends StatelessWidget {
         const SizedBox(
           height: 30,
         ),
-        CustomFilledButton(text: 'DONE', onTap: () => context.router.push(const WalletRoute()).then((_) => resetWalletState))
+        CustomFilledButton(text: 'DONE', onTap: () {
+          resetWalletState;
+          context.router.push(const WalletRoute());
+        })
       ]),
     );
   }

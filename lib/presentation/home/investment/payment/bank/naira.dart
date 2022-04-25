@@ -6,6 +6,7 @@ import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/presentation/home/investment/cubit/investment_cubit.dart';
+import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:intl/intl.dart';
 
 class NairaAccount extends StatelessWidget {
@@ -34,8 +35,8 @@ class NairaAccount extends StatelessWidget {
               BlocListener<InvestmentCubit, InvestmentState>(
                   listenWhen: (previous, current) => previous.success != current.success && current.success.isNotEmpty,
               listener: (context, state) {
-                CustomSnackbar.showSnackBar(context, state.success, true);
-                // context.router.replace(const )
+                CustomSnackbar.showSnackBar(context, state.success, false);
+                context.router.replace(const InvestmentSuccessRoute());
               },
               ),
           ],
