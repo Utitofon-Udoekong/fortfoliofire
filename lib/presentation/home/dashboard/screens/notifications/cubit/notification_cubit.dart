@@ -19,7 +19,7 @@ class NotificationCubit extends Cubit<NotificationState> {
     initNotifications();
   }
 
-  void initNotifications() async {
+  void initNotifications() {
     _logsStreamSubscription = firestoreFacade.getNotifications().listen((data) {
       final List<QueryDocumentSnapshot<Object?>> docs = data.docs;
       List<NotificationItem> newdocs = [];

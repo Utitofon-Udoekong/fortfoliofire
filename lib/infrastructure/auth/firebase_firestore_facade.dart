@@ -28,7 +28,8 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
   FirebaseFirestoreFacade(this.firestore, this.auth);
 
   @override
-  Future<Either<String,String>> addBank({required BankAddress bankAddress}) async {
+  Future<Either<String, String>> addBank(
+      {required BankAddress bankAddress}) async {
     String docId = bankAddress.trax + bankAddress.id;
     try {
       await firestore.authUserCollection
@@ -80,7 +81,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
   @override
   Future<Either<String, String>> createInvestmentTransaction(
       {required InvestmentItem investmentItem}) async {
-        String docId = investmentItem.uid + investmentItem.traxId;
+    String docId = investmentItem.uid + investmentItem.traxId;
     try {
       await firestore.authUserCollection
           .doc(auth.currentUser!.uid)
@@ -104,7 +105,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
   @override
   Future<Either<String, String>> createWithdrawalTransaction(
       {required WithdrawalItem withdrawalItem}) async {
-        String docId = withdrawalItem.uid + withdrawalItem.traxId;
+    String docId = withdrawalItem.uid + withdrawalItem.traxId;
     try {
       await firestore.authUserCollection
           .doc(auth.currentUser!.uid)
@@ -163,23 +164,6 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
         .doc(auth.currentUser!.uid)
         .collection("notifications")
         .snapshots();
-    // try {
-    //   if (!isEmpty) {
-    //     final docs = query.docs;
-    //     final newDocs = List<NotificationItem>.empty();
-        // for (var element in docs) {
-        //   final doc = NotificationItemDTO.fromFirestore(element).toDomain();
-        //   newDocs.add(doc);
-        // }
-    //     return some(newDocs);
-    //   } else {
-    //     log("Notifications could not be retrieved at this moment");
-    //     return none();
-    //   }
-    // } on FirebaseException catch (e) {
-    //   log("Code: ${e.code}, Message: ${e.message}");
-    //   return none();
-    // }
   }
 
   @override
@@ -261,106 +245,106 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
   }
 
   @override
-  Future<Option<List<InvestmentItem>>> getFortDollarInvestments() async {
-    final query = await firestore.authUserCollection
+  Stream<QuerySnapshot> getFortDollarInvestments() async* {
+    yield* firestore.authUserCollection
         .doc(auth.currentUser!.uid)
         .collection("investments")
         .where("planName", isEqualTo: "FortDollar")
-        .get();
-    try {
-      if (query.docs.isNotEmpty && query.docs[0].exists) {
-        final docs = query.docs;
-        var newDocs = List<InvestmentItem>.empty();
-        for (var element in docs) {
-          final doc = InvestmentItemDTO.fromFirestore(element).toDomain();
-          newDocs.add(doc);
-        }
-        return some(newDocs);
-      } else {
-        log("authh getDatabaseUserWithPhoneNumber DOES NOT EXIST");
-        return none();
-      }
-    } on FirebaseException catch (e) {
-      log("Code: ${e.code}, Message: ${e.message}");
-      return none();
-    }
+        .snapshots();
+    // try {
+    //   if (query.docs.isNotEmpty && query.docs[0].exists) {
+    //     final docs = query.docs;
+    //     var newDocs = List<InvestmentItem>.empty();
+    //     for (var element in docs) {
+    //       final doc = InvestmentItemDTO.fromFirestore(element).toDomain();
+    //       newDocs.add(doc);
+    //     }
+    //     return some(newDocs);
+    //   } else {
+    //     log("authh getDatabaseUserWithPhoneNumber DOES NOT EXIST");
+    //     return none();
+    //   }
+    // } on FirebaseException catch (e) {
+    //   log("Code: ${e.code}, Message: ${e.message}");
+    //   return none();
+    // }
   }
 
   @override
-  Future<Option<List<InvestmentItem>>> getFortCryptoInvestments() async {
-    final query = await firestore.authUserCollection
+  Stream<QuerySnapshot> getFortCryptoInvestments() async* {
+    yield* firestore.authUserCollection
         .doc(auth.currentUser!.uid)
         .collection("investments")
         .where("planName", isEqualTo: "FortCrypto")
-        .get();
-    try {
-      if (query.docs.isNotEmpty && query.docs[0].exists) {
-        final docs = query.docs;
-        var newDocs = List<InvestmentItem>.empty();
-        for (var element in docs) {
-          final doc = InvestmentItemDTO.fromFirestore(element).toDomain();
-          newDocs.add(doc);
-        }
-        return some(newDocs);
-      } else {
-        log("authh getDatabaseUserWithPhoneNumber DOES NOT EXIST");
-        return none();
-      }
-    } on FirebaseException catch (e) {
-      log("Code: ${e.code}, Message: ${e.message}");
-      return none();
-    }
+        .snapshots();
+    // try {
+    //   if (query.docs.isNotEmpty && query.docs[0].exists) {
+    //     final docs = query.docs;
+    //     var newDocs = List<InvestmentItem>.empty();
+    //     for (var element in docs) {
+    //       final doc = InvestmentItemDTO.fromFirestore(element).toDomain();
+    //       newDocs.add(doc);
+    //     }
+    //     return some(newDocs);
+    //   } else {
+    //     log("authh getDatabaseUserWithPhoneNumber DOES NOT EXIST");
+    //     return none();
+    //   }
+    // } on FirebaseException catch (e) {
+    //   log("Code: ${e.code}, Message: ${e.message}");
+    //   return none();
+    // }
   }
 
   @override
-  Future<Option<List<InvestmentItem>>> getFortShieldInvestments() async {
-    final query = await firestore.authUserCollection
+  Stream<QuerySnapshot> getFortShieldInvestments() async* {
+    yield* firestore.authUserCollection
         .doc(auth.currentUser!.uid)
         .collection("investments")
         .where("planName", isEqualTo: "FortShield")
-        .get();
-    try {
-      if (query.docs.isNotEmpty && query.docs[0].exists) {
-        final docs = query.docs;
-        var newDocs = List<InvestmentItem>.empty();
-        for (var element in docs) {
-          final doc = InvestmentItemDTO.fromFirestore(element).toDomain();
-          newDocs.add(doc);
-        }
-        return some(newDocs);
-      } else {
-        log("authh getDatabaseUserWithPhoneNumber DOES NOT EXIST");
-        return none();
-      }
-    } on FirebaseException catch (e) {
-      log("Code: ${e.code}, Message: ${e.message}");
-      return none();
-    }
+        .snapshots();
+    // try {
+    //   if (query.docs.isNotEmpty && query.docs[0].exists) {
+    //     final docs = query.docs;
+    //     var newDocs = List<InvestmentItem>.empty();
+    //     for (var element in docs) {
+    //       final doc = InvestmentItemDTO.fromFirestore(element).toDomain();
+    //       newDocs.add(doc);
+    //     }
+    //     return some(newDocs);
+    //   } else {
+    //     log("authh getDatabaseUserWithPhoneNumber DOES NOT EXIST");
+    //     return none();
+    //   }
+    // } on FirebaseException catch (e) {
+    //   log("Code: ${e.code}, Message: ${e.message}");
+    //   return none();
+    // }
   }
 
   @override
-  Future<Option<List<WithdrawalItem>>> getWithdrawals() async {
-    final query = await firestore.authUserCollection
+  Stream<QuerySnapshot> getWithdrawals() async* {
+    yield* firestore.authUserCollection
         .doc(auth.currentUser!.uid)
         .collection("withdrawals")
-        .get();
-    try {
-      if (query.docs.isNotEmpty && query.docs[0].exists) {
-        var docs = query.docs;
-        var newDocs = List<WithdrawalItem>.empty();
-        for (var element in docs) {
-          final doc = WithdrawalItemDTO.fromFirestore(element).toDomain();
-          newDocs.add(doc);
-        }
-        return some(newDocs);
-      } else {
-        log("withdrawals DOES NOT EXIST");
-        return none();
-      }
-    } on FirebaseException catch (e) {
-      log("Code: ${e.code}, Message: ${e.message}");
-      return none();
-    }
+        .snapshots();
+    // try {
+    //   if (query.docs.isNotEmpty && query.docs[0].exists) {
+    //     var docs = query.docs;
+    //     var newDocs = List<WithdrawalItem>.empty();
+    //     for (var element in docs) {
+    //       final doc = WithdrawalItemDTO.fromFirestore(element).toDomain();
+    //       newDocs.add(doc);
+    //     }
+    //     return some(newDocs);
+    //   } else {
+    //     log("withdrawals DOES NOT EXIST");
+    //     return none();
+    //   }
+    // } on FirebaseException catch (e) {
+    //   log("Code: ${e.code}, Message: ${e.message}");
+    //   return none();
+    // }
   }
 
   @override

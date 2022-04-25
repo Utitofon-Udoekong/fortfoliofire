@@ -1,12 +1,15 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
 import 'package:fortfolio/domain/user/bank_address.dart';
 import 'package:fortfolio/domain/user/crypto_wallet.dart';
 import 'package:fortfolio/domain/user/investment.dart';
 import 'package:fortfolio/domain/user/transaction_item.dart';
 import 'package:fortfolio/domain/user/withdrawal_item.dart';
+import 'package:fortfolio/infrastructure/auth/dto/investment/investment_dto.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:nanoid/nanoid.dart';
@@ -18,6 +21,9 @@ part 'wallet_cubit.freezed.dart';
 @injectable
 class WalletCubit extends Cubit<WalletState> {
   final IFirestoreFacade firestoreFacade;
+  StreamSubscription<QuerySnapshot>? _logsFortDollarSubscription;
+  StreamSubscription<QuerySnapshot>? _logsFortShieldSubscription;
+  StreamSubscription<QuerySnapshot>? _logsFortCryptoSubscription;
   WalletCubit(this.firestoreFacade) : super(WalletState.initial()){
     initInvestments();
     initWalletBalance();
@@ -173,22 +179,44 @@ class WalletCubit extends Cubit<WalletState> {
     });
   }
 
-  void initFortDollarInvestments() async {
-    var investments = await firestoreFacade.getFortDollarInvestments();
-    investments.fold(() => null, (fortDollarInvestments) {
-      emit(state.copyWith(fortDollarInvestments: fortDollarInvestments));
+  void initFortDollarInvestments() {
+    _logsFortDollarSubscription = firestoreFacade.getFortDollarInvestments().listen((data) {
+      final List<QueryDocumentSnapshot<Object?>> docs = data.docs;
+      List<InvestmentItem> fortDollarInvestments = [];
+      if(data.size > 0){
+        for (var element in docs){
+          final doc = InvestmentItemDTO.fromFirestore(element).toDomain();
+          fortDollarInvestments.add(doc);
+        }
+        emit(state.copyWith(fortDollarInvestments: fortDollarInvestments));
+      }
     });
   }
-  void initFortShieldInvestments() async {
-    var investments = await firestoreFacade.getFortShieldInvestments();
-    investments.fold(() => null, (fortShieldInvestments) {
-      emit(state.copyWith(fortShieldInvestments: fortShieldInvestments));
+  void initFortShieldInvestments() {
+    _logsFortShieldSubscription = firestoreFacade.getFortShieldInvestments().listen((data) {
+      final List<QueryDocumentSnapshot<Object?>> docs = data.docs;
+      List<InvestmentItem> fortShieldInvestments = [];
+      if(data.size > 0){
+        for (var element in docs){
+          final doc = InvestmentItemDTO.fromFirestore(element).toDomain();
+          fortShieldInvestments.add(doc);
+        }
+        emit(state.copyWith(fortShieldInvestments: fortShieldInvestments));
+      }
     });
   }
-  void initFortCryptoInvestments() async {
-    var investments = await firestoreFacade.getFortCryptoInvestments();
-    investments.fold(() => null, (fortCryptoInvestments) {
-      emit(state.copyWith(fortCryptoInvestments: fortCryptoInvestments));
+  
+  void initFortCryptoInvestments() {
+    _logsFortCryptoSubscription = firestoreFacade.getFortCryptoInvestments().listen((data) {
+      final List<QueryDocumentSnapshot<Object?>> docs = data.docs;
+      List<InvestmentItem> fortCryptoInvestments = [];
+      if(data.size > 0){
+        for (var element in docs){
+          final doc = InvestmentItemDTO.fromFirestore(element).toDomain();
+          fortCryptoInvestments.add(doc);
+        }
+        emit(state.copyWith(fortCryptoInvestments: fortCryptoInvestments));
+      }
     });
   }
 

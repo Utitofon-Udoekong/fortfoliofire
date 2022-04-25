@@ -20,10 +20,10 @@ abstract class IFirestoreFacade {
   Future<Option<List<CryptoWallet>>> getCryptoWallets();
   Future<Option<List<CryptoWallet>>> getGeneralCryptoWallets();
   // Future<Option<List<InvestmentItem>>> getInvestments();
-  Future<Option<List<InvestmentItem>>> getFortShieldInvestments();
-  Future<Option<List<InvestmentItem>>> getFortDollarInvestments();
-  Future<Option<List<InvestmentItem>>> getFortCryptoInvestments();
-  Future<Option<List<WithdrawalItem>>> getWithdrawals();
+  Stream<QuerySnapshot> getFortShieldInvestments();
+  Stream<QuerySnapshot> getFortDollarInvestments();
+  Stream<QuerySnapshot> getFortCryptoInvestments();
+  Stream<QuerySnapshot> getWithdrawals();
   Future<Either<String,String>> createWithdrawalTransaction( {required WithdrawalItem withdrawalItem});
   Future<Either<String,String>> createNotification( {required NotificationItem notificationItem});
   Future<Either<String,String>> createKYC( {required KYCItem kycItem});
