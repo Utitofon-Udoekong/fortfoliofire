@@ -86,7 +86,7 @@ exports.endInvestment = functions.firestore.document("/authUsers/{uid}/investmen
 exports.createCharge = functions.https.onRequest((req, res) => {
     cors(req, res, async () => {
       // TODO get real product data from database
-  
+    
       const chargeData = {
         name: 'Widget',
         description: 'Useless widget created by Fireship',
