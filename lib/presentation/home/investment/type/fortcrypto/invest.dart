@@ -1,18 +1,15 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:coinbase_commerce/coinbase.dart';
-import 'package:coinbase_commerce/coinbase_commerce.dart';
-import 'package:coinbase_commerce/returnObjects/statusObject.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
+import 'package:fortfolio/infrastructure/auth/api_method.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:timelines/timelines.dart';
 
 import 'package:fortfolio/domain/constants/order.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
-import 'package:flutter/services.dart';
 import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
 import 'package:fortfolio/domain/widgets/labelled_checkbox.dart';
 
@@ -28,16 +25,7 @@ class FortCryptoInvestment extends StatelessWidget {
     final duration =
         context.select((InvestmentCubit element) => element.state.duration);
     final endDate = Jiffy(DateTime.now()).add(months: duration.toInt()).yMMMMd;
-    Coinbase coinbase = Coinbase("1c8e5033-7c3d-4e3f-be76-f816ed0049e2");
-    createCharge() async {
-      ChargeObject charge = await coinbase.createCharge(
-          description: "Investment",
-          name: "Fort Crypto",
-          pricingType: PricingType.noPrice);
-      StatusObject status = coinbase.checkChargeStatus(charge);
-      return {charge, status};
-    }
-
+    
     InAppWebViewController _webViewController;
     InAppWebViewGroupOptions options = InAppWebViewGroupOptions(
         crossPlatform: InAppWebViewOptions(
@@ -117,7 +105,7 @@ class FortCryptoInvestment extends StatelessWidget {
                   children: [
                     InAppWebView(
                       initialUrlRequest: URLRequest(
-                          url: Uri.parse("https://inappwebview.dev/")),
+                          url: Uri.parse("https://www.youtube.com/")),
                       initialOptions: options,
                       onWebViewCreated: (InAppWebViewController controller) {
                         _webViewController = controller;
