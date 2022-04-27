@@ -59,7 +59,7 @@ class WalletState with _$WalletState {
       transactions: [
         
       ]);
-  bool get investmentExists => isFortDollarActive && isFortShieldActive && isFortCryptoActive;
+  bool get investmentDoesNotExist => !isFortDollarActive && !isFortShieldActive && !isFortCryptoActive;
   bool get paymentMethodExists =>
       cryptoAddresses.isNotEmpty &&
       generalCryptoAddresses.isNotEmpty &&

@@ -99,7 +99,6 @@ class FortShieldInvestment extends StatelessWidget {
                           filled: true,
                           fillColor: Color(0xFFF3F6F8),
                           border: InputBorder.none,
-                          prefixIcon: Text("N", style: TextStyle(decoration: TextDecoration.lineThrough, fontSize: 15, color: kBlackColor),)
                         ),
                         onChanged: (value) => context
                             .read<InvestmentCubit>()

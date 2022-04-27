@@ -7,49 +7,55 @@ import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
 import 'package:fortfolio/presentation/home/investment/cubit/investment_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
- 
-
 
 class InvestmentSuccess extends StatelessWidget {
   const InvestmentSuccess({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final void resetInvestmentState = context.select((InvestmentCubit investmentCubit){
-       investmentCubit.reset();
-       investmentCubit.close();
+    final void resetInvestmentState =
+        context.select((InvestmentCubit investmentCubit) {
+      investmentCubit.reset();
+      investmentCubit.close();
     });
-    final firstName = context.select((AuthCubit element) => element.state.userModel.firstName);
-    final lastName = context.select((AuthCubit element) => element.state.userModel.lastName);
+    final firstName = context
+        .select((AuthCubit element) => element.state.userModel.firstName);
+    final lastName =
+        context.select((AuthCubit element) => element.state.userModel.lastName);
     return SafeArea(
-      child:
-          Column(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-        const SizedBox(
-          height: 20,
+      child: Padding(
+        padding: kDefaultPadding,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            const SizedBox(
+              height: 100,
+            ),
+            Center(
+              child: Image.asset(
+                "images/success.png",
+                width: MediaQuery.of(context).size.width * 0.35,
+              ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            Text(
+                "Transaction to $firstName $lastName has been carried out successfully! ",
+                style: titleText.copyWith(fontSize: 18),
+                textAlign: TextAlign.center),
+            const SizedBox(
+              height: 30,
+            ),
+            CustomFilledButton(
+                text: 'DONE',
+                onTap: () {
+                  resetInvestmentState;
+                  context.router.push(const InvestmentPageRoute());
+                })
+          ],
         ),
-        // InkWell(
-        //   onTap: () => context.router.pop(),
-        //   child: const Icon(Icons.close),
-        // ),
-        const SizedBox(
-          height: 80,
-        ),
-        Image.asset("images/success.png",
-            width: MediaQuery.of(context).size.width * 0.65,),
-        const SizedBox(
-          height: 30,
-        ),
-        Text("Transaction to $firstName $lastName has been carried out successfully! ",
-            style: titleText.copyWith(fontSize: 20),
-            textAlign: TextAlign.center),
-        const SizedBox(
-          height: 30,
-        ),
-        CustomFilledButton(text: 'DONE', onTap: () {
-          resetInvestmentState;
-          context.router.push(const InvestmentPageRoute());
-        })
-      ]),
+      ),
     );
   }
 }

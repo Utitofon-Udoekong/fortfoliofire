@@ -191,6 +191,9 @@ class WalletCubit extends Cubit<WalletState> {
           fortDollarInvestments.add(doc);
         }
         emit(state.copyWith(fortDollarInvestments: fortDollarInvestments));
+        initFortDollar();
+        initWalletBalance();
+        initTransactions();
       }
     });
   }
@@ -204,6 +207,9 @@ class WalletCubit extends Cubit<WalletState> {
           fortShieldInvestments.add(doc);
         }
         emit(state.copyWith(fortShieldInvestments: fortShieldInvestments));
+        initFortShield();
+        initWalletBalance();
+        initTransactions();
       }
     });
   }
@@ -218,6 +224,9 @@ class WalletCubit extends Cubit<WalletState> {
           fortCryptoInvestments.add(doc);
         }
         emit(state.copyWith(fortCryptoInvestments: fortCryptoInvestments));
+        initFortCrypto();
+        initWalletBalance();
+        initTransactions();
       }
     });
   }

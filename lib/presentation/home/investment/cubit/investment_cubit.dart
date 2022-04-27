@@ -93,7 +93,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     final String planName = state.planName;
     final int roi = state.roi;
     final double duration = state.duration;
-    const String status = "pending";
+    const String status = "Pending";
     final String traxId = const Uuid().v4().substring(0, 7);
     final String uid = nanoid(8);
     final dueDate = Jiffy(paymentDate).add(months: duration.toInt()).dateTime;

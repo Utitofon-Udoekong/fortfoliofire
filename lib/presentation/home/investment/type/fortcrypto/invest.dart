@@ -101,8 +101,8 @@ class FortCryptoInvestment extends StatelessWidget {
                   height: 10,
                 ),
                 Expanded(
-                    child: Stack(
-                  children: [
+                    child: Container(
+                  child:
                     InAppWebView(
                       initialUrlRequest: URLRequest(
                           url: Uri.parse("https://www.youtube.com/")),
@@ -115,8 +115,7 @@ class FortCryptoInvestment extends StatelessWidget {
                         return ServerTrustAuthResponse(
                             action: ServerTrustAuthResponseAction.PROCEED);
                       },
-                    )
-                  ],
+                    ),
                 )),
                 // BlocBuilder<InvestmentCubit, InvestmentState>(
                 //   buildWhen: (p, c) => p.amountInvested != c.amountInvested,

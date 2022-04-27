@@ -20,6 +20,12 @@ class WalletOverview extends StatelessWidget {
         walletCubit.state.fortShieldInvestmentBalance);
     final fortDollarBalance = context.select((WalletCubit walletCubit) =>
         walletCubit.state.fortDollarInvestmentBalance);
+    final fortCryptoYield = context.select((WalletCubit walletCubit) =>
+        walletCubit.state.fortCryptoYieldBalance);
+    final fortShieldYield = context.select((WalletCubit walletCubit) =>
+        walletCubit.state.fortShieldYieldBalance);
+    final fortDollarYield = context.select((WalletCubit walletCubit) =>
+        walletCubit.state.fortDollarYieldBalance);
     final selectedExchange =
         context.select((WalletCubit cubit) => cubit.state.exchange);
     return Scaffold(
@@ -205,11 +211,11 @@ class WalletOverview extends StatelessWidget {
             ),
             BlocSelector<WalletCubit, WalletState, bool>(
               selector: (state) {
-                return state.investmentExists;
+                return state.investmentDoesNotExist;
               },
-              builder: (context, investmentExists) {
+              builder: (context, investmentDoesNotExist) {
                 return Visibility(
-                    visible: !investmentExists,
+                    visible: investmentDoesNotExist,
                     child: Text("You dont have any investments at the moment.",
                         style: subTitle.copyWith(
                           fontSize: 18,
@@ -224,7 +230,7 @@ class WalletOverview extends StatelessWidget {
                   visible: state.isFortDollarActive,
                   child: buildcard('FortDollar', 'fortdollar', () {
                     context.router.push(const FortDollarInvestmentInfoRoute());
-                  }, fortDollarBalance.toString(), state.showDigits),
+                  }, fortDollarBalance.toString(), state.showDigits,fortDollarYield.toString(),)
                 );
               },
             ),
@@ -237,7 +243,7 @@ class WalletOverview extends StatelessWidget {
                   visible: state.isFortCryptoActive,
                   child: buildcard('FortCrypto', 'fortcrypto', () {
                     context.router.push(const FortCryptoInvestmentInfoRoute());
-                  }, fortCryptoBalance.toString(), state.showDigits),
+                  }, fortCryptoBalance.toString(), state.showDigits, fortCryptoYield.toString()),
                 );
               },
             ),
@@ -250,7 +256,7 @@ class WalletOverview extends StatelessWidget {
                   visible: state.isFortShieldActive,
                   child: buildcard('FortShield', 'fortshield', () {
                     context.router.push(const FortShieldInvestmentInfoRoute());
-                  }, fortShieldBalance.toString(), state.showDigits),
+                  }, fortShieldBalance.toString(), state.showDigits, fortShieldYield.toString()),
                 );
               },
             ),
@@ -291,7 +297,7 @@ class WalletOverview extends StatelessWidget {
   }
 
   Widget buildcard(String title, String path, Function() ontap, String balance,
-      bool showDigits) {
+      bool showDigits, String yield) {
     return GestureDetector(
       onTap: ontap,
       child: SizedBox(
@@ -312,14 +318,28 @@ class WalletOverview extends StatelessWidget {
               ],
             ),
             showDigits
-                ? Text(
+                ? Flex(direction: Axis.vertical, children: [
+                  Text(
                     '\$$balance',
                     style: titleText.copyWith(fontSize: 14),
-                  )
-                : Text(
+                  ),
+                  const SizedBox(height: 8,),
+                  Text(
+                    '\$$yield',
+                    style: subTitle.copyWith(fontSize: 14, color: kBlackColor),
+                  ),
+                ],)
+                : Flex(direction: Axis.vertical, children: [
+                  Text(
                     balance.replaceAll(RegExp(r"."), '*'),
                     style: titleText.copyWith(fontSize: 14),
-                  )
+                  ),
+                  const SizedBox(height: 8,),
+                  Text(
+                    yield.replaceAll(RegExp(r"."), '*'),
+                    style: titleText.copyWith(fontSize: 14),
+                  ),
+                ],)
           ],
         ),
       ),
