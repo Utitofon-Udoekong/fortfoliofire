@@ -20,12 +20,12 @@ class WalletOverview extends StatelessWidget {
         walletCubit.state.fortShieldInvestmentBalance);
     final fortDollarBalance = context.select((WalletCubit walletCubit) =>
         walletCubit.state.fortDollarInvestmentBalance);
-    final fortCryptoYield = context.select((WalletCubit walletCubit) =>
-        walletCubit.state.fortCryptoYieldBalance);
-    final fortShieldYield = context.select((WalletCubit walletCubit) =>
-        walletCubit.state.fortShieldYieldBalance);
-    final fortDollarYield = context.select((WalletCubit walletCubit) =>
-        walletCubit.state.fortDollarYieldBalance);
+    final fortCryptoYield = context.select(
+        (WalletCubit walletCubit) => walletCubit.state.fortCryptoYieldBalance);
+    final fortShieldYield = context.select(
+        (WalletCubit walletCubit) => walletCubit.state.fortShieldYieldBalance);
+    final fortDollarYield = context.select(
+        (WalletCubit walletCubit) => walletCubit.state.fortDollarYieldBalance);
     final selectedExchange =
         context.select((WalletCubit cubit) => cubit.state.exchange);
     return Scaffold(
@@ -227,11 +227,18 @@ class WalletOverview extends StatelessWidget {
             BlocBuilder<WalletCubit, WalletState>(
               builder: (context, state) {
                 return Visibility(
-                  visible: state.isFortDollarActive,
-                  child: buildcard('FortDollar', 'fortdollar', () {
-                    context.router.push(const FortDollarInvestmentInfoRoute());
-                  }, "\$$fortDollarBalance", state.showDigits,"\$$fortDollarYield",)
-                );
+                    visible: state.isFortDollarActive,
+                    child: buildcard(
+                      'FortDollar',
+                      'fortdollar',
+                      () {
+                        context.router
+                            .push(const FortDollarInvestmentInfoRoute());
+                      },
+                      "\$$fortDollarBalance",
+                      state.showDigits,
+                      "\$$fortDollarYield",
+                    ));
               },
             ),
             const SizedBox(
@@ -243,7 +250,8 @@ class WalletOverview extends StatelessWidget {
                   visible: state.isFortCryptoActive,
                   child: buildcard('FortCrypto', 'fortcrypto', () {
                     context.router.push(const FortCryptoInvestmentInfoRoute());
-                  }, "\$$fortCryptoBalance", state.showDigits, "\$$fortCryptoYield"),
+                  }, "\$$fortCryptoBalance", state.showDigits,
+                      "\$$fortCryptoYield"),
                 );
               },
             ),
@@ -256,7 +264,8 @@ class WalletOverview extends StatelessWidget {
                   visible: state.isFortShieldActive,
                   child: buildcard('FortShield', 'fortshield', () {
                     context.router.push(const FortShieldInvestmentInfoRoute());
-                  }, "N$fortShieldBalance", state.showDigits, "N$fortShieldYield"),
+                  }, "N$fortShieldBalance", state.showDigits,
+                      "N$fortShieldYield"),
                 );
               },
             ),
@@ -318,28 +327,41 @@ class WalletOverview extends StatelessWidget {
               ],
             ),
             showDigits
-                ? Flex(direction: Axis.vertical, children: [
-                  Text(
-                    balance,
-                    style: titleText.copyWith(fontSize: 14),
-                  ),
-                  const SizedBox(height: 8,),
-                  Text(
-                    yield,
-                    style: subTitle.copyWith(fontSize: 14, color: kBlackColor),
-                  ),
-                ],)
-                : Flex(direction: Axis.vertical, children: [
-                  Text(
-                    balance.replaceAll(RegExp(r"."), '*'),
-                    style: titleText.copyWith(fontSize: 14),
-                  ),
-                  const SizedBox(height: 8,),
-                  Text(
-                    yield.replaceAll(RegExp(r"."), '*'),
-                    style: titleText.copyWith(fontSize: 14),
-                  ),
-                ],)
+                ? Flex(
+                    direction: Axis.vertical,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        balance,
+                        style: titleText.copyWith(fontSize: 14),
+                      ),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      Text(
+                        yield,
+                        style:
+                            subTitle.copyWith(fontSize: 14, color: kBlackColor),
+                      ),
+                    ],
+                  )
+                : Flex(
+                    direction: Axis.vertical,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        balance.replaceAll(RegExp(r"."), '*'),
+                        style: titleText.copyWith(fontSize: 14),
+                      ),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      Text(
+                        yield.replaceAll(RegExp(r"."), '*'),
+                        style: titleText.copyWith(fontSize: 14),
+                      ),
+                    ],
+                  )
           ],
         ),
       ),

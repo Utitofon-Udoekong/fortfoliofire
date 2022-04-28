@@ -123,7 +123,8 @@ class MainDrawer extends StatelessWidget {
                 text: 'LOGOUT',
                 onTap: () {
                   context.router.pop();
-                  context.replaceRoute(const OnboardingScreenRoute());
+                  context.read<AuthCubit>().signOut();
+                  // context.replaceRoute(const OnboardingScreenRoute());
                 },
                 icon: 'images/logout.png'),
           ),

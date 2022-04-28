@@ -55,21 +55,22 @@ class ConfirmPhoneUpdate extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        IconButton(
-                          onPressed: () => context.router.pop(),
-                          icon: const Icon(Icons.close),
-                          iconSize: 18,
-                          color: kBlackColor,
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        InkWell(
+                          onTap: () => context.router.pop(),
+                          child: const Icon(Icons.close),
                         ),
                         const SizedBox(
                           height: 20,
                         ),
                         Text(
                           'We sent an OTP to the number $phoneNumber',
-                          style: titleText,
+                          style: titleText.copyWith(fontSize: 20),
                         ),
                         const SizedBox(
-                          height: 20,
+                          height: 50,
                         ),
                         BlocBuilder<ProfileCubit, ProfileState>(
                           builder: (context, state) {

@@ -167,81 +167,81 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
   }
 
   @override
-  Stream<QuerySnapshot> getBankAddress() async {
-    final query = await firestore.authUserCollection
+  Stream<QuerySnapshot> getBankAddress() async* {
+    yield* firestore.authUserCollection
         .doc(auth.currentUser!.uid)
         .collection("address")
         .where("type", isEqualTo: "BANKADDRESS")
-        .get();
-    try {
-      if (query.docs.isNotEmpty && query.docs[0].exists) {
-        final docs = query.docs;
-        final newDocs = List<BankAddress>.empty();
-        for (var element in docs) {
-          final doc = BankAddressDTO.fromFirestore(element).toDomain();
-          newDocs.add(doc);
-        }
-        return some(newDocs);
-      } else {
-        log("bank add error");
-        return none();
-      }
-    } on FirebaseException catch (e) {
-      log("Code: ${e.code}, Message: ${e.message}");
-      return none();
-    }
+        .snapshots();
+    // try {
+    //   if (query.docs.isNotEmpty && query.docs[0].exists) {
+    //     final docs = query.docs;
+    //     final newDocs = List<BankAddress>.empty();
+    //     for (var element in docs) {
+    //       final doc = BankAddressDTO.fromFirestore(element).toDomain();
+    //       newDocs.add(doc);
+    //     }
+    //     return some(newDocs);
+    //   } else {
+    //     log("bank add error");
+    //     return none();
+    //   }
+    // } on FirebaseException catch (e) {
+    //   log("Code: ${e.code}, Message: ${e.message}");
+    //   return none();
+    // }
   }
 
   @override
-  Stream<QuerySnapshot> getCryptoWallets() async {
-    final query = await firestore.authUserCollection
+  Stream<QuerySnapshot> getCryptoWallets() async* {
+    yield* firestore.authUserCollection
         .doc(auth.currentUser!.uid)
         .collection("address")
         .where("type", isEqualTo: "CRYPTOWALLET")
-        .get();
-    try {
-      if (query.docs.isNotEmpty && query.docs[0].exists) {
-        final docs = query.docs;
-        final newDocs = List<CryptoWallet>.empty();
-        for (var element in docs) {
-          final doc = CryptoWalletDTO.fromFirestore(element).toDomain();
-          newDocs.add(doc);
-        }
-        return some(newDocs);
-      } else {
-        log("crypto wallet error not gen");
-        return none();
-      }
-    } on FirebaseException catch (e) {
-      log("Code: ${e.code}, Message: ${e.message}");
-      return none();
-    }
+        .snapshots();
+    // try {
+    //   if (query.docs.isNotEmpty && query.docs[0].exists) {
+    //     final docs = query.docs;
+    //     final newDocs = List<CryptoWallet>.empty();
+    //     for (var element in docs) {
+    //       final doc = CryptoWalletDTO.fromFirestore(element).toDomain();
+    //       newDocs.add(doc);
+    //     }
+    //     return some(newDocs);
+    //   } else {
+    //     log("crypto wallet error not gen");
+    //     return none();
+    //   }
+    // } on FirebaseException catch (e) {
+    //   log("Code: ${e.code}, Message: ${e.message}");
+    //   return none();
+    // }
   }
 
   @override
-  Stream<QuerySnapshot> getGeneralCryptoWallets() async {
-    final query = await firestore.authUserCollection
+  Stream<QuerySnapshot> getGeneralCryptoWallets() async* {
+    yield* firestore.authUserCollection
         .doc(auth.currentUser!.uid)
         .collection("address")
         .where("type", isEqualTo: "GENERALCRYPTOWALLET")
-        .get();
-    try {
-      if (query.docs.isNotEmpty && query.docs[0].exists) {
-        final docs = query.docs;
-        final newDocs = List<CryptoWallet>.empty();
-        for (var element in docs) {
-          final doc = CryptoWalletDTO.fromFirestore(element).toDomain();
-          newDocs.add(doc);
-        }
-        return some(newDocs);
-      } else {
-        log("cryptowallet error");
-        return none();
-      }
-    } on FirebaseException catch (e) {
-      log("Code: ${e.code}, Message: ${e.message}");
-      return none();
-    }
+        .snapshots();
+    // try {
+    //   if (query.docs.isNotEmpty && query.docs[0].exists) {
+    //     final docs = query.docs;
+    //     final newDocs = List<CryptoWallet>.empty();
+    //     for (var element in docs) {
+    //       final doc = CryptoWalletDTO.fromFirestore(element).toDomain();
+    //       newDocs.add(doc);
+    //     }
+    //     return some(newDocs);
+    //   } else {
+    //     log("cryptowallet error");
+    //     return none();
+    //   }
+    // } on FirebaseException catch (e) {
+    //   log("Code: ${e.code}, Message: ${e.message}");
+    //   return none();
+    // }
   }
 
   @override

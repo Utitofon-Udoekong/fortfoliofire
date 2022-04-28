@@ -9,6 +9,8 @@ import 'package:fortfolio/domain/user/crypto_wallet.dart';
 import 'package:fortfolio/domain/user/investment.dart';
 import 'package:fortfolio/domain/user/transaction_item.dart';
 import 'package:fortfolio/domain/user/withdrawal_item.dart';
+import 'package:fortfolio/infrastructure/auth/dto/bank_address/bank_address_dto.dart';
+import 'package:fortfolio/infrastructure/auth/dto/crypto_address/crypto_address.dart';
 import 'package:fortfolio/infrastructure/auth/dto/investment/investment_dto.dart';
 import 'package:fortfolio/infrastructure/auth/dto/withdrawal/withdrawal_dto.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -25,6 +27,10 @@ class WalletCubit extends Cubit<WalletState> {
   StreamSubscription<QuerySnapshot>? _logsFortDollarSubscription;
   StreamSubscription<QuerySnapshot>? _logsFortShieldSubscription;
   StreamSubscription<QuerySnapshot>? _logsFortCryptoSubscription;
+  StreamSubscription<QuerySnapshot>? _logsBankAddressSubscription;
+  StreamSubscription<QuerySnapshot>? _logsCryptoAddressSubscription;
+  StreamSubscription<QuerySnapshot>? _logsGeneralCryptoAddressSubscription;
+ 
   WalletCubit(this.firestoreFacade) : super(WalletState.initial()){
     initInvestments();
     initWithdrawals();
@@ -41,6 +47,7 @@ class WalletCubit extends Cubit<WalletState> {
   void investmentPlanChanged({required String investmentPlan}) {
     emit(state.copyWith(investmentPlan: investmentPlan));
   }
+ 
   void showDigitsChanged() {
     final showDigits = state.showDigits;
     emit(state.copyWith(showDigits: !showDigits));
@@ -75,6 +82,7 @@ class WalletCubit extends Cubit<WalletState> {
       }
       emit(state.copyWith(fortDollarYieldBalance: planYield, fortDollarInvestmentBalance: amount));
   }
+ 
   void initFortShield(){
     var fortShieldInvestments = state.fortShieldInvestments;
     var planYield = 0;
@@ -85,6 +93,7 @@ class WalletCubit extends Cubit<WalletState> {
       }
       emit(state.copyWith(fortShieldYieldBalance: planYield, fortShieldInvestmentBalance: amount));
   }
+ 
   void initFortCrypto(){
     var fortCryptoInvestments = state.fortCryptoInvestments;
     var planYield = 0;
@@ -113,7 +122,7 @@ class WalletCubit extends Cubit<WalletState> {
     }else if(!fortDollarActive && fortShieldActive && !fortCryptoActive){
       var balance = 0;
       for(var element in fortShieldInvestments){
-        var availableBalance = element.amount + element.planYield;
+        var availableBalance = (element.amount * 560) + (element.planYield * 560);
         balance += availableBalance;
       }
       emit(state.copyWith(walletBalance: balance));
@@ -126,8 +135,11 @@ class WalletCubit extends Cubit<WalletState> {
       emit(state.copyWith(walletBalance: balance));
     }else if(fortDollarActive && fortShieldActive && !fortCryptoActive){
       var balance = 0;
-      var totalinvestment = fortDollarInvestments + fortShieldInvestments;
-      for(var element in totalinvestment){
+      for(var element in fortShieldInvestments){
+        var availableBalance = (element.amount * 560) + (element.planYield * 560);
+        balance += availableBalance;
+      }
+      for(var element in fortDollarInvestments){
         var availableBalance = element.amount + element.planYield;
         balance += availableBalance;
       }
@@ -142,43 +154,70 @@ class WalletCubit extends Cubit<WalletState> {
       emit(state.copyWith(walletBalance: balance));
     }else if(!fortDollarActive && fortShieldActive && fortCryptoActive){
       var balance = 0;
-      var totalinvestment = fortShieldInvestments + fortCryptoInvestments;
-      for(var element in totalinvestment){
+      for(var element in fortShieldInvestments){
+        var availableBalance = (element.amount * 560) + (element.planYield * 560);
+        balance += availableBalance;
+      }
+      for(var element in fortCryptoInvestments){
         var availableBalance = element.amount + element.planYield;
         balance += availableBalance;
       }
       emit(state.copyWith(walletBalance: balance));
     }else if(fortDollarActive && fortShieldActive && fortCryptoActive){
       var balance = 0;
-      var totalinvestment = fortShieldInvestments + fortCryptoInvestments + fortDollarInvestments;
-      for(var element in totalinvestment){
+      var dollarinvestment = fortCryptoInvestments + fortDollarInvestments;
+      for(var element in dollarinvestment){
         var availableBalance = element.amount + element.planYield;
+        balance += availableBalance;
+      }
+      for(var element in fortShieldInvestments){
+        var availableBalance = (element.amount * 560) + (element.planYield * 560);
         balance += availableBalance;
       }
       emit(state.copyWith(walletBalance: balance));
     }
   }
-
   
-  void initBankAddresses() async {
-    var bank = await firestoreFacade.getBankAddress();
-    bank.fold(() => null, (bankAddresses) {
-      emit(state.copyWith(bankAddresses: bankAddresses));
-    });
+  void initBankAddresses() {
+    _logsBankAddressSubscription = firestoreFacade.getBankAddress().listen((data) {
+      final List<QueryDocumentSnapshot<Object?>> docs = data.docs;
+      List<BankAddress> bankAddresses = [];
+      if(data.size > 0){
+        for (var element in docs){
+          final doc = BankAddressDTO.fromFirestore(element).toDomain();
+          bankAddresses.add(doc);
+        }
+        emit(state.copyWith(bankAddresses: bankAddresses));
+      }
+     });
   }
 
-  void initCryptoWallet() async {
-    var wallet = await firestoreFacade.getCryptoWallets();
-    wallet.fold(() => null, (cryptoAddresses) {
-      emit(state.copyWith(cryptoAddresses: cryptoAddresses));
-    });
+  void initCryptoWallet() {
+    _logsCryptoAddressSubscription = firestoreFacade.getCryptoWallets().listen((data) {
+      final List<QueryDocumentSnapshot<Object?>> docs = data.docs;
+      List<CryptoWallet> cryptoAddresses = [];
+      if(data.size > 0){
+        for (var element in docs){
+          final doc = CryptoWalletDTO.fromFirestore(element).toDomain();
+          cryptoAddresses.add(doc);
+        }
+        emit(state.copyWith(cryptoAddresses: cryptoAddresses));
+      }
+     });
   }
 
-  void initGeneralCryptoWallet() async {
-    var wallet = await firestoreFacade.getGeneralCryptoWallets();
-    wallet.fold(() => null, (generalCryptoAddresses) {
-      emit(state.copyWith(generalCryptoAddresses: generalCryptoAddresses));
-    });
+  void initGeneralCryptoWallet() {
+    _logsGeneralCryptoAddressSubscription = firestoreFacade.getCryptoWallets().listen((data) {
+      final List<QueryDocumentSnapshot<Object?>> docs = data.docs;
+      List<CryptoWallet> generalCryptoAddresses = [];
+      if(data.size > 0){
+        for (var element in docs){
+          final doc = CryptoWalletDTO.fromFirestore(element).toDomain();
+          generalCryptoAddresses.add(doc);
+        }
+        emit(state.copyWith(generalCryptoAddresses: generalCryptoAddresses));
+      }
+     });
   }
 
   void initFortDollarInvestments() {
@@ -197,6 +236,7 @@ class WalletCubit extends Cubit<WalletState> {
       }
     });
   }
+  
   void initFortShieldInvestments() {
     _logsFortShieldSubscription = firestoreFacade.getFortShieldInvestments().listen((data) {
       final List<QueryDocumentSnapshot<Object?>> docs = data.docs;
@@ -328,6 +368,9 @@ class WalletCubit extends Cubit<WalletState> {
     await _logsFortCryptoSubscription?.cancel();
     await _logsFortDollarSubscription?.cancel();
     await _logsFortShieldSubscription?.cancel();
+    await _logsBankAddressSubscription?.cancel();
+    await _logsCryptoAddressSubscription?.cancel();
+    await _logsGeneralCryptoAddressSubscription?.cancel();
     return super.close();
   }
 }
