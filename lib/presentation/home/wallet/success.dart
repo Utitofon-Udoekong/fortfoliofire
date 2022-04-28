@@ -14,10 +14,6 @@ class WithdrawalSuccess extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final void resetWalletState = context.select((WalletCubit walletCubit) {
-      walletCubit.reset();
-      walletCubit.close();
-    });
     final firstName = context
         .select((AuthCubit element) => element.state.userModel.firstName);
     final lastName =
@@ -48,7 +44,8 @@ class WithdrawalSuccess extends StatelessWidget {
           CustomFilledButton(
               text: 'DONE',
               onTap: () {
-                resetWalletState;
+                context.read<WalletCubit>().reset();
+                context.read<WalletCubit>().close();
                 context.router.push(const WalletRoute());
               })
         ],

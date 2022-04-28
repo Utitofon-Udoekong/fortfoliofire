@@ -13,11 +13,6 @@ class InvestmentSuccess extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final void resetInvestmentState =
-        context.select((InvestmentCubit investmentCubit) {
-      investmentCubit.reset();
-      investmentCubit.close();
-    });
     final firstName = context
         .select((AuthCubit element) => element.state.userModel.firstName);
     final lastName =
@@ -50,7 +45,8 @@ class InvestmentSuccess extends StatelessWidget {
             CustomFilledButton(
                 text: 'DONE',
                 onTap: () {
-                  resetInvestmentState;
+                  context.read<InvestmentCubit>().reset();
+                  context.read<InvestmentCubit>().close();
                   context.router.push(const InvestmentPageRoute());
                 })
           ],

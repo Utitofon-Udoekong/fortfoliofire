@@ -345,7 +345,7 @@ class FortCryptoInvestment extends StatelessWidget {
                                   text: "CONFIRM",
                                   onTap: () {
                                     context.router
-                                        .push(const BankInvestmentPageRoute());
+                                        .push(const CryptoInvestmentPageRoute());
                                   }),
                               InkWell(
                                 onTap: () => context.router.pop(),

@@ -59,7 +59,7 @@ class FortDollarInvestmentInfo extends StatelessWidget {
                       subTitle.copyWith(fontSize: 12, color: kPrimaryColor)),
               const SizedBox(height: 15),
               SizedBox(
-                height: activeInvestments.length * 100 + 50,
+                height: activeInvestments.length * 100 + 80,
                 child: ListView.builder(
                   itemCount: activeInvestments.length,
                   physics: const NeverScrollableScrollPhysics(),
@@ -97,6 +97,7 @@ class FortDollarInvestmentInfo extends StatelessWidget {
 Widget buildTile(String title, String amount, Function() ontap, bool pending) {
   return Container(
       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 8),
+      margin: const EdgeInsets.only(bottom: 10.0),
       decoration: BoxDecoration(
           color: const Color(0XFFF3F6F8),
           borderRadius: BorderRadius.circular(10.0)),
