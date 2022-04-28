@@ -42,6 +42,7 @@ class WalletCubit extends Cubit<WalletState> {
     initFortDollarInvestments();
     initFortShieldInvestments();
     initFortCryptoInvestments();
+    initTransactions();
   }
 
   void investmentPlanChanged({required String investmentPlan}) {
@@ -232,7 +233,6 @@ class WalletCubit extends Cubit<WalletState> {
         emit(state.copyWith(fortDollarInvestments: fortDollarInvestments));
         initFortDollar();
         initWalletBalance();
-        initTransactions();
       }
     });
   }
@@ -249,7 +249,6 @@ class WalletCubit extends Cubit<WalletState> {
         emit(state.copyWith(fortShieldInvestments: fortShieldInvestments));
         initFortShield();
         initWalletBalance();
-        initTransactions();
       }
     });
   }
@@ -266,7 +265,6 @@ class WalletCubit extends Cubit<WalletState> {
         emit(state.copyWith(fortCryptoInvestments: fortCryptoInvestments));
         initFortCrypto();
         initWalletBalance();
-        initTransactions();
       }
     });
   }
