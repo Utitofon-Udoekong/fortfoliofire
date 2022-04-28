@@ -4,10 +4,8 @@ import 'package:fortfolio/application/auth/sign_up_form/phone/sign_up_form_phone
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/core/validator_helpers.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
-import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/domain/widgets/loading_view.dart';
-import 'package:fortfolio/injection.dart';
 
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
@@ -101,27 +99,9 @@ class _SignUpFormPhoneState extends State<SignUpFormPhone> {
                                   );
                                 },
                               ),
-                              BlocBuilder<SignUpFormPhoneCubit,
-                                  SignUpFormPhoneState>(
-                                builder: (context, state) {
-                                  return TextFormField(
-                                    decoration: const InputDecoration(
-                                      border: InputBorder.none,
-                                      filled: true,
-                                      fillColor: Color(0xFFF3F6F8),
-                                    ),
-                                    onChanged: (value) => context
-                                        .read<SignUpFormPhoneCubit>()
-                                        .verificationIdChanged(
-                                            verificationId:
-                                                value),
-                                  );
-                                },
-                              ),
                               const SizedBox(
                                 height: 30,
                               ),
-                              CustomFilledButton(text: "to otp", onTap: () => context.router.push(const ConfirmSignupEngineRoute())),
                               BlocSelector<SignUpFormPhoneCubit,
                                   SignUpFormPhoneState, bool>(
                                 selector: (state) {

@@ -89,7 +89,7 @@ class ConfirmLoginWithOTP extends StatelessWidget {
                                 borderColor: kgreyColor,
                                 focusBorderColor: kPrimaryColor),
                             keyboardType: TextInputType.number,
-                            onChanged: (value) => context
+                            onCompleted: (value) => context
                                 .read<SignInFormPhoneCubit>()
                                 .smsCodeChanged(smsCode: value),
                           );

@@ -4,7 +4,6 @@ import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/application/auth/sign_up_form/email/sign_up_form_cubit.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
-import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/domain/widgets/loading_view.dart';
 import 'package:fortfolio/injection.dart';
@@ -273,8 +272,6 @@ class SignUpForm extends StatelessWidget {
                                   );
                                 },
                               ),
-                              CustomFilledButton(text: "to otp", onTap: () => context.router.push(const ConfirmSignupEngineRoute())),
-                              CustomFilledButton(text: "to phone", onTap: () => context.router.push(const SignUpFormPhoneRoute())),
                               const SizedBox(
                                 height: 30,
                               ),

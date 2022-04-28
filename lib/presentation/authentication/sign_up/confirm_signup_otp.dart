@@ -91,7 +91,7 @@ class ConfirmSignupWithOTP extends StatelessWidget {
                                 borderColor: kgreyColor,
                                 focusBorderColor: kPrimaryColor),
                             keyboardType: TextInputType.number,
-                            onChanged: (value) => context
+                            onCompleted: (value) => context
                                 .read<SignUpFormPhoneCubit>()
                                 .smsCodeChanged(smsCode: value),
                           );
@@ -99,15 +99,6 @@ class ConfirmSignupWithOTP extends StatelessWidget {
                       ),
                       const SizedBox(
                         height: 20,
-                      ),
-                      BlocSelector<SignUpFormPhoneCubit, SignUpFormPhoneState,
-                          String>(
-                        selector: (state) {
-                          return state.smsCode;
-                        },
-                        builder: (context, smsCode) {
-                          return Text(smsCode);
-                        },
                       ),
                       BlocSelector<SignUpFormPhoneCubit, SignUpFormPhoneState,
                           bool>(
