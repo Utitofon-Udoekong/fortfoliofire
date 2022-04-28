@@ -17,7 +17,8 @@ class InvestmentSuccess extends StatelessWidget {
         .select((AuthCubit element) => element.state.userModel.firstName);
     final lastName =
         context.select((AuthCubit element) => element.state.userModel.lastName);
-    return SafeArea(
+    return Scaffold(
+      body: SafeArea(
       child: Padding(
         padding: kDefaultPadding,
         child: Column(
@@ -47,11 +48,14 @@ class InvestmentSuccess extends StatelessWidget {
                 onTap: () {
                   context.read<InvestmentCubit>().reset();
                   context.read<InvestmentCubit>().close();
-                  context.router.push(const InvestmentPageRoute());
+                  context.pushRoute(const HomePageRoute(children: [
+                    InvestmentPageRoute()
+                  ]));
                 })
           ],
         ),
       ),
+    ),
     );
   }
 }
