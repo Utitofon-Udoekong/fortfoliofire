@@ -16,8 +16,8 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     WidgetsBinding.instance!.addPostFrameCallback((_) {
-      context.read<AuthCubit>().getUser();
-      final bool isLoggedIn = context.read<AuthCubit>().state.isUserCheckedFromAuthFacade;
+      // context.read<AuthCubit>().getUser();
+      final bool isLoggedIn = context.read<AuthCubit>().state.isloggedIn;
       if (isLoggedIn) {
         Future.delayed(const Duration(seconds: 2),() {
           context.router.replace(const HomePageRoute());
