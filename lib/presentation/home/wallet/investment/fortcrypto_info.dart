@@ -32,7 +32,7 @@ class FortCryptoInvestmentInfo extends StatelessWidget {
                   child: const Icon(Icons.close),
                 ),
                 Text(
-                  "Fortcrytpo",
+                  "Fortcrypto",
                   style: titleText.copyWith(
                       fontSize: 18, fontWeight: FontWeight.w700),
                   textAlign: TextAlign.center,
@@ -73,7 +73,7 @@ class FortCryptoInvestmentInfo extends StatelessWidget {
                               investmentToBeWithdrawn:
                                   activeInvestments[index]);
                       context.router.push(const WithdrawalPageRoute());
-                    });
+                    },activeInvestments[index].status == "Pending");
                   }),
                 ),
               ),
@@ -92,7 +92,7 @@ class FortCryptoInvestmentInfo extends StatelessWidget {
   }
 }
 
-Widget buildTile(String title, String amount, Function() ontap) {
+Widget buildTile(String title, String amount, Function() ontap, bool pending) {
   return Container(
       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 8),
       decoration: BoxDecoration(
@@ -116,17 +116,17 @@ Widget buildTile(String title, String amount, Function() ontap) {
             ],
           ),
           GestureDetector(
-            onTap: ontap,
+            onTap: pending ? null : ontap,
             child: Container(
               alignment: Alignment.center,
               height: 48,
               width: 100,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: kPrimaryColor,
+                color: pending ? const Color.fromRGBO(3, 66, 109, 0.65) : kPrimaryColor,
               ),
               child: Text(
-                'Withdraw',
+                pending ? 'Pending' : 'Withdraw',
                 style: textButton.copyWith(color: kWhiteColor, fontSize: 15),
               ),
             ),

@@ -230,7 +230,7 @@ class WalletOverview extends StatelessWidget {
                   visible: state.isFortDollarActive,
                   child: buildcard('FortDollar', 'fortdollar', () {
                     context.router.push(const FortDollarInvestmentInfoRoute());
-                  }, fortDollarBalance.toString(), state.showDigits,fortDollarYield.toString(),)
+                  }, "\$$fortDollarBalance", state.showDigits,"\$$fortDollarYield",)
                 );
               },
             ),
@@ -243,7 +243,7 @@ class WalletOverview extends StatelessWidget {
                   visible: state.isFortCryptoActive,
                   child: buildcard('FortCrypto', 'fortcrypto', () {
                     context.router.push(const FortCryptoInvestmentInfoRoute());
-                  }, fortCryptoBalance.toString(), state.showDigits, fortCryptoYield.toString()),
+                  }, "\$$fortCryptoBalance", state.showDigits, "\$$fortCryptoYield"),
                 );
               },
             ),
@@ -256,7 +256,7 @@ class WalletOverview extends StatelessWidget {
                   visible: state.isFortShieldActive,
                   child: buildcard('FortShield', 'fortshield', () {
                     context.router.push(const FortShieldInvestmentInfoRoute());
-                  }, fortShieldBalance.toString(), state.showDigits, fortShieldYield.toString()),
+                  }, "N$fortShieldBalance", state.showDigits, "N$fortShieldYield"),
                 );
               },
             ),
@@ -320,12 +320,12 @@ class WalletOverview extends StatelessWidget {
             showDigits
                 ? Flex(direction: Axis.vertical, children: [
                   Text(
-                    '\$$balance',
+                    balance,
                     style: titleText.copyWith(fontSize: 14),
                   ),
                   const SizedBox(height: 8,),
                   Text(
-                    '\$$yield',
+                    yield,
                     style: subTitle.copyWith(fontSize: 14, color: kBlackColor),
                   ),
                 ],)

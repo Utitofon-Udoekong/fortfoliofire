@@ -12,6 +12,7 @@ import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:intl/intl.dart';
 
 class WalletTransactions extends StatelessWidget {
   const WalletTransactions({Key? key}) : super(key: key);
@@ -24,6 +25,7 @@ class WalletTransactions extends StatelessWidget {
       'images/blank-wallet.svg',
       semanticsLabel: 'Blank Wallet',
     );
+    final formatter = NumberFormat("#,##0.00", "en_US");
     ScreenshotController screenshotController = ScreenshotController();
     double pixelRatio = MediaQuery.of(context).devicePixelRatio;
     return Scaffold(
@@ -58,108 +60,105 @@ class WalletTransactions extends StatelessWidget {
                 ),
               )
             : SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: transactions.map((document) {
-                        // withdrawal variables
-                        String withDescription = "";
-                        int withAmount = 0;
-                        String withStatus = "";
-                        String withId = "";
-                        String withPaymentMethod = "";
-                        String withCurrency = "\$";
-                        DateTime withcreatedat = DateTime.now();
-                        int withduration = 0;
-                        int withroi = 0;
+              child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: transactions.map((document) {
+                      // withdrawal variables
+                      String withDescription = "";
+                      int withAmount = 0;
+                      String withStatus = "";
+                      String withId = "";
+                      String withPaymentMethod = "";
+                      String withCurrency = "\$";
+                      DateTime withcreatedat = DateTime.now();
+                      int withduration = 0;
+                      int withroi = 0;
 
-                        // investment variables
-                        String invDescription = "";
-                        int invAmount = 0;
-                        String invStatus = "";
-                        String invId = "";
-                        String invCurrency = "\$";
-                        String invPaymentMethod = "";
-                        DateTime invcreatedat = DateTime.now();
-                        double invduration = 0.0;
-                        int invroi = 0;
+                      // investment variables
+                      String invDescription = "";
+                      int invAmount = 0;
+                      String invStatus = "";
+                      String invId = "";
+                      String invCurrency = "\$";
+                      String invPaymentMethod = "";
+                      DateTime invcreatedat = DateTime.now();
+                      double invduration = 0.0;
+                      int invroi = 0;
 
-                        if (document.investmentItem != null &&
-                            document.withdrawalItem == null) {
-                          invDescription = document.investmentItem!.description;
-                          invAmount = document.investmentItem!.amount;
-                          invStatus = document.investmentItem!.status;
-                          invId = document.investmentItem!.traxId;
-                          invCurrency = document.investmentItem!.currency;
-                          invPaymentMethod =
-                              document.investmentItem!.paymentMethod;
-                          invcreatedat = document.investmentItem!.paymentDate;
-                          invduration = document.investmentItem!.duration;
-                          invroi = document.investmentItem!.roi;
-                        } else if (document.withdrawalItem != null &&
-                            document.investmentItem == null) {
-                          withDescription =
-                              document.withdrawalItem!.description;
-                          withAmount = document.withdrawalItem!.amount;
-                          withStatus = document.withdrawalItem!.status;
-                          withId = document.withdrawalItem!.traxId;
-                          withCurrency = document.withdrawalItem!.currency;
-                          withPaymentMethod =
-                              document.withdrawalItem!.paymentMethod;
-                          withcreatedat = document.withdrawalItem!.createdat;
-                          withduration = document.withdrawalItem!.duration;
-                          withroi = document.withdrawalItem!.roi;
-                        }
+                      if (document.investmentItem != null &&
+                          document.withdrawalItem == null) {
+                        invDescription = document.investmentItem!.description;
+                        invAmount = document.investmentItem!.amount;
+                        invStatus = document.investmentItem!.status;
+                        invId = document.investmentItem!.traxId;
+                        invCurrency = document.investmentItem!.currency;
+                        invPaymentMethod =
+                            document.investmentItem!.paymentMethod;
+                        invcreatedat = document.investmentItem!.paymentDate;
+                        invduration = document.investmentItem!.duration;
+                        invroi = document.investmentItem!.roi;
+                      } else if (document.withdrawalItem != null &&
+                          document.investmentItem == null) {
+                        withDescription =
+                            document.withdrawalItem!.description;
+                        withAmount = document.withdrawalItem!.amount;
+                        withStatus = document.withdrawalItem!.status;
+                        withId = document.withdrawalItem!.traxId;
+                        withCurrency = document.withdrawalItem!.currency;
+                        withPaymentMethod =
+                            document.withdrawalItem!.paymentMethod;
+                        withcreatedat = document.withdrawalItem!.createdat;
+                        withduration = document.withdrawalItem!.duration;
+                        withroi = document.withdrawalItem!.roi;
+                      }
 
-                        return document.withdrawalItem != null
-                            ? buildWithdrawalTile(
-                                amount: withAmount.toString(),
-                                date: withcreatedat,
-                                duration: withduration,
-                                id: withId,
-                                paymentMethod: withPaymentMethod,
-                                status: withStatus,
-                                roi: withroi,
-                                title: withDescription,
-                                context: context,
-                                currency: withCurrency,
-                                screenshotController: screenshotController,
-                                ontap: () async {
-                                  await screenshotController.capture(pixelRatio: pixelRatio,delay: const Duration(milliseconds: 10)).then((Uint8List? image) async {
-                                    if (image != null) {
-                                      final directory = await getApplicationDocumentsDirectory();
-                                      final imagePath = await File('${directory.path}/image.png').create();
-                                      await imagePath.writeAsBytes(image);
-                                      await Share.shareFiles([imagePath.path]);
-                                    }
-                                  });
-                                })
-                            : buildInvestmentTile(
-                                amount: invAmount.toString(),
-                                date: invcreatedat,
-                                duration: invduration,
-                                id: invId,
-                                paymentMethod: invPaymentMethod,
-                                status: invStatus,
-                                roi: invroi,
-                                title: invDescription,
-                                currency: invCurrency,
-                                context: context,
-                                screenshotController: screenshotController,
-                                ontap: () async {
-                                  await screenshotController.capture(pixelRatio: pixelRatio,delay: const Duration(milliseconds: 10)).then((Uint8List? image) async {
-                                    if (image != null) {
-                                      final directory = await getApplicationDocumentsDirectory();
-                                      final imagePath = await File('${directory.path}/image.png').create();
-                                      await imagePath.writeAsBytes(image);
-                                      await Share.shareFiles([imagePath.path]);
-                                    }
-                                  });
+                      return document.withdrawalItem != null
+                          ? buildWithdrawalTile(
+                              amount: formatter.format(withAmount.toString()),
+                              date: withcreatedat,
+                              duration: withduration,
+                              id: withId,
+                              paymentMethod: withPaymentMethod,
+                              status: withStatus,
+                              roi: withroi,
+                              title: withDescription,
+                              context: context,
+                              currency: withCurrency,
+                              screenshotController: screenshotController,
+                              ontap: () async {
+                                await screenshotController.capture(pixelRatio: pixelRatio,delay: const Duration(milliseconds: 10)).then((Uint8List? image) async {
+                                  if (image != null) {
+                                    final directory = await getApplicationDocumentsDirectory();
+                                    final imagePath = await File('${directory.path}/image.png').create();
+                                    await imagePath.writeAsBytes(image);
+                                    await Share.shareFiles([imagePath.path]);
+                                  }
                                 });
-                      }).toList()),
-                ),
-              ));
+                              })
+                          : buildInvestmentTile(
+                              amount: formatter.format(invAmount.toString()),
+                              date: invcreatedat,
+                              duration: invduration,
+                              id: invId,
+                              paymentMethod: invPaymentMethod,
+                              status: invStatus,
+                              roi: invroi,
+                              title: invDescription,
+                              currency: invCurrency,
+                              context: context,
+                              screenshotController: screenshotController,
+                              ontap: () async {
+                                await screenshotController.capture(pixelRatio: pixelRatio,delay: const Duration(milliseconds: 10)).then((Uint8List? image) async {
+                                  if (image != null) {
+                                    final directory = await getApplicationDocumentsDirectory();
+                                    final imagePath = await File('${directory.path}/image.png').create();
+                                    await imagePath.writeAsBytes(image);
+                                    await Share.shareFiles([imagePath.path]);
+                                  }
+                                });
+                              });
+                    }).toList()),
+            ));
   }
 
   Widget buildWithdrawalTile(
@@ -603,7 +602,7 @@ class WalletTransactions extends StatelessWidget {
                   TextSpan(
                       text: "$roi% returns",
                       style: subTitle.copyWith(
-                          fontSize: 12, color: kgreyColor.withOpacity(0.4))),
+                          fontSize: 12)),
                   TextSpan(text: " ● $duration months")
                 ])),
                 const SizedBox(
@@ -611,10 +610,9 @@ class WalletTransactions extends StatelessWidget {
                 ),
                 Text(date.toString(),
                     style: subTitle.copyWith(
-                        fontSize: 12, color: const Color(0XFFD8D8D8))),
+                        fontSize: 12, color: kBlackColor)),
               ],
             ),
-            // Spacer(),
             Flex(
               crossAxisAlignment: CrossAxisAlignment.end,
               direction: Axis.vertical,
@@ -622,13 +620,13 @@ class WalletTransactions extends StatelessWidget {
                 Text(
                   "$currency$amount",
                   style: titleText.copyWith(
-                      fontSize: 20,
+                      fontSize: 17,
                       color: status == "Successful"
                           ? const Color(0XFF00C566)
                           : status == "Pending"
                               ? const Color.fromARGB(239, 226, 167, 4)
                               : const Color(0XFFDF1414),
-                      fontWeight: FontWeight.w700),
+                      fontWeight: FontWeight.w500),
                 ),
                 const SizedBox(
                   height: 8,

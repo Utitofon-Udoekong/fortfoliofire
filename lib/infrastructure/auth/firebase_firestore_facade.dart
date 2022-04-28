@@ -167,7 +167,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
   }
 
   @override
-  Future<Option<List<BankAddress>>> getBankAddress() async {
+  Stream<QuerySnapshot> getBankAddress() async {
     final query = await firestore.authUserCollection
         .doc(auth.currentUser!.uid)
         .collection("address")
@@ -193,7 +193,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
   }
 
   @override
-  Future<Option<List<CryptoWallet>>> getCryptoWallets() async {
+  Stream<QuerySnapshot> getCryptoWallets() async {
     final query = await firestore.authUserCollection
         .doc(auth.currentUser!.uid)
         .collection("address")
@@ -219,7 +219,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
   }
 
   @override
-  Future<Option<List<CryptoWallet>>> getGeneralCryptoWallets() async {
+  Stream<QuerySnapshot> getGeneralCryptoWallets() async {
     final query = await firestore.authUserCollection
         .doc(auth.currentUser!.uid)
         .collection("address")
