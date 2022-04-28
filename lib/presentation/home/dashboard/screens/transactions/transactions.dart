@@ -114,7 +114,7 @@ class DashboardTransactions extends StatelessWidget {
 
                       return document.withdrawalItem != null
                           ? buildWithdrawalTile(
-                              amount: formatter.format(withAmount.toString()),
+                              amount: formatter.format(withAmount),
                               date: withcreatedat,
                               duration: withduration,
                               id: withId,
@@ -136,7 +136,7 @@ class DashboardTransactions extends StatelessWidget {
                                 });
                               })
                           : buildInvestmentTile(
-                              amount: formatter.format(invAmount.toString()),
+                              amount: formatter.format(invAmount),
                               date: invcreatedat,
                               duration: invduration,
                               id: invId,

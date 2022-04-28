@@ -5,12 +5,14 @@ import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_outlined_button.dart';
 import 'package:fortfolio/presentation/home/wallet/cubit/wallet_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
+import 'package:intl/intl.dart';
 
 class FortDollarInvestmentInfo extends StatelessWidget {
   const FortDollarInvestmentInfo({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final formatter = NumberFormat("#,##0.00", "en_US");
     final balance = context.select((WalletCubit walletCubit) =>
         walletCubit.state.fortDollarInvestmentBalance);
     final yield = context.select(
@@ -66,7 +68,7 @@ class FortDollarInvestmentInfo extends StatelessWidget {
                   itemBuilder: ((context, index) {
                     return buildTile(
                         '${activeInvestments[index].planName} / ${activeInvestments[index].duration.toInt()} month(s)',
-                        '\$${activeInvestments[index].amount}', () {
+                        '\$${formatter.format(activeInvestments[index].amount)}', () {
                       context
                           .read<WalletCubit>()
                           .investmentToBeWithdrawnChanged(
