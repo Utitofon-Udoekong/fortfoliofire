@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
+import 'package:intl/intl.dart';
 
 import '../cubit/wallet_cubit.dart';
 
@@ -14,6 +15,7 @@ class WalletOverview extends StatelessWidget {
   Widget build(BuildContext context) {
     final regExp = RegExp(r".");
     final eye = SvgPicture.asset('images/eye.svg', width: 20);
+    final formatter = NumberFormat("#,##0.00", "en_US");
     final fortCryptoBalance = context.select((WalletCubit walletCubit) =>
         walletCubit.state.fortCryptoInvestmentBalance);
     final fortShieldBalance = context.select((WalletCubit walletCubit) =>
@@ -68,7 +70,6 @@ class WalletOverview extends StatelessWidget {
                         height: 10,
                       ),
                       BlocBuilder<WalletCubit, WalletState>(
-                        // buildWhen: (p, c) => p.exchange != c.exchange,
                         builder: (context, state) {
                           if (state.exchange == "NGN") {
                             return state.showDigits
@@ -235,7 +236,7 @@ class WalletOverview extends StatelessWidget {
                         context.router
                             .push(const FortDollarInvestmentInfoRoute());
                       },
-                      "\$$fortDollarBalance",
+                      "\$${formatter.format(fortDollarBalance)}",
                       state.showDigits,
                       "\$$fortDollarYield",
                     ));
@@ -250,7 +251,7 @@ class WalletOverview extends StatelessWidget {
                   visible: state.isFortCryptoActive,
                   child: buildcard('FortCrypto', 'fortcrypto', () {
                     context.router.push(const FortCryptoInvestmentInfoRoute());
-                  }, "\$$fortCryptoBalance", state.showDigits,
+                  }, "\$${formatter.format(fortCryptoBalance)}", state.showDigits,
                       "\$$fortCryptoYield"),
                 );
               },
@@ -264,7 +265,7 @@ class WalletOverview extends StatelessWidget {
                   visible: state.isFortShieldActive,
                   child: buildcard('FortShield', 'fortshield', () {
                     context.router.push(const FortShieldInvestmentInfoRoute());
-                  }, "N$fortShieldBalance", state.showDigits,
+                  }, "N${formatter.format(fortShieldBalance)}", state.showDigits,
                       "N$fortShieldYield"),
                 );
               },

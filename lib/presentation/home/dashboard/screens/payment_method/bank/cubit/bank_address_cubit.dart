@@ -1,6 +1,10 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
 import 'package:fortfolio/domain/user/bank_address.dart';
+import 'package:fortfolio/infrastructure/auth/dto/bank_address/bank_address_dto.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:nanoid/nanoid.dart';
@@ -11,13 +15,21 @@ part 'bank_address_cubit.freezed.dart';
 @injectable
 class BankAddressCubit extends Cubit<BankAddressState> {
   final IFirestoreFacade firestoreFacade;
+  StreamSubscription<QuerySnapshot>? _logsBankAddressSubscription;
   BankAddressCubit(this.firestoreFacade) : super(BankAddressState.initial()){
     initBank();
   }
-  void initBank() async {
-    final addresses = await firestoreFacade.getBankAddress();
-    addresses.fold(() => null, (addressList){
-      emit(state.copyWith(bankAddresses: addressList));
+  void initBank() {
+    _logsBankAddressSubscription = firestoreFacade.getBankAddress().listen((data) { 
+      final List<QueryDocumentSnapshot<Object?>> docs = data.docs;
+      List<BankAddress> bankAddresses = [];
+      if(data.size > 0){
+        for (var element in docs){
+          final doc = BankAddressDTO.fromFirestore(element).toDomain();
+          bankAddresses.add(doc);
+        }
+        emit(state.copyWith(bankAddresses: bankAddresses));
+      }
     });
   }
   void userNameChanged({required String userName}){

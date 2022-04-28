@@ -86,8 +86,7 @@ class NairaAccount extends StatelessWidget {
                                   '\$',
                                   style: subTitle.copyWith(
                                       color: kBlackColor,
-                                      fontSize: 14,
-                                      decoration: TextDecoration.lineThrough),
+                                      fontSize: 14),
                                 ),
                                 Text(
                                   exchangeType == "USD"

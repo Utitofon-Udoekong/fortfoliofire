@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
@@ -100,83 +101,83 @@ class FortCryptoInvestment extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                Expanded(
-                    child: Container(
-                  child:
-                    InAppWebView(
-                      initialUrlRequest: URLRequest(
-                          url: Uri.parse("https://www.youtube.com/")),
-                      initialOptions: options,
-                      onWebViewCreated: (InAppWebViewController controller) {
-                        _webViewController = controller;
-                      },
-                      onReceivedServerTrustAuthRequest:
-                          (controller, challenge) async {
-                        return ServerTrustAuthResponse(
-                            action: ServerTrustAuthResponseAction.PROCEED);
-                      },
-                    ),
-                )),
-                // BlocBuilder<InvestmentCubit, InvestmentState>(
-                //   buildWhen: (p, c) => p.amountInvested != c.amountInvested,
-                //   builder: (context, state) {
-                //     return ClipRRect(
-                //       borderRadius: BorderRadius.circular(10),
-                //       child: TextFormField(
-                //         autocorrect: false,
-                //         keyboardType: TextInputType.number,
-                //         inputFormatters: [
-                //           FilteringTextInputFormatter.digitsOnly
-                //         ],
-                //         textInputAction: TextInputAction.next,
-                //         autovalidateMode: AutovalidateMode.onUserInteraction,
-                //         decoration: InputDecoration(
-                //           filled: true,
-                //           fillColor: const Color(0xFFF3F6F8),
-                //           border: InputBorder.none,
-                //           suffix: DropdownButton<String>(
-                //             isDense: true,
-                //               value: state.coin,
-                //               items: <String>[
-                //                 'BTC',
-                //                 'BCH',
-                //                 'ETH',
-                //                 'LTC',
-                //                 'BNB',
-                //                 'SOL',
-                //                 'LUNA',
-                //                 'ALGO',
-                //                 'XRP'
-                //               ].map<DropdownMenuItem<String>>((String value) {
-                //                 return DropdownMenuItem<String>(
-                //                   value: value,
-                //                   child: Text(value),
-                //                 );
-                //               }).toList(),
-                //               onChanged: (coin) {
-                //                 context
-                //                     .read<InvestmentCubit>()
-                //                     .coinChanged(coin: coin!);
-                //               }),
-                //           suffixStyle: TextStyle(
-                //               color: Colors.grey.shade400, fontSize: 13),
-                //         ),
-                //         onChanged: (value) => context
-                //             .read<InvestmentCubit>()
-                //             .amountInvestedChanged(
-                //                 amountInvested: int.parse(value)),
-                //         validator: (String? value) =>
-                //             int.tryParse(value!) == null
-                //                 ? 'Field cannot be empty'
-                //                 : int.parse(value) < state.baseAmount
-                //                     ? 'Minimum investment is \$1,000'
-                //                     : int.parse(value).isNaN
-                //                         ? 'Invalid amount'
-                //                         : null,
-                //       ),
-                //     );
-                //   },
-                // ),
+                // Expanded(
+                //     child: Container(
+                //   child:
+                //     InAppWebView(
+                //       initialUrlRequest: URLRequest(
+                //           url: Uri.parse("https://www.youtube.com/")),
+                //       initialOptions: options,
+                //       onWebViewCreated: (InAppWebViewController controller) {
+                //         _webViewController = controller;
+                //       },
+                //       onReceivedServerTrustAuthRequest:
+                //           (controller, challenge) async {
+                //         return ServerTrustAuthResponse(
+                //             action: ServerTrustAuthResponseAction.PROCEED);
+                //       },
+                //     ),
+                // )),
+                BlocBuilder<InvestmentCubit, InvestmentState>(
+                  buildWhen: (p, c) => p.amountInvested != c.amountInvested,
+                  builder: (context, state) {
+                    return ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: TextFormField(
+                        autocorrect: false,
+                        keyboardType: TextInputType.number,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
+                        textInputAction: TextInputAction.next,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: const Color(0xFFF3F6F8),
+                          border: InputBorder.none,
+                          suffix: DropdownButton<String>(
+                            isDense: true,
+                              value: state.coin,
+                              items: <String>[
+                                'BTC',
+                                'BCH',
+                                'ETH',
+                                'LTC',
+                                'BNB',
+                                'SOL',
+                                'LUNA',
+                                'ALGO',
+                                'XRP'
+                              ].map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                              onChanged: (coin) {
+                                context
+                                    .read<InvestmentCubit>()
+                                    .coinChanged(coin: coin!);
+                              }),
+                          suffixStyle: TextStyle(
+                              color: Colors.grey.shade400, fontSize: 13),
+                        ),
+                        onChanged: (value) => context
+                            .read<InvestmentCubit>()
+                            .amountInvestedChanged(
+                                amountInvested: int.parse(value)),
+                        validator: (String? value) =>
+                            int.tryParse(value!) == null
+                                ? 'Field cannot be empty'
+                                : int.parse(value) < state.baseAmount
+                                    ? 'Minimum investment is \$1,000'
+                                    : int.parse(value).isNaN
+                                        ? 'Invalid amount'
+                                        : null,
+                      ),
+                    );
+                  },
+                ),
 
                 const SizedBox(
                   height: 20,

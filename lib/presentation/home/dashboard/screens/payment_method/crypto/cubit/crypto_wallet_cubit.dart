@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:fortfolio/infrastructure/auth/dto/crypto_address/crypto_address.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
 import 'package:fortfolio/domain/user/crypto_wallet.dart';
@@ -7,6 +9,7 @@ import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/cry
 import 'package:injectable/injectable.dart';
 import 'package:nanoid/nanoid.dart';
 import 'package:uuid/uuid.dart';
+import 'dart:async';
 
 
 part 'crypto_wallet_state.dart';
@@ -15,21 +18,38 @@ part 'crypto_wallet_cubit.freezed.dart';
 @injectable
 class CryptoWalletCubit extends Cubit<CryptoWalletState> {
   final IFirestoreFacade firestoreFacade;
+  StreamSubscription<QuerySnapshot>? _logsCryptoAddressSubscription;
+  StreamSubscription<QuerySnapshot>? _logsGeneralCryptoAddressSubscription;
   CryptoWalletCubit(this.firestoreFacade) : super(CryptoWalletState.empty());
 
-  void initCryptoWallet() async {
-    var wallet = await firestoreFacade.getCryptoWallets();
-    wallet.fold(() => null, (cryptoAddresses) {
-      emit(state.copyWith(cryptoAddresses: cryptoAddresses));
-    });
+  void initCryptoWallet() {
+    _logsCryptoAddressSubscription = firestoreFacade.getCryptoWallets().listen((data) {
+      final List<QueryDocumentSnapshot<Object?>> docs = data.docs;
+      List<CryptoWallet> cryptoAddresses = [];
+      if(data.size > 0){
+        for (var element in docs){
+          final doc = CryptoWalletDTO.fromFirestore(element).toDomain();
+          cryptoAddresses.add(doc);
+        }
+        emit(state.copyWith(cryptoAddresses: cryptoAddresses));
+      }
+     });
   }
 
-  void initGeneralCryptoWallet() async {
-    var wallet = await firestoreFacade.getGeneralCryptoWallets();
-    wallet.fold(() => null, (generalCryptoAddresses) {
-      emit(state.copyWith(generalCryptoAddresses: generalCryptoAddresses));
-    });
+  void initGeneralCryptoWallet() {
+    _logsGeneralCryptoAddressSubscription = firestoreFacade.getCryptoWallets().listen((data) {
+      final List<QueryDocumentSnapshot<Object?>> docs = data.docs;
+      List<CryptoWallet> generalCryptoAddresses = [];
+      if(data.size > 0){
+        for (var element in docs){
+          final doc = CryptoWalletDTO.fromFirestore(element).toDomain();
+          generalCryptoAddresses.add(doc);
+        }
+        emit(state.copyWith(generalCryptoAddresses: generalCryptoAddresses));
+      }
+     });
   }
+
 
   void coinChanged({required String coin}){
     emit(state.copyWith(coin: coin));
