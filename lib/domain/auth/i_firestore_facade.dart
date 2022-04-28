@@ -16,9 +16,9 @@ abstract class IFirestoreFacade {
   Future<Either<String,String>> addCryptoWallet({required CryptoWallet cryptoWallet});
   Future<Either<String,String>> addGeneralCryptoWallet({required CryptoWallet cryptoWallet});
   Stream<QuerySnapshot> getNotifications();
-  Future<Option<List<BankAddress>>> getBankAddress();
-  Future<Option<List<CryptoWallet>>> getCryptoWallets();
-  Future<Option<List<CryptoWallet>>> getGeneralCryptoWallets();
+  Stream<QuerySnapshot> getBankAddress();
+  Stream<QuerySnapshot> getCryptoWallets();
+  Stream<QuerySnapshot> getGeneralCryptoWallets();
   // Future<Option<List<InvestmentItem>>> getInvestments();
   Stream<QuerySnapshot> getFortShieldInvestments();
   Stream<QuerySnapshot> getFortDollarInvestments();

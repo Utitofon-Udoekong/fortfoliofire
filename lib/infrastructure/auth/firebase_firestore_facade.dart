@@ -251,23 +251,6 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
         .collection("investments")
         .where("planName", isEqualTo: "FortDollar")
         .snapshots();
-    // try {
-    //   if (query.docs.isNotEmpty && query.docs[0].exists) {
-    //     final docs = query.docs;
-    //     var newDocs = List<InvestmentItem>.empty();
-    //     for (var element in docs) {
-    //       final doc = InvestmentItemDTO.fromFirestore(element).toDomain();
-    //       newDocs.add(doc);
-    //     }
-    //     return some(newDocs);
-    //   } else {
-    //     log("authh getDatabaseUserWithPhoneNumber DOES NOT EXIST");
-    //     return none();
-    //   }
-    // } on FirebaseException catch (e) {
-    //   log("Code: ${e.code}, Message: ${e.message}");
-    //   return none();
-    // }
   }
 
   @override
@@ -277,23 +260,6 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
         .collection("investments")
         .where("planName", isEqualTo: "FortCrypto")
         .snapshots();
-    // try {
-    //   if (query.docs.isNotEmpty && query.docs[0].exists) {
-    //     final docs = query.docs;
-    //     var newDocs = List<InvestmentItem>.empty();
-    //     for (var element in docs) {
-    //       final doc = InvestmentItemDTO.fromFirestore(element).toDomain();
-    //       newDocs.add(doc);
-    //     }
-    //     return some(newDocs);
-    //   } else {
-    //     log("authh getDatabaseUserWithPhoneNumber DOES NOT EXIST");
-    //     return none();
-    //   }
-    // } on FirebaseException catch (e) {
-    //   log("Code: ${e.code}, Message: ${e.message}");
-    //   return none();
-    // }
   }
 
   @override
@@ -303,23 +269,6 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
         .collection("investments")
         .where("planName", isEqualTo: "FortShield")
         .snapshots();
-    // try {
-    //   if (query.docs.isNotEmpty && query.docs[0].exists) {
-    //     final docs = query.docs;
-    //     var newDocs = List<InvestmentItem>.empty();
-    //     for (var element in docs) {
-    //       final doc = InvestmentItemDTO.fromFirestore(element).toDomain();
-    //       newDocs.add(doc);
-    //     }
-    //     return some(newDocs);
-    //   } else {
-    //     log("authh getDatabaseUserWithPhoneNumber DOES NOT EXIST");
-    //     return none();
-    //   }
-    // } on FirebaseException catch (e) {
-    //   log("Code: ${e.code}, Message: ${e.message}");
-    //   return none();
-    // }
   }
 
   @override
@@ -328,23 +277,6 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
         .doc(auth.currentUser!.uid)
         .collection("withdrawals")
         .snapshots();
-    // try {
-    //   if (query.docs.isNotEmpty && query.docs[0].exists) {
-    //     var docs = query.docs;
-    //     var newDocs = List<WithdrawalItem>.empty();
-    //     for (var element in docs) {
-    //       final doc = WithdrawalItemDTO.fromFirestore(element).toDomain();
-    //       newDocs.add(doc);
-    //     }
-    //     return some(newDocs);
-    //   } else {
-    //     log("withdrawals DOES NOT EXIST");
-    //     return none();
-    //   }
-    // } on FirebaseException catch (e) {
-    //   log("Code: ${e.code}, Message: ${e.message}");
-    //   return none();
-    // }
   }
 
   @override
