@@ -34,6 +34,7 @@ class DashboardTransactions extends StatelessWidget {
         padding: kDefaultPadding,
         child: SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(
                 height: 20,

@@ -137,10 +137,10 @@ class CryptoInvestmentPage extends StatelessWidget {
                       //   child: CustomFilledButton(
                       //       text: 'I HAVE PAID',
                       //       onTap: () {
-                      //         context
-                      //             .read<InvestmentCubit>()
-                      //             .paymentMethodChanged(
-                      //                 paymentMethod: "Crypto");
+                              // context
+                              //     .read<InvestmentCubit>()
+                              //     .paymentMethodChanged(
+                              //         paymentMethod: "Crypto");
                       //         context.read<InvestmentCubit>().iHavePaid();
                       //       }),
                       // )
