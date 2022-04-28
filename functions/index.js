@@ -110,7 +110,7 @@ exports.createCharge = functions.https.onRequest((req, res) => {
   exports.webhookHandler = functions.https.onRequest(async (req, res) => {
     const rawBody = req.rawBody;
     const signature = req.headers['x-cc-webhook-signature'];
-    const webhookSecret = '4cc46b29-bcbb-44d1-9048-3deb66047be5';
+    const webhookSecret = 'webhookSecret';
   
     try {
       const event = Webhook.verifyEventBody(rawBody, signature, webhookSecret);

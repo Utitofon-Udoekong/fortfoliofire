@@ -2,13 +2,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
-import 'package:fortfolio/infrastructure/auth/api_method.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:timelines/timelines.dart';
-
 import 'package:fortfolio/domain/constants/order.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
@@ -27,18 +24,7 @@ class FortCryptoInvestment extends StatelessWidget {
         context.select((InvestmentCubit element) => element.state.duration);
     final endDate = Jiffy(DateTime.now()).add(months: duration.toInt()).yMMMMd;
     
-    InAppWebViewController _webViewController;
-    InAppWebViewGroupOptions options = InAppWebViewGroupOptions(
-        crossPlatform: InAppWebViewOptions(
-          useShouldOverrideUrlLoading: true,
-          mediaPlaybackRequiresUserGesture: false,
-        ),
-        android: AndroidInAppWebViewOptions(
-          useHybridComposition: true,
-        ),
-        ios: IOSInAppWebViewOptions(
-          allowsInlineMediaPlayback: true,
-        ));
+    
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -101,23 +87,6 @@ class FortCryptoInvestment extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                // Expanded(
-                //     child: Container(
-                //   child:
-                //     InAppWebView(
-                //       initialUrlRequest: URLRequest(
-                //           url: Uri.parse("https://www.youtube.com/")),
-                //       initialOptions: options,
-                //       onWebViewCreated: (InAppWebViewController controller) {
-                //         _webViewController = controller;
-                //       },
-                //       onReceivedServerTrustAuthRequest:
-                //           (controller, challenge) async {
-                //         return ServerTrustAuthResponse(
-                //             action: ServerTrustAuthResponseAction.PROCEED);
-                //       },
-                //     ),
-                // )),
                 BlocBuilder<InvestmentCubit, InvestmentState>(
                   buildWhen: (p, c) => p.amountInvested != c.amountInvested,
                   builder: (context, state) {
