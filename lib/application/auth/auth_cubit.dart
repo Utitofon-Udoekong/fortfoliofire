@@ -10,17 +10,25 @@ import 'package:injectable/injectable.dart';
 part 'auth_state.dart';
 part 'auth_cubit.freezed.dart';
 
-
 @lazySingleton
 class AuthCubit extends Cubit<AuthState> {
   late final IAuthFacade _authFacade;
 
   ///The stream subscription for listening to the auth state changes
-  late StreamSubscription<AuthUserModel>? _authUserSubscription;
+  StreamSubscription<AuthUserModel>? _authUserSubscription;
   AuthCubit() : super(AuthState.empty()) {
     _authFacade = getIt<IAuthFacade>();
-    _authUserSubscription =
-        _authFacade.authStateChanges.listen(listenAuthStateChangesStream);
+    _authUserSubscription = _authFacade.authStateChanges.listen((event) {
+      if (event != AuthUserModel.empty()) {
+        listenAuthStateChangesStream(event);
+      } else {
+        emit(
+          state.copyWith(
+            isUserCheckedFromAuthFacade: false,
+          ),
+        );
+      }
+    });
   }
   @override
   Future<void> close() async {
@@ -30,13 +38,13 @@ class AuthCubit extends Cubit<AuthState> {
 
   getUser() async {
     final userId = _authFacade.getUserId();
-    if(userId.isNotEmpty){
+    if (userId.isNotEmpty) {
       final userModel = await _authFacade.getDatabaseUser(id: userId);
       userModel.fold(() => null, (authUser) {
         listenAuthStateChangesStream(authUser);
         loggedInChanged(loggedIn: true);
       });
-    }else{
+    } else {
       loggedInChanged(loggedIn: false);
     }
   }
@@ -50,13 +58,13 @@ class AuthCubit extends Cubit<AuthState> {
     );
   }
 
-  void loggedInChanged({required bool loggedIn}){
+  void loggedInChanged({required bool loggedIn}) {
     emit(state.copyWith(isloggedIn: loggedIn));
   }
 
   Future<void> signOut() async {
     await _authFacade.signOut();
-    emit(state.copyWith(isloggedIn: false));  
+    emit(state.copyWith(isloggedIn: false));
   }
 }
 

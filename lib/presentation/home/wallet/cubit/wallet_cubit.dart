@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
+import 'package:async/async.dart' show StreamGroup;
 
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -35,14 +36,12 @@ class WalletCubit extends Cubit<WalletState> {
     initInvestments();
     initWithdrawals();
     initWalletBalance();
-    initTransactions();
   }
 
   void initInvestments(){
     initFortDollarInvestments();
     initFortShieldInvestments();
     initFortCryptoInvestments();
-    initTransactions();
   }
 
   void investmentPlanChanged({required String investmentPlan}) {
@@ -331,6 +330,7 @@ class WalletCubit extends Cubit<WalletState> {
         emit(state.copyWith(failure: failure));
       }, (success){
         emit(state.copyWith(success: success));
+        initTransactions();
       });
     } catch (e) {
       log(e.toString());

@@ -31,8 +31,16 @@ class FirebaseAuthFacade implements IAuthFacade {
           // The user is signed out
           return AuthUserModel.empty();
         } else {
-          // The user is logged in
-          return user.toDomain();
+          AuthUserModel userD = AuthUserModel.empty();
+          final Stream<DocumentSnapshot> snapshots = firestore.authUserCollection.doc(user.uid).snapshots();
+          snapshots.map((e) {
+            if (e.data() == null) {
+              return AuthUserModel.empty();
+            }
+            final user = AuthUserModelDto.fromFirestore(e).toDomain();
+            return userD = user;
+          });
+          return userD;
         }
       },
     );

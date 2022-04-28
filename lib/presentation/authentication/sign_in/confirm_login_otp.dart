@@ -70,7 +70,7 @@ class ConfirmLoginWithOTP extends StatelessWidget {
                       ),
                       Text(
                         'We sent an OTP to the number $phoneNumber',
-                        style: titleText.copyWith(fontSize: 20),
+                        style: titleText.copyWith(fontSize: 24),
                       ),
                       const SizedBox(
                         height: 50,
@@ -101,15 +101,15 @@ class ConfirmLoginWithOTP extends StatelessWidget {
                       BlocSelector<SignInFormPhoneCubit, SignInFormPhoneState,
                           bool>(
                         selector: (state) {
-                          return state.phoneNumber.isNotEmpty;
+                          return state.phoneNumber.isEmpty;
                         },
-                        builder: (context, validPhone) {
+                        builder: (context, inValidPhone) {
                           return CustomAuthFilledButton(
                             text: "VERIFY",
                             onTap: () => context
                                 .read<SignInFormPhoneCubit>()
                                 .verifySmsCode(),
-                            disabled: validPhone,
+                            disabled: inValidPhone,
                           );
                         },
                       ),

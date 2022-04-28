@@ -54,7 +54,7 @@ class MainDrawer extends StatelessWidget {
                     '$firstName $lastName',
                     style: titleText.copyWith(
                         color: Colors.white,
-                        fontSize: 25,
+                        fontSize: 20,
                         fontWeight: FontWeight.w500),
                   ),
                 ),
