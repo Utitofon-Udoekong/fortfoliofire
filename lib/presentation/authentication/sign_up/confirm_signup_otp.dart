@@ -22,6 +22,8 @@ class ConfirmSignupWithOTP extends StatelessWidget {
   Widget build(BuildContext context) {
     final phoneNumber = context.select(
         (SignUpFormPhoneCubit phoneCubit) => phoneCubit.state.phoneNumber);
+    final verificationId = context.select(
+        (SignUpFormPhoneCubit phoneCubit) => phoneCubit.state.verificationId);
     return Scaffold(
       body: MultiBlocListener(
         listeners: [
@@ -69,7 +71,7 @@ class ConfirmSignupWithOTP extends StatelessWidget {
                         height: 20,
                       ),
                       Text(
-                        'We sent an OTP to the number $phoneNumber',
+                        'We sent an OTP to the number $phoneNumber $verificationId',
                         style: titleText,
                       ),
                       const SizedBox(
@@ -97,6 +99,15 @@ class ConfirmSignupWithOTP extends StatelessWidget {
                       ),
                       const SizedBox(
                         height: 20,
+                      ),
+                      BlocSelector<SignUpFormPhoneCubit, SignUpFormPhoneState,
+                          String>(
+                        selector: (state) {
+                          return state.smsCode;
+                        },
+                        builder: (context, smsCode) {
+                          return Text(smsCode);
+                        },
                       ),
                       BlocSelector<SignUpFormPhoneCubit, SignUpFormPhoneState,
                           bool>(

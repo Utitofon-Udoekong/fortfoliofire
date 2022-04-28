@@ -12,7 +12,7 @@ class SignUpFormPhoneState with _$SignUpFormPhoneState {
     required bool showErrorMessages,
   }) = _SignUpFormPhoneState;
   const SignUpFormPhoneState._();
-  factory SignUpFormPhoneState.initial() => SignUpFormPhoneState(
+  factory SignUpFormPhoneState.initial() => const SignUpFormPhoneState(
         phoneNumber: "",
         smsCode: "",
         verificationId: "",

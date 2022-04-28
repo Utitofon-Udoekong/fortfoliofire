@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fortfolio/application/auth/sign_in_form/phone/sign_in_form_phone_cubit.dart';
+import 'package:fortfolio/application/auth/sign_up_form/phone/sign_up_form_phone_cubit.dart';
 import 'package:fortfolio/infrastructure/auth/local_auth_api.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/profile/cubit/profile_cubit.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/verification/cubit/verification_cubit.dart';
@@ -119,6 +121,8 @@ class _AppState extends State<App> with WidgetsBindingObserver {
             lazy: false,
           ),
           BlocProvider(create: (context) => getIt<WalletCubit>(), lazy: false),
+          BlocProvider(create: (context) => getIt<SignUpFormPhoneCubit>(), lazy: false),
+          BlocProvider(create: (context) => getIt<SignInFormPhoneCubit>(), lazy: false),
           BlocProvider(create: (context) => getIt<ProfileCubit>(), lazy: false),
           BlocProvider(create: (context) => getIt<VerificationCubit>(), lazy: false),
           BlocProvider(

@@ -3,9 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:fortfolio/application/auth/auth_cubit.dart';
-import 'package:fortfolio/domain/auth/auth_failure.dart';
 import 'package:fortfolio/domain/auth/i_auth_facade.dart';
-import 'package:fortfolio/domain/auth/value_objects.dart';
 import 'package:fortfolio/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -43,6 +41,12 @@ class SignUpFormPhoneCubit extends Cubit<SignUpFormPhoneState> {
     required String phoneNumber,
   }) {
     emit(state.copyWith(phoneNumber: phoneNumber));
+  }
+
+  void verificationIdChanged({
+    required String verificationId,
+  }) {
+    emit(state.copyWith(verificationId: verificationId));
   }
 
   void reset() {
