@@ -35,7 +35,6 @@ class WalletCubit extends Cubit<WalletState> {
   WalletCubit(this.firestoreFacade) : super(WalletState.initial()){
     // initInvestments();
     initWithdrawals();
-    // initWalletBalance();
     initFortDollarInvestments();
     initFortShieldInvestments();
     initFortCryptoInvestments();
@@ -233,6 +232,7 @@ class WalletCubit extends Cubit<WalletState> {
         emit(state.copyWith(fortDollarInvestments: fortDollarInvestments));
         initFortDollar();
         initWalletBalance();
+        initTransactions();
       }
     });
   }
@@ -249,6 +249,7 @@ class WalletCubit extends Cubit<WalletState> {
         emit(state.copyWith(fortShieldInvestments: fortShieldInvestments));
         initFortShield();
         initWalletBalance();
+        initTransactions();
       }
     });
   }
@@ -265,6 +266,7 @@ class WalletCubit extends Cubit<WalletState> {
         emit(state.copyWith(fortCryptoInvestments: fortCryptoInvestments));
         initFortCrypto();
         initWalletBalance();
+        initTransactions();
       }
     });
   }
