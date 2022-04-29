@@ -186,9 +186,9 @@ class ProfilePage extends StatelessWidget {
               child: Text(
                 leading,
                 style: subTitle.copyWith(color: kBlackColor, fontSize: 15),
-                overflow: TextOverflow.ellipsis,
+                overflow: trailexist ? TextOverflow.ellipsis : null,
                 maxLines: 1,
-                softWrap: false,
+                softWrap: trailexist ? false : null,
               ),
             ),
             const Spacer(),

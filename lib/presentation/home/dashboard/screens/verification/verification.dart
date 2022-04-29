@@ -19,33 +19,37 @@ class VerificationPage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
       child: Padding(
-        padding: kDefaultPadding,
-        child: isVerified ? Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            const SizedBox(
-              height: 20,
-            ),
-            InkWell(
-              onTap: () => context.router.pop(),
-              child: const Icon(Icons.close),
-            ),
-            const SizedBox(
-              height: 80,
-            ),
-            svg,
-            const SizedBox(
-              height: 30,
-            ),
-            Center(
-              child: Text(
-                "Account Verified",
-                 style: titleText.copyWith(color: kWhiteColor, fontSize: 18),
-                  textAlign: TextAlign.center
+        padding: isVerified ? const EdgeInsets.all(0.0) : kDefaultPadding,
+        child: isVerified ? Container(
+          decoration: const BoxDecoration(color: kGreenColor),
+          padding: kDefaultPadding,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              const SizedBox(
+                height: 20,
               ),
-            ),
-            
-          ],
+              InkWell(
+                onTap: () => context.router.pop(),
+                child: const Icon(Icons.close),
+              ),
+              const SizedBox(
+                height: 80,
+              ),
+              Center(child: svg),
+              const SizedBox(
+                height: 30,
+              ),
+              Center(
+                child: Text(
+                  "Account Verified",
+                   style: titleText.copyWith(color: kWhiteColor, fontSize: 18),
+                    textAlign: TextAlign.center
+                ),
+              ),
+              
+            ],
+          ),
         ) : Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[

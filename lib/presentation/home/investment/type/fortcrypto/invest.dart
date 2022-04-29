@@ -88,7 +88,6 @@ class FortCryptoInvestment extends StatelessWidget {
                   height: 10,
                 ),
                 BlocBuilder<InvestmentCubit, InvestmentState>(
-                  buildWhen: (p, c) => p.amountInvested != c.amountInvested,
                   builder: (context, state) {
                     return ClipRRect(
                       borderRadius: BorderRadius.circular(10),
