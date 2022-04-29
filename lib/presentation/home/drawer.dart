@@ -121,10 +121,11 @@ class MainDrawer extends StatelessWidget {
             padding: kDefaultPadding,
             child: CustomIconFilledButton(
                 text: 'LOGOUT',
-                onTap: () {
-                  context.router.pop();
-                  context.read<AuthCubit>().signOut();
-                  context.replaceRoute(const OnboardingScreenRoute());
+                onTap: () async {
+                  await context.read<AuthCubit>().signOut().then((_) {
+                    context.router.pop();
+                    context.replaceRoute(const OnboardingScreenRoute());
+                  });
                 },
                 icon: 'images/logout.png'),
           ),

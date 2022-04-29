@@ -42,6 +42,7 @@ class WalletCubit extends Cubit<WalletState> {
     initFortDollarInvestments();
     initFortShieldInvestments();
     initFortCryptoInvestments();
+    initTransactions();
   }
 
   void investmentPlanChanged({required String investmentPlan}) {

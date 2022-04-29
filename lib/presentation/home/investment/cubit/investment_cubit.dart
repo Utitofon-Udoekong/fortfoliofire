@@ -142,7 +142,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
         emit(state.copyWith(isLoading: false, failure: failure));
       }, (success) {
         emit(state.copyWith(isLoading: false, success: success));
-        walletCubit.initTransactions();
+        walletCubit.initInvestments();
       });
     } catch (e) {
       emit(state.copyWith(isLoading: false));

@@ -31,20 +31,12 @@ class FirebaseAuthFacade implements IAuthFacade {
           // The user is signed out
           return AuthUserModel.empty();
         } else {
-          AuthUserModel userD = AuthUserModel.empty();
-          final Stream<DocumentSnapshot> snapshots = firestore.authUserCollection.doc(user.uid).snapshots();
-          snapshots.map((e) {
-            if (e.data() == null) {
-              return AuthUserModel.empty();
-            }
-            final user = AuthUserModelDto.fromFirestore(e).toDomain();
-            return userD = user;
-          });
-          return userD;
+          return user.toDomain();
         }
       },
     );
   }
+
 
   @override
   Stream<AuthUserModel> databaseUserChanges({required String userId}) {
@@ -86,16 +78,18 @@ class FirebaseAuthFacade implements IAuthFacade {
       {required String phoneNumber, required Duration timeout}) async* {
     final StreamController<Either<String, String>> streamController =
         StreamController<Either<String, String>>();
-
+    
     await firebaseAuth.verifyPhoneNumber(
         timeout: timeout,
         phoneNumber: phoneNumber,
         verificationCompleted: (PhoneAuthCredential credential) async {
           // ANDROID ONLY!
-          firebaseAuth.currentUser!.linkWithCredential(credential);
           await firestore.authUserCollection
               .doc(firebaseAuth.currentUser!.uid)
               .update({"phoneNumber": phoneNumber});
+          print("phone changed");
+          await firebaseAuth.currentUser!.linkWithCredential(credential);
+          print("credential linked");
           // link with the auto-generated credential.
         },
         codeSent: (String verificationId, int? resendToken) async {
@@ -238,7 +232,9 @@ class FirebaseAuthFacade implements IAuthFacade {
   }
 
   @override
-  Future<void> signOut() async => await firebaseAuth.signOut();
+  Future<void> signOut() async {
+    await firebaseAuth.signOut();
+  }
 
   @override
   Future<Either<String, String>> verifySmsCode(
@@ -271,7 +267,7 @@ class FirebaseAuthFacade implements IAuthFacade {
       return right("Phone number updated");
     } on FirebaseAuthException catch (e) {
       if (e.code == "session-expired") {
-        return left("Update session expired");
+        return left("Session expired");
       } else if (e.code == "invalid-verification-code" ||
           e.code == "invalid-verification-code") {
         return left("Invalid verification code");

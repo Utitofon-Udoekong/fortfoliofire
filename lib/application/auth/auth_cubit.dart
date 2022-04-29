@@ -6,56 +6,70 @@ import 'package:fortfolio/domain/auth/i_auth_facade.dart';
 import 'package:fortfolio/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:fpdart/fpdart.dart';
+// import 'package:dartz/dartz.dart';
 
 part 'auth_state.dart';
 part 'auth_cubit.freezed.dart';
 
 @lazySingleton
 class AuthCubit extends Cubit<AuthState> {
-  late final IAuthFacade _authFacade;
+  late final IAuthFacade authFacade;
 
   ///The stream subscription for listening to the auth state changes
   StreamSubscription<AuthUserModel>? _authUserSubscription;
+  StreamSubscription<AuthUserModel>? _databaseUserSubscription;
   AuthCubit() : super(AuthState.empty()) {
-    _authFacade = getIt<IAuthFacade>();
-    _authUserSubscription = _authFacade.authStateChanges.listen((event) {
-      if (event != AuthUserModel.empty()) {
-        listenAuthStateChangesStream(event);
-      } else {
-        emit(
-          state.copyWith(
-            isUserCheckedFromAuthFacade: false,
-          ),
-        );
-      }
-    });
+    authFacade = getIt<IAuthFacade>();
+    _authUserSubscription =
+        authFacade.authStateChanges.listen(listenAuthStateChangesStream);
   }
   @override
   Future<void> close() async {
     await _authUserSubscription?.cancel();
+    await _databaseUserSubscription?.cancel();
     super.close();
   }
 
   getUser() async {
-    final userId = _authFacade.getUserId();
+    final userId = authFacade.getUserId();
     if (userId.isNotEmpty) {
-      final userModel = await _authFacade.getDatabaseUser(id: userId);
+      final userModel = await authFacade.getDatabaseUser(id: userId);
       userModel.fold(() => null, (authUser) {
         listenAuthStateChangesStream(authUser);
-        loggedInChanged(loggedIn: true);
+        emit(state.copyWith(isloggedIn: true));
       });
     } else {
-      loggedInChanged(loggedIn: false);
+      emit(state.copyWith(isloggedIn: false));
+    }
+  }
+
+  Future<void> startDatabaseUserSubscriptionIfPossible() async {
+    await _databaseUserSubscription?.cancel();
+
+    if (state.userModel != AuthUserModel.empty()) {
+      _databaseUserSubscription =
+          authFacade.databaseUserChanges(userId: state.userModel.id).listen(
+        (AuthUserModel databaseUser) {
+          emit(
+            state.copyWith(userModel: databaseUser),
+          );
+        },
+      );
     }
   }
 
   Future<void> listenAuthStateChangesStream(AuthUserModel authUser) async {
-    emit(
-      state.copyWith(
-        userModel: authUser,
-        isUserCheckedFromAuthFacade: true,
-      ),
-    );
+    final dbUserOption = await authFacade.getDatabaseUser(id: authUser.id);
+    dbUserOption.fold(() => null, (authUser) {
+      emit(
+        state.copyWith(
+          userModel: authUser,
+          isUserCheckedFromAuthFacade: true,
+        ),
+      );
+    });
+    await startDatabaseUserSubscriptionIfPossible();
   }
 
   void loggedInChanged({required bool loggedIn}) {
@@ -63,19 +77,19 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> signOut() async {
-    await _authFacade.signOut();
+    await authFacade.signOut();
     emit(state.copyWith(isloggedIn: false));
   }
 }
 
 // @lazySingleton
 // class AuthCubit extends Cubit<AuthState> {
-//   final IAuthFacade _authFacade;
+//   final IAuthFacade authFacade;
 //   ///The stream subscription for listening to the auth state changes
 //   StreamSubscription<AuthUserModel>? _authUserSubscription;
 //   StreamSubscription<AuthUserModel>? _databaseUserSubscription;
-//   AuthCubit(this._authFacade) : super(AuthState.empty()){
-//     _authUserSubscription = _authFacade.authStateChanges.listen(_listenToAuthStateChangesStream);
+//   AuthCubit(this.authFacade) : super(AuthState.empty()){
+//     _authUserSubscription = authFacade.authStateChanges.listen(_listenToAuthStateChangesStream);
 //   }
 
 //   @override
@@ -90,7 +104,7 @@ class AuthCubit extends Cubit<AuthState> {
 
 //     if (state.userModel != AuthUserModel.empty()) {
 //       _databaseUserSubscription =
-//           _authFacade.databaseUserChanges(userId: state.userModel.id).listen(
+//           authFacade.databaseUserChanges(userId: state.userModel.id).listen(
 //         (AuthUserModel databaseUser) {
 //           emit(
 //             state.copyWith(userModel: databaseUser),
@@ -111,20 +125,20 @@ class AuthCubit extends Cubit<AuthState> {
 //             isAnonymousLoginInProgress: true,
 //             isUserCheckedFromAuthService: true));
 
-//         await _authFacade.signInAnonymously();
+//         await authFacade.signInAnonymously();
 
 //         emit(state.copyWith(
 //             isAnonymousLoginInProgress: false,
 //             isUserCheckedFromAuthService: true));
 //       }
 //     } else {
-//       final dbUserOption = await _authFacade.getDatabaseUser(id: authUser.id);
+//       final dbUserOption = await authFacade.getDatabaseUser(id: authUser.id);
 //       dbUserOption.match(
 //         (dbUser) async {
 //           emit(state.copyWith(
 //               userModel: dbUser, isUserCheckedFromAuthService: true));
 //           if (dbUser.firstName == "") {
-//             await _authFacade.saveUserToDatabase(
+//             await authFacade.saveUserToDatabase(
 //                 userModel:
 //                     AuthUserModel.empty().copyWith(id: state.userModel.id));
 //           }
@@ -132,7 +146,7 @@ class AuthCubit extends Cubit<AuthState> {
 //         () async {
 //           emit(state.copyWith(
 //               userModel: authUser, isUserCheckedFromAuthService: true));
-//           await _authFacade.saveUserToDatabase(
+//           await authFacade.saveUserToDatabase(
 //               userModel:
 //                   AuthUserModel.empty().copyWith(id: state.userModel.id));
 //           log("authhhhh no db user is found ${authUser.id}");
@@ -144,6 +158,6 @@ class AuthCubit extends Cubit<AuthState> {
 //   }
 
 //   Future<void> signOut() async {
-//     await _authFacade.signOut();
+//     await authFacade.signOut();
 //   }
 // }

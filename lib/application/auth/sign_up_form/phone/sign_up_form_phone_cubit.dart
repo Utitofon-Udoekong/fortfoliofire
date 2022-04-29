@@ -43,11 +43,6 @@ class SignUpFormPhoneCubit extends Cubit<SignUpFormPhoneState> {
     emit(state.copyWith(phoneNumber: phoneNumber));
   }
 
-  void verificationIdChanged({
-    required String verificationId,
-  }) {
-    emit(state.copyWith(verificationId: verificationId));
-  }
 
   void reset() {
     emit(
