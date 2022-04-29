@@ -121,6 +121,9 @@ class ConfirmLoginWithOTP extends StatelessWidget {
                             horizontal: 24, vertical: 0),
                         child: Row(
                           children: [
+                            TextButton(onPressed: () => context
+                                .read<SignInFormPhoneCubit>()
+                                .signInWithPhoneNumber(), child: Text("Resend", style: subTitle.copyWith(fontSize: 13, color: kBlackColor),)),
                             const Spacer(),
                             CountDownTimer(
                               smsCodeTimeoutSeconds: smsCodeTimeoutSeconds,

@@ -261,9 +261,9 @@ class ProfilePage extends StatelessWidget {
             ],
           ),
         ));
-    showModalBottomSheet<dynamic>(
+    showBottomSheet<dynamic>(
         // isScrollControlled: true,
-        isDismissible: false,
+        // isDismissible: false,
         context: context,
         builder: (BuildContext context) {
           return dialog;
@@ -359,9 +359,9 @@ class ProfilePage extends StatelessWidget {
             ],
           ),
         ));
-    showModalBottomSheet<dynamic>(
+    showBottomSheet<dynamic>(
         // isScrollControlled: true,
-        isDismissible: false,
+        // isDismissible: false,
         context: context,
         builder: (BuildContext context) {
           return dialog;
@@ -430,9 +430,9 @@ class ProfilePage extends StatelessWidget {
             ],
           ),
         ));
-    showModalBottomSheet<dynamic>(
+    showBottomSheet<dynamic>(
         // isScrollControlled: true,
-        isDismissible: false,
+        // isDismissible: false,
         context: context,
         builder: (BuildContext context) {
           return dialog;

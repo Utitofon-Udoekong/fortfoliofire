@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class CustomSnackbar {
   static void showSnackBar(BuildContext context, String message, bool error) {
     final snackBar = SnackBar(
+      duration: const Duration(seconds: 2),
       content: Row(
         children: <Widget>[
           Icon(

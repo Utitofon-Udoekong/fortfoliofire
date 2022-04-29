@@ -109,6 +109,9 @@ class ConfirmPhoneUpdate extends StatelessWidget {
                               horizontal: 24, vertical: 0),
                           child: Row(
                             children: [
+                              TextButton(onPressed: () => context
+                                .read<ProfileCubit>()
+                                .changePhone(), child: Text("Resend", style: subTitle.copyWith(fontSize: 13, color: kBlackColor),)),
                               const Spacer(),
                               CountDownTimer(
                                 smsCodeTimeoutSeconds: smsCodeTimeoutSeconds,

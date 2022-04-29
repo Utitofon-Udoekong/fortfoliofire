@@ -357,7 +357,7 @@ class FirebaseAuthFacade implements IAuthFacade {
   @override
   Future<Either<String,String>> updateName(
       {required String firstName, required String lastName}) async {
-    var displayName = "${firstName[0]}${lastName[0]}";
+    var displayName = "${firstName[0].toUpperCase()}${lastName[0].toUpperCase()}";
     try {
       await firestore.authUserCollection
         .doc(firebaseAuth.currentUser!.uid)
@@ -383,7 +383,9 @@ class FirebaseAuthFacade implements IAuthFacade {
         phoneNumber: phoneNumber,
         verificationCompleted: (PhoneAuthCredential credential) async {
           // ANDROID ONLY!
-          firebaseAuth.currentUser!.updatePhoneNumber(credential);
+          await firestore.authUserCollection
+              .doc(firebaseAuth.currentUser!.uid)
+              .update({"phoneNumber": phoneNumber});
         },
         codeSent: (String verificationId, int? resendToken) async {
           // Update the UI - wait for the user to enter the SMS code
