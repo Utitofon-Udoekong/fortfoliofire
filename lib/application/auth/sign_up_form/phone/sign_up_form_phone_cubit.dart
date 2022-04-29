@@ -93,11 +93,6 @@ class SignUpFormPhoneCubit extends Cubit<SignUpFormPhoneState> {
         );
       },
       (success) async {
-        final usermodel = await _authFacade.getDatabaseUserWithPhoneNumber(
-            phoneNumber: phoneNumber);
-        usermodel.fold(
-            () => null, (user) => authCubit.listenAuthStateChangesStream(user));
-        authCubit.loggedInChanged(loggedIn: true);
         emit(state.copyWith(success: success, isSubmitting: false));
       },
     );

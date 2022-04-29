@@ -33,17 +33,17 @@ class WalletCubit extends Cubit<WalletState> {
   StreamSubscription<QuerySnapshot>? _logsGeneralCryptoAddressSubscription;
  
   WalletCubit(this.firestoreFacade) : super(WalletState.initial()){
-    initInvestments();
+    // initInvestments();
     initWithdrawals();
-    initWalletBalance();
-  }
-
-  void initInvestments(){
+    // initWalletBalance();
     initFortDollarInvestments();
     initFortShieldInvestments();
     initFortCryptoInvestments();
-    initTransactions();
   }
+
+  // void initInvestments(){
+  //   initTransactions();
+  // }
 
   void investmentPlanChanged({required String investmentPlan}) {
     emit(state.copyWith(investmentPlan: investmentPlan));

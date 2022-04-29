@@ -88,7 +88,6 @@ class FirebaseAuthFacade implements IAuthFacade {
           // link with the auto-generated credential.
         },
         codeSent: (String verificationId, int? resendToken) async {
-          print("phone changed");
           await firestore.authUserCollection
               .doc(firebaseAuth.currentUser!.uid)
               .update({"phoneNumber": phoneNumber});
@@ -243,7 +242,6 @@ class FirebaseAuthFacade implements IAuthFacade {
           PhoneAuthProvider.credential(
               smsCode: smsCode, verificationId: verificationId);
       await firebaseAuth.currentUser!.linkWithCredential(phoneAuthCredential);
-          print("credential linked");
       return right("Verification successful");
     } on FirebaseAuthException catch (e) {
       if (e.code == "session-expired") {

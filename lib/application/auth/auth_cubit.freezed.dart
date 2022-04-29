@@ -20,12 +20,10 @@ class _$AuthStateTearOff {
 
   _AuthState call(
       {required AuthUserModel userModel,
-      required bool isUserCheckedFromAuthFacade,
-      required bool isloggedIn}) {
+      required bool isUserCheckedFromAuthFacade}) {
     return _AuthState(
       userModel: userModel,
       isUserCheckedFromAuthFacade: isUserCheckedFromAuthFacade,
-      isloggedIn: isloggedIn,
     );
   }
 }
@@ -37,7 +35,6 @@ const $AuthState = _$AuthStateTearOff();
 mixin _$AuthState {
   AuthUserModel get userModel => throw _privateConstructorUsedError;
   bool get isUserCheckedFromAuthFacade => throw _privateConstructorUsedError;
-  bool get isloggedIn => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AuthStateCopyWith<AuthState> get copyWith =>
@@ -48,10 +45,7 @@ mixin _$AuthState {
 abstract class $AuthStateCopyWith<$Res> {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
       _$AuthStateCopyWithImpl<$Res>;
-  $Res call(
-      {AuthUserModel userModel,
-      bool isUserCheckedFromAuthFacade,
-      bool isloggedIn});
+  $Res call({AuthUserModel userModel, bool isUserCheckedFromAuthFacade});
 
   $AuthUserModelCopyWith<$Res> get userModel;
 }
@@ -68,7 +62,6 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
   $Res call({
     Object? userModel = freezed,
     Object? isUserCheckedFromAuthFacade = freezed,
-    Object? isloggedIn = freezed,
   }) {
     return _then(_value.copyWith(
       userModel: userModel == freezed
@@ -78,10 +71,6 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
       isUserCheckedFromAuthFacade: isUserCheckedFromAuthFacade == freezed
           ? _value.isUserCheckedFromAuthFacade
           : isUserCheckedFromAuthFacade // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isloggedIn: isloggedIn == freezed
-          ? _value.isloggedIn
-          : isloggedIn // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -100,10 +89,7 @@ abstract class _$AuthStateCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
           _AuthState value, $Res Function(_AuthState) then) =
       __$AuthStateCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {AuthUserModel userModel,
-      bool isUserCheckedFromAuthFacade,
-      bool isloggedIn});
+  $Res call({AuthUserModel userModel, bool isUserCheckedFromAuthFacade});
 
   @override
   $AuthUserModelCopyWith<$Res> get userModel;
@@ -122,7 +108,6 @@ class __$AuthStateCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
   $Res call({
     Object? userModel = freezed,
     Object? isUserCheckedFromAuthFacade = freezed,
-    Object? isloggedIn = freezed,
   }) {
     return _then(_AuthState(
       userModel: userModel == freezed
@@ -133,10 +118,6 @@ class __$AuthStateCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
           ? _value.isUserCheckedFromAuthFacade
           : isUserCheckedFromAuthFacade // ignore: cast_nullable_to_non_nullable
               as bool,
-      isloggedIn: isloggedIn == freezed
-          ? _value.isloggedIn
-          : isloggedIn // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -145,21 +126,17 @@ class __$AuthStateCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
 
 class _$_AuthState extends _AuthState {
   const _$_AuthState(
-      {required this.userModel,
-      required this.isUserCheckedFromAuthFacade,
-      required this.isloggedIn})
+      {required this.userModel, required this.isUserCheckedFromAuthFacade})
       : super._();
 
   @override
   final AuthUserModel userModel;
   @override
   final bool isUserCheckedFromAuthFacade;
-  @override
-  final bool isloggedIn;
 
   @override
   String toString() {
-    return 'AuthState(userModel: $userModel, isUserCheckedFromAuthFacade: $isUserCheckedFromAuthFacade, isloggedIn: $isloggedIn)';
+    return 'AuthState(userModel: $userModel, isUserCheckedFromAuthFacade: $isUserCheckedFromAuthFacade)';
   }
 
   @override
@@ -170,17 +147,14 @@ class _$_AuthState extends _AuthState {
             const DeepCollectionEquality().equals(other.userModel, userModel) &&
             const DeepCollectionEquality().equals(
                 other.isUserCheckedFromAuthFacade,
-                isUserCheckedFromAuthFacade) &&
-            const DeepCollectionEquality()
-                .equals(other.isloggedIn, isloggedIn));
+                isUserCheckedFromAuthFacade));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(userModel),
-      const DeepCollectionEquality().hash(isUserCheckedFromAuthFacade),
-      const DeepCollectionEquality().hash(isloggedIn));
+      const DeepCollectionEquality().hash(isUserCheckedFromAuthFacade));
 
   @JsonKey(ignore: true)
   @override
@@ -191,16 +165,13 @@ class _$_AuthState extends _AuthState {
 abstract class _AuthState extends AuthState {
   const factory _AuthState(
       {required AuthUserModel userModel,
-      required bool isUserCheckedFromAuthFacade,
-      required bool isloggedIn}) = _$_AuthState;
+      required bool isUserCheckedFromAuthFacade}) = _$_AuthState;
   const _AuthState._() : super._();
 
   @override
   AuthUserModel get userModel;
   @override
   bool get isUserCheckedFromAuthFacade;
-  @override
-  bool get isloggedIn;
   @override
   @JsonKey(ignore: true)
   _$AuthStateCopyWith<_AuthState> get copyWith =>

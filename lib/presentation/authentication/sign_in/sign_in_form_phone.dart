@@ -46,7 +46,7 @@ class _SignInFormPhoneState extends State<SignInFormPhone> {
                   p.verificationId != c.verificationId &&
                   c.verificationId.isNotEmpty,
               listener: (context, state) {
-                context.router.replace(const ConfirmLoginWithOTPRoute());
+                context.router.push(const ConfirmLoginWithOTPRoute());
               },
             )
           ],

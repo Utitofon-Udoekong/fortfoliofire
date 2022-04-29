@@ -31,19 +31,6 @@ class AuthCubit extends Cubit<AuthState> {
     super.close();
   }
 
-  getUser() async {
-    final userId = authFacade.getUserId();
-    if (userId.isNotEmpty) {
-      final userModel = await authFacade.getDatabaseUser(id: userId);
-      userModel.fold(() => null, (authUser) {
-        listenAuthStateChangesStream(authUser);
-        emit(state.copyWith(isloggedIn: true));
-      });
-    } else {
-      emit(state.copyWith(isloggedIn: false));
-    }
-  }
-
   Future<void> startDatabaseUserSubscriptionIfPossible() async {
     await _databaseUserSubscription?.cancel();
 
@@ -81,13 +68,9 @@ class AuthCubit extends Cubit<AuthState> {
     await startDatabaseUserSubscriptionIfPossible();
   }
 
-  void loggedInChanged({required bool loggedIn}) {
-    emit(state.copyWith(isloggedIn: loggedIn));
-  }
-
   Future<void> signOut() async {
     await authFacade.signOut();
-    emit(state.copyWith(isloggedIn: false));
+    emit(state.copyWith(isUserCheckedFromAuthFacade: false));
   }
 }
 

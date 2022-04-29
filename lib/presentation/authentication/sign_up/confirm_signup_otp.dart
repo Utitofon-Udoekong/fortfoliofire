@@ -22,8 +22,7 @@ class ConfirmSignupWithOTP extends StatelessWidget {
   Widget build(BuildContext context) {
     final phoneNumber = context.select(
         (SignUpFormPhoneCubit phoneCubit) => phoneCubit.state.phoneNumber);
-    final verificationId = context.select(
-        (SignUpFormPhoneCubit phoneCubit) => phoneCubit.state.verificationId);
+    
     return Scaffold(
       body: MultiBlocListener(
         listeners: [
@@ -39,6 +38,7 @@ class ConfirmSignupWithOTP extends StatelessWidget {
                       p.success != c.success && c.success.isNotEmpty,
                   listener: (context, state) {
                     CustomSnackbar.showSnackBar(context, state.success, false);
+                    context.router.replace(const HomePageRoute());
                   },
                 ),
           BlocListener<AuthCubit, AuthState>(

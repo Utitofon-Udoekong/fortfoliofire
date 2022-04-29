@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/application/auth/sign_up_form/phone/sign_up_form_phone_cubit.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
@@ -88,6 +89,7 @@ class _SignUpFormPhoneState extends State<SignUpFormPhone> {
                                       filled: true,
                                       fillColor: Color(0xFFF3F6F8),
                                     ),
+                                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                                     initialCountryCode: 'NG',
                                     keyboardType: TextInputType.phone,
                                     textInputAction: TextInputAction.next,

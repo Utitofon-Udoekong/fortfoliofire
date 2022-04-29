@@ -33,6 +33,7 @@ class SignInFormEmail extends StatelessWidget {
                     p.success != c.success && c.success.isNotEmpty,
                 listener: (context, state) {
                   CustomSnackbar.showSnackBar(context, state.success, false);
+                  context.router.replace(const HomePageRoute());
                 },
               ),
               BlocListener<AuthCubit, AuthState>(

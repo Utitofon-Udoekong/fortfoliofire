@@ -74,22 +74,22 @@ class WalletOverview extends StatelessWidget {
                           if (state.exchange == "NGN") {
                             return state.showDigits
                                 ? Text('N${formatter.format(state.walletBalance * 560) }',
-                                    style: subTitle.copyWith(
+                                    style: titleText.copyWith(
                                         fontSize: 15, color: kWhiteColor))
                                 : Text(
                                     formatter.format(state.walletBalance * 560)
                                         .replaceAll(regExp, "*"),
-                                    style: subTitle.copyWith(
+                                    style: titleText.copyWith(
                                         fontSize: 23, color: kWhiteColor));
                           } else {
                             return state.showDigits
                                 ? Text('\$${formatter.format(state.walletBalance)}',
-                                    style: subTitle.copyWith(
+                                    style: titleText.copyWith(
                                         fontSize: 15, color: kWhiteColor))
                                 : Text(
                                     formatter.format(state.walletBalance)
                                         .replaceAll(regExp, "*"),
-                                    style: subTitle.copyWith(
+                                    style: titleText.copyWith(
                                         fontSize: 23, color: kWhiteColor));
                           }
                         },
