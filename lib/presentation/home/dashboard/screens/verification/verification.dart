@@ -18,81 +18,76 @@ class VerificationPage extends StatelessWidget {
         width: MediaQuery.of(context).size.width * 0.35);
     return Scaffold(
       body: SafeArea(
-      child: Container(
-        decoration: const BoxDecoration(
-          color: kGreenColor
-        ),
-        child: Padding(
-          padding: kDefaultPadding,
-          child: isVerified ? Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              const SizedBox(
-                height: 20,
+      child: Padding(
+        padding: kDefaultPadding,
+        child: isVerified ? Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            const SizedBox(
+              height: 20,
+            ),
+            InkWell(
+              onTap: () => context.router.pop(),
+              child: const Icon(Icons.close),
+            ),
+            const SizedBox(
+              height: 80,
+            ),
+            svg,
+            const SizedBox(
+              height: 30,
+            ),
+            Center(
+              child: Text(
+                "Account Verified",
+                 style: titleText.copyWith(color: kWhiteColor, fontSize: 18),
+                  textAlign: TextAlign.center
               ),
-              InkWell(
-                onTap: () => context.router.pop(),
-                child: const Icon(Icons.close),
-              ),
-              const SizedBox(
-                height: 80,
-              ),
-              svg,
-              const SizedBox(
-                height: 30,
-              ),
-              Center(
-                child: Text(
-                  "Account Verified",
-                   style: titleText.copyWith(color: kWhiteColor, fontSize: 18),
-                    textAlign: TextAlign.center
-                ),
-              ),
-              
-            ],
-          ) : Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              const SizedBox(
-                height: 20,
-              ),
-              InkWell(
-                onTap: () => context.router.pop(),
-                child: const Icon(Icons.close),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Text(
-                "Verify Account",
-                style: titleText,
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              Text(
-                'Verify your account using an authentic identification document that belongs to you.', 
-                style: subTitle.copyWith(color: kgreyColor),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              Text('Select the type of document you wish to upload for verification:', style: subTitle.copyWith(color: kgreyColor)),
-              const SizedBox(
-                height: 40,
-              ),
-              const CustomIconTrailingButton(icon: 'idcard', title: 'National ID Card', page: UploadPageRoute() ),
-              const SizedBox(
-                height: 20,
-              ),
-              const CustomIconTrailingButton(icon: 'passport', title: 'International Passport', page: UploadPageRoute() ),
-              const SizedBox(
-                height: 20,
-              ),
-              const CustomIconTrailingButton(icon: 'license', title: 'Drivers License', page: UploadPageRoute() ),
-            ],
-          )
-        ),
+            ),
+            
+          ],
+        ) : Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            const SizedBox(
+              height: 20,
+            ),
+            InkWell(
+              onTap: () => context.router.pop(),
+              child: const Icon(Icons.close),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Text(
+              "Verify Account",
+              style: titleText,
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            Text(
+              'Verify your account using an authentic identification document that belongs to you.', 
+              style: subTitle.copyWith(color: kgreyColor),
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            Text('Select the type of document you wish to upload for verification:', style: subTitle.copyWith(color: kgreyColor)),
+            const SizedBox(
+              height: 40,
+            ),
+            const CustomIconTrailingButton(icon: 'idcard', title: 'National ID Card', page: UploadPageRoute() ),
+            const SizedBox(
+              height: 20,
+            ),
+            const CustomIconTrailingButton(icon: 'passport', title: 'International Passport', page: UploadPageRoute() ),
+            const SizedBox(
+              height: 20,
+            ),
+            const CustomIconTrailingButton(icon: 'license', title: 'Drivers License', page: UploadPageRoute() ),
+          ],
+        )
       ),
     ),
     );

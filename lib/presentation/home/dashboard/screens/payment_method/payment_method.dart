@@ -30,11 +30,11 @@ class _PaymentMethodState extends State<PaymentMethod>
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: kDefaultPadding,
+    return Scaffold(
+      body: SafeArea(
+        child: Padding(
+          padding: kDefaultPadding,
+          child: SingleChildScrollView(
             child: SizedBox(
               height: MediaQuery.of(context).size.height - 30,
               child: Column(

@@ -14,9 +14,9 @@ class UtilityPage extends StatelessWidget {
       'images/blankdocument.svg',
       semanticsLabel: 'Blank',
     );
-    return SafeArea(
-      child: Scaffold(
-        body: Padding(
+    return Scaffold(
+      body: SafeArea(
+        child: Padding(
           padding: kDefaultPadding,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
