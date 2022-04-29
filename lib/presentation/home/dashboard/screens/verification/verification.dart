@@ -43,7 +43,7 @@ class VerificationPage extends StatelessWidget {
               Center(
                 child: Text(
                   "Account Verified",
-                   style: titleText.copyWith(color: kWhiteColor, fontSize: 18),
+                   style: titleText.copyWith(color: kWhiteColor, fontSize: 20),
                     textAlign: TextAlign.center
                 ),
               ),
