@@ -22,20 +22,20 @@ class CryptoInvestmentPage extends StatefulWidget {
 }
 
 class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
-final GlobalKey webViewKey = GlobalKey();
-    InAppWebViewController? webViewController;
-    InAppWebViewGroupOptions options = InAppWebViewGroupOptions(
-        crossPlatform: InAppWebViewOptions(
-          useShouldOverrideUrlLoading: true,
-          mediaPlaybackRequiresUserGesture: false,
-        ),
-        android: AndroidInAppWebViewOptions(
-          useHybridComposition: true,
-        ),
-        ios: IOSInAppWebViewOptions(
-          allowsInlineMediaPlayback: true,
-        ));
-     late PullToRefreshController pullToRefreshController;
+  final GlobalKey webViewKey = GlobalKey();
+  InAppWebViewController? webViewController;
+  InAppWebViewGroupOptions options = InAppWebViewGroupOptions(
+      crossPlatform: InAppWebViewOptions(
+        useShouldOverrideUrlLoading: true,
+        mediaPlaybackRequiresUserGesture: false,
+      ),
+      android: AndroidInAppWebViewOptions(
+        useHybridComposition: true,
+      ),
+      ios: IOSInAppWebViewOptions(
+        allowsInlineMediaPlayback: true,
+      ));
+  late PullToRefreshController pullToRefreshController;
   late ContextMenu contextMenu;
   String url = "";
   double progress = 0;
@@ -89,9 +89,9 @@ final GlobalKey webViewKey = GlobalKey();
       },
     );
   }
+
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -141,115 +141,118 @@ final GlobalKey webViewKey = GlobalKey();
                         height: 30,
                       ),
                       Expanded(
-            child: Stack(
-              children: [
-                InAppWebView(
-                  key: webViewKey,
-                  // contextMenu: contextMenu,
-                  initialUrlRequest:
-                      URLRequest(url: Uri.parse("https://github.com/flutter")),
-                  // initialFile: "assets/index.html",
-                  initialUserScripts: UnmodifiableListView<UserScript>([]),
-                  initialOptions: options,
-                  pullToRefreshController: pullToRefreshController,
-                  onWebViewCreated: (controller) {
-                    webViewController = controller;
-                  },
-                  onLoadStart: (controller, url) {
-                    setState(() {
-                      this.url = url.toString();
-                      urlController.text = this.url;
-                    });
-                  },
-                  androidOnPermissionRequest:
-                      (controller, origin, resources) async {
-                    return PermissionRequestResponse(
-                        resources: resources,
-                        action: PermissionRequestResponseAction.GRANT);
-                  },
-                  shouldOverrideUrlLoading:
-                      (controller, navigationAction) async {
-                    var uri = navigationAction.request.url!;
+                        child: Stack(
+                          children: [
+                            InAppWebView(
+                              key: webViewKey,
+                              // contextMenu: contextMenu,
+                              initialUrlRequest: URLRequest(
+                                  url: Uri.parse("https://github.com/flutter")),
+                              // initialFile: "assets/index.html",
+                              initialUserScripts:
+                                  UnmodifiableListView<UserScript>([]),
+                              initialOptions: options,
+                              pullToRefreshController: pullToRefreshController,
+                              onWebViewCreated: (controller) {
+                                webViewController = controller;
+                              },
+                              onLoadStart: (controller, url) {
+                                setState(() {
+                                  this.url = url.toString();
+                                  urlController.text = this.url;
+                                });
+                              },
+                              androidOnPermissionRequest:
+                                  (controller, origin, resources) async {
+                                return PermissionRequestResponse(
+                                    resources: resources,
+                                    action:
+                                        PermissionRequestResponseAction.GRANT);
+                              },
+                              shouldOverrideUrlLoading:
+                                  (controller, navigationAction) async {
+                                var uri = navigationAction.request.url!;
 
-                    if (![
-                      "http",
-                      "https",
-                      "file",
-                      "chrome",
-                      "data",
-                      "javascript",
-                      "about"
-                    ].contains(uri.scheme)) {
-                      if (await canLaunchUrl(Uri.parse(url))) {
-                        // Launch the App
-                        await launchUrl(
-                          Uri.parse(url),
-                        );
-                        // and cancel the request
-                        return NavigationActionPolicy.CANCEL;
-                      }
-                    }
+                                if (![
+                                  "http",
+                                  "https",
+                                  "file",
+                                  "chrome",
+                                  "data",
+                                  "javascript",
+                                  "about"
+                                ].contains(uri.scheme)) {
+                                  if (await canLaunchUrl(Uri.parse(url))) {
+                                    // Launch the App
+                                    await launchUrl(
+                                      Uri.parse(url),
+                                    );
+                                    // and cancel the request
+                                    return NavigationActionPolicy.CANCEL;
+                                  }
+                                }
 
-                    return NavigationActionPolicy.ALLOW;
-                  },
-                  onLoadStop: (controller, url) async {
-                    pullToRefreshController.endRefreshing();
-                    setState(() {
-                      this.url = url.toString();
-                      urlController.text = this.url;
-                    });
-                  },
-                  onLoadError: (controller, url, code, message) {
-                    pullToRefreshController.endRefreshing();
-                  },
-                  onProgressChanged: (controller, progress) {
-                    if (progress == 100) {
-                      pullToRefreshController.endRefreshing();
-                    }
-                    setState(() {
-                      this.progress = progress / 100;
-                      urlController.text = url;
-                    });
-                  },
-                  onUpdateVisitedHistory: (controller, url, androidIsReload) {
-                    setState(() {
-                      this.url = url.toString();
-                      urlController.text = this.url;
-                    });
-                  },
-                  onConsoleMessage: (controller, consoleMessage) {
-                    print(consoleMessage);
-                  },
-                ),
-                progress < 1.0
-                    ? LinearProgressIndicator(value: progress)
-                    : Container(),
-              ],
-            ),
-          ),
-          ButtonBar(
-            alignment: MainAxisAlignment.center,
-            children: <Widget>[
-              ElevatedButton(
-                child: const Icon(Icons.arrow_back),
-                onPressed: () {
-                  webViewController?.goBack();
-                },
-              ),
-              ElevatedButton(
-                child: const Icon(Icons.arrow_forward),
-                onPressed: () {
-                  webViewController?.goForward();
-                },
-              ),
-              ElevatedButton(
-                child: const Icon(Icons.refresh),
-                onPressed: () {
-                  webViewController?.reload();
-                },
-              ),
-            ],
-          ),
+                                return NavigationActionPolicy.ALLOW;
+                              },
+                              onLoadStop: (controller, url) async {
+                                pullToRefreshController.endRefreshing();
+                                setState(() {
+                                  this.url = url.toString();
+                                  urlController.text = this.url;
+                                });
+                              },
+                              onLoadError: (controller, url, code, message) {
+                                pullToRefreshController.endRefreshing();
+                              },
+                              onProgressChanged: (controller, progress) {
+                                if (progress == 100) {
+                                  pullToRefreshController.endRefreshing();
+                                }
+                                setState(() {
+                                  this.progress = progress / 100;
+                                  urlController.text = url;
+                                });
+                              },
+                              onUpdateVisitedHistory:
+                                  (controller, url, androidIsReload) {
+                                setState(() {
+                                  this.url = url.toString();
+                                  urlController.text = this.url;
+                                });
+                              },
+                              onConsoleMessage: (controller, consoleMessage) {
+                                print(consoleMessage);
+                              },
+                            ),
+                            progress < 1.0
+                                ? LinearProgressIndicator(value: progress)
+                                : Container(),
+                          ],
+                        ),
+                      ),
+                      ButtonBar(
+                        alignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          ElevatedButton(
+                            child: const Icon(Icons.arrow_back),
+                            onPressed: () {
+                              webViewController?.goBack();
+                            },
+                          ),
+                          ElevatedButton(
+                            child: const Icon(Icons.arrow_forward),
+                            onPressed: () {
+                              webViewController?.goForward();
+                            },
+                          ),
+                          ElevatedButton(
+                            child: const Icon(Icons.refresh),
+                            onPressed: () {
+                              webViewController?.reload();
+                            },
+                          ),
+                        ],
+                      ),
                       // Container(
                       //   padding: const EdgeInsets.all(8.0),
                       //   decoration: BoxDecoration(
@@ -295,10 +298,10 @@ final GlobalKey webViewKey = GlobalKey();
                       //   child: CustomFilledButton(
                       //       text: 'I HAVE PAID',
                       //       onTap: () {
-                              // context
-                              //     .read<InvestmentCubit>()
-                              //     .paymentMethodChanged(
-                              //         paymentMethod: "Crypto");
+                      // context
+                      //     .read<InvestmentCubit>()
+                      //     .paymentMethodChanged(
+                      //         paymentMethod: "Crypto");
                       //         context.read<InvestmentCubit>().iHavePaid();
                       //       }),
                       // )
