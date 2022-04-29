@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
+import 'package:fortfolio/domain/constants/theme.dart';
+
 class LoadingView extends StatefulWidget {
   final Color color1;
   final Color color2;
   final Color color3;
 
   const LoadingView(
-      {Key? key, this.color1 = Colors.deepOrangeAccent,
-      this.color2 = Colors.yellow,
-      this.color3 = Colors.lightGreen}) : super(key: key);
+      {Key? key, this.color1 = kPrimaryColor,
+      this.color2 = klightblue,
+      this.color3 = kGreenColor}) : super(key: key);
 
   @override
   _LoadingViewState createState() => _LoadingViewState();
