@@ -24,7 +24,7 @@ class VerificationPage extends StatelessWidget {
       child: Padding(
         padding: isVerified || isSubmitted ? const EdgeInsets.all(0.0) : kDefaultPadding,
         child: isVerified || isSubmitted ? Container(
-          decoration: BoxDecoration(color: isVerified ? kGreenColor : const Color.fromARGB(88, 104, 104, 104)),
+          decoration: BoxDecoration(color: isVerified ? kGreenColor : const Color.fromARGB(149, 73, 63, 36)),
           padding: kDefaultPadding,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,7 +34,7 @@ class VerificationPage extends StatelessWidget {
               ),
               InkWell(
                 onTap: () => context.router.pop(),
-                child: Icon(Icons.close,color: isVerified ? kWhiteColor: kBlackColor),
+                child: Icon(Icons.close,color: isVerified ? kWhiteColor: kWhiteColor),
               ),
               const SizedBox(
                 height: 80,
@@ -46,7 +46,7 @@ class VerificationPage extends StatelessWidget {
               Center(
                 child: Text(
                   isVerified ? "Account Verified" : "Details submitted. Awaiting review",
-                   style: titleText.copyWith(color: isVerified ? kWhiteColor : kBlackColor, fontSize: 20),
+                   style: titleText.copyWith(color: isVerified ? kWhiteColor : kWhiteColor, fontSize: 20),
                     textAlign: TextAlign.center
                 ),
               ),
