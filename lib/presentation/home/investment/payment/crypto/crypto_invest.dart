@@ -9,7 +9,7 @@ import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 // import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:fortfolio/infrastructure/auth/external_facade.dart';
+// import 'package:fortfolio/infrastructure/auth/external_facade.dart';
 import 'package:fortfolio/domain/widgets/loading_view.dart';
 import 'package:fortfolio/presentation/home/investment/cubit/investment_cubit.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -40,6 +40,8 @@ class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
   String url = "";
   double progress = 0;
   final urlController = TextEditingController();
+
+
   @override
   void initState() {
     // TODO: implement initState
@@ -137,6 +139,24 @@ class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
                       //       color: kgreyColor,
                       //       fontSize: 13,
                       //     )),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      TextField(
+                        decoration: const InputDecoration(
+                            prefixIcon: Icon(Icons.search)),
+                        controller: urlController,
+                        keyboardType: TextInputType.url,
+                        onSubmitted: (value) {
+                          var url = Uri.parse(value);
+                          if (url.scheme.isEmpty) {
+                            url = Uri.parse(
+                                "https://www.google.com/search?q=" + value);
+                          }
+                          webViewController?.loadUrl(
+                              urlRequest: URLRequest(url: url));
+                        },
+                      ),
                       const SizedBox(
                         height: 30,
                       ),
