@@ -87,7 +87,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
   void iHavePaid() async {
     emit(state.copyWith(isLoading: true));
     late InvestmentItem investmentItem;
-    final String description = state.planName + "Investment";
+    final String description = "${state.planName} Investment";
     final int amount = state.amountInvested;
     final DateTime paymentDate = DateTime.now();
     final String planName = state.planName;
@@ -142,7 +142,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
         emit(state.copyWith(isLoading: false, failure: failure));
       }, (success) {
         emit(state.copyWith(isLoading: false, success: success));
-        walletCubit.initTransactions();
+        // walletCubit.initTransactions();
       });
     } catch (e) {
       emit(state.copyWith(isLoading: false));

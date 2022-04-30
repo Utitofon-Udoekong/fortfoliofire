@@ -334,6 +334,7 @@ class FortShieldInvestment extends StatelessWidget {
         tooltip
             ? Tooltip(
                 message: tooltipMessage,
+                triggerMode: TooltipTriggerMode.tap,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(6),
                   color: kSecondaryColor

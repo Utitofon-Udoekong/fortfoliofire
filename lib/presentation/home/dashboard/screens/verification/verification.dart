@@ -31,7 +31,7 @@ class VerificationPage extends StatelessWidget {
               ),
               InkWell(
                 onTap: () => context.router.pop(),
-                child: const Icon(Icons.close),
+                child: const Icon(Icons.close,color: kWhiteColor),
               ),
               const SizedBox(
                 height: 80,
