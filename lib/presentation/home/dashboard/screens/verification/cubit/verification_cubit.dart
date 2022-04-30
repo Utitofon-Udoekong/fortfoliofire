@@ -7,6 +7,7 @@ import 'package:fortfolio/domain/user/kyc_item.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:fortfolio/application/auth/auth_cubit.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'verification_state.dart';
 part 'verification_cubit.freezed.dart';
@@ -30,6 +31,11 @@ class VerificationCubit extends Cubit<VerificationState> {
 
   void utilityPicked({required Uint8List file}) async {
    emit(state.copyWith(utilityFile: file));
+  }
+
+  getSubmittedState() async {
+    final sp = await SharedPreferences.getInstance();
+    return sp.getBool('kycExists');
   }
 
   void submitKYC() async {

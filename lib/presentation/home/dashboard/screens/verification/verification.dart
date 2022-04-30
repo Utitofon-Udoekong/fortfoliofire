@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_icon_trailing_button.dart';
+import 'package:fortfolio/presentation/home/dashboard/screens/verification/cubit/verification_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
  
 
@@ -13,15 +14,16 @@ class VerificationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isVerified = context.select((AuthCubit element) => element.state.userModel.isVerified);
+    final bool isVerified = context.select((AuthCubit cubit) => cubit.state.userModel.isVerified);
+    final bool isSubmitted = context.select((VerificationCubit cubit) => cubit.getSubmittedState());
     final Widget svg = SvgPicture.asset('images/shield.svg',
         width: MediaQuery.of(context).size.width * 0.35);
     return Scaffold(
       body: SafeArea(
       child: Padding(
-        padding: isVerified ? const EdgeInsets.all(0.0) : kDefaultPadding,
-        child: isVerified ? Container(
-          decoration: const BoxDecoration(color: kGreenColor),
+        padding: isVerified || isSubmitted ? const EdgeInsets.all(0.0) : kDefaultPadding,
+        child: isVerified || isSubmitted ? Container(
+          decoration: BoxDecoration(color: isVerified ? kGreenColor : null),
           padding: kDefaultPadding,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,7 +33,7 @@ class VerificationPage extends StatelessWidget {
               ),
               InkWell(
                 onTap: () => context.router.pop(),
-                child: const Icon(Icons.close,color: kWhiteColor),
+                child: Icon(Icons.close,color: isVerified ? kWhiteColor: kBlackColor),
               ),
               const SizedBox(
                 height: 80,
@@ -42,8 +44,8 @@ class VerificationPage extends StatelessWidget {
               ),
               Center(
                 child: Text(
-                  "Account Verified",
-                   style: titleText.copyWith(color: kWhiteColor, fontSize: 20),
+                  isVerified ? "Account Verified" : "Details submitted. Awaiting review",
+                   style: titleText.copyWith(color: isVerified ? kWhiteColor : kBlackColor, fontSize: 20),
                     textAlign: TextAlign.center
                 ),
               ),

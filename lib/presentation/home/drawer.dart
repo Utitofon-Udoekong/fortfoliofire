@@ -80,7 +80,7 @@ class MainDrawer extends StatelessWidget {
                             "Verified",
                             style: subTitle.copyWith(
                                 fontSize: 13,
-                                color: Colors.green[600]),
+                                color: Colors.green[600], fontWeight: FontWeight.w500),
                           ),
                           backgroundColor: Colors.green[100],)
                         : Chip(label: Text(

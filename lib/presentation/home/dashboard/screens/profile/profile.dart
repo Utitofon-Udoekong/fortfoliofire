@@ -97,11 +97,14 @@ class ProfilePage extends StatelessWidget {
                               height: 3,
                             ),
                             authUserModel.isVerified
-                                ? Text("Account Verified",
-                                    style: subTitle.copyWith(
-                                        color: kBlackColor,
-                                        fontSize: 13,
-                                        decoration: TextDecoration.underline))
+                                ? Chip(
+                                  backgroundColor: Colors.green[100],
+                                  label: Text("Account Verified",
+                                      style: subTitle.copyWith(
+                                          color: Colors.green[600],
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.w500)),
+                                )
                                 : TextButton(
                                     onPressed: () => context.router
                                         .push(const VerificationPageRoute()),

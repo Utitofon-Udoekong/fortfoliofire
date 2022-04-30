@@ -19,6 +19,7 @@ import 'package:fortfolio/infrastructure/auth/dto/withdrawal/withdrawal_dto.dart
 import 'package:fortfolio/infrastructure/core/firestore_helpers.dart';
 import 'package:injectable/injectable.dart';
 import 'package:nanoid/nanoid.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 @LazySingleton(as: IFirestoreFacade)
 class FirebaseFirestoreFacade implements IFirestoreFacade {
@@ -129,12 +130,14 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
 
   @override
   Future<Either<String, String>> createKYC({required KYCItem kycItem}) async {
+    final sp = await SharedPreferences.getInstance();
     try {
       await firestore.authUserCollection
           .doc(auth.currentUser!.uid)
           .collection("kyc")
           .doc()
           .set(KYCItemDTO.fromDomain(kycItem).toJson());
+      sp.setBool("kycExists", true);
       return right("KYC Documents submitted");
     } on FirebaseException catch (e) {
       log("Code: ${e.code}, Message: ${e.message}");
