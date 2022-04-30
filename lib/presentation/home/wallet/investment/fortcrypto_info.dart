@@ -133,26 +133,7 @@ Widget buildTile(
             ],
           ),
           isDue
-              ? GestureDetector(
-                  onTap: pending ? null : ontap,
-                  child: Container(
-                    alignment: Alignment.center,
-                    height: 48,
-                    width: 100,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: pending
-                          ? const Color.fromRGBO(3, 66, 109, 0.65)
-                          : kPrimaryColor,
-                    ),
-                    child: Text(
-                      pending ? 'Pending' : 'Withdraw',
-                      style:
-                          textButton.copyWith(color: kWhiteColor, fontSize: 15),
-                    ),
-                  ),
-                )
-              : Tooltip(
+              ? Tooltip(
                   message: "Unlocks $daysLeft",
                   triggerMode: TooltipTriggerMode.tap,
                   decoration: BoxDecoration(
@@ -171,6 +152,24 @@ Widget buildTile(
                     ),
                     child: Text(
                       'Withdraw',
+                      style:
+                          textButton.copyWith(color: kWhiteColor, fontSize: 15),
+                    ),
+                  ),
+                ) : GestureDetector(
+                  onTap: pending ? null : ontap,
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: 48,
+                    width: 100,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: pending
+                          ? const Color.fromRGBO(3, 66, 109, 0.65)
+                          : kPrimaryColor,
+                    ),
+                    child: Text(
+                      pending ? 'Pending' : 'Withdraw',
                       style:
                           textButton.copyWith(color: kWhiteColor, fontSize: 15),
                     ),
