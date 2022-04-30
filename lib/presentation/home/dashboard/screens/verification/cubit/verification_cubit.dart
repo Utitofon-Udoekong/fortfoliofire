@@ -17,7 +17,9 @@ class VerificationCubit extends Cubit<VerificationState> {
   final IStorageFacade storageFacade;
   final IFirestoreFacade firestoreFacade;
   final AuthCubit authCubit;
-  VerificationCubit(this.storageFacade, this.firestoreFacade, this.authCubit) : super(VerificationState.empty());
+  VerificationCubit(this.storageFacade, this.firestoreFacade, this.authCubit) : super(VerificationState.empty()){
+    getSubmittedState();
+  }
 
   void frontPicked({required Uint8List file}) async {
     // final response = await storageFacade.uploadImageToStorage(
@@ -35,7 +37,8 @@ class VerificationCubit extends Cubit<VerificationState> {
 
   getSubmittedState() async {
     final sp = await SharedPreferences.getInstance();
-    return sp.getBool('kycExists');
+    bool? kycExists = sp.getBool('kycExists');
+    emit(state.copyWith(kycExists: kycExists!));
   }
 
   void submitKYC() async {

@@ -14,8 +14,9 @@ class VerificationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<VerificationCubit>().getSubmittedState();
     final bool isVerified = context.select((AuthCubit cubit) => cubit.state.userModel.isVerified);
-    final bool isSubmitted = context.select((VerificationCubit cubit) => cubit.getSubmittedState());
+    final bool isSubmitted = context.select((VerificationCubit cubit) => cubit.state.kycExists);
     final Widget svg = SvgPicture.asset('images/shield.svg',
         width: MediaQuery.of(context).size.width * 0.35);
     return Scaffold(
@@ -23,7 +24,7 @@ class VerificationPage extends StatelessWidget {
       child: Padding(
         padding: isVerified || isSubmitted ? const EdgeInsets.all(0.0) : kDefaultPadding,
         child: isVerified || isSubmitted ? Container(
-          decoration: BoxDecoration(color: isVerified ? kGreenColor : null),
+          decoration: BoxDecoration(color: isVerified ? kGreenColor : const Color.fromARGB(88, 104, 104, 104)),
           padding: kDefaultPadding,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

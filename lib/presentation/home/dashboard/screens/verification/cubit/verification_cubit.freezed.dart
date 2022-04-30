@@ -20,6 +20,7 @@ class _$VerificationStateTearOff {
 
   _VerificationState call(
       {required bool submitting,
+      required bool kycExists,
       required String failure,
       required String success,
       required Uint8List frontFile,
@@ -27,6 +28,7 @@ class _$VerificationStateTearOff {
       required Uint8List utilityFile}) {
     return _VerificationState(
       submitting: submitting,
+      kycExists: kycExists,
       failure: failure,
       success: success,
       frontFile: frontFile,
@@ -42,6 +44,7 @@ const $VerificationState = _$VerificationStateTearOff();
 /// @nodoc
 mixin _$VerificationState {
   bool get submitting => throw _privateConstructorUsedError;
+  bool get kycExists => throw _privateConstructorUsedError;
   String get failure => throw _privateConstructorUsedError;
   String get success => throw _privateConstructorUsedError;
   Uint8List get frontFile => throw _privateConstructorUsedError;
@@ -60,6 +63,7 @@ abstract class $VerificationStateCopyWith<$Res> {
       _$VerificationStateCopyWithImpl<$Res>;
   $Res call(
       {bool submitting,
+      bool kycExists,
       String failure,
       String success,
       Uint8List frontFile,
@@ -79,6 +83,7 @@ class _$VerificationStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? submitting = freezed,
+    Object? kycExists = freezed,
     Object? failure = freezed,
     Object? success = freezed,
     Object? frontFile = freezed,
@@ -89,6 +94,10 @@ class _$VerificationStateCopyWithImpl<$Res>
       submitting: submitting == freezed
           ? _value.submitting
           : submitting // ignore: cast_nullable_to_non_nullable
+              as bool,
+      kycExists: kycExists == freezed
+          ? _value.kycExists
+          : kycExists // ignore: cast_nullable_to_non_nullable
               as bool,
       failure: failure == freezed
           ? _value.failure
@@ -123,6 +132,7 @@ abstract class _$VerificationStateCopyWith<$Res>
   @override
   $Res call(
       {bool submitting,
+      bool kycExists,
       String failure,
       String success,
       Uint8List frontFile,
@@ -144,6 +154,7 @@ class __$VerificationStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? submitting = freezed,
+    Object? kycExists = freezed,
     Object? failure = freezed,
     Object? success = freezed,
     Object? frontFile = freezed,
@@ -154,6 +165,10 @@ class __$VerificationStateCopyWithImpl<$Res>
       submitting: submitting == freezed
           ? _value.submitting
           : submitting // ignore: cast_nullable_to_non_nullable
+              as bool,
+      kycExists: kycExists == freezed
+          ? _value.kycExists
+          : kycExists // ignore: cast_nullable_to_non_nullable
               as bool,
       failure: failure == freezed
           ? _value.failure
@@ -184,6 +199,7 @@ class __$VerificationStateCopyWithImpl<$Res>
 class _$_VerificationState extends _VerificationState {
   const _$_VerificationState(
       {required this.submitting,
+      required this.kycExists,
       required this.failure,
       required this.success,
       required this.frontFile,
@@ -193,6 +209,8 @@ class _$_VerificationState extends _VerificationState {
 
   @override
   final bool submitting;
+  @override
+  final bool kycExists;
   @override
   final String failure;
   @override
@@ -206,7 +224,7 @@ class _$_VerificationState extends _VerificationState {
 
   @override
   String toString() {
-    return 'VerificationState(submitting: $submitting, failure: $failure, success: $success, frontFile: $frontFile, backFile: $backFile, utilityFile: $utilityFile)';
+    return 'VerificationState(submitting: $submitting, kycExists: $kycExists, failure: $failure, success: $success, frontFile: $frontFile, backFile: $backFile, utilityFile: $utilityFile)';
   }
 
   @override
@@ -216,6 +234,7 @@ class _$_VerificationState extends _VerificationState {
             other is _VerificationState &&
             const DeepCollectionEquality()
                 .equals(other.submitting, submitting) &&
+            const DeepCollectionEquality().equals(other.kycExists, kycExists) &&
             const DeepCollectionEquality().equals(other.failure, failure) &&
             const DeepCollectionEquality().equals(other.success, success) &&
             const DeepCollectionEquality().equals(other.frontFile, frontFile) &&
@@ -228,6 +247,7 @@ class _$_VerificationState extends _VerificationState {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(submitting),
+      const DeepCollectionEquality().hash(kycExists),
       const DeepCollectionEquality().hash(failure),
       const DeepCollectionEquality().hash(success),
       const DeepCollectionEquality().hash(frontFile),
@@ -243,6 +263,7 @@ class _$_VerificationState extends _VerificationState {
 abstract class _VerificationState extends VerificationState {
   const factory _VerificationState(
       {required bool submitting,
+      required bool kycExists,
       required String failure,
       required String success,
       required Uint8List frontFile,
@@ -252,6 +273,8 @@ abstract class _VerificationState extends VerificationState {
 
   @override
   bool get submitting;
+  @override
+  bool get kycExists;
   @override
   String get failure;
   @override
