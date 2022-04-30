@@ -68,19 +68,22 @@ class FortCryptoInvestmentInfo extends StatelessWidget {
                   scrollDirection: Axis.vertical,
                   itemBuilder: ((context, index) {
                     return buildTile(
-                      title: '${activeInvestments[index].planName} / ${activeInvestments[index].duration.toInt()} month(s)',
-                      amount: '\$${formatter.format(activeInvestments[index].amount)}',
+                      title:
+                          '${activeInvestments[index].planName} / ${activeInvestments[index].duration.toInt()} month(s)',
+                      amount:
+                          '\$${formatter.format(activeInvestments[index].amount)}',
                       ontap: () {
-                      context
-                          .read<WalletCubit>()
-                          .investmentToBeWithdrawnChanged(
-                              investmentToBeWithdrawn:
-                                  activeInvestments[index]);
-                      context.router.push(const WithdrawalPageRoute());
-                    },
+                        context
+                            .read<WalletCubit>()
+                            .investmentToBeWithdrawnChanged(
+                                investmentToBeWithdrawn:
+                                    activeInvestments[index]);
+                        context.router.push(const WithdrawalPageRoute());
+                      },
                       pending: activeInvestments[index].status == "Pending",
                       isDue: activeInvestments[index].dueDate.isToday,
-                      daysLeft: Jiffy(activeInvestments[index].dueDate).fromNow(),
+                      daysLeft:
+                          Jiffy(activeInvestments[index].dueDate).fromNow(),
                     );
                   }),
                 ),
@@ -129,24 +132,50 @@ Widget buildTile(
               )
             ],
           ),
-          GestureDetector(
-            onTap: pending ? null : ontap,
-            child: Container(
-              alignment: Alignment.center,
-              height: 48,
-              width: 100,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: pending
-                    ? const Color.fromRGBO(3, 66, 109, 0.65)
-                    : kPrimaryColor,
-              ),
-              child: Text(
-                pending ? 'Pending' : 'Withdraw',
-                style: textButton.copyWith(color: kWhiteColor, fontSize: 15),
-              ),
-            ),
-          ),
+          isDue
+              ? GestureDetector(
+                  onTap: pending ? null : ontap,
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: 48,
+                    width: 100,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: pending
+                          ? const Color.fromRGBO(3, 66, 109, 0.65)
+                          : kPrimaryColor,
+                    ),
+                    child: Text(
+                      pending ? 'Pending' : 'Withdraw',
+                      style:
+                          textButton.copyWith(color: kWhiteColor, fontSize: 15),
+                    ),
+                  ),
+                )
+              : Tooltip(
+                  message: "Unlocks $daysLeft",
+                  triggerMode: TooltipTriggerMode.tap,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6),
+                      color: kSecondaryColor),
+                  height: 50,
+                  padding: const EdgeInsets.all(8.0),
+                  margin: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: 48,
+                    width: 100,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: const Color.fromRGBO(3, 66, 109, 0.65),
+                    ),
+                    child: Text(
+                      'Withdraw',
+                      style:
+                          textButton.copyWith(color: kWhiteColor, fontSize: 15),
+                    ),
+                  ),
+                )
         ],
       ));
 }
