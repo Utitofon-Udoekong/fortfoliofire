@@ -31,7 +31,7 @@ class Calculator extends StatelessWidget {
                             height: 20,
                           ),
                           Text(
-                            "Investment Calaculator",
+                            "Investment Calculator",
                             style: titleText.copyWith(color: kBlackColor),
                           ),
                           const SizedBox(

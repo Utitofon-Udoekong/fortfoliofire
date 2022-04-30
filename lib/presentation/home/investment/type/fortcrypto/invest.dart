@@ -296,7 +296,7 @@ class FortCryptoInvestment extends StatelessWidget {
                     Text(
                       '${15 * (duration / 12)}% ',
                       style:
-                          subTitle.copyWith(fontSize: 14, color: kGreenColor),
+                          subTitle.copyWith(fontSize: 14, color: kGreenColor, fontWeight: FontWeight.w500),
                     )
                   ],
                 ),
