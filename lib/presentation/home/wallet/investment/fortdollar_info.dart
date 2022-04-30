@@ -2,10 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
+import 'package:fortfolio/domain/core/validator_helpers.dart';
 import 'package:fortfolio/domain/widgets/custom_outlined_button.dart';
 import 'package:fortfolio/presentation/home/wallet/cubit/wallet_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:intl/intl.dart';
+import 'package:jiffy/jiffy.dart';
 
 class FortDollarInvestmentInfo extends StatelessWidget {
   const FortDollarInvestmentInfo({Key? key}) : super(key: key);
@@ -67,15 +69,20 @@ class FortDollarInvestmentInfo extends StatelessWidget {
                   scrollDirection: Axis.vertical,
                   itemBuilder: ((context, index) {
                     return buildTile(
-                        '${activeInvestments[index].planName} / ${activeInvestments[index].duration.toInt()} month(s)',
-                        '\$${formatter.format(activeInvestments[index].amount)}', () {
+                      title: '${activeInvestments[index].planName} / ${activeInvestments[index].duration.toInt()} month(s)',
+                      amount: '\$${formatter.format(activeInvestments[index].amount)}',
+                      ontap: () {
                       context
                           .read<WalletCubit>()
                           .investmentToBeWithdrawnChanged(
                               investmentToBeWithdrawn:
                                   activeInvestments[index]);
                       context.router.push(const WithdrawalPageRoute());
-                    }, activeInvestments[index].status == "Pending");
+                    },
+                      pending: activeInvestments[index].status == "Pending",
+                      isDue: activeInvestments[index].dueDate.isToday,
+                      daysLeft: Jiffy(activeInvestments[index].dueDate).fromNow(),
+                    );
                   }),
                 ),
               ),
@@ -94,10 +101,15 @@ class FortDollarInvestmentInfo extends StatelessWidget {
   }
 }
 
-Widget buildTile(String title, String amount, Function() ontap, bool pending) {
+Widget buildTile(
+    {required String title,
+    required String amount,
+    required Function() ontap,
+    required bool pending,
+    required bool isDue,
+    required String daysLeft}) {
   return Container(
       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 8),
-      margin: const EdgeInsets.only(bottom: 10.0),
       decoration: BoxDecoration(
           color: const Color(0XFFF3F6F8),
           borderRadius: BorderRadius.circular(10.0)),
@@ -126,7 +138,9 @@ Widget buildTile(String title, String amount, Function() ontap, bool pending) {
               width: 100,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: pending ? const Color.fromRGBO(3, 66, 109, 0.65) : kPrimaryColor,
+                color: pending
+                    ? const Color.fromRGBO(3, 66, 109, 0.65)
+                    : kPrimaryColor,
               ),
               child: Text(
                 pending ? 'Pending' : 'Withdraw',
