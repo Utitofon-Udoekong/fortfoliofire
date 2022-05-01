@@ -225,7 +225,7 @@ class FortShieldInvestment extends StatelessWidget {
                     Text(
                       '${18 * (duration/12)}% ',
                       style:
-                          subTitle.copyWith(fontSize: 14, color: kGreenColor, fontWeight: FontWeight.w500),
+                          subTitle.copyWith(fontSize: 15, color: kGreenColor, fontWeight: FontWeight.w600),
                     )
                   ],
                 ),
