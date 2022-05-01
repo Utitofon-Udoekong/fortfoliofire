@@ -23,7 +23,7 @@ List<OrderModel> order(String endDate){
           subtitle: Jiffy(DateTime.now()).yMMMMd,
           tooltip: false),
       OrderModel(title: 'Interest Frequency', subtitle: 'monthly', tooltip: true, tooltipText: "Shows how often your interest will be available for harvest"),
-      OrderModel(title: 'Redemption Date', subtitle: endDate, tooltip: true, tooltipText: "Investment lock period ends. User can withdraw at anytime from now."),
+      OrderModel(title: 'Redemption Date', subtitle: endDate, tooltip: true, tooltipText: "This is the date where your investment capital can be withdrawn alongside profits without penalty."),
     ];
   return order;
   }
