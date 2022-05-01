@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:fortfolio/infrastructure/auth/local_auth_api.dart';
@@ -49,7 +50,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // final svg = SvgPicture.asset('images/logo.svg',semanticsLabel: 'logo',);
+    final svg = SvgPicture.asset('images/logo.svg',semanticsLabel: 'logo',);
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
@@ -57,14 +58,15 @@ class _SplashScreenState extends State<SplashScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width / 1.3,
               height: MediaQuery.of(context).size.height / 5,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('images/logo.png'),
-                    fit: BoxFit.fitHeight),
-              ),
+              child: svg,
+              // decoration: const BoxDecoration(
+              //   image: DecorationImage(
+              //       image: AssetImage('images/logo.png'),
+              //       fit: BoxFit.fitHeight),
+              // ),
             ),
             const Text(
               "Fortfolio",
