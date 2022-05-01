@@ -83,25 +83,39 @@ exports.endInvestment = functions.firestore.document("/authUsers/{uid}/investmen
     
 })
 
-exports.createCharge = functions.https.onRequest((req, res) => {
+exports.createCharge = functions.https.onCall(async (data, context) => {
+  const name = data.name
+  const description = data.description
+
+  const chargeData = {
+    name: name,
+    description: description,
+    local_price: {
+      currency: 'USD',
+    },
+    pricing_type: 'no_price',
+  };
+  const charge = await Charge.create(chargeData);
+  functions.logger.log(charge)
+  return charge
+})
+
+exports.createCharg = functions.https.onRequest((req, res) => {
     cors(req, res, async () => {
-      // TODO get real product data from database
-    
+      const details = req.body
+      const name = details.name
+      const description = details.description
       const chargeData = {
-        name: 'Widget',
-        description: 'Useless widget created by Fireship',
+        name: name,
+        description: description,
         local_price: {
-          amount: 9.99,
           currency: 'USD',
         },
         pricing_type: 'no_price',
-        metadata: {
-          user: 'jeffd23',
-        },
       };
   
       const charge = await Charge.create(chargeData);
-      console.log(charge);
+      functions.logger.log(charge)
   
       res.send(charge);
     });

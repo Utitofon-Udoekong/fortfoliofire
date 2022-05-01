@@ -107,20 +107,20 @@ class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      InkWell(
-                        onTap: () => context.router.pop(),
-                        child: const Icon(Icons.close),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        "Invest With Crypto",
-                        style: titleText,
-                      ),
+                      // const SizedBox(
+                      //   height: 20,
+                      // ),
+                      // InkWell(
+                      //   onTap: () => context.router.pop(),
+                      //   child: const Icon(Icons.close),
+                      // ),
+                      // const SizedBox(
+                      //   height: 20,
+                      // ),
+                      // Text(
+                      //   "Invest With Crypto",
+                      //   style: titleText,
+                      // ),
                       // const SizedBox(
                       //   height: 10,
                       // ),
@@ -139,9 +139,9 @@ class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
                       //       color: kgreyColor,
                       //       fontSize: 13,
                       //     )),
-                      const SizedBox(
-                        height: 30,
-                      ),
+                      // const SizedBox(
+                      //   height: 30,
+                      // ),
                       TextField(
                         decoration: const InputDecoration(
                             prefixIcon: Icon(Icons.search)),
@@ -157,9 +157,9 @@ class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
                               urlRequest: URLRequest(url: url));
                         },
                       ),
-                      const SizedBox(
-                        height: 30,
-                      ),
+                      // const SizedBox(
+                      //   height: 30,
+                      // ),
                       Expanded(
                         child: Stack(
                           children: [
