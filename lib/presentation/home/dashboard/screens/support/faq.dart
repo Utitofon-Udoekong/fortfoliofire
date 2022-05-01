@@ -86,6 +86,7 @@ class _FAQPageState extends State<FAQPage> {
             ),
           ),
           value: item.question,
+          canTapOnHeader: true
         );
       }).toList(),
     );
