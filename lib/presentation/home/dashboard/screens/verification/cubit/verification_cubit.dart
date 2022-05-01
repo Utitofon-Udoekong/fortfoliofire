@@ -37,8 +37,13 @@ class VerificationCubit extends Cubit<VerificationState> {
 
   getSubmittedState() async {
     final sp = await SharedPreferences.getInstance();
+    final bool isVerified = authCubit.state.userModel.isVerified;
     bool? kycExists = sp.getBool('kycExists');
-    emit(state.copyWith(kycExists: kycExists!));
+    if(isVerified){
+      sp.setBool("kycExists", false);
+    }else{
+      emit(state.copyWith(kycExists: kycExists!));
+    }
   }
 
   void submitKYC() async {
