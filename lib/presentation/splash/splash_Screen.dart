@@ -58,15 +58,15 @@ class _SplashScreenState extends State<SplashScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width / 1.3,
               height: MediaQuery.of(context).size.height / 5,
-              // child: svg,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('images/logo.png'),
-                    fit: BoxFit.fitHeight),
-              ),
+              child: svg,
+              // decoration: const BoxDecoration(
+              //   image: DecorationImage(
+              //       image: AssetImage('images/logo.png'),
+              //       fit: BoxFit.fitHeight),
+              // ),
             ),
             const Text(
               "Fortfolio",
