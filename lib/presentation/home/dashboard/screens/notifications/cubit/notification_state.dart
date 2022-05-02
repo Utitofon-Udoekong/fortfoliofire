@@ -6,6 +6,7 @@ class NotificationState with _$NotificationState {
   const factory NotificationState({
     required List<NotificationItem> notifications,
     required List<NotificationItem> selectedNotifications,
+    required int notificationCount,
     required bool loading,
     required String type,
     required String title,
@@ -16,6 +17,7 @@ class NotificationState with _$NotificationState {
 
   factory NotificationState.empty() => NotificationState(
         notifications: [ ],
+        notificationCount: 0,
         loading: false,
         createdat: DateTime.now(),
         id: "",
@@ -25,5 +27,5 @@ class NotificationState with _$NotificationState {
         selectedNotifications: List<NotificationItem>.empty(growable: true)
       );
 
-  bool get notificationExists => notifications.isNotEmpty;
+  bool get notificationExists => notificationCount > 0;
 }

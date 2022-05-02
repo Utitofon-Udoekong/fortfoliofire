@@ -49,7 +49,7 @@ class HomePage extends StatelessWidget {
                     return CustomBadge(
                       top: 1,
                       right: 1,
-                      value: state.newNotification.toString(),
+                      value: state.notificationCount.toString(),
                       child: IconButton(
                           onPressed: () {
                             context.router.push(const NotificationsPageRoute());

@@ -21,8 +21,8 @@ class _$NotificationStateTearOff {
   _NotificationState call(
       {required List<NotificationItem> notifications,
       required List<NotificationItem> selectedNotifications,
+      required int notificationCount,
       required bool loading,
-      required int newNotification,
       required String type,
       required String title,
       required DateTime createdat,
@@ -31,8 +31,8 @@ class _$NotificationStateTearOff {
     return _NotificationState(
       notifications: notifications,
       selectedNotifications: selectedNotifications,
+      notificationCount: notificationCount,
       loading: loading,
-      newNotification: newNotification,
       type: type,
       title: title,
       createdat: createdat,
@@ -51,8 +51,8 @@ mixin _$NotificationState {
       throw _privateConstructorUsedError;
   List<NotificationItem> get selectedNotifications =>
       throw _privateConstructorUsedError;
+  int get notificationCount => throw _privateConstructorUsedError;
   bool get loading => throw _privateConstructorUsedError;
-  int get newNotification => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   DateTime get createdat => throw _privateConstructorUsedError;
@@ -72,8 +72,8 @@ abstract class $NotificationStateCopyWith<$Res> {
   $Res call(
       {List<NotificationItem> notifications,
       List<NotificationItem> selectedNotifications,
+      int notificationCount,
       bool loading,
-      int newNotification,
       String type,
       String title,
       DateTime createdat,
@@ -94,8 +94,8 @@ class _$NotificationStateCopyWithImpl<$Res>
   $Res call({
     Object? notifications = freezed,
     Object? selectedNotifications = freezed,
+    Object? notificationCount = freezed,
     Object? loading = freezed,
-    Object? newNotification = freezed,
     Object? type = freezed,
     Object? title = freezed,
     Object? createdat = freezed,
@@ -111,14 +111,14 @@ class _$NotificationStateCopyWithImpl<$Res>
           ? _value.selectedNotifications
           : selectedNotifications // ignore: cast_nullable_to_non_nullable
               as List<NotificationItem>,
+      notificationCount: notificationCount == freezed
+          ? _value.notificationCount
+          : notificationCount // ignore: cast_nullable_to_non_nullable
+              as int,
       loading: loading == freezed
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
-      newNotification: newNotification == freezed
-          ? _value.newNotification
-          : newNotification // ignore: cast_nullable_to_non_nullable
-              as int,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -153,8 +153,8 @@ abstract class _$NotificationStateCopyWith<$Res>
   $Res call(
       {List<NotificationItem> notifications,
       List<NotificationItem> selectedNotifications,
+      int notificationCount,
       bool loading,
-      int newNotification,
       String type,
       String title,
       DateTime createdat,
@@ -177,8 +177,8 @@ class __$NotificationStateCopyWithImpl<$Res>
   $Res call({
     Object? notifications = freezed,
     Object? selectedNotifications = freezed,
+    Object? notificationCount = freezed,
     Object? loading = freezed,
-    Object? newNotification = freezed,
     Object? type = freezed,
     Object? title = freezed,
     Object? createdat = freezed,
@@ -194,14 +194,14 @@ class __$NotificationStateCopyWithImpl<$Res>
           ? _value.selectedNotifications
           : selectedNotifications // ignore: cast_nullable_to_non_nullable
               as List<NotificationItem>,
+      notificationCount: notificationCount == freezed
+          ? _value.notificationCount
+          : notificationCount // ignore: cast_nullable_to_non_nullable
+              as int,
       loading: loading == freezed
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
-      newNotification: newNotification == freezed
-          ? _value.newNotification
-          : newNotification // ignore: cast_nullable_to_non_nullable
-              as int,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -232,8 +232,8 @@ class _$_NotificationState extends _NotificationState {
   const _$_NotificationState(
       {required this.notifications,
       required this.selectedNotifications,
+      required this.notificationCount,
       required this.loading,
-      required this.newNotification,
       required this.type,
       required this.title,
       required this.createdat,
@@ -246,9 +246,9 @@ class _$_NotificationState extends _NotificationState {
   @override
   final List<NotificationItem> selectedNotifications;
   @override
-  final bool loading;
+  final int notificationCount;
   @override
-  final int newNotification;
+  final bool loading;
   @override
   final String type;
   @override
@@ -262,7 +262,7 @@ class _$_NotificationState extends _NotificationState {
 
   @override
   String toString() {
-    return 'NotificationState(notifications: $notifications, selectedNotifications: $selectedNotifications, loading: $loading, newNotification: $newNotification, type: $type, title: $title, createdat: $createdat, id: $id, status: $status)';
+    return 'NotificationState(notifications: $notifications, selectedNotifications: $selectedNotifications, notificationCount: $notificationCount, loading: $loading, type: $type, title: $title, createdat: $createdat, id: $id, status: $status)';
   }
 
   @override
@@ -274,9 +274,9 @@ class _$_NotificationState extends _NotificationState {
                 .equals(other.notifications, notifications) &&
             const DeepCollectionEquality()
                 .equals(other.selectedNotifications, selectedNotifications) &&
-            const DeepCollectionEquality().equals(other.loading, loading) &&
             const DeepCollectionEquality()
-                .equals(other.newNotification, newNotification) &&
+                .equals(other.notificationCount, notificationCount) &&
+            const DeepCollectionEquality().equals(other.loading, loading) &&
             const DeepCollectionEquality().equals(other.type, type) &&
             const DeepCollectionEquality().equals(other.title, title) &&
             const DeepCollectionEquality().equals(other.createdat, createdat) &&
@@ -289,8 +289,8 @@ class _$_NotificationState extends _NotificationState {
       runtimeType,
       const DeepCollectionEquality().hash(notifications),
       const DeepCollectionEquality().hash(selectedNotifications),
+      const DeepCollectionEquality().hash(notificationCount),
       const DeepCollectionEquality().hash(loading),
-      const DeepCollectionEquality().hash(newNotification),
       const DeepCollectionEquality().hash(type),
       const DeepCollectionEquality().hash(title),
       const DeepCollectionEquality().hash(createdat),
@@ -307,8 +307,8 @@ abstract class _NotificationState extends NotificationState {
   const factory _NotificationState(
       {required List<NotificationItem> notifications,
       required List<NotificationItem> selectedNotifications,
+      required int notificationCount,
       required bool loading,
-      required int newNotification,
       required String type,
       required String title,
       required DateTime createdat,
@@ -321,9 +321,9 @@ abstract class _NotificationState extends NotificationState {
   @override
   List<NotificationItem> get selectedNotifications;
   @override
-  bool get loading;
+  int get notificationCount;
   @override
-  int get newNotification;
+  bool get loading;
   @override
   String get type;
   @override

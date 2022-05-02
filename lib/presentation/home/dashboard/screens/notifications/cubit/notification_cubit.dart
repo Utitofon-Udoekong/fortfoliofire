@@ -20,6 +20,14 @@ class NotificationCubit extends Cubit<NotificationState> {
     initNotifications();
   }
 
+  void getNotificationCount() async{
+    final sp = await SharedPreferences.getInstance();
+    if(sp.containsKey("notificationCount")){
+      int notificationCount = sp.getInt("notificationCount")!;
+      emit(state.copyWith(notificationCount: notificationCount));
+    }
+  }
+
   void initNotifications() {
     _logsStreamSubscription = firestoreFacade.getNotifications().listen((data){
       final List<QueryDocumentSnapshot<Object?>> docs = data.docs;
@@ -30,12 +38,9 @@ class NotificationCubit extends Cubit<NotificationState> {
           newdocs.add(doc);
         }
         emit(state.copyWith(notifications: newdocs, loading: false));
+        getNotificationCount();
       }
     });
-  }
-
-  void newNotificationChanged({required int newNotification}){
-    emit(state.copyWith(newNotification: newNotification));
   }
 
   void selectNotification({required NotificationItem notificationItem}) {
@@ -73,6 +78,7 @@ class NotificationCubit extends Cubit<NotificationState> {
   void reset() async{
     final sp = await SharedPreferences.getInstance();
     sp.setInt("notificationCount", 0);
+    getNotificationCount();
   }
 
   @override

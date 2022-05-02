@@ -41,7 +41,6 @@ class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
   double progress = 0;
   final urlController = TextEditingController();
 
-
   @override
   void initState() {
     // TODO: implement initState
@@ -97,241 +96,140 @@ class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: kDefaultPadding,
-          child: BlocBuilder<InvestmentCubit, InvestmentState>(
-            builder: (context, state) {
-              if (state.isLoading) {
-                return const LoadingView();
-              } else {
-                return SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      // const SizedBox(
-                      //   height: 20,
-                      // ),
-                      // InkWell(
-                      //   onTap: () => context.router.pop(),
-                      //   child: const Icon(Icons.close),
-                      // ),
-                      // const SizedBox(
-                      //   height: 20,
-                      // ),
-                      // Text(
-                      //   "Invest With Crypto",
-                      //   style: titleText,
-                      // ),
-                      // const SizedBox(
-                      //   height: 10,
-                      // ),
-                      // Text(
-                      //     'Copy the account details provided below. Transfer the amount you want to fund and your investment plan will be funded immediately!',
-                      //     style: subTitle.copyWith(
-                      //       color: kgreyColor,
-                      //       fontSize: 13,
-                      //     )),
-                      // const SizedBox(
-                      //   height: 15,
-                      // ),
-                      // Text(
-                      //     'Make payments using your personal account with the same name details you have on Fortfolio.',
-                      //     style: subTitle.copyWith(
-                      //       color: kgreyColor,
-                      //       fontSize: 13,
-                      //     )),
-                      // const SizedBox(
-                      //   height: 30,
-                      // ),
-                      TextField(
-                        decoration: const InputDecoration(
-                            prefixIcon: Icon(Icons.search)),
-                        controller: urlController,
-                        keyboardType: TextInputType.url,
-                        onSubmitted: (value) {
-                          var url = Uri.parse(value);
-                          if (url.scheme.isEmpty) {
-                            url = Uri.parse(
-                                "https://www.google.com/search?q=" + value);
+            padding: kDefaultPadding,
+            child: Stack(
+              children: [
+                TextField(
+                  decoration:
+                      const InputDecoration(prefixIcon: Icon(Icons.search)),
+                  controller: urlController,
+                  keyboardType: TextInputType.url,
+                  onSubmitted: (value) {
+                    var url = Uri.parse(value);
+                    if (url.scheme.isEmpty) {
+                      url =
+                          Uri.parse("https://www.google.com/search?q=" + value);
+                    }
+                    webViewController?.loadUrl(
+                        urlRequest: URLRequest(url: url));
+                  },
+                ),
+                // const SizedBox(
+                //   height: 30,
+                // ),
+                Expanded(
+                  child: Container(
+                    child: InAppWebView(
+                      key: webViewKey,
+                      // contextMenu: contextMenu,
+                      initialUrlRequest:
+                          URLRequest(url: Uri.parse("https://flutter.dev")),
+                      // initialFile: "assets/index.html",
+                      initialUserScripts: UnmodifiableListView<UserScript>([]),
+                      initialOptions: options,
+                      pullToRefreshController: pullToRefreshController,
+                      onWebViewCreated: (controller) {
+                        webViewController = controller;
+                      },
+                      onLoadStart: (controller, url) {
+                        setState(() {
+                          this.url = url.toString();
+                          urlController.text = this.url;
+                        });
+                      },
+                      androidOnPermissionRequest:
+                          (controller, origin, resources) async {
+                        return PermissionRequestResponse(
+                            resources: resources,
+                            action: PermissionRequestResponseAction.GRANT);
+                      },
+                      shouldOverrideUrlLoading:
+                          (controller, navigationAction) async {
+                        var uri = navigationAction.request.url!;
+
+                        if (![
+                          "http",
+                          "https",
+                          "file",
+                          "chrome",
+                          "data",
+                          "javascript",
+                          "about"
+                        ].contains(uri.scheme)) {
+                          if (await canLaunchUrl(Uri.parse(url))) {
+                            // Launch the App
+                            await launchUrl(
+                              Uri.parse(url),
+                            );
+                            // and cancel the request
+                            return NavigationActionPolicy.CANCEL;
                           }
-                          webViewController?.loadUrl(
-                              urlRequest: URLRequest(url: url));
-                        },
-                      ),
-                      // const SizedBox(
-                      //   height: 30,
-                      // ),
-                      Expanded(
-                        child: Stack(
-                          children: [
-                            InAppWebView(
-                              key: webViewKey,
-                              // contextMenu: contextMenu,
-                              initialUrlRequest: URLRequest(
-                                  url: Uri.parse("https://flutter.dev")),
-                              // initialFile: "assets/index.html",
-                              initialUserScripts:
-                                  UnmodifiableListView<UserScript>([]),
-                              initialOptions: options,
-                              pullToRefreshController: pullToRefreshController,
-                              onWebViewCreated: (controller) {
-                                webViewController = controller;
-                              },
-                              onLoadStart: (controller, url) {
-                                setState(() {
-                                  this.url = url.toString();
-                                  urlController.text = this.url;
-                                });
-                              },
-                              androidOnPermissionRequest:
-                                  (controller, origin, resources) async {
-                                return PermissionRequestResponse(
-                                    resources: resources,
-                                    action:
-                                        PermissionRequestResponseAction.GRANT);
-                              },
-                              shouldOverrideUrlLoading:
-                                  (controller, navigationAction) async {
-                                var uri = navigationAction.request.url!;
+                        }
 
-                                if (![
-                                  "http",
-                                  "https",
-                                  "file",
-                                  "chrome",
-                                  "data",
-                                  "javascript",
-                                  "about"
-                                ].contains(uri.scheme)) {
-                                  if (await canLaunchUrl(Uri.parse(url))) {
-                                    // Launch the App
-                                    await launchUrl(
-                                      Uri.parse(url),
-                                    );
-                                    // and cancel the request
-                                    return NavigationActionPolicy.CANCEL;
-                                  }
-                                }
-
-                                return NavigationActionPolicy.ALLOW;
-                              },
-                              onLoadStop: (controller, url) async {
-                                pullToRefreshController.endRefreshing();
-                                setState(() {
-                                  this.url = url.toString();
-                                  urlController.text = this.url;
-                                });
-                              },
-                              onLoadError: (controller, url, code, message) {
-                                pullToRefreshController.endRefreshing();
-                              },
-                              onProgressChanged: (controller, progress) {
-                                if (progress == 100) {
-                                  pullToRefreshController.endRefreshing();
-                                }
-                                setState(() {
-                                  this.progress = progress / 100;
-                                  urlController.text = url;
-                                });
-                              },
-                              onUpdateVisitedHistory:
-                                  (controller, url, androidIsReload) {
-                                setState(() {
-                                  this.url = url.toString();
-                                  urlController.text = this.url;
-                                });
-                              },
-                              onConsoleMessage: (controller, consoleMessage) {
-                                print(consoleMessage);
-                              },
-                            ),
-                            progress < 1.0
-                                ? LinearProgressIndicator(value: progress)
-                                : Container(),
-                          ],
-                        ),
-                      ),
-                      ButtonBar(
-                        alignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          ElevatedButton(
-                            child: const Icon(Icons.arrow_back),
-                            onPressed: () {
-                              webViewController?.goBack();
-                            },
-                          ),
-                          ElevatedButton(
-                            child: const Icon(Icons.arrow_forward),
-                            onPressed: () {
-                              webViewController?.goForward();
-                            },
-                          ),
-                          ElevatedButton(
-                            child: const Icon(Icons.refresh),
-                            onPressed: () {
-                              webViewController?.reload();
-                            },
-                          ),
-                        ],
-                      ),
-                      // Container(
-                      //   padding: const EdgeInsets.all(8.0),
-                      //   decoration: BoxDecoration(
-                      //       borderRadius: BorderRadius.circular(5.0),
-                      //       border: Border.all(
-                      //           width: 1.5, color: const Color(0XFFF3F6F8))),
-                      //   child: Column(
-                      //     crossAxisAlignment: CrossAxisAlignment.start,
-                      //     children: <Widget>[
-                      //       buildtile('Network', 'Binance Smart Chain'),
-                      //       const SizedBox(
-                      //         height: 15,
-                      //       ),
-                      //       Flex(
-                      //         direction: Axis.horizontal,
-                      //         children: <Widget>[
-                      //           buildtile(
-                      //               'Wallet Address', 'x45566778899990000'),
-                      //           IconButton(
-                      //               onPressed: () {
-                      //                 Clipboard.setData(const ClipboardData(
-                      //                         text: "0627767963"))
-                      //                     .then((_) {
-                      //                   CustomSnackbar.showSnackBar(
-                      //                       context, "Text copied", false);
-                      //                 });
-                      //               },
-                      //               icon: const Icon(
-                      //                 Icons.copy_rounded,
-                      //                 color: kPrimaryColor,
-                      //               ))
-                      //         ],
-                      //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      //       )
-                      //     ],
-                      //   ),
-                      // ),
-                      // const SizedBox(
-                      //   height: 30,
-                      // ),
-                      // Align(
-                      //   alignment: Alignment.bottomCenter,
-                      //   child: CustomFilledButton(
-                      //       text: 'I HAVE PAID',
-                      //       onTap: () {
-                      // context
-                      //     .read<InvestmentCubit>()
-                      //     .paymentMethodChanged(
-                      //         paymentMethod: "Crypto");
-                      //         context.read<InvestmentCubit>().iHavePaid();
-                      //       }),
-                      // )
-                    ],
+                        return NavigationActionPolicy.ALLOW;
+                      },
+                      onLoadStop: (controller, url) async {
+                        pullToRefreshController.endRefreshing();
+                        setState(() {
+                          this.url = url.toString();
+                          urlController.text = this.url;
+                        });
+                      },
+                      onLoadError: (controller, url, code, message) {
+                        pullToRefreshController.endRefreshing();
+                      },
+                      onProgressChanged: (controller, progress) {
+                        if (progress == 100) {
+                          pullToRefreshController.endRefreshing();
+                        }
+                        setState(() {
+                          this.progress = progress / 100;
+                          urlController.text = url;
+                        });
+                      },
+                      onUpdateVisitedHistory:
+                          (controller, url, androidIsReload) {
+                        setState(() {
+                          this.url = url.toString();
+                          urlController.text = this.url;
+                        });
+                      },
+                      onConsoleMessage: (controller, consoleMessage) {
+                        print(consoleMessage);
+                      },
+                    ),
                   ),
-                );
-              }
-            },
-          ),
-        ),
+                ),
+                Container(
+                    padding: const EdgeInsets.all(10.0),
+                    child: progress < 1.0
+                        ? LinearProgressIndicator(value: progress)
+                        : Container()),
+                ButtonBar(
+                  alignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    ElevatedButton(
+                      child: const Icon(Icons.arrow_back),
+                      onPressed: () {
+                        webViewController?.goBack();
+                      },
+                    ),
+                    ElevatedButton(
+                      child: const Icon(Icons.arrow_forward),
+                      onPressed: () {
+                        webViewController?.goForward();
+                      },
+                    ),
+                    ElevatedButton(
+                      child: const Icon(Icons.refresh),
+                      onPressed: () {
+                        webViewController?.reload();
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            )),
       ),
     );
   }
