@@ -99,8 +99,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i29.BankAddressCubit(get<_i12.IFirestoreFacade>()));
   gh.factory<_i30.CryptoWalletCubit>(
       () => _i30.CryptoWalletCubit(get<_i12.IFirestoreFacade>()));
-  gh.factory<_i31.DashboardCubit>(
-      () => _i31.DashboardCubit(get<_i16.IStorageFacade>()));
+  gh.factory<_i31.DashboardCubit>(() =>
+      _i31.DashboardCubit(get<_i16.IStorageFacade>(), get<_i8.IAuthFacade>()));
   return get;
 }
 

@@ -333,6 +333,7 @@ class FirebaseAuthFacade implements IAuthFacade {
   @override
   Future<Either<String, String>> updateEmail({required String newEmail}) async {
     try {
+
       await firebaseAuth.currentUser!.updateEmail(newEmail).then((_) async {
         await firestore.authUserCollection
             .doc(firebaseAuth.currentUser!.uid)
@@ -411,5 +412,10 @@ class FirebaseAuthFacade implements IAuthFacade {
         });
 
     yield* streamController.stream;
+  }
+
+  @override
+  Future<void> refresh() async {
+    await firebaseAuth.currentUser!.reload();
   }
 }

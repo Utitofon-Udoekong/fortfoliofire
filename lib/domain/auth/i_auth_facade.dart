@@ -43,6 +43,7 @@ abstract class IAuthFacade {
   });
   // sign out
   Future<void> signOut();
+  Future<void> refresh();
   // get signedin user
   // Future<Option<AuthUserModel>> getSignedInUser();
   // verify user

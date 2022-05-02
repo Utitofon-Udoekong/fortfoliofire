@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:fortfolio/domain/auth/i_auth_facade.dart';
 import 'package:fortfolio/domain/auth/i_storage_facade.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -9,7 +10,8 @@ part 'dashboard_cubit.freezed.dart';
 @injectable
 class DashboardCubit extends Cubit<DashboardState> {
   final IStorageFacade storageFacade;
-  DashboardCubit(this.storageFacade) : super(DashboardState.initial()){
+  final IAuthFacade authFacade;
+  DashboardCubit(this.storageFacade, this.authFacade) : super(DashboardState.initial()){
     // initNews();
   }
 
@@ -26,5 +28,9 @@ class DashboardCubit extends Cubit<DashboardState> {
       }
       emit(state.copyWith(newsList: urlList, loading: false));
     });
+  }
+
+  void refresh() async{
+    await authFacade.refresh();
   }
 }

@@ -11,91 +11,88 @@ class NotificationsPage extends StatelessWidget {
   const NotificationsPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<NotificationCubit>(),
-      child: Scaffold(
-          body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  InkWell(
-                    onTap: () => context.router.pop(),
-                    child: const Icon(Icons.close),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "Notifications",
-                    style: titleText.copyWith(color: kBlackColor),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  BlocBuilder<NotificationCubit, NotificationState>(
-                    buildWhen: (previous, current) => previous.notifications != current.notifications,
-                    builder: (context, state) {
-                      if(state.notifications.isEmpty){
-                        return Text("No notifications at the moment", style: subTitle.copyWith(color: kBlackColor, fontSize: 15),);
-                      }else{
-                        return Column(
-                        children: state.notifications.map((notification) {
-                          return buildtile(
-                            selected: state.selectedNotifications
-                                .contains(notification),
-                            selectNotification: () => context
-                                .read<NotificationCubit>()
-                                .selectNotification(
-                                    notificationItem: notification),
-                            deSelectNotification: () => context
-                                .read<NotificationCubit>()
-                                .deSelectNotification(
-                                    notificationItem: notification),
-                            deleteNotification: () => context
-                                .read<NotificationCubit>()
-                                .deleteNotification(
-                                    notificationItem: notification),
-                            title: notification.title,
-                            type: notification.type,
-                            createdat: notification.createdat,
-                            status: notification.status
-                          );
-                        }).toList(),
-                      );
-                      }
-                    },
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  BlocSelector<NotificationCubit, NotificationState, bool>(
-                    selector: (state) {
-                      return state.selectedNotifications.isNotEmpty;
-                    },
-                    builder: (context, selected) {
-                      return Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Visibility(
-                            visible: selected,
-                            child: CustomFilledButton(
-                                text: 'CLEAR ALL',
-                                onTap: () => context
-                                    .read<NotificationCubit>()
-                                    .deleteAllNotifications())),
-                      );
-                    },
-                  )
-                ],
-              )),
-        ),
-      )),
-    );
+    return Scaffold(
+        body: SafeArea(
+      child: SingleChildScrollView(
+        child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                const SizedBox(
+                  height: 20,
+                ),
+                InkWell(
+                  onTap: () => context.router.pop(),
+                  child: const Icon(Icons.close),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  "Notifications",
+                  style: titleText.copyWith(color: kBlackColor),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                BlocBuilder<NotificationCubit, NotificationState>(
+                  buildWhen: (previous, current) => previous.notifications != current.notifications,
+                  builder: (context, state) {
+                    if(state.notifications.isEmpty){
+                      return Text("No notifications at the moment", style: subTitle.copyWith(color: kBlackColor, fontSize: 15),);
+                    }else{
+                      return Column(
+                      children: state.notifications.map((notification) {
+                        return buildtile(
+                          selected: state.selectedNotifications
+                              .contains(notification),
+                          selectNotification: () => context
+                              .read<NotificationCubit>()
+                              .selectNotification(
+                                  notificationItem: notification),
+                          deSelectNotification: () => context
+                              .read<NotificationCubit>()
+                              .deSelectNotification(
+                                  notificationItem: notification),
+                          deleteNotification: () => context
+                              .read<NotificationCubit>()
+                              .deleteNotification(
+                                  notificationItem: notification),
+                          title: notification.title,
+                          type: notification.type,
+                          createdat: notification.createdat,
+                          status: notification.status
+                        );
+                      }).toList(),
+                    );
+                    }
+                  },
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                BlocSelector<NotificationCubit, NotificationState, bool>(
+                  selector: (state) {
+                    return state.selectedNotifications.isNotEmpty;
+                  },
+                  builder: (context, selected) {
+                    return Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Visibility(
+                          visible: selected,
+                          child: CustomFilledButton(
+                              text: 'CLEAR ALL',
+                              onTap: () => context
+                                  .read<NotificationCubit>()
+                                  .deleteAllNotifications())),
+                    );
+                  },
+                )
+              ],
+            )),
+      ),
+    ));
   }
 
   Widget buildtile({

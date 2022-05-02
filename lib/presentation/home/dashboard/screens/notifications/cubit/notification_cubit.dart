@@ -20,6 +20,7 @@ class NotificationCubit extends Cubit<NotificationState> {
   }
 
   void initNotifications() {
+    int notification = 0;
     _logsStreamSubscription = firestoreFacade.getNotifications().listen((data) {
       final List<QueryDocumentSnapshot<Object?>> docs = data.docs;
       List<NotificationItem> newdocs = [];
@@ -28,9 +29,14 @@ class NotificationCubit extends Cubit<NotificationState> {
           final doc = NotificationItemDTO.fromFirestore(element).toDomain();
           newdocs.add(doc);
         }
+        newNotificationChanged(newNotification: notification + 1 );
         emit(state.copyWith(notifications: newdocs, loading: false));
       }
     });
+  }
+
+  void newNotificationChanged({required int newNotification}){
+    emit(state.copyWith(newNotification: newNotification));
   }
 
   void selectNotification({required NotificationItem notificationItem}) {
@@ -63,6 +69,10 @@ class NotificationCubit extends Cubit<NotificationState> {
     // notifications.clear();
     selectedNotifications.clear();
     emit(state.copyWith(selectedNotifications: selectedNotifications));
+  }
+
+  void reset(){
+    emit(state.copyWith(newNotification: 0));
   }
 
   @override

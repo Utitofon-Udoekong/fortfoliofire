@@ -1,6 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
+import 'package:fortfolio/domain/widgets/custom_badge.dart';
+import 'package:fortfolio/presentation/home/dashboard/screens/notifications/cubit/notification_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
@@ -40,12 +43,34 @@ class HomePage extends StatelessWidget {
               width: 30,
               alignment: Alignment.center,
               height: 30,
-              child: IconButton(
-                  onPressed: () => context.router.push(const NotificationsPageRoute()),
-                  icon: const Icon(
-                    Icons.notifications,
-                    size: 15,
-                  )),
+              child: BlocBuilder<NotificationCubit, NotificationState>(
+                builder: (context, state) {
+                  if (state.notificationExists) {
+                    return CustomBadge(
+                      top: 1,
+                      right: 1,
+                      value: state.newNotification.toString(),
+                      child: IconButton(
+                          onPressed: () {
+                            context.router.push(const NotificationsPageRoute());
+                            context.read<NotificationCubit>().reset();
+                          },
+                          icon: const Icon(
+                            Icons.notifications,
+                            size: 15,
+                          )),
+                    );
+                  } else {
+                    return IconButton(
+                        onPressed: () =>
+                            context.router.push(const NotificationsPageRoute()),
+                        icon: const Icon(
+                          Icons.notifications,
+                          size: 15,
+                        ));
+                  }
+                },
+              ),
             )
           ],
         );
@@ -58,7 +83,7 @@ class HomePage extends StatelessWidget {
       drawer: const SafeArea(child: MainDrawer()),
       bottomNavigationBuilder: (_, tabsRouter) {
         return SalomonBottomBar(
-          margin: const EdgeInsets.fromLTRB( 20, 20, 20, 10 ),
+          margin: const EdgeInsets.fromLTRB(20, 20, 20, 10),
           currentIndex: tabsRouter.activeIndex,
           onTap: tabsRouter.setActiveIndex,
           items: [

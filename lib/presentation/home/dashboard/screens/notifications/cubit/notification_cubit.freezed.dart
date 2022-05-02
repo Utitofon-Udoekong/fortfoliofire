@@ -22,6 +22,7 @@ class _$NotificationStateTearOff {
       {required List<NotificationItem> notifications,
       required List<NotificationItem> selectedNotifications,
       required bool loading,
+      required int newNotification,
       required String type,
       required String title,
       required DateTime createdat,
@@ -31,6 +32,7 @@ class _$NotificationStateTearOff {
       notifications: notifications,
       selectedNotifications: selectedNotifications,
       loading: loading,
+      newNotification: newNotification,
       type: type,
       title: title,
       createdat: createdat,
@@ -50,6 +52,7 @@ mixin _$NotificationState {
   List<NotificationItem> get selectedNotifications =>
       throw _privateConstructorUsedError;
   bool get loading => throw _privateConstructorUsedError;
+  int get newNotification => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   DateTime get createdat => throw _privateConstructorUsedError;
@@ -70,6 +73,7 @@ abstract class $NotificationStateCopyWith<$Res> {
       {List<NotificationItem> notifications,
       List<NotificationItem> selectedNotifications,
       bool loading,
+      int newNotification,
       String type,
       String title,
       DateTime createdat,
@@ -91,6 +95,7 @@ class _$NotificationStateCopyWithImpl<$Res>
     Object? notifications = freezed,
     Object? selectedNotifications = freezed,
     Object? loading = freezed,
+    Object? newNotification = freezed,
     Object? type = freezed,
     Object? title = freezed,
     Object? createdat = freezed,
@@ -110,6 +115,10 @@ class _$NotificationStateCopyWithImpl<$Res>
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
+      newNotification: newNotification == freezed
+          ? _value.newNotification
+          : newNotification // ignore: cast_nullable_to_non_nullable
+              as int,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -145,6 +154,7 @@ abstract class _$NotificationStateCopyWith<$Res>
       {List<NotificationItem> notifications,
       List<NotificationItem> selectedNotifications,
       bool loading,
+      int newNotification,
       String type,
       String title,
       DateTime createdat,
@@ -168,6 +178,7 @@ class __$NotificationStateCopyWithImpl<$Res>
     Object? notifications = freezed,
     Object? selectedNotifications = freezed,
     Object? loading = freezed,
+    Object? newNotification = freezed,
     Object? type = freezed,
     Object? title = freezed,
     Object? createdat = freezed,
@@ -187,6 +198,10 @@ class __$NotificationStateCopyWithImpl<$Res>
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
+      newNotification: newNotification == freezed
+          ? _value.newNotification
+          : newNotification // ignore: cast_nullable_to_non_nullable
+              as int,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -213,16 +228,18 @@ class __$NotificationStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_NotificationState implements _NotificationState {
+class _$_NotificationState extends _NotificationState {
   const _$_NotificationState(
       {required this.notifications,
       required this.selectedNotifications,
       required this.loading,
+      required this.newNotification,
       required this.type,
       required this.title,
       required this.createdat,
       required this.id,
-      required this.status});
+      required this.status})
+      : super._();
 
   @override
   final List<NotificationItem> notifications;
@@ -230,6 +247,8 @@ class _$_NotificationState implements _NotificationState {
   final List<NotificationItem> selectedNotifications;
   @override
   final bool loading;
+  @override
+  final int newNotification;
   @override
   final String type;
   @override
@@ -243,7 +262,7 @@ class _$_NotificationState implements _NotificationState {
 
   @override
   String toString() {
-    return 'NotificationState(notifications: $notifications, selectedNotifications: $selectedNotifications, loading: $loading, type: $type, title: $title, createdat: $createdat, id: $id, status: $status)';
+    return 'NotificationState(notifications: $notifications, selectedNotifications: $selectedNotifications, loading: $loading, newNotification: $newNotification, type: $type, title: $title, createdat: $createdat, id: $id, status: $status)';
   }
 
   @override
@@ -256,6 +275,8 @@ class _$_NotificationState implements _NotificationState {
             const DeepCollectionEquality()
                 .equals(other.selectedNotifications, selectedNotifications) &&
             const DeepCollectionEquality().equals(other.loading, loading) &&
+            const DeepCollectionEquality()
+                .equals(other.newNotification, newNotification) &&
             const DeepCollectionEquality().equals(other.type, type) &&
             const DeepCollectionEquality().equals(other.title, title) &&
             const DeepCollectionEquality().equals(other.createdat, createdat) &&
@@ -269,6 +290,7 @@ class _$_NotificationState implements _NotificationState {
       const DeepCollectionEquality().hash(notifications),
       const DeepCollectionEquality().hash(selectedNotifications),
       const DeepCollectionEquality().hash(loading),
+      const DeepCollectionEquality().hash(newNotification),
       const DeepCollectionEquality().hash(type),
       const DeepCollectionEquality().hash(title),
       const DeepCollectionEquality().hash(createdat),
@@ -281,16 +303,18 @@ class _$_NotificationState implements _NotificationState {
       __$NotificationStateCopyWithImpl<_NotificationState>(this, _$identity);
 }
 
-abstract class _NotificationState implements NotificationState {
+abstract class _NotificationState extends NotificationState {
   const factory _NotificationState(
       {required List<NotificationItem> notifications,
       required List<NotificationItem> selectedNotifications,
       required bool loading,
+      required int newNotification,
       required String type,
       required String title,
       required DateTime createdat,
       required String id,
       required String status}) = _$_NotificationState;
+  const _NotificationState._() : super._();
 
   @override
   List<NotificationItem> get notifications;
@@ -298,6 +322,8 @@ abstract class _NotificationState implements NotificationState {
   List<NotificationItem> get selectedNotifications;
   @override
   bool get loading;
+  @override
+  int get newNotification;
   @override
   String get type;
   @override
