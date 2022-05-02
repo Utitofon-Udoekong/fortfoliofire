@@ -83,6 +83,8 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
   Future<Either<String, String>> createInvestmentTransaction(
       {required InvestmentItem investmentItem}) async {
     String docId = investmentItem.uid + investmentItem.traxId;
+    final sp = await SharedPreferences.getInstance();
+    int notificationCount = sp.getInt("notificationCount")!;
     try {
       await firestore.authUserCollection
           .doc(auth.currentUser!.uid)
@@ -95,7 +97,9 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
           type: "Investment",
           id: nanoid(8),
           status: investmentItem.status);
-      await createNotification(notificationItem: notificationItem);
+      await createNotification(notificationItem: notificationItem).then((_){
+        sp.setInt("notificationCount", (notificationCount++));
+      });
       return right("Investment made. Awaiting approval");
     } on FirebaseException catch (e) {
       log("Code: ${e.code}, Message: ${e.message}");
@@ -106,7 +110,9 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
   @override
   Future<Either<String, String>> createWithdrawalTransaction(
       {required WithdrawalItem withdrawalItem}) async {
+        final sp = await SharedPreferences.getInstance();
     String docId = withdrawalItem.uid + withdrawalItem.traxId;
+    int notificationCount = sp.getInt("notificationCount")!;
     try {
       await firestore.authUserCollection
           .doc(auth.currentUser!.uid)
@@ -120,7 +126,9 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
         createdat: withdrawalItem.createdat,
         status: withdrawalItem.status,
       );
-      await createNotification(notificationItem: notificationItem);
+      await createNotification(notificationItem: notificationItem).then((_) {
+        sp.setInt("notificationCount", (notificationCount++));
+      });
       return right("Withdrawal submitted. Awaiting approval");
     } on FirebaseException catch (e) {
       log("Code: ${e.code}, Message: ${e.message}");
@@ -148,12 +156,16 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
   @override
   Future<Either<String, String>> createNotification(
       {required NotificationItem notificationItem}) async {
+    final sp = await SharedPreferences.getInstance();
     try {
       await firestore.authUserCollection
           .doc(auth.currentUser!.uid)
           .collection("notifications")
           .doc()
           .set(NotificationItemDTO.fromDomain(notificationItem).toJson());
+      if(!sp.containsKey("notificationCount")){
+        sp.setInt("notificationCount", 0);
+      }
       return right("notification created");
     } on FirebaseException catch (e) {
       log("Code: ${e.code}, Message: ${e.message}");
@@ -269,7 +281,6 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
   @override
   Future<Either<String, String>> deleteNotification(
       {required NotificationItem notificationItem}) async {
-    final batch = firestore.batch();
     final notification = await firestore.authUserCollection
         .doc(auth.currentUser!.uid)
         .collection("notifications")
@@ -277,7 +288,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
         .get();
     try {
       for (var doc in notification.docs) {
-        batch.delete(doc.reference);
+        doc.reference.delete();
       }
       return right("Notification deleted successfully");
     } on FirebaseException catch (e) {

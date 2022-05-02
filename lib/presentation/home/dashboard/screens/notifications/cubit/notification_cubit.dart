@@ -7,6 +7,7 @@ import 'package:fortfolio/domain/user/notification_item.dart';
 import 'package:fortfolio/infrastructure/auth/dto/notification/notification_dto.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'notification_state.dart';
 part 'notification_cubit.freezed.dart';
@@ -20,8 +21,7 @@ class NotificationCubit extends Cubit<NotificationState> {
   }
 
   void initNotifications() {
-    int notification = 0;
-    _logsStreamSubscription = firestoreFacade.getNotifications().listen((data) {
+    _logsStreamSubscription = firestoreFacade.getNotifications().listen((data){
       final List<QueryDocumentSnapshot<Object?>> docs = data.docs;
       List<NotificationItem> newdocs = [];
       if (data.size > 0) {
@@ -29,7 +29,6 @@ class NotificationCubit extends Cubit<NotificationState> {
           final doc = NotificationItemDTO.fromFirestore(element).toDomain();
           newdocs.add(doc);
         }
-        newNotificationChanged(newNotification: notification + 1 );
         emit(state.copyWith(notifications: newdocs, loading: false));
       }
     });
@@ -71,8 +70,9 @@ class NotificationCubit extends Cubit<NotificationState> {
     emit(state.copyWith(selectedNotifications: selectedNotifications));
   }
 
-  void reset(){
-    emit(state.copyWith(newNotification: 0));
+  void reset() async{
+    final sp = await SharedPreferences.getInstance();
+    sp.setInt("notificationCount", 0);
   }
 
   @override

@@ -7,7 +7,6 @@ class NotificationState with _$NotificationState {
     required List<NotificationItem> notifications,
     required List<NotificationItem> selectedNotifications,
     required bool loading,
-    required int newNotification,
     required String type,
     required String title,
     required DateTime createdat,
@@ -18,7 +17,6 @@ class NotificationState with _$NotificationState {
   factory NotificationState.empty() => NotificationState(
         notifications: [ ],
         loading: false,
-        newNotification: 0,
         createdat: DateTime.now(),
         id: "",
         status: "pending",
@@ -27,5 +25,5 @@ class NotificationState with _$NotificationState {
         selectedNotifications: List<NotificationItem>.empty(growable: true)
       );
 
-  bool get notificationExists => newNotification > 0;
+  bool get notificationExists => notifications.isNotEmpty;
 }
