@@ -61,9 +61,9 @@ class FirebaseAuthFacade implements IAuthFacade {
     final emailAddressString = emailAddress.getOrCrash();
     final passwordString = password.getOrCrash();
     try {
-      final signInPhase = await firebaseAuth.signInWithEmailAndPassword(
+      await firebaseAuth.signInWithEmailAndPassword(
           email: emailAddressString, password: passwordString);
-      return right(signInPhase.user!.uid);
+      return right("Login successful");
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found' || e.code == 'wrong-password') {
         return left("Invalid email and password combination");
@@ -263,7 +263,6 @@ class FirebaseAuthFacade implements IAuthFacade {
           PhoneAuthProvider.credential(
               smsCode: smsCode, verificationId: verificationId);
       await firebaseAuth.signInWithCredential(phoneAuthCredential);
-      print("phone signin completed");
       return right("Verification successful");
     } on FirebaseAuthException catch (e) {
       if (e.code == "session-expired") {

@@ -54,10 +54,10 @@ class SignInFormEmailCubit extends Cubit<SignInFormEmailState> {
       failureOrSuccess.fold((failure){
         emit(state.copyWith(isSubmitting: false,failure: failure));
         reset();
-      }, (userId) async{
+      }, (success) async{
         // final userModel = await _authFacade.getDatabaseUser(id: userId);
         // userModel.fold(() => null, (authUser) => authCubit.listenAuthStateChangesStream(authUser));
-        emit(state.copyWith(isSubmitting: false,success: "Login successful"));
+        emit(state.copyWith(isSubmitting: false,success: success));
         reset();
       });
     }

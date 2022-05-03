@@ -33,8 +33,6 @@ class SignUpFormPhoneCubit extends Cubit<SignUpFormPhoneState> {
     required String smsCode,
   }) {
     emit(state.copyWith(smsCode: smsCode));
-    var id = state.verificationId;
-    print({smsCode, id});
   }
 
   void phoneNumberChanged({
@@ -46,7 +44,7 @@ class SignUpFormPhoneCubit extends Cubit<SignUpFormPhoneState> {
 
   void reset() {
     emit(
-      state.copyWith(phoneNumber: ""),
+      state.copyWith(phoneNumber: "",verificationId: "", smsCode: ""),
     );
   }
 
@@ -65,7 +63,6 @@ class SignUpFormPhoneCubit extends Cubit<SignUpFormPhoneState> {
                 state.copyWith(
                     failure: failure, isSubmitting: false),
               );
-              reset();
             },
             (String verificationId) {
               // Catch this in Bloc Listener and take the user to SMS code entry page.
@@ -93,6 +90,7 @@ class SignUpFormPhoneCubit extends Cubit<SignUpFormPhoneState> {
       },
       (success) async {
         emit(state.copyWith(success: success, isSubmitting: false));
+        reset();
       },
     );
   }

@@ -46,6 +46,7 @@ class SignInFormPhoneCubit extends Cubit<SignInFormPhoneState> {
       state.copyWith(
         failure: "",
         verificationId: "",
+        smsCode: "",
         isSubmitting: false,
       ),
     );
@@ -83,7 +84,6 @@ class SignInFormPhoneCubit extends Cubit<SignInFormPhoneState> {
   void verifySmsCode() async {
     emit(state.copyWith(isSubmitting: true, failure: ""));
     final verificationId = state.verificationId;
-    final String phoneNumber = state.phoneNumber;
     final Either<String, String> failureOrSuccess = await _authFacade
         .verifyLoginSmsCode(smsCode: state.smsCode, verificationId: verificationId);
     failureOrSuccess.fold(
@@ -93,12 +93,9 @@ class SignInFormPhoneCubit extends Cubit<SignInFormPhoneState> {
         );
       },
       (success) async {
-        final usermodel = await _authFacade.getDatabaseUserWithPhoneNumber(
-            phoneNumber: phoneNumber);
-        usermodel.fold(
-            () => null, (user) => authCubit.listenAuthStateChangesStream(user));
         emit(state.copyWith(success: success, isSubmitting: false));
         // Verification completed successfully case.
+        reset();
       },
     );
   }
