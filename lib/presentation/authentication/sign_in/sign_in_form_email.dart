@@ -155,6 +155,7 @@ class SignInFormEmail extends StatelessWidget {
                                     return TextFormField(
                                       obscureText: state.isObscure,
                                       decoration: InputDecoration(
+                                        errorMaxLines: 2,
                                           filled: true,
                                           fillColor: const Color(0xFFF3F6F8),
                                           border: InputBorder.none,

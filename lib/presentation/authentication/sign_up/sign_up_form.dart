@@ -51,9 +51,6 @@ class SignUpForm extends StatelessWidget {
                   return SafeArea(
                       child: SingleChildScrollView(
                     child: Form(
-                        autovalidateMode: state.showErrorMessages
-                            ? AutovalidateMode.onUserInteraction
-                            : AutovalidateMode.disabled,
                         key: _formKey,
                         child: Padding(
                           padding: kDefaultPadding,
@@ -100,6 +97,7 @@ class SignUpForm extends StatelessWidget {
                               BlocBuilder<SignUpFormCubit, SignUpFormState>(
                                 builder: (context, state) {
                                   return TextFormField(
+                                    autovalidateMode: AutovalidateMode.onUserInteraction,
                                     decoration: const InputDecoration(
                                         filled: true,
                                         fillColor: Color(0xFFF3F6F8),
@@ -135,6 +133,7 @@ class SignUpForm extends StatelessWidget {
                               BlocBuilder<SignUpFormCubit, SignUpFormState>(
                                 builder: (context, state) {
                                   return TextFormField(
+                                    autovalidateMode: AutovalidateMode.onUserInteraction,
                                     decoration: const InputDecoration(
                                         filled: true,
                                         fillColor: Color(0xFFF3F6F8),
@@ -171,6 +170,7 @@ class SignUpForm extends StatelessWidget {
                               BlocBuilder<SignUpFormCubit, SignUpFormState>(
                                 builder: (context, state) {
                                   return TextFormField(
+                                    autovalidateMode: AutovalidateMode.onUserInteraction,
                                     decoration: const InputDecoration(
                                         filled: true,
                                         fillColor: Color(0xFFF3F6F8),
@@ -211,8 +211,10 @@ class SignUpForm extends StatelessWidget {
                                 },
                                 builder: (context, isObscure) {
                                   return TextFormField(
+                                    autovalidateMode: AutovalidateMode.onUserInteraction,
                                     obscureText: isObscure,
                                     decoration: InputDecoration(
+                                      errorMaxLines: 2,
                                       filled: true,
                                       fillColor: const Color(0xFFF3F6F8),
                                       border: InputBorder.none,
