@@ -2,9 +2,11 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
 import 'package:fortfolio/domain/user/notification_item.dart';
 import 'package:fortfolio/infrastructure/auth/dto/notification/notification_dto.dart';
+import 'package:fortfolio/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -15,9 +17,15 @@ part 'notification_cubit.freezed.dart';
 @injectable
 class NotificationCubit extends Cubit<NotificationState> {
   final IFirestoreFacade firestoreFacade;
+  late final AuthCubit authCubit;
   StreamSubscription<QuerySnapshot>? _logsStreamSubscription;
   NotificationCubit(this.firestoreFacade) : super(NotificationState.empty()){
-    initNotifications();
+    authCubit = getIt<AuthCubit>();
+    authCubit.stream.listen((state) {
+      if(state.isUserCheckedFromAuthFacade){
+        initNotifications();
+      }
+    });
   }
 
   void getNotificationCount() async{
