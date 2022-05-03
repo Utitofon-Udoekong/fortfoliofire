@@ -21,7 +21,7 @@ class CryptoWalletState with _$CryptoWalletState {
   factory CryptoWalletState.empty() => const CryptoWalletState(
         coin: "BTC",
         walletLabel: "Wallet #1",
-        network: "",
+        network: "Binance Chain (BEP2)",
         address: "",
         platform: "",
         failure: "",

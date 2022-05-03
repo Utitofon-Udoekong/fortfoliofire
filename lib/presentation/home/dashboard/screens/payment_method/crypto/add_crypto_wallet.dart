@@ -36,15 +36,16 @@ class AddCryptoWallet extends StatelessWidget {
                     current.success.isNotEmpty,
                 listener: (context, state) {
                   CustomSnackbar.showSnackBar(context, state.success, false);
-                  Future.delayed(const Duration(seconds: 2), () {
+                  Future.delayed(const Duration(seconds: 1), () {
                     context.router.pop();
                   });
                 },
               ),
             ],
-                child: BlocBuilder<CryptoWalletCubit, CryptoWalletState>(
-                  builder: (context, state) {
-                    if (state.isloading) {
+                child: BlocSelector<CryptoWalletCubit, CryptoWalletState, bool>(
+                  selector: (state) => state.isloading,
+                  builder: (context, isloading) {
+                    if (isloading) {
                       return const LoadingView();
                     } else {
                       return Padding(

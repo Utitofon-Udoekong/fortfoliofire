@@ -23,8 +23,8 @@ class CryptoWalletPage extends StatelessWidget {
           selector: (state) {
             return state.emptyWallet;
           },
-          builder: (context, empty) {
-            if (empty) {
+          builder: (context, emptyWallet) {
+            if (emptyWallet) {
               return Center(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -59,11 +59,20 @@ class CryptoWalletPage extends StatelessWidget {
                   ),
                   BlocBuilder<CryptoWalletCubit, CryptoWalletState>(
                     builder: (context, state) {
-                      var addressess =
-                          state.cryptoAddresses + state.generalCryptoAddresses;
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: addressess.map((address) {
+                        children: state.cryptoAddresses.map((address) {
+                          return buildtile(
+                              address.address, address.walletLabel, address.coin, context);
+                        }).toList(),
+                      );
+                    },
+                  ),
+                  BlocBuilder<CryptoWalletCubit, CryptoWalletState>(
+                    builder: (context, state) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: state.generalCryptoAddresses.map((address) {
                           return buildtile(
                               address.address, address.walletLabel, address.coin, context);
                         }).toList(),
