@@ -20,7 +20,10 @@ class CryptoWalletCubit extends Cubit<CryptoWalletState> {
   final IFirestoreFacade firestoreFacade;
   StreamSubscription<QuerySnapshot>? _logsCryptoAddressSubscription;
   StreamSubscription<QuerySnapshot>? _logsGeneralCryptoAddressSubscription;
-  CryptoWalletCubit(this.firestoreFacade) : super(CryptoWalletState.empty());
+  CryptoWalletCubit(this.firestoreFacade) : super(CryptoWalletState.empty()){
+    initCryptoWallet();
+    initGeneralCryptoWallet();
+  }
 
   void initCryptoWallet() {
     _logsCryptoAddressSubscription = firestoreFacade.getCryptoWallets().listen((data) {
