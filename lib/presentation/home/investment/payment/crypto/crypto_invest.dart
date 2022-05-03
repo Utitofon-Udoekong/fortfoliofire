@@ -112,7 +112,7 @@ class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
                 ),
                 Text(
                   "Invest With Crypto",
-                  style: titleText.copyWith(fontSize: 22),
+                  style: titleText,
                 ),
                 const SizedBox(
                   height: 40,
@@ -135,6 +135,11 @@ class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
                 // const SizedBox(
                 //   height: 30,
                 // ),
+                 Container(
+                    padding: const EdgeInsets.all(10.0),
+                    child: progress < 1.0
+                        ? LinearProgressIndicator(value: progress)
+                        : Container()),
                 Expanded(
                     child: Container(
                   decoration: BoxDecoration(
@@ -221,11 +226,7 @@ class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
                     },
                   ),
                 )),
-                Container(
-                    padding: const EdgeInsets.all(10.0),
-                    child: progress < 1.0
-                        ? LinearProgressIndicator(value: progress)
-                        : Container()),
+               
                 ButtonBar(
                   alignment: MainAxisAlignment.center,
                   children: <Widget>[
