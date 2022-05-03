@@ -112,6 +112,7 @@ Widget buildTile(
     required String daysLeft}) {
   return Container(
       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 8),
+      margin: const EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
           color: const Color(0XFFF3F6F8),
           borderRadius: BorderRadius.circular(10.0)),

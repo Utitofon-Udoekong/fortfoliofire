@@ -263,6 +263,7 @@ class FirebaseAuthFacade implements IAuthFacade {
           PhoneAuthProvider.credential(
               smsCode: smsCode, verificationId: verificationId);
       await firebaseAuth.signInWithCredential(phoneAuthCredential);
+      print("phone signin completed");
       return right("Verification successful");
     } on FirebaseAuthException catch (e) {
       if (e.code == "session-expired") {
