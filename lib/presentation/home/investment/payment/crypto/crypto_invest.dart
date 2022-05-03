@@ -145,7 +145,7 @@ class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
                   decoration: BoxDecoration(
                       color: const Color(0xFFF3F6F8),
                       border: Border.all(
-                          style: BorderStyle.solid, color: kPrimaryColor, width: 1.5),
+                          style: BorderStyle.solid, color: kPrimaryColor, width: 2),
                           borderRadius: BorderRadius.circular(6.0)),
                   child: InAppWebView(
                     key: webViewKey,

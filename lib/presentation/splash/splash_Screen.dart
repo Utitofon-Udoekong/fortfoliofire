@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
-import 'package:fortfolio/infrastructure/auth/local_auth_api.dart';
+// import 'package:fortfolio/infrastructure/auth/local_auth_api.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -25,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future _resume() async {
-    bool canCheckBiometrics = await LocalAuthApi.hasBiometrics();
+    // bool canCheckBiometrics = await LocalAuthApi.hasBiometrics();
     final bool isChecked =
         context.read<AuthCubit>().state.isUserCheckedFromAuthFacade;
     final bool isLoggedIn = context.read<AuthCubit>().state.isLoggedIn;
@@ -38,7 +38,7 @@ class _SplashScreenState extends State<SplashScreen> {
       //     if (didauthenticate != true) {
       //       exit(0);
       //     }else{
-      //       Future.delayed(const Duration(seconds: 2), () {
+      //       Future.delayed(const Duration(seconds: 1), () {
       //       });
       //     }
       //   }

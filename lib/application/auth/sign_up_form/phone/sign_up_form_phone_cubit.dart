@@ -16,7 +16,7 @@ class SignUpFormPhoneCubit extends Cubit<SignUpFormPhoneState> {
   late final IAuthFacade _authFacade;
   StreamSubscription<Either<String, String>>?
       _phoneNumberSignUpSubscription;
-  final Duration verificationCodeTimeout = const Duration(seconds: 60);
+  final int verificationCodeTimeout = 60;
   final AuthCubit authCubit;
   SignUpFormPhoneCubit(this.authCubit) : super(SignUpFormPhoneState.initial()) {
     _authFacade = getIt<IAuthFacade>();

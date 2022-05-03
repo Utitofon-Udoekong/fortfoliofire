@@ -12,12 +12,12 @@ abstract class IAuthFacade {
   // signin phone
   Stream<Either<String, String>> signInWithPhoneNumber({
     required String phoneNumber,
-    required Duration timeout,
+    required int timeout,
   });
   // signup phone
   Stream<Either<String, String>> registerPhoneNumber({
     required String phoneNumber,
-    required Duration timeout,
+    required int timeout,
   });
   // verifyRegistrationSmsCode
   Future<Either<String, String>> verifyRegistrationSmsCode({

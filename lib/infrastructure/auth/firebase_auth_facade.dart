@@ -75,16 +75,16 @@ class FirebaseAuthFacade implements IAuthFacade {
 
   @override
   Stream<Either<String, String>> registerPhoneNumber(
-      {required String phoneNumber, required Duration timeout}) async* {
+      {required String phoneNumber, required int timeout}) async* {
     final StreamController<Either<String, String>> streamController =
         StreamController<Either<String, String>>();
     
     await firebaseAuth.verifyPhoneNumber(
-        timeout: timeout,
+        timeout: Duration(seconds: timeout),
         phoneNumber: phoneNumber,
         verificationCompleted: (PhoneAuthCredential credential) async {
           // ANDROID ONLY!
-          
+          print("phone login complete");
           // link with the auto-generated credential.
         },
         codeSent: (String verificationId, int? resendToken) async {
@@ -193,12 +193,12 @@ class FirebaseAuthFacade implements IAuthFacade {
 
   @override
   Stream<Either<String, String>> signInWithPhoneNumber(
-      {required String phoneNumber, required Duration timeout}) async* {
+      {required String phoneNumber, required int timeout}) async* {
     final StreamController<Either<String, String>> streamController =
         StreamController<Either<String, String>>();
 
     await firebaseAuth.verifyPhoneNumber(
-        timeout: timeout,
+        timeout: Duration(seconds: timeout),
         phoneNumber: phoneNumber,
         verificationCompleted: (PhoneAuthCredential credential) async {
           // firebaseAuth.signInWithCredential(credential);
