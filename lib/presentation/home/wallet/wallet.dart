@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
+import 'package:fortfolio/presentation/home/wallet/cubit/wallet_cubit.dart';
 import 'package:fortfolio/presentation/home/wallet/overview/wallet_overview.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'transactions/transactions.dart';
 
@@ -17,6 +19,10 @@ class _WalletState extends State<Wallet> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+    context.read<WalletCubit>().initWithdrawals();
+    context.read<WalletCubit>().initFortDollarInvestments();
+    context.read<WalletCubit>().initFortShieldInvestments();
+    context.read<WalletCubit>().initFortCryptoInvestments();
     _tabController = TabController(length: 2, vsync: this);
   }
 

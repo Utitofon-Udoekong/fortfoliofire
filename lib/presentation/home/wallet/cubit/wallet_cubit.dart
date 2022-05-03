@@ -34,10 +34,10 @@ class WalletCubit extends Cubit<WalletState> {
 
   WalletCubit(this.firestoreFacade) : super(WalletState.initial()) {
     // initInvestments();
-    initWithdrawals();
-    initFortDollarInvestments();
-    initFortShieldInvestments();
-    initFortCryptoInvestments();
+    // initWithdrawals();
+    // initFortDollarInvestments();
+    // initFortShieldInvestments();
+    // initFortCryptoInvestments();
   }
 
   // void initInvestments(){
