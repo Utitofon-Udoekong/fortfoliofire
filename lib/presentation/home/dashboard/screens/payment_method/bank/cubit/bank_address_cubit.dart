@@ -70,4 +70,10 @@ class BankAddressCubit extends Cubit<BankAddressState> {
       ));
     }
   }
+
+  @override
+  Future<void> close() async {
+    await _logsBankAddressSubscription?.cancel();
+    return super.close();
+  }
 }

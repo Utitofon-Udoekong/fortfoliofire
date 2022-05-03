@@ -77,10 +77,10 @@ class _PaymentMethodState extends State<PaymentMethod>
                             controller: _tabController,
                             tabs: const [
                               Tab(
-                                text: 'Banks',
+                                text: 'Crypto Wallet',
                               ),
                               Tab(
-                                text: 'Crypto Wallet',
+                                text: 'Banks',
                               ),
                             ],
                           ),
@@ -92,8 +92,8 @@ class _PaymentMethodState extends State<PaymentMethod>
                     child: TabBarView(
                       controller: _tabController,
                       children: const <Widget>[
-                        BankAddressPage(),
-                        CryptoWalletPage()
+                        CryptoWalletPage(),
+                        BankAddressPage()
                       ],
                     ),
                   )

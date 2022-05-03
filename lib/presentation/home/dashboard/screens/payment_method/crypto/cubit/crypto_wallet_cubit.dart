@@ -11,7 +11,6 @@ import 'package:nanoid/nanoid.dart';
 import 'package:uuid/uuid.dart';
 import 'dart:async';
 
-
 part 'crypto_wallet_state.dart';
 part 'crypto_wallet_cubit.freezed.dart';
 
@@ -20,61 +19,66 @@ class CryptoWalletCubit extends Cubit<CryptoWalletState> {
   final IFirestoreFacade firestoreFacade;
   StreamSubscription<QuerySnapshot>? _logsCryptoAddressSubscription;
   StreamSubscription<QuerySnapshot>? _logsGeneralCryptoAddressSubscription;
-  CryptoWalletCubit(this.firestoreFacade) : super(CryptoWalletState.empty()){
+  CryptoWalletCubit(this.firestoreFacade) : super(CryptoWalletState.initial()) {
     initCryptoWallet();
-    // inited1
     initGeneralCryptoWallet();
-    // inited2
   }
 
   void initCryptoWallet() {
-    _logsCryptoAddressSubscription = firestoreFacade.getCryptoWallets().listen((data) {
+    _logsCryptoAddressSubscription =
+        firestoreFacade.getCryptoWallets().listen((data) {
       final List<QueryDocumentSnapshot<Object?>> docs = data.docs;
       List<CryptoWallet> cryptoAddresses = [];
-      if(data.size > 0){
-        for (var element in docs){
+      if (data.size > 0) {
+        for (var element in docs) {
           final doc = CryptoWalletDTO.fromFirestore(element).toDomain();
           cryptoAddresses.add(doc);
         }
         emit(state.copyWith(cryptoAddresses: cryptoAddresses));
       }
-     });
+    });
   }
 
   void initGeneralCryptoWallet() {
-    _logsGeneralCryptoAddressSubscription = firestoreFacade.getCryptoWallets().listen((data) {
+    _logsGeneralCryptoAddressSubscription =
+        firestoreFacade.getGeneralCryptoWallets().listen((data) {
       final List<QueryDocumentSnapshot<Object?>> docs = data.docs;
       List<CryptoWallet> generalCryptoAddresses = [];
-      if(data.size > 0){
-        for (var element in docs){
+      if (data.size > 0) {
+        for (var element in docs) {
           final doc = CryptoWalletDTO.fromFirestore(element).toDomain();
           generalCryptoAddresses.add(doc);
         }
         emit(state.copyWith(generalCryptoAddresses: generalCryptoAddresses));
       }
-     });
+    });
   }
 
-
-  void coinChanged({required String coin}){
+  void coinChanged({required String coin}) {
     emit(state.copyWith(coin: coin));
   }
-  void isGeneralChanged({required bool isGeneral}){
+
+  void isGeneralChanged({required bool isGeneral}) {
     emit(state.copyWith(isGeneral: isGeneral));
   }
-  void addressChanged({required String address}){
+
+  void addressChanged({required String address}) {
     emit(state.copyWith(address: address));
   }
-  void networkChanged({required String network}){
+
+  void networkChanged({required String network}) {
     emit(state.copyWith(network: network));
   }
-  void platformChanged({required String platform}){
+
+  void platformChanged({required String platform}) {
     emit(state.copyWith(platform: platform));
   }
-  void walletLabelChanged({required String walletLabel}){
+
+  void walletLabelChanged({required String walletLabel}) {
     emit(state.copyWith(walletLabel: walletLabel));
   }
-  void selectedNetworkChanged({required int? selectedNetwork}){
+
+  void selectedNetworkChanged({required int? selectedNetwork}) {
     emit(state.copyWith(selectedNetwork: selectedNetwork));
   }
 
@@ -86,7 +90,7 @@ class CryptoWalletCubit extends Cubit<CryptoWalletState> {
     final String address = state.address;
     final String platform = state.platform;
     final String network = state.network;
-    final String id = const Uuid().v4().substring(0,7);
+    final String id = const Uuid().v4().substring(0, 7);
     final String trax = nanoid(8);
     if (isGeneral) {
       CryptoWallet cryptoWallet = CryptoWallet(
@@ -131,5 +135,12 @@ class CryptoWalletCubit extends Cubit<CryptoWalletState> {
         print(e);
       }
     }
+  }
+
+  @override
+  Future<void> close() async {
+    await _logsCryptoAddressSubscription?.cancel();
+    await _logsGeneralCryptoAddressSubscription?.cancel();
+    return super.close();
   }
 }

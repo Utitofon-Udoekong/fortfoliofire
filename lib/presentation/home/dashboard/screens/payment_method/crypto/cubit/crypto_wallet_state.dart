@@ -18,7 +18,7 @@ class CryptoWalletState with _$CryptoWalletState {
       required List<CryptoWallet> generalCryptoAddresses,
   }) = _CryptoWalletState;
   const CryptoWalletState._();
-  factory CryptoWalletState.empty() => const CryptoWalletState(
+  factory CryptoWalletState.initial() => const CryptoWalletState(
         coin: "BTC",
         walletLabel: "Wallet #1",
         network: "Binance Chain (BEP2)",
