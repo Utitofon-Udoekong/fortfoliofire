@@ -98,13 +98,13 @@ class ProfilePage extends StatelessWidget {
                             ),
                             authUserModel.isVerified
                                 ? Chip(
-                                  backgroundColor: Colors.green[100],
-                                  label: Text("Account Verified",
-                                      style: subTitle.copyWith(
-                                          color: Colors.green[600],
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.w500)),
-                                )
+                                    backgroundColor: Colors.green[100],
+                                    label: Text("Account Verified",
+                                        style: subTitle.copyWith(
+                                            color: Colors.green[600],
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.w500)),
+                                  )
                                 : TextButton(
                                     onPressed: () => context.router
                                         .push(const VerificationPageRoute()),
@@ -146,13 +146,33 @@ class ProfilePage extends StatelessWidget {
                       ),
                       buildtile(
                           authUserModel.firstName,
-                          Text(
-                            authUserModel.lastName,
-                            style: subTitle.copyWith(
-                                color: kBlackColor, fontSize: 15),
-                          ),
+                          authUserModel.isVerified
+                              ? Tooltip(
+                                  message:
+                                      "Username cannot be changed once user account is verified",
+                                  triggerMode: TooltipTriggerMode.tap,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(6),
+                                      color: kSecondaryColor),
+                                  height: 50,
+                                  padding: const EdgeInsets.all(8.0),
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: Text(
+                                    authUserModel.lastName,
+                                    style: subTitle.copyWith(
+                                        color: kBlackColor, fontSize: 15),
+                                  ),
+                                )
+                              : Text(
+                                  authUserModel.lastName,
+                                  style: subTitle.copyWith(
+                                      color: kBlackColor, fontSize: 15),
+                                ),
                           true,
-                          () => authUserModel.isVerified ? null : showEditNameModal(context: context)),
+                          () => authUserModel.isVerified
+                              ? null
+                              : showEditNameModal(context: context)),
                       buildtile(authUserModel.phoneNumber, const Spacer(),
                           false, () => showEditPhoneModal(context: context)),
                       const SizedBox(
@@ -183,21 +203,27 @@ class ProfilePage extends StatelessWidget {
         padding: const EdgeInsets.all(10.0),
         decoration: const BoxDecoration(
             border: Border(bottom: BorderSide(color: Color(0XFFF3F6F8)))),
-        child: Row(
-          children: <Widget>[
-            Expanded(
-              child: Text(
+        child: trailexist
+            ? Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Text(
+                      leading,
+                      style:
+                          subTitle.copyWith(color: kBlackColor, fontSize: 15),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                      softWrap: false,
+                    ),
+                  ),
+                  const Spacer(),
+                  trailing
+                ],
+              )
+            : Text(
                 leading,
                 style: subTitle.copyWith(color: kBlackColor, fontSize: 15),
-                overflow: trailexist ? TextOverflow.ellipsis : TextOverflow.visible,
-                maxLines: 1,
-                softWrap: trailexist ? false : true,
               ),
-            ),
-            const Spacer(),
-            trailexist ? trailing : const Spacer()
-          ],
-        ),
       ),
     );
   }
@@ -206,76 +232,75 @@ class ProfilePage extends StatelessWidget {
     var dialog = Padding(
       padding: const EdgeInsets.all(20.0),
       child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              'Edit Email Address',
-              style: titleText.copyWith(fontSize: 15),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            const Text(
-              "Email address",
-              style: TextStyle(fontSize: 15, color: Color(0xFF656565)),
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            BlocSelector<ProfileCubit, ProfileState, String>(
-              selector: (state) => state.email,
-              builder: (context, state) {
-                return TextFormField(
-                    autocorrect: false,
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: const InputDecoration(
-                        filled: true,
-                        fillColor: Color(0xFFF3F6F8),
-                        border: InputBorder.none),
-                    onChanged: (value) => context
-                        .read<ProfileCubit>()
-                        .emailChanged(email: value),
-                    validator: (value) => value!.isEmpty
-                        ? "Field cannot be empty"
-                        : value.isValidEmail()
-                            ? "Invalid email address"
-                            : null);
-              },
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            BlocSelector<ProfileCubit, ProfileState, bool>(
-              selector: (state) {
-                return state.loading;
-              },
-              builder: (context, loading) {
-                return CustomLoadingButton(
-                    text: "CHANGE EMAIL",
-                    onTap: () =>
-                        context.read<ProfileCubit>().changeEmail(),
-                    loading: loading);
-              },
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-          ],
-        ),
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            'Edit Email Address',
+            style: titleText.copyWith(fontSize: 15),
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          const Text(
+            "Email address",
+            style: TextStyle(fontSize: 15, color: Color(0xFF656565)),
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          BlocSelector<ProfileCubit, ProfileState, String>(
+            selector: (state) => state.email,
+            builder: (context, state) {
+              return TextFormField(
+                  autocorrect: false,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: const InputDecoration(
+                      filled: true,
+                      fillColor: Color(0xFFF3F6F8),
+                      border: InputBorder.none),
+                  onChanged: (value) =>
+                      context.read<ProfileCubit>().emailChanged(email: value),
+                  validator: (value) => value!.isEmpty
+                      ? "Field cannot be empty"
+                      : value.isValidEmail()
+                          ? "Invalid email address"
+                          : null);
+            },
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          BlocSelector<ProfileCubit, ProfileState, bool>(
+            selector: (state) {
+              return state.loading;
+            },
+            builder: (context, loading) {
+              return CustomLoadingButton(
+                  text: "CHANGE EMAIL",
+                  onTap: () => context.read<ProfileCubit>().changeEmail(),
+                  loading: loading);
+            },
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+        ],
+      ),
     );
     showModalBottomSheet<dynamic>(
-        isScrollControlled: true,
-        isDismissible: true,
-        context: context,
-        builder: (BuildContext context) {
-          return Container(
-            padding: EdgeInsets.only(
-              bottom: MediaQuery.of(context).viewInsets.bottom,
-            ),
-            child: dialog,
-          );
-        },);
+      isScrollControlled: true,
+      isDismissible: true,
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: dialog,
+        );
+      },
+    );
   }
 
   showEditNameModal({required BuildContext context}) {
@@ -312,9 +337,8 @@ class ProfilePage extends StatelessWidget {
                   onChanged: (value) => context
                       .read<ProfileCubit>()
                       .firstNameChanged(firstName: value),
-                  validator: (value) => value!.isEmpty
-                      ? "Field cannot be empty"
-                      : null);
+                  validator: (value) =>
+                      value!.isEmpty ? "Field cannot be empty" : null);
             },
           ),
           const SizedBox(
@@ -340,9 +364,8 @@ class ProfilePage extends StatelessWidget {
                   onChanged: (value) => context
                       .read<ProfileCubit>()
                       .lastNameChanged(lastName: value),
-                  validator: (value) => value!.isEmpty
-                      ? "Field cannot be empty"
-                      : null);
+                  validator: (value) =>
+                      value!.isEmpty ? "Field cannot be empty" : null);
             },
           ),
           const SizedBox(
@@ -355,8 +378,7 @@ class ProfilePage extends StatelessWidget {
             builder: (context, loading) {
               return CustomLoadingButton(
                   text: "CHANGE NAME",
-                  onTap: () =>
-                      context.read<ProfileCubit>().changeName(),
+                  onTap: () => context.read<ProfileCubit>().changeName(),
                   loading: loading);
             },
           ),
@@ -367,17 +389,18 @@ class ProfilePage extends StatelessWidget {
       ),
     );
     showModalBottomSheet<dynamic>(
-        isScrollControlled: true,
-        isDismissible: true,
-        context: context,
-        builder: (BuildContext context) {
-          return Container(
-            padding: EdgeInsets.only(
-              bottom: MediaQuery.of(context).viewInsets.bottom,
-            ),
-            child: dialog,
-          );
-        },);
+      isScrollControlled: true,
+      isDismissible: true,
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: dialog,
+        );
+      },
+    );
   }
 
   showEditPhoneModal({required BuildContext context}) {
@@ -415,8 +438,7 @@ class ProfilePage extends StatelessWidget {
                   textInputAction: TextInputAction.next,
                   onChanged: (value) => context
                       .read<ProfileCubit>()
-                      .phoneNumberChanged(
-                          phoneNumber: value.completeNumber),
+                      .phoneNumberChanged(phoneNumber: value.completeNumber),
                 );
               },
             ),
@@ -430,8 +452,7 @@ class ProfilePage extends StatelessWidget {
               builder: (context, loading) {
                 return CustomLoadingButton(
                     text: "CHANGE PHONE",
-                    onTap: () =>
-                        context.read<ProfileCubit>().changePhone(),
+                    onTap: () => context.read<ProfileCubit>().changePhone(),
                     loading: loading);
               },
             ),
@@ -441,16 +462,17 @@ class ProfilePage extends StatelessWidget {
           ],
         ));
     showModalBottomSheet<dynamic>(
-        isScrollControlled: true,
-        isDismissible: true,
-        context: context,
-        builder: (BuildContext context) {
-          return Container(
-            padding: EdgeInsets.only(
-              bottom: MediaQuery.of(context).viewInsets.bottom,
-            ),
-            child: dialog,
-          );
-        },);
+      isScrollControlled: true,
+      isDismissible: true,
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: dialog,
+        );
+      },
+    );
   }
 }
