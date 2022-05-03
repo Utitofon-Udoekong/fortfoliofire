@@ -81,9 +81,11 @@ class AddCryptoWallet extends StatelessWidget {
                         autocorrect: false,
                         keyboardType: TextInputType.text,
                         textInputAction: TextInputAction.done,
-                        decoration: const InputDecoration(
+                        decoration: InputDecoration(
+                          hintText: "Binance.com",
+                          hintStyle: hintTextStyle,
                             filled: true,
-                            fillColor: Color(0xFFF3F6F8),
+                            fillColor: const Color(0xFFF3F6F8),
                             border: InputBorder.none),
                         onChanged: (value) => context
                             .read<CryptoWalletCubit>()
@@ -103,6 +105,7 @@ class AddCryptoWallet extends StatelessWidget {
                         previous.walletLabel != current.walletLabel,
                     builder: (context, state) {
                       return TextFormField(
+                        initialValue: state.walletLabel,
                         autocorrect: false,
                         keyboardType: TextInputType.text,
                         textInputAction: TextInputAction.done,
@@ -133,10 +136,12 @@ class AddCryptoWallet extends StatelessWidget {
                             .read<CryptoWalletCubit>()
                             .coinChanged(coin: coin!),
                         value: state.coin,
-                        decoration: const InputDecoration(
+                        decoration: InputDecoration(
                           filled: true,
-                          fillColor: Color(0xFFF3F6F8),
+                          fillColor: const Color(0xFFF3F6F8),
                           border: InputBorder.none,
+                          hintText: "BTC",
+                          hintStyle: hintTextStyle
                         ),
                         icon: const Icon(Icons.keyboard_arrow_down),
                       );

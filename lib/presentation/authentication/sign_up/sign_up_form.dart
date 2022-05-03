@@ -231,9 +231,7 @@ class SignUpForm extends StatelessWidget {
                                               ),
                                       ),
                                       hintText: "ABCdef@123",
-                                      hintStyle: TextStyle(
-                                          fontSize: 12,
-                                          color: kgreyColor.withOpacity(0.4)),
+                                      hintStyle: hintTextStyle,
                                     ),
                                     textInputAction: TextInputAction.done,
                                     onChanged: (value) => context

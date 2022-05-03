@@ -20,7 +20,7 @@ class CryptoWalletState with _$CryptoWalletState {
   const CryptoWalletState._();
   factory CryptoWalletState.empty() => const CryptoWalletState(
         coin: "BTC",
-        walletLabel: "",
+        walletLabel: "Wallet #1",
         network: "",
         address: "",
         platform: "",

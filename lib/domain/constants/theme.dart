@@ -16,17 +16,10 @@ const kRedColor = Color(0xFFDF1414);
 const kDefaultPadding = EdgeInsets.symmetric(horizontal: 20);
 
 var titleText = GoogleFonts.raleway(
-  fontSize: 32,
-  fontWeight: FontWeight.w500,
-  color: kBlackColor
-);
+    fontSize: 32, fontWeight: FontWeight.w500, color: kBlackColor);
 var subTitle = GoogleFonts.raleway(
-  fontSize: 18,
-  fontWeight: FontWeight.w300,
-  color: kBlackColor
-);
+    fontSize: 18, fontWeight: FontWeight.w300, color: kBlackColor);
 var textButton = GoogleFonts.raleway(
-  fontSize: 16,
-  fontWeight: FontWeight.w300,
-  color: kPrimaryColor
-);
+    fontSize: 16, fontWeight: FontWeight.w300, color: kPrimaryColor);
+var hintTextStyle =
+    GoogleFonts.raleway(fontSize: 12, color: kgreyColor.withOpacity(0.4));
