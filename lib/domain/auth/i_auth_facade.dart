@@ -19,8 +19,13 @@ abstract class IAuthFacade {
     required String phoneNumber,
     required Duration timeout,
   });
-  // verifysms
-  Future<Either<String, String>> verifySmsCode({
+  // verifyRegistrationSmsCode
+  Future<Either<String, String>> verifyRegistrationSmsCode({
+    required String smsCode,
+    required String verificationId,
+  });
+  // verifyLoginSmsCode
+  Future<Either<String, String>> verifyLoginSmsCode({
     required String smsCode,
     required String verificationId,
   });

@@ -201,7 +201,9 @@ class FirebaseAuthFacade implements IAuthFacade {
         timeout: timeout,
         phoneNumber: phoneNumber,
         verificationCompleted: (PhoneAuthCredential credential) async {
-          firebaseAuth.signInWithCredential(credential);
+          // firebaseAuth.signInWithCredential(credential);
+          print("phone signin completed");
+          print(credential);
         },
         codeSent: (String verificationId, int? resendToken) async {
           // Update the UI - wait for the user to enter the SMS code
@@ -235,13 +237,32 @@ class FirebaseAuthFacade implements IAuthFacade {
   }
 
   @override
-  Future<Either<String, String>> verifySmsCode(
+  Future<Either<String, String>> verifyRegistrationSmsCode(
       {required String smsCode, required String verificationId}) async {
     try {
       final PhoneAuthCredential phoneAuthCredential =
           PhoneAuthProvider.credential(
               smsCode: smsCode, verificationId: verificationId);
       await firebaseAuth.currentUser!.linkWithCredential(phoneAuthCredential);
+      return right("Verification successful");
+    } on FirebaseAuthException catch (e) {
+      if (e.code == "session-expired") {
+        return left("Session expired");
+      } else if (e.code == "invalid-verification-code" ||
+          e.code == "invalid-verification-code") {
+        return left("Invalid verification code");
+      }
+      return left("Server error encountered");
+    }
+  }
+  @override
+  Future<Either<String, String>> verifyLoginSmsCode(
+      {required String smsCode, required String verificationId}) async {
+    try {
+      final PhoneAuthCredential phoneAuthCredential =
+          PhoneAuthProvider.credential(
+              smsCode: smsCode, verificationId: verificationId);
+      await firebaseAuth.signInWithCredential(phoneAuthCredential);
       return right("Verification successful");
     } on FirebaseAuthException catch (e) {
       if (e.code == "session-expired") {
