@@ -1,10 +1,7 @@
 import 'dart:developer';
 import 'package:bloc/bloc.dart';
-import 'package:flutter/material.dart';
 import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
 import 'package:fortfolio/domain/user/investment.dart';
-import 'package:fortfolio/injection.dart';
-import 'package:fortfolio/presentation/home/wallet/cubit/wallet_cubit.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:jiffy/jiffy.dart';
@@ -17,10 +14,7 @@ part 'investment_cubit.freezed.dart';
 @injectable
 class InvestmentCubit extends Cubit<InvestmentState> {
   final IFirestoreFacade firestoreFacade;
-  late final WalletCubit walletCubit;
-  InvestmentCubit(this.firestoreFacade) : super(InvestmentState.initial()) {
-    walletCubit = getIt<WalletCubit>();
-  }
+  InvestmentCubit(this.firestoreFacade) : super(InvestmentState.initial());
 
   void exchangeTypeChanged({required String exchangeType}) {
     emit(state.copyWith(exchangeType: exchangeType));
@@ -65,11 +59,6 @@ class InvestmentCubit extends Cubit<InvestmentState> {
 
   void amountInvestedChanged({required int amountInvested}) {
     emit(state.copyWith(amountInvested: amountInvested));
-    print({
-      amountInvested,
-      amountInvested.toString(),
-      amountInvested.toString().isNotEmpty
-    });
   }
 
   void roiChanged({required int roi}) {
@@ -142,7 +131,6 @@ class InvestmentCubit extends Cubit<InvestmentState> {
         emit(state.copyWith(isLoading: false, failure: failure));
       }, (success) {
         emit(state.copyWith(isLoading: false, success: success));
-        // walletCubit.initTransactions();
       });
     } catch (e) {
       emit(state.copyWith(isLoading: false));

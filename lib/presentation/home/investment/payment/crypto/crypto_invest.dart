@@ -151,7 +151,7 @@ class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
                     key: webViewKey,
                     // contextMenu: contextMenu,
                     initialUrlRequest:
-                        URLRequest(url: Uri.parse("https://www.google.com")),
+                        URLRequest(url: Uri.parse("https://flutter.dev")),
                     // initialFile: "assets/index.html",
                     initialUserScripts: UnmodifiableListView<UserScript>([]),
                     initialOptions: options,
