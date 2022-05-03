@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
@@ -13,6 +14,10 @@ class AddBank extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final firstName = context
+        .select((AuthCubit element) => element.state.userModel.firstName);
+    final lastName =
+        context.select((AuthCubit element) => element.state.userModel.lastName);
     return BlocProvider(
       create: (context) => getIt<BankAddressCubit>(),
       child: Scaffold(
@@ -32,7 +37,7 @@ class AddBank extends StatelessWidget {
                   current.success.isNotEmpty,
               listener: (context, state) {
                 CustomSnackbar.showSnackBar(context, state.success, false);
-                Future.delayed(const Duration(seconds: 2),(){
+                Future.delayed(const Duration(seconds: 2), () {
                   context.router.pop();
                 });
               },
@@ -81,21 +86,12 @@ class AddBank extends StatelessWidget {
                           style:
                               TextStyle(fontSize: 15, color: Color(0xFF656565)),
                         ),
-                        BlocBuilder<BankAddressCubit, BankAddressState>(
-                          builder: (context, state) {
-                            return TextFormField(
-                              autocorrect: false,
-                              keyboardType: TextInputType.text,
-                              textInputAction: TextInputAction.next,
-                              decoration: const InputDecoration(
-                                  filled: true,
-                                  fillColor: Color(0xFFF3F6F8),
-                                  border: InputBorder.none),
-                              onChanged: (value) => context
-                                  .read<BankAddressCubit>()
-                                  .userNameChanged(userName: value),
-                            );
-                          },
+                        Container(
+                          padding: const EdgeInsets.all(18.0),
+                          decoration: const BoxDecoration(
+                            color: Color(0xFFF3F6F8),
+                          ),
+                          child: Text("$firstName $lastName",),
                         ),
                         const SizedBox(
                           height: 30,
