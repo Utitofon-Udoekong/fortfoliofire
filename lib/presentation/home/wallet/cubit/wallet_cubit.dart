@@ -4,6 +4,7 @@ import 'package:async/async.dart' show StreamGroup;
 
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
 import 'package:fortfolio/domain/user/bank_address.dart';
 import 'package:fortfolio/domain/user/crypto_wallet.dart';
@@ -14,6 +15,7 @@ import 'package:fortfolio/infrastructure/auth/dto/bank_address/bank_address_dto.
 import 'package:fortfolio/infrastructure/auth/dto/crypto_address/crypto_address.dart';
 import 'package:fortfolio/infrastructure/auth/dto/investment/investment_dto.dart';
 import 'package:fortfolio/infrastructure/auth/dto/withdrawal/withdrawal_dto.dart';
+import 'package:fortfolio/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:nanoid/nanoid.dart';
@@ -25,6 +27,7 @@ part 'wallet_cubit.freezed.dart';
 @injectable
 class WalletCubit extends Cubit<WalletState> {
   final IFirestoreFacade firestoreFacade;
+  late final AuthCubit authCubit;
   StreamSubscription<QuerySnapshot>? _logsFortDollarSubscription;
   StreamSubscription<QuerySnapshot>? _logsFortShieldSubscription;
   StreamSubscription<QuerySnapshot>? _logsFortCryptoSubscription;
@@ -33,16 +36,17 @@ class WalletCubit extends Cubit<WalletState> {
   StreamSubscription<QuerySnapshot>? _logsGeneralCryptoAddressSubscription;
 
   WalletCubit(this.firestoreFacade) : super(WalletState.initial()) {
-    // initInvestments();
-    // initWithdrawals();
-    // initFortDollarInvestments();
-    // initFortShieldInvestments();
-    // initFortCryptoInvestments();
+    authCubit = getIt<AuthCubit>();
+    authCubit.stream.listen((state) {
+      if (state.isUserCheckedFromAuthFacade) {
+        initWithdrawals();
+        initFortDollarInvestments();
+        initFortShieldInvestments();
+        initFortCryptoInvestments();
+      }
+    });
   }
 
-  // void initInvestments(){
-  //   initTransactions();
-  // }
 
   void investmentPlanChanged({required String investmentPlan}) {
     emit(state.copyWith(investmentPlan: investmentPlan));
@@ -304,7 +308,6 @@ class WalletCubit extends Cubit<WalletState> {
   }
 
   void initTransactions() {
-
     var investments = state.fortDollarInvestments +
         state.fortCryptoInvestments +
         state.fortShieldInvestments;
