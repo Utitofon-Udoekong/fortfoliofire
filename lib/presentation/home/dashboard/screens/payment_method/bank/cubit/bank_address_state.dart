@@ -3,7 +3,6 @@ part of 'bank_address_cubit.dart';
 @freezed
 class BankAddressState with _$BankAddressState {
   const factory BankAddressState({
-    required String userName,
     required String bankName,
     required String accountNumber,
     required bool isLoading,
@@ -13,7 +12,6 @@ class BankAddressState with _$BankAddressState {
   }) = _BankAddressState;
   const BankAddressState._();
   factory BankAddressState.initial() => const BankAddressState(
-    userName: "",
     bankName: "",
     accountNumber: "",
     isLoading: false,
@@ -22,6 +20,6 @@ class BankAddressState with _$BankAddressState {
     bankAddresses: [
     ],
   );
-  bool get isValidState => bankName.isNotEmpty && accountNumber.isNotEmpty && userName.isNotEmpty;
+  bool get isValidState => bankName.isNotEmpty && accountNumber.isNotEmpty;
   bool get noAccount => bankAddresses.isEmpty;
 }

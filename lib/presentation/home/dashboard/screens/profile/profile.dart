@@ -138,9 +138,9 @@ class ProfilePage extends StatelessWidget {
                                 size: 15,
                               )),
                           true,
-                          () => null),
+                          () => null, context),
                       buildtile(authUserModel.email, const Spacer(), false,
-                          () => showEditEmailModal(context: context)),
+                          () => showEditEmailModal(context: context),context),
                       const SizedBox(
                         height: 10,
                       ),
@@ -172,9 +172,9 @@ class ProfilePage extends StatelessWidget {
                           true,
                           () => authUserModel.isVerified
                               ? null
-                              : showEditNameModal(context: context)),
+                              : showEditNameModal(context: context),context),
                       buildtile(authUserModel.phoneNumber, const Spacer(),
-                          false, () => showEditPhoneModal(context: context)),
+                          false, () => showEditPhoneModal(context: context),context),
                       const SizedBox(
                         height: 80,
                       ),
@@ -196,11 +196,12 @@ class ProfilePage extends StatelessWidget {
   }
 
   Widget buildtile(
-      String leading, Widget trailing, bool trailexist, Function() ontap) {
+      String leading, Widget trailing, bool trailexist, Function() ontap, BuildContext context) {
     return GestureDetector(
       onTap: ontap,
       child: Container(
         padding: const EdgeInsets.all(10.0),
+        width: MediaQuery.of(context).size.width,
         decoration: const BoxDecoration(
             border: Border(bottom: BorderSide(color: Color(0XFFF3F6F8)))),
         child: trailexist

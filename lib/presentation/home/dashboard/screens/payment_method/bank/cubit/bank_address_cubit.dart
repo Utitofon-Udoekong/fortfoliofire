@@ -32,9 +32,6 @@ class BankAddressCubit extends Cubit<BankAddressState> {
       }
     });
   }
-  void userNameChanged({required String userName}){
-    emit(state.copyWith(userName: userName));
-  }
   void bankNameChanged({required String bankName}){
     emit(state.copyWith(bankName: bankName));
   }

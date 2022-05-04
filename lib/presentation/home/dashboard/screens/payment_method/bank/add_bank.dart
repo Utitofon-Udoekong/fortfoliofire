@@ -87,6 +87,7 @@ class AddBank extends StatelessWidget {
                               TextStyle(fontSize: 15, color: Color(0xFF656565)),
                         ),
                         Container(
+                          width: MediaQuery.of(context).size.width,
                           padding: const EdgeInsets.all(18.0),
                           decoration: const BoxDecoration(
                             color: Color(0xFFF3F6F8),
