@@ -83,24 +83,24 @@ exports.endInvestment = functions.firestore.document("/authUsers/{uid}/investmen
     
 })
 
-exports.createCharge = functions.https.onCall(async (data, context) => {
-  const name = data.name
-  const description = data.description
+// exports.createCharge = functions.https.onCall(async (data, context) => {
+//   const name = data.name
+//   const description = data.description
 
-  const chargeData = {
-    name: name,
-    description: description,
-    local_price: {
-      currency: 'USD',
-    },
-    pricing_type: 'no_price',
-  };
-  const charge = await Charge.create(chargeData);
-  functions.logger.log(charge)
-  return charge
-})
+//   const chargeData = {
+//     name: name,
+//     description: description,
+//     local_price: {
+//       currency: 'USD',
+//     },
+//     pricing_type: 'no_price',
+//   };
+//   const charge = await Charge.create(chargeData);
+//   functions.logger.log(charge)
+//   return charge
+// })
 
-exports.createCharg = functions.https.onRequest((req, res) => {
+exports.createCharge = functions.https.onRequest((req, res) => {
     cors(req, res, async () => {
       const details = req.body
       const name = details.name
