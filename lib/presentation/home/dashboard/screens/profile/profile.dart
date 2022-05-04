@@ -145,6 +145,7 @@ class ProfilePage extends StatelessWidget {
                         height: 10,
                       ),
                       buildtile(
+                          authUserModel.firstName,
                           authUserModel.isVerified
                               ? Tooltip(
                                   message:
@@ -158,17 +159,12 @@ class ProfilePage extends StatelessWidget {
                                   margin: const EdgeInsets.symmetric(
                                       horizontal: 10),
                                   child: Text(
-                                    authUserModel.firstName,
+                                    authUserModel.lastName,
                                     style: subTitle.copyWith(
                                         color: kBlackColor, fontSize: 15),
                                   ),
                                 )
                               : Text(
-                                  authUserModel.firstName,
-                                  style: subTitle.copyWith(
-                                      color: kBlackColor, fontSize: 15),
-                                ),
-                          Text(
                                   authUserModel.lastName,
                                   style: subTitle.copyWith(
                                       color: kBlackColor, fontSize: 15),
