@@ -19,15 +19,13 @@ class _$BankAddressStateTearOff {
   const _$BankAddressStateTearOff();
 
   _BankAddressState call(
-      {required String userName,
-      required String bankName,
+      {required String bankName,
       required String accountNumber,
       required bool isLoading,
       required String failure,
       required String success,
       required List<BankAddress> bankAddresses}) {
     return _BankAddressState(
-      userName: userName,
       bankName: bankName,
       accountNumber: accountNumber,
       isLoading: isLoading,
@@ -43,7 +41,6 @@ const $BankAddressState = _$BankAddressStateTearOff();
 
 /// @nodoc
 mixin _$BankAddressState {
-  String get userName => throw _privateConstructorUsedError;
   String get bankName => throw _privateConstructorUsedError;
   String get accountNumber => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
@@ -62,8 +59,7 @@ abstract class $BankAddressStateCopyWith<$Res> {
           BankAddressState value, $Res Function(BankAddressState) then) =
       _$BankAddressStateCopyWithImpl<$Res>;
   $Res call(
-      {String userName,
-      String bankName,
+      {String bankName,
       String accountNumber,
       bool isLoading,
       String failure,
@@ -82,7 +78,6 @@ class _$BankAddressStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? userName = freezed,
     Object? bankName = freezed,
     Object? accountNumber = freezed,
     Object? isLoading = freezed,
@@ -91,10 +86,6 @@ class _$BankAddressStateCopyWithImpl<$Res>
     Object? bankAddresses = freezed,
   }) {
     return _then(_value.copyWith(
-      userName: userName == freezed
-          ? _value.userName
-          : userName // ignore: cast_nullable_to_non_nullable
-              as String,
       bankName: bankName == freezed
           ? _value.bankName
           : bankName // ignore: cast_nullable_to_non_nullable
@@ -131,8 +122,7 @@ abstract class _$BankAddressStateCopyWith<$Res>
       __$BankAddressStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String userName,
-      String bankName,
+      {String bankName,
       String accountNumber,
       bool isLoading,
       String failure,
@@ -153,7 +143,6 @@ class __$BankAddressStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? userName = freezed,
     Object? bankName = freezed,
     Object? accountNumber = freezed,
     Object? isLoading = freezed,
@@ -162,10 +151,6 @@ class __$BankAddressStateCopyWithImpl<$Res>
     Object? bankAddresses = freezed,
   }) {
     return _then(_BankAddressState(
-      userName: userName == freezed
-          ? _value.userName
-          : userName // ignore: cast_nullable_to_non_nullable
-              as String,
       bankName: bankName == freezed
           ? _value.bankName
           : bankName // ignore: cast_nullable_to_non_nullable
@@ -198,8 +183,7 @@ class __$BankAddressStateCopyWithImpl<$Res>
 
 class _$_BankAddressState extends _BankAddressState {
   const _$_BankAddressState(
-      {required this.userName,
-      required this.bankName,
+      {required this.bankName,
       required this.accountNumber,
       required this.isLoading,
       required this.failure,
@@ -207,8 +191,6 @@ class _$_BankAddressState extends _BankAddressState {
       required this.bankAddresses})
       : super._();
 
-  @override
-  final String userName;
   @override
   final String bankName;
   @override
@@ -224,7 +206,7 @@ class _$_BankAddressState extends _BankAddressState {
 
   @override
   String toString() {
-    return 'BankAddressState(userName: $userName, bankName: $bankName, accountNumber: $accountNumber, isLoading: $isLoading, failure: $failure, success: $success, bankAddresses: $bankAddresses)';
+    return 'BankAddressState(bankName: $bankName, accountNumber: $accountNumber, isLoading: $isLoading, failure: $failure, success: $success, bankAddresses: $bankAddresses)';
   }
 
   @override
@@ -232,7 +214,6 @@ class _$_BankAddressState extends _BankAddressState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _BankAddressState &&
-            const DeepCollectionEquality().equals(other.userName, userName) &&
             const DeepCollectionEquality().equals(other.bankName, bankName) &&
             const DeepCollectionEquality()
                 .equals(other.accountNumber, accountNumber) &&
@@ -246,7 +227,6 @@ class _$_BankAddressState extends _BankAddressState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(userName),
       const DeepCollectionEquality().hash(bankName),
       const DeepCollectionEquality().hash(accountNumber),
       const DeepCollectionEquality().hash(isLoading),
@@ -262,8 +242,7 @@ class _$_BankAddressState extends _BankAddressState {
 
 abstract class _BankAddressState extends BankAddressState {
   const factory _BankAddressState(
-      {required String userName,
-      required String bankName,
+      {required String bankName,
       required String accountNumber,
       required bool isLoading,
       required String failure,
@@ -271,8 +250,6 @@ abstract class _BankAddressState extends BankAddressState {
       required List<BankAddress> bankAddresses}) = _$_BankAddressState;
   const _BankAddressState._() : super._();
 
-  @override
-  String get userName;
   @override
   String get bankName;
   @override

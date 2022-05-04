@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
 import 'package:fortfolio/domain/user/bank_address.dart';
 import 'package:fortfolio/infrastructure/auth/dto/bank_address/bank_address_dto.dart';
@@ -15,8 +16,9 @@ part 'bank_address_cubit.freezed.dart';
 @injectable
 class BankAddressCubit extends Cubit<BankAddressState> {
   final IFirestoreFacade firestoreFacade;
+  final AuthCubit authCubit;
   StreamSubscription<QuerySnapshot>? _logsBankAddressSubscription;
-  BankAddressCubit(this.firestoreFacade) : super(BankAddressState.initial()){
+  BankAddressCubit(this.firestoreFacade, this.authCubit) : super(BankAddressState.initial()){
     initBank();
   }
   void initBank() {
@@ -40,8 +42,8 @@ class BankAddressCubit extends Cubit<BankAddressState> {
   }
   void addbankClicked() async{
     emit(state.copyWith( isLoading: true ,success: "",failure:"" ));
-    final String userName = state.userName;
     final String bankName = state.bankName;
+    final String userName = "${authCubit.state.userModel.firstName} ${authCubit.state.userModel.lastName}";
     final String accountNumber = state.accountNumber;
     final String id = const Uuid().v4().substring(0,7);
     final String trax = nanoid(8);
