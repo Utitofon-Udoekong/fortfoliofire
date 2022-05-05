@@ -86,7 +86,6 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
     final sp = await SharedPreferences.getInstance();
     if(!sp.containsKey("notificationCount")){
       sp.setInt("notificationCount", 0);
-      sp.reload();
     }
     int? notificationCount = sp.getInt("notificationCount");
     try {
@@ -118,7 +117,6 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
     String docId = withdrawalItem.uid + withdrawalItem.traxId;
     if(!sp.containsKey("notificationCount")){
       sp.setInt("notificationCount", 0);
-      sp.reload();
     }
     int? notificationCount = sp.getInt("notificationCount");
     try {

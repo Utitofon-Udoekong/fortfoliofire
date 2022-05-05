@@ -44,9 +44,9 @@ class NotificationCubit extends Cubit<NotificationState> {
         for (var element in docs) {
           final doc = NotificationItemDTO.fromFirestore(element).toDomain();
           newdocs.add(doc);
+          getNotificationCount();
         }
         emit(state.copyWith(notifications: newdocs, loading: false));
-        getNotificationCount();
       }
     });
   }

@@ -44,6 +44,7 @@ class HomePage extends StatelessWidget {
               alignment: Alignment.center,
               height: 30,
               child: BlocBuilder<NotificationCubit, NotificationState>(
+                buildWhen: (previous, current) => previous.notificationCount != current.notificationCount,
                 builder: (context, state) {
                   if (state.notificationExists) {
                     return CustomBadge(
