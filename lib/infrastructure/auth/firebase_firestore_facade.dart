@@ -84,7 +84,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
       {required InvestmentItem investmentItem}) async {
     String docId = investmentItem.uid + investmentItem.traxId;
     final sp = await SharedPreferences.getInstance();
-    int notificationCount = sp.getInt("notificationCount")!;
+    int? notificationCount = sp.getInt("notificationCount");
     try {
       await firestore.authUserCollection
           .doc(auth.currentUser!.uid)
@@ -98,7 +98,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
           id: nanoid(8),
           status: investmentItem.status);
       await createNotification(notificationItem: notificationItem).then((_){
-        sp.setInt("notificationCount", (notificationCount++));
+        sp.setInt("notificationCount", (notificationCount! + 1));
       });
       return right("Investment made. Awaiting approval");
     } on FirebaseException catch (e) {
@@ -112,7 +112,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
       {required WithdrawalItem withdrawalItem}) async {
         final sp = await SharedPreferences.getInstance();
     String docId = withdrawalItem.uid + withdrawalItem.traxId;
-    int notificationCount = sp.getInt("notificationCount")!;
+    int? notificationCount = sp.getInt("notificationCount");
     try {
       await firestore.authUserCollection
           .doc(auth.currentUser!.uid)
@@ -127,7 +127,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
         status: withdrawalItem.status,
       );
       await createNotification(notificationItem: notificationItem).then((_) {
-        sp.setInt("notificationCount", (notificationCount++));
+        sp.setInt("notificationCount", (notificationCount! + 1));
       });
       return right("Withdrawal submitted. Awaiting approval");
     } on FirebaseException catch (e) {
