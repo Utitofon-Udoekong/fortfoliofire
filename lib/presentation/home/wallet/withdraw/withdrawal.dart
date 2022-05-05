@@ -84,11 +84,10 @@ class WithdrawalPage extends StatelessWidget {
                           withdrawalItem.planYield,
                           'Harvest',
                           () => harvested ? null : context.read<WalletCubit>().harvestInvestment(
-                              docId: withdrawalItem.traxId + withdrawalItem.uid,
-                              amount: withdrawalItem.amount),
+                              docId: withdrawalItem.uid + withdrawalItem.traxId,
+                              amount: withdrawalItem.planYield),
                           harvested
-                              ? kPrimaryColor
-                              : const Color.fromRGBO(3, 66, 109, 0.65))
+                              ? const Color.fromRGBO(3, 66, 109, 0.65): kPrimaryColor)
                     ],
                   ),
                 ),

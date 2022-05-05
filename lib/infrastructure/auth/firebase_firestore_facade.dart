@@ -257,7 +257,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
         .collection("investments")
         .doc(docId);
     try {
-      await query.update({"planYield": amount});
+      await query.update({"planYield": 0, "amount": FieldValue.increment(amount)});
       return right('Investment harvested');
     } on FirebaseException catch (e) {
       log("Code: ${e.code}, Message: ${e.message}");
