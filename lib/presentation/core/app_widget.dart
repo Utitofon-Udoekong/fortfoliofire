@@ -65,9 +65,9 @@ class _AppState extends State<App> with WidgetsBindingObserver {
   final backgroundedTimeKey = 'backgroundedTimeKey';
 
   Future _paused() async {
+    await FlutterWindowManager.addFlags(FlutterWindowManager.FLAG_SECURE);
     final sp = await SharedPreferences.getInstance();
     print("paused");
-    await FlutterWindowManager.addFlags(FlutterWindowManager.FLAG_SECURE);
     sp.setInt(backgroundedTimeKey, DateTime.now().millisecondsSinceEpoch);
     sp.setInt(lastKnownStateKey, AppLifecycleState.paused.index);
   }
