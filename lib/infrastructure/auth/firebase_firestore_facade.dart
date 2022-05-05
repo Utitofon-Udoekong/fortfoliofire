@@ -84,6 +84,10 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
       {required InvestmentItem investmentItem}) async {
     String docId = investmentItem.uid + investmentItem.traxId;
     final sp = await SharedPreferences.getInstance();
+    if(!sp.containsKey("notificationCount")){
+      sp.setInt("notificationCount", 0);
+      sp.reload();
+    }
     int? notificationCount = sp.getInt("notificationCount");
     try {
       await firestore.authUserCollection
@@ -112,6 +116,10 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
       {required WithdrawalItem withdrawalItem}) async {
         final sp = await SharedPreferences.getInstance();
     String docId = withdrawalItem.uid + withdrawalItem.traxId;
+    if(!sp.containsKey("notificationCount")){
+      sp.setInt("notificationCount", 0);
+      sp.reload();
+    }
     int? notificationCount = sp.getInt("notificationCount");
     try {
       await firestore.authUserCollection
