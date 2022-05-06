@@ -26,8 +26,6 @@ class VerificationCubit extends Cubit<VerificationState> {
   }
 
   void frontPicked({required Uint8List file}) async {
-    // final response = await storageFacade.uploadImageToStorage(
-    //     childName: "FrontDocument", file: file);
       emit(state.copyWith(frontFile: file));
   }
 
