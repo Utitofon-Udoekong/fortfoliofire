@@ -80,8 +80,9 @@ class SignUpFormPhoneCubit extends Cubit<SignUpFormPhoneState> {
   void verifySmsCode() async {
     emit(state.copyWith(isSubmitting: true, failure: "", success: ""));
     final verificationId = state.verificationId;
+    final phoneNumber = state.phoneNumber;
     final Either<String, String> failureOrSuccess = await _authFacade
-        .verifyRegistrationSmsCode(smsCode: state.smsCode, verificationId: verificationId);
+        .verifyRegistrationSmsCode(smsCode: state.smsCode, verificationId: verificationId, phoneNumber: phoneNumber);
     failureOrSuccess.fold(
       (String failure) {
         emit(

@@ -74,9 +74,10 @@ class ProfileCubit extends Cubit<ProfileState> {
   void verifySmsCode() async {
     emit(state.copyWith(loading: true, failure: "", success: ""));
     final verificationId = state.verificationId;
+    final String phoneNumber = state.phoneNumber;
     final String smsCode = state.smsCode;
     final Either<String, String> failureOrSuccess = await authFacade
-        .verifyPhoneUpdate(smsCode: smsCode, verificationId: verificationId);
+        .verifyPhoneUpdate(smsCode: smsCode, verificationId: verificationId, phoneNumber: phoneNumber);
     failureOrSuccess.fold(
       (failure) {
         emit(
