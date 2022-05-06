@@ -23,6 +23,7 @@ class _$VerificationStateTearOff {
       required bool kycExists,
       required String failure,
       required String success,
+      required String documentType,
       required Uint8List frontFile,
       required Uint8List backFile,
       required Uint8List utilityFile}) {
@@ -31,6 +32,7 @@ class _$VerificationStateTearOff {
       kycExists: kycExists,
       failure: failure,
       success: success,
+      documentType: documentType,
       frontFile: frontFile,
       backFile: backFile,
       utilityFile: utilityFile,
@@ -47,6 +49,7 @@ mixin _$VerificationState {
   bool get kycExists => throw _privateConstructorUsedError;
   String get failure => throw _privateConstructorUsedError;
   String get success => throw _privateConstructorUsedError;
+  String get documentType => throw _privateConstructorUsedError;
   Uint8List get frontFile => throw _privateConstructorUsedError;
   Uint8List get backFile => throw _privateConstructorUsedError;
   Uint8List get utilityFile => throw _privateConstructorUsedError;
@@ -66,6 +69,7 @@ abstract class $VerificationStateCopyWith<$Res> {
       bool kycExists,
       String failure,
       String success,
+      String documentType,
       Uint8List frontFile,
       Uint8List backFile,
       Uint8List utilityFile});
@@ -86,6 +90,7 @@ class _$VerificationStateCopyWithImpl<$Res>
     Object? kycExists = freezed,
     Object? failure = freezed,
     Object? success = freezed,
+    Object? documentType = freezed,
     Object? frontFile = freezed,
     Object? backFile = freezed,
     Object? utilityFile = freezed,
@@ -106,6 +111,10 @@ class _$VerificationStateCopyWithImpl<$Res>
       success: success == freezed
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
+              as String,
+      documentType: documentType == freezed
+          ? _value.documentType
+          : documentType // ignore: cast_nullable_to_non_nullable
               as String,
       frontFile: frontFile == freezed
           ? _value.frontFile
@@ -135,6 +144,7 @@ abstract class _$VerificationStateCopyWith<$Res>
       bool kycExists,
       String failure,
       String success,
+      String documentType,
       Uint8List frontFile,
       Uint8List backFile,
       Uint8List utilityFile});
@@ -157,6 +167,7 @@ class __$VerificationStateCopyWithImpl<$Res>
     Object? kycExists = freezed,
     Object? failure = freezed,
     Object? success = freezed,
+    Object? documentType = freezed,
     Object? frontFile = freezed,
     Object? backFile = freezed,
     Object? utilityFile = freezed,
@@ -177,6 +188,10 @@ class __$VerificationStateCopyWithImpl<$Res>
       success: success == freezed
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
+              as String,
+      documentType: documentType == freezed
+          ? _value.documentType
+          : documentType // ignore: cast_nullable_to_non_nullable
               as String,
       frontFile: frontFile == freezed
           ? _value.frontFile
@@ -202,6 +217,7 @@ class _$_VerificationState extends _VerificationState {
       required this.kycExists,
       required this.failure,
       required this.success,
+      required this.documentType,
       required this.frontFile,
       required this.backFile,
       required this.utilityFile})
@@ -216,6 +232,8 @@ class _$_VerificationState extends _VerificationState {
   @override
   final String success;
   @override
+  final String documentType;
+  @override
   final Uint8List frontFile;
   @override
   final Uint8List backFile;
@@ -224,7 +242,7 @@ class _$_VerificationState extends _VerificationState {
 
   @override
   String toString() {
-    return 'VerificationState(submitting: $submitting, kycExists: $kycExists, failure: $failure, success: $success, frontFile: $frontFile, backFile: $backFile, utilityFile: $utilityFile)';
+    return 'VerificationState(submitting: $submitting, kycExists: $kycExists, failure: $failure, success: $success, documentType: $documentType, frontFile: $frontFile, backFile: $backFile, utilityFile: $utilityFile)';
   }
 
   @override
@@ -237,6 +255,8 @@ class _$_VerificationState extends _VerificationState {
             const DeepCollectionEquality().equals(other.kycExists, kycExists) &&
             const DeepCollectionEquality().equals(other.failure, failure) &&
             const DeepCollectionEquality().equals(other.success, success) &&
+            const DeepCollectionEquality()
+                .equals(other.documentType, documentType) &&
             const DeepCollectionEquality().equals(other.frontFile, frontFile) &&
             const DeepCollectionEquality().equals(other.backFile, backFile) &&
             const DeepCollectionEquality()
@@ -250,6 +270,7 @@ class _$_VerificationState extends _VerificationState {
       const DeepCollectionEquality().hash(kycExists),
       const DeepCollectionEquality().hash(failure),
       const DeepCollectionEquality().hash(success),
+      const DeepCollectionEquality().hash(documentType),
       const DeepCollectionEquality().hash(frontFile),
       const DeepCollectionEquality().hash(backFile),
       const DeepCollectionEquality().hash(utilityFile));
@@ -266,6 +287,7 @@ abstract class _VerificationState extends VerificationState {
       required bool kycExists,
       required String failure,
       required String success,
+      required String documentType,
       required Uint8List frontFile,
       required Uint8List backFile,
       required Uint8List utilityFile}) = _$_VerificationState;
@@ -279,6 +301,8 @@ abstract class _VerificationState extends VerificationState {
   String get failure;
   @override
   String get success;
+  @override
+  String get documentType;
   @override
   Uint8List get frontFile;
   @override

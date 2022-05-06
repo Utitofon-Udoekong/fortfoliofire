@@ -7,6 +7,7 @@ class VerificationState with _$VerificationState {
     required bool kycExists,
     required String failure,
     required String success,
+    required String documentType,
     required Uint8List frontFile,
     required Uint8List backFile,
     required Uint8List utilityFile,
@@ -19,7 +20,8 @@ class VerificationState with _$VerificationState {
     frontFile: Uint8List.fromList([]),
     backFile: Uint8List.fromList([]),
     utilityFile: Uint8List.fromList([]),
-    success: ""
+    success: "",
+    documentType: ""
   );
   bool get isValidState => frontFile.isNotEmpty && backFile.isNotEmpty;
 }
