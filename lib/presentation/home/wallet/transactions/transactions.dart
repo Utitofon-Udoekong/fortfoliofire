@@ -13,6 +13,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:intl/intl.dart';
+import 'package:jiffy/jiffy.dart';
 
 class WalletTransactions extends StatelessWidget {
   const WalletTransactions({Key? key}) : super(key: key);
@@ -267,7 +268,7 @@ class WalletTransactions extends StatelessWidget {
                       height: 5,
                     ),
                     Text(
-                      date.toString(),
+                      Jiffy(date).yMMMMEEEEdjm,
                       style:
                           titleText.copyWith(color: kBlackColor, fontSize: 15),
                     ),
