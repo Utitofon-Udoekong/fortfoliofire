@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:developer';
-import 'package:async/async.dart' show StreamGroup;
 
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
