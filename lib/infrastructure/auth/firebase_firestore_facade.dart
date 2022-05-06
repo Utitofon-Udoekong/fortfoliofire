@@ -89,7 +89,9 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
     }
     int? notificationCount = sp.getInt("notificationCount");
     try {
-      await firestore.investmentCollection
+      await firestore.authUserCollection
+          .doc(auth.currentUser!.uid)
+          .collection("investments")
           .doc(docId)
           .set(InvestmentItemDTO.fromDomain(investmentItem).toJson());
       NotificationItem notificationItem = NotificationItem(
@@ -118,7 +120,9 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
     }
     int? notificationCount = sp.getInt("notificationCount");
     try {
-      await firestore.withdrawalCollection
+      await firestore.authUserCollection
+          .doc(auth.currentUser!.uid)
+          .collection("withdrawals")
           .doc(docId)
           .set(WithdrawalItemDTO.fromDomain(withdrawalItem).toJson());
       NotificationItem notificationItem = NotificationItem(
@@ -157,12 +161,12 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
   Future<Either<String, String>> createNotification(
       {required NotificationItem notificationItem}) async {
     final sp = await SharedPreferences.getInstance();
-    final docid = notificationItem.id;
+    final String docId = notificationItem.id;
     try {
       await firestore.authUserCollection
           .doc(auth.currentUser!.uid)
           .collection("notifications")
-          .doc(docid)
+          .doc(docId)
           .set(NotificationItemDTO.fromDomain(notificationItem).toJson());
       if(!sp.containsKey("notificationCount")){
         sp.setInt("notificationCount", 0);
@@ -176,7 +180,9 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
 
   @override
   Stream<QuerySnapshot> getNotifications() async* {
-    yield* firestore.authUserCollection.doc(auth.currentUser!.uid).collection("notifications")
+    yield* firestore.authUserCollection
+        .doc(auth.currentUser!.uid)
+        .collection("notifications")
         .snapshots();
   }
 
@@ -209,35 +215,45 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
 
   @override
   Stream<QuerySnapshot> getFortDollarInvestments() async* {
-    yield* firestore.investmentCollection
+    yield* firestore.authUserCollection
+        .doc(auth.currentUser!.uid)
+        .collection("investments")
         .where("planName", isEqualTo: "FortDollar")
         .snapshots();
   }
 
   @override
   Stream<QuerySnapshot> getFortCryptoInvestments() async* {
-    yield* firestore.investmentCollection
+    yield* firestore.authUserCollection
+        .doc(auth.currentUser!.uid)
+        .collection("investments")
         .where("planName", isEqualTo: "FortCrypto")
         .snapshots();
   }
 
   @override
   Stream<QuerySnapshot> getFortShieldInvestments() async* {
-    yield* firestore.investmentCollection
+    yield* firestore.authUserCollection
+        .doc(auth.currentUser!.uid)
+        .collection("investments")
         .where("planName", isEqualTo: "FortShield")
         .snapshots();
   }
 
   @override
   Stream<QuerySnapshot> getWithdrawals() async* {
-    yield* firestore.withdrawalCollection
+    yield* firestore.authUserCollection
+        .doc(auth.currentUser!.uid)
+        .collection("withdrawals")
         .snapshots();
   }
 
   @override
   Future<Either<String, String>> harvestInvestment(
       {required String docId, required int amount}) async {
-    final query = firestore.investmentCollection
+    final query = firestore.authUserCollection
+        .doc(auth.currentUser!.uid)
+        .collection("investments")
         .doc(docId);
     try {
       await query.update({"planYield": 0, "amount": FieldValue.increment(amount)});

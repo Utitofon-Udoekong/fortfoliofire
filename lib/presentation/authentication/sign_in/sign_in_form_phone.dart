@@ -28,13 +28,6 @@ class _SignInFormPhoneState extends State<SignInFormPhone> {
     return Scaffold(
         body: MultiBlocListener(
           listeners: [
-            BlocListener<AuthCubit, AuthState>(
-              listenWhen: (p, c) =>
-                  p.isLoggedIn != c.isLoggedIn && c.isLoggedIn,
-              listener: (context, state) {
-                context.router.replace(const HomePageRoute());
-              },
-            ),
             BlocListener<SignInFormPhoneCubit, SignInFormPhoneState>(
               listenWhen: (p, c) =>
                   p.failure != c.failure && c.failure.isNotEmpty,

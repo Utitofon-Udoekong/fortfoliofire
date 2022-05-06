@@ -35,13 +35,6 @@ class SignUpForm extends StatelessWidget {
                   context.router.push(const SignUpFormPhoneRoute());
                 },
               ),
-              BlocListener<AuthCubit, AuthState>(
-                listenWhen: (p, c) =>
-                    p.isLoggedIn != c.isLoggedIn && c.isLoggedIn,
-                listener: (context, state) {
-                  context.router.replace(const HomePageRoute());
-                },
-              ),
             ],
             child: BlocBuilder<SignUpFormCubit, SignUpFormState>(
               builder: (context, state) {
