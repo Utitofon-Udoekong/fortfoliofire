@@ -13,4 +13,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 extension FirebaseFirestoreX on FirebaseFirestore {
   CollectionReference get authUserCollection => collection("authUsers");
+  CollectionReference get kycCollection => collection("kyc");
+  CollectionReference get investmentCollection => collection("investments");
+  CollectionReference get withdrawalCollection => collection("withdrawals");
+  CollectionReference get notificationCollection => collection("notifications");
 }

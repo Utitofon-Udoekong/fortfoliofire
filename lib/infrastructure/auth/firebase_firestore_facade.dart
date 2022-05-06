@@ -89,9 +89,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
     }
     int? notificationCount = sp.getInt("notificationCount");
     try {
-      await firestore.authUserCollection
-          .doc(auth.currentUser!.uid)
-          .collection("investments")
+      await firestore.investmentCollection
           .doc(docId)
           .set(InvestmentItemDTO.fromDomain(investmentItem).toJson());
       NotificationItem notificationItem = NotificationItem(
@@ -120,9 +118,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
     }
     int? notificationCount = sp.getInt("notificationCount");
     try {
-      await firestore.authUserCollection
-          .doc(auth.currentUser!.uid)
-          .collection("withdrawals")
+      await firestore.withdrawalCollection
           .doc(docId)
           .set(WithdrawalItemDTO.fromDomain(withdrawalItem).toJson());
       NotificationItem notificationItem = NotificationItem(
@@ -146,10 +142,8 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
   Future<Either<String, String>> createKYC({required KYCItem kycItem}) async {
     final sp = await SharedPreferences.getInstance();
     try {
-      await firestore.authUserCollection
+      await firestore.kycCollection
           .doc(auth.currentUser!.uid)
-          .collection("kyc")
-          .doc()
           .set(KYCItemDTO.fromDomain(kycItem).toJson());
       sp.setBool("kycExists", true);
       return right("KYC Documents submitted");
@@ -163,11 +157,12 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
   Future<Either<String, String>> createNotification(
       {required NotificationItem notificationItem}) async {
     final sp = await SharedPreferences.getInstance();
+    final docid = notificationItem.id;
     try {
       await firestore.authUserCollection
           .doc(auth.currentUser!.uid)
           .collection("notifications")
-          .doc()
+          .doc(docid)
           .set(NotificationItemDTO.fromDomain(notificationItem).toJson());
       if(!sp.containsKey("notificationCount")){
         sp.setInt("notificationCount", 0);
@@ -181,9 +176,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
 
   @override
   Stream<QuerySnapshot> getNotifications() async* {
-    yield* firestore.authUserCollection
-        .doc(auth.currentUser!.uid)
-        .collection("notifications")
+    yield* firestore.notificationCollection
         .snapshots();
   }
 
@@ -216,45 +209,35 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
 
   @override
   Stream<QuerySnapshot> getFortDollarInvestments() async* {
-    yield* firestore.authUserCollection
-        .doc(auth.currentUser!.uid)
-        .collection("investments")
+    yield* firestore.investmentCollection
         .where("planName", isEqualTo: "FortDollar")
         .snapshots();
   }
 
   @override
   Stream<QuerySnapshot> getFortCryptoInvestments() async* {
-    yield* firestore.authUserCollection
-        .doc(auth.currentUser!.uid)
-        .collection("investments")
+    yield* firestore.investmentCollection
         .where("planName", isEqualTo: "FortCrypto")
         .snapshots();
   }
 
   @override
   Stream<QuerySnapshot> getFortShieldInvestments() async* {
-    yield* firestore.authUserCollection
-        .doc(auth.currentUser!.uid)
-        .collection("investments")
+    yield* firestore.investmentCollection
         .where("planName", isEqualTo: "FortShield")
         .snapshots();
   }
 
   @override
   Stream<QuerySnapshot> getWithdrawals() async* {
-    yield* firestore.authUserCollection
-        .doc(auth.currentUser!.uid)
-        .collection("withdrawals")
+    yield* firestore.withdrawalCollection
         .snapshots();
   }
 
   @override
   Future<Either<String, String>> harvestInvestment(
       {required String docId, required int amount}) async {
-    final query = firestore.authUserCollection
-        .doc(auth.currentUser!.uid)
-        .collection("investments")
+    final query = firestore.investmentCollection
         .doc(docId);
     try {
       await query.update({"planYield": 0, "amount": FieldValue.increment(amount)});
@@ -287,15 +270,12 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
   @override
   Future<Either<String, String>> deleteNotification(
       {required NotificationItem notificationItem}) async {
-    final notification = await firestore.authUserCollection
+    final notification = firestore.authUserCollection
         .doc(auth.currentUser!.uid)
         .collection("notifications")
-        .where("id", isEqualTo: notificationItem.id)
-        .get();
+        .doc(notificationItem.id);
     try {
-      for (var doc in notification.docs) {
-        doc.reference.delete();
-      }
+      await notification.delete();
       return right("Notification deleted successfully");
     } on FirebaseException catch (e) {
       log("Code: ${e.code}, Message: ${e.message}");
