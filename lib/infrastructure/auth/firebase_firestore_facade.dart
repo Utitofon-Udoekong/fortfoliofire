@@ -176,7 +176,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
 
   @override
   Stream<QuerySnapshot> getNotifications() async* {
-    yield* firestore.notificationCollection
+    yield* firestore.authUserCollection.doc(auth.currentUser!.uid).collection("notifications")
         .snapshots();
   }
 
