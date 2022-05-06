@@ -31,7 +31,6 @@ class SignUpForm extends StatelessWidget {
                 listenWhen: (p, c) =>
                     p.success != c.success && c.success.isNotEmpty,
                 listener: (context, state) {
-                  CustomSnackbar.showSnackBar(context, state.success, false);
                   context.router.push(const SignUpFormPhoneRoute());
                 },
               ),

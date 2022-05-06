@@ -511,7 +511,7 @@ class WalletTransactions extends StatelessWidget {
                       height: 5,
                     ),
                     Text(
-                      date.toString(),
+                      Jiffy(date).yMMMMEEEEdjm,
                       style:
                           titleText.copyWith(color: kBlackColor, fontSize: 15),
                     ),

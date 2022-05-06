@@ -127,8 +127,6 @@ class ConfirmSignupWithOTP extends StatelessWidget {
                           CountDownTimer(
                             smsCodeTimeoutSeconds: smsCodeTimeoutSeconds,
                             onTimerCompleted: () {
-                              CustomSnackbar.showSnackBar(
-                                  context, "SMS Code Timeout!", true);
                               context.read<SignUpFormPhoneCubit>().reset();
                             },
                           ),
