@@ -116,25 +116,21 @@ class ConfirmLoginWithOTP extends StatelessWidget {
                       const SizedBox(
                         height: 30,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 24, vertical: 0),
-                        child: Row(
-                          children: [
-                            TextButton(onPressed: () => context
-                                .read<SignInFormPhoneCubit>()
-                                .signInWithPhoneNumber(), child: Text("Resend", style: subTitle.copyWith(fontSize: 13, color: kBlackColor),)),
-                            const Spacer(),
-                            CountDownTimer(
-                              smsCodeTimeoutSeconds: smsCodeTimeoutSeconds,
-                              onTimerCompleted: () {
-                                CustomSnackbar.showSnackBar(
-                                    context, "SMS Code Timeout!", true);
-                                context.read<SignInFormPhoneCubit>().reset();
-                              },
-                            ),
-                          ],
-                        ),
+                      Row(
+                        children: [
+                          TextButton(onPressed: () => context
+                              .read<SignInFormPhoneCubit>()
+                              .signInWithPhoneNumber(), child: Text("Resend", style: subTitle.copyWith(fontSize: 13, color: kBlackColor),)),
+                          const Spacer(),
+                          CountDownTimer(
+                            smsCodeTimeoutSeconds: smsCodeTimeoutSeconds,
+                            onTimerCompleted: () {
+                              CustomSnackbar.showSnackBar(
+                                  context, "SMS Code Timeout!", true);
+                              context.read<SignInFormPhoneCubit>().reset();
+                            },
+                          ),
+                        ],
                       ),
                     ],
                   ),

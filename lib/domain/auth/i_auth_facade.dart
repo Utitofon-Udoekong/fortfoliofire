@@ -17,12 +17,13 @@ abstract class IAuthFacade {
   // signup phone
   Stream<Either<String, String>> registerPhoneNumber({
     required String phoneNumber,
-    required int timeout,
+    required int timeout
   });
   // verifyRegistrationSmsCode
   Future<Either<String, String>> verifyRegistrationSmsCode({
     required String smsCode,
     required String verificationId,
+    required String phoneNumber
   });
   // verifyLoginSmsCode
   Future<Either<String, String>> verifyLoginSmsCode({
@@ -33,6 +34,7 @@ abstract class IAuthFacade {
   Future<Either<String, String>> verifyPhoneUpdate({
     required String smsCode,
     required String verificationId,
+    required String phoneNumber
   });
   // registeruser
   Future<Either<String, String>> registerWithEmailAndPassword({

@@ -88,9 +88,6 @@ class FirebaseAuthFacade implements IAuthFacade {
           // link with the auto-generated credential.
         },
         codeSent: (String verificationId, int? resendToken) async {
-          await firestore.authUserCollection
-              .doc(firebaseAuth.currentUser!.uid)
-              .update({"phoneNumber": phoneNumber});
           // Update the UI - wait for the user to enter the SMS code
           streamController.add(right(verificationId));
         },
@@ -202,8 +199,6 @@ class FirebaseAuthFacade implements IAuthFacade {
         phoneNumber: phoneNumber,
         verificationCompleted: (PhoneAuthCredential credential) async {
           // firebaseAuth.signInWithCredential(credential);
-          print("phone signin completed");
-          print(credential);
         },
         codeSent: (String verificationId, int? resendToken) async {
           // Update the UI - wait for the user to enter the SMS code
@@ -238,11 +233,14 @@ class FirebaseAuthFacade implements IAuthFacade {
 
   @override
   Future<Either<String, String>> verifyRegistrationSmsCode(
-      {required String smsCode, required String verificationId}) async {
+      {required String smsCode, required String verificationId, required String phoneNumber}) async {
     try {
       final PhoneAuthCredential phoneAuthCredential =
           PhoneAuthProvider.credential(
               smsCode: smsCode, verificationId: verificationId);
+      await firestore.authUserCollection
+              .doc(firebaseAuth.currentUser!.uid)
+              .update({"phoneNumber": phoneNumber});
       await firebaseAuth.currentUser!.linkWithCredential(phoneAuthCredential);
       return right("Verification successful");
     } on FirebaseAuthException catch (e) {
@@ -277,11 +275,14 @@ class FirebaseAuthFacade implements IAuthFacade {
 
   @override
   Future<Either<String,String>> verifyPhoneUpdate(
-      {required String smsCode, required String verificationId}) async {
+      {required String smsCode, required String verificationId, required String phoneNumber}) async {
     try {
       final PhoneAuthCredential phoneAuthCredential =
           PhoneAuthProvider.credential(
               smsCode: smsCode, verificationId: verificationId);
+      await firestore.authUserCollection
+              .doc(firebaseAuth.currentUser!.uid)
+              .update({"phoneNumber": phoneNumber});
       await firebaseAuth.currentUser!.updatePhoneNumber(phoneAuthCredential);
       return right("Phone number updated");
     } on FirebaseAuthException catch (e) {
@@ -405,13 +406,13 @@ class FirebaseAuthFacade implements IAuthFacade {
         phoneNumber: phoneNumber,
         verificationCompleted: (PhoneAuthCredential credential) async {
           // ANDROID ONLY!
-          await firestore.authUserCollection
-              .doc(firebaseAuth.currentUser!.uid)
-              .update({"phoneNumber": phoneNumber});
         },
         codeSent: (String verificationId, int? resendToken) async {
           // Update the UI - wait for the user to enter the SMS code
           streamController.add(right(verificationId));
+          await firestore.authUserCollection
+              .doc(firebaseAuth.currentUser!.uid)
+              .update({"phoneNumber": phoneNumber});
         },
         codeAutoRetrievalTimeout: (String verificationId) {
           // Auto-resolution timed out...

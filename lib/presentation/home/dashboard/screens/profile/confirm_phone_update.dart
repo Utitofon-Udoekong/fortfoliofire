@@ -87,7 +87,7 @@ class ConfirmPhoneUpdate extends StatelessWidget {
                                   borderColor: kgreyColor,
                                   focusBorderColor: kPrimaryColor),
                               keyboardType: TextInputType.number,
-                              onChanged: (value) => context
+                              onCompleted: (value) => context
                                   .read<ProfileCubit>()
                                   .smsCodeChanged(smsCode: value),
                             );
@@ -104,25 +104,21 @@ class ConfirmPhoneUpdate extends StatelessWidget {
                         const SizedBox(
                           height: 30,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 24, vertical: 0),
-                          child: Row(
-                            children: [
-                              TextButton(onPressed: () => context
-                                .read<ProfileCubit>()
-                                .changePhone(), child: Text("Resend", style: subTitle.copyWith(fontSize: 13, color: kBlackColor),)),
-                              const Spacer(),
-                              CountDownTimer(
-                                smsCodeTimeoutSeconds: smsCodeTimeoutSeconds,
-                                onTimerCompleted: () {
-                                  CustomSnackbar.showSnackBar(
-                                      context, "SMS Code Timeout!", true);
-                                  context.read<ProfileCubit>().reset();
-                                },
-                              ),
-                            ],
-                          ),
+                        Row(
+                          children: [
+                            TextButton(onPressed: () => context
+                              .read<ProfileCubit>()
+                              .changePhone(), child: Text("Resend", style: subTitle.copyWith(fontSize: 13, color: kBlackColor),)),
+                            const Spacer(),
+                            CountDownTimer(
+                              smsCodeTimeoutSeconds: smsCodeTimeoutSeconds,
+                              onTimerCompleted: () {
+                                CustomSnackbar.showSnackBar(
+                                    context, "SMS Code Timeout!", true);
+                                context.read<ProfileCubit>().reset();
+                              },
+                            ),
+                          ],
                         ),
                       ],
                     ),
