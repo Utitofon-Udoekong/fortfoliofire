@@ -88,8 +88,9 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     final dueDate = Jiffy(paymentDate).add(months: duration.toInt()).dateTime;
     final int numberOfDays = dueDate.difference(paymentDate).inDays;
     final String currency = state.exchangeType == "USD" ? "\$" : "N";
-    final paymentMethod = state.paymentMethod;
-    final coin = state.coin;
+    final String paymentMethod = state.paymentMethod;
+    final String coin = state.coin;
+    final String bankAccountType = state.bankAccountType;
     if (state.planName == "FortCrypto") {
       investmentItem = InvestmentItem(
           description: description,
@@ -116,6 +117,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
           traxId: traxId,
           roi: roi,
           planName: planName,
+          bankAccountType: bankAccountType,
           paymentDate: paymentDate,
           dueDate: dueDate,
           duration: duration,

@@ -71,8 +71,9 @@ class WalletOverview extends StatelessWidget {
                       ),
                       BlocBuilder<WalletCubit, WalletState>(
                         builder: (context, state) {
-                          if (state.exchange == "NGN") {
-                            return state.showDigits
+                          switch (state.exchange) {
+                            case "NGN":
+                              return state.showDigits
                                 ? Text('N${formatter.format(state.walletBalance * 560) }',
                                     style: titleText.copyWith(
                                         fontSize: 15, color: kWhiteColor))
@@ -81,8 +82,8 @@ class WalletOverview extends StatelessWidget {
                                         .replaceAll(regExp, "*"),
                                     style: titleText.copyWith(
                                         fontSize: 23, color: kWhiteColor));
-                          } else {
-                            return state.showDigits
+                            case "USD":
+                              return state.showDigits
                                 ? Text('\$${formatter.format(state.walletBalance)}',
                                     style: titleText.copyWith(
                                         fontSize: 15, color: kWhiteColor))
@@ -91,7 +92,47 @@ class WalletOverview extends StatelessWidget {
                                         .replaceAll(regExp, "*"),
                                     style: titleText.copyWith(
                                         fontSize: 23, color: kWhiteColor));
+                            case "BTC":
+                              return state.showDigits
+                                ? Text('BTC ${state.walletBalance}',
+                                    style: titleText.copyWith(
+                                        fontSize: 15, color: kWhiteColor))
+                                : Text("${state.walletBalance}"
+                                        .replaceAll(regExp, "*"),
+                                    style: titleText.copyWith(
+                                        fontSize: 23, color: kWhiteColor));
+                            default:
+                              return state.showDigits
+                                ? Text('N${formatter.format(state.walletBalance * 560) }',
+                                    style: titleText.copyWith(
+                                        fontSize: 15, color: kWhiteColor))
+                                : Text(
+                                    formatter.format(state.walletBalance * 560)
+                                        .replaceAll(regExp, "*"),
+                                    style: titleText.copyWith(
+                                        fontSize: 23, color: kWhiteColor));
                           }
+                          // if (state.exchange == "NGN") {
+                          //   return state.showDigits
+                          //       ? Text('N${formatter.format(state.walletBalance * 560) }',
+                          //           style: titleText.copyWith(
+                          //               fontSize: 15, color: kWhiteColor))
+                          //       : Text(
+                          //           formatter.format(state.walletBalance * 560)
+                          //               .replaceAll(regExp, "*"),
+                          //           style: titleText.copyWith(
+                          //               fontSize: 23, color: kWhiteColor));
+                          // } else {
+                          //   return state.showDigits
+                          //       ? Text('\$${formatter.format(state.walletBalance)}',
+                          //           style: titleText.copyWith(
+                          //               fontSize: 15, color: kWhiteColor))
+                          //       : Text(
+                          //           formatter.format(state.walletBalance)
+                          //               .replaceAll(regExp, "*"),
+                          //           style: titleText.copyWith(
+                          //               fontSize: 23, color: kWhiteColor));
+                          // }
                         },
                       )
                     ],
@@ -144,6 +185,8 @@ class WalletOverview extends StatelessWidget {
                                           height: 16,
                                         ),
                                         buildtile('btc', 'BTC Balance', () {
+                                          context
+                                              .read<WalletCubit>().getWalletBalanceInBTC();
                                           context
                                               .read<WalletCubit>()
                                               .exchangeChanged(exchange: "BTC");

@@ -13,6 +13,7 @@ class InvestmentState with _$InvestmentState {
       required bool isLoading,
       required String exchangeType,
       required String coin,
+      required String bankAccountType,
       required List<bool> isSelected,
       required List<int> durations,
       required String paymentMethod,
@@ -23,6 +24,7 @@ class InvestmentState with _$InvestmentState {
   factory InvestmentState.initial() => InvestmentState(
         amountInvested: 0,
         coin: "BTC",
+        bankAccountType: "Naira",
         planName: '',
         roi: 0,
         baseAmount: 1000,
