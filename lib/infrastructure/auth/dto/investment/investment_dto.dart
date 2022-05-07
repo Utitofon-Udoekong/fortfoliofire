@@ -13,6 +13,7 @@ abstract class InvestmentItemDTO implements _$InvestmentItemDTO {
     required String description,
     required String uid,
     String? coin,
+    String? bankAccountType,
     required double amount,
     required String traxId,
     required double roi,
@@ -76,6 +77,7 @@ extension InvestmentItemDTOX on InvestmentItemDTO {
       traxId: traxId,
       uid: uid,
       coin: coin,
+      bankAccountType: bankAccountType,
       paymentMethod: paymentMethod,
       numberOfDays: numberOfDays
     );

@@ -9,6 +9,7 @@ abstract class InvestmentItem implements _$InvestmentItem {
     required String description,
     required String uid,
     String? coin,
+    String? bankAccountType,
     required double amount,
     required String traxId,
     required int roi,
@@ -37,6 +38,7 @@ abstract class InvestmentItem implements _$InvestmentItem {
         traxId: '',
         uid: '',
         coin: 'BTC',
+        bankAccountType: 'Naira',
         currency: '\$',
         paymentMethod: ''
       );

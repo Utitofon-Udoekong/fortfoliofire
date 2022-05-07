@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fortfolio/application/auth/auth_cubit.dart';
+import 'package:fortfolio/domain/auth/i_external_facade.dart';
 import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
 import 'package:fortfolio/domain/user/bank_address.dart';
 import 'package:fortfolio/domain/user/crypto_wallet.dart';
@@ -26,6 +27,7 @@ part 'wallet_cubit.freezed.dart';
 @injectable
 class WalletCubit extends Cubit<WalletState> {
   final IFirestoreFacade firestoreFacade;
+  final IExternalFacade externalFacade;
   late final AuthCubit authCubit;
   StreamSubscription<QuerySnapshot>? _logsFortDollarSubscription;
   StreamSubscription<QuerySnapshot>? _logsFortShieldSubscription;
@@ -34,7 +36,7 @@ class WalletCubit extends Cubit<WalletState> {
   StreamSubscription<QuerySnapshot>? _logsCryptoAddressSubscription;
   StreamSubscription<QuerySnapshot>? _logsGeneralCryptoAddressSubscription;
 
-  WalletCubit(this.firestoreFacade) : super(WalletState.initial()) {
+  WalletCubit(this.firestoreFacade, this.externalFacade) : super(WalletState.initial()) {
     authCubit = getIt<AuthCubit>();
     authCubit.stream.listen((state) {
       if (state.isLoggedIn) {
@@ -115,13 +117,14 @@ class WalletCubit extends Cubit<WalletState> {
         fortCryptoInvestmentBalance: amount));
   }
 
-  void initWalletBalance() {
+  void initWalletBalance() async {
     var fortDollarInvestments = state.fortDollarInvestments;
     var fortShieldInvestments = state.fortShieldInvestments;
     var fortCryptoInvestments = state.fortCryptoInvestments;
     var fortDollarActive = state.isFortDollarActive;
     var fortShieldActive = state.isFortShieldActive;
     var fortCryptoActive = state.isFortCryptoActive;
+     
     if (fortDollarActive && !fortShieldActive && !fortCryptoActive) {
       var balance = 0;
       for (var element in fortDollarInvestments) {
@@ -144,6 +147,7 @@ class WalletCubit extends Cubit<WalletState> {
     } else if (!fortDollarActive && !fortShieldActive && fortCryptoActive) {
       var balance = 0;
       for (var element in fortCryptoInvestments) {
+        var btcToUsdPrice = await externalFacade.getCoinPrice(id: element.coin!);
         var availableBalance = element.amount + element.planYield;
         if(element.status != "Pending"){
           balance += availableBalance;

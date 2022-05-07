@@ -3,5 +3,6 @@ import 'package:dartz/dartz.dart';
 
 abstract class IExternalFacade{
   Future<Option<double>> getCoinPrice ({required String id});
+  Future<Option<double>> getBTCPrice ({required String id});
   Future<Option<ChargeObject>> createCharge();
 }
