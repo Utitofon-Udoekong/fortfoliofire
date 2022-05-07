@@ -12,29 +12,29 @@ import 'package:injectable/injectable.dart';
 class ExternalFacade implements IExternalFacade {
   Coinbase coinbase = Coinbase("api-key");
   @override
-  Future<Option<double>> getCoinPrice({ required String id}) async {
+  Future<double> getCoinPrice({ required String id}) async {
     try {
       var url = Uri.parse("https://api.coingecko.com/api/v3/coins" + id);
       var response = await http.get(url);
       var json = jsonDecode(response.body);
       var value = json['market_data']['current_price']['usd'].toString();
-      return some(double.parse(value));
+      return double.parse(value);
     } catch (e) {
       log(e.toString());
-      return none();
+      return 0.0;
     }
   }
   @override
-  Future<Option<double>> getBTCPriceInDollars() async {
+  Future<double> getBTCPriceInDollars() async {
     try {
       var url = Uri.parse("https://api.coingecko.com/api/v3/coins/btc");
       var response = await http.get(url);
       var json = jsonDecode(response.body);
       var value = json['market_data']['current_price']['usd'].toString();
-      return some(double.parse(value));
+      return double.parse(value);
     } catch (e) {
       log(e.toString());
-      return none();
+      return 0.0;
     }
   }
 

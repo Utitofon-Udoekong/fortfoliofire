@@ -61,26 +61,18 @@ class WalletCubit extends Cubit<WalletState> {
 
   void getWalletBalanceInBTC() async {
     final btcPriceOption = await externalFacade.getBTCPriceInDollars();
-    double btcPriceInDollars = 0;
-    btcPriceOption.fold(() => null, (price) {
-      btcPriceInDollars = price;
-    });
     var walletBalance = state.walletBalance;
     if(state.exchange == "NGN"){
       walletBalance /= 590;
     }
-    emit(state.copyWith(walletBalance: (walletBalance / btcPriceInDollars)));
+    emit(state.copyWith(walletBalance: (walletBalance / btcPriceOption)));
   }
 
   void getWalletBalanceInNaira() async {
     var walletBalance = state.walletBalance;
     final btcPriceOption = await externalFacade.getBTCPriceInDollars();
-    double btcPriceInDollars = 0;
-    btcPriceOption.fold(() => null, (price) {
-      btcPriceInDollars = price;
-    });
     if(state.exchange == "BTC"){
-      walletBalance *= btcPriceInDollars;
+      walletBalance *= btcPriceOption;
     }
     emit(state.copyWith(walletBalance: (walletBalance * 590)));
   }
@@ -88,12 +80,8 @@ class WalletCubit extends Cubit<WalletState> {
   void getWalletBalanceInUSD() async {
     var walletBalance = state.walletBalance;
     final btcPriceOption = await externalFacade.getBTCPriceInDollars();
-    double btcPriceInDollars = 0;
-    btcPriceOption.fold(() => null, (price) {
-      btcPriceInDollars = price;
-    });
     if(state.exchange == "BTC"){
-      walletBalance *= btcPriceInDollars;
+      walletBalance *= btcPriceOption;
     }
     emit(state.copyWith(walletBalance: walletBalance));
   }
@@ -188,11 +176,7 @@ class WalletCubit extends Cubit<WalletState> {
       var balance = 0.0;
       for (var element in fortCryptoInvestments) {
         var btcToUsdPriceOption = await externalFacade.getCoinPrice(id: getCryptoNameFromSymbol(symbol: element.coin!));
-        var btcPrice = 0.0;
-        btcToUsdPriceOption.fold(() => null, (price) {
-          btcPrice = price;
-        });
-        var availableBalance = (element.amount * btcPrice) + (element.planYield * btcPrice);
+        var availableBalance = (element.amount * btcToUsdPriceOption) + (element.planYield * btcToUsdPriceOption);
         if(element.status != "Pending"){
           balance += availableBalance;
         }
@@ -224,11 +208,7 @@ class WalletCubit extends Cubit<WalletState> {
       }
       for (var element in fortCryptoInvestments) {
         var btcToUsdPriceOption = await externalFacade.getCoinPrice(id: getCryptoNameFromSymbol(symbol: element.coin!));
-        var btcPrice = 0.0;
-        btcToUsdPriceOption.fold(() => null, (price) {
-          btcPrice = price;
-        });
-        var availableBalance = (element.amount * btcPrice) + (element.planYield * btcPrice);
+        var availableBalance = (element.amount * btcToUsdPriceOption) + (element.planYield * btcToUsdPriceOption);
         if(element.status != "Pending"){
           balance += availableBalance;
         }
@@ -245,11 +225,7 @@ class WalletCubit extends Cubit<WalletState> {
       }
       for (var element in fortCryptoInvestments) {
         var btcToUsdPriceOption = await externalFacade.getCoinPrice(id: getCryptoNameFromSymbol(symbol: element.coin!));
-        var btcPrice = 0.0;
-        btcToUsdPriceOption.fold(() => null, (price) {
-          btcPrice = price;
-        });
-        var availableBalance = (element.amount * btcPrice) + (element.planYield * btcPrice);
+        var availableBalance = (element.amount * btcToUsdPriceOption) + (element.planYield * btcToUsdPriceOption);
         if(element.status != "Pending"){
           balance += availableBalance;
         }
@@ -265,11 +241,7 @@ class WalletCubit extends Cubit<WalletState> {
       }
       for (var element in fortCryptoInvestments) {
         var btcToUsdPriceOption = await externalFacade.getCoinPrice(id: getCryptoNameFromSymbol(symbol: element.coin!));
-        var btcPrice = 0.0;
-        btcToUsdPriceOption.fold(() => null, (price) {
-          btcPrice = price;
-        });
-        var availableBalance = (element.amount * btcPrice) + (element.planYield * btcPrice);
+        var availableBalance = (element.amount * btcToUsdPriceOption) + (element.planYield * btcToUsdPriceOption);
         if(element.status != "Pending"){
           balance += availableBalance;
         }

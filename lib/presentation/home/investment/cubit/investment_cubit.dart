@@ -57,14 +57,11 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     emit(state.copyWith(duration: duration));
   }
   void coinChanged({required String coin}) async {
-    var coinToUsdPriceOption = await externalFacade.getCoinPrice(id: getCryptoNameFromSymbol(symbol: coin));
-    double coinPriceInDollar = 0.0;
-    var baseAmount = state.baseAmount;
-    coinToUsdPriceOption.fold(() => null,(price) {
-      coinPriceInDollar = price;
-    });
-    baseAmount = 1000 / coinPriceInDollar;
-    emit(state.copyWith(coin: coin, baseAmount: baseAmount));
+    var coinToUsdPrice = await externalFacade.getCoinPrice(id: getCryptoNameFromSymbol(symbol: coin));
+    var baseAmount = 0.0;
+    baseAmount = 1000 / coinToUsdPrice;
+    print({coinToUsdPrice, baseAmount});
+    emit(state.copyWith(coin: coin));
   }
 
   void amountInvestedChanged({required int amountInvested}) {
