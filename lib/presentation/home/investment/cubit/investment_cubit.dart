@@ -1,7 +1,9 @@
 import 'dart:developer';
 import 'package:bloc/bloc.dart';
+import 'package:fortfolio/domain/auth/i_external_facade.dart';
 import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
 import 'package:fortfolio/domain/user/investment.dart';
+import 'package:fortfolio/utils/utils.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:jiffy/jiffy.dart';
@@ -14,7 +16,8 @@ part 'investment_cubit.freezed.dart';
 @injectable
 class InvestmentCubit extends Cubit<InvestmentState> {
   final IFirestoreFacade firestoreFacade;
-  InvestmentCubit(this.firestoreFacade) : super(InvestmentState.initial());
+  final IExternalFacade externalFacade;
+  InvestmentCubit(this.firestoreFacade, this.externalFacade) : super(InvestmentState.initial());
 
   void exchangeTypeChanged({required String exchangeType}) {
     emit(state.copyWith(exchangeType: exchangeType));
@@ -53,7 +56,13 @@ class InvestmentCubit extends Cubit<InvestmentState> {
   void durationChanged({required int duration}) {
     emit(state.copyWith(duration: duration));
   }
-  void coinChanged({required String coin}) {
+  void coinChanged({required String coin}) async {
+    var coinToUsdPriceOption = await externalFacade.getCoinPrice(id: getCryptoNameFromSymbol(symbol: coin));
+    double coinPriceInDollar = 0.0;
+    final baseAmount = state.baseAmount;
+    coinToUsdPriceOption.fold(() => null,(price) {
+      coinPriceInDollar = price;
+    });
     emit(state.copyWith(coin: coin));
   }
 

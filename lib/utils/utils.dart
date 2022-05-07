@@ -25,13 +25,13 @@ String getCryptoNameFromSymbol({required String symbol}){
     case "BTC":
       return "bitcoin";
     case "BCH":
-      return "bitcoincash";
+      return "bitcoin-cash";
     case "ETH":
       return "ethereum";
     case "LTC":
       return "litecoin";
     case "USDC":
-      return "usdcoin";
+      return "usd-coin";
     case "DAI":
       return "dai";
     case "DOGE":
