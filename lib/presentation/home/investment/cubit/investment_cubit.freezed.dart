@@ -33,7 +33,7 @@ class _$InvestmentStateTearOff {
       required List<bool> isSelected,
       required List<int> durations,
       required String paymentMethod,
-      required int baseAmount}) {
+      required double baseAmount}) {
     return _InvestmentState(
       planName: planName,
       duration: duration,
@@ -73,7 +73,7 @@ mixin _$InvestmentState {
   List<bool> get isSelected => throw _privateConstructorUsedError;
   List<int> get durations => throw _privateConstructorUsedError;
   String get paymentMethod => throw _privateConstructorUsedError;
-  int get baseAmount => throw _privateConstructorUsedError;
+  double get baseAmount => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $InvestmentStateCopyWith<InvestmentState> get copyWith =>
@@ -100,7 +100,7 @@ abstract class $InvestmentStateCopyWith<$Res> {
       List<bool> isSelected,
       List<int> durations,
       String paymentMethod,
-      int baseAmount});
+      double baseAmount});
 }
 
 /// @nodoc
@@ -190,7 +190,7 @@ class _$InvestmentStateCopyWithImpl<$Res>
       baseAmount: baseAmount == freezed
           ? _value.baseAmount
           : baseAmount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
     ));
   }
 }
@@ -217,7 +217,7 @@ abstract class _$InvestmentStateCopyWith<$Res>
       List<bool> isSelected,
       List<int> durations,
       String paymentMethod,
-      int baseAmount});
+      double baseAmount});
 }
 
 /// @nodoc
@@ -309,7 +309,7 @@ class __$InvestmentStateCopyWithImpl<$Res>
       baseAmount: baseAmount == freezed
           ? _value.baseAmount
           : baseAmount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
     ));
   }
 }
@@ -364,7 +364,7 @@ class _$_InvestmentState extends _InvestmentState {
   @override
   final String paymentMethod;
   @override
-  final int baseAmount;
+  final double baseAmount;
 
   @override
   String toString() {
@@ -441,7 +441,7 @@ abstract class _InvestmentState extends InvestmentState {
       required List<bool> isSelected,
       required List<int> durations,
       required String paymentMethod,
-      required int baseAmount}) = _$_InvestmentState;
+      required double baseAmount}) = _$_InvestmentState;
   const _InvestmentState._() : super._();
 
   @override
@@ -473,7 +473,7 @@ abstract class _InvestmentState extends InvestmentState {
   @override
   String get paymentMethod;
   @override
-  int get baseAmount;
+  double get baseAmount;
   @override
   @JsonKey(ignore: true)
   _$InvestmentStateCopyWith<_InvestmentState> get copyWith =>

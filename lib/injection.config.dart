@@ -71,8 +71,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.lazySingleton<_i14.IFunctionsFacade>(() => _i15.FirebaseFunctionsFacade());
   gh.lazySingleton<_i16.IStorageFacade>(() => _i17.FirebaseStorageFacade(
       get<_i4.FirebaseAuth>(), get<_i7.FirebaseStorage>()));
-  gh.factory<_i18.InvestmentCubit>(
-      () => _i18.InvestmentCubit(get<_i12.IFirestoreFacade>()));
+  gh.factory<_i18.InvestmentCubit>(() => _i18.InvestmentCubit(
+      get<_i12.IFirestoreFacade>(), get<_i10.IExternalFacade>()));
   gh.factory<_i19.NotificationCubit>(
       () => _i19.NotificationCubit(get<_i12.IFirestoreFacade>()));
   gh.factory<_i20.ProfileCubit>(

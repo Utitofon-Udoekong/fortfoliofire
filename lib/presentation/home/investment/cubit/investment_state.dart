@@ -17,7 +17,7 @@ class InvestmentState with _$InvestmentState {
       required List<bool> isSelected,
       required List<int> durations,
       required String paymentMethod,
-      required int baseAmount
+      required double baseAmount
       }) = _InvestmentState;
   const InvestmentState._();
 
