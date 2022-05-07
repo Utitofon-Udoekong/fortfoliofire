@@ -26,9 +26,10 @@ class _$InvestmentItemDTOTearOff {
       {required String description,
       required String uid,
       String? coin,
-      required int amount,
+      String? bankAccountType,
+      required double amount,
       required String traxId,
-      required int roi,
+      required double roi,
       required int numberOfDays,
       required String planName,
       required DateTime paymentDate,
@@ -36,12 +37,13 @@ class _$InvestmentItemDTOTearOff {
       required double duration,
       required String status,
       required String currency,
-      required int planYield,
+      required double planYield,
       required String paymentMethod}) {
     return _InvestmentItemDTO(
       description: description,
       uid: uid,
       coin: coin,
+      bankAccountType: bankAccountType,
       amount: amount,
       traxId: traxId,
       roi: roi,
@@ -70,9 +72,10 @@ mixin _$InvestmentItemDTO {
   String get description => throw _privateConstructorUsedError;
   String get uid => throw _privateConstructorUsedError;
   String? get coin => throw _privateConstructorUsedError;
-  int get amount => throw _privateConstructorUsedError;
+  String? get bankAccountType => throw _privateConstructorUsedError;
+  double get amount => throw _privateConstructorUsedError;
   String get traxId => throw _privateConstructorUsedError;
-  int get roi => throw _privateConstructorUsedError;
+  double get roi => throw _privateConstructorUsedError;
   int get numberOfDays => throw _privateConstructorUsedError;
   String get planName => throw _privateConstructorUsedError;
   DateTime get paymentDate => throw _privateConstructorUsedError;
@@ -80,7 +83,7 @@ mixin _$InvestmentItemDTO {
   double get duration => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   String get currency => throw _privateConstructorUsedError;
-  int get planYield => throw _privateConstructorUsedError;
+  double get planYield => throw _privateConstructorUsedError;
   String get paymentMethod => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -98,9 +101,10 @@ abstract class $InvestmentItemDTOCopyWith<$Res> {
       {String description,
       String uid,
       String? coin,
-      int amount,
+      String? bankAccountType,
+      double amount,
       String traxId,
-      int roi,
+      double roi,
       int numberOfDays,
       String planName,
       DateTime paymentDate,
@@ -108,7 +112,7 @@ abstract class $InvestmentItemDTOCopyWith<$Res> {
       double duration,
       String status,
       String currency,
-      int planYield,
+      double planYield,
       String paymentMethod});
 }
 
@@ -126,6 +130,7 @@ class _$InvestmentItemDTOCopyWithImpl<$Res>
     Object? description = freezed,
     Object? uid = freezed,
     Object? coin = freezed,
+    Object? bankAccountType = freezed,
     Object? amount = freezed,
     Object? traxId = freezed,
     Object? roi = freezed,
@@ -152,10 +157,14 @@ class _$InvestmentItemDTOCopyWithImpl<$Res>
           ? _value.coin
           : coin // ignore: cast_nullable_to_non_nullable
               as String?,
+      bankAccountType: bankAccountType == freezed
+          ? _value.bankAccountType
+          : bankAccountType // ignore: cast_nullable_to_non_nullable
+              as String?,
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       traxId: traxId == freezed
           ? _value.traxId
           : traxId // ignore: cast_nullable_to_non_nullable
@@ -163,7 +172,7 @@ class _$InvestmentItemDTOCopyWithImpl<$Res>
       roi: roi == freezed
           ? _value.roi
           : roi // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       numberOfDays: numberOfDays == freezed
           ? _value.numberOfDays
           : numberOfDays // ignore: cast_nullable_to_non_nullable
@@ -195,7 +204,7 @@ class _$InvestmentItemDTOCopyWithImpl<$Res>
       planYield: planYield == freezed
           ? _value.planYield
           : planYield // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       paymentMethod: paymentMethod == freezed
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
@@ -215,9 +224,10 @@ abstract class _$InvestmentItemDTOCopyWith<$Res>
       {String description,
       String uid,
       String? coin,
-      int amount,
+      String? bankAccountType,
+      double amount,
       String traxId,
-      int roi,
+      double roi,
       int numberOfDays,
       String planName,
       DateTime paymentDate,
@@ -225,7 +235,7 @@ abstract class _$InvestmentItemDTOCopyWith<$Res>
       double duration,
       String status,
       String currency,
-      int planYield,
+      double planYield,
       String paymentMethod});
 }
 
@@ -245,6 +255,7 @@ class __$InvestmentItemDTOCopyWithImpl<$Res>
     Object? description = freezed,
     Object? uid = freezed,
     Object? coin = freezed,
+    Object? bankAccountType = freezed,
     Object? amount = freezed,
     Object? traxId = freezed,
     Object? roi = freezed,
@@ -271,10 +282,14 @@ class __$InvestmentItemDTOCopyWithImpl<$Res>
           ? _value.coin
           : coin // ignore: cast_nullable_to_non_nullable
               as String?,
+      bankAccountType: bankAccountType == freezed
+          ? _value.bankAccountType
+          : bankAccountType // ignore: cast_nullable_to_non_nullable
+              as String?,
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       traxId: traxId == freezed
           ? _value.traxId
           : traxId // ignore: cast_nullable_to_non_nullable
@@ -282,7 +297,7 @@ class __$InvestmentItemDTOCopyWithImpl<$Res>
       roi: roi == freezed
           ? _value.roi
           : roi // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       numberOfDays: numberOfDays == freezed
           ? _value.numberOfDays
           : numberOfDays // ignore: cast_nullable_to_non_nullable
@@ -314,7 +329,7 @@ class __$InvestmentItemDTOCopyWithImpl<$Res>
       planYield: planYield == freezed
           ? _value.planYield
           : planYield // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       paymentMethod: paymentMethod == freezed
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
@@ -330,6 +345,7 @@ class _$_InvestmentItemDTO extends _InvestmentItemDTO {
       {required this.description,
       required this.uid,
       this.coin,
+      this.bankAccountType,
       required this.amount,
       required this.traxId,
       required this.roi,
@@ -354,11 +370,13 @@ class _$_InvestmentItemDTO extends _InvestmentItemDTO {
   @override
   final String? coin;
   @override
-  final int amount;
+  final String? bankAccountType;
+  @override
+  final double amount;
   @override
   final String traxId;
   @override
-  final int roi;
+  final double roi;
   @override
   final int numberOfDays;
   @override
@@ -374,13 +392,13 @@ class _$_InvestmentItemDTO extends _InvestmentItemDTO {
   @override
   final String currency;
   @override
-  final int planYield;
+  final double planYield;
   @override
   final String paymentMethod;
 
   @override
   String toString() {
-    return 'InvestmentItemDTO(description: $description, uid: $uid, coin: $coin, amount: $amount, traxId: $traxId, roi: $roi, numberOfDays: $numberOfDays, planName: $planName, paymentDate: $paymentDate, dueDate: $dueDate, duration: $duration, status: $status, currency: $currency, planYield: $planYield, paymentMethod: $paymentMethod)';
+    return 'InvestmentItemDTO(description: $description, uid: $uid, coin: $coin, bankAccountType: $bankAccountType, amount: $amount, traxId: $traxId, roi: $roi, numberOfDays: $numberOfDays, planName: $planName, paymentDate: $paymentDate, dueDate: $dueDate, duration: $duration, status: $status, currency: $currency, planYield: $planYield, paymentMethod: $paymentMethod)';
   }
 
   @override
@@ -392,6 +410,8 @@ class _$_InvestmentItemDTO extends _InvestmentItemDTO {
                 .equals(other.description, description) &&
             const DeepCollectionEquality().equals(other.uid, uid) &&
             const DeepCollectionEquality().equals(other.coin, coin) &&
+            const DeepCollectionEquality()
+                .equals(other.bankAccountType, bankAccountType) &&
             const DeepCollectionEquality().equals(other.amount, amount) &&
             const DeepCollectionEquality().equals(other.traxId, traxId) &&
             const DeepCollectionEquality().equals(other.roi, roi) &&
@@ -415,6 +435,7 @@ class _$_InvestmentItemDTO extends _InvestmentItemDTO {
       const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(uid),
       const DeepCollectionEquality().hash(coin),
+      const DeepCollectionEquality().hash(bankAccountType),
       const DeepCollectionEquality().hash(amount),
       const DeepCollectionEquality().hash(traxId),
       const DeepCollectionEquality().hash(roi),
@@ -444,9 +465,10 @@ abstract class _InvestmentItemDTO extends InvestmentItemDTO {
       {required String description,
       required String uid,
       String? coin,
-      required int amount,
+      String? bankAccountType,
+      required double amount,
       required String traxId,
-      required int roi,
+      required double roi,
       required int numberOfDays,
       required String planName,
       required DateTime paymentDate,
@@ -454,7 +476,7 @@ abstract class _InvestmentItemDTO extends InvestmentItemDTO {
       required double duration,
       required String status,
       required String currency,
-      required int planYield,
+      required double planYield,
       required String paymentMethod}) = _$_InvestmentItemDTO;
   const _InvestmentItemDTO._() : super._();
 
@@ -468,11 +490,13 @@ abstract class _InvestmentItemDTO extends InvestmentItemDTO {
   @override
   String? get coin;
   @override
-  int get amount;
+  String? get bankAccountType;
+  @override
+  double get amount;
   @override
   String get traxId;
   @override
-  int get roi;
+  double get roi;
   @override
   int get numberOfDays;
   @override
@@ -488,7 +512,7 @@ abstract class _InvestmentItemDTO extends InvestmentItemDTO {
   @override
   String get currency;
   @override
-  int get planYield;
+  double get planYield;
   @override
   String get paymentMethod;
   @override

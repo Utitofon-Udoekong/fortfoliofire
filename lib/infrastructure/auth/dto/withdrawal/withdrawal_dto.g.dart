@@ -9,9 +9,9 @@ part of 'withdrawal_dto.dart';
 _$_WithdrawalItemDTO _$$_WithdrawalItemDTOFromJson(Map<String, dynamic> json) =>
     _$_WithdrawalItemDTO(
       description: json['description'] as String,
-      amount: json['amount'] as int,
+      amount: (json['amount'] as num).toDouble(),
       duration: json['duration'] as int,
-      roi: json['roi'] as int,
+      roi: (json['roi'] as num).toDouble(),
       traxId: json['traxId'] as String,
       uid: json['uid'] as String,
       planName: json['planName'] as String,

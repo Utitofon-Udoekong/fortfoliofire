@@ -22,22 +22,24 @@ class _$InvestmentItemTearOff {
       {required String description,
       required String uid,
       String? coin,
-      required int amount,
+      String? bankAccountType,
+      required double amount,
       required String traxId,
       required int roi,
       required int numberOfDays,
       required String planName,
       required DateTime paymentDate,
       required DateTime dueDate,
-      required double duration,
+      required int duration,
       required String status,
       required String currency,
-      required int planYield,
+      required double planYield,
       required String paymentMethod}) {
     return _InvestmentItem(
       description: description,
       uid: uid,
       coin: coin,
+      bankAccountType: bankAccountType,
       amount: amount,
       traxId: traxId,
       roi: roi,
@@ -62,17 +64,18 @@ mixin _$InvestmentItem {
   String get description => throw _privateConstructorUsedError;
   String get uid => throw _privateConstructorUsedError;
   String? get coin => throw _privateConstructorUsedError;
-  int get amount => throw _privateConstructorUsedError;
+  String? get bankAccountType => throw _privateConstructorUsedError;
+  double get amount => throw _privateConstructorUsedError;
   String get traxId => throw _privateConstructorUsedError;
   int get roi => throw _privateConstructorUsedError;
   int get numberOfDays => throw _privateConstructorUsedError;
   String get planName => throw _privateConstructorUsedError;
   DateTime get paymentDate => throw _privateConstructorUsedError;
   DateTime get dueDate => throw _privateConstructorUsedError;
-  double get duration => throw _privateConstructorUsedError;
+  int get duration => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   String get currency => throw _privateConstructorUsedError;
-  int get planYield => throw _privateConstructorUsedError;
+  double get planYield => throw _privateConstructorUsedError;
   String get paymentMethod => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -89,17 +92,18 @@ abstract class $InvestmentItemCopyWith<$Res> {
       {String description,
       String uid,
       String? coin,
-      int amount,
+      String? bankAccountType,
+      double amount,
       String traxId,
       int roi,
       int numberOfDays,
       String planName,
       DateTime paymentDate,
       DateTime dueDate,
-      double duration,
+      int duration,
       String status,
       String currency,
-      int planYield,
+      double planYield,
       String paymentMethod});
 }
 
@@ -117,6 +121,7 @@ class _$InvestmentItemCopyWithImpl<$Res>
     Object? description = freezed,
     Object? uid = freezed,
     Object? coin = freezed,
+    Object? bankAccountType = freezed,
     Object? amount = freezed,
     Object? traxId = freezed,
     Object? roi = freezed,
@@ -143,10 +148,14 @@ class _$InvestmentItemCopyWithImpl<$Res>
           ? _value.coin
           : coin // ignore: cast_nullable_to_non_nullable
               as String?,
+      bankAccountType: bankAccountType == freezed
+          ? _value.bankAccountType
+          : bankAccountType // ignore: cast_nullable_to_non_nullable
+              as String?,
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       traxId: traxId == freezed
           ? _value.traxId
           : traxId // ignore: cast_nullable_to_non_nullable
@@ -174,7 +183,7 @@ class _$InvestmentItemCopyWithImpl<$Res>
       duration: duration == freezed
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
-              as double,
+              as int,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -186,7 +195,7 @@ class _$InvestmentItemCopyWithImpl<$Res>
       planYield: planYield == freezed
           ? _value.planYield
           : planYield // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       paymentMethod: paymentMethod == freezed
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
@@ -206,17 +215,18 @@ abstract class _$InvestmentItemCopyWith<$Res>
       {String description,
       String uid,
       String? coin,
-      int amount,
+      String? bankAccountType,
+      double amount,
       String traxId,
       int roi,
       int numberOfDays,
       String planName,
       DateTime paymentDate,
       DateTime dueDate,
-      double duration,
+      int duration,
       String status,
       String currency,
-      int planYield,
+      double planYield,
       String paymentMethod});
 }
 
@@ -236,6 +246,7 @@ class __$InvestmentItemCopyWithImpl<$Res>
     Object? description = freezed,
     Object? uid = freezed,
     Object? coin = freezed,
+    Object? bankAccountType = freezed,
     Object? amount = freezed,
     Object? traxId = freezed,
     Object? roi = freezed,
@@ -262,10 +273,14 @@ class __$InvestmentItemCopyWithImpl<$Res>
           ? _value.coin
           : coin // ignore: cast_nullable_to_non_nullable
               as String?,
+      bankAccountType: bankAccountType == freezed
+          ? _value.bankAccountType
+          : bankAccountType // ignore: cast_nullable_to_non_nullable
+              as String?,
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       traxId: traxId == freezed
           ? _value.traxId
           : traxId // ignore: cast_nullable_to_non_nullable
@@ -293,7 +308,7 @@ class __$InvestmentItemCopyWithImpl<$Res>
       duration: duration == freezed
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
-              as double,
+              as int,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -305,7 +320,7 @@ class __$InvestmentItemCopyWithImpl<$Res>
       planYield: planYield == freezed
           ? _value.planYield
           : planYield // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       paymentMethod: paymentMethod == freezed
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
@@ -321,6 +336,7 @@ class _$_InvestmentItem extends _InvestmentItem {
       {required this.description,
       required this.uid,
       this.coin,
+      this.bankAccountType,
       required this.amount,
       required this.traxId,
       required this.roi,
@@ -342,7 +358,9 @@ class _$_InvestmentItem extends _InvestmentItem {
   @override
   final String? coin;
   @override
-  final int amount;
+  final String? bankAccountType;
+  @override
+  final double amount;
   @override
   final String traxId;
   @override
@@ -356,19 +374,19 @@ class _$_InvestmentItem extends _InvestmentItem {
   @override
   final DateTime dueDate;
   @override
-  final double duration;
+  final int duration;
   @override
   final String status;
   @override
   final String currency;
   @override
-  final int planYield;
+  final double planYield;
   @override
   final String paymentMethod;
 
   @override
   String toString() {
-    return 'InvestmentItem(description: $description, uid: $uid, coin: $coin, amount: $amount, traxId: $traxId, roi: $roi, numberOfDays: $numberOfDays, planName: $planName, paymentDate: $paymentDate, dueDate: $dueDate, duration: $duration, status: $status, currency: $currency, planYield: $planYield, paymentMethod: $paymentMethod)';
+    return 'InvestmentItem(description: $description, uid: $uid, coin: $coin, bankAccountType: $bankAccountType, amount: $amount, traxId: $traxId, roi: $roi, numberOfDays: $numberOfDays, planName: $planName, paymentDate: $paymentDate, dueDate: $dueDate, duration: $duration, status: $status, currency: $currency, planYield: $planYield, paymentMethod: $paymentMethod)';
   }
 
   @override
@@ -380,6 +398,8 @@ class _$_InvestmentItem extends _InvestmentItem {
                 .equals(other.description, description) &&
             const DeepCollectionEquality().equals(other.uid, uid) &&
             const DeepCollectionEquality().equals(other.coin, coin) &&
+            const DeepCollectionEquality()
+                .equals(other.bankAccountType, bankAccountType) &&
             const DeepCollectionEquality().equals(other.amount, amount) &&
             const DeepCollectionEquality().equals(other.traxId, traxId) &&
             const DeepCollectionEquality().equals(other.roi, roi) &&
@@ -403,6 +423,7 @@ class _$_InvestmentItem extends _InvestmentItem {
       const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(uid),
       const DeepCollectionEquality().hash(coin),
+      const DeepCollectionEquality().hash(bankAccountType),
       const DeepCollectionEquality().hash(amount),
       const DeepCollectionEquality().hash(traxId),
       const DeepCollectionEquality().hash(roi),
@@ -427,17 +448,18 @@ abstract class _InvestmentItem extends InvestmentItem {
       {required String description,
       required String uid,
       String? coin,
-      required int amount,
+      String? bankAccountType,
+      required double amount,
       required String traxId,
       required int roi,
       required int numberOfDays,
       required String planName,
       required DateTime paymentDate,
       required DateTime dueDate,
-      required double duration,
+      required int duration,
       required String status,
       required String currency,
-      required int planYield,
+      required double planYield,
       required String paymentMethod}) = _$_InvestmentItem;
   const _InvestmentItem._() : super._();
 
@@ -448,7 +470,9 @@ abstract class _InvestmentItem extends InvestmentItem {
   @override
   String? get coin;
   @override
-  int get amount;
+  String? get bankAccountType;
+  @override
+  double get amount;
   @override
   String get traxId;
   @override
@@ -462,13 +486,13 @@ abstract class _InvestmentItem extends InvestmentItem {
   @override
   DateTime get dueDate;
   @override
-  double get duration;
+  int get duration;
   @override
   String get status;
   @override
   String get currency;
   @override
-  int get planYield;
+  double get planYield;
   @override
   String get paymentMethod;
   @override

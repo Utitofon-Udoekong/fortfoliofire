@@ -20,14 +20,14 @@ class _$WalletStateTearOff {
 
   _WalletState call(
       {required String investmentPlan,
-      required int walletBalance,
+      required double walletBalance,
       required bool loading,
-      required int fortDollarInvestmentBalance,
-      required int fortCryptoInvestmentBalance,
-      required int fortShieldInvestmentBalance,
-      required int fortDollarYieldBalance,
-      required int fortCryptoYieldBalance,
-      required int fortShieldYieldBalance,
+      required double fortDollarInvestmentBalance,
+      required double fortCryptoInvestmentBalance,
+      required double fortShieldInvestmentBalance,
+      required double fortDollarYieldBalance,
+      required double fortCryptoYieldBalance,
+      required double fortShieldYieldBalance,
       required String withdrawalMethod,
       required String failure,
       required String success,
@@ -78,14 +78,14 @@ const $WalletState = _$WalletStateTearOff();
 /// @nodoc
 mixin _$WalletState {
   String get investmentPlan => throw _privateConstructorUsedError;
-  int get walletBalance => throw _privateConstructorUsedError;
+  double get walletBalance => throw _privateConstructorUsedError;
   bool get loading => throw _privateConstructorUsedError;
-  int get fortDollarInvestmentBalance => throw _privateConstructorUsedError;
-  int get fortCryptoInvestmentBalance => throw _privateConstructorUsedError;
-  int get fortShieldInvestmentBalance => throw _privateConstructorUsedError;
-  int get fortDollarYieldBalance => throw _privateConstructorUsedError;
-  int get fortCryptoYieldBalance => throw _privateConstructorUsedError;
-  int get fortShieldYieldBalance => throw _privateConstructorUsedError;
+  double get fortDollarInvestmentBalance => throw _privateConstructorUsedError;
+  double get fortCryptoInvestmentBalance => throw _privateConstructorUsedError;
+  double get fortShieldInvestmentBalance => throw _privateConstructorUsedError;
+  double get fortDollarYieldBalance => throw _privateConstructorUsedError;
+  double get fortCryptoYieldBalance => throw _privateConstructorUsedError;
+  double get fortShieldYieldBalance => throw _privateConstructorUsedError;
   String get withdrawalMethod => throw _privateConstructorUsedError;
   String get failure => throw _privateConstructorUsedError;
   String get success => throw _privateConstructorUsedError;
@@ -120,14 +120,14 @@ abstract class $WalletStateCopyWith<$Res> {
       _$WalletStateCopyWithImpl<$Res>;
   $Res call(
       {String investmentPlan,
-      int walletBalance,
+      double walletBalance,
       bool loading,
-      int fortDollarInvestmentBalance,
-      int fortCryptoInvestmentBalance,
-      int fortShieldInvestmentBalance,
-      int fortDollarYieldBalance,
-      int fortCryptoYieldBalance,
-      int fortShieldYieldBalance,
+      double fortDollarInvestmentBalance,
+      double fortCryptoInvestmentBalance,
+      double fortShieldInvestmentBalance,
+      double fortDollarYieldBalance,
+      double fortCryptoYieldBalance,
+      double fortShieldYieldBalance,
       String withdrawalMethod,
       String failure,
       String success,
@@ -190,7 +190,7 @@ class _$WalletStateCopyWithImpl<$Res> implements $WalletStateCopyWith<$Res> {
       walletBalance: walletBalance == freezed
           ? _value.walletBalance
           : walletBalance // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       loading: loading == freezed
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
@@ -198,27 +198,27 @@ class _$WalletStateCopyWithImpl<$Res> implements $WalletStateCopyWith<$Res> {
       fortDollarInvestmentBalance: fortDollarInvestmentBalance == freezed
           ? _value.fortDollarInvestmentBalance
           : fortDollarInvestmentBalance // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       fortCryptoInvestmentBalance: fortCryptoInvestmentBalance == freezed
           ? _value.fortCryptoInvestmentBalance
           : fortCryptoInvestmentBalance // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       fortShieldInvestmentBalance: fortShieldInvestmentBalance == freezed
           ? _value.fortShieldInvestmentBalance
           : fortShieldInvestmentBalance // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       fortDollarYieldBalance: fortDollarYieldBalance == freezed
           ? _value.fortDollarYieldBalance
           : fortDollarYieldBalance // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       fortCryptoYieldBalance: fortCryptoYieldBalance == freezed
           ? _value.fortCryptoYieldBalance
           : fortCryptoYieldBalance // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       fortShieldYieldBalance: fortShieldYieldBalance == freezed
           ? _value.fortShieldYieldBalance
           : fortShieldYieldBalance // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       withdrawalMethod: withdrawalMethod == freezed
           ? _value.withdrawalMethod
           : withdrawalMethod // ignore: cast_nullable_to_non_nullable
@@ -300,14 +300,14 @@ abstract class _$WalletStateCopyWith<$Res>
   @override
   $Res call(
       {String investmentPlan,
-      int walletBalance,
+      double walletBalance,
       bool loading,
-      int fortDollarInvestmentBalance,
-      int fortCryptoInvestmentBalance,
-      int fortShieldInvestmentBalance,
-      int fortDollarYieldBalance,
-      int fortCryptoYieldBalance,
-      int fortShieldYieldBalance,
+      double fortDollarInvestmentBalance,
+      double fortCryptoInvestmentBalance,
+      double fortShieldInvestmentBalance,
+      double fortDollarYieldBalance,
+      double fortCryptoYieldBalance,
+      double fortShieldYieldBalance,
       String withdrawalMethod,
       String failure,
       String success,
@@ -373,7 +373,7 @@ class __$WalletStateCopyWithImpl<$Res> extends _$WalletStateCopyWithImpl<$Res>
       walletBalance: walletBalance == freezed
           ? _value.walletBalance
           : walletBalance // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       loading: loading == freezed
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
@@ -381,27 +381,27 @@ class __$WalletStateCopyWithImpl<$Res> extends _$WalletStateCopyWithImpl<$Res>
       fortDollarInvestmentBalance: fortDollarInvestmentBalance == freezed
           ? _value.fortDollarInvestmentBalance
           : fortDollarInvestmentBalance // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       fortCryptoInvestmentBalance: fortCryptoInvestmentBalance == freezed
           ? _value.fortCryptoInvestmentBalance
           : fortCryptoInvestmentBalance // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       fortShieldInvestmentBalance: fortShieldInvestmentBalance == freezed
           ? _value.fortShieldInvestmentBalance
           : fortShieldInvestmentBalance // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       fortDollarYieldBalance: fortDollarYieldBalance == freezed
           ? _value.fortDollarYieldBalance
           : fortDollarYieldBalance // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       fortCryptoYieldBalance: fortCryptoYieldBalance == freezed
           ? _value.fortCryptoYieldBalance
           : fortCryptoYieldBalance // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       fortShieldYieldBalance: fortShieldYieldBalance == freezed
           ? _value.fortShieldYieldBalance
           : fortShieldYieldBalance // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       withdrawalMethod: withdrawalMethod == freezed
           ? _value.withdrawalMethod
           : withdrawalMethod // ignore: cast_nullable_to_non_nullable
@@ -499,21 +499,21 @@ class _$_WalletState extends _WalletState {
   @override
   final String investmentPlan;
   @override
-  final int walletBalance;
+  final double walletBalance;
   @override
   final bool loading;
   @override
-  final int fortDollarInvestmentBalance;
+  final double fortDollarInvestmentBalance;
   @override
-  final int fortCryptoInvestmentBalance;
+  final double fortCryptoInvestmentBalance;
   @override
-  final int fortShieldInvestmentBalance;
+  final double fortShieldInvestmentBalance;
   @override
-  final int fortDollarYieldBalance;
+  final double fortDollarYieldBalance;
   @override
-  final int fortCryptoYieldBalance;
+  final double fortCryptoYieldBalance;
   @override
-  final int fortShieldYieldBalance;
+  final double fortShieldYieldBalance;
   @override
   final String withdrawalMethod;
   @override
@@ -642,14 +642,14 @@ class _$_WalletState extends _WalletState {
 abstract class _WalletState extends WalletState {
   const factory _WalletState(
       {required String investmentPlan,
-      required int walletBalance,
+      required double walletBalance,
       required bool loading,
-      required int fortDollarInvestmentBalance,
-      required int fortCryptoInvestmentBalance,
-      required int fortShieldInvestmentBalance,
-      required int fortDollarYieldBalance,
-      required int fortCryptoYieldBalance,
-      required int fortShieldYieldBalance,
+      required double fortDollarInvestmentBalance,
+      required double fortCryptoInvestmentBalance,
+      required double fortShieldInvestmentBalance,
+      required double fortDollarYieldBalance,
+      required double fortCryptoYieldBalance,
+      required double fortShieldYieldBalance,
       required String withdrawalMethod,
       required String failure,
       required String success,
@@ -670,21 +670,21 @@ abstract class _WalletState extends WalletState {
   @override
   String get investmentPlan;
   @override
-  int get walletBalance;
+  double get walletBalance;
   @override
   bool get loading;
   @override
-  int get fortDollarInvestmentBalance;
+  double get fortDollarInvestmentBalance;
   @override
-  int get fortCryptoInvestmentBalance;
+  double get fortCryptoInvestmentBalance;
   @override
-  int get fortShieldInvestmentBalance;
+  double get fortShieldInvestmentBalance;
   @override
-  int get fortDollarYieldBalance;
+  double get fortDollarYieldBalance;
   @override
-  int get fortCryptoYieldBalance;
+  double get fortCryptoYieldBalance;
   @override
-  int get fortShieldYieldBalance;
+  double get fortShieldYieldBalance;
   @override
   String get withdrawalMethod;
   @override

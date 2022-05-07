@@ -20,7 +20,7 @@ class _$WithdrawalItemTearOff {
 
   _WithdrawalItem call(
       {required String description,
-      required int amount,
+      required double amount,
       required String traxId,
       required String uid,
       required String planName,
@@ -29,7 +29,7 @@ class _$WithdrawalItemTearOff {
       required String paymentMethod,
       required String currency,
       required int duration,
-      required int roi}) {
+      required double roi}) {
     return _WithdrawalItem(
       description: description,
       amount: amount,
@@ -52,7 +52,7 @@ const $WithdrawalItem = _$WithdrawalItemTearOff();
 /// @nodoc
 mixin _$WithdrawalItem {
   String get description => throw _privateConstructorUsedError;
-  int get amount => throw _privateConstructorUsedError;
+  double get amount => throw _privateConstructorUsedError;
   String get traxId => throw _privateConstructorUsedError;
   String get uid => throw _privateConstructorUsedError;
   String get planName => throw _privateConstructorUsedError;
@@ -61,7 +61,7 @@ mixin _$WithdrawalItem {
   String get paymentMethod => throw _privateConstructorUsedError;
   String get currency => throw _privateConstructorUsedError;
   int get duration => throw _privateConstructorUsedError;
-  int get roi => throw _privateConstructorUsedError;
+  double get roi => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $WithdrawalItemCopyWith<WithdrawalItem> get copyWith =>
@@ -75,7 +75,7 @@ abstract class $WithdrawalItemCopyWith<$Res> {
       _$WithdrawalItemCopyWithImpl<$Res>;
   $Res call(
       {String description,
-      int amount,
+      double amount,
       String traxId,
       String uid,
       String planName,
@@ -84,7 +84,7 @@ abstract class $WithdrawalItemCopyWith<$Res> {
       String paymentMethod,
       String currency,
       int duration,
-      int roi});
+      double roi});
 }
 
 /// @nodoc
@@ -118,7 +118,7 @@ class _$WithdrawalItemCopyWithImpl<$Res>
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       traxId: traxId == freezed
           ? _value.traxId
           : traxId // ignore: cast_nullable_to_non_nullable
@@ -154,7 +154,7 @@ class _$WithdrawalItemCopyWithImpl<$Res>
       roi: roi == freezed
           ? _value.roi
           : roi // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
     ));
   }
 }
@@ -168,7 +168,7 @@ abstract class _$WithdrawalItemCopyWith<$Res>
   @override
   $Res call(
       {String description,
-      int amount,
+      double amount,
       String traxId,
       String uid,
       String planName,
@@ -177,7 +177,7 @@ abstract class _$WithdrawalItemCopyWith<$Res>
       String paymentMethod,
       String currency,
       int duration,
-      int roi});
+      double roi});
 }
 
 /// @nodoc
@@ -213,7 +213,7 @@ class __$WithdrawalItemCopyWithImpl<$Res>
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       traxId: traxId == freezed
           ? _value.traxId
           : traxId // ignore: cast_nullable_to_non_nullable
@@ -249,7 +249,7 @@ class __$WithdrawalItemCopyWithImpl<$Res>
       roi: roi == freezed
           ? _value.roi
           : roi // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
     ));
   }
 }
@@ -274,7 +274,7 @@ class _$_WithdrawalItem extends _WithdrawalItem {
   @override
   final String description;
   @override
-  final int amount;
+  final double amount;
   @override
   final String traxId;
   @override
@@ -292,7 +292,7 @@ class _$_WithdrawalItem extends _WithdrawalItem {
   @override
   final int duration;
   @override
-  final int roi;
+  final double roi;
 
   @override
   String toString() {
@@ -343,7 +343,7 @@ class _$_WithdrawalItem extends _WithdrawalItem {
 abstract class _WithdrawalItem extends WithdrawalItem {
   const factory _WithdrawalItem(
       {required String description,
-      required int amount,
+      required double amount,
       required String traxId,
       required String uid,
       required String planName,
@@ -352,13 +352,13 @@ abstract class _WithdrawalItem extends WithdrawalItem {
       required String paymentMethod,
       required String currency,
       required int duration,
-      required int roi}) = _$_WithdrawalItem;
+      required double roi}) = _$_WithdrawalItem;
   const _WithdrawalItem._() : super._();
 
   @override
   String get description;
   @override
-  int get amount;
+  double get amount;
   @override
   String get traxId;
   @override
@@ -376,7 +376,7 @@ abstract class _WithdrawalItem extends WithdrawalItem {
   @override
   int get duration;
   @override
-  int get roi;
+  double get roi;
   @override
   @JsonKey(ignore: true)
   _$WithdrawalItemCopyWith<_WithdrawalItem> get copyWith =>

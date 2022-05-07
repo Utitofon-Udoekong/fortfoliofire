@@ -20,7 +20,7 @@ class _$InvestmentStateTearOff {
 
   _InvestmentState call(
       {required String planName,
-      required double duration,
+      required int duration,
       required int amountInvested,
       required int roi,
       required String failure,
@@ -29,6 +29,7 @@ class _$InvestmentStateTearOff {
       required bool isLoading,
       required String exchangeType,
       required String coin,
+      required String bankAccountType,
       required List<bool> isSelected,
       required List<int> durations,
       required String paymentMethod,
@@ -44,6 +45,7 @@ class _$InvestmentStateTearOff {
       isLoading: isLoading,
       exchangeType: exchangeType,
       coin: coin,
+      bankAccountType: bankAccountType,
       isSelected: isSelected,
       durations: durations,
       paymentMethod: paymentMethod,
@@ -58,7 +60,7 @@ const $InvestmentState = _$InvestmentStateTearOff();
 /// @nodoc
 mixin _$InvestmentState {
   String get planName => throw _privateConstructorUsedError;
-  double get duration => throw _privateConstructorUsedError;
+  int get duration => throw _privateConstructorUsedError;
   int get amountInvested => throw _privateConstructorUsedError;
   int get roi => throw _privateConstructorUsedError;
   String get failure => throw _privateConstructorUsedError;
@@ -67,6 +69,7 @@ mixin _$InvestmentState {
   bool get isLoading => throw _privateConstructorUsedError;
   String get exchangeType => throw _privateConstructorUsedError;
   String get coin => throw _privateConstructorUsedError;
+  String get bankAccountType => throw _privateConstructorUsedError;
   List<bool> get isSelected => throw _privateConstructorUsedError;
   List<int> get durations => throw _privateConstructorUsedError;
   String get paymentMethod => throw _privateConstructorUsedError;
@@ -84,7 +87,7 @@ abstract class $InvestmentStateCopyWith<$Res> {
       _$InvestmentStateCopyWithImpl<$Res>;
   $Res call(
       {String planName,
-      double duration,
+      int duration,
       int amountInvested,
       int roi,
       String failure,
@@ -93,6 +96,7 @@ abstract class $InvestmentStateCopyWith<$Res> {
       bool isLoading,
       String exchangeType,
       String coin,
+      String bankAccountType,
       List<bool> isSelected,
       List<int> durations,
       String paymentMethod,
@@ -120,6 +124,7 @@ class _$InvestmentStateCopyWithImpl<$Res>
     Object? isLoading = freezed,
     Object? exchangeType = freezed,
     Object? coin = freezed,
+    Object? bankAccountType = freezed,
     Object? isSelected = freezed,
     Object? durations = freezed,
     Object? paymentMethod = freezed,
@@ -133,7 +138,7 @@ class _$InvestmentStateCopyWithImpl<$Res>
       duration: duration == freezed
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
-              as double,
+              as int,
       amountInvested: amountInvested == freezed
           ? _value.amountInvested
           : amountInvested // ignore: cast_nullable_to_non_nullable
@@ -165,6 +170,10 @@ class _$InvestmentStateCopyWithImpl<$Res>
       coin: coin == freezed
           ? _value.coin
           : coin // ignore: cast_nullable_to_non_nullable
+              as String,
+      bankAccountType: bankAccountType == freezed
+          ? _value.bankAccountType
+          : bankAccountType // ignore: cast_nullable_to_non_nullable
               as String,
       isSelected: isSelected == freezed
           ? _value.isSelected
@@ -195,7 +204,7 @@ abstract class _$InvestmentStateCopyWith<$Res>
   @override
   $Res call(
       {String planName,
-      double duration,
+      int duration,
       int amountInvested,
       int roi,
       String failure,
@@ -204,6 +213,7 @@ abstract class _$InvestmentStateCopyWith<$Res>
       bool isLoading,
       String exchangeType,
       String coin,
+      String bankAccountType,
       List<bool> isSelected,
       List<int> durations,
       String paymentMethod,
@@ -233,6 +243,7 @@ class __$InvestmentStateCopyWithImpl<$Res>
     Object? isLoading = freezed,
     Object? exchangeType = freezed,
     Object? coin = freezed,
+    Object? bankAccountType = freezed,
     Object? isSelected = freezed,
     Object? durations = freezed,
     Object? paymentMethod = freezed,
@@ -246,7 +257,7 @@ class __$InvestmentStateCopyWithImpl<$Res>
       duration: duration == freezed
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
-              as double,
+              as int,
       amountInvested: amountInvested == freezed
           ? _value.amountInvested
           : amountInvested // ignore: cast_nullable_to_non_nullable
@@ -278,6 +289,10 @@ class __$InvestmentStateCopyWithImpl<$Res>
       coin: coin == freezed
           ? _value.coin
           : coin // ignore: cast_nullable_to_non_nullable
+              as String,
+      bankAccountType: bankAccountType == freezed
+          ? _value.bankAccountType
+          : bankAccountType // ignore: cast_nullable_to_non_nullable
               as String,
       isSelected: isSelected == freezed
           ? _value.isSelected
@@ -313,6 +328,7 @@ class _$_InvestmentState extends _InvestmentState {
       required this.isLoading,
       required this.exchangeType,
       required this.coin,
+      required this.bankAccountType,
       required this.isSelected,
       required this.durations,
       required this.paymentMethod,
@@ -322,7 +338,7 @@ class _$_InvestmentState extends _InvestmentState {
   @override
   final String planName;
   @override
-  final double duration;
+  final int duration;
   @override
   final int amountInvested;
   @override
@@ -340,6 +356,8 @@ class _$_InvestmentState extends _InvestmentState {
   @override
   final String coin;
   @override
+  final String bankAccountType;
+  @override
   final List<bool> isSelected;
   @override
   final List<int> durations;
@@ -350,7 +368,7 @@ class _$_InvestmentState extends _InvestmentState {
 
   @override
   String toString() {
-    return 'InvestmentState(planName: $planName, duration: $duration, amountInvested: $amountInvested, roi: $roi, failure: $failure, success: $success, agreementAccepted: $agreementAccepted, isLoading: $isLoading, exchangeType: $exchangeType, coin: $coin, isSelected: $isSelected, durations: $durations, paymentMethod: $paymentMethod, baseAmount: $baseAmount)';
+    return 'InvestmentState(planName: $planName, duration: $duration, amountInvested: $amountInvested, roi: $roi, failure: $failure, success: $success, agreementAccepted: $agreementAccepted, isLoading: $isLoading, exchangeType: $exchangeType, coin: $coin, bankAccountType: $bankAccountType, isSelected: $isSelected, durations: $durations, paymentMethod: $paymentMethod, baseAmount: $baseAmount)';
   }
 
   @override
@@ -371,6 +389,8 @@ class _$_InvestmentState extends _InvestmentState {
             const DeepCollectionEquality()
                 .equals(other.exchangeType, exchangeType) &&
             const DeepCollectionEquality().equals(other.coin, coin) &&
+            const DeepCollectionEquality()
+                .equals(other.bankAccountType, bankAccountType) &&
             const DeepCollectionEquality()
                 .equals(other.isSelected, isSelected) &&
             const DeepCollectionEquality().equals(other.durations, durations) &&
@@ -393,6 +413,7 @@ class _$_InvestmentState extends _InvestmentState {
       const DeepCollectionEquality().hash(isLoading),
       const DeepCollectionEquality().hash(exchangeType),
       const DeepCollectionEquality().hash(coin),
+      const DeepCollectionEquality().hash(bankAccountType),
       const DeepCollectionEquality().hash(isSelected),
       const DeepCollectionEquality().hash(durations),
       const DeepCollectionEquality().hash(paymentMethod),
@@ -407,7 +428,7 @@ class _$_InvestmentState extends _InvestmentState {
 abstract class _InvestmentState extends InvestmentState {
   const factory _InvestmentState(
       {required String planName,
-      required double duration,
+      required int duration,
       required int amountInvested,
       required int roi,
       required String failure,
@@ -416,6 +437,7 @@ abstract class _InvestmentState extends InvestmentState {
       required bool isLoading,
       required String exchangeType,
       required String coin,
+      required String bankAccountType,
       required List<bool> isSelected,
       required List<int> durations,
       required String paymentMethod,
@@ -425,7 +447,7 @@ abstract class _InvestmentState extends InvestmentState {
   @override
   String get planName;
   @override
-  double get duration;
+  int get duration;
   @override
   int get amountInvested;
   @override
@@ -442,6 +464,8 @@ abstract class _InvestmentState extends InvestmentState {
   String get exchangeType;
   @override
   String get coin;
+  @override
+  String get bankAccountType;
   @override
   List<bool> get isSelected;
   @override
