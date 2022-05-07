@@ -401,7 +401,7 @@ class WalletCubit extends Cubit<WalletState> {
     }
   }
 
-  void harvestInvestment({required String docId, required int amount}) async {
+  void harvestInvestment({required String docId, required double amount}) async {
     emit(state.copyWith(loading: true));
     final response =
         await firestoreFacade.harvestInvestment(docId: docId, amount: amount);

@@ -100,7 +100,7 @@ class WithdrawalPage extends StatelessWidget {
   }
 
   Widget buildTile(
-      String title, int amount, String type, Function() ontap, Color color) {
+      String title, double amount, String type, Function() ontap, Color color) {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
