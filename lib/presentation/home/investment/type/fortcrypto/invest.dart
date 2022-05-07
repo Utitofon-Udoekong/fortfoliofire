@@ -100,6 +100,7 @@ class FortCryptoInvestment extends StatelessWidget {
                         textInputAction: TextInputAction.next,
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         decoration: InputDecoration(
+                          errorMaxLines: 2,
                           filled: true,
                           fillColor: const Color(0xFFF3F6F8),
                           border: InputBorder.none,
@@ -136,7 +137,7 @@ class FortCryptoInvestment extends StatelessWidget {
                             int.tryParse(value!) == null
                                 ? 'Field cannot be empty'
                                 : int.parse(value) < state.baseAmount
-                                    ? 'Minimum investment is \$1,000'
+                                    ? 'Minimum investment is ${state.baseAmount.toStringAsFixed(3)} ${state.coin}'
                                     : int.parse(value).isNaN
                                         ? 'Invalid amount'
                                         : null,
