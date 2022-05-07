@@ -11,7 +11,7 @@ _$_WithdrawalItemDTO _$$_WithdrawalItemDTOFromJson(Map<String, dynamic> json) =>
       description: json['description'] as String,
       amount: (json['amount'] as num).toDouble(),
       duration: json['duration'] as int,
-      roi: (json['roi'] as num).toDouble(),
+      roi: json['roi'] as int,
       traxId: json['traxId'] as String,
       uid: json['uid'] as String,
       planName: json['planName'] as String,

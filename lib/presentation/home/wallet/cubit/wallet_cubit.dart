@@ -64,7 +64,7 @@ class WalletCubit extends Cubit<WalletState> {
     btcPriceOption.fold(() => null, (price) {
       btcPriceInDollars = price;
     });
-    final walletBalance = state.walletBalance;
+    var walletBalance = state.walletBalance;
     if(state.exchange == "NGN"){
       walletBalance /= 590;
     }
@@ -93,8 +93,8 @@ class WalletCubit extends Cubit<WalletState> {
 
   void initFortDollar() {
     var fortDollarInvestments = state.fortDollarInvestments;
-    var planYield = 0;
-    var amount = 0;
+    var planYield = 0.0;
+    var amount = 0.0;
     for (var element in fortDollarInvestments) {
       planYield += element.planYield;
       amount += element.amount;
@@ -106,8 +106,8 @@ class WalletCubit extends Cubit<WalletState> {
 
   void initFortShield() {
     var fortShieldInvestments = state.fortShieldInvestments;
-    var planYield = 0;
-    var amount = 0;
+    var planYield = 0.0;
+    var amount = 0.0;
     for (var element in fortShieldInvestments) {
       planYield += element.planYield;
       amount += element.amount;
@@ -119,8 +119,8 @@ class WalletCubit extends Cubit<WalletState> {
 
   void initFortCrypto() {
     var fortCryptoInvestments = state.fortCryptoInvestments;
-    var planYield = 0;
-    var amount = 0;
+    var planYield = 0.0;
+    var amount = 0.0;
     for (var element in fortCryptoInvestments) {
       planYield += element.planYield;
       amount += element.amount;
@@ -139,7 +139,7 @@ class WalletCubit extends Cubit<WalletState> {
     var fortCryptoActive = state.isFortCryptoActive;
      
     if (fortDollarActive && !fortShieldActive && !fortCryptoActive) {
-      var balance = 0;
+      var balance = 0.0;
       for (var element in fortDollarInvestments) {
         var availableBalance = element.amount + element.planYield;
         if(element.status != "Pending"){
@@ -148,7 +148,7 @@ class WalletCubit extends Cubit<WalletState> {
       }
       emit(state.copyWith(walletBalance: balance));
     } else if (!fortDollarActive && fortShieldActive && !fortCryptoActive) {
-      var balance = 0;
+      var balance = 0.0;
       for (var element in fortShieldInvestments) {
         var availableBalance =
             (element.amount / 590) + (element.planYield / 590);
@@ -158,7 +158,7 @@ class WalletCubit extends Cubit<WalletState> {
       }
       emit(state.copyWith(walletBalance: balance));
     } else if (!fortDollarActive && !fortShieldActive && fortCryptoActive) {
-      var balance = 0;
+      var balance = 0.0;
       for (var element in fortCryptoInvestments) {
         var btcToUsdPrice = await externalFacade.getCoinPrice(id: element.coin!);
         var availableBalance = element.amount + element.planYield;
@@ -168,7 +168,7 @@ class WalletCubit extends Cubit<WalletState> {
       }
       emit(state.copyWith(walletBalance: balance));
     } else if (fortDollarActive && fortShieldActive && !fortCryptoActive) {
-      var balance = 0;
+      var balance = 0.0;
       for (var element in fortShieldInvestments) {
         var availableBalance =
             (element.amount / 590) + (element.planYield / 590);
@@ -184,7 +184,7 @@ class WalletCubit extends Cubit<WalletState> {
       }
       emit(state.copyWith(walletBalance: balance));
     } else if (fortDollarActive && !fortShieldActive && fortCryptoActive) {
-      var balance = 0;
+      var balance = 0.0;
       var totalinvestment = fortDollarInvestments + fortCryptoInvestments;
       for (var element in totalinvestment) {
         var availableBalance = element.amount + element.planYield;
@@ -194,7 +194,7 @@ class WalletCubit extends Cubit<WalletState> {
       }
       emit(state.copyWith(walletBalance: balance));
     } else if (!fortDollarActive && fortShieldActive && fortCryptoActive) {
-      var balance = 0;
+      var balance = 0.0;
       for (var element in fortShieldInvestments) {
         var availableBalance =
             (element.amount / 590) + (element.planYield / 590);
@@ -210,7 +210,7 @@ class WalletCubit extends Cubit<WalletState> {
       }
       emit(state.copyWith(walletBalance: balance));
     } else if (fortDollarActive && fortShieldActive && fortCryptoActive) {
-      var balance = 0;
+      var balance = 0.0;
       var dollarinvestment = fortCryptoInvestments + fortDollarInvestments;
       for (var element in dollarinvestment) {
         var availableBalance = element.amount + element.planYield;
@@ -370,7 +370,7 @@ class WalletCubit extends Cubit<WalletState> {
     final String description = "$investmentPlan withdrawal".toUpperCase();
     final double amount = state.investmentToBeWithdrawn.amount;
     final int duration = state.investmentToBeWithdrawn.duration;
-    final double roi = state.investmentToBeWithdrawn.roi;
+    final int roi = state.investmentToBeWithdrawn.roi;
     final String paymentMethod = state.withdrawalMethod;
     final traxId = const Uuid().v4().substring(0, 7);
     final String uid = nanoid(8);

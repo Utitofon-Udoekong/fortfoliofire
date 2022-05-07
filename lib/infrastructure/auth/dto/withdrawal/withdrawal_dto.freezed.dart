@@ -26,7 +26,7 @@ class _$WithdrawalItemDTOTearOff {
       {required String description,
       required double amount,
       required int duration,
-      required double roi,
+      required int roi,
       required String traxId,
       required String uid,
       required String planName,
@@ -62,7 +62,7 @@ mixin _$WithdrawalItemDTO {
   String get description => throw _privateConstructorUsedError;
   double get amount => throw _privateConstructorUsedError;
   int get duration => throw _privateConstructorUsedError;
-  double get roi => throw _privateConstructorUsedError;
+  int get roi => throw _privateConstructorUsedError;
   String get traxId => throw _privateConstructorUsedError;
   String get uid => throw _privateConstructorUsedError;
   String get planName => throw _privateConstructorUsedError;
@@ -86,7 +86,7 @@ abstract class $WithdrawalItemDTOCopyWith<$Res> {
       {String description,
       double amount,
       int duration,
-      double roi,
+      int roi,
       String traxId,
       String uid,
       String planName,
@@ -135,7 +135,7 @@ class _$WithdrawalItemDTOCopyWithImpl<$Res>
       roi: roi == freezed
           ? _value.roi
           : roi // ignore: cast_nullable_to_non_nullable
-              as double,
+              as int,
       traxId: traxId == freezed
           ? _value.traxId
           : traxId // ignore: cast_nullable_to_non_nullable
@@ -179,7 +179,7 @@ abstract class _$WithdrawalItemDTOCopyWith<$Res>
       {String description,
       double amount,
       int duration,
-      double roi,
+      int roi,
       String traxId,
       String uid,
       String planName,
@@ -230,7 +230,7 @@ class __$WithdrawalItemDTOCopyWithImpl<$Res>
       roi: roi == freezed
           ? _value.roi
           : roi // ignore: cast_nullable_to_non_nullable
-              as double,
+              as int,
       traxId: traxId == freezed
           ? _value.traxId
           : traxId // ignore: cast_nullable_to_non_nullable
@@ -290,7 +290,7 @@ class _$_WithdrawalItemDTO extends _WithdrawalItemDTO {
   @override
   final int duration;
   @override
-  final double roi;
+  final int roi;
   @override
   final String traxId;
   @override
@@ -362,7 +362,7 @@ abstract class _WithdrawalItemDTO extends WithdrawalItemDTO {
       {required String description,
       required double amount,
       required int duration,
-      required double roi,
+      required int roi,
       required String traxId,
       required String uid,
       required String planName,
@@ -382,7 +382,7 @@ abstract class _WithdrawalItemDTO extends WithdrawalItemDTO {
   @override
   int get duration;
   @override
-  double get roi;
+  int get roi;
   @override
   String get traxId;
   @override

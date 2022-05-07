@@ -15,7 +15,7 @@ abstract class WithdrawalItem implements _$WithdrawalItem {
     required String paymentMethod,
     required String currency,
     required int duration,
-    required double roi,
+    required int roi,
     // add roi
   }) = _WithdrawalItem;
 

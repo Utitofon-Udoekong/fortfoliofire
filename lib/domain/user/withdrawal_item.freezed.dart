@@ -29,7 +29,7 @@ class _$WithdrawalItemTearOff {
       required String paymentMethod,
       required String currency,
       required int duration,
-      required double roi}) {
+      required int roi}) {
     return _WithdrawalItem(
       description: description,
       amount: amount,
@@ -61,7 +61,7 @@ mixin _$WithdrawalItem {
   String get paymentMethod => throw _privateConstructorUsedError;
   String get currency => throw _privateConstructorUsedError;
   int get duration => throw _privateConstructorUsedError;
-  double get roi => throw _privateConstructorUsedError;
+  int get roi => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $WithdrawalItemCopyWith<WithdrawalItem> get copyWith =>
@@ -84,7 +84,7 @@ abstract class $WithdrawalItemCopyWith<$Res> {
       String paymentMethod,
       String currency,
       int duration,
-      double roi});
+      int roi});
 }
 
 /// @nodoc
@@ -154,7 +154,7 @@ class _$WithdrawalItemCopyWithImpl<$Res>
       roi: roi == freezed
           ? _value.roi
           : roi // ignore: cast_nullable_to_non_nullable
-              as double,
+              as int,
     ));
   }
 }
@@ -177,7 +177,7 @@ abstract class _$WithdrawalItemCopyWith<$Res>
       String paymentMethod,
       String currency,
       int duration,
-      double roi});
+      int roi});
 }
 
 /// @nodoc
@@ -249,7 +249,7 @@ class __$WithdrawalItemCopyWithImpl<$Res>
       roi: roi == freezed
           ? _value.roi
           : roi // ignore: cast_nullable_to_non_nullable
-              as double,
+              as int,
     ));
   }
 }
@@ -292,7 +292,7 @@ class _$_WithdrawalItem extends _WithdrawalItem {
   @override
   final int duration;
   @override
-  final double roi;
+  final int roi;
 
   @override
   String toString() {
@@ -352,7 +352,7 @@ abstract class _WithdrawalItem extends WithdrawalItem {
       required String paymentMethod,
       required String currency,
       required int duration,
-      required double roi}) = _$_WithdrawalItem;
+      required int roi}) = _$_WithdrawalItem;
   const _WithdrawalItem._() : super._();
 
   @override
@@ -376,7 +376,7 @@ abstract class _WithdrawalItem extends WithdrawalItem {
   @override
   int get duration;
   @override
-  double get roi;
+  int get roi;
   @override
   @JsonKey(ignore: true)
   _$WithdrawalItemCopyWith<_WithdrawalItem> get copyWith =>

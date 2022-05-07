@@ -29,12 +29,12 @@ class _$InvestmentItemDTOTearOff {
       String? bankAccountType,
       required double amount,
       required String traxId,
-      required double roi,
+      required int roi,
       required int numberOfDays,
       required String planName,
       required DateTime paymentDate,
       required DateTime dueDate,
-      required double duration,
+      required int duration,
       required String status,
       required String currency,
       required double planYield,
@@ -75,12 +75,12 @@ mixin _$InvestmentItemDTO {
   String? get bankAccountType => throw _privateConstructorUsedError;
   double get amount => throw _privateConstructorUsedError;
   String get traxId => throw _privateConstructorUsedError;
-  double get roi => throw _privateConstructorUsedError;
+  int get roi => throw _privateConstructorUsedError;
   int get numberOfDays => throw _privateConstructorUsedError;
   String get planName => throw _privateConstructorUsedError;
   DateTime get paymentDate => throw _privateConstructorUsedError;
   DateTime get dueDate => throw _privateConstructorUsedError;
-  double get duration => throw _privateConstructorUsedError;
+  int get duration => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   String get currency => throw _privateConstructorUsedError;
   double get planYield => throw _privateConstructorUsedError;
@@ -104,12 +104,12 @@ abstract class $InvestmentItemDTOCopyWith<$Res> {
       String? bankAccountType,
       double amount,
       String traxId,
-      double roi,
+      int roi,
       int numberOfDays,
       String planName,
       DateTime paymentDate,
       DateTime dueDate,
-      double duration,
+      int duration,
       String status,
       String currency,
       double planYield,
@@ -172,7 +172,7 @@ class _$InvestmentItemDTOCopyWithImpl<$Res>
       roi: roi == freezed
           ? _value.roi
           : roi // ignore: cast_nullable_to_non_nullable
-              as double,
+              as int,
       numberOfDays: numberOfDays == freezed
           ? _value.numberOfDays
           : numberOfDays // ignore: cast_nullable_to_non_nullable
@@ -192,7 +192,7 @@ class _$InvestmentItemDTOCopyWithImpl<$Res>
       duration: duration == freezed
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
-              as double,
+              as int,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -227,12 +227,12 @@ abstract class _$InvestmentItemDTOCopyWith<$Res>
       String? bankAccountType,
       double amount,
       String traxId,
-      double roi,
+      int roi,
       int numberOfDays,
       String planName,
       DateTime paymentDate,
       DateTime dueDate,
-      double duration,
+      int duration,
       String status,
       String currency,
       double planYield,
@@ -297,7 +297,7 @@ class __$InvestmentItemDTOCopyWithImpl<$Res>
       roi: roi == freezed
           ? _value.roi
           : roi // ignore: cast_nullable_to_non_nullable
-              as double,
+              as int,
       numberOfDays: numberOfDays == freezed
           ? _value.numberOfDays
           : numberOfDays // ignore: cast_nullable_to_non_nullable
@@ -317,7 +317,7 @@ class __$InvestmentItemDTOCopyWithImpl<$Res>
       duration: duration == freezed
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
-              as double,
+              as int,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -376,7 +376,7 @@ class _$_InvestmentItemDTO extends _InvestmentItemDTO {
   @override
   final String traxId;
   @override
-  final double roi;
+  final int roi;
   @override
   final int numberOfDays;
   @override
@@ -386,7 +386,7 @@ class _$_InvestmentItemDTO extends _InvestmentItemDTO {
   @override
   final DateTime dueDate;
   @override
-  final double duration;
+  final int duration;
   @override
   final String status;
   @override
@@ -468,12 +468,12 @@ abstract class _InvestmentItemDTO extends InvestmentItemDTO {
       String? bankAccountType,
       required double amount,
       required String traxId,
-      required double roi,
+      required int roi,
       required int numberOfDays,
       required String planName,
       required DateTime paymentDate,
       required DateTime dueDate,
-      required double duration,
+      required int duration,
       required String status,
       required String currency,
       required double planYield,
@@ -496,7 +496,7 @@ abstract class _InvestmentItemDTO extends InvestmentItemDTO {
   @override
   String get traxId;
   @override
-  double get roi;
+  int get roi;
   @override
   int get numberOfDays;
   @override
@@ -506,7 +506,7 @@ abstract class _InvestmentItemDTO extends InvestmentItemDTO {
   @override
   DateTime get dueDate;
   @override
-  double get duration;
+  int get duration;
   @override
   String get status;
   @override

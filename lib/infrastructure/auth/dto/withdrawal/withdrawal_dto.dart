@@ -12,7 +12,7 @@ abstract class WithdrawalItemDTO implements _$WithdrawalItemDTO {
     required String description,
     required double amount,
     required int duration,
-    required double roi,
+    required int roi,
     required String traxId,
     required String uid,
     required String planName,
