@@ -4,7 +4,7 @@ part of 'investment_cubit.dart';
 class InvestmentState with _$InvestmentState {
   const factory InvestmentState(
       {required String planName,
-      required double duration,
+      required int duration,
       required int amountInvested,
       required int roi,
       required String failure,

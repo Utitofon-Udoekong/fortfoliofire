@@ -37,7 +37,7 @@ class WalletCubit extends Cubit<WalletState> {
   WalletCubit(this.firestoreFacade) : super(WalletState.initial()) {
     authCubit = getIt<AuthCubit>();
     authCubit.stream.listen((state) {
-      if (state.isUserCheckedFromAuthFacade) {
+      if (state.isLoggedIn) {
         initWithdrawals();
         initFortDollarInvestments();
         initFortShieldInvestments();
@@ -126,34 +126,44 @@ class WalletCubit extends Cubit<WalletState> {
       var balance = 0;
       for (var element in fortDollarInvestments) {
         var availableBalance = element.amount + element.planYield;
-        balance += availableBalance;
+        if(element.status != "Pending"){
+          balance += availableBalance;
+        }
       }
       emit(state.copyWith(walletBalance: balance));
     } else if (!fortDollarActive && fortShieldActive && !fortCryptoActive) {
       var balance = 0;
       for (var element in fortShieldInvestments) {
         var availableBalance =
-            (element.amount * 560) + (element.planYield * 560);
-        balance += availableBalance;
+            (element.amount / 590) + (element.planYield / 590);
+        if(element.status != "Pending"){
+          balance += availableBalance;
+        }
       }
       emit(state.copyWith(walletBalance: balance));
     } else if (!fortDollarActive && !fortShieldActive && fortCryptoActive) {
       var balance = 0;
       for (var element in fortCryptoInvestments) {
         var availableBalance = element.amount + element.planYield;
-        balance += availableBalance;
+        if(element.status != "Pending"){
+          balance += availableBalance;
+        }
       }
       emit(state.copyWith(walletBalance: balance));
     } else if (fortDollarActive && fortShieldActive && !fortCryptoActive) {
       var balance = 0;
       for (var element in fortShieldInvestments) {
         var availableBalance =
-            (element.amount * 560) + (element.planYield * 560);
-        balance += availableBalance;
+            (element.amount / 590) + (element.planYield / 590);
+        if(element.status != "Pending"){
+          balance += availableBalance;
+        }
       }
       for (var element in fortDollarInvestments) {
         var availableBalance = element.amount + element.planYield;
-        balance += availableBalance;
+        if(element.status != "Pending"){
+          balance += availableBalance;
+        }
       }
       emit(state.copyWith(walletBalance: balance));
     } else if (fortDollarActive && !fortShieldActive && fortCryptoActive) {
@@ -161,19 +171,25 @@ class WalletCubit extends Cubit<WalletState> {
       var totalinvestment = fortDollarInvestments + fortCryptoInvestments;
       for (var element in totalinvestment) {
         var availableBalance = element.amount + element.planYield;
-        balance += availableBalance;
+        if(element.status != "Pending"){
+          balance += availableBalance;
+        }
       }
       emit(state.copyWith(walletBalance: balance));
     } else if (!fortDollarActive && fortShieldActive && fortCryptoActive) {
       var balance = 0;
       for (var element in fortShieldInvestments) {
         var availableBalance =
-            (element.amount * 560) + (element.planYield * 560);
-        balance += availableBalance;
+            (element.amount / 590) + (element.planYield / 590);
+        if(element.status != "Pending"){
+          balance += availableBalance;
+        }
       }
       for (var element in fortCryptoInvestments) {
         var availableBalance = element.amount + element.planYield;
-        balance += availableBalance;
+        if(element.status != "Pending"){
+          balance += availableBalance;
+        }
       }
       emit(state.copyWith(walletBalance: balance));
     } else if (fortDollarActive && fortShieldActive && fortCryptoActive) {
@@ -181,12 +197,16 @@ class WalletCubit extends Cubit<WalletState> {
       var dollarinvestment = fortCryptoInvestments + fortDollarInvestments;
       for (var element in dollarinvestment) {
         var availableBalance = element.amount + element.planYield;
-        balance += availableBalance;
+        if(element.status != "Pending"){
+          balance += availableBalance;
+        }
       }
       for (var element in fortShieldInvestments) {
         var availableBalance =
-            (element.amount * 560) + (element.planYield * 560);
-        balance += availableBalance;
+            (element.amount / 590) + (element.planYield / 590);
+        if(element.status != "Pending"){
+          balance += availableBalance;
+        }
       }
       emit(state.copyWith(walletBalance: balance));
     }
@@ -331,9 +351,9 @@ class WalletCubit extends Cubit<WalletState> {
   void makeWithdrawalTransaction() async {
     final String investmentPlan = state.investmentPlan;
     final String description = "$investmentPlan withdrawal".toUpperCase();
-    final int amount = state.investmentToBeWithdrawn.amount;
-    final double duration = state.investmentToBeWithdrawn.duration;
-    final int roi = state.investmentToBeWithdrawn.roi;
+    final double amount = state.investmentToBeWithdrawn.amount;
+    final int duration = state.investmentToBeWithdrawn.duration;
+    final double roi = state.investmentToBeWithdrawn.roi;
     final String paymentMethod = state.withdrawalMethod;
     final traxId = const Uuid().v4().substring(0, 7);
     final String uid = nanoid(8);

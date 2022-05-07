@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fortfolio/domain/auth/status.dart';
 import 'package:fortfolio/domain/user/withdrawal_item.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -11,9 +10,9 @@ abstract class WithdrawalItemDTO implements _$WithdrawalItemDTO {
   const WithdrawalItemDTO._();
   const factory WithdrawalItemDTO({
     required String description,
-    required int amount,
+    required double amount,
     required int duration,
-    required int roi,
+    required double roi,
     required String traxId,
     required String uid,
     required String planName,

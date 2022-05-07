@@ -6,7 +6,7 @@ abstract class WithdrawalItem implements _$WithdrawalItem {
   const WithdrawalItem._();
   const factory WithdrawalItem({
     required String description,
-    required int amount,
+    required double amount,
     required String traxId,
     required String uid,
     required String planName,
@@ -15,7 +15,7 @@ abstract class WithdrawalItem implements _$WithdrawalItem {
     required String paymentMethod,
     required String currency,
     required int duration,
-    required int roi,
+    required double roi,
     // add roi
   }) = _WithdrawalItem;
 

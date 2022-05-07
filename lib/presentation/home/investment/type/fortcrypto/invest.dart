@@ -103,9 +103,6 @@ class FortCryptoInvestment extends StatelessWidget {
                           filled: true,
                           fillColor: const Color(0xFFF3F6F8),
                           border: InputBorder.none,
-                          prefixIcon: const Icon(Icons.attach_money),
-                          prefixStyle: TextStyle(
-                                color: Colors.grey.shade400, fontSize: 13),
                           suffix: DropdownButton<String>(
                             isDense: true,
                               value: state.coin,

@@ -29,7 +29,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     var boolList = <bool>[false, false, false];
     List<bool> newList = List.from(boolList);
     duration = state.durations[newIndex];
-    durationChanged(duration: duration.toDouble());
+    durationChanged(duration: duration);
     newList[newIndex] = true;
     emit(state.copyWith(isSelected: newList));
   }
@@ -50,7 +50,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     emit(state.copyWith(planName: planName));
   }
 
-  void durationChanged({required double duration}) {
+  void durationChanged({required int duration}) {
     emit(state.copyWith(duration: duration));
   }
   void coinChanged({required String coin}) {
@@ -81,7 +81,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     final DateTime paymentDate = DateTime.now();
     final String planName = state.planName;
     final int roi = state.roi;
-    final double duration = state.duration;
+    final int duration = state.duration;
     const String status = "Pending";
     final String traxId = const Uuid().v4().substring(0, 7);
     final String uid = nanoid(8);
@@ -95,7 +95,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
           description: description,
           currency: currency,
           uid: uid,
-          amount: amount,
+          amount: amount.toDouble(),
           traxId: traxId,
           roi: roi,
           planName: planName,
@@ -112,7 +112,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
           description: description,
           currency: currency,
           uid: uid,
-          amount: amount,
+          amount: amount.toDouble(),
           traxId: traxId,
           roi: roi,
           planName: planName,

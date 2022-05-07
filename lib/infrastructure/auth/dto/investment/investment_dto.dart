@@ -13,9 +13,9 @@ abstract class InvestmentItemDTO implements _$InvestmentItemDTO {
     required String description,
     required String uid,
     String? coin,
-    required int amount,
+    required double amount,
     required String traxId,
-    required int roi,
+    required double roi,
     required int numberOfDays,
     required String planName,
     required DateTime paymentDate,
@@ -23,7 +23,7 @@ abstract class InvestmentItemDTO implements _$InvestmentItemDTO {
     required double duration,
     required String status,
     required String currency,
-    required int planYield,
+    required double planYield,
     required String paymentMethod
   }) = _InvestmentItemDTO;
 
