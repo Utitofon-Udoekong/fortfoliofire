@@ -74,11 +74,11 @@ class WalletOverview extends StatelessWidget {
                           switch (state.exchange) {
                             case "NGN":
                               return state.showDigits
-                                ? Text('N${formatter.format(state.walletBalance * 560) }',
+                                ? Text('N${formatter.format(state.walletBalance * 590) }',
                                     style: titleText.copyWith(
                                         fontSize: 15, color: kWhiteColor))
                                 : Text(
-                                    formatter.format(state.walletBalance * 560)
+                                    formatter.format(state.walletBalance * 590)
                                         .replaceAll(regExp, "*"),
                                     style: titleText.copyWith(
                                         fontSize: 23, color: kWhiteColor));
@@ -103,22 +103,22 @@ class WalletOverview extends StatelessWidget {
                                         fontSize: 23, color: kWhiteColor));
                             default:
                               return state.showDigits
-                                ? Text('N${formatter.format(state.walletBalance * 560) }',
+                                ? Text('N${formatter.format(state.walletBalance * 590) }',
                                     style: titleText.copyWith(
                                         fontSize: 15, color: kWhiteColor))
                                 : Text(
-                                    formatter.format(state.walletBalance * 560)
+                                    formatter.format(state.walletBalance * 590)
                                         .replaceAll(regExp, "*"),
                                     style: titleText.copyWith(
                                         fontSize: 23, color: kWhiteColor));
                           }
                           // if (state.exchange == "NGN") {
                           //   return state.showDigits
-                          //       ? Text('N${formatter.format(state.walletBalance * 560) }',
+                          //       ? Text('N${formatter.format(state.walletBalance * 590) }',
                           //           style: titleText.copyWith(
                           //               fontSize: 15, color: kWhiteColor))
                           //       : Text(
-                          //           formatter.format(state.walletBalance * 560)
+                          //           formatter.format(state.walletBalance * 590)
                           //               .replaceAll(regExp, "*"),
                           //           style: titleText.copyWith(
                           //               fontSize: 23, color: kWhiteColor));

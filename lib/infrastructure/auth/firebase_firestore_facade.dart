@@ -250,7 +250,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
 
   @override
   Future<Either<String, String>> harvestInvestment(
-      {required String docId, required int amount}) async {
+      {required String docId, required double amount}) async {
     final query = firestore.authUserCollection
         .doc(auth.currentUser!.uid)
         .collection("investments")

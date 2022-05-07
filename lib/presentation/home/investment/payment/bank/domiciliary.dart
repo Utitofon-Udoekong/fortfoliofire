@@ -38,7 +38,7 @@ class DomiciliaryAccount extends StatelessWidget {
                   ),
                   Text(
                     exchangeType == "USD"
-                        ? formatter.format(amountInvested * 560)
+                        ? formatter.format(amountInvested * 590)
                         : formatter.format(amountInvested),
                     style: subTitle.copyWith(color: kBlackColor, fontSize: 14),
                   ),
@@ -52,7 +52,7 @@ class DomiciliaryAccount extends StatelessWidget {
                       color: const Color.fromRGBO(203, 241, 255, 0.18),
                       borderRadius: BorderRadius.circular(20)),
                   child: Text(
-                    '\$1 = N560',
+                    '\$1 = N590',
                     style:
                         subTitle.copyWith(fontSize: 13, color: kPrimaryColor),
                   ),
@@ -71,7 +71,7 @@ class DomiciliaryAccount extends StatelessWidget {
                   Text(
                     exchangeType == "USD"
                         ? formatter.format(amountInvested)
-                        : formatter.format(amountInvested / 560),
+                        : formatter.format(amountInvested / 590),
                     style: subTitle.copyWith(color: kBlackColor, fontSize: 14),
                   ),
                 ],

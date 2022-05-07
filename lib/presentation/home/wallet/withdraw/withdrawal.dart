@@ -63,6 +63,25 @@ class WithdrawalPage extends StatelessWidget {
                             subTitle.copyWith(color: kgreyColor, fontSize: 15),
                       ),
                       const SizedBox(
+                        height: 10,
+                      ),
+                      Row(children: <Widget>[
+                        const Expanded(child: Divider()),
+                        Container(
+                          padding: const EdgeInsets.all(13),
+                          decoration: BoxDecoration(
+                              color: const Color.fromRGBO(203, 241, 255, 0.18),
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Text(
+                            '\$1 = N585',
+                            style: subTitle.copyWith(
+                                fontSize: 13, color: kPrimaryColor),
+                          ),
+                          alignment: Alignment.center,
+                        ),
+                        const Expanded(child: Divider())
+                      ]),
+                      const SizedBox(
                         height: 30,
                       ),
                       buildTile(
@@ -83,11 +102,15 @@ class WithdrawalPage extends StatelessWidget {
                           'Reward',
                           withdrawalItem.planYield,
                           'Harvest',
-                          () => harvested ? null : context.read<WalletCubit>().harvestInvestment(
-                              docId: withdrawalItem.uid + withdrawalItem.traxId,
-                              amount: withdrawalItem.planYield),
+                          () => harvested
+                              ? null
+                              : context.read<WalletCubit>().harvestInvestment(
+                                  docId: withdrawalItem.uid +
+                                      withdrawalItem.traxId,
+                                  amount: withdrawalItem.planYield),
                           harvested
-                              ? const Color.fromRGBO(3, 66, 109, 0.65): kPrimaryColor)
+                              ? const Color.fromRGBO(3, 66, 109, 0.65)
+                              : kPrimaryColor)
                     ],
                   ),
                 ),
