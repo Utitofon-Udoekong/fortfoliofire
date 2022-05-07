@@ -16,6 +16,7 @@ import 'package:fortfolio/infrastructure/auth/dto/crypto_address/crypto_address.
 import 'package:fortfolio/infrastructure/auth/dto/investment/investment_dto.dart';
 import 'package:fortfolio/infrastructure/auth/dto/withdrawal/withdrawal_dto.dart';
 import 'package:fortfolio/injection.dart';
+import 'package:fortfolio/utils/utils.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:nanoid/nanoid.dart';
@@ -186,7 +187,7 @@ class WalletCubit extends Cubit<WalletState> {
     } else if (!fortDollarActive && !fortShieldActive && fortCryptoActive) {
       var balance = 0.0;
       for (var element in fortCryptoInvestments) {
-        var btcToUsdPriceOption = await externalFacade.getCoinPrice(id: element.coin!);
+        var btcToUsdPriceOption = await externalFacade.getCoinPrice(id: getCryptoNameFromSymbol(symbol: element.coin!));
         var btcPrice = 0.0;
         btcToUsdPriceOption.fold(() => null, (price) {
           btcPrice = price;
@@ -222,7 +223,7 @@ class WalletCubit extends Cubit<WalletState> {
         }
       }
       for (var element in fortCryptoInvestments) {
-        var btcToUsdPriceOption = await externalFacade.getCoinPrice(id: element.coin!);
+        var btcToUsdPriceOption = await externalFacade.getCoinPrice(id: getCryptoNameFromSymbol(symbol: element.coin!));
         var btcPrice = 0.0;
         btcToUsdPriceOption.fold(() => null, (price) {
           btcPrice = price;
@@ -243,7 +244,7 @@ class WalletCubit extends Cubit<WalletState> {
         }
       }
       for (var element in fortCryptoInvestments) {
-        var btcToUsdPriceOption = await externalFacade.getCoinPrice(id: element.coin!);
+        var btcToUsdPriceOption = await externalFacade.getCoinPrice(id: getCryptoNameFromSymbol(symbol: element.coin!));
         var btcPrice = 0.0;
         btcToUsdPriceOption.fold(() => null, (price) {
           btcPrice = price;
@@ -263,7 +264,7 @@ class WalletCubit extends Cubit<WalletState> {
         }
       }
       for (var element in fortCryptoInvestments) {
-        var btcToUsdPriceOption = await externalFacade.getCoinPrice(id: element.coin!);
+        var btcToUsdPriceOption = await externalFacade.getCoinPrice(id: getCryptoNameFromSymbol(symbol: element.coin!));
         var btcPrice = 0.0;
         btcToUsdPriceOption.fold(() => null, (price) {
           btcPrice = price;
