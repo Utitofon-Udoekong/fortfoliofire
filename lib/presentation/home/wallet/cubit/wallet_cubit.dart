@@ -58,6 +58,19 @@ class WalletCubit extends Cubit<WalletState> {
     emit(state.copyWith(showDigits: !showDigits));
   }
 
+  void getBTCPrice() async {
+    final btcPriceOption = await externalFacade.getBTCPrice(id: "usd");
+    double btcPrice = 0;
+    btcPriceOption.fold(() => null, (price) {
+      btcPrice = price;
+    });
+    final walletBalance = state.walletBalance;
+    if(state.exchange == "NGN"){
+      walletBalance /= 590;
+    }
+    emit(state.copyWith(walletBalance: (btcPrice * walletBalance)));
+  }
+
   void investmentToBeWithdrawnChanged(
       {required InvestmentItem investmentToBeWithdrawn}) {
     emit(state.copyWith(investmentToBeWithdrawn: investmentToBeWithdrawn));
