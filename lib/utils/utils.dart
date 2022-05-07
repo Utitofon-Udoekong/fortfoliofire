@@ -19,3 +19,22 @@ showSnackBar(BuildContext context, String text) {
     ),
   );
 }
+
+getCryptoNameFromSymbol({required String symbol}){
+  switch (symbol) {
+    case "BTC":
+      
+    case "BCH":
+      
+    case "ETH":
+      
+    case "LTC":
+      
+    case "USDC":
+    case "DAI":
+    case "DOGE":
+      
+      break;
+    default:
+  }
+}

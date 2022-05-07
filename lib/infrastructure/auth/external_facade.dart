@@ -25,7 +25,7 @@ class ExternalFacade implements IExternalFacade {
     }
   }
   @override
-  Future<Option<double>> getBTCPrice() async {
+  Future<Option<double>> getBTCPriceInDollars() async {
     try {
       var url = Uri.parse("https://api.coingecko.com/api/v3/coins/btc");
       var response = await http.get(url);
