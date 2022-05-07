@@ -66,7 +66,7 @@ class WalletTransactions extends StatelessWidget {
                     children: transactions.map((document) {
                       // withdrawal variables
                       String withDescription = "";
-                      int withAmount = 0;
+                      double withAmount = 0;
                       String withStatus = "";
                       String withId = "";
                       String withPaymentMethod = "";
@@ -77,13 +77,13 @@ class WalletTransactions extends StatelessWidget {
 
                       // investment variables
                       String invDescription = "";
-                      int invAmount = 0;
+                      double invAmount = 0;
                       String invStatus = "";
                       String invId = "";
                       String invCurrency = "\$";
                       String invPaymentMethod = "";
                       DateTime invcreatedat = DateTime.now();
-                      double invduration = 0.0;
+                      int invduration = 0;
                       int invroi = 0;
 
                       if (document.investmentItem != null &&
@@ -410,7 +410,7 @@ class WalletTransactions extends StatelessWidget {
       {required String title,
       required String status,
       required String amount,
-      required double duration,
+      required int duration,
       required DateTime date,
       required String id,
       required int roi,
