@@ -25,7 +25,7 @@ class DashboardTransactions extends StatelessWidget {
       'images/blank-wallet.svg',
       semanticsLabel: 'Blank Wallet',
     );
-    final formatter = NumberFormat("#,##0.00", "en_US");
+    final formatter = NumberFormat("#,##0.##", "en_US");
     ScreenshotController screenshotController = ScreenshotController();
     double pixelRatio = MediaQuery.of(context).devicePixelRatio;
     return Scaffold(

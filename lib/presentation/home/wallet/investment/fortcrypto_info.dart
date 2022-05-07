@@ -14,7 +14,7 @@ class FortCryptoInvestmentInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final formatter = NumberFormat("#,##0.00", "en_US");
+    final formatter = NumberFormat("#,##0.##", "en_US");
     final balance = context.select((WalletCubit walletCubit) =>
         walletCubit.state.fortCryptoInvestmentBalance);
     final yield = context.select(

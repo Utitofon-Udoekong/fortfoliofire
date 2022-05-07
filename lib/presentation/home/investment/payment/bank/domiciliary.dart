@@ -18,7 +18,7 @@ class DomiciliaryAccount extends StatelessWidget {
     final String exchangeType = context.select(
         (InvestmentCubit investmentCubit) =>
             investmentCubit.state.exchangeType);
-    final formatter = NumberFormat("#,##0.00", "en_US");
+    final formatter = NumberFormat("#,##0.##", "en_US");
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
