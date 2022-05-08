@@ -31,18 +31,18 @@ class _SplashScreenState extends State<SplashScreen> {
     final bool isLoggedIn = context.read<AuthCubit>().state.isLoggedIn;
 
     if (isLoggedIn && isChecked) {
-      if (Platform.isAndroid) {
-        if (canCheckBiometrics) {
-          bool didauthenticate = await LocalAuthApi.authenticate();
-          if (didauthenticate != true) {
-            exit(0);
-          }else{
-            Future.delayed(const Duration(seconds: 1), () {
               context.router.replace(const HomePageRoute());
-            });
-          }
-        }
-      }
+      // if (Platform.isAndroid) {
+      //   if (canCheckBiometrics) {
+      //     bool didauthenticate = await LocalAuthApi.authenticate();
+      //     if (didauthenticate != true) {
+      //       exit(0);
+      //     }else{
+      //       Future.delayed(const Duration(seconds: 1), () {
+      //       });
+      //     }
+      //   }
+      // }
     } else {
       context.router.replace(const OnboardingScreenRoute());
     }

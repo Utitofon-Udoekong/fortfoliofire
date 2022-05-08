@@ -94,7 +94,7 @@ class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
 
   @override
   Widget build(BuildContext context) {
-    final String paymentUrl = context.select((InvestmentCubit cubit) => cubit.state.charge.url!);
+    final String paymentUrl = context.select((InvestmentCubit cubit) => cubit.state.charge.url);
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -139,7 +139,7 @@ class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
                 // ),
                 BlocSelector<InvestmentCubit, InvestmentState, bool>(
                   selector: (state) {
-                    return state.charge.url!.isEmpty;
+                    return state.charge.url.isEmpty;
                   },
                   builder: (context, noUrlExists) {
                     if (noUrlExists) {
