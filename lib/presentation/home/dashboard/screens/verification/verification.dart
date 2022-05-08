@@ -18,6 +18,8 @@ class VerificationPage extends StatelessWidget {
         context.select((AuthCubit cubit) => cubit.state.userModel.isVerified);
     final bool isSubmitted =
         context.select((VerificationCubit cubit) => cubit.state.kycExists);
+    final bool isRejected =
+        context.select((VerificationCubit cubit) => cubit.state.isRejected);
     final Widget svg = SvgPicture.asset('images/shield.svg',
         width: MediaQuery.of(context).size.width * 0.35);
     return Scaffold(
@@ -74,6 +76,30 @@ class VerificationPage extends StatelessWidget {
                         onTap: () => context.router.pop(),
                         child: const Icon(Icons.close),
                       ),
+                      BlocSelector<VerificationCubit, VerificationState, bool>(
+                        selector: (state) {
+                          return state.isRejected;
+                        },
+                        builder: (context, isRejected) {
+                          return Visibility(
+                            visible: isRejected,
+                            child: Container(
+                              padding: const EdgeInsets.all(12.0),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  color:
+                                      const Color.fromARGB(76, 218, 102, 102)),
+                              child: Text(
+                                "Verification documents rejected.",
+                                style: subTitle.copyWith(
+                                    color: kRedColor,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
                       const SizedBox(
                         height: 20,
                       ),
@@ -101,7 +127,8 @@ class VerificationPage extends StatelessWidget {
                         icon: 'idcard',
                         title: 'National ID Card',
                         ontap: () {
-                          context.read<VerificationCubit>().documentTypeChanged(documentType: "National ID card");
+                          context.read<VerificationCubit>().documentTypeChanged(
+                              documentType: "National ID card");
                           context.router.push(const UploadPageRoute());
                         },
                       ),
@@ -112,7 +139,8 @@ class VerificationPage extends StatelessWidget {
                         icon: 'passport',
                         title: 'International Passport',
                         ontap: () {
-                          context.read<VerificationCubit>().documentTypeChanged(documentType: "International Passport");
+                          context.read<VerificationCubit>().documentTypeChanged(
+                              documentType: "International Passport");
                           context.router.push(const UploadPageRoute());
                         },
                       ),
@@ -123,7 +151,8 @@ class VerificationPage extends StatelessWidget {
                         icon: 'license',
                         title: 'Drivers License',
                         ontap: () {
-                          context.read<VerificationCubit>().documentTypeChanged(documentType: "Drivers License");
+                          context.read<VerificationCubit>().documentTypeChanged(
+                              documentType: "Drivers License");
                           context.router.push(const UploadPageRoute());
                         },
                       ),

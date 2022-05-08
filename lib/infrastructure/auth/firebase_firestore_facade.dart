@@ -298,4 +298,21 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
       return left('Unable to delete notification');
     }
   }
+
+   @override
+  Future<Either<String, KYCItem>> getKYC() async {
+    final query = await firestore.kycCollection.doc(auth.currentUser!.uid).get();
+    KYCItem doc = KYCItem.empty();
+    try {
+      if(query.exists){
+        doc = KYCItemDTO.fromFirestore(query).toDomain();
+      }
+      return right(doc);
+    } on FirebaseException catch (e) {
+      log("Code: ${e.code}, Message: ${e.message}");
+      return left('Server error encountered');
+    }
+  }
+
+  
 }
