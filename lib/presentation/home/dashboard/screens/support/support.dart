@@ -21,17 +21,6 @@ class _SupportPageState extends State<SupportPage> {
     super.initState();
   }
 
-  Future<void> _launchInBrowser(String url) async {
-    if (!await launch(
-      url,
-      forceSafariVC: false,
-      forceWebView: false,
-      headers: <String, String>{'my_header_key': 'my_header_value'},
-    )) {
-      throw 'Could not launch $url';
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     const String toLaunchIG =
@@ -73,7 +62,7 @@ class _SupportPageState extends State<SupportPage> {
                 height: 10,
               ),
               CustomIconTrailingFunctionButton(
-                  icon: 'mail', title: 'Send an email', ontap: () => launch(email.toString())),
+                  icon: 'mail', title: 'Send an email', ontap: () => launchUrl(email)),
               // const SizedBox(
               //   height: 10,
               // ),

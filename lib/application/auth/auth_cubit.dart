@@ -6,8 +6,6 @@ import 'package:fortfolio/domain/auth/i_auth_facade.dart';
 import 'package:fortfolio/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:fpdart/fpdart.dart';
-// import 'package:dartz/dartz.dart';
 
 part 'auth_state.dart';
 part 'auth_cubit.freezed.dart';

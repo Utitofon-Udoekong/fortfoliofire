@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fortfolio/domain/widgets/coinbase_commerce/charge_Object.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
@@ -30,7 +31,7 @@ class FortCryptoInvestment extends StatelessWidget {
         listeners: [
           BlocListener<InvestmentCubit, InvestmentState>(
             listenWhen: (previous, current) =>
-                previous.charge != current.charge,
+                previous.charge != current.charge && current.charge != ChargeObject.empty(),
             listener: (context, state) {
               context.router.push(const CryptoInvestmentPageRoute());
             },

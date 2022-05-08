@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/application/auth/sign_in_form/phone/sign_in_form_phone_cubit.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/core/validator_helpers.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/domain/widgets/loading_view.dart';
-import 'package:fortfolio/injection.dart';
 
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
