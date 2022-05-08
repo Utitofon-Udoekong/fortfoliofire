@@ -17,7 +17,7 @@ class FirebaseFunctionsFacade implements IFunctionsFacade {
   Future<Either<String, ChargeObject>> createCharge(
       {required String amount}) async {
     try {
-      ChargeObject charge;
+      ChargeObject charge = ChargeObject();
       final url = Uri.https('us-central1-fortfolio-app.cloudfunctions.net', '/createCharge', {'amount': amount});
       final response = await http.get(
         url,
