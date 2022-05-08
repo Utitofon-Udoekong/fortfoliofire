@@ -84,35 +84,15 @@ const { Charge } = resources;
     
 // })
 
-// exports.createCharge = functions.https.onCall(async (data, context) => {
-//   const name = data.name
-//   const description = data.description
-//   const price = data.price
-
-//   const chargeData = {
-//     name: name,
-//     description: description,
-//     local_price: {
-//       currency: 'USD',
-//       amount: `${price}`
-//     },
-//     pricing_type: 'fixed_price',
-//   };
-//   const charge = await Charge.create(chargeData);
-//   functions.logger.log(charge)
-//   return charge
-// })
 
 exports.createCharge = functions.https.onRequest((req, res) => {
     cors(req, res, async () => {
-      const name = "Fort dollar"
-      const description = "Investment"
       const chargeData = {
-        name: name,
-        description: description,
+        name: "Fort Crypto",
+        description: "Investment",
         local_price: {
           currency: 'USD',
-          amount: '1000'
+          amount: `${req.query.amount}`
         },
         pricing_type: 'fixed_price',
       };
