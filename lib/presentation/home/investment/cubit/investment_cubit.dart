@@ -1,6 +1,5 @@
 import 'dart:developer';
 import 'package:bloc/bloc.dart';
-import 'package:coinbase_commerce/returnObjects/chargeObject.dart';
 import 'package:fortfolio/domain/auth/i_external_facade.dart';
 import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
 import 'package:fortfolio/domain/auth/i_functions_facade.dart';
