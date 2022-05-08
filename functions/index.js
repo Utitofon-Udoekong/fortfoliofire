@@ -92,7 +92,7 @@ exports.createCharge = functions.https.onRequest((req, res) => {
         description: "Investment",
         local_price: {
           currency: 'USD',
-          amount: `${req.query.amount}`
+          amount: req.query.amount
         },
         pricing_type: 'fixed_price',
       };

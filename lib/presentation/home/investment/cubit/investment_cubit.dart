@@ -78,7 +78,8 @@ class InvestmentCubit extends Cubit<InvestmentState> {
   }
 
   void createCharge () async {
-    final chargeOption = await functionsFacade.createCharge();
+    final amount = state.amountInvested;
+    final chargeOption = await functionsFacade.createCharge(amount: amount.toString());
     chargeOption.fold((failure) => null, (charge) {
       
     });

@@ -342,6 +342,7 @@ class FortCryptoInvestment extends StatelessWidget {
                               CustomFilledButton(
                                   text: "CONFIRM",
                                   onTap: () {
+                                    context.read<InvestmentCubit>().createCharge();
                                     context.router
                                         .push(const CryptoInvestmentPageRoute());
                                   }),
