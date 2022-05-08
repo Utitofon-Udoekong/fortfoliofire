@@ -4,6 +4,7 @@ import 'package:fortfolio/domain/auth/i_external_facade.dart';
 import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
 import 'package:fortfolio/domain/auth/i_functions_facade.dart';
 import 'package:fortfolio/domain/user/investment.dart';
+import 'package:fortfolio/domain/widgets/coinbase_commerce/charge_Object.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:jiffy/jiffy.dart';
@@ -82,7 +83,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     final chargeOption = await functionsFacade.createCharge(amount: amount.toString());
     chargeOption.fold((failure) => emit(state.copyWith(failure: failure)), (charge) {
       print(charge);
-      emit(state.copyWith(charge: charge));
+      emit(state.copyWith(charge: ChargeObject.fromJson(charge)));
     });
   }
 
