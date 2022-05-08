@@ -9,43 +9,66 @@ import 'error_Object.dart';
 ///to determine the status of a given charge.
 class ChargeObject extends CoinbaseResponseObject {
   ChargeObject({
-    this.confirmedAt,
-    this.pricing,
-    this.isSuccessful,
-    this.error,
+    required this.confirmedAt,
+    required this.pricing,
+    required this.isSuccessful,
+    required this.error,
     this.cancelUrl,
     this.redirectUrl,
-    this.metaData,
-    this.name,
-    this.payments,
-    this.pricingType,
-    this.timeline,
-    this.supportEmail,
-    this.id,
-    this.hostedUrl,
-    this.addresses,
-    this.code,
-    this.createdAt,
-    this.description,
-    this.exchangeRate,
-    this.expiresAt,
+    required this.metaData,
+    required this.name,
+    required this.payments,
+    required this.pricingType,
+    required this.timeline,
+    required this.supportEmail,
+    required this.id,
+    required this.hostedUrl,
+    required this.addresses,
+    required this.code,
+    required this.createdAt,
+    required this.description,
+    required this.exchangeRates,
+    required this.expiresAt,
   });
 
-  final String? code,
+  final String code,
       id,
       hostedUrl,
       description,
       name,
-      supportEmail,
-      cancelUrl,
+      supportEmail;
+  final String? cancelUrl,
       redirectUrl;
-  final DateTime? createdAt, expiresAt, confirmedAt;
-  final Map? exchangeRate, metaData, addresses, pricing;
-  final List? payments, timeline;
-  final ErrorObject? error;
-  final String? pricingType;
-  final bool? isSuccessful;
+  final DateTime createdAt, expiresAt, confirmedAt;
+  final Map exchangeRates, metaData, addresses, pricing;
+  final List payments, timeline;
+  final ErrorObject error;
+  final String pricingType;
+  final bool isSuccessful;
 
+  factory ChargeObject.empty() {
+    return ChargeObject(
+      metaData: {},
+      name: "",
+      isSuccessful: false,
+      error: ErrorObject(),
+      description: "",
+      pricingType: "",
+      addresses: {},
+      code: "",
+      createdAt: DateTime.now(),
+      confirmedAt: DateTime.now(),
+      exchangeRates: {},
+      expiresAt: DateTime.now(),
+      hostedUrl: "",
+      id: "",
+      pricing: {},
+      payments: [],
+      supportEmail: "",
+      timeline: []
+
+    );
+  }
   factory ChargeObject.fromJson(Map data) {
     return ChargeObject(
         metaData: data['metadata'],
@@ -58,10 +81,10 @@ class ChargeObject extends CoinbaseResponseObject {
         pricingType: data['pricing_type'],
         addresses: data['addresses'],
         code: data['code'],
-        createdAt: DateTime.tryParse(data['created_at'].toString()),
-        confirmedAt: DateTime.tryParse(data['confirmed_at'].toString()),
-        exchangeRate: data['exchange_rates'],
-        expiresAt: DateTime.tryParse(data['expires_at'].toString()),
+        createdAt: DateTime.parse(data['created_at'].toString()),
+        confirmedAt: DateTime.parse(data['confirmed_at'].toString()),
+        exchangeRates: data['exchange_rates'],
+        expiresAt: DateTime.parse(data['expires_at'].toString()),
         hostedUrl: data['hosted_url'],
         id: data['id'],
         pricing: data['pricing'],
@@ -83,7 +106,7 @@ class ChargeObject extends CoinbaseResponseObject {
       'addresses': addresses,
       'code': code,
       'createdAt': createdAt,
-      'exchangeRate': exchangeRate,
+      'exchangeRates': exchangeRates,
       'expiresAt': expiresAt,
       'hostedUrl': hostedUrl,
       'id': id,
