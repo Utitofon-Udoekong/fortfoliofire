@@ -82,7 +82,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     final amount = state.amountInvested;
     final chargeOption = await functionsFacade.createCharge(amount: amount.toString());
     chargeOption.fold((failure) => null, (charge) {
-      
+      emit(state.copyWith(charge: charge));
     });
   }
 
