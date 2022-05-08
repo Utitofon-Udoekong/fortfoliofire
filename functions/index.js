@@ -84,45 +84,45 @@ const { Charge } = resources;
     
 // })
 
-exports.createCharge = functions.https.onCall(async (data, context) => {
-  const name = data.name
-  const description = data.description
-  const price = data.price
+// exports.createCharge = functions.https.onCall(async (data, context) => {
+//   const name = data.name
+//   const description = data.description
+//   const price = data.price
 
-  const chargeData = {
-    name: name,
-    description: description,
-    local_price: {
-      currency: 'USD',
-      amount: `${price}`
-    },
-    pricing_type: 'fixed_price',
-  };
-  const charge = await Charge.create(chargeData);
-  functions.logger.log(charge)
-  return charge
-})
+//   const chargeData = {
+//     name: name,
+//     description: description,
+//     local_price: {
+//       currency: 'USD',
+//       amount: `${price}`
+//     },
+//     pricing_type: 'fixed_price',
+//   };
+//   const charge = await Charge.create(chargeData);
+//   functions.logger.log(charge)
+//   return charge
+// })
 
-// exports.createCharge = functions.https.onRequest((req, res) => {
-//     cors(req, res, async () => {
-//       const details = req.body
-//       const name = details.name
-//       const description = details.description
-//       const chargeData = {
-//         name: name,
-//         description: description,
-//         local_price: {
-//           currency: 'USD',
-//         },
-//         pricing_type: 'no_price',
-//       };
+exports.createCharge = functions.https.onRequest((req, res) => {
+    cors(req, res, async () => {
+      const details = req.body
+      const name = details.name
+      const description = details.description
+      const chargeData = {
+        name: name,
+        description: description,
+        local_price: {
+          currency: 'USD',
+        },
+        pricing_type: 'no_price',
+      };
   
-//       const charge = await Charge.create(chargeData);
-//       functions.logger.log(charge)
+      const charge = await Charge.create(chargeData);
+      functions.logger.log(charge)
   
-//       res.send(charge);
-//     });
-//   });
+      res.send(charge);
+    });
+  });
   
   // exports.webhookHandler = functions.https.onRequest(async (req, res) => {
   //   const rawBody = req.rawBody;

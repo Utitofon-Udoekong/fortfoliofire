@@ -16,7 +16,7 @@
     "coinbase-commerce-node": "^1.0.4",
     "dotenv": "^16.0.0",
     "firebase-admin": "^9.8.0",
-    "firebase-functions": "^3.14.1"
+    "firebase-functions": "^3.21.0"
   },
   "devDependencies": {
     "firebase-functions-test": "^0.2.0"

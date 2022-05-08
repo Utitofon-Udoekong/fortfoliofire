@@ -2,8 +2,8 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:fortfolio/domain/auth/i_external_facade.dart';
 import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
+import 'package:fortfolio/domain/auth/i_functions_facade.dart';
 import 'package:fortfolio/domain/user/investment.dart';
-import 'package:fortfolio/utils/utils.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:jiffy/jiffy.dart';
@@ -17,7 +17,8 @@ part 'investment_cubit.freezed.dart';
 class InvestmentCubit extends Cubit<InvestmentState> {
   final IFirestoreFacade firestoreFacade;
   final IExternalFacade externalFacade;
-  InvestmentCubit(this.firestoreFacade, this.externalFacade) : super(InvestmentState.initial());
+  final IFunctionsFacade functionsFacade;
+  InvestmentCubit(this.firestoreFacade, this.externalFacade, this.functionsFacade) : super(InvestmentState.initial());
 
   void exchangeTypeChanged({required String exchangeType}) {
     emit(state.copyWith(exchangeType: exchangeType));
@@ -74,6 +75,13 @@ class InvestmentCubit extends Cubit<InvestmentState> {
 
   void agreementAcceptedChanged({required bool agreementAccepted}) {
     emit(state.copyWith(agreementAccepted: agreementAccepted));
+  }
+
+  void createCharge () async {
+    final chargeOption = await functionsFacade.createCharge();
+    chargeOption.fold((failure) => null, (charge) {
+      
+    });
   }
 
   void iHavePaid() async {
