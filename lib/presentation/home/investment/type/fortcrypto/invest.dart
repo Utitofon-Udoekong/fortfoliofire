@@ -137,7 +137,7 @@ class FortCryptoInvestment extends StatelessWidget {
                             int.tryParse(value!) == null
                                 ? 'Field cannot be empty'
                                 : int.parse(value) < state.baseAmount
-                                    ? 'Minimum investment is \$ ${state.baseAmount}'
+                                    ? 'Minimum investment is \$${state.baseAmount}'
                                     : int.parse(value).isNaN
                                         ? 'Invalid amount'
                                         : null,
