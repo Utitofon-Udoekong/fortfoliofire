@@ -672,5 +672,5 @@ class RPSCustomClipper extends CustomClipper<Path> {
   }
 
   @override
-  bool shouldReclip(CustomClipper old) => false;
+  bool shouldReclip(CustomClipper oldClipper) => false;
 }

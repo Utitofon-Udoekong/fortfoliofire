@@ -38,7 +38,6 @@ class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     contextMenu = ContextMenu(
         menuItems: [
