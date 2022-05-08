@@ -88,7 +88,6 @@ exports.createCharge = functions.https.onCall(async (data, context) => {
   const name = data.name
   const description = data.description
   const price = data.price
-  const email = context.auth.token.email
 
   const chargeData = {
     name: name,
