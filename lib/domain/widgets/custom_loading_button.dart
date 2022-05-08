@@ -15,7 +15,7 @@ class CustomLoadingButton extends StatelessWidget {
       onTap: loading ? null : onTap,
       child: Container(
         alignment: Alignment.center,
-        height: 48,
+        height: 45,
         width: double.infinity,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),

@@ -119,6 +119,24 @@ class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
                 const SizedBox(
                   height: 40,
                 ),
+                // TextField(
+                //   decoration:
+                //       const InputDecoration(prefixIcon: Icon(Icons.search)),
+                //   controller: urlController,
+                //   keyboardType: TextInputType.url,
+                //   onSubmitted: (value) {
+                //     var url = Uri.parse(value);
+                //     if (url.scheme.isEmpty) {
+                //       url =
+                //           Uri.parse("https://www.google.com/search?q=" + value);
+                //     }
+                //     webViewController?.loadUrl(
+                //         urlRequest: URLRequest(url: url));
+                //   },
+                // ),
+                // const SizedBox(
+                //   height: 30,
+                // ),
                 BlocSelector<InvestmentCubit, InvestmentState, bool>(
                   selector: (state) {
                     return state.charge.url!.isEmpty;

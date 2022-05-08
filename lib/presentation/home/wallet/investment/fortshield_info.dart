@@ -138,7 +138,7 @@ Widget buildTile(
                   onTap: pending ? null : ontap,
                   child: Container(
                     alignment: Alignment.center,
-                    height: 48,
+                    height: 45,
                     width: 100,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
@@ -164,7 +164,7 @@ Widget buildTile(
                   margin: const EdgeInsets.symmetric(horizontal: 10),
                   child: Container(
                     alignment: Alignment.center,
-                    height: 48,
+                    height: 45,
                     width: 100,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),

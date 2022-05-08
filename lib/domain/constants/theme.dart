@@ -20,6 +20,6 @@ var titleText = GoogleFonts.raleway(
 var subTitle = GoogleFonts.raleway(
     fontSize: 18, fontWeight: FontWeight.w300, color: kBlackColor);
 var textButton = GoogleFonts.raleway(
-    fontSize: 16, fontWeight: FontWeight.w300, color: kPrimaryColor);
+    fontSize: 15, fontWeight: FontWeight.w300, color: kPrimaryColor);
 var hintTextStyle =
     GoogleFonts.raleway(fontSize: 12, color: kgreyColor.withOpacity(0.4));

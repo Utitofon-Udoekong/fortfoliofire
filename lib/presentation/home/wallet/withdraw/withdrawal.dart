@@ -154,7 +154,7 @@ class WithdrawalPage extends StatelessWidget {
             onTap: ontap,
             child: Container(
               alignment: Alignment.center,
-              height: 48,
+              height: 45,
               width: 100,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),

@@ -329,7 +329,7 @@ class FortDollarInvestment extends StatelessWidget {
                                 onTap: () => context.router.pop(),
                                 child: Container(
                                   alignment: Alignment.center,
-                                  height: 48,
+                                  height: 45,
                                   width: double.infinity,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
