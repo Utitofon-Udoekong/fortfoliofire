@@ -38,7 +38,7 @@ class InvestmentState with _$InvestmentState {
         durations: [3, 6, 12], 
         duration: 6,
         paymentMethod: 'Bank',
-        charge: ChargeObject()
+        charge: ChargeObject.empty()
       );
     bool get isValid => !duration.isNaN && amountInvested.isFinite && agreementAccepted && amountInvested >= baseAmount;
 }

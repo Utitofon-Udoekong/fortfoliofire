@@ -89,7 +89,7 @@ class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
   @override
   Widget build(BuildContext context) {
     final String paymentUrl = context
-        .select((InvestmentCubit cubit) => cubit.state.charge.hostedUrl!);
+        .select((InvestmentCubit cubit) => cubit.state.charge.hostedUrl);
     return Scaffold(
       body: SafeArea(
         child: Padding(
