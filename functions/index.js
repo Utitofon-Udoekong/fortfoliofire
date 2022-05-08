@@ -105,16 +105,16 @@ const { Charge } = resources;
 
 exports.createCharge = functions.https.onRequest((req, res) => {
     cors(req, res, async () => {
-      const details = req.body
-      const name = details.name
-      const description = details.description
+      const name = "Fort dollar"
+      const description = "Investment"
       const chargeData = {
         name: name,
         description: description,
         local_price: {
           currency: 'USD',
+          amount: '1000'
         },
-        pricing_type: 'no_price',
+        pricing_type: 'fixed_price',
       };
   
       const charge = await Charge.create(chargeData);
