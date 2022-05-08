@@ -79,9 +79,14 @@ class InvestmentCubit extends Cubit<InvestmentState> {
   }
 
   void createCharge () async {
+    emit(state.copyWith(isLoading: true));
     final amount = state.amountInvested;
     final chargeOption = await functionsFacade.createCharge(amount: amount.toString());
-    chargeOption.fold((failure) => emit(state.copyWith(failure: failure)), (charge) {
+    chargeOption.fold((failure) {
+      emit(state.copyWith(isLoading: false));
+      emit(state.copyWith(failure: failure));
+    }, (charge) {
+      emit(state.copyWith(isLoading: false));
       print(charge);
       emit(state.copyWith(charge: ChargeObject.fromJson(charge)));
     });

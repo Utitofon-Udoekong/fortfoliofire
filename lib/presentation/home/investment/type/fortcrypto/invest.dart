@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
+import 'package:fortfolio/domain/widgets/custom_loading_button.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:timelines/timelines.dart';
 import 'package:fortfolio/domain/constants/order.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
-import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
 import 'package:fortfolio/domain/widgets/labelled_checkbox.dart';
 
 import '../../cubit/investment_cubit.dart';
@@ -30,14 +30,16 @@ class FortCryptoInvestment extends StatelessWidget {
         listeners: [
           BlocListener<InvestmentCubit, InvestmentState>(
             listenWhen: (previous, current) =>
-                previous.charge.hostedUrl != current.charge.hostedUrl && current.charge.hostedUrl.isNotEmpty,
+                previous.charge.hostedUrl != current.charge.hostedUrl &&
+                current.charge.hostedUrl.isNotEmpty,
             listener: (context, state) {
               context.router.push(const CryptoInvestmentPageRoute());
             },
           ),
           BlocListener<InvestmentCubit, InvestmentState>(
             listenWhen: (previous, current) =>
-                previous.failure != current.failure && current.failure.isNotEmpty,
+                previous.failure != current.failure &&
+                current.failure.isNotEmpty,
             listener: (context, state) {
               CustomSnackbar.showSnackBar(context, state.failure, true);
             },
@@ -361,13 +363,22 @@ class FortCryptoInvestment extends StatelessWidget {
                               contentTextStyle: subTitle.copyWith(
                                   fontSize: 13, color: kgreyColor),
                               actions: [
-                                CustomFilledButton(
-                                    text: "CONFIRM",
-                                    onTap: () {
-                                      context
-                                          .read<InvestmentCubit>()
-                                          .createCharge();
-                                    }),
+                                BlocSelector<InvestmentCubit, InvestmentState,
+                                    bool>(
+                                  selector: (state) {
+                                    return state.isLoading;
+                                  },
+                                  builder: (context, loading) {
+                                    return CustomLoadingButton(
+                                        text: "CONFIRM",
+                                        onTap: () {
+                                          context
+                                              .read<InvestmentCubit>()
+                                              .createCharge();
+                                        },
+                                        loading: loading);
+                                  },
+                                ),
                                 InkWell(
                                   onTap: () => context.router.pop(),
                                   child: Container(

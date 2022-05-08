@@ -9,7 +9,7 @@ import 'error_Object.dart';
 ///to determine the status of a given charge.
 class ChargeObject extends CoinbaseResponseObject {
   ChargeObject({
-    required this.confirmedAt,
+    this.confirmedAt,
     required this.pricing,
     required this.isSuccessful,
     required this.error,
@@ -25,7 +25,7 @@ class ChargeObject extends CoinbaseResponseObject {
     required this.hostedUrl,
     required this.addresses,
     required this.code,
-    required this.createdAt,
+    this.createdAt,
     required this.description,
     required this.exchangeRates,
     required this.expiresAt,
@@ -39,7 +39,8 @@ class ChargeObject extends CoinbaseResponseObject {
       supportEmail;
   final String? cancelUrl,
       redirectUrl;
-  final DateTime createdAt, expiresAt, confirmedAt;
+  final DateTime expiresAt;
+  final DateTime? createdAt, confirmedAt;
   final Map exchangeRates, metaData, addresses, pricing;
   final List payments, timeline;
   final ErrorObject error;
@@ -81,8 +82,8 @@ class ChargeObject extends CoinbaseResponseObject {
         pricingType: data['pricing_type'],
         addresses: data['addresses'],
         code: data['code'],
-        createdAt: DateTime.parse(data['created_at'].toString()),
-        confirmedAt: DateTime.parse(data['confirmed_at'].toString()),
+        createdAt: DateTime.tryParse(data['created_at'].toString()),
+        confirmedAt: DateTime.tryParse(data['confirmed_at'].toString()),
         exchangeRates: data['exchange_rates'],
         expiresAt: DateTime.parse(data['expires_at'].toString()),
         hostedUrl: data['hosted_url'],
