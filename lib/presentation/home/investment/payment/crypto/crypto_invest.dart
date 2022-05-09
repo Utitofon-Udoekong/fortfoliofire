@@ -122,84 +122,87 @@ class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
                             color: kPrimaryColor,
                             width: 2),
                         borderRadius: BorderRadius.circular(6.0)),
-                    child: Expanded(
-                        child: InAppWebView(
-                          key: webViewKey,
-                          // contextMenu: contextMenu,
-                          initialUrlRequest: URLRequest(url: Uri.parse(paymentUrl)),
-                          // initialFile: "assets/index.html",
-                          initialUserScripts: UnmodifiableListView<UserScript>([]),
-                          initialOptions: options,
-                          pullToRefreshController: pullToRefreshController,
-                          onWebViewCreated: (controller) {
-                            webViewController = controller;
-                          },
-                          onLoadStart: (controller, url) {
-                            setState(() {
-                              this.url = url.toString();
-                              urlController.text = this.url;
-                            });
-                          },
-                          androidOnPermissionRequest:
-                              (controller, origin, resources) async {
-                            return PermissionRequestResponse(
-                                resources: resources,
-                                action: PermissionRequestResponseAction.GRANT);
-                          },
-                          shouldOverrideUrlLoading:
-                              (controller, navigationAction) async {
-                            var uri = navigationAction.request.url!;
-            
-                            if (![
-                              "http",
-                              "https",
-                              "file",
-                              "chrome",
-                              "data",
-                              "javascript",
-                              "about"
-                            ].contains(uri.scheme)) {
-                              if (await canLaunchUrl(Uri.parse(url))) {
-                                // Launch the App
-                                await launchUrl(
-                                  Uri.parse(url),
-                                );
-                                // and cancel the request
-                                return NavigationActionPolicy.CANCEL;
+                    child: Flex(
+                      direction: Axis.vertical,
+                      children: [Expanded(
+                          child: InAppWebView(
+                            key: webViewKey,
+                            // contextMenu: contextMenu,
+                            initialUrlRequest: URLRequest(url: Uri.parse(paymentUrl)),
+                            // initialFile: "assets/index.html",
+                            initialUserScripts: UnmodifiableListView<UserScript>([]),
+                            initialOptions: options,
+                            pullToRefreshController: pullToRefreshController,
+                            onWebViewCreated: (controller) {
+                              webViewController = controller;
+                            },
+                            onLoadStart: (controller, url) {
+                              setState(() {
+                                this.url = url.toString();
+                                urlController.text = this.url;
+                              });
+                            },
+                            androidOnPermissionRequest:
+                                (controller, origin, resources) async {
+                              return PermissionRequestResponse(
+                                  resources: resources,
+                                  action: PermissionRequestResponseAction.GRANT);
+                            },
+                            shouldOverrideUrlLoading:
+                                (controller, navigationAction) async {
+                              var uri = navigationAction.request.url!;
+                                
+                              if (![
+                                "http",
+                                "https",
+                                "file",
+                                "chrome",
+                                "data",
+                                "javascript",
+                                "about"
+                              ].contains(uri.scheme)) {
+                                if (await canLaunchUrl(Uri.parse(url))) {
+                                  // Launch the App
+                                  await launchUrl(
+                                    Uri.parse(url),
+                                  );
+                                  // and cancel the request
+                                  return NavigationActionPolicy.CANCEL;
+                                }
                               }
-                            }
-            
-                            return NavigationActionPolicy.ALLOW;
-                          },
-                          onLoadStop: (controller, url) async {
-                            pullToRefreshController.endRefreshing();
-                            setState(() {
-                              this.url = url.toString();
-                              urlController.text = this.url;
-                            });
-                          },
-                          onLoadError: (controller, url, code, message) {
-                            pullToRefreshController.endRefreshing();
-                          },
-                          onProgressChanged: (controller, progress) {
-                            if (progress == 100) {
+                                
+                              return NavigationActionPolicy.ALLOW;
+                            },
+                            onLoadStop: (controller, url) async {
                               pullToRefreshController.endRefreshing();
-                            }
-                            setState(() {
-                              this.progress = progress / 100;
-                              urlController.text = url;
-                            });
-                          },
-                          onUpdateVisitedHistory: (controller, url, androidIsReload) {
-                            setState(() {
-                              this.url = url.toString();
-                              urlController.text = this.url;
-                            });
-                          },
-                          onConsoleMessage: (controller, consoleMessage) {
-                            print(consoleMessage);
-                          },
-                        )),
+                              setState(() {
+                                this.url = url.toString();
+                                urlController.text = this.url;
+                              });
+                            },
+                            onLoadError: (controller, url, code, message) {
+                              pullToRefreshController.endRefreshing();
+                            },
+                            onProgressChanged: (controller, progress) {
+                              if (progress == 100) {
+                                pullToRefreshController.endRefreshing();
+                              }
+                              setState(() {
+                                this.progress = progress / 100;
+                                urlController.text = url;
+                              });
+                            },
+                            onUpdateVisitedHistory: (controller, url, androidIsReload) {
+                              setState(() {
+                                this.url = url.toString();
+                                urlController.text = this.url;
+                              });
+                            },
+                            onConsoleMessage: (controller, consoleMessage) {
+                              print(consoleMessage);
+                            },
+                          )),]
+                    ),
                   ),
                   Container(
                       padding: const EdgeInsets.all(10.0),
@@ -210,19 +213,28 @@ class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
                     alignment: MainAxisAlignment.center,
                     children: <Widget>[
                       ElevatedButton(
-                        child: const Icon(Icons.arrow_back),
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(kPrimaryColor)
+                        ),
+                        child: const Icon(Icons.arrow_back, color: kWhiteColor,),
                         onPressed: () {
                           webViewController?.goBack();
                         },
                       ),
                       ElevatedButton(
-                        child: const Icon(Icons.arrow_forward),
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(kPrimaryColor)
+                        ),
+                        child: const Icon(Icons.arrow_forward, color: kWhiteColor),
                         onPressed: () {
                           webViewController?.goForward();
                         },
                       ),
                       ElevatedButton(
-                        child: const Icon(Icons.refresh),
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(kPrimaryColor)
+                        ),
+                        child: const Icon(Icons.refresh, color: kWhiteColor),
                         onPressed: () {
                           webViewController?.reload();
                         },
@@ -234,6 +246,10 @@ class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
             )),
       ),
     );
+  }
+
+  Widget customButton({required Color color}){
+    return Container();
   }
 
   Widget buildtile(String title, String subtitle) {
