@@ -101,7 +101,10 @@ class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
                     height: 20,
                   ),
                   InkWell(
-                    onTap: () => context.router.pop(),
+                    onTap: () {
+                      context.read<InvestmentCubit>().cancelCharge();
+                      context.router.pop();
+                    },
                     child: const Icon(Icons.close),
                   ),
                   const SizedBox(
@@ -116,12 +119,24 @@ class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      boxShadow: [],
+                      boxShadow: const [
+                        BoxShadow(
+                      color: Color.fromARGB(92, 3, 87, 143),
+                      offset: Offset(
+                        5.0,
+                        5.0,
+                      ),
+                      blurRadius: 10.0,
+                      spreadRadius: 2.0,
+                    ), 
+                    BoxShadow(
+                      color: Colors.white,
+                      offset: Offset(0.0, 0.0),
+                      blurRadius: 0.0,
+                      spreadRadius: 0.0,
+                    ), 
+                      ],
                         color: const Color(0xFFF3F6F8),
-                        // border: Border.all(
-                        //     style: BorderStyle.solid,
-                        //     color: kPrimaryColor,
-                        //     width: 2),
                         borderRadius: BorderRadius.circular(6.0)),
                     child: Flex(
                       direction: Axis.vertical,

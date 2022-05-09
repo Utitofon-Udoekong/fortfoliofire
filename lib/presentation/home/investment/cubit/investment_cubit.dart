@@ -92,6 +92,12 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     });
   }
 
+
+  void cancelCharge () async {
+    final id = state.charge.id;
+    await externalFacade.cancelCharge(id: id);
+  }
+
   void iHavePaid() async {
     emit(state.copyWith(isLoading: true));
     late InvestmentItem investmentItem;

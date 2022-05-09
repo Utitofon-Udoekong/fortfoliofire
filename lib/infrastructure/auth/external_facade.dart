@@ -37,19 +37,13 @@ class ExternalFacade implements IExternalFacade {
   }
 
   @override
-  Future<Either<String, Map<String, dynamic>>> cancelCharge({required String id}) async{
+  Future<void> cancelCharge({required String id}) async{
     Map<String,dynamic> charge = {};
     var url = Uri.parse("https://api.commerce.coinbase.com/charges/$id/cancel");
     try {
-      var response = await http.post(url);
-    if (response.statusCode == 200) {
-        charge = jsonDecode(response.body);
-      } else {
-        throw Exception('Failed to create charge.');
-      }
-    return right(charge);
+      await http.post(url);
     } catch (e) {
-      return left(e.toString());
+      print(e);
     }
   }
 
