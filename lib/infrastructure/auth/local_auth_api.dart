@@ -20,12 +20,12 @@ class LocalAuthApi {
     }
   }
 
-  static Future<bool> authenticate() async {
+  static Future<bool> authenticate({required String localizedReason}) async {
     final biometrics = await getBiometrics();
     try {
       if(biometrics.contains(BiometricType.face) || biometrics.contains(BiometricType.fingerprint) || biometrics.contains(BiometricType.iris)){
         return await _auth.authenticate(
-          localizedReason: 'Scan Fingerprint to Authenticate',
+          localizedReason: localizedReason,
           options: const AuthenticationOptions(
             biometricOnly: true,
             stickyAuth: true,
@@ -33,7 +33,7 @@ class LocalAuthApi {
         );
       }else{
         return await _auth.authenticate(
-          localizedReason: 'Scan Fingerprint to Authenticate',
+          localizedReason: localizedReason,
           options: const AuthenticationOptions(
             biometricOnly: false,
             stickyAuth: true,

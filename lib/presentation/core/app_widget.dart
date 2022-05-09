@@ -99,7 +99,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
     if (shouldShowPIN) {
       if (Platform.isAndroid) {
         if (canCheckBiometrics) {
-          bool didauthenticate = await LocalAuthApi.authenticate();
+          bool didauthenticate = await LocalAuthApi.authenticate(localizedReason: 'Scan Fingerprint to authenticate');
           if (didauthenticate != true) {
             exit(0);
           }

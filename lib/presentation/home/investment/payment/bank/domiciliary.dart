@@ -146,7 +146,10 @@ class DomiciliaryAccount extends StatelessWidget {
                       context
                           .read<InvestmentCubit>()
                           .paymentMethodChanged(paymentMethod: "Bank");
-                      context.read<InvestmentCubit>().iHavePaid();
+                      context
+                          .read<InvestmentCubit>()
+                          .bankAccountTypeChanged(bankAccountType: "Domiciliary");
+                      context.read<InvestmentCubit>().authenticatePayment();
                     }),
               )
             ],

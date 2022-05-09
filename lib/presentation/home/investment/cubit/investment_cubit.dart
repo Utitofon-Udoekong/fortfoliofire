@@ -1,10 +1,12 @@
 import 'dart:developer';
+import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:fortfolio/domain/auth/i_external_facade.dart';
 import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
 import 'package:fortfolio/domain/auth/i_functions_facade.dart';
 import 'package:fortfolio/domain/user/investment.dart';
 import 'package:fortfolio/domain/widgets/coinbase_commerce/charge_Object.dart';
+import 'package:fortfolio/infrastructure/auth/local_auth_api.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:jiffy/jiffy.dart';
@@ -19,7 +21,9 @@ class InvestmentCubit extends Cubit<InvestmentState> {
   final IFirestoreFacade firestoreFacade;
   final IExternalFacade externalFacade;
   final IFunctionsFacade functionsFacade;
-  InvestmentCubit(this.firestoreFacade, this.externalFacade, this.functionsFacade) : super(InvestmentState.initial());
+  InvestmentCubit(
+      this.firestoreFacade, this.externalFacade, this.functionsFacade)
+      : super(InvestmentState.initial());
 
   void exchangeTypeChanged({required String exchangeType}) {
     emit(state.copyWith(exchangeType: exchangeType));
@@ -58,6 +62,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
   void durationChanged({required int duration}) {
     emit(state.copyWith(duration: duration));
   }
+
   void coinChanged({required String coin}) async {
     emit(state.copyWith(coin: coin));
   }
@@ -74,14 +79,19 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     emit(state.copyWith(paymentMethod: paymentMethod));
   }
 
+  void bankAccountTypeChanged({required String bankAccountType}) {
+    emit(state.copyWith(bankAccountType: bankAccountType));
+  }
+
   void agreementAcceptedChanged({required bool agreementAccepted}) {
     emit(state.copyWith(agreementAccepted: agreementAccepted));
   }
 
-  void createCharge () async {
+  void createCharge() async {
     emit(state.copyWith(isLoading: true));
     final amount = state.amountInvested;
-    final chargeOption = await functionsFacade.createCharge(amount: amount.toString());
+    final chargeOption =
+        await functionsFacade.createCharge(amount: amount.toString());
     chargeOption.fold((failure) {
       emit(state.copyWith(isLoading: false));
       emit(state.copyWith(failure: failure));
@@ -92,10 +102,23 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     });
   }
 
-
-  void cancelCharge () async {
+  void cancelCharge() async {
     final id = state.charge.id;
     await externalFacade.cancelCharge(id: id);
+  }
+
+  void authenticatePayment() async {
+    bool canCheckBiometrics = await LocalAuthApi.hasBiometrics();
+    if (Platform.isAndroid) {
+      if (canCheckBiometrics) {
+        bool didauthenticate = await LocalAuthApi.authenticate(localizedReason: 'Scan fingerprint to invest');
+        if (didauthenticate != true) {
+          emit(state.copyWith(failure: "Authenticate to continue"));
+        } else {
+          iHavePaid();
+        }
+      }
+    }
   }
 
   void iHavePaid() async {
