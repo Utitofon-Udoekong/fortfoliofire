@@ -66,8 +66,7 @@ class ChargeObject extends CoinbaseResponseObject {
       pricing: {},
       payments: [],
       supportEmail: "",
-      timeline: []
-
+      timeline: [],
     );
   }
   factory ChargeObject.fromJson(Map data) {

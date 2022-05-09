@@ -18,7 +18,8 @@ class InvestmentState with _$InvestmentState {
       required List<int> durations,
       required String paymentMethod,
       required double baseAmount,
-      required ChargeObject charge
+      required ChargeObject charge,
+      required String paymentStatus
       }) = _InvestmentState;
   const InvestmentState._();
 
@@ -38,7 +39,8 @@ class InvestmentState with _$InvestmentState {
         durations: [3, 6, 12], 
         duration: 6,
         paymentMethod: 'Bank',
-        charge: ChargeObject.empty()
+        charge: ChargeObject.empty(),
+        paymentStatus: ""
       );
     bool get isValid => !duration.isNaN && amountInvested.isFinite && agreementAccepted && amountInvested >= baseAmount;
 }

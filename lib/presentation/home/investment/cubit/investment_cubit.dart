@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
 import 'package:bloc/bloc.dart';
@@ -6,7 +7,9 @@ import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
 import 'package:fortfolio/domain/auth/i_functions_facade.dart';
 import 'package:fortfolio/domain/user/investment.dart';
 import 'package:fortfolio/domain/widgets/coinbase_commerce/charge_Object.dart';
+import 'package:fortfolio/domain/widgets/coinbase_commerce/status_Object.dart';
 import 'package:fortfolio/infrastructure/auth/local_auth_api.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:jiffy/jiffy.dart';
@@ -21,6 +24,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
   final IFirestoreFacade firestoreFacade;
   final IExternalFacade externalFacade;
   final IFunctionsFacade functionsFacade;
+  StreamSubscription<Option<StatusObject>>? _logPaymentStatusSubscription;
   InvestmentCubit(
       this.firestoreFacade, this.externalFacade, this.functionsFacade)
       : super(InvestmentState.initial());
@@ -97,9 +101,12 @@ class InvestmentCubit extends Cubit<InvestmentState> {
       emit(state.copyWith(failure: failure));
     }, (charge) {
       emit(state.copyWith(isLoading: false));
-      print(charge);
       emit(state.copyWith(charge: ChargeObject.fromJson(charge)));
     });
+  }
+
+  void startPaymentStatusSubscription() async {
+    
   }
 
   void cancelCharge() async {
@@ -191,5 +198,11 @@ class InvestmentCubit extends Cubit<InvestmentState> {
   void reset() {
     emit(state.copyWith(
         amountInvested: 0, planName: "", agreementAccepted: false));
+  }
+
+  @override
+  Future<void> close() async{
+    await _logPaymentStatusSubscription?.cancel();
+    return super.close();
   }
 }

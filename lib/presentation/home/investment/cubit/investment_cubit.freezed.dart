@@ -34,7 +34,8 @@ class _$InvestmentStateTearOff {
       required List<int> durations,
       required String paymentMethod,
       required double baseAmount,
-      required ChargeObject charge}) {
+      required ChargeObject charge,
+      required String paymentStatus}) {
     return _InvestmentState(
       planName: planName,
       duration: duration,
@@ -52,6 +53,7 @@ class _$InvestmentStateTearOff {
       paymentMethod: paymentMethod,
       baseAmount: baseAmount,
       charge: charge,
+      paymentStatus: paymentStatus,
     );
   }
 }
@@ -77,6 +79,7 @@ mixin _$InvestmentState {
   String get paymentMethod => throw _privateConstructorUsedError;
   double get baseAmount => throw _privateConstructorUsedError;
   ChargeObject get charge => throw _privateConstructorUsedError;
+  String get paymentStatus => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $InvestmentStateCopyWith<InvestmentState> get copyWith =>
@@ -104,7 +107,8 @@ abstract class $InvestmentStateCopyWith<$Res> {
       List<int> durations,
       String paymentMethod,
       double baseAmount,
-      ChargeObject charge});
+      ChargeObject charge,
+      String paymentStatus});
 }
 
 /// @nodoc
@@ -134,6 +138,7 @@ class _$InvestmentStateCopyWithImpl<$Res>
     Object? paymentMethod = freezed,
     Object? baseAmount = freezed,
     Object? charge = freezed,
+    Object? paymentStatus = freezed,
   }) {
     return _then(_value.copyWith(
       planName: planName == freezed
@@ -200,6 +205,10 @@ class _$InvestmentStateCopyWithImpl<$Res>
           ? _value.charge
           : charge // ignore: cast_nullable_to_non_nullable
               as ChargeObject,
+      paymentStatus: paymentStatus == freezed
+          ? _value.paymentStatus
+          : paymentStatus // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -227,7 +236,8 @@ abstract class _$InvestmentStateCopyWith<$Res>
       List<int> durations,
       String paymentMethod,
       double baseAmount,
-      ChargeObject charge});
+      ChargeObject charge,
+      String paymentStatus});
 }
 
 /// @nodoc
@@ -259,6 +269,7 @@ class __$InvestmentStateCopyWithImpl<$Res>
     Object? paymentMethod = freezed,
     Object? baseAmount = freezed,
     Object? charge = freezed,
+    Object? paymentStatus = freezed,
   }) {
     return _then(_InvestmentState(
       planName: planName == freezed
@@ -325,6 +336,10 @@ class __$InvestmentStateCopyWithImpl<$Res>
           ? _value.charge
           : charge // ignore: cast_nullable_to_non_nullable
               as ChargeObject,
+      paymentStatus: paymentStatus == freezed
+          ? _value.paymentStatus
+          : paymentStatus // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -348,7 +363,8 @@ class _$_InvestmentState extends _InvestmentState {
       required this.durations,
       required this.paymentMethod,
       required this.baseAmount,
-      required this.charge})
+      required this.charge,
+      required this.paymentStatus})
       : super._();
 
   @override
@@ -383,10 +399,12 @@ class _$_InvestmentState extends _InvestmentState {
   final double baseAmount;
   @override
   final ChargeObject charge;
+  @override
+  final String paymentStatus;
 
   @override
   String toString() {
-    return 'InvestmentState(planName: $planName, duration: $duration, amountInvested: $amountInvested, roi: $roi, failure: $failure, success: $success, agreementAccepted: $agreementAccepted, isLoading: $isLoading, exchangeType: $exchangeType, coin: $coin, bankAccountType: $bankAccountType, isSelected: $isSelected, durations: $durations, paymentMethod: $paymentMethod, baseAmount: $baseAmount, charge: $charge)';
+    return 'InvestmentState(planName: $planName, duration: $duration, amountInvested: $amountInvested, roi: $roi, failure: $failure, success: $success, agreementAccepted: $agreementAccepted, isLoading: $isLoading, exchangeType: $exchangeType, coin: $coin, bankAccountType: $bankAccountType, isSelected: $isSelected, durations: $durations, paymentMethod: $paymentMethod, baseAmount: $baseAmount, charge: $charge, paymentStatus: $paymentStatus)';
   }
 
   @override
@@ -416,7 +434,9 @@ class _$_InvestmentState extends _InvestmentState {
                 .equals(other.paymentMethod, paymentMethod) &&
             const DeepCollectionEquality()
                 .equals(other.baseAmount, baseAmount) &&
-            const DeepCollectionEquality().equals(other.charge, charge));
+            const DeepCollectionEquality().equals(other.charge, charge) &&
+            const DeepCollectionEquality()
+                .equals(other.paymentStatus, paymentStatus));
   }
 
   @override
@@ -437,7 +457,8 @@ class _$_InvestmentState extends _InvestmentState {
       const DeepCollectionEquality().hash(durations),
       const DeepCollectionEquality().hash(paymentMethod),
       const DeepCollectionEquality().hash(baseAmount),
-      const DeepCollectionEquality().hash(charge));
+      const DeepCollectionEquality().hash(charge),
+      const DeepCollectionEquality().hash(paymentStatus));
 
   @JsonKey(ignore: true)
   @override
@@ -462,7 +483,8 @@ abstract class _InvestmentState extends InvestmentState {
       required List<int> durations,
       required String paymentMethod,
       required double baseAmount,
-      required ChargeObject charge}) = _$_InvestmentState;
+      required ChargeObject charge,
+      required String paymentStatus}) = _$_InvestmentState;
   const _InvestmentState._() : super._();
 
   @override
@@ -497,6 +519,8 @@ abstract class _InvestmentState extends InvestmentState {
   double get baseAmount;
   @override
   ChargeObject get charge;
+  @override
+  String get paymentStatus;
   @override
   @JsonKey(ignore: true)
   _$InvestmentStateCopyWith<_InvestmentState> get copyWith =>
