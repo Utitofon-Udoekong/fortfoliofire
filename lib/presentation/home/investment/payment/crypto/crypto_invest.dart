@@ -116,11 +116,12 @@ class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
                   ),
                   Container(
                     decoration: BoxDecoration(
+                      boxShadow: [],
                         color: const Color(0xFFF3F6F8),
-                        border: Border.all(
-                            style: BorderStyle.solid,
-                            color: kPrimaryColor,
-                            width: 2),
+                        // border: Border.all(
+                        //     style: BorderStyle.solid,
+                        //     color: kPrimaryColor,
+                        //     width: 2),
                         borderRadius: BorderRadius.circular(6.0)),
                     child: Flex(
                       direction: Axis.vertical,
