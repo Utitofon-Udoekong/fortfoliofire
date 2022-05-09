@@ -5,4 +5,8 @@ class StatusObject {
   StatusObject({this.status, this.time});
   final TransactionStatus? status;
   final DateTime? time;
+  factory StatusObject.empty() {
+    return StatusObject(
+    );
+  }
 }

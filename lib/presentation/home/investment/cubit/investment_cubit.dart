@@ -9,7 +9,7 @@ import 'package:fortfolio/domain/user/investment.dart';
 import 'package:fortfolio/domain/widgets/coinbase_commerce/charge_Object.dart';
 import 'package:fortfolio/domain/widgets/coinbase_commerce/status_Object.dart';
 import 'package:fortfolio/infrastructure/auth/local_auth_api.dart';
-import 'package:fpdart/fpdart.dart';
+import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:jiffy/jiffy.dart';
@@ -106,7 +106,11 @@ class InvestmentCubit extends Cubit<InvestmentState> {
   }
 
   void startPaymentStatusSubscription() async {
-    
+    _logPaymentStatusSubscription = functionsFacade.checkChargeStatus().listen((event) {
+      event.fold(() => null, (paymentStatus) {
+        emit(state.copyWith(paymentStatus: paymentStatus));
+      });
+    });
   }
 
   void cancelCharge() async {

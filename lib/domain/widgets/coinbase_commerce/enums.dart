@@ -16,7 +16,7 @@ enum TransactionStatus {
   expired,
   unresolved,
   canceled,
-  refund_pending,
+  refundPending,
   refunded,
   none
 }

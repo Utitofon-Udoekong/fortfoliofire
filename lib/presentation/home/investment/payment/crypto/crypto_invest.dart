@@ -39,6 +39,7 @@ class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
   @override
   void initState() {
     super.initState();
+    context.read<InvestmentCubit>().startPaymentStatusSubscription();
     contextMenu = ContextMenu(
         menuItems: [
           ContextMenuItem(
