@@ -35,16 +35,13 @@ class SecurityCubit extends Cubit<SecurityState> {
 
   void getPinStatus() async {
     final sp = await SharedPreferences.getInstance();
-    String? trax_key = "";
     if(sp.containsKey("trax_key")){
-      trax_key = sp.getString("trax_key");
-      emit(state.copyWith(pinExists: true, pin: trax_key!));
+      emit(state.copyWith(pinExists: true));
       return;
     }
   }
 
   void requestReset() async {
-    
     final emailAddress = state.emailAddress;
     final reset = await authFacade.resetPassword(emailAddress: EmailAddress(emailAddress));
     reset.fold((failure) {
