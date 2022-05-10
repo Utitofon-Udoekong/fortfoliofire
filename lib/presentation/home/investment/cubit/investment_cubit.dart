@@ -7,6 +7,7 @@ import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
 import 'package:fortfolio/domain/auth/i_functions_facade.dart';
 import 'package:fortfolio/domain/user/investment.dart';
 import 'package:fortfolio/domain/widgets/coinbase_commerce/charge_Object.dart';
+import 'package:fortfolio/domain/widgets/coinbase_commerce/enums.dart';
 import 'package:fortfolio/domain/widgets/coinbase_commerce/status_Object.dart';
 import 'package:fortfolio/domain/widgets/coinbase_commerce/switch_Functions.dart';
 import 'package:fortfolio/infrastructure/auth/local_auth_api.dart';
@@ -25,7 +26,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
   final IFirestoreFacade firestoreFacade;
   final IExternalFacade externalFacade;
   final IFunctionsFacade functionsFacade;
-  StreamSubscription<Option<StatusObject>>? _logPaymentStatusSubscription;
+  StreamSubscription<Option<TransactionStatus?>>? _logPaymentStatusSubscription;
   InvestmentCubit(
       this.firestoreFacade, this.externalFacade, this.functionsFacade)
       : super(InvestmentState.initial());
@@ -106,15 +107,11 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     });
   }
 
-  String getStatus () {
-    final status = state.paymentStatus.status;
-    return getStatusFromTransaction(status: status);
-  }
-
   void startPaymentStatusSubscription() async {
     _logPaymentStatusSubscription = functionsFacade.checkChargeStatus().listen((event) {
       event.fold(() => null, (paymentStatus) {
-        emit(state.copyWith(paymentStatus: paymentStatus));
+        String status = getStatusFromTransaction(status: paymentStatus);
+        emit(state.copyWith(paymentStatus: status));
       });
     });
   }

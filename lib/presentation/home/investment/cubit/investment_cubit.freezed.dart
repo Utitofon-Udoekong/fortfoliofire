@@ -35,7 +35,7 @@ class _$InvestmentStateTearOff {
       required String paymentMethod,
       required double baseAmount,
       required ChargeObject charge,
-      required StatusObject paymentStatus}) {
+      required String paymentStatus}) {
     return _InvestmentState(
       planName: planName,
       duration: duration,
@@ -79,7 +79,7 @@ mixin _$InvestmentState {
   String get paymentMethod => throw _privateConstructorUsedError;
   double get baseAmount => throw _privateConstructorUsedError;
   ChargeObject get charge => throw _privateConstructorUsedError;
-  StatusObject get paymentStatus => throw _privateConstructorUsedError;
+  String get paymentStatus => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $InvestmentStateCopyWith<InvestmentState> get copyWith =>
@@ -108,7 +108,7 @@ abstract class $InvestmentStateCopyWith<$Res> {
       String paymentMethod,
       double baseAmount,
       ChargeObject charge,
-      StatusObject paymentStatus});
+      String paymentStatus});
 }
 
 /// @nodoc
@@ -208,7 +208,7 @@ class _$InvestmentStateCopyWithImpl<$Res>
       paymentStatus: paymentStatus == freezed
           ? _value.paymentStatus
           : paymentStatus // ignore: cast_nullable_to_non_nullable
-              as StatusObject,
+              as String,
     ));
   }
 }
@@ -237,7 +237,7 @@ abstract class _$InvestmentStateCopyWith<$Res>
       String paymentMethod,
       double baseAmount,
       ChargeObject charge,
-      StatusObject paymentStatus});
+      String paymentStatus});
 }
 
 /// @nodoc
@@ -339,7 +339,7 @@ class __$InvestmentStateCopyWithImpl<$Res>
       paymentStatus: paymentStatus == freezed
           ? _value.paymentStatus
           : paymentStatus // ignore: cast_nullable_to_non_nullable
-              as StatusObject,
+              as String,
     ));
   }
 }
@@ -400,7 +400,7 @@ class _$_InvestmentState extends _InvestmentState {
   @override
   final ChargeObject charge;
   @override
-  final StatusObject paymentStatus;
+  final String paymentStatus;
 
   @override
   String toString() {
@@ -484,7 +484,7 @@ abstract class _InvestmentState extends InvestmentState {
       required String paymentMethod,
       required double baseAmount,
       required ChargeObject charge,
-      required StatusObject paymentStatus}) = _$_InvestmentState;
+      required String paymentStatus}) = _$_InvestmentState;
   const _InvestmentState._() : super._();
 
   @override
@@ -520,7 +520,7 @@ abstract class _InvestmentState extends InvestmentState {
   @override
   ChargeObject get charge;
   @override
-  StatusObject get paymentStatus;
+  String get paymentStatus;
   @override
   @JsonKey(ignore: true)
   _$InvestmentStateCopyWith<_InvestmentState> get copyWith =>

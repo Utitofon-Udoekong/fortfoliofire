@@ -88,7 +88,7 @@ class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
 
   @override
   Widget build(BuildContext context) {
-    final status = context.watch<InvestmentCubit>().getStatus();
+    final status = context.watch<InvestmentCubit>().state.paymentStatus;
     // final status = context
     //     .select((InvestmentCubit cubit) => cubit.getStatus());
     final String paymentUrl = context

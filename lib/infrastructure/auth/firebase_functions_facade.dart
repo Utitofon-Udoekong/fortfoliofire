@@ -6,6 +6,7 @@ import 'package:dartz/dartz.dart';
 import 'package:fortfolio/domain/auth/i_external_facade.dart';
 import 'package:fortfolio/domain/auth/i_functions_facade.dart';
 import 'package:fortfolio/domain/widgets/coinbase_commerce/charge_Object.dart';
+import 'package:fortfolio/domain/widgets/coinbase_commerce/enums.dart';
 import 'package:fortfolio/domain/widgets/coinbase_commerce/status_Checks.dart';
 import 'package:fortfolio/domain/widgets/coinbase_commerce/status_Object.dart';
 import 'package:injectable/injectable.dart';
@@ -41,9 +42,9 @@ class FirebaseFunctionsFacade implements IFunctionsFacade {
   }
 
   @override
-  Stream<Option<StatusObject>> checkChargeStatus() async* {
-    final StreamController<Option<StatusObject>> streamController =
-        StreamController<Option<StatusObject>>();
+  Stream<Option<TransactionStatus?>> checkChargeStatus() async* {
+    final StreamController<Option<TransactionStatus?>> streamController =
+        StreamController<Option<TransactionStatus?>>();
     final url = Uri.https(
       'us-central1-fortfolio-app.cloudfunctions.net',
       '/webhookHandler',
@@ -59,7 +60,7 @@ class FirebaseFunctionsFacade implements IFunctionsFacade {
           await externalFacade.getChargeEvent(id: eventId);
       chargeObjectOption.fold((l) => null, (r) => chargeObject = r);
       StatusObject status = StatusCheck.checkChargeStatus(chargeObject);
-      streamController.add(some(status));
+      streamController.add(some(status.status));
     } else {
       streamController.add(none());
     }
