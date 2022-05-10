@@ -8,6 +8,7 @@ import 'package:fortfolio/domain/auth/i_functions_facade.dart';
 import 'package:fortfolio/domain/user/investment.dart';
 import 'package:fortfolio/domain/widgets/coinbase_commerce/charge_Object.dart';
 import 'package:fortfolio/domain/widgets/coinbase_commerce/status_Object.dart';
+import 'package:fortfolio/domain/widgets/coinbase_commerce/switch_Functions.dart';
 import 'package:fortfolio/infrastructure/auth/local_auth_api.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -103,6 +104,11 @@ class InvestmentCubit extends Cubit<InvestmentState> {
       emit(state.copyWith(isLoading: false));
       emit(state.copyWith(charge: ChargeObject.fromJson(charge)));
     });
+  }
+
+  String getStatus () {
+    final status = state.paymentStatus.status;
+    return getStatusFromTransaction(status: status);
   }
 
   void startPaymentStatusSubscription() async {

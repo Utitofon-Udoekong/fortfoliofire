@@ -88,6 +88,8 @@ class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
 
   @override
   Widget build(BuildContext context) {
+    final status = context
+        .select((InvestmentCubit cubit) => cubit.getStatus());
     final String paymentUrl = context
         .select((InvestmentCubit cubit) => cubit.state.charge.hostedUrl);
     return Scaffold(
@@ -114,6 +116,13 @@ class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
                   Text(
                     "Invest With Crypto",
                     style: titleText,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    status,
+                    style: subTitle,
                   ),
                   const SizedBox(
                     height: 40,

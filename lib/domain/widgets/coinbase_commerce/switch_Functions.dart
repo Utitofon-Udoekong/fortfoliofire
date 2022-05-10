@@ -55,3 +55,28 @@ String getCurrency([CurrencyType? type, String? optionalCurrency]) {
       return optionalCurrency!;
   }
 }
+
+String getStatusFromTransaction({TransactionStatus? status}){
+  switch (status) {
+    case TransactionStatus.new_:
+      return "NEW";
+    case TransactionStatus.pending:
+      return "PENDING";
+    case TransactionStatus.completed:
+      return "COMPLETED";
+    case TransactionStatus.canceled:
+      return "CANCELED";
+    case TransactionStatus.expired:
+      return "EXPIRED";
+    case TransactionStatus.refundPending:
+      return "REFUND PENDING";
+    case TransactionStatus.refunded:
+      return "REFUNDED";
+    case TransactionStatus.unresolved:
+      return "UNRESOLVED";
+    case TransactionStatus.resolved:
+      return "RESOLVED";
+    default:
+      return "PENDING";
+  }
+}
