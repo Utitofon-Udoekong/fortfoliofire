@@ -20,12 +20,16 @@ class _$SecurityStateTearOff {
 
   _SecurityState call(
       {required String emailAddress,
+      required String pin,
       required bool showSnackbar,
+      required bool pinExists,
       required String failure,
       required String success}) {
     return _SecurityState(
       emailAddress: emailAddress,
+      pin: pin,
       showSnackbar: showSnackbar,
+      pinExists: pinExists,
       failure: failure,
       success: success,
     );
@@ -38,7 +42,9 @@ const $SecurityState = _$SecurityStateTearOff();
 /// @nodoc
 mixin _$SecurityState {
   String get emailAddress => throw _privateConstructorUsedError;
+  String get pin => throw _privateConstructorUsedError;
   bool get showSnackbar => throw _privateConstructorUsedError;
+  bool get pinExists => throw _privateConstructorUsedError;
   String get failure => throw _privateConstructorUsedError;
   String get success => throw _privateConstructorUsedError;
 
@@ -53,7 +59,12 @@ abstract class $SecurityStateCopyWith<$Res> {
           SecurityState value, $Res Function(SecurityState) then) =
       _$SecurityStateCopyWithImpl<$Res>;
   $Res call(
-      {String emailAddress, bool showSnackbar, String failure, String success});
+      {String emailAddress,
+      String pin,
+      bool showSnackbar,
+      bool pinExists,
+      String failure,
+      String success});
 }
 
 /// @nodoc
@@ -68,7 +79,9 @@ class _$SecurityStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? emailAddress = freezed,
+    Object? pin = freezed,
     Object? showSnackbar = freezed,
+    Object? pinExists = freezed,
     Object? failure = freezed,
     Object? success = freezed,
   }) {
@@ -77,9 +90,17 @@ class _$SecurityStateCopyWithImpl<$Res>
           ? _value.emailAddress
           : emailAddress // ignore: cast_nullable_to_non_nullable
               as String,
+      pin: pin == freezed
+          ? _value.pin
+          : pin // ignore: cast_nullable_to_non_nullable
+              as String,
       showSnackbar: showSnackbar == freezed
           ? _value.showSnackbar
           : showSnackbar // ignore: cast_nullable_to_non_nullable
+              as bool,
+      pinExists: pinExists == freezed
+          ? _value.pinExists
+          : pinExists // ignore: cast_nullable_to_non_nullable
               as bool,
       failure: failure == freezed
           ? _value.failure
@@ -101,7 +122,12 @@ abstract class _$SecurityStateCopyWith<$Res>
       __$SecurityStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String emailAddress, bool showSnackbar, String failure, String success});
+      {String emailAddress,
+      String pin,
+      bool showSnackbar,
+      bool pinExists,
+      String failure,
+      String success});
 }
 
 /// @nodoc
@@ -118,7 +144,9 @@ class __$SecurityStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? emailAddress = freezed,
+    Object? pin = freezed,
     Object? showSnackbar = freezed,
+    Object? pinExists = freezed,
     Object? failure = freezed,
     Object? success = freezed,
   }) {
@@ -127,9 +155,17 @@ class __$SecurityStateCopyWithImpl<$Res>
           ? _value.emailAddress
           : emailAddress // ignore: cast_nullable_to_non_nullable
               as String,
+      pin: pin == freezed
+          ? _value.pin
+          : pin // ignore: cast_nullable_to_non_nullable
+              as String,
       showSnackbar: showSnackbar == freezed
           ? _value.showSnackbar
           : showSnackbar // ignore: cast_nullable_to_non_nullable
+              as bool,
+      pinExists: pinExists == freezed
+          ? _value.pinExists
+          : pinExists // ignore: cast_nullable_to_non_nullable
               as bool,
       failure: failure == freezed
           ? _value.failure
@@ -148,7 +184,9 @@ class __$SecurityStateCopyWithImpl<$Res>
 class _$_SecurityState extends _SecurityState {
   const _$_SecurityState(
       {required this.emailAddress,
+      required this.pin,
       required this.showSnackbar,
+      required this.pinExists,
       required this.failure,
       required this.success})
       : super._();
@@ -156,7 +194,11 @@ class _$_SecurityState extends _SecurityState {
   @override
   final String emailAddress;
   @override
+  final String pin;
+  @override
   final bool showSnackbar;
+  @override
+  final bool pinExists;
   @override
   final String failure;
   @override
@@ -164,7 +206,7 @@ class _$_SecurityState extends _SecurityState {
 
   @override
   String toString() {
-    return 'SecurityState(emailAddress: $emailAddress, showSnackbar: $showSnackbar, failure: $failure, success: $success)';
+    return 'SecurityState(emailAddress: $emailAddress, pin: $pin, showSnackbar: $showSnackbar, pinExists: $pinExists, failure: $failure, success: $success)';
   }
 
   @override
@@ -174,8 +216,10 @@ class _$_SecurityState extends _SecurityState {
             other is _SecurityState &&
             const DeepCollectionEquality()
                 .equals(other.emailAddress, emailAddress) &&
+            const DeepCollectionEquality().equals(other.pin, pin) &&
             const DeepCollectionEquality()
                 .equals(other.showSnackbar, showSnackbar) &&
+            const DeepCollectionEquality().equals(other.pinExists, pinExists) &&
             const DeepCollectionEquality().equals(other.failure, failure) &&
             const DeepCollectionEquality().equals(other.success, success));
   }
@@ -184,7 +228,9 @@ class _$_SecurityState extends _SecurityState {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(emailAddress),
+      const DeepCollectionEquality().hash(pin),
       const DeepCollectionEquality().hash(showSnackbar),
+      const DeepCollectionEquality().hash(pinExists),
       const DeepCollectionEquality().hash(failure),
       const DeepCollectionEquality().hash(success));
 
@@ -197,7 +243,9 @@ class _$_SecurityState extends _SecurityState {
 abstract class _SecurityState extends SecurityState {
   const factory _SecurityState(
       {required String emailAddress,
+      required String pin,
       required bool showSnackbar,
+      required bool pinExists,
       required String failure,
       required String success}) = _$_SecurityState;
   const _SecurityState._() : super._();
@@ -205,7 +253,11 @@ abstract class _SecurityState extends SecurityState {
   @override
   String get emailAddress;
   @override
+  String get pin;
+  @override
   bool get showSnackbar;
+  @override
+  bool get pinExists;
   @override
   String get failure;
   @override

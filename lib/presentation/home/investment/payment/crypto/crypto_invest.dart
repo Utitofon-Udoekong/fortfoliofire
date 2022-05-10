@@ -88,8 +88,9 @@ class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
 
   @override
   Widget build(BuildContext context) {
-    final status = context
-        .select((InvestmentCubit cubit) => cubit.getStatus());
+    final status = context.watch<InvestmentCubit>().getStatus();
+    // final status = context
+    //     .select((InvestmentCubit cubit) => cubit.getStatus());
     final String paymentUrl = context
         .select((InvestmentCubit cubit) => cubit.state.charge.hostedUrl);
     return Scaffold(
@@ -267,6 +268,7 @@ class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
                       ),
                     ],
                   ),
+
                 ],
               ),
             )),
