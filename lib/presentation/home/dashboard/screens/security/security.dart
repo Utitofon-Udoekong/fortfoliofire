@@ -34,7 +34,10 @@ class Security extends StatelessWidget {
               height: 40,
             ),
             const CustomIconButton(title: 'Change your password', page: ChangePasswordRoute()),
-            const CustomIconButton(title: 'Change your password', page: ChangePasswordRoute()),
+            const SizedBox(
+              height: 10,
+            ),
+            const CustomIconButton(title: 'Set pin', page: SetPinRoute()),
           ],
         ),
       ),

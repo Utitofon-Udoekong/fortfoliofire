@@ -26,8 +26,10 @@ class SecurityCubit extends Cubit<SecurityState> {
     final pin = state.pin;
     if(!sp.containsKey("trax_key")){
       sp.setString("trax_key",pin);
-      emit(state.copyWith(pinExists: true, pin: ""));
-      return;
+      emit(state.copyWith(pinExists: true, pin: "", success: "Pin saved successfully"));
+    }else {
+      sp.setString("trax_key",pin);
+      emit(state.copyWith(pinExists: true, pin: "", success: "Pin updated successfully"));
     }
   }
 
