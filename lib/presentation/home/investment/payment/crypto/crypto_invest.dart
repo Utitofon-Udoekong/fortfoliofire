@@ -130,106 +130,90 @@ class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      boxShadow: const [
-                        BoxShadow(
-                      color: Color.fromARGB(92, 3, 87, 143),
-                      offset: Offset(
-                        5.0,
-                        5.0,
-                      ),
-                      blurRadius: 10.0,
-                      spreadRadius: 2.0,
-                    ), 
-                    BoxShadow(
-                      color: Colors.white,
-                      offset: Offset(0.0, 0.0),
-                      blurRadius: 0.0,
-                      spreadRadius: 0.0,
-                    ), 
-                      ],
                         color: const Color(0xFFF3F6F8),
+                        border: Border.all(
+                            style: BorderStyle.solid,
+                            color: kPrimaryColor,
+                            width: 2),
                         borderRadius: BorderRadius.circular(6.0)),
-                    child: Flex(
-                      direction: Axis.vertical,
-                      children: [Expanded(
-                          child: InAppWebView(
-                            key: webViewKey,
-                            // contextMenu: contextMenu,
-                            initialUrlRequest: URLRequest(url: Uri.parse(paymentUrl)),
-                            // initialFile: "assets/index.html",
-                            initialUserScripts: UnmodifiableListView<UserScript>([]),
-                            initialOptions: options,
-                            pullToRefreshController: pullToRefreshController,
-                            onWebViewCreated: (controller) {
-                              webViewController = controller;
-                            },
-                            onLoadStart: (controller, url) {
-                              setState(() {
-                                this.url = url.toString();
-                                urlController.text = this.url;
-                              });
-                            },
-                            androidOnPermissionRequest:
-                                (controller, origin, resources) async {
-                              return PermissionRequestResponse(
-                                  resources: resources,
-                                  action: PermissionRequestResponseAction.GRANT);
-                            },
-                            shouldOverrideUrlLoading:
-                                (controller, navigationAction) async {
-                              var uri = navigationAction.request.url!;
-                                
-                              if (![
-                                "http",
-                                "https",
-                                "file",
-                                "chrome",
-                                "data",
-                                "javascript",
-                                "about"
-                              ].contains(uri.scheme)) {
-                                if (await canLaunchUrl(Uri.parse(url))) {
-                                  // Launch the App
-                                  await launchUrl(
-                                    Uri.parse(url),
-                                  );
-                                  // and cancel the request
-                                  return NavigationActionPolicy.CANCEL;
+                    child: Expanded(
+                            child: InAppWebView(
+                              key: webViewKey,
+                              // contextMenu: contextMenu,
+                              initialUrlRequest: URLRequest(url: Uri.parse(paymentUrl)),
+                              // initialFile: "assets/index.html",
+                              initialUserScripts: UnmodifiableListView<UserScript>([]),
+                              initialOptions: options,
+                              pullToRefreshController: pullToRefreshController,
+                              onWebViewCreated: (controller) {
+                                webViewController = controller;
+                              },
+                              onLoadStart: (controller, url) {
+                                setState(() {
+                                  this.url = url.toString();
+                                  urlController.text = this.url;
+                                });
+                              },
+                              androidOnPermissionRequest:
+                                  (controller, origin, resources) async {
+                                return PermissionRequestResponse(
+                                    resources: resources,
+                                    action: PermissionRequestResponseAction.GRANT);
+                              },
+                              shouldOverrideUrlLoading:
+                                  (controller, navigationAction) async {
+                                var uri = navigationAction.request.url!;
+                                  
+                                if (![
+                                  "http",
+                                  "https",
+                                  "file",
+                                  "chrome",
+                                  "data",
+                                  "javascript",
+                                  "about"
+                                ].contains(uri.scheme)) {
+                                  if (await canLaunchUrl(Uri.parse(url))) {
+                                    // Launch the App
+                                    await launchUrl(
+                                      Uri.parse(url),
+                                    );
+                                    // and cancel the request
+                                    return NavigationActionPolicy.CANCEL;
+                                  }
                                 }
-                              }
-                                
-                              return NavigationActionPolicy.ALLOW;
-                            },
-                            onLoadStop: (controller, url) async {
-                              pullToRefreshController.endRefreshing();
-                              setState(() {
-                                this.url = url.toString();
-                                urlController.text = this.url;
-                              });
-                            },
-                            onLoadError: (controller, url, code, message) {
-                              pullToRefreshController.endRefreshing();
-                            },
-                            onProgressChanged: (controller, progress) {
-                              if (progress == 100) {
+                                  
+                                return NavigationActionPolicy.ALLOW;
+                              },
+                              onLoadStop: (controller, url) async {
                                 pullToRefreshController.endRefreshing();
-                              }
-                              setState(() {
-                                this.progress = progress / 100;
-                                urlController.text = url;
-                              });
-                            },
-                            onUpdateVisitedHistory: (controller, url, androidIsReload) {
-                              setState(() {
-                                this.url = url.toString();
-                                urlController.text = this.url;
-                              });
-                            },
-                            onConsoleMessage: (controller, consoleMessage) {
-                              print(consoleMessage);
-                            },
-                          )),]
-                    ),
+                                setState(() {
+                                  this.url = url.toString();
+                                  urlController.text = this.url;
+                                });
+                              },
+                              onLoadError: (controller, url, code, message) {
+                                pullToRefreshController.endRefreshing();
+                              },
+                              onProgressChanged: (controller, progress) {
+                                if (progress == 100) {
+                                  pullToRefreshController.endRefreshing();
+                                }
+                                setState(() {
+                                  this.progress = progress / 100;
+                                  urlController.text = url;
+                                });
+                              },
+                              onUpdateVisitedHistory: (controller, url, androidIsReload) {
+                                setState(() {
+                                  this.url = url.toString();
+                                  urlController.text = this.url;
+                                });
+                              },
+                              onConsoleMessage: (controller, consoleMessage) {
+                                print(consoleMessage);
+                              },
+                            )),
                   ),
                   Container(
                       padding: const EdgeInsets.all(10.0),
