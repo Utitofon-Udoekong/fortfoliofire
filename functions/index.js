@@ -131,8 +131,8 @@ async function handle3MonthsInvestmentTask(data, context) {
 //     .onRun((context) => await handle12MonthsInvestmentTask({ scheduled: true }, context));
 // exports.scheduleInvestmentFor6Months = functions.pubsub.schedule('0 0 * */6 *')
 //     .onRun((context) => await handle12MonthsInvestmentTask({ scheduled: true }, context));
-// exports.scheduleInvestmentFor3Months = functions.pubsub.schedule('0 0 * */3 *')
-//     .onRun((context) => await handle3MonthsInvestmentTask({ scheduled: true }, context));
+exports.scheduleInvestmentFor3Months = functions.pubsub.schedule('0 0 * */3 *')
+    .onRun(async (context) => await handle3MonthsInvestmentTask({}, context));
 
 // exports.invest12Months = functions.https.onCall(handle12MonthsInvestmentTask);
 // exports.invest6Months = functions.https.onCall(handle6MonthsInvestmentTask);
@@ -149,24 +149,24 @@ exports.invest3Months = functions.https.onCall(handle3MonthsInvestmentTask);
 // })
 
 
-exports.createCharge = functions.https.onRequest((req, res) => {
-    cors(req, res, async () => {
-      const chargeData = {
-        name: "Fort Crypto",
-        description: "Investment",
-        local_price: {
-          currency: 'USD',
-          amount: req.query.amount
-        },
-        pricing_type: 'fixed_price',
-      };
+// exports.createCharge = functions.https.onRequest((req, res) => {
+//     cors(req, res, async () => {
+//       const chargeData = {
+//         name: "Fort Crypto",
+//         description: "Investment",
+//         local_price: {
+//           currency: 'USD',
+//           amount: req.query.amount
+//         },
+//         pricing_type: 'fixed_price',
+//       };
   
-      const charge = await Charge.create(chargeData);
-      functions.logger.log(charge)
+//       const charge = await Charge.create(chargeData);
+//       functions.logger.log(charge)
   
-      res.send(charge);
-    });
-  });
+//       res.send(charge);
+//     });
+//   });
 
   exports.webhookHandler = functions.https.onRequest(async (req, res) => {
     const rawBody = req.rawBody;
