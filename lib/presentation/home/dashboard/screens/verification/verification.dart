@@ -85,6 +85,7 @@ class VerificationPage extends StatelessWidget {
                             visible: isRejected,
                             child: Container(
                               padding: const EdgeInsets.all(12.0),
+                              width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10.0),
                                   color:
