@@ -8,14 +8,16 @@ import 'package:fortfolio/domain/auth/i_functions_facade.dart';
 import 'package:fortfolio/domain/user/investment.dart';
 import 'package:fortfolio/domain/widgets/coinbase_commerce/charge_Object.dart';
 import 'package:fortfolio/domain/widgets/coinbase_commerce/enums.dart';
-import 'package:fortfolio/domain/widgets/coinbase_commerce/status_Object.dart';
 import 'package:fortfolio/domain/widgets/coinbase_commerce/switch_Functions.dart';
 import 'package:fortfolio/infrastructure/auth/local_auth_api.dart';
 import 'package:dartz/dartz.dart';
+import 'package:fortfolio/injection.dart';
+import 'package:fortfolio/presentation/home/dashboard/screens/security/cubit/security_cubit.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:nanoid/nanoid.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 
 part 'investment_state.dart';
@@ -26,10 +28,13 @@ class InvestmentCubit extends Cubit<InvestmentState> {
   final IFirestoreFacade firestoreFacade;
   final IExternalFacade externalFacade;
   final IFunctionsFacade functionsFacade;
+  late final SecurityCubit securityCubit;
   StreamSubscription<Option<TransactionStatus?>>? _logPaymentStatusSubscription;
   InvestmentCubit(
       this.firestoreFacade, this.externalFacade, this.functionsFacade)
-      : super(InvestmentState.initial());
+      : super(InvestmentState.initial()){
+        securityCubit = getIt<SecurityCubit>();
+      }
 
   void exchangeTypeChanged({required String exchangeType}) {
     emit(state.copyWith(exchangeType: exchangeType));
@@ -121,7 +126,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     await externalFacade.cancelCharge(id: id);
   }
 
-  void authenticatePayment() async {
+  void authenticateBiometricPayment() async {
     bool canCheckBiometrics = await LocalAuthApi.hasBiometrics();
     if (Platform.isAndroid) {
       if (canCheckBiometrics) {
@@ -132,6 +137,16 @@ class InvestmentCubit extends Cubit<InvestmentState> {
           iHavePaid();
         }
       }
+    }
+  }
+
+  void auhenticatePinPayment({required String pin}) async {
+    final sp = await SharedPreferences.getInstance();
+    final traxPin = sp.getString("trax_key");
+    if(pin == traxPin){
+      iHavePaid();
+    }else{
+      emit(state.copyWith(failure: "Incorrect Transaction Pin"));
     }
   }
 

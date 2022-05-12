@@ -18,6 +18,7 @@ import 'package:fortfolio/presentation/home/dashboard/screens/profile/confirm_ph
 import 'package:fortfolio/presentation/home/dashboard/screens/profile/profile.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/security/change_password.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/security/security.dart';
+import 'package:fortfolio/presentation/home/dashboard/screens/security/set_engine.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/security/set_pin.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/support/faq.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/support/support.dart';
@@ -80,6 +81,7 @@ import '../home/wallet/investment/fortshield_info.dart';
   AutoRoute( page: Security),
   AutoRoute( page: ChangePassword),
   AutoRoute( page: SetPin),
+  AutoRoute( page: SetPinEngine),
   AutoRoute( page: AddBank),
   AutoRoute( page: VerifyBank),
   AutoRoute( page: AddCryptoWallet),

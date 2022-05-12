@@ -1,9 +1,13 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
+import 'package:fortfolio/domain/widgets/otp_field/otp_box_style.dart';
+import 'package:fortfolio/domain/widgets/otp_field/otp_field_style.dart';
+import 'package:fortfolio/domain/widgets/otp_field/otp_text_field.dart';
 import 'package:fortfolio/presentation/home/investment/cubit/investment_cubit.dart';
 import 'package:intl/intl.dart';
 
@@ -149,7 +153,7 @@ class NairaAccount extends StatelessWidget {
                   context
                       .read<InvestmentCubit>()
                       .bankAccountTypeChanged(bankAccountType: "Naira");
-                  context.read<InvestmentCubit>().authenticatePayment();
+                  context.router.push();
                 }),
           )
         ],

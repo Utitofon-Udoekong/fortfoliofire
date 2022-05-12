@@ -37,7 +37,7 @@ class Security extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            const CustomIconButton(title: 'Set pin', page: SetPinRoute()),
+            const CustomIconButton(title: 'Set pin', page: SetPinEngineRoute()),
           ],
         ),
       ),
