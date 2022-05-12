@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -15,11 +16,13 @@ import 'package:fortfolio/infrastructure/auth/dto/bank_address/bank_address_dto.
 import 'package:fortfolio/infrastructure/auth/dto/crypto_address/crypto_address.dart';
 import 'package:fortfolio/infrastructure/auth/dto/investment/investment_dto.dart';
 import 'package:fortfolio/infrastructure/auth/dto/withdrawal/withdrawal_dto.dart';
+import 'package:fortfolio/infrastructure/auth/local_auth_api.dart';
 import 'package:fortfolio/injection.dart';
 import 'package:fortfolio/utils/utils.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:nanoid/nanoid.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 
 part 'wallet_state.dart';
@@ -441,6 +444,30 @@ class WalletCubit extends Cubit<WalletState> {
       });
     } catch (e) {
       log(e.toString());
+    }
+  }
+
+  void authenticateBiometricPayment() async {
+    bool canCheckBiometrics = await LocalAuthApi.hasBiometrics();
+    if (Platform.isAndroid) {
+      if (canCheckBiometrics) {
+        bool didauthenticate = await LocalAuthApi.authenticate(localizedReason: 'Scan fingerprint to invest');
+        if (didauthenticate != true) {
+          emit(state.copyWith(failure: "Authenticate to continue"));
+        } else {
+          makeWithdrawalTransaction();
+        }
+      }
+    }
+  }
+
+  void auhenticatePinPayment({required String pin}) async {
+    final sp = await SharedPreferences.getInstance();
+    final traxPin = sp.getString("trax_key");
+    if(pin == traxPin){
+      makeWithdrawalTransaction();
+    }else{
+      emit(state.copyWith(failure: "Incorrect Transaction Pin"));
     }
   }
 

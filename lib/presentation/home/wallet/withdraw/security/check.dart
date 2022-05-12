@@ -5,37 +5,37 @@ import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/domain/widgets/loading_view.dart';
 import 'package:fortfolio/domain/widgets/num_pad.dart';
-import 'package:fortfolio/presentation/home/investment/cubit/investment_cubit.dart';
+import 'package:fortfolio/presentation/home/wallet/cubit/wallet_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 
-class CheckInvestment extends StatelessWidget {
-  const CheckInvestment({Key? key}) : super(key: key);
+class CheckWithdrawal extends StatelessWidget {
+  const CheckWithdrawal({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final TextEditingController _myController = TextEditingController();
     return MultiBlocListener(
       listeners: [
-        BlocListener<InvestmentCubit, InvestmentState>(
+        BlocListener<WalletCubit, WalletState>(
           listenWhen: (previous, current) =>
               previous.failure != current.failure && current.failure.isNotEmpty,
           listener: (context, state) {
             CustomSnackbar.showSnackBar(context, state.failure, true);
           },
         ),
-        BlocListener<InvestmentCubit, InvestmentState>(
+        BlocListener<WalletCubit, WalletState>(
           listenWhen: (previous, current) =>
               previous.success != current.success && current.success.isNotEmpty,
           listener: (context, state) {
             CustomSnackbar.showSnackBar(context, state.success, false);
-            context.router.push(const InvestmentSuccessRoute());
+            context.router.push(const WithdrawalSuccessRoute());
           },
         ),
       ],
       child: Scaffold(
-        body: BlocSelector<InvestmentCubit, InvestmentState, bool>(
+        body: BlocSelector<WalletCubit, WalletState, bool>(
           selector: (state) {
-            return state.isLoading;
+            return state.loading;
           },
           builder: (context, isLoading) {
             if(isLoading){
@@ -90,11 +90,11 @@ class CheckInvestment extends StatelessWidget {
                       },
                       // do something with the input numbers
                       onSubmit: () => context
-                          .read<InvestmentCubit>()
+                          .read<WalletCubit>()
                           .auhenticatePinPayment(pin: _myController.text),
                      
                       fingerPrint: () => context
-                          .read<InvestmentCubit>()
+                          .read<WalletCubit>()
                           .authenticateBiometricPayment(),
                     ),
                   ],
