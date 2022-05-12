@@ -9,6 +9,7 @@ import 'package:fortfolio/domain/widgets/otp_field/otp_box_style.dart';
 import 'package:fortfolio/domain/widgets/otp_field/otp_field_style.dart';
 import 'package:fortfolio/domain/widgets/otp_field/otp_text_field.dart';
 import 'package:fortfolio/presentation/home/investment/cubit/investment_cubit.dart';
+import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:intl/intl.dart';
 
 class NairaAccount extends StatelessWidget {

@@ -6,6 +6,7 @@ import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/presentation/home/investment/cubit/investment_cubit.dart';
+import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:intl/intl.dart';
 
 class DomiciliaryAccount extends StatelessWidget {
