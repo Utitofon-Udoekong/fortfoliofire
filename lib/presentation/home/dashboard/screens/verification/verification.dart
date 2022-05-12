@@ -85,6 +85,7 @@ class VerificationPage extends StatelessWidget {
                             visible: isRejected,
                             child: Container(
                               padding: const EdgeInsets.all(12.0),
+                              margin: const EdgeInsets.symmetric(vertical: 10.0),
                               width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10.0),
@@ -105,7 +106,7 @@ class VerificationPage extends StatelessWidget {
                         height: 20,
                       ),
                       Text(
-                        "Verify Account",
+                        context.read<VerificationCubit>().state.isRejected ? "Verify Again" : "Verify Account",
                         style: titleText,
                       ),
                       const SizedBox(
