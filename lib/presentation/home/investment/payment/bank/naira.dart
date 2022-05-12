@@ -153,7 +153,7 @@ class NairaAccount extends StatelessWidget {
                   context
                       .read<InvestmentCubit>()
                       .bankAccountTypeChanged(bankAccountType: "Naira");
-                  context.router.push();
+                  context.router.push(const CheckInvestmentRoute());
                 }),
           )
         ],
