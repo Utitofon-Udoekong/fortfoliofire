@@ -56,33 +56,30 @@ class CheckInvestment extends StatelessWidget {
                       child: const Icon(Icons.close),
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     Text(
                       "Enter Transaction Pin",
                       style: titleText.copyWith(color: kBlackColor),
                     ),
                     const SizedBox(
-                      height: 40,
+                      height: 20,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: SizedBox(
-                        height: 70,
-                        child: Center(
-                            child: TextField(
-                          controller: _myController,
-                          textAlign: TextAlign.center,
-                          showCursor: false,
-                          style: const TextStyle(fontSize: 40),
-                          // Disable the default soft keybaord
-                          keyboardType: TextInputType.none,
-                        )),
-                      ),
+                    SizedBox(
+                      height: 60,
+                      child: Center(
+                          child: TextField(
+                        controller: _myController,
+                        textAlign: TextAlign.center,
+                        showCursor: false,
+                        style: const TextStyle(fontSize: 35),
+                        // Disable the default soft keybaord
+                        keyboardType: TextInputType.none,
+                      )),
                     ),
                     // implement the custom NumPad
                     NumPad(
-                      buttonSize: 75,
+                      buttonSize: 60,
                       controller: _myController,
                       delete: () {
                         _myController.text = _myController.text
