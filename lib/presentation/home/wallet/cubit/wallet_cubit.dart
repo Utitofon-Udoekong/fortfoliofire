@@ -454,6 +454,7 @@ class WalletCubit extends Cubit<WalletState> {
         bool didauthenticate = await LocalAuthApi.authenticate(localizedReason: 'Scan fingerprint to invest');
         if (didauthenticate != true) {
           emit(state.copyWith(failure: "Authenticate to continue"));
+          Future.delayed(const Duration(seconds: 1), () =>emit(state.copyWith(failure: "")));
         } else {
           makeWithdrawalTransaction();
         }
@@ -468,6 +469,7 @@ class WalletCubit extends Cubit<WalletState> {
       makeWithdrawalTransaction();
     }else{
       emit(state.copyWith(failure: "Incorrect Transaction Pin"));
+      Future.delayed(const Duration(seconds: 1), () =>emit(state.copyWith(failure: "")));
     }
   }
 

@@ -164,7 +164,6 @@ exports.invest3Months = functions.https.onCall(async (data, context) =>{
 //     const date =  new Date()
 //     const today = date.toLocaleString()
     
-    
 // })
 
 

@@ -84,13 +84,18 @@ class CheckInvestment extends StatelessWidget {
                     NumPad(
                       buttonSize: 60,
                       controller: _myController,
-                      onSubmit: () => context
+                      onSubmit: () {
+                        context
                           .read<InvestmentCubit>()
-                          .auhenticatePinPayment(pin: _myController.text),
-                     
-                      fingerPrint: () => context
+                          .auhenticatePinPayment(pin: _myController.text);
+                        _myController.clear();
+                      },
+                      fingerPrint: () {
+                        context
                           .read<InvestmentCubit>()
-                          .authenticateBiometricPayment(),
+                          .authenticateBiometricPayment();
+                        _myController.clear();
+                      },
                     ),
                   ],
                 ),
