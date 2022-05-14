@@ -127,16 +127,16 @@ class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
                 const SizedBox(
                   height: 40,
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                      color: const Color(0xFFF3F6F8),
-                      border: Border.all(
-                          style: BorderStyle.solid,
-                          color: kPrimaryColor,
-                          width: 2),
-                      borderRadius: BorderRadius.circular(6.0)),
-                  child: Expanded(
-                      child: InAppWebView(
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: const Color(0xFFF3F6F8),
+                        border: Border.all(
+                            style: BorderStyle.solid,
+                            color: kPrimaryColor,
+                            width: 2),
+                        borderRadius: BorderRadius.circular(6.0)),
+                    child: InAppWebView(
                     key: webViewKey,
                     // contextMenu: contextMenu,
                     initialUrlRequest: URLRequest(url: Uri.parse(paymentUrl)),
@@ -213,7 +213,8 @@ class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
                     onConsoleMessage: (controller, consoleMessage) {
                       print(consoleMessage);
                     },
-                  )),
+                  ),
+                  ),
                 ),
                 Container(
                     padding: const EdgeInsets.all(10.0),
