@@ -48,15 +48,12 @@ class CheckWithdrawal extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const SizedBox(
-                      height: 20,
-                    ),
                     InkWell(
                       onTap: () => context.router.pop(),
                       child: const Icon(Icons.close),
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 20,
                     ),
                     Text(
                       "Enter Transaction Pin",
@@ -75,17 +72,18 @@ class CheckWithdrawal extends StatelessWidget {
                         style: const TextStyle(fontSize: 35),
                         // Disable the default soft keybaord
                         keyboardType: TextInputType.none,
+                        decoration: InputDecoration(
+                          suffix: IconButton(onPressed: () {
+                        _myController.text = _myController.text
+                            .substring(0, _myController.text.length - 1);
+                      }, icon: const Icon(Icons.backspace, color: kPrimaryColor))
+                        ),
                       )),
                     ),
                     // implement the custom NumPad
                     NumPad(
                       buttonSize: 60,
                       controller: _myController,
-                      delete: () {
-                        _myController.text = _myController.text
-                            .substring(0, _myController.text.length - 1);
-                      },
-                      // do something with the input numbers
                       onSubmit: () => context
                           .read<WalletCubit>()
                           .auhenticatePinPayment(pin: _myController.text),

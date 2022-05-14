@@ -6,14 +6,12 @@ import 'package:fortfolio/domain/constants/theme.dart';
 class NumPad extends StatelessWidget {
   final double buttonSize;
   final TextEditingController controller;
-  final Function delete;
   final Function onSubmit;
   final Function fingerPrint;
 
   const NumPad({
     Key? key,
     this.buttonSize = 70,
-    required this.delete,
     required this.onSubmit,
     required this.fingerPrint,
     required this.controller,
@@ -98,14 +96,6 @@ class NumPad extends StatelessWidget {
               onPressed: () => fingerPrint(),
               icon: const Icon(
                 Icons.fingerprint,
-                color: iconColor,
-              ),
-              iconSize: buttonSize,
-            ),
-            IconButton(
-              onPressed: () => delete(),
-              icon: const Icon(
-                Icons.backspace,
                 color: iconColor,
               ),
               iconSize: buttonSize,

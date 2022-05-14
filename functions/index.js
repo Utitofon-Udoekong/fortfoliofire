@@ -1,12 +1,14 @@
 require('dotenv').config()
-const functions = require("firebase-functions");
+const functions = require("firebase-functions/v2");
 const admin = require("firebase-admin");
-const { response } = require("express");
-admin.initializeApp(functions.config().functions);
-const firestore = admin.firestore()
-const cors = require('cors')({ origin: '*' });
+// const { response } = require("express");
+const app = admin.initializeApp(functions.config().functions);
+const {getFirestore} = require("firebase-admin/firestore")
+const firestore = getFirestore(app)
+// const cors = require('cors')({ origin: '*' });
 
 const { Client, Webhook, resources } = require('coinbase-commerce-node');
+const { onMessagePublished } = require('firebase-functions/v2/pubsub');
 const coinbaseSecret = process.env.COINBASE_API_KEY;
 Client.init(coinbaseSecret);
 
@@ -136,7 +138,24 @@ exports.scheduleInvestmentFor3Months = functions.pubsub.schedule('0 0 * */3 *')
 
 // exports.invest12Months = functions.https.onCall(handle12MonthsInvestmentTask);
 // exports.invest6Months = functions.https.onCall(handle6MonthsInvestmentTask);
-exports.invest3Months = functions.https.onCall(handle3MonthsInvestmentTask);
+exports.invest3Months = functions.https.onCall(async (data, context) =>{
+  const uid = context.auth.uid
+        const docId = data.docId
+        const reference = firestore.collection("authUsers").doc(uid).collection("investments").doc(docId)
+        const documentData = reference.get()
+    
+        const amountInvested = documentData["amount"] ?? 0
+        const roi = documentData["roi"] ?? 0
+        const duration = documentData["duration"] ?? 3
+        const numberOfDays = documentData["numberOfDays"] ?? 0
+        const currentRoiForDuration = (roi * duration) / 3
+        const returnsAtEndOfDuration = currentRoiForDuration * amountInvested
+        const returnsPerDay = returnsAtEndOfDuration / numberOfDays
+    
+        return await reference.update({
+            planYield: admin.firestore.FieldValue.increment(returnsPerDay)
+        })
+});
 
 // exports.endInvestment = functions.firestore.document("/authUsers/{uid}/investments/{docId}").onCreate(async (snapshot, context) => {
 //     const documentData = snapshot.data();
