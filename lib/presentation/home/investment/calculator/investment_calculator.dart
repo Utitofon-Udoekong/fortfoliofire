@@ -2,6 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
+import 'package:intl/intl.dart';
+import 'package:jiffy/jiffy.dart';
 
 import 'cubit/calculator_cubit.dart';
 
@@ -10,6 +12,7 @@ class Calculator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final formatter = NumberFormat("#,##0.##", "en_US");
     return BlocProvider(
       create: (context) => CalculatorCubit(),
       child: Scaffold(
@@ -173,7 +176,7 @@ class Calculator extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   buildtile('Starting Amount',
-                                      '\$${state.investmentAmount}'),
+                                      '\$${formatter.format(state.investmentAmount)}'),
                                   const SizedBox(
                                     height: 7,
                                   ),
@@ -183,12 +186,12 @@ class Calculator extends StatelessWidget {
                                     height: 7,
                                   ),
                                   buildtile('Total Interest',
-                                      '\$${state.totalReturns - state.investmentAmount}'),
+                                      '\$${formatter.format(state.totalReturns - state.investmentAmount)}'),
                                   const SizedBox(
                                     height: 7,
                                   ),
                                   buildtile('Total Returns',
-                                      '\$${state.totalReturns}'),
+                                      '\$${formatter.format(state.totalReturns)}'),
                                 ],
                               );
                             },

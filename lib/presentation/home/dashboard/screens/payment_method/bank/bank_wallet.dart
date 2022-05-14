@@ -103,16 +103,19 @@ class BankAddressPage extends StatelessWidget {
             style:
                 titleText.copyWith(fontSize: 15, fontWeight: FontWeight.w600, color: kWhiteColor),
           ),
+          const SizedBox(
+            height: 8,
+          ),
           Text(
             userName,
             style: subTitle.copyWith(fontSize: 13, color: kWhiteColor),
           ),
           const SizedBox(
-            height: 15,
+            height: 8,
           ),
           Text(
             bank,
-            style: subTitle.copyWith(fontSize: 13, color: kWhiteColor),
+            style: subTitle.copyWith(fontSize: 15, color: kWhiteColor),
           ),
         ],
       ),
