@@ -365,7 +365,7 @@ class WalletTransactions extends StatelessWidget {
                 const SizedBox(
                   height: 8,
                 ),
-                Text(date.toString(),
+                Text(Jiffy(date).yMMMMEEEEdjm,
                     style: subTitle.copyWith(
                         fontSize: 12, color: const Color(0XFFD8D8D8))),
               ],
@@ -609,7 +609,7 @@ class WalletTransactions extends StatelessWidget {
                 const SizedBox(
                   height: 8,
                 ),
-                Text(date.toString(),
+                Text(Jiffy(date).yMMMMEEEEdjm,
                     style: subTitle.copyWith(
                         fontSize: 12, color: kBlackColor)),
               ],
