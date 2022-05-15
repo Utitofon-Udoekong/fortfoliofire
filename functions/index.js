@@ -131,28 +131,35 @@ async function handle3MonthsInvestmentTask(data, context) {
 // exports.scheduleInvestmentFor6Months = functions.pubsub.schedule('0 0 * */6 *')
 //     .onRun((context) => await handle12MonthsInvestmentTask({ scheduled: true }, context));
 exports.scheduleInvestmentFor3Months = functions.pubsub.schedule('0 0 * */3 *')
-  .onRun(async (context) => await handle3MonthsInvestmentTask({}, context));
+  .onRun(async (context) => {
+    const investment = firestore.collectionGroup("investments").where("status","==","Successful").get()
+    ;(await investment).docs.forEach(doc => {
+      
+    })
+  });
 
 // exports.invest12Months = functions.https.onCall(handle12MonthsInvestmentTask);
 // exports.invest6Months = functions.https.onCall(handle6MonthsInvestmentTask);
-exports.invest3Months = functions.https.onCall(async (data, context) => {
-  const uid = context.auth.uid
-  const docId = data.docId
-  const reference = firestore.collection("authUsers").doc(uid).collection("investments").doc(docId)
-  const documentData = reference.get()
+// exports.invest3Months = functions.https.onCall(async (data, context) => {
+//   const uid = context.auth.uid
+//   const docId = data.docId
+//   const reference = firestore.collection("authUsers").doc(uid).collection("investments").doc(docId)
+//   const documentData = reference.get()
 
-  const amountInvested = documentData["amount"] ?? 0
-  const roi = documentData["roi"] ?? 0
-  const duration = documentData["duration"] ?? 3
-  const numberOfDays = documentData["numberOfDays"] ?? 0
-  const currentRoiForDuration = (roi * duration) / 3
-  const returnsAtEndOfDuration = currentRoiForDuration * amountInvested
-  const returnsPerDay = returnsAtEndOfDuration / numberOfDays
+//   const amountInvested = documentData["amount"] ?? 0
+//   const roi = documentData["roi"] ?? 0
+//   const duration = documentData["duration"] ?? 3
+//   const numberOfDays = documentData["numberOfDays"] ?? 0
+//   const currentRoiForDuration = (roi * duration) / 3
+//   const returnsAtEndOfDuration = currentRoiForDuration * amountInvested
+//   const returnsPerDay = returnsAtEndOfDuration / numberOfDays
 
-  return await reference.update({
-    planYield: admin.firestore.FieldValue.increment(returnsPerDay)
-  })
-});
+//   return await reference.update({
+//     planYield: admin.firestore.FieldValue.increment(returnsPerDay)
+//   })
+// });
+
+exports.invest3Months = functions.https.onCall
 
 // exports.endInvestment = functions.firestore.document("/authUsers/{uid}/investments/{docId}").onCreate(async (snapshot, context) => {
 //     const documentData = snapshot.data();
