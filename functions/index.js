@@ -130,12 +130,44 @@ async function handle3MonthsInvestmentTask(data, context) {
 //     .onRun((context) => await handle12MonthsInvestmentTask({ scheduled: true }, context));
 // exports.scheduleInvestmentFor6Months = functions.pubsub.schedule('0 0 * */6 *')
 //     .onRun((context) => await handle12MonthsInvestmentTask({ scheduled: true }, context));
-exports.scheduleInvestmentFor3Months = functions.pubsub.schedule('0 0 * */3 *')
-  .onRun(async (context) => {
-    const investment = firestore.collectionGroup("investments").where("status","==","Successful").get()
-    ;(await investment).docs.forEach(doc => {
-      
-    })
+exports.scheduleInvestments = functions.pubsub.schedule('* * * * *')
+  .onRun((context) => {
+    const investment = firestore.collectionGroup("investments").where("status", "==", "Successful")
+    const now = new Date().toISOString()
+    return investment.get().then(querySnapshot => {
+      if (querySnapshot.empty) {
+        functions.logger.log("No Accepted investments")
+        return null;
+      } else {
+        let batch = firestore.batch();
+        querySnapshot.forEach(doc => {
+          const documentData = doc.data()
+          const amountInvested = documentData["amount"] ?? 0
+          const roi = documentData["roi"] ?? 0
+          const duration = documentData["duration"]
+          const numberOfDays = documentData["numberOfDays"]
+          const currentRoiForDuration = (roi * duration) / 12
+          const returnsAtEndOfDuration = currentRoiForDuration * amountInvested
+          const returnsPerDay = returnsAtEndOfDuration / numberOfDays
+          const dueDate = documentData["dueDate"]
+          if (new Date(now.slice(0, 10)) > dueDate.slice(0, 10)) {
+            batch.update(doc.ref, { planYield: admin.firestore.FieldValue.increment(returnsPerDay), amount: admin.firestore.FieldValue.increment(returnsPerDay)});
+          }
+        });
+        return batch.commit()
+      }
+
+    }).catch(error => {
+      functions.logger.log(error);
+      return null;
+    });
+    // document.docs.map((doc) => {
+
+
+    // })
+
+
+
   });
 
 // exports.invest12Months = functions.https.onCall(handle12MonthsInvestmentTask);
@@ -146,13 +178,13 @@ exports.scheduleInvestmentFor3Months = functions.pubsub.schedule('0 0 * */3 *')
 //   const reference = firestore.collection("authUsers").doc(uid).collection("investments").doc(docId)
 //   const documentData = reference.get()
 
-//   const amountInvested = documentData["amount"] ?? 0
-//   const roi = documentData["roi"] ?? 0
-//   const duration = documentData["duration"] ?? 3
-//   const numberOfDays = documentData["numberOfDays"] ?? 0
-//   const currentRoiForDuration = (roi * duration) / 3
-//   const returnsAtEndOfDuration = currentRoiForDuration * amountInvested
-//   const returnsPerDay = returnsAtEndOfDuration / numberOfDays
+// const amountInvested = documentData["amount"] ?? 0
+// const roi = documentData["roi"] ?? 0
+// const duration = documentData["duration"] ?? 3
+// const numberOfDays = documentData["numberOfDays"] ?? 0
+// const currentRoiForDuration = (roi * duration) / 3
+// const returnsAtEndOfDuration = currentRoiForDuration * amountInvested
+// const returnsPerDay = returnsAtEndOfDuration / numberOfDays
 
 //   return await reference.update({
 //     planYield: admin.firestore.FieldValue.increment(returnsPerDay)
