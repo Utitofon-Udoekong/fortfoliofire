@@ -468,7 +468,6 @@ class WalletCubit extends Cubit<WalletState> {
 
   void reset() {
     emit(state.copyWith(
-        investmentPlan: "",
         withdrawalMethod: "",
         failure: "",
         success: "",
