@@ -4,11 +4,12 @@ const admin = require("firebase-admin");
 admin.initializeApp(functions.config().functions);
 const firestore = admin.firestore()
 const cors = require('cors')({ origin: '*' });
-const { Client, Webhook, Charge } = require('coinbase-commerce-node');
+const { Client, Webhook, resources } = require('coinbase-commerce-node');
 const coinbaseSecret = process.env.COINBASE_API_KEY;
 Client.init(coinbaseSecret);
+const { Charge } = resources;
 
-exports.scheduleInvestments = functions.pubsub.schedule('* * * * *')
+exports.scheduleInvestments = functions.pubsub.schedule('0 0 * * *')
   .onRun((context) => {
     const investment = firestore.collectionGroup("investments").where("status", "==", "Successful")
     const now = new Date().toISOString()
@@ -67,6 +68,7 @@ exports.webhookHandler = functions.https.onRequest(async (req, res) => {
     const rawBody = req.rawBody;
     const signature = req.headers['x-cc-webhook-signature'];
     const webhookSecret = process.env.COINBASE_WEBHOOK_SECRET;
+    functions.logger.log(rawBody)
 
     try {
       const event = Webhook.verifyEventBody(rawBody, signature, webhookSecret);
