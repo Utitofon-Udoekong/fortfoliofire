@@ -397,8 +397,7 @@ class WalletCubit extends Cubit<WalletState> {
   }
 
   void makeWithdrawalTransaction() async {
-    final String investmentPlan = state.investmentPlan;
-    final String description = "$investmentPlan withdrawal".toUpperCase();
+    final String description = "${state.investmentToBeWithdrawn.planName} withdrawal".toUpperCase();
     final double amount = state.investmentToBeWithdrawn.amount;
     final int duration = state.investmentToBeWithdrawn.duration;
     final int roi = state.investmentToBeWithdrawn.roi;
@@ -410,7 +409,6 @@ class WalletCubit extends Cubit<WalletState> {
         description: description,
         amount: amount,
         traxId: traxId,
-        planName: investmentPlan,
         status: "Pending",
         createdat: DateTime.now(),
         paymentMethod: paymentMethod,

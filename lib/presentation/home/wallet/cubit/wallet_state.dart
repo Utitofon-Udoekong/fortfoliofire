@@ -3,7 +3,7 @@ part of 'wallet_cubit.dart';
 @freezed
 class WalletState with _$WalletState {
   const factory WalletState(
-      {required String investmentPlan,
+      {
       required double walletBalance,
       required bool loading,
       required double fortDollarInvestmentBalance,
@@ -29,7 +29,6 @@ class WalletState with _$WalletState {
       required bool showDigits}) = _WalletState;
   const WalletState._();
   factory WalletState.initial() => WalletState(
-      investmentPlan: "",
       loading: false,
       walletBalance: 0,
       fortDollarInvestmentBalance: 0,
