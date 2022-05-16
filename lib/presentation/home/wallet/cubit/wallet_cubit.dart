@@ -52,11 +52,6 @@ class WalletCubit extends Cubit<WalletState> {
     });
   }
 
-
-  void investmentPlanChanged({required String investmentPlan}) {
-    emit(state.copyWith(investmentPlan: investmentPlan));
-  }
-
   void showDigitsChanged() {
     final showDigits = state.showDigits;
     emit(state.copyWith(showDigits: !showDigits));
