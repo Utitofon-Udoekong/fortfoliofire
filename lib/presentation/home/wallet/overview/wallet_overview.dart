@@ -16,6 +16,7 @@ class WalletOverview extends StatelessWidget {
     final regExp = RegExp(r".");
     final eye = SvgPicture.asset('images/eye.svg', width: 20);
     final formatter = NumberFormat("#,##0.##", "en_US");
+    final btcFormatter = NumberFormat("###.######", "en_US");
     final fortCryptoBalance = context.select((WalletCubit walletCubit) =>
         walletCubit.state.fortCryptoInvestmentBalance);
     final fortShieldBalance = context.select((WalletCubit walletCubit) =>
@@ -94,7 +95,7 @@ class WalletOverview extends StatelessWidget {
                                         fontSize: 23, color: kWhiteColor));
                             case "BTC":
                               return state.showDigits
-                                ? Text('BTC ${state.walletBalance}',
+                                ? Text('BTC ${btcFormatter.format(state.walletBalance)}',
                                     style: titleText.copyWith(
                                         fontSize: 15, color: kWhiteColor))
                                 : Text("${state.walletBalance}"
