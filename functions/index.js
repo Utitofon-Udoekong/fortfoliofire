@@ -31,6 +31,8 @@ exports.scheduleInvestments = functions.pubsub.schedule('0 0 * * *')
           const dueDate = documentData["dueDate"]
           if (new Date(now.slice(0, 10)) < new Date(dueDate.slice(0, 10)) || new Date(now.slice(0, 10)).toString() === new Date(dueDate.slice(0, 10)).toString()) {
             batch.update(doc.ref, { planYield: admin.firestore.FieldValue.increment(returnsPerDay), amount: admin.firestore.FieldValue.increment(returnsPerDay) });
+          }else{
+            return null;
           }
         });
         return batch.commit()
@@ -57,8 +59,6 @@ exports.createCharge = functions.https.onRequest((req, res) => {
       };
 
       const charge = await Charge.create(chargeData);
-      functions.logger.log(charge)
-
       res.send(charge);
     });
   });
