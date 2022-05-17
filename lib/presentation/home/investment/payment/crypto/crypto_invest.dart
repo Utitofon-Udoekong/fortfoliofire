@@ -31,9 +31,6 @@ class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
     final controller = Completer<WebViewController>();
     final String paymentUrl =
         context.select((InvestmentCubit cubit) => cubit.state.charge.hostedUrl);
-    var loadingPercentage = 0;
-  
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kWhiteColor,
