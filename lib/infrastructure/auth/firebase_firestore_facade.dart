@@ -98,7 +98,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
           createdat: investmentItem.paymentDate,
           title: investmentItem.description,
           type: "Investment",
-          id: nanoid(8),
+          id: investmentItem.uid,
           status: investmentItem.status);
       await createNotification(notificationItem: notificationItem).then((_){
         sp.setInt("notificationCount", (notificationCount! + 1));
@@ -126,7 +126,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
           .doc(docId)
           .set(WithdrawalItemDTO.fromDomain(withdrawalItem).toJson());
       NotificationItem notificationItem = NotificationItem(
-        id: nanoid(8),
+        id: withdrawalItem.traxId,
         type: "Withdrawal",
         title: withdrawalItem.description,
         createdat: withdrawalItem.createdat,
@@ -183,6 +183,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
     yield* firestore.authUserCollection
         .doc(auth.currentUser!.uid)
         .collection("notifications")
+        .orderBy("createdat")
         .snapshots();
   }
 
@@ -201,6 +202,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
         .doc(auth.currentUser!.uid)
         .collection("address")
         .where("type", isEqualTo: "CRYPTOWALLET")
+        .orderBy("walletLabel")
         .snapshots();
   }
 
@@ -210,6 +212,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
         .doc(auth.currentUser!.uid)
         .collection("address")
         .where("type", isEqualTo: "GENERALCRYPTOWALLET")
+        .orderBy("walletLabel")
         .snapshots();
   }
 
@@ -219,6 +222,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
         .doc(auth.currentUser!.uid)
         .collection("investments")
         .where("planName", isEqualTo: "FortDollar")
+        .orderBy("paymentDate")
         .snapshots();
   }
 
@@ -228,6 +232,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
         .doc(auth.currentUser!.uid)
         .collection("investments")
         .where("planName", isEqualTo: "FortCrypto")
+        .orderBy("paymentDate")
         .snapshots();
   }
 
@@ -237,6 +242,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
         .doc(auth.currentUser!.uid)
         .collection("investments")
         .where("planName", isEqualTo: "FortShield")
+        .orderBy("paymentDate")
         .snapshots();
   }
 
@@ -245,6 +251,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
     yield* firestore.authUserCollection
         .doc(auth.currentUser!.uid)
         .collection("withdrawals")
+        .orderBy("createdat")
         .snapshots();
   }
 
