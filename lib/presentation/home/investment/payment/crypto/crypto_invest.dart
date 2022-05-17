@@ -23,7 +23,6 @@ class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
   void initState() {
     super.initState();
     context.read<InvestmentCubit>().startPaymentStatusSubscription();
-  
   }
 
   @override
@@ -42,7 +41,7 @@ class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
           },
           child: const Icon(Icons.close, color: kWhiteColor,),
         ),
-        title: Text("Invest with Crypto", style: subTitle.copyWith(color: kWhiteColor, fontSize: 18),),
+        title: Text("Invest with  $status", style: subTitle.copyWith(color: kWhiteColor, fontSize: 18),),
         actions: [
           NavigationControls(controller: controller),
         ],
