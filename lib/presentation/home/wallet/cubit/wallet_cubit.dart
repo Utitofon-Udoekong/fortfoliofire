@@ -400,6 +400,7 @@ class WalletCubit extends Cubit<WalletState> {
     final traxId = const Uuid().v4().substring(0, 7);
     final String uid = nanoid(8);
     final String currency = state.investmentToBeWithdrawn.currency;
+    final Map<String, dynamic> withdrawalDetails = state.withdrawalDetails;
     WithdrawalItem withdrawalItem = WithdrawalItem(
         description: description,
         amount: amount,
@@ -410,6 +411,7 @@ class WalletCubit extends Cubit<WalletState> {
         uid: uid,
         duration: duration.toInt(),
         roi: roi,
+        withdrawalDetails: withdrawalDetails,
         currency: currency);
     final response = await firestoreFacade.createWithdrawalTransaction(
         withdrawalItem: withdrawalItem);
