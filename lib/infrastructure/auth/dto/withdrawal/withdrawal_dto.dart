@@ -63,7 +63,7 @@ extension WithdrawalItemDTOX on WithdrawalItemDTO {
       status: status,
       traxId: traxId,
       uid: uid,
-      currency: currency
+      currency: currency,
       withdrawalDetails: withdrawalDetails
     );
   }
