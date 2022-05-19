@@ -139,9 +139,13 @@ class NotificationsPage extends StatelessWidget {
                 Text(
                   '$title $status',
                   style: titleText.copyWith(
-                      fontSize: 12.5,
-                      fontWeight: FontWeight.w500,
-                      color: kBlackColor),
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                      color: status == "Successful"
+                              ? const Color(0XFF00C566)
+                              : status == "Pending"
+                                  ? const Color.fromARGB(239, 226, 167, 4)
+                                  : const Color(0XFFDF1414),),
                 )
               ],
             ),
