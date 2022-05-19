@@ -98,7 +98,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
           createdat: investmentItem.paymentDate,
           title: investmentItem.description,
           type: "Investment",
-          id: investmentItem.uid,
+          id: investmentItem.traxId,
           status: investmentItem.status);
       await createNotification(notificationItem: notificationItem).then((_){
         sp.setInt("notificationCount", (notificationCount! + 1));
