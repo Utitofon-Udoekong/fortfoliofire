@@ -109,7 +109,7 @@ class NotificationsPage extends StatelessWidget {
       onTap: selected ? deSelectNotification : null,
       child: Container(
               margin: const EdgeInsets.only(bottom: 10.0),
-        padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 6.0),
+        padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 4.0),
         decoration: BoxDecoration(
           color: selected ? const Color(0XFFF4FBFF) : kWhiteColor,
         ),
