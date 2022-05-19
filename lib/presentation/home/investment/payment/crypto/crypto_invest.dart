@@ -41,7 +41,7 @@ class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
           },
           child: const Icon(Icons.close, color: kWhiteColor,),
         ),
-        title: Text("Invest with $status", style: subTitle.copyWith(color: kWhiteColor, fontSize: 18),),
+        title: Text("Invest with $status", style: subTitle.copyWith(color: kWhiteColor, fontSize: 16),),
         actions: [
           NavigationControls(controller: controller),
         ],
@@ -51,28 +51,4 @@ class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
     );
   }
 
-  Widget customButton({required Color color}) {
-    return Container();
-  }
-
-  Widget buildtile(String title, String subtitle) {
-    return Flex(
-      direction: Axis.vertical,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text(
-          title,
-          style: subTitle.copyWith(
-              fontSize: 12, color: kgreyColor.withOpacity(0.7)),
-        ),
-        const SizedBox(
-          height: 7,
-        ),
-        Text(
-          subtitle,
-          style: titleText.copyWith(fontSize: 15),
-        )
-      ],
-    );
-  }
 }

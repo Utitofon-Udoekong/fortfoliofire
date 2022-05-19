@@ -45,7 +45,6 @@ class _WebviewStackState extends State<WebviewStack> {
             value: loadingPercentage / 100.0,
             backgroundColor: kgreyColor,
             color: kPrimaryColor,
-            minHeight: 10,
             semanticsLabel: "Linear Progress Indicator"
           ),
       ],
