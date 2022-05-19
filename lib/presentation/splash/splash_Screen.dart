@@ -31,16 +31,15 @@ class _SplashScreenState extends State<SplashScreen> {
     final bool isLoggedIn = context.read<AuthCubit>().state.isLoggedIn;
 
     if (isLoggedIn && isChecked) {
-      if (Platform.isAndroid) {
-        if (canCheckBiometrics) {
-          bool didauthenticate = await LocalAuthApi.authenticate(localizedReason: 'Scan Fingerprint to authenticate');
-          if (didauthenticate != true) {
-            exit(0);
-          }else{
-            Future.delayed(const Duration(seconds: 1), () {
-              context.router.replace(const HomePageRoute());
-            });
-          }
+      if (canCheckBiometrics) {
+        bool didauthenticate = await LocalAuthApi.authenticate(
+            localizedReason: 'Scan Fingerprint to authenticate');
+        if (didauthenticate != true) {
+          exit(0);
+        } else {
+          Future.delayed(const Duration(seconds: 1), () {
+            context.router.replace(const HomePageRoute());
+          });
         }
       }
     } else {
@@ -50,7 +49,10 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final svg = SvgPicture.asset('images/logo.svg',semanticsLabel: 'logo',);
+    final svg = SvgPicture.asset(
+      'images/logo.svg',
+      semanticsLabel: 'logo',
+    );
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
