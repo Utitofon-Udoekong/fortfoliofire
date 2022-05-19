@@ -183,7 +183,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
     yield* firestore.authUserCollection
         .doc(auth.currentUser!.uid)
         .collection("notifications")
-        .orderBy("createdat")
+        .orderBy("createdat",descending: true)
         .snapshots();
   }
 
@@ -202,7 +202,6 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
         .doc(auth.currentUser!.uid)
         .collection("address")
         .where("type", isEqualTo: "CRYPTOWALLET")
-        .orderBy("walletLabel")
         .snapshots();
   }
 
@@ -212,7 +211,6 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
         .doc(auth.currentUser!.uid)
         .collection("address")
         .where("type", isEqualTo: "GENERALCRYPTOWALLET")
-        .orderBy("walletLabel")
         .snapshots();
   }
 
@@ -222,7 +220,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
         .doc(auth.currentUser!.uid)
         .collection("investments")
         .where("planName", isEqualTo: "FortDollar")
-        .orderBy("paymentDate")
+        .orderBy("paymentDate", descending: true)
         .snapshots();
   }
 
@@ -232,7 +230,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
         .doc(auth.currentUser!.uid)
         .collection("investments")
         .where("planName", isEqualTo: "FortCrypto")
-        .orderBy("paymentDate")
+        .orderBy("paymentDate", descending: true)
         .snapshots();
   }
 
@@ -242,7 +240,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
         .doc(auth.currentUser!.uid)
         .collection("investments")
         .where("planName", isEqualTo: "FortShield")
-        .orderBy("paymentDate")
+        .orderBy("paymentDate", descending: true)
         .snapshots();
   }
 
@@ -251,7 +249,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
     yield* firestore.authUserCollection
         .doc(auth.currentUser!.uid)
         .collection("withdrawals")
-        .orderBy("createdat")
+        .orderBy("createdat", descending: true)
         .snapshots();
   }
 
