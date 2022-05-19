@@ -62,33 +62,31 @@ class WalletCubit extends Cubit<WalletState> {
     final btcPriceOption = await externalFacade.getBTCPriceInDollars();
     var walletBalance = state.walletBalance;
     if (state.exchange == "NGN") {
-      walletBalance /= 590;
-      emit(state.copyWith(walletBalance: (walletBalance / btcPriceOption)));
-      return;
+      emit(state.copyWith(walletBalance: ( (walletBalance / 590) / btcPriceOption), exchange: "BTC"));
+    }else{
+    emit(state.copyWith(walletBalance: (walletBalance / btcPriceOption), exchange: "BTC"));
+
     }
-    emit(state.copyWith(walletBalance: (walletBalance / btcPriceOption)));
   }
 
   void getWalletBalanceInNaira() async {
-    var walletBalance = state.walletBalance;
     final btcPriceOption = await externalFacade.getBTCPriceInDollars();
+    var walletBalance = state.walletBalance;
     if (state.exchange == "BTC") {
-      walletBalance *= btcPriceOption;
-      emit(state.copyWith(walletBalance: walletBalance));
-      return;
+      emit(state.copyWith(walletBalance: walletBalance * btcPriceOption, exchange: "NGN"));
+    }else{
+      emit(state.copyWith(walletBalance: walletBalance, exchange: "NGN"));
     }
-    emit(state.copyWith(walletBalance: walletBalance));
   }
 
   void getWalletBalanceInUSD() async {
-    var walletBalance = state.walletBalance;
     final btcPriceOption = await externalFacade.getBTCPriceInDollars();
+    var walletBalance = state.walletBalance;
     if (state.exchange == "BTC") {
-      walletBalance *= btcPriceOption;
-      emit(state.copyWith(walletBalance: walletBalance));
-      return;
+      emit(state.copyWith(walletBalance: walletBalance * btcPriceOption, exchange: "USD"));
+    }else{
+      emit(state.copyWith(walletBalance: walletBalance, exchange: "USD"));
     }
-    emit(state.copyWith(walletBalance: walletBalance));
   }
 
   void investmentToBeWithdrawnChanged(

@@ -169,8 +169,10 @@ class WalletOverview extends StatelessWidget {
                                         ),
                                         buildtile('9ja', 'NGN Balance', () {
                                           context
-                                              .read<WalletCubit>()
-                                              .exchangeChanged(exchange: "NGN");
+                                              .read<WalletCubit>().getWalletBalanceInNaira();
+                                          // context
+                                          //     .read<WalletCubit>()
+                                          //     .exchangeChanged(exchange: "NGN");
                                           context.router.pop();
                                         }, selectedExchange, "NGN"),
                                         const SizedBox(
@@ -178,8 +180,10 @@ class WalletOverview extends StatelessWidget {
                                         ),
                                         buildtile('usa', 'USD Balance', () {
                                           context
-                                              .read<WalletCubit>()
-                                              .exchangeChanged(exchange: "USD");
+                                              .read<WalletCubit>().getWalletBalanceInUSD();
+                                          // context
+                                          //     .read<WalletCubit>()
+                                          //     .exchangeChanged(exchange: "USD");
                                           context.router.pop();
                                         }, selectedExchange, "USD"),
                                         const SizedBox(
@@ -188,9 +192,9 @@ class WalletOverview extends StatelessWidget {
                                         buildtile('btc', 'BTC Balance', () {
                                           context
                                               .read<WalletCubit>().getWalletBalanceInBTC();
-                                          context
-                                              .read<WalletCubit>()
-                                              .exchangeChanged(exchange: "BTC");
+                                          // context
+                                          //     .read<WalletCubit>()
+                                          //     .exchangeChanged(exchange: "BTC");
                                           context.router.pop();
                                         }, selectedExchange, "BTC"),
                                       ],
