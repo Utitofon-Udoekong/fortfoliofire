@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "987580827361",
+    "project_id": "fortfolio-app",
+    "storage_bucket": "fortfolio-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:987580827361:android:c1be190e81be152a6759a0",
+        "android_client_info": {
+          "package_name": "com.example.fortfolio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "987580827361-gv8mki0u1g0apb9hej7eoh1if3vqugoh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fortfolio",
+            "certificate_hash": "c717afa0db3d7d01af0552d19c1b1875f407c576"
+          }
+        },
+        {
+          "client_id": "987580827361-79hhaf67lu1v84q24kimqb3bvhs409pc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAF1uSpOGeuJl3e3VXA5ybUQLldLwpSNhc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "987580827361-79hhaf67lu1v84q24kimqb3bvhs409pc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
