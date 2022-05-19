@@ -38,6 +38,7 @@ class _WebviewStackState extends State<WebviewStack> {
               loadingPercentage = 100;
             });
           },
+          javascriptMode: JavascriptMode.unrestricted,
         ),
         if (loadingPercentage < 100)
           LinearProgressIndicator(
