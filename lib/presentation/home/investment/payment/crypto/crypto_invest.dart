@@ -22,7 +22,9 @@ class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
   @override
   void initState() {
     super.initState();
-    context.read<InvestmentCubit>().startPaymentStatusSubscription();
+    Future.delayed(const Duration(seconds: 5),(){
+      context.read<InvestmentCubit>().startPaymentStatusSubscription();
+    });
   }
 
   @override
