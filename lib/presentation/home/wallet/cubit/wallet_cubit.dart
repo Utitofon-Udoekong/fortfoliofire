@@ -61,12 +61,8 @@ class WalletCubit extends Cubit<WalletState> {
   void getWalletBalanceInBTC() async {
     final btcPriceOption = await externalFacade.getBTCPriceInDollars();
     var walletBalance = state.walletBalance;
-    if (state.exchange == "NGN") {
-      emit(state.copyWith(walletBalance: ( (walletBalance / 590) / btcPriceOption), exchange: "BTC"));
-    }else{
     emit(state.copyWith(walletBalance: (walletBalance / btcPriceOption), exchange: "BTC"));
-
-    }
+    
   }
 
   void getWalletBalanceInNaira() async {
