@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_windowmanager/flutter_windowmanager.dart';
 import 'package:fortfolio/application/auth/sign_in_form/phone/sign_in_form_phone_cubit.dart';
 import 'package:fortfolio/application/auth/sign_up_form/phone/sign_up_form_phone_cubit.dart';
 import 'package:fortfolio/infrastructure/auth/local_auth_api.dart';
@@ -65,7 +64,6 @@ class _AppState extends State<App> with WidgetsBindingObserver {
   final backgroundedTimeKey = 'backgroundedTimeKey';
 
   Future _paused() async {
-    await FlutterWindowManager.addFlags(FlutterWindowManager.FLAG_SECURE);
     final sp = await SharedPreferences.getInstance();
     print("paused");
     sp.setInt(backgroundedTimeKey, DateTime.now().millisecondsSinceEpoch);
@@ -88,7 +86,6 @@ class _AppState extends State<App> with WidgetsBindingObserver {
   final pinLockMillis = 10000;
 
   Future _resumed() async {
-    await FlutterWindowManager.clearFlags(FlutterWindowManager.FLAG_SECURE);
     print('resumed');
     final sp = await SharedPreferences.getInstance();
     bool canCheckBiometrics = await LocalAuthApi.hasBiometrics();
