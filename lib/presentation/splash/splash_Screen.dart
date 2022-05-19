@@ -32,16 +32,16 @@ class _SplashScreenState extends State<SplashScreen> {
 
     if (isLoggedIn && isChecked) {
       if (Platform.isAndroid) {
+        if (canCheckBiometrics) {
+          bool didauthenticate = await LocalAuthApi.authenticate(localizedReason: 'Scan Fingerprint to authenticate');
+          if (didauthenticate != true) {
+            exit(0);
+          }else{
+            Future.delayed(const Duration(seconds: 1), () {
               context.router.replace(const HomePageRoute());
-        // if (canCheckBiometrics) {
-        //   bool didauthenticate = await LocalAuthApi.authenticate(localizedReason: 'Scan Fingerprint to authenticate');
-        //   if (didauthenticate != true) {
-        //     exit(0);
-        //   }else{
-        //     Future.delayed(const Duration(seconds: 1), () {
-        //     });
-        //   }
-        // }
+            });
+          }
+        }
       }
     } else {
       context.router.replace(const OnboardingScreenRoute());
