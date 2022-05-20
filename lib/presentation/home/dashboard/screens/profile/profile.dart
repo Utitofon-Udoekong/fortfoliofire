@@ -184,13 +184,10 @@ class ProfilePage extends StatelessWidget {
                       const SizedBox(
                         height: 80,
                       ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Text(
-                          'Fortfolio 2021',
-                          style: subTitle.copyWith(
-                              color: const Color(0XFF242424), fontSize: 13),
-                        ),
+                      Text(
+                        'Fortfolio 2021',
+                        style: subTitle.copyWith(
+                            color: const Color(0XFF242424), fontSize: 13),
                       ),
                     ],
                   );
@@ -235,13 +232,14 @@ class ProfilePage extends StatelessWidget {
                   ],
                 )
               : Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
                       leading,
                       style:
                           subTitle.copyWith(color: kBlackColor, fontSize: 15),
                     ),
-                    const Spacer(),
                     const Icon(
                       Icons.keyboard_arrow_right,
                       color: kPrimaryColor,
