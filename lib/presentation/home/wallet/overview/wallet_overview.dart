@@ -16,7 +16,7 @@ class WalletOverview extends StatelessWidget {
     final regExp = RegExp(r".");
     final eye = SvgPicture.asset('images/eye.svg', width: 20);
     final formatter = NumberFormat("#,##0.##", "en_US");
-    final btcFormatter = NumberFormat("###.######", "en_US");
+    final btcFormatter = NumberFormat("###.########", "en_US");
     final fortCryptoBalance = context.select((WalletCubit walletCubit) =>
         walletCubit.state.fortCryptoInvestmentBalance);
     final fortShieldBalance = context.select((WalletCubit walletCubit) =>
@@ -113,27 +113,6 @@ class WalletOverview extends StatelessWidget {
                                     style: titleText.copyWith(
                                         fontSize: 23, color: kWhiteColor));
                           }
-                          // if (state.exchange == "NGN") {
-                          //   return state.showDigits
-                          //       ? Text('N${formatter.format(state.walletBalance * 590) }',
-                          //           style: titleText.copyWith(
-                          //               fontSize: 15, color: kWhiteColor))
-                          //       : Text(
-                          //           formatter.format(state.walletBalance * 590)
-                          //               .replaceAll(regExp, "*"),
-                          //           style: titleText.copyWith(
-                          //               fontSize: 23, color: kWhiteColor));
-                          // } else {
-                          //   return state.showDigits
-                          //       ? Text('\$${formatter.format(state.walletBalance)}',
-                          //           style: titleText.copyWith(
-                          //               fontSize: 15, color: kWhiteColor))
-                          //       : Text(
-                          //           formatter.format(state.walletBalance)
-                          //               .replaceAll(regExp, "*"),
-                          //           style: titleText.copyWith(
-                          //               fontSize: 23, color: kWhiteColor));
-                          // }
                         },
                       )
                     ],
@@ -170,9 +149,6 @@ class WalletOverview extends StatelessWidget {
                                         buildtile('9ja', 'NGN Balance', () {
                                           context
                                               .read<WalletCubit>().getWalletBalanceInNaira();
-                                          // context
-                                          //     .read<WalletCubit>()
-                                          //     .exchangeChanged(exchange: "NGN");
                                           context.router.pop();
                                         }, selectedExchange, "NGN"),
                                         const SizedBox(
@@ -181,9 +157,6 @@ class WalletOverview extends StatelessWidget {
                                         buildtile('usa', 'USD Balance', () {
                                           context
                                               .read<WalletCubit>().getWalletBalanceInUSD();
-                                          // context
-                                          //     .read<WalletCubit>()
-                                          //     .exchangeChanged(exchange: "USD");
                                           context.router.pop();
                                         }, selectedExchange, "USD"),
                                         const SizedBox(
@@ -192,9 +165,6 @@ class WalletOverview extends StatelessWidget {
                                         buildtile('btc', 'BTC Balance', () {
                                           context
                                               .read<WalletCubit>().getWalletBalanceInBTC();
-                                          // context
-                                          //     .read<WalletCubit>()
-                                          //     .exchangeChanged(exchange: "BTC");
                                           context.router.pop();
                                         }, selectedExchange, "BTC"),
                                       ],
