@@ -71,7 +71,6 @@ class CheckInvestment extends StatelessWidget {
                         textAlign: TextAlign.center,
                         showCursor: false,
                         style: const TextStyle(fontSize: 35),
-                          inputFormatters: [LengthLimitingTextInputFormatter(6)],
                         keyboardType: TextInputType.none,
                         decoration: InputDecoration(
                           suffix: IconButton(onPressed: () {

@@ -74,7 +74,6 @@ class VerifyCryptoWallet extends StatelessWidget {
                           style: const TextStyle(fontSize: 35),
                           // Disable the default soft keybaord
                           keyboardType: TextInputType.none,
-                          inputFormatters: [LengthLimitingTextInputFormatter(6)],
                           decoration: InputDecoration(
                               suffix: IconButton(
                                   onPressed: () {

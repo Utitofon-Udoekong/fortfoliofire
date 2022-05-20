@@ -182,11 +182,12 @@ class ProfilePage extends StatelessWidget {
                           () => showEditPhoneModal(context: context),
                           context),
                       const Spacer(),
-                      Text(
-                        'Fortfolio 2021',
-                        style: subTitle.copyWith(
-                            color: const Color(0XFF242424), fontSize: 13),
-                        textAlign: TextAlign.center,
+                      Center(
+                        child: Text(
+                          'Fortfolio 2021',
+                          style: subTitle.copyWith(
+                              color: const Color(0XFF242424), fontSize: 13),
+                        ),
                       ),
                       const SizedBox(height: 10,)
                     ],

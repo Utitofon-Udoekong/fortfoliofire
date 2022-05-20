@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
@@ -73,6 +74,7 @@ class AddBank extends StatelessWidget {
                         return TextFormField(
                           autocorrect: false,
                           keyboardType: TextInputType.number,
+                          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                           textInputAction: TextInputAction.next,
                           decoration: const InputDecoration(
                               filled: true,
