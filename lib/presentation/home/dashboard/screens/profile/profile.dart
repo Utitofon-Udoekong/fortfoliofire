@@ -181,9 +181,7 @@ class ProfilePage extends StatelessWidget {
                           false,
                           () => showEditPhoneModal(context: context),
                           context),
-                      const SizedBox(
-                        height: 80,
-                      ),
+                      const Spacer(),
                       Text(
                         'Fortfolio 2021',
                         style: subTitle.copyWith(
