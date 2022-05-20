@@ -7,6 +7,8 @@ import 'package:fortfolio/application/auth/sign_in_form/phone/sign_in_form_phone
 import 'package:fortfolio/application/auth/sign_up_form/phone/sign_up_form_phone_cubit.dart';
 import 'package:fortfolio/infrastructure/auth/local_auth_api.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/notifications/cubit/notification_cubit.dart';
+import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/bank/cubit/bank_address_cubit.dart';
+import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/crypto/cubit/crypto_wallet_cubit.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/profile/cubit/profile_cubit.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/verification/cubit/verification_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -37,8 +39,8 @@ class _AppState extends State<App> with WidgetsBindingObserver {
 
   @override
   void initState() {
-    super.initState();
     Connectivity().checkConnectivity();
+    super.initState();
     WidgetsBinding.instance.addObserver(this);
   }
 
@@ -127,6 +129,8 @@ class _AppState extends State<App> with WidgetsBindingObserver {
           BlocProvider(create: (context) => getIt<ProfileCubit>(), lazy: false),
           BlocProvider(create: (context) => getIt<NotificationCubit>(), lazy: false),
           BlocProvider(create: (context) => getIt<VerificationCubit>(), lazy: false),
+          BlocProvider(create: (context) => getIt<BankAddressCubit>(), lazy: false),
+          BlocProvider(create: (context) => getIt<CryptoWalletCubit>(), lazy: false),
           BlocProvider(
               create: (context) => getIt<InvestmentCubit>(), lazy: false),
         ],
