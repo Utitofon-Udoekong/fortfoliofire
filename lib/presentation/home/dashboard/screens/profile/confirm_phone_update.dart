@@ -37,7 +37,6 @@ class ConfirmPhoneUpdate extends StatelessWidget {
             listener: (context, state) {
               CustomSnackbar.showSnackBar(context, state.success, false);
               context.router.pop();
-              context.read<ProfileCubit>().toggleEditState();
             },
           ),
         ],

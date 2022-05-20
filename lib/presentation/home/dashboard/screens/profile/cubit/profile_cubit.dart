@@ -20,10 +20,6 @@ class ProfileCubit extends Cubit<ProfileState> {
     emit(state.copyWith(firstName: firstName));
   }
 
-  void toggleEditState(){
-    var canEdit = state.canEdit;
-    emit(state.copyWith(canEdit: !canEdit));
-  }
 
   void lastNameChanged({required String lastName}) {
     emit(state.copyWith(lastName: lastName));
