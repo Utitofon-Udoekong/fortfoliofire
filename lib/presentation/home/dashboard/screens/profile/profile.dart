@@ -186,7 +186,9 @@ class ProfilePage extends StatelessWidget {
                         'Fortfolio 2021',
                         style: subTitle.copyWith(
                             color: const Color(0XFF242424), fontSize: 13),
+                        textAlign: TextAlign.center,
                       ),
+                      const SizedBox(height: 10,)
                     ],
                   );
                 },

@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
@@ -73,6 +74,7 @@ class VerifyCryptoWallet extends StatelessWidget {
                           style: const TextStyle(fontSize: 35),
                           // Disable the default soft keybaord
                           keyboardType: TextInputType.none,
+                          inputFormatters: [LengthLimitingTextInputFormatter(6)],
                           decoration: InputDecoration(
                               suffix: IconButton(
                                   onPressed: () {

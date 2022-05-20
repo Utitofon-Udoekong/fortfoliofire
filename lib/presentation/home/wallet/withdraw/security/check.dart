@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
@@ -70,7 +71,7 @@ class CheckWithdrawal extends StatelessWidget {
                         textAlign: TextAlign.center,
                         showCursor: false,
                         style: const TextStyle(fontSize: 35),
-                        // Disable the default soft keybaord
+                          inputFormatters: [LengthLimitingTextInputFormatter(6)],
                         keyboardType: TextInputType.none,
                         decoration: InputDecoration(
                           suffix: IconButton(onPressed: () {
@@ -80,7 +81,6 @@ class CheckWithdrawal extends StatelessWidget {
                         ),
                       )),
                     ),
-                    // implement the custom NumPad
                     NumPad(
                       buttonSize: 60,
                       controller: _myController,
