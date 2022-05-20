@@ -14,6 +14,7 @@ import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/cry
 import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/crypto/crypto_wallet.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/crypto/verify_crypto_wallet.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/payment_method.dart';
+import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/success.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/profile/confirm_phone_update.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/profile/profile.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/security/change_password.dart';
@@ -92,6 +93,7 @@ import '../home/wallet/investment/fortshield_info.dart';
   AutoRoute( page: VerifyCryptoWallet),
   AutoRoute( page: BankAddressPage),
   AutoRoute( page: CryptoWalletPage),
+  AutoRoute( page: PaymentMethodSuccess),
   AutoRoute( page: PaymentMethod),
   AutoRoute( page: FAQPage),
   AutoRoute( page: SupportPage),

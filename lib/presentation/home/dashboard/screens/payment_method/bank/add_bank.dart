@@ -19,6 +19,7 @@ class AddBank extends StatelessWidget {
     final lastName =
         context.select((AuthCubit element) => element.state.userModel.lastName);
     return BlocProvider(
+      lazy: true,
       create: (context) => getIt<BankAddressCubit>(),
       child: Scaffold(
         body: MultiBlocListener(
