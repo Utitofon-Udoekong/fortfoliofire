@@ -25,12 +25,12 @@ exports.scheduleInvestments = functions.pubsub.schedule('0 0 * * *')
           const roi = documentData["roi"] ?? 0
           const duration = documentData["duration"]
           const numberOfDays = documentData["numberOfDays"]
-          const currentRoiForDuration = (roi * duration) / 12
+          const currentRoiForDuration = ((roi / 100) * duration) / 12 
           const returnsAtEndOfDuration = currentRoiForDuration * amountInvested
           const returnsPerDay = returnsAtEndOfDuration / numberOfDays
           const dueDate = documentData["dueDate"]
           if (new Date(now.slice(0, 10)) < new Date(dueDate.slice(0, 10)) || new Date(now.slice(0, 10)).toString() === new Date(dueDate.slice(0, 10)).toString()) {
-            batch.update(doc.ref, { planYield: admin.firestore.FieldValue.increment(returnsPerDay), amount: admin.firestore.FieldValue.increment(returnsPerDay) });
+            batch.update(doc.ref, { planYield: admin.firestore.FieldValue.increment(returnsPerDay)});
           }else{
             return null;
           }
