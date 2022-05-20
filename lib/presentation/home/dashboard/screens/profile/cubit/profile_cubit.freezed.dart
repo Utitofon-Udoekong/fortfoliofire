@@ -27,7 +27,8 @@ class _$ProfileStateTearOff {
       required String success,
       required String smsCode,
       required String verificationId,
-      required bool loading}) {
+      required bool loading,
+      required bool canEdit}) {
     return _ProfileState(
       firstName: firstName,
       lastName: lastName,
@@ -38,6 +39,7 @@ class _$ProfileStateTearOff {
       smsCode: smsCode,
       verificationId: verificationId,
       loading: loading,
+      canEdit: canEdit,
     );
   }
 }
@@ -56,6 +58,7 @@ mixin _$ProfileState {
   String get smsCode => throw _privateConstructorUsedError;
   String get verificationId => throw _privateConstructorUsedError;
   bool get loading => throw _privateConstructorUsedError;
+  bool get canEdit => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProfileStateCopyWith<ProfileState> get copyWith =>
@@ -76,7 +79,8 @@ abstract class $ProfileStateCopyWith<$Res> {
       String success,
       String smsCode,
       String verificationId,
-      bool loading});
+      bool loading,
+      bool canEdit});
 }
 
 /// @nodoc
@@ -98,6 +102,7 @@ class _$ProfileStateCopyWithImpl<$Res> implements $ProfileStateCopyWith<$Res> {
     Object? smsCode = freezed,
     Object? verificationId = freezed,
     Object? loading = freezed,
+    Object? canEdit = freezed,
   }) {
     return _then(_value.copyWith(
       firstName: firstName == freezed
@@ -136,6 +141,10 @@ class _$ProfileStateCopyWithImpl<$Res> implements $ProfileStateCopyWith<$Res> {
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
+      canEdit: canEdit == freezed
+          ? _value.canEdit
+          : canEdit // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -156,7 +165,8 @@ abstract class _$ProfileStateCopyWith<$Res>
       String success,
       String smsCode,
       String verificationId,
-      bool loading});
+      bool loading,
+      bool canEdit});
 }
 
 /// @nodoc
@@ -180,6 +190,7 @@ class __$ProfileStateCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
     Object? smsCode = freezed,
     Object? verificationId = freezed,
     Object? loading = freezed,
+    Object? canEdit = freezed,
   }) {
     return _then(_ProfileState(
       firstName: firstName == freezed
@@ -218,6 +229,10 @@ class __$ProfileStateCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
+      canEdit: canEdit == freezed
+          ? _value.canEdit
+          : canEdit // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -234,7 +249,8 @@ class _$_ProfileState implements _ProfileState {
       required this.success,
       required this.smsCode,
       required this.verificationId,
-      required this.loading});
+      required this.loading,
+      required this.canEdit});
 
   @override
   final String firstName;
@@ -254,10 +270,12 @@ class _$_ProfileState implements _ProfileState {
   final String verificationId;
   @override
   final bool loading;
+  @override
+  final bool canEdit;
 
   @override
   String toString() {
-    return 'ProfileState(firstName: $firstName, lastName: $lastName, email: $email, phoneNumber: $phoneNumber, failure: $failure, success: $success, smsCode: $smsCode, verificationId: $verificationId, loading: $loading)';
+    return 'ProfileState(firstName: $firstName, lastName: $lastName, email: $email, phoneNumber: $phoneNumber, failure: $failure, success: $success, smsCode: $smsCode, verificationId: $verificationId, loading: $loading, canEdit: $canEdit)';
   }
 
   @override
@@ -275,7 +293,8 @@ class _$_ProfileState implements _ProfileState {
             const DeepCollectionEquality().equals(other.smsCode, smsCode) &&
             const DeepCollectionEquality()
                 .equals(other.verificationId, verificationId) &&
-            const DeepCollectionEquality().equals(other.loading, loading));
+            const DeepCollectionEquality().equals(other.loading, loading) &&
+            const DeepCollectionEquality().equals(other.canEdit, canEdit));
   }
 
   @override
@@ -289,7 +308,8 @@ class _$_ProfileState implements _ProfileState {
       const DeepCollectionEquality().hash(success),
       const DeepCollectionEquality().hash(smsCode),
       const DeepCollectionEquality().hash(verificationId),
-      const DeepCollectionEquality().hash(loading));
+      const DeepCollectionEquality().hash(loading),
+      const DeepCollectionEquality().hash(canEdit));
 
   @JsonKey(ignore: true)
   @override
@@ -307,7 +327,8 @@ abstract class _ProfileState implements ProfileState {
       required String success,
       required String smsCode,
       required String verificationId,
-      required bool loading}) = _$_ProfileState;
+      required bool loading,
+      required bool canEdit}) = _$_ProfileState;
 
   @override
   String get firstName;
@@ -327,6 +348,8 @@ abstract class _ProfileState implements ProfileState {
   String get verificationId;
   @override
   bool get loading;
+  @override
+  bool get canEdit;
   @override
   @JsonKey(ignore: true)
   _$ProfileStateCopyWith<_ProfileState> get copyWith =>

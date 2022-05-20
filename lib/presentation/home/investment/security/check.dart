@@ -28,7 +28,7 @@ class CheckInvestment extends StatelessWidget {
               previous.success != current.success && current.success.isNotEmpty,
           listener: (context, state) {
             CustomSnackbar.showSnackBar(context, state.success, false);
-            context.router.push(const InvestmentSuccessRoute());
+            context.router.replace(const InvestmentSuccessRoute());
           },
         ),
       ],

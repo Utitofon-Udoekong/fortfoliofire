@@ -17,6 +17,7 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool canEdit = context.select((ProfileCubit cubit) => cubit.state.canEdit);
     return Scaffold(
       body: MultiBlocListener(
         listeners: [
@@ -34,6 +35,7 @@ class ProfilePage extends StatelessWidget {
                 current.success.isNotEmpty,
             listener: (context, state) {
               CustomSnackbar.showSnackBar(context, state.success, false);
+              context.read<ProfileCubit>().toggleEditState();
             },
           ),
           BlocListener<ProfileCubit, ProfileState>(
@@ -96,25 +98,40 @@ class ProfilePage extends StatelessWidget {
                             const SizedBox(
                               height: 3,
                             ),
-                            authUserModel.isVerified
-                                ? Chip(
-                                    backgroundColor: Colors.green[100],
-                                    label: Text("Account Verified",
-                                        style: subTitle.copyWith(
-                                            color: Colors.green[600],
-                                            fontSize: 13,
-                                            fontWeight: FontWeight.w500)),
-                                  )
-                                : TextButton(
-                                    onPressed: () => context.router
-                                        .push(const VerificationPageRoute()),
-                                    child: Text('Account unverified',
-                                        style: subTitle.copyWith(
-                                            color: kBlackColor,
-                                            fontSize: 13,
-                                            decoration:
-                                                TextDecoration.underline)),
-                                  )
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                authUserModel.isVerified
+                                    ? Chip(
+                                        backgroundColor: Colors.green[100],
+                                        label: Text("Account Verified",
+                                            style: subTitle.copyWith(
+                                                color: Colors.green[600],
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.w500)),
+                                      )
+                                    : TextButton(
+                                        onPressed: () => context.router.push(
+                                            const VerificationPageRoute()),
+                                        child: Text('Account unverified',
+                                            style: subTitle.copyWith(
+                                                color: kBlackColor,
+                                                fontSize: 13,
+                                                decoration:
+                                                    TextDecoration.underline)),
+                                      ),
+                                const SizedBox(width: 10),
+                                IconButton(
+                                  onPressed: () => context.read<ProfileCubit>().toggleEditState(),
+                                  icon: const Icon(
+                                    Icons.edit,
+                                    color: kPrimaryColor,
+                                  ),
+                                  splashRadius: 6.0,
+                                  tooltip: "Click on required field to edit",
+                                )
+                              ],
+                            )
                           ],
                         ),
                       ),
@@ -138,9 +155,12 @@ class ProfilePage extends StatelessWidget {
                                 size: 15,
                               )),
                           true,
-                          () => null, context),
+                          () => null,
+                          context,
+                          canEdit
+                          ),
                       buildtile(authUserModel.email, const Spacer(), false,
-                          () => showEditEmailModal(context: context),context),
+                          () => showEditEmailModal(context: context), context, canEdit),
                       const SizedBox(
                         height: 10,
                       ),
@@ -172,9 +192,16 @@ class ProfilePage extends StatelessWidget {
                           true,
                           () => authUserModel.isVerified
                               ? null
-                              : showEditNameModal(context: context),context),
-                      buildtile(authUserModel.phoneNumber, const Spacer(),
-                          false, () => showEditPhoneModal(context: context),context),
+                              : showEditNameModal(context: context),
+                          context, authUserModel.isVerified
+                              ? false
+                              : canEdit),
+                      buildtile(
+                          authUserModel.phoneNumber,
+                          const Spacer(),
+                          false,
+                          () => showEditPhoneModal(context: context),
+                          context, canEdit),
                       const SizedBox(
                         height: 80,
                       ),
@@ -195,15 +222,15 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  Widget buildtile(
-      String leading, Widget trailing, bool trailexist, Function() ontap, BuildContext context) {
+  Widget buildtile(String leading, Widget trailing, bool trailexist,
+      Function() ontap, BuildContext context, bool canEdit) {
     return GestureDetector(
       onTap: ontap,
       child: Container(
         padding: const EdgeInsets.all(10.0),
         width: MediaQuery.of(context).size.width,
-        decoration: const BoxDecoration(
-            border: Border(bottom: BorderSide(color: Color(0XFFF3F6F8)))),
+        decoration: BoxDecoration(
+            border: canEdit ? Border.all(color: kPrimaryColor) : const Border(bottom: BorderSide(color: Color(0XFFF3F6F8)))),
         child: trailexist
             ? Row(
                 children: <Widget>[

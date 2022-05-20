@@ -11,7 +11,8 @@ class ProfileState with _$ProfileState {
     required String success,
     required String smsCode,
     required String verificationId,
-    required bool loading
+    required bool loading,
+    required bool canEdit,
   }) = _ProfileState;
   factory ProfileState.initial() => const ProfileState(
     firstName: "",
@@ -22,6 +23,7 @@ class ProfileState with _$ProfileState {
     success: "",
     smsCode : "",
     verificationId: "",
-    loading: false
+    loading: false,
+    canEdit: false
   );
 }

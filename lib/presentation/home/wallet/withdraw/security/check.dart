@@ -28,7 +28,7 @@ class CheckWithdrawal extends StatelessWidget {
               previous.success != current.success && current.success.isNotEmpty,
           listener: (context, state) {
             CustomSnackbar.showSnackBar(context, state.success, false);
-            context.router.push(const WithdrawalSuccessRoute());
+            context.router.replace(const WithdrawalSuccessRoute());
           },
         ),
       ],
