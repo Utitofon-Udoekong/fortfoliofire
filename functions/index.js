@@ -68,7 +68,6 @@ exports.webhookHandler = functions.https.onRequest(async (req, res) => {
     const rawBody = req.rawBody;
     const signature = req.headers['x-cc-webhook-signature'];
     const webhookSecret = process.env.COINBASE_WEBHOOK_SECRET;
-    functions.logger.log(rawBody)
 
     try {
       const event = Webhook.verifyEventBody(rawBody, signature, webhookSecret);
