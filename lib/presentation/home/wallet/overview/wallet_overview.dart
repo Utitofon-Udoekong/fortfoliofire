@@ -284,7 +284,7 @@ class WalletOverview extends StatelessWidget {
                       },
                       "\$${formatter.format(fortDollarBalance)}",
                       state.showDigits,
-                      "\$$fortDollarYield",
+                      "\$${formatter.format(fortDollarYield)}",
                     ));
               },
             ),
@@ -298,7 +298,7 @@ class WalletOverview extends StatelessWidget {
                   child: buildcard('FortCrypto', 'fortcrypto', () {
                     context.router.push(const FortCryptoInvestmentInfoRoute());
                   }, "\$${formatter.format(fortCryptoBalance)}", state.showDigits,
-                      "\$$fortCryptoYield"),
+                      "\$${formatter.format(fortCryptoYield)}"),
                 );
               },
             ),
@@ -312,7 +312,7 @@ class WalletOverview extends StatelessWidget {
                   child: buildcard('FortShield', 'fortshield', () {
                     context.router.push(const FortShieldInvestmentInfoRoute());
                   }, "N${formatter.format(fortShieldBalance)}", state.showDigits,
-                      "N$fortShieldYield"),
+                      "N${formatter.format(fortShieldYield)}"),
                 );
               },
             ),
