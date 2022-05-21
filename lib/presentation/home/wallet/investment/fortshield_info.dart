@@ -84,7 +84,7 @@ class FortShieldInvestmentInfo extends StatelessWidget {
                       isDue: activeInvestments[index].dueDate.isToday,
                       daysLeft:
                           Jiffy(activeInvestments[index].dueDate).fromNow(),
-                      roi: 'N${formatter.format(activeInvestments[index].roi)}'
+                      planYield: 'N${formatter.format(activeInvestments[index].planYield)}'
                     );
                   }),
                 ),
@@ -107,7 +107,7 @@ class FortShieldInvestmentInfo extends StatelessWidget {
 Widget buildTile(
     {required String title,
     required String amount,
-    required String roi,
+    required String planYield,
     required Function() ontap,
     required bool pending,
     required bool isDue,
@@ -134,7 +134,7 @@ Widget buildTile(
                 style: titleText.copyWith(fontSize: 15),
               ),
               Text(
-                roi,
+                planYield,
                 style: subTitle.copyWith(fontSize: 15),
               )
             ],

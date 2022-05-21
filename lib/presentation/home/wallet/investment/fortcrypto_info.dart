@@ -83,7 +83,7 @@ class FortCryptoInvestmentInfo extends StatelessWidget {
                       pending: activeInvestments[index].status == "Pending",
                       isDue: activeInvestments[index].dueDate.isToday,
                       daysLeft:
-                          Jiffy(activeInvestments[index].dueDate).fromNow(), roi: '\$${formatter.format(activeInvestments[index].roi)}',
+                          Jiffy(activeInvestments[index].dueDate).fromNow(), planYield: '\$${formatter.format(activeInvestments[index].planYield)}',
                     );
                   }),
                 ),
@@ -106,7 +106,7 @@ class FortCryptoInvestmentInfo extends StatelessWidget {
 Widget buildTile(
     {required String title,
     required String amount,
-    required String roi,  
+    required String planYield,  
     required Function() ontap,
     required bool pending,
     required bool isDue,
@@ -133,7 +133,7 @@ Widget buildTile(
                 style: titleText.copyWith(fontSize: 15),
               ),
               Text(
-                roi,
+                planYield,
                 style: subTitle.copyWith(fontSize: 15),
               ),
             ],
