@@ -45,7 +45,7 @@ class PaymentMethodSuccess extends StatelessWidget {
             CustomFilledButton(
                 text: 'DONE',
                 onTap: () {
-                  context.router.replaceAll([const PaymentMethodRoute()]);
+                  context.router.replaceAll([const HomePageRoute()]);
                 })
           ],
         ),

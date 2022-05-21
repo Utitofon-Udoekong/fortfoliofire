@@ -47,9 +47,7 @@ class InvestmentSuccess extends StatelessWidget {
                 text: 'DONE',
                 onTap: () {
                   context.read<InvestmentCubit>().reset();
-                  context.replaceRoute(const HomePageRoute(children: [
-                    InvestmentPageRoute()
-                  ]));
+                  context.router.replaceAll([const HomePageRoute(children: [InvestmentPageRoute()])]);
                 })
           ],
         ),
