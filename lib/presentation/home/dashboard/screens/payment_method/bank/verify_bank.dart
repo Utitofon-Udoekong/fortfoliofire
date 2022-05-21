@@ -61,6 +61,16 @@ class VerifyBank extends StatelessWidget {
                         style: titleText.copyWith(color: kBlackColor),
                       ),
                       const SizedBox(
+                        height: 5,
+                      ),
+                      TextButton(
+                        onPressed: () => context.router.push(const SetPinEngineRoute()),
+                        child: Text(
+                          "Haven't set a pin?",
+                          style: titleText.copyWith(color: kPrimaryColor, fontSize: 14),
+                        ),
+                      ),
+                      const SizedBox(
                         height: 20,
                       ),
                       SizedBox(
@@ -83,7 +93,6 @@ class VerifyBank extends StatelessWidget {
                                       color: kPrimaryColor))),
                         )),
                       ),
-                      // implement the custom NumPad
                       NumPad(
                         buttonSize: 60,
                         controller: _myController,
