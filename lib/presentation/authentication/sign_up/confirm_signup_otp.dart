@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fortfolio/application/auth/auth_cubit.dart';
+// import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/application/auth/sign_up_form/phone/sign_up_form_phone_cubit.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
@@ -26,6 +26,11 @@ class ConfirmSignupWithOTP extends StatelessWidget {
     return Scaffold(
       body: MultiBlocListener(
         listeners: [
+          // BlocListener<AuthCubit, AuthState>(
+          //   listenWhen: (p, c) => p.isLoggedIn != c.isLoggedIn && c.isLoggedIn,
+          //   listener: (context, state) {
+          //   },
+          // ),
            BlocListener<SignUpFormPhoneCubit, SignUpFormPhoneState>(
                   listenWhen: (p, c) =>
                       p.failure != c.failure && c.failure.isNotEmpty,
@@ -38,14 +43,9 @@ class ConfirmSignupWithOTP extends StatelessWidget {
                       p.success != c.success && c.success.isNotEmpty,
                   listener: (context, state) {
                     CustomSnackbar.showSnackBar(context, state.success, false);
+                    context.router.replace(const HomePageRoute());
                   },
                 ),
-          BlocListener<AuthCubit, AuthState>(
-            listenWhen: (p, c) => p.isLoggedIn != c.isLoggedIn && c.isLoggedIn,
-            listener: (context, state) {
-              context.router.replace(const HomePageRoute());
-            },
-          ),
         ],
         child: BlocBuilder<SignUpFormPhoneCubit, SignUpFormPhoneState>(
           builder: (context, state) {
