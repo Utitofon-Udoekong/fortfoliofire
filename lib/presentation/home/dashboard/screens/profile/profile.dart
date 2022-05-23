@@ -160,9 +160,9 @@ class ProfilePage extends StatelessWidget {
                                   margin: const EdgeInsets.symmetric(
                                       horizontal: 10),
                                   child: const Icon(
-                      Icons.keyboard_arrow_right,
-                      color: kgreyColor,
-                    ),
+                                    Icons.keyboard_arrow_right,
+                                    color: kgreyColor,
+                                  ),
                                 )
                               : const Spacer(),
                           authUserModel.isVerified ? true : false,
@@ -184,7 +184,9 @@ class ProfilePage extends StatelessWidget {
                               color: const Color(0XFF242424), fontSize: 13),
                         ),
                       ),
-                      const SizedBox(height: 10,)
+                      const SizedBox(
+                        height: 10,
+                      )
                     ],
                   );
                 },
@@ -206,20 +208,21 @@ class ProfilePage extends StatelessWidget {
                   bottom:
                       BorderSide(color: Color.fromARGB(255, 185, 185, 185)))),
           child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Text(
-                      leading,
-                      style:
-                          subTitle.copyWith(color: kBlackColor, fontSize: 15),
-                    ),
-                    trailexist ? trailing : const Icon(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                leading,
+                style: subTitle.copyWith(color: kBlackColor, fontSize: 15),
+              ),
+              trailexist
+                  ? trailing
+                  : const Icon(
                       Icons.keyboard_arrow_right,
                       color: kPrimaryColor,
                     )
-                  ],
-                )),
+            ],
+          )),
     );
   }
 
