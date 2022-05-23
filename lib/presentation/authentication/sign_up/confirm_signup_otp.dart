@@ -26,11 +26,6 @@ class ConfirmSignupWithOTP extends StatelessWidget {
     return Scaffold(
       body: MultiBlocListener(
         listeners: [
-          // BlocListener<AuthCubit, AuthState>(
-          //   listenWhen: (p, c) => p.isLoggedIn != c.isLoggedIn && c.isLoggedIn,
-          //   listener: (context, state) {
-          //   },
-          // ),
            BlocListener<SignUpFormPhoneCubit, SignUpFormPhoneState>(
                   listenWhen: (p, c) =>
                       p.failure != c.failure && c.failure.isNotEmpty,
