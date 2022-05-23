@@ -146,7 +146,7 @@ class ProfilePage extends StatelessWidget {
                         height: 10,
                       ),
                       buildtile(
-                          authUserModel.firstName,
+                          "${authUserModel.firstName} ${authUserModel.lastName}",
                           authUserModel.isVerified
                               ? Tooltip(
                                   message:
@@ -159,18 +159,13 @@ class ProfilePage extends StatelessWidget {
                                   padding: const EdgeInsets.all(8.0),
                                   margin: const EdgeInsets.symmetric(
                                       horizontal: 10),
-                                  child: Text(
-                                    authUserModel.lastName,
-                                    style: subTitle.copyWith(
-                                        color: kBlackColor, fontSize: 15),
-                                  ),
+                                  child: const Icon(
+                      Icons.keyboard_arrow_right,
+                      color: kgreyColor,
+                    ),
                                 )
-                              : Text(
-                                  authUserModel.lastName,
-                                  style: subTitle.copyWith(
-                                      color: kBlackColor, fontSize: 15),
-                                ),
-                          true,
+                              : const Spacer(),
+                          authUserModel.isVerified ? true : false,
                           () => authUserModel.isVerified
                               ? null
                               : showEditNameModal(context: context),
@@ -210,29 +205,7 @@ class ProfilePage extends StatelessWidget {
               border: Border(
                   bottom:
                       BorderSide(color: Color.fromARGB(255, 185, 185, 185)))),
-          child: trailexist
-              ? Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: Text(
-                        leading,
-                        style:
-                            subTitle.copyWith(color: kBlackColor, fontSize: 15),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                        softWrap: false,
-                      ),
-                    ),
-                    const Spacer(),
-                    trailing,
-                    const SizedBox(width: 5.0,),
-                    const Icon(
-                      Icons.keyboard_arrow_right,
-                      color: kPrimaryColor,
-                    )
-                  ],
-                )
-              : Row(
+          child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
@@ -241,7 +214,7 @@ class ProfilePage extends StatelessWidget {
                       style:
                           subTitle.copyWith(color: kBlackColor, fontSize: 15),
                     ),
-                    const Icon(
+                    trailexist ? trailing : const Icon(
                       Icons.keyboard_arrow_right,
                       color: kPrimaryColor,
                     )
