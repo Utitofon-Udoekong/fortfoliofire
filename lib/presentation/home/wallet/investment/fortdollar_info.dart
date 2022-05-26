@@ -129,13 +129,15 @@ Widget buildTile(
                 title,
                 style: subTitle.copyWith(fontSize: 12),
               ),
+              const SizedBox(height: 2.5),
               Text(
                 amount,
                 style: titleText.copyWith(fontSize: 15),
               ),
+              const SizedBox(height: 2.5),
               Text(
                 planYield,
-                style: subTitle.copyWith(fontSize: 15),
+                style: subTitle.copyWith(fontSize: 12),
               ),
             ],
           ),
