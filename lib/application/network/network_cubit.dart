@@ -3,9 +3,11 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 
 part 'network_state.dart';
 part 'network_cubit.freezed.dart';
+@injectable
 
 class NetworkCubit extends Cubit<NetworkState> {
   late StreamSubscription<ConnectivityResult>? _logConnection;
