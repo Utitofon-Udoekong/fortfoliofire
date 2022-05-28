@@ -31,4 +31,10 @@ class NetworkCubit extends Cubit<NetworkState> {
       }
     })
   };
+
+  @override
+  Future<void> close() async {
+    await _logConnection.cancel();
+    return super.close();
+  }
 }
