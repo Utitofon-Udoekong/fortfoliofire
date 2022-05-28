@@ -14,6 +14,7 @@ import 'package:fortfolio/presentation/home/dashboard/screens/verification/cubit
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:fortfolio/application/auth/auth_cubit.dart';
+import 'package:fortfolio/application/network/network_cubit.dart';
 import 'package:fortfolio/injection.dart';
 import 'package:fortfolio/presentation/home/investment/cubit/investment_cubit.dart';
 import 'package:fortfolio/presentation/home/wallet/cubit/wallet_cubit.dart';
@@ -115,6 +116,10 @@ class _AppState extends State<App> with WidgetsBindingObserver {
     final _appRouter = AppRouter();
     return MultiBlocProvider(
         providers: [
+          BlocProvider(
+            create: (context) => getIt<NetworkCubit>(),
+            lazy: false,
+          ),
           BlocProvider(
             create: (context) => getIt<AuthCubit>(),
             lazy: false,
