@@ -284,7 +284,7 @@ class FortDollarInvestment extends StatelessWidget {
                   builder: (context, state) {
                     return LabeledCheckbox(
                         label:
-                            'I have read and I agree to Fortfolio Terms of Services Agreement',
+                            const Text('I have read and I agree to Fortfolio Terms of Services Agreement'),
                         value: state.agreementAccepted,
                         onChanged: (value) {
                           context

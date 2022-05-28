@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/application/auth/sign_up_form/email/sign_up_form_cubit.dart';
@@ -6,6 +7,7 @@ import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/domain/widgets/labelled_checkbox.dart';
 import 'package:fortfolio/domain/widgets/loading_view.dart';
+import 'package:fortfolio/domain/widgets/tac_text.dart';
 import 'package:fortfolio/injection.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
@@ -249,8 +251,7 @@ class SignUpForm extends StatelessWidget {
                               BlocBuilder<SignUpFormCubit, SignUpFormState>(
                     builder: (context, state) {
                       return LabeledCheckbox(
-                          label:
-                              'I have read and I agree to Fortfolio Terms of Services Agreement',
+                          label: const TACText(),
                           value: state.accepted,
                           onChanged: (value) {
                             context
@@ -291,4 +292,5 @@ class SignUpForm extends StatelessWidget {
           )),
     );
   }
+  
 }
