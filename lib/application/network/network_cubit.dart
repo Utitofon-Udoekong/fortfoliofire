@@ -9,7 +9,9 @@ part 'network_cubit.freezed.dart';
 
 class NetworkCubit extends Cubit<NetworkState> {
   late StreamSubscription<ConnectivityResult> _logConnection;
-  NetworkCubit() : super(NetworkState.empty());
+  NetworkCubit() : super(NetworkState.empty()){
+    initConnectionCheck();
+  }
   void checkConnection () => Connectivity().checkConnectivity();
   void initConnectionCheck() => {
     _logConnection = Connectivity().onConnectivityChanged.listen((event) {
