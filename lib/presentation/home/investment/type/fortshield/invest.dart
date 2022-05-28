@@ -7,6 +7,7 @@ import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
 import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
 import 'package:fortfolio/domain/widgets/labelled_checkbox.dart';
+import 'package:fortfolio/domain/widgets/tac_text.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:timelines/timelines.dart';
@@ -234,7 +235,7 @@ class FortShieldInvestment extends StatelessWidget {
                   builder: (context, state) {
                     return LabeledCheckbox(
                         label:
-                            const Text('I have read and I agree to Fortfolio Terms of Services Agreement'),
+                            const TACText(),
                         value: state.agreementAccepted,
                         onChanged: (value) {
                           context
