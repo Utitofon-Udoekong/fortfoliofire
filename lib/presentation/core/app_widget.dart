@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,7 +19,6 @@ import 'package:fortfolio/application/network/network_cubit.dart';
 import 'package:fortfolio/injection.dart';
 import 'package:fortfolio/presentation/home/investment/cubit/investment_cubit.dart';
 import 'package:fortfolio/presentation/home/wallet/cubit/wallet_cubit.dart';
-import 'package:fortfolio/presentation/network/no_connection.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 
 import '../home/dashboard/cubit/dashboard_cubit.dart';
@@ -31,7 +31,6 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> with WidgetsBindingObserver {
-  
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
@@ -94,12 +93,14 @@ class _AppState extends State<App> with WidgetsBindingObserver {
     bool canCheckBiometrics = await LocalAuthApi.hasBiometrics();
     final bgTime = sp.getInt(backgroundedTimeKey) ?? 0;
     final allowedBackgroundTime = bgTime + pinLockMillis;
-    final shouldShowPIN = DateTime.now().millisecondsSinceEpoch > allowedBackgroundTime;
+    final shouldShowPIN =
+        DateTime.now().millisecondsSinceEpoch > allowedBackgroundTime;
 
     if (shouldShowPIN) {
       if (Platform.isAndroid) {
         if (canCheckBiometrics) {
-          bool didauthenticate = await LocalAuthApi.authenticate(localizedReason: 'Scan Fingerprint to authenticate');
+          bool didauthenticate = await LocalAuthApi.authenticate(
+              localizedReason: 'Scan Fingerprint to authenticate');
           if (didauthenticate != true) {
             exit(0);
           }
@@ -129,37 +130,46 @@ class _AppState extends State<App> with WidgetsBindingObserver {
             lazy: false,
           ),
           BlocProvider(create: (context) => getIt<WalletCubit>(), lazy: false),
-          BlocProvider(create: (context) => getIt<SignUpFormPhoneCubit>(), lazy: false),
-          BlocProvider(create: (context) => getIt<SignInFormPhoneCubit>(), lazy: false),
+          BlocProvider(
+              create: (context) => getIt<SignUpFormPhoneCubit>(), lazy: false),
+          BlocProvider(
+              create: (context) => getIt<SignInFormPhoneCubit>(), lazy: false),
           BlocProvider(create: (context) => getIt<ProfileCubit>(), lazy: false),
-          BlocProvider(create: (context) => getIt<NotificationCubit>(), lazy: false),
-          BlocProvider(create: (context) => getIt<VerificationCubit>(), lazy: false),
-          BlocProvider(create: (context) => getIt<BankAddressCubit>(), lazy: false),
-          BlocProvider(create: (context) => getIt<CryptoWalletCubit>(), lazy: false),
+          BlocProvider(
+              create: (context) => getIt<NotificationCubit>(), lazy: false),
+          BlocProvider(
+              create: (context) => getIt<VerificationCubit>(), lazy: false),
+          BlocProvider(
+              create: (context) => getIt<BankAddressCubit>(), lazy: false),
+          BlocProvider(
+              create: (context) => getIt<CryptoWalletCubit>(), lazy: false),
           BlocProvider(
               create: (context) => getIt<InvestmentCubit>(), lazy: false),
         ],
-        child: StreamBuilder(
-            stream: Connectivity().onConnectivityChanged,
-            builder: (context, AsyncSnapshot<ConnectivityResult> snapshot) {
-              return snapshot.data == ConnectivityResult.mobile ||
-                      snapshot.data == ConnectivityResult.wifi
-                  ? MaterialApp.router(
-                      title: 'Fortfolio',
-                      debugShowCheckedModeBanner: false,
-                      theme: ThemeData(
-                        primarySwatch: Colors.blue,
-                      ),
-                      routeInformationParser: _appRouter.defaultRouteParser(),
-                      routerDelegate: _appRouter.delegate(),
-                    )
-                  : WidgetsApp(
-                      debugShowCheckedModeBanner: false,
-                      builder: (context, widget) {
-                        return const NoInternetPage();
-                      },
-                      color: Colors.blue,
-                    );
-            }));
+        child: MultiBlocListener(
+          listeners: [
+            BlocListener<NetworkCubit, NetworkState>(
+              listenWhen: (previous, current) => previous.connected != current.connected && current.connected && previous.disconnected,
+              listener: (context, state) {
+                context.router.pop();
+              },
+            ),
+            BlocListener<NetworkCubit, NetworkState>(
+              listenWhen: (previous, current) => previous.disconnected != current.disconnected && current.disconnected,
+              listener: (context, state) {
+                context.router.push(const NoInternetPageRoute());
+              },
+            ),
+          ],
+          child: MaterialApp.router(
+            title: 'Fortfolio',
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+            ),
+            routeInformationParser: _appRouter.defaultRouteParser(),
+            routerDelegate: _appRouter.delegate(),
+          ),
+        ));
   }
 }
