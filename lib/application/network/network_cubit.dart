@@ -8,7 +8,7 @@ part 'network_state.dart';
 part 'network_cubit.freezed.dart';
 
 class NetworkCubit extends Cubit<NetworkState> {
-  late StreamSubscription<ConnectivityResult> _logConnection;
+  late StreamSubscription<ConnectivityResult>? _logConnection;
   NetworkCubit() : super(NetworkState.empty()){
     initConnectionCheck();
   }
@@ -34,7 +34,7 @@ class NetworkCubit extends Cubit<NetworkState> {
 
   @override
   Future<void> close() async {
-    await _logConnection.cancel();
+    await _logConnection?.cancel();
     return super.close();
   }
 }
