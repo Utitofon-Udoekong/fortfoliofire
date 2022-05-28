@@ -26,6 +26,7 @@ class _$SignUpFormStateTearOff {
       required bool isSubmitting,
       required bool isObscure,
       required bool showErrorMessages,
+      required bool accepted,
       required String failure,
       required String success}) {
     return _SignUpFormState(
@@ -36,6 +37,7 @@ class _$SignUpFormStateTearOff {
       isSubmitting: isSubmitting,
       isObscure: isObscure,
       showErrorMessages: showErrorMessages,
+      accepted: accepted,
       failure: failure,
       success: success,
     );
@@ -54,6 +56,7 @@ mixin _$SignUpFormState {
   bool get isSubmitting => throw _privateConstructorUsedError;
   bool get isObscure => throw _privateConstructorUsedError;
   bool get showErrorMessages => throw _privateConstructorUsedError;
+  bool get accepted => throw _privateConstructorUsedError;
   String get failure => throw _privateConstructorUsedError;
   String get success => throw _privateConstructorUsedError;
 
@@ -75,6 +78,7 @@ abstract class $SignUpFormStateCopyWith<$Res> {
       bool isSubmitting,
       bool isObscure,
       bool showErrorMessages,
+      bool accepted,
       String failure,
       String success});
 }
@@ -97,6 +101,7 @@ class _$SignUpFormStateCopyWithImpl<$Res>
     Object? isSubmitting = freezed,
     Object? isObscure = freezed,
     Object? showErrorMessages = freezed,
+    Object? accepted = freezed,
     Object? failure = freezed,
     Object? success = freezed,
   }) {
@@ -129,6 +134,10 @@ class _$SignUpFormStateCopyWithImpl<$Res>
           ? _value.showErrorMessages
           : showErrorMessages // ignore: cast_nullable_to_non_nullable
               as bool,
+      accepted: accepted == freezed
+          ? _value.accepted
+          : accepted // ignore: cast_nullable_to_non_nullable
+              as bool,
       failure: failure == freezed
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
@@ -156,6 +165,7 @@ abstract class _$SignUpFormStateCopyWith<$Res>
       bool isSubmitting,
       bool isObscure,
       bool showErrorMessages,
+      bool accepted,
       String failure,
       String success});
 }
@@ -180,6 +190,7 @@ class __$SignUpFormStateCopyWithImpl<$Res>
     Object? isSubmitting = freezed,
     Object? isObscure = freezed,
     Object? showErrorMessages = freezed,
+    Object? accepted = freezed,
     Object? failure = freezed,
     Object? success = freezed,
   }) {
@@ -212,6 +223,10 @@ class __$SignUpFormStateCopyWithImpl<$Res>
           ? _value.showErrorMessages
           : showErrorMessages // ignore: cast_nullable_to_non_nullable
               as bool,
+      accepted: accepted == freezed
+          ? _value.accepted
+          : accepted // ignore: cast_nullable_to_non_nullable
+              as bool,
       failure: failure == freezed
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
@@ -235,6 +250,7 @@ class _$_SignUpFormState extends _SignUpFormState {
       required this.isSubmitting,
       required this.isObscure,
       required this.showErrorMessages,
+      required this.accepted,
       required this.failure,
       required this.success})
       : super._();
@@ -254,13 +270,15 @@ class _$_SignUpFormState extends _SignUpFormState {
   @override
   final bool showErrorMessages;
   @override
+  final bool accepted;
+  @override
   final String failure;
   @override
   final String success;
 
   @override
   String toString() {
-    return 'SignUpFormState(emailAddress: $emailAddress, firstName: $firstName, lastName: $lastName, password: $password, isSubmitting: $isSubmitting, isObscure: $isObscure, showErrorMessages: $showErrorMessages, failure: $failure, success: $success)';
+    return 'SignUpFormState(emailAddress: $emailAddress, firstName: $firstName, lastName: $lastName, password: $password, isSubmitting: $isSubmitting, isObscure: $isObscure, showErrorMessages: $showErrorMessages, accepted: $accepted, failure: $failure, success: $success)';
   }
 
   @override
@@ -278,6 +296,7 @@ class _$_SignUpFormState extends _SignUpFormState {
             const DeepCollectionEquality().equals(other.isObscure, isObscure) &&
             const DeepCollectionEquality()
                 .equals(other.showErrorMessages, showErrorMessages) &&
+            const DeepCollectionEquality().equals(other.accepted, accepted) &&
             const DeepCollectionEquality().equals(other.failure, failure) &&
             const DeepCollectionEquality().equals(other.success, success));
   }
@@ -292,6 +311,7 @@ class _$_SignUpFormState extends _SignUpFormState {
       const DeepCollectionEquality().hash(isSubmitting),
       const DeepCollectionEquality().hash(isObscure),
       const DeepCollectionEquality().hash(showErrorMessages),
+      const DeepCollectionEquality().hash(accepted),
       const DeepCollectionEquality().hash(failure),
       const DeepCollectionEquality().hash(success));
 
@@ -310,6 +330,7 @@ abstract class _SignUpFormState extends SignUpFormState {
       required bool isSubmitting,
       required bool isObscure,
       required bool showErrorMessages,
+      required bool accepted,
       required String failure,
       required String success}) = _$_SignUpFormState;
   const _SignUpFormState._() : super._();
@@ -328,6 +349,8 @@ abstract class _SignUpFormState extends SignUpFormState {
   bool get isObscure;
   @override
   bool get showErrorMessages;
+  @override
+  bool get accepted;
   @override
   String get failure;
   @override

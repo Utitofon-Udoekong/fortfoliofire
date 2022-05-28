@@ -133,7 +133,7 @@ class AddCryptoWallet extends StatelessWidget {
                             builder: ((context, state) {
                           return LabeledCheckbox(
                             label:
-                                'Set as universal address, without specific coins',
+                                const Text('Set as universal address, without specific coins'),
                             value: state.isGeneral,
                             onChanged: (bool newValue) => context
                                 .read<CryptoWalletCubit>()

@@ -10,6 +10,7 @@ class SignUpFormState with _$SignUpFormState {
     required bool isSubmitting,
     required bool isObscure,
     required bool showErrorMessages,
+    required bool accepted,
     required String failure,
     required String success,
   }) = _SignUpFormState;
@@ -20,6 +21,7 @@ class SignUpFormState with _$SignUpFormState {
     lastName: UserName(''), 
     password: Password(''),
     showErrorMessages: false,
+    accepted: false,
     isSubmitting: false,
     isObscure: false,
     failure: "",

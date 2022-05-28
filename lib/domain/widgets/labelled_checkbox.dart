@@ -8,7 +8,7 @@ class LabeledCheckbox extends StatelessWidget {
     required this.onChanged,
   }) : super(key: key);
 
-  final String label;
+  final Widget label;
   final bool value;
   final ValueChanged<bool> onChanged;
 
@@ -30,7 +30,7 @@ class LabeledCheckbox extends StatelessWidget {
             ),
             checkColor: const Color(0XFF00ADEE),
           ),
-          Expanded(child: Text(label)),
+          Expanded(child: label),
         ],
       ),
     );
