@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/application/auth/sign_in_form/phone/sign_in_form_phone_cubit.dart';
 import 'package:fortfolio/application/auth/sign_up_form/phone/sign_up_form_phone_cubit.dart';
+import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/infrastructure/auth/local_auth_api.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/notifications/cubit/notification_cubit.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/bank/cubit/bank_address_cubit.dart';
@@ -149,15 +150,17 @@ class _AppState extends State<App> with WidgetsBindingObserver {
         child: MultiBlocListener(
           listeners: [
             BlocListener<NetworkCubit, NetworkState>(
-              listenWhen: (previous, current) => previous.connected != current.connected && current.connected && previous.disconnected,
+              listenWhen: (previous, current) => previous.connected != current.connected && current.connected,
               listener: (context, state) {
-                context.router.pop();
+                CustomSnackbar.showSnackBar(context, "connected", false);
+                // context.router.pop();
               },
             ),
             BlocListener<NetworkCubit, NetworkState>(
               listenWhen: (previous, current) => previous.disconnected != current.disconnected && current.disconnected,
               listener: (context, state) {
-                context.router.push(const NoInternetPageRoute());
+                CustomSnackbar.showSnackBar(context, "disconnected", true);
+                // context.router.push(const NoInternetPageRoute());
               },
             ),
           ],
