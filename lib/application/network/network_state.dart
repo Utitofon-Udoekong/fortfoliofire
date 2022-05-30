@@ -5,7 +5,7 @@ class NetworkState with _$NetworkState {
   const factory NetworkState({
     required bool connected,
     required bool disconnected,
-    required bool loading
+    required bool loading,
   }) = _NetworkState;
   factory NetworkState.empty() => const NetworkState(
     connected: false,

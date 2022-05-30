@@ -12,16 +12,20 @@ part 'network_cubit.freezed.dart';
 class NetworkCubit extends Cubit<NetworkState> {
   late StreamSubscription<ConnectivityResult>? _logConnection;
   NetworkCubit() : super(NetworkState.empty()){
-    _logConnection = Connectivity().onConnectivityChanged.listen(checkConnectionStream);
+    checkConnectionStream();
   }
+
   void checkConnection () => Connectivity().checkConnectivity();
 
-  void checkConnectionStream(ConnectivityResult event) {
-    if(event == ConnectivityResult.mobile || event == ConnectivityResult.wifi){
-        emit(state.copyWith(connected: true, disconnected: false));
-      }else{
+  void checkConnectionStream() {
+    _logConnection = Connectivity().onConnectivityChanged.listen((event){
+      if(event == ConnectivityResult.none){
         emit(state.copyWith(connected: false, disconnected: true));
+      }else{
+        emit(state.copyWith(connected: true, disconnected: false));
       }
+    });
+    
   }
 
   @override
