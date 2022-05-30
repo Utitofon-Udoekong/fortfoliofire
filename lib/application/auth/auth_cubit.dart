@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fortfolio/domain/auth/auth_user_model.dart';
 import 'package:fortfolio/domain/auth/i_auth_facade.dart';
 import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
+import 'package:fortfolio/infrastructure/auth/dto/price/dollar_price_dto.dart';
 import 'package:fortfolio/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -50,9 +51,24 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  Future<void> listenDollarStream(int dollarPrice){
-    _dollarToNairaSubscription = firestoreFacade.
-    emit(state.copyWith(dollarToNaira: dollarPrice));
+  void listenDollarStream(int dollarPrice) {
+    _dollarToNairaSubscription = firestoreFacade.getDollarPrice().listen((event) {
+      for (var change in event.docChanges) {
+        switch (change.type) {
+          case DocumentChangeType.added:
+            print("New City: ${change.doc.data()}");
+            break;
+          case DocumentChangeType.modified:
+          final docData = DollarPriceDTO.fromFirestore(change.doc).toDomain();
+            // emit(state.copyWith(dollarToNaira: price!));
+            break;
+          case DocumentChangeType.removed:
+            print("Removed City: ${change.doc.data()}");
+            break;
+        }
+      }
+      emit(state.copyWith(dollarToNaira: dollarPrice));
+    },onError: (error) => print("Listen failed: $error"));
   }
 
   Future<void> listenAuthStateChangesStream(AuthUserModel authUser) async {

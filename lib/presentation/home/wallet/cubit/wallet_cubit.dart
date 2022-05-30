@@ -33,6 +33,7 @@ class WalletCubit extends Cubit<WalletState> {
   final IFirestoreFacade firestoreFacade;
   final IExternalFacade externalFacade;
   late final AuthCubit authCubit;
+  late final int dollarPrice;
   StreamSubscription<QuerySnapshot>? _logsFortDollarSubscription;
   StreamSubscription<QuerySnapshot>? _logsFortShieldSubscription;
   StreamSubscription<QuerySnapshot>? _logsFortCryptoSubscription;
@@ -43,6 +44,7 @@ class WalletCubit extends Cubit<WalletState> {
   WalletCubit(this.firestoreFacade, this.externalFacade)
       : super(WalletState.initial()) {
     authCubit = getIt<AuthCubit>();
+    dollarPrice = authCubit.state.dollarToNaira;
     authCubit.stream.listen((state) {
       if (state.isLoggedIn) {
         initWithdrawals();
@@ -165,7 +167,7 @@ class WalletCubit extends Cubit<WalletState> {
       var balance = 0.0;
       for (var element in fortShieldInvestments) {
         var availableBalance =
-            (element.amount / 590) + (element.planYield / 590);
+            (element.amount / dollarPrice) + (element.planYield / dollarPrice);
         if (element.status != "Pending") {
           balance += availableBalance;
         }
@@ -187,7 +189,7 @@ class WalletCubit extends Cubit<WalletState> {
       var balance = 0.0;
       for (var element in fortShieldInvestments) {
         var availableBalance =
-            (element.amount / 590) + (element.planYield / 590);
+            (element.amount / dollarPrice) + (element.planYield / dollarPrice);
         if (element.status != "Pending") {
           balance += availableBalance;
         }
@@ -221,7 +223,7 @@ class WalletCubit extends Cubit<WalletState> {
       var balance = 0.0;
       for (var element in fortShieldInvestments) {
         var availableBalance =
-            (element.amount / 590) + (element.planYield / 590);
+            (element.amount / dollarPrice) + (element.planYield / dollarPrice);
         if (element.status != "Pending") {
           balance += availableBalance;
         }
@@ -255,7 +257,7 @@ class WalletCubit extends Cubit<WalletState> {
       }
       for (var element in fortShieldInvestments) {
         var availableBalance =
-            (element.amount / 590) + (element.planYield / 590);
+            (element.amount / dollarPrice) + (element.planYield / dollarPrice);
         if (element.status != "Pending") {
           balance += availableBalance;
         }
