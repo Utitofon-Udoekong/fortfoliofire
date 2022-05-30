@@ -19,7 +19,9 @@ class NairaAccount extends StatelessWidget {
   Widget build(BuildContext context) {
     final int amountInvested = context.select(
         (InvestmentCubit investmentCubit) =>
-            investmentCubit.state.amountInvested);
+    final int dollarPrice = context.select(
+        (AuthCubit authCubit) =>
+            authCubit.state.dollarToNaira);
     final String exchangeType = context.select(
         (InvestmentCubit investmentCubit) =>
             investmentCubit.state.exchangeType);

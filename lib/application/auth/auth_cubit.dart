@@ -51,6 +51,7 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> listenDollarStream(int dollarPrice){
+    _dollarToNairaSubscription = firestoreFacade.
     emit(state.copyWith(dollarToNaira: dollarPrice));
   }
 
