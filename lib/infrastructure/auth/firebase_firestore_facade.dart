@@ -254,6 +254,12 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
   }
 
   @override
+  Stream<QuerySnapshot<Object?>> getDollarPrice() async* {
+    // TODO: implement getDollarPrice
+    yield* firestore.collection("egoPrice").snapshots();
+  }
+
+  @override
   Future<Either<String, String>> harvestInvestment(
       {required String docId, required double amount}) async {
     final query = firestore.authUserCollection
@@ -318,6 +324,8 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
       return left('Server error encountered');
     }
   }
+  
+  
 
   
 }

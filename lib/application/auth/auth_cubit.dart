@@ -17,6 +17,7 @@ class AuthCubit extends Cubit<AuthState> {
   ///The stream subscription for listening to the auth state changes
   StreamSubscription<AuthUserModel>? _authUserSubscription;
   StreamSubscription<AuthUserModel>? _databaseUserSubscription;
+  StreamSubscription<AuthUserModel>? _dollarToNairaSubscription;
   AuthCubit() : super(AuthState.empty()) {
     authFacade = getIt<IAuthFacade>();
     _authUserSubscription =
@@ -42,6 +43,10 @@ class AuthCubit extends Cubit<AuthState> {
         },
       );
     }
+  }
+
+  Future<void> listenDollarStream(int dollarPrice) async{
+
   }
 
   Future<void> listenAuthStateChangesStream(AuthUserModel authUser) async {

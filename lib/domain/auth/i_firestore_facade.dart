@@ -24,6 +24,7 @@ abstract class IFirestoreFacade {
   Stream<QuerySnapshot> getFortDollarInvestments();
   Stream<QuerySnapshot> getFortCryptoInvestments();
   Stream<QuerySnapshot> getWithdrawals();
+  Stream<QuerySnapshot> getDollarPrice();
   Future<Either<String,KYCItem>> getKYC();
   Future<Either<String,String>> createWithdrawalTransaction( {required WithdrawalItem withdrawalItem});
   Future<Either<String,String>> createNotification( {required NotificationItem notificationItem});
