@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:intl/intl.dart';
@@ -19,6 +20,8 @@ class WalletOverview extends StatelessWidget {
     final btcFormatter = NumberFormat("###.########", "en_US");
     final fortCryptoBalance = context.select((WalletCubit walletCubit) =>
         walletCubit.state.fortCryptoInvestmentBalance);
+    final dollarPrice = context.select((AuthCubit authCubit) =>
+        authCubit.state.dollarToNaira);
     final fortShieldBalance = context.select((WalletCubit walletCubit) =>
         walletCubit.state.fortShieldInvestmentBalance);
     final fortDollarBalance = context.select((WalletCubit walletCubit) =>
@@ -75,11 +78,11 @@ class WalletOverview extends StatelessWidget {
                           switch (state.exchange) {
                             case "NGN":
                               return state.showDigits
-                                ? Text('N${formatter.format(state.walletBalance * 590) }',
+                                ? Text('N${formatter.format(state.walletBalance * dollarPrice) }',
                                     style: titleText.copyWith(
                                         fontSize: 15, color: kWhiteColor))
                                 : Text(
-                                    formatter.format(state.walletBalance * 590)
+                                    formatter.format(state.walletBalance * dollarPrice)
                                         .replaceAll(regExp, "*"),
                                     style: titleText.copyWith(
                                         fontSize: 23, color: kWhiteColor));
@@ -104,11 +107,11 @@ class WalletOverview extends StatelessWidget {
                                         fontSize: 23, color: kWhiteColor));
                             default:
                               return state.showDigits
-                                ? Text('N${formatter.format(state.walletBalance * 590) }',
+                                ? Text('N${formatter.format(state.walletBalance * dollarPrice) }',
                                     style: titleText.copyWith(
                                         fontSize: 15, color: kWhiteColor))
                                 : Text(
-                                    formatter.format(state.walletBalance * 590)
+                                    formatter.format(state.walletBalance * dollarPrice)
                                         .replaceAll(regExp, "*"),
                                     style: titleText.copyWith(
                                         fontSize: 23, color: kWhiteColor));

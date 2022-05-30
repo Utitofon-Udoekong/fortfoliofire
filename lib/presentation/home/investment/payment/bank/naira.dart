@@ -6,9 +6,6 @@ import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
-import 'package:fortfolio/domain/widgets/otp_field/otp_box_style.dart';
-import 'package:fortfolio/domain/widgets/otp_field/otp_field_style.dart';
-import 'package:fortfolio/domain/widgets/otp_field/otp_text_field.dart';
 import 'package:fortfolio/presentation/home/investment/cubit/investment_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:intl/intl.dart';
@@ -47,7 +44,7 @@ class NairaAccount extends StatelessWidget {
               ),
               Text(
                 exchangeType == "USD"
-                    ? formatter.format(amountInvested * 590)
+                    ? formatter.format(amountInvested * dollarPrice)
                     : formatter.format(amountInvested),
                 style: subTitle.copyWith(color: kBlackColor, fontSize: 14),
               ),
@@ -61,7 +58,7 @@ class NairaAccount extends StatelessWidget {
                   color: const Color.fromRGBO(203, 241, 255, 0.18),
                   borderRadius: BorderRadius.circular(20)),
               child: Text(
-                '\$1 = N590',
+                '\$1 = NdollarPrice',
                 style: subTitle.copyWith(fontSize: 13, color: kPrimaryColor),
               ),
               alignment: Alignment.center,
@@ -79,7 +76,7 @@ class NairaAccount extends StatelessWidget {
               Text(
                 exchangeType == "USD"
                     ? formatter.format(amountInvested)
-                    : formatter.format(amountInvested / 590),
+                    : formatter.format(amountInvested / dollarPrice),
                 style: subTitle.copyWith(color: kBlackColor, fontSize: 14),
               ),
             ],
