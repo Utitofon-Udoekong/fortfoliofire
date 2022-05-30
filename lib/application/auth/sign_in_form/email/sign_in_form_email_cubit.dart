@@ -2,8 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
-import 'package:fortfolio/application/auth/auth_cubit.dart';
-import 'package:fortfolio/domain/auth/auth_failure.dart';
 import 'package:fortfolio/domain/auth/i_auth_facade.dart';
 import 'package:fortfolio/domain/auth/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -15,15 +13,10 @@ part 'sign_in_form_email_cubit.freezed.dart';
 @injectable
 class SignInFormEmailCubit extends Cubit<SignInFormEmailState> {
   final IAuthFacade _authFacade;
-  final AuthCubit authCubit;
-  StreamSubscription<Either<AuthFailure, String>>?
-      _emailSignInSubscription;
-  SignInFormEmailCubit(this._authFacade, this.authCubit) : super(SignInFormEmailState.initial());
+  SignInFormEmailCubit(this._authFacade) : super(SignInFormEmailState.initial());
 
   @override
   Future<void> close() async {
-    await _emailSignInSubscription?.cancel();
-
     return super.close();
   }
 
@@ -55,8 +48,6 @@ class SignInFormEmailCubit extends Cubit<SignInFormEmailState> {
         emit(state.copyWith(isSubmitting: false,failure: failure));
         reset();
       }, (success) async{
-        // final userModel = await _authFacade.getDatabaseUser(id: userId);
-        // userModel.fold(() => null, (authUser) => authCubit.listenAuthStateChangesStream(authUser));
         emit(state.copyWith(isSubmitting: false,success: success));
         reset();
       });

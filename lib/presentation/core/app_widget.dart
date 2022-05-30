@@ -150,14 +150,14 @@ class _AppState extends State<App> with WidgetsBindingObserver {
         child: MultiBlocListener(
           listeners: [
             BlocListener<NetworkCubit, NetworkState>(
-              listenWhen: (previous, current) => previous.connected != current.connected && current.connected,
+              listenWhen: (previous, current) => previous.connected != current.connected,
               listener: (context, state) {
                 CustomSnackbar.showSnackBar(context, "connected", false);
                 // context.router.pop();
               },
             ),
             BlocListener<NetworkCubit, NetworkState>(
-              listenWhen: (previous, current) => previous.disconnected != current.disconnected && current.disconnected,
+              listenWhen: (previous, current) => previous.disconnected != current.disconnected,
               listener: (context, state) {
                 CustomSnackbar.showSnackBar(context, "disconnected", true);
                 // context.router.push(const NoInternetPageRoute());
