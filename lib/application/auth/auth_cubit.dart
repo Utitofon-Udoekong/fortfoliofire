@@ -54,17 +54,16 @@ class AuthCubit extends Cubit<AuthState> {
   void listenDollarStream(int dollarPrice) {
     _dollarToNairaSubscription = firestoreFacade.getDollarPrice().listen((event) {
       for (var change in event.docChanges) {
+        final docData = DollarPriceDTO.fromFirestore(change.doc).toDomain();
         switch (change.type) {
           case DocumentChangeType.added:
-            print("New City: ${change.doc.data()}");
+            emit(state.copyWith(dollarToNaira: docData.dollarToNaira));
             break;
           case DocumentChangeType.modified:
-          final docData = DollarPriceDTO.fromFirestore(change.doc).toDomain();
-            // emit(state.copyWith(dollarToNaira: price!));
+            emit(state.copyWith(dollarToNaira: docData.dollarToNaira));
             break;
-          case DocumentChangeType.removed:
-            print("Removed City: ${change.doc.data()}");
-            break;
+          default:
+            emit(state.copyWith(dollarToNaira: 500));
         }
       }
       emit(state.copyWith(dollarToNaira: dollarPrice));
