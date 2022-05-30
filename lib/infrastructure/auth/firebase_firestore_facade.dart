@@ -254,7 +254,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
   }
 
   @override
-  Stream<QuerySnapshot<Object?>> getDollarPrice() async* {
+  Stream<QuerySnapshot> getDollarPrice() async* {
     // TODO: implement getDollarPrice
     yield* firestore.collection("egoPrice").snapshots();
   }
