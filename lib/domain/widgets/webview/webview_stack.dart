@@ -18,6 +18,7 @@ class _WebviewStackState extends State<WebviewStack> {
     return SafeArea(
         child: Stack(
       children: [
+        Text("Invest with Crypto", style: titleText),
         WebView(
           initialUrl: widget.paymentUrl,
           onWebViewCreated: (webViewController) {
@@ -44,7 +45,7 @@ class _WebviewStackState extends State<WebviewStack> {
           LinearProgressIndicator(
             value: loadingPercentage / 100.0,
             backgroundColor: kgreyColor,
-            color: kPrimaryColor,
+            color: klightblue,
             semanticsLabel: "Linear Progress Indicator"
           ),
       ],

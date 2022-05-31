@@ -43,11 +43,10 @@ class _CryptoInvestmentPageState extends State<CryptoInvestmentPage> {
           },
           child: const Icon(Icons.close, color: kWhiteColor,),
         ),
-        title: Text("Invest with Crypto", style: subTitle.copyWith(color: kWhiteColor, fontSize: 15),),
+        title: Text(status, style: subTitle.copyWith(color: kWhiteColor, fontSize: 15),),
         actions: [
           NavigationControls(controller: controller),
         ],
-
       ),
       body: WebviewStack(controller: controller, paymentUrl: paymentUrl)
     );
