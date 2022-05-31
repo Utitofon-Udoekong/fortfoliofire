@@ -51,7 +51,7 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  void listenDollarStream(int dollarPrice) {
+  void listenDollarStream() {
     _dollarToNairaSubscription = firestoreFacade.getDollarPrice().listen((event) {
       for (var change in event.docChanges) {
         final docData = DollarPriceDTO.fromFirestore(change.doc).toDomain();
@@ -66,11 +66,11 @@ class AuthCubit extends Cubit<AuthState> {
             emit(state.copyWith(dollarToNaira: 500));
         }
       }
-      emit(state.copyWith(dollarToNaira: dollarPrice));
     },onError: (error) => print("Listen failed: $error"));
   }
 
   Future<void> listenAuthStateChangesStream(AuthUserModel authUser) async {
+    listenDollarStream();
     if(authUser != AuthUserModel.empty()){
       emit(
         state.copyWith(
