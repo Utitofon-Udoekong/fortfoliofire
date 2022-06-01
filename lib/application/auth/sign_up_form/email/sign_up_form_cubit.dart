@@ -64,6 +64,7 @@ class SignUpFormCubit extends Cubit<SignUpFormState> {
       password: Password(""),
       firstName: UserName(""),
       lastName: UserName(""),
+      accepted: false
     ));
   }
 }

@@ -58,7 +58,7 @@ class SignInFormEmailCubit extends Cubit<SignInFormEmailState> {
   void reset(){
     emit(state.copyWith(
       emailAddress: EmailAddress(""),
-      password: Password("")
+      password: Password(""),
     ));
   }
 }
