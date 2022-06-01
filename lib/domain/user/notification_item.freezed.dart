@@ -12,30 +12,7 @@ part of 'notification_item.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$NotificationItemTearOff {
-  const _$NotificationItemTearOff();
-
-  _NotificationItem call(
-      {required String id,
-      required String type,
-      required String title,
-      required DateTime createdat,
-      required String status}) {
-    return _NotificationItem(
-      id: id,
-      type: type,
-      title: title,
-      createdat: createdat,
-      status: status,
-    );
-  }
-}
-
-/// @nodoc
-const $NotificationItem = _$NotificationItemTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$NotificationItem {
@@ -106,11 +83,11 @@ class _$NotificationItemCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$NotificationItemCopyWith<$Res>
+abstract class _$$_NotificationItemCopyWith<$Res>
     implements $NotificationItemCopyWith<$Res> {
-  factory _$NotificationItemCopyWith(
-          _NotificationItem value, $Res Function(_NotificationItem) then) =
-      __$NotificationItemCopyWithImpl<$Res>;
+  factory _$$_NotificationItemCopyWith(
+          _$_NotificationItem value, $Res Function(_$_NotificationItem) then) =
+      __$$_NotificationItemCopyWithImpl<$Res>;
   @override
   $Res call(
       {String id,
@@ -121,15 +98,15 @@ abstract class _$NotificationItemCopyWith<$Res>
 }
 
 /// @nodoc
-class __$NotificationItemCopyWithImpl<$Res>
+class __$$_NotificationItemCopyWithImpl<$Res>
     extends _$NotificationItemCopyWithImpl<$Res>
-    implements _$NotificationItemCopyWith<$Res> {
-  __$NotificationItemCopyWithImpl(
-      _NotificationItem _value, $Res Function(_NotificationItem) _then)
-      : super(_value, (v) => _then(v as _NotificationItem));
+    implements _$$_NotificationItemCopyWith<$Res> {
+  __$$_NotificationItemCopyWithImpl(
+      _$_NotificationItem _value, $Res Function(_$_NotificationItem) _then)
+      : super(_value, (v) => _then(v as _$_NotificationItem));
 
   @override
-  _NotificationItem get _value => super._value as _NotificationItem;
+  _$_NotificationItem get _value => super._value as _$_NotificationItem;
 
   @override
   $Res call({
@@ -139,7 +116,7 @@ class __$NotificationItemCopyWithImpl<$Res>
     Object? createdat = freezed,
     Object? status = freezed,
   }) {
-    return _then(_NotificationItem(
+    return _then(_$_NotificationItem(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -195,7 +172,7 @@ class _$_NotificationItem extends _NotificationItem {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _NotificationItem &&
+            other is _$_NotificationItem &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.type, type) &&
             const DeepCollectionEquality().equals(other.title, title) &&
@@ -214,31 +191,31 @@ class _$_NotificationItem extends _NotificationItem {
 
   @JsonKey(ignore: true)
   @override
-  _$NotificationItemCopyWith<_NotificationItem> get copyWith =>
-      __$NotificationItemCopyWithImpl<_NotificationItem>(this, _$identity);
+  _$$_NotificationItemCopyWith<_$_NotificationItem> get copyWith =>
+      __$$_NotificationItemCopyWithImpl<_$_NotificationItem>(this, _$identity);
 }
 
 abstract class _NotificationItem extends NotificationItem {
   const factory _NotificationItem(
-      {required String id,
-      required String type,
-      required String title,
-      required DateTime createdat,
-      required String status}) = _$_NotificationItem;
+      {required final String id,
+      required final String type,
+      required final String title,
+      required final DateTime createdat,
+      required final String status}) = _$_NotificationItem;
   const _NotificationItem._() : super._();
 
   @override
-  String get id;
+  String get id => throw _privateConstructorUsedError;
   @override
-  String get type;
+  String get type => throw _privateConstructorUsedError;
   @override
-  String get title;
+  String get title => throw _privateConstructorUsedError;
   @override
-  DateTime get createdat;
+  DateTime get createdat => throw _privateConstructorUsedError;
   @override
-  String get status;
+  String get status => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$NotificationItemCopyWith<_NotificationItem> get copyWith =>
+  _$$_NotificationItemCopyWith<_$_NotificationItem> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -12,38 +12,7 @@ part of 'verification_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$VerificationStateTearOff {
-  const _$VerificationStateTearOff();
-
-  _VerificationState call(
-      {required bool submitting,
-      required bool kycExists,
-      required String failure,
-      required String success,
-      required String status,
-      required String documentType,
-      required Uint8List frontFile,
-      required Uint8List backFile,
-      required Uint8List utilityFile}) {
-    return _VerificationState(
-      submitting: submitting,
-      kycExists: kycExists,
-      failure: failure,
-      success: success,
-      status: status,
-      documentType: documentType,
-      frontFile: frontFile,
-      backFile: backFile,
-      utilityFile: utilityFile,
-    );
-  }
-}
-
-/// @nodoc
-const $VerificationState = _$VerificationStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$VerificationState {
@@ -142,11 +111,11 @@ class _$VerificationStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$VerificationStateCopyWith<$Res>
+abstract class _$$_VerificationStateCopyWith<$Res>
     implements $VerificationStateCopyWith<$Res> {
-  factory _$VerificationStateCopyWith(
-          _VerificationState value, $Res Function(_VerificationState) then) =
-      __$VerificationStateCopyWithImpl<$Res>;
+  factory _$$_VerificationStateCopyWith(_$_VerificationState value,
+          $Res Function(_$_VerificationState) then) =
+      __$$_VerificationStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {bool submitting,
@@ -161,15 +130,15 @@ abstract class _$VerificationStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$VerificationStateCopyWithImpl<$Res>
+class __$$_VerificationStateCopyWithImpl<$Res>
     extends _$VerificationStateCopyWithImpl<$Res>
-    implements _$VerificationStateCopyWith<$Res> {
-  __$VerificationStateCopyWithImpl(
-      _VerificationState _value, $Res Function(_VerificationState) _then)
-      : super(_value, (v) => _then(v as _VerificationState));
+    implements _$$_VerificationStateCopyWith<$Res> {
+  __$$_VerificationStateCopyWithImpl(
+      _$_VerificationState _value, $Res Function(_$_VerificationState) _then)
+      : super(_value, (v) => _then(v as _$_VerificationState));
 
   @override
-  _VerificationState get _value => super._value as _VerificationState;
+  _$_VerificationState get _value => super._value as _$_VerificationState;
 
   @override
   $Res call({
@@ -183,7 +152,7 @@ class __$VerificationStateCopyWithImpl<$Res>
     Object? backFile = freezed,
     Object? utilityFile = freezed,
   }) {
-    return _then(_VerificationState(
+    return _then(_$_VerificationState(
       submitting: submitting == freezed
           ? _value.submitting
           : submitting // ignore: cast_nullable_to_non_nullable
@@ -267,7 +236,7 @@ class _$_VerificationState extends _VerificationState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _VerificationState &&
+            other is _$_VerificationState &&
             const DeepCollectionEquality()
                 .equals(other.submitting, submitting) &&
             const DeepCollectionEquality().equals(other.kycExists, kycExists) &&
@@ -297,43 +266,44 @@ class _$_VerificationState extends _VerificationState {
 
   @JsonKey(ignore: true)
   @override
-  _$VerificationStateCopyWith<_VerificationState> get copyWith =>
-      __$VerificationStateCopyWithImpl<_VerificationState>(this, _$identity);
+  _$$_VerificationStateCopyWith<_$_VerificationState> get copyWith =>
+      __$$_VerificationStateCopyWithImpl<_$_VerificationState>(
+          this, _$identity);
 }
 
 abstract class _VerificationState extends VerificationState {
   const factory _VerificationState(
-      {required bool submitting,
-      required bool kycExists,
-      required String failure,
-      required String success,
-      required String status,
-      required String documentType,
-      required Uint8List frontFile,
-      required Uint8List backFile,
-      required Uint8List utilityFile}) = _$_VerificationState;
+      {required final bool submitting,
+      required final bool kycExists,
+      required final String failure,
+      required final String success,
+      required final String status,
+      required final String documentType,
+      required final Uint8List frontFile,
+      required final Uint8List backFile,
+      required final Uint8List utilityFile}) = _$_VerificationState;
   const _VerificationState._() : super._();
 
   @override
-  bool get submitting;
+  bool get submitting => throw _privateConstructorUsedError;
   @override
-  bool get kycExists;
+  bool get kycExists => throw _privateConstructorUsedError;
   @override
-  String get failure;
+  String get failure => throw _privateConstructorUsedError;
   @override
-  String get success;
+  String get success => throw _privateConstructorUsedError;
   @override
-  String get status;
+  String get status => throw _privateConstructorUsedError;
   @override
-  String get documentType;
+  String get documentType => throw _privateConstructorUsedError;
   @override
-  Uint8List get frontFile;
+  Uint8List get frontFile => throw _privateConstructorUsedError;
   @override
-  Uint8List get backFile;
+  Uint8List get backFile => throw _privateConstructorUsedError;
   @override
-  Uint8List get utilityFile;
+  Uint8List get utilityFile => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$VerificationStateCopyWith<_VerificationState> get copyWith =>
+  _$$_VerificationStateCopyWith<_$_VerificationState> get copyWith =>
       throw _privateConstructorUsedError;
 }

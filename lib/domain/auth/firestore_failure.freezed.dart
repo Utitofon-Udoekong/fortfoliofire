@@ -12,43 +12,7 @@ part of 'firestore_failure.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$FirestoreFailureTearOff {
-  const _$FirestoreFailureTearOff();
-
-  ServerError serverError() {
-    return const ServerError();
-  }
-
-  EmailAlreadyInUse emailAlreadyInUse() {
-    return const EmailAlreadyInUse();
-  }
-
-  InvalidEmail invalidEmail() {
-    return const InvalidEmail();
-  }
-
-  UserNotFound userNotFound() {
-    return const UserNotFound();
-  }
-
-  TooManyRequests tooManyRequests() {
-    return const TooManyRequests();
-  }
-
-  DeviceNotSupported deviceNotSupported() {
-    return const DeviceNotSupported();
-  }
-
-  EmailNotVerified emailNotVerified() {
-    return const EmailNotVerified();
-  }
-}
-
-/// @nodoc
-const $FirestoreFailure = _$FirestoreFailureTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$FirestoreFailure {
@@ -140,22 +104,22 @@ class _$FirestoreFailureCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $ServerErrorCopyWith<$Res> {
-  factory $ServerErrorCopyWith(
-          ServerError value, $Res Function(ServerError) then) =
-      _$ServerErrorCopyWithImpl<$Res>;
+abstract class _$$ServerErrorCopyWith<$Res> {
+  factory _$$ServerErrorCopyWith(
+          _$ServerError value, $Res Function(_$ServerError) then) =
+      __$$ServerErrorCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$ServerErrorCopyWithImpl<$Res>
+class __$$ServerErrorCopyWithImpl<$Res>
     extends _$FirestoreFailureCopyWithImpl<$Res>
-    implements $ServerErrorCopyWith<$Res> {
-  _$ServerErrorCopyWithImpl(
-      ServerError _value, $Res Function(ServerError) _then)
-      : super(_value, (v) => _then(v as ServerError));
+    implements _$$ServerErrorCopyWith<$Res> {
+  __$$ServerErrorCopyWithImpl(
+      _$ServerError _value, $Res Function(_$ServerError) _then)
+      : super(_value, (v) => _then(v as _$ServerError));
 
   @override
-  ServerError get _value => super._value as ServerError;
+  _$ServerError get _value => super._value as _$ServerError;
 }
 
 /// @nodoc
@@ -171,7 +135,7 @@ class _$ServerError implements ServerError {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is ServerError);
+        (other.runtimeType == runtimeType && other is _$ServerError);
   }
 
   @override
@@ -275,22 +239,22 @@ abstract class ServerError implements FirestoreFailure {
 }
 
 /// @nodoc
-abstract class $EmailAlreadyInUseCopyWith<$Res> {
-  factory $EmailAlreadyInUseCopyWith(
-          EmailAlreadyInUse value, $Res Function(EmailAlreadyInUse) then) =
-      _$EmailAlreadyInUseCopyWithImpl<$Res>;
+abstract class _$$EmailAlreadyInUseCopyWith<$Res> {
+  factory _$$EmailAlreadyInUseCopyWith(
+          _$EmailAlreadyInUse value, $Res Function(_$EmailAlreadyInUse) then) =
+      __$$EmailAlreadyInUseCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$EmailAlreadyInUseCopyWithImpl<$Res>
+class __$$EmailAlreadyInUseCopyWithImpl<$Res>
     extends _$FirestoreFailureCopyWithImpl<$Res>
-    implements $EmailAlreadyInUseCopyWith<$Res> {
-  _$EmailAlreadyInUseCopyWithImpl(
-      EmailAlreadyInUse _value, $Res Function(EmailAlreadyInUse) _then)
-      : super(_value, (v) => _then(v as EmailAlreadyInUse));
+    implements _$$EmailAlreadyInUseCopyWith<$Res> {
+  __$$EmailAlreadyInUseCopyWithImpl(
+      _$EmailAlreadyInUse _value, $Res Function(_$EmailAlreadyInUse) _then)
+      : super(_value, (v) => _then(v as _$EmailAlreadyInUse));
 
   @override
-  EmailAlreadyInUse get _value => super._value as EmailAlreadyInUse;
+  _$EmailAlreadyInUse get _value => super._value as _$EmailAlreadyInUse;
 }
 
 /// @nodoc
@@ -306,7 +270,7 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is EmailAlreadyInUse);
+        (other.runtimeType == runtimeType && other is _$EmailAlreadyInUse);
   }
 
   @override
@@ -410,22 +374,22 @@ abstract class EmailAlreadyInUse implements FirestoreFailure {
 }
 
 /// @nodoc
-abstract class $InvalidEmailCopyWith<$Res> {
-  factory $InvalidEmailCopyWith(
-          InvalidEmail value, $Res Function(InvalidEmail) then) =
-      _$InvalidEmailCopyWithImpl<$Res>;
+abstract class _$$InvalidEmailCopyWith<$Res> {
+  factory _$$InvalidEmailCopyWith(
+          _$InvalidEmail value, $Res Function(_$InvalidEmail) then) =
+      __$$InvalidEmailCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$InvalidEmailCopyWithImpl<$Res>
+class __$$InvalidEmailCopyWithImpl<$Res>
     extends _$FirestoreFailureCopyWithImpl<$Res>
-    implements $InvalidEmailCopyWith<$Res> {
-  _$InvalidEmailCopyWithImpl(
-      InvalidEmail _value, $Res Function(InvalidEmail) _then)
-      : super(_value, (v) => _then(v as InvalidEmail));
+    implements _$$InvalidEmailCopyWith<$Res> {
+  __$$InvalidEmailCopyWithImpl(
+      _$InvalidEmail _value, $Res Function(_$InvalidEmail) _then)
+      : super(_value, (v) => _then(v as _$InvalidEmail));
 
   @override
-  InvalidEmail get _value => super._value as InvalidEmail;
+  _$InvalidEmail get _value => super._value as _$InvalidEmail;
 }
 
 /// @nodoc
@@ -441,7 +405,7 @@ class _$InvalidEmail implements InvalidEmail {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is InvalidEmail);
+        (other.runtimeType == runtimeType && other is _$InvalidEmail);
   }
 
   @override
@@ -545,22 +509,22 @@ abstract class InvalidEmail implements FirestoreFailure {
 }
 
 /// @nodoc
-abstract class $UserNotFoundCopyWith<$Res> {
-  factory $UserNotFoundCopyWith(
-          UserNotFound value, $Res Function(UserNotFound) then) =
-      _$UserNotFoundCopyWithImpl<$Res>;
+abstract class _$$UserNotFoundCopyWith<$Res> {
+  factory _$$UserNotFoundCopyWith(
+          _$UserNotFound value, $Res Function(_$UserNotFound) then) =
+      __$$UserNotFoundCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$UserNotFoundCopyWithImpl<$Res>
+class __$$UserNotFoundCopyWithImpl<$Res>
     extends _$FirestoreFailureCopyWithImpl<$Res>
-    implements $UserNotFoundCopyWith<$Res> {
-  _$UserNotFoundCopyWithImpl(
-      UserNotFound _value, $Res Function(UserNotFound) _then)
-      : super(_value, (v) => _then(v as UserNotFound));
+    implements _$$UserNotFoundCopyWith<$Res> {
+  __$$UserNotFoundCopyWithImpl(
+      _$UserNotFound _value, $Res Function(_$UserNotFound) _then)
+      : super(_value, (v) => _then(v as _$UserNotFound));
 
   @override
-  UserNotFound get _value => super._value as UserNotFound;
+  _$UserNotFound get _value => super._value as _$UserNotFound;
 }
 
 /// @nodoc
@@ -576,7 +540,7 @@ class _$UserNotFound implements UserNotFound {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is UserNotFound);
+        (other.runtimeType == runtimeType && other is _$UserNotFound);
   }
 
   @override
@@ -680,22 +644,22 @@ abstract class UserNotFound implements FirestoreFailure {
 }
 
 /// @nodoc
-abstract class $TooManyRequestsCopyWith<$Res> {
-  factory $TooManyRequestsCopyWith(
-          TooManyRequests value, $Res Function(TooManyRequests) then) =
-      _$TooManyRequestsCopyWithImpl<$Res>;
+abstract class _$$TooManyRequestsCopyWith<$Res> {
+  factory _$$TooManyRequestsCopyWith(
+          _$TooManyRequests value, $Res Function(_$TooManyRequests) then) =
+      __$$TooManyRequestsCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$TooManyRequestsCopyWithImpl<$Res>
+class __$$TooManyRequestsCopyWithImpl<$Res>
     extends _$FirestoreFailureCopyWithImpl<$Res>
-    implements $TooManyRequestsCopyWith<$Res> {
-  _$TooManyRequestsCopyWithImpl(
-      TooManyRequests _value, $Res Function(TooManyRequests) _then)
-      : super(_value, (v) => _then(v as TooManyRequests));
+    implements _$$TooManyRequestsCopyWith<$Res> {
+  __$$TooManyRequestsCopyWithImpl(
+      _$TooManyRequests _value, $Res Function(_$TooManyRequests) _then)
+      : super(_value, (v) => _then(v as _$TooManyRequests));
 
   @override
-  TooManyRequests get _value => super._value as TooManyRequests;
+  _$TooManyRequests get _value => super._value as _$TooManyRequests;
 }
 
 /// @nodoc
@@ -711,7 +675,7 @@ class _$TooManyRequests implements TooManyRequests {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is TooManyRequests);
+        (other.runtimeType == runtimeType && other is _$TooManyRequests);
   }
 
   @override
@@ -815,22 +779,22 @@ abstract class TooManyRequests implements FirestoreFailure {
 }
 
 /// @nodoc
-abstract class $DeviceNotSupportedCopyWith<$Res> {
-  factory $DeviceNotSupportedCopyWith(
-          DeviceNotSupported value, $Res Function(DeviceNotSupported) then) =
-      _$DeviceNotSupportedCopyWithImpl<$Res>;
+abstract class _$$DeviceNotSupportedCopyWith<$Res> {
+  factory _$$DeviceNotSupportedCopyWith(_$DeviceNotSupported value,
+          $Res Function(_$DeviceNotSupported) then) =
+      __$$DeviceNotSupportedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$DeviceNotSupportedCopyWithImpl<$Res>
+class __$$DeviceNotSupportedCopyWithImpl<$Res>
     extends _$FirestoreFailureCopyWithImpl<$Res>
-    implements $DeviceNotSupportedCopyWith<$Res> {
-  _$DeviceNotSupportedCopyWithImpl(
-      DeviceNotSupported _value, $Res Function(DeviceNotSupported) _then)
-      : super(_value, (v) => _then(v as DeviceNotSupported));
+    implements _$$DeviceNotSupportedCopyWith<$Res> {
+  __$$DeviceNotSupportedCopyWithImpl(
+      _$DeviceNotSupported _value, $Res Function(_$DeviceNotSupported) _then)
+      : super(_value, (v) => _then(v as _$DeviceNotSupported));
 
   @override
-  DeviceNotSupported get _value => super._value as DeviceNotSupported;
+  _$DeviceNotSupported get _value => super._value as _$DeviceNotSupported;
 }
 
 /// @nodoc
@@ -846,7 +810,7 @@ class _$DeviceNotSupported implements DeviceNotSupported {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is DeviceNotSupported);
+        (other.runtimeType == runtimeType && other is _$DeviceNotSupported);
   }
 
   @override
@@ -950,22 +914,22 @@ abstract class DeviceNotSupported implements FirestoreFailure {
 }
 
 /// @nodoc
-abstract class $EmailNotVerifiedCopyWith<$Res> {
-  factory $EmailNotVerifiedCopyWith(
-          EmailNotVerified value, $Res Function(EmailNotVerified) then) =
-      _$EmailNotVerifiedCopyWithImpl<$Res>;
+abstract class _$$EmailNotVerifiedCopyWith<$Res> {
+  factory _$$EmailNotVerifiedCopyWith(
+          _$EmailNotVerified value, $Res Function(_$EmailNotVerified) then) =
+      __$$EmailNotVerifiedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$EmailNotVerifiedCopyWithImpl<$Res>
+class __$$EmailNotVerifiedCopyWithImpl<$Res>
     extends _$FirestoreFailureCopyWithImpl<$Res>
-    implements $EmailNotVerifiedCopyWith<$Res> {
-  _$EmailNotVerifiedCopyWithImpl(
-      EmailNotVerified _value, $Res Function(EmailNotVerified) _then)
-      : super(_value, (v) => _then(v as EmailNotVerified));
+    implements _$$EmailNotVerifiedCopyWith<$Res> {
+  __$$EmailNotVerifiedCopyWithImpl(
+      _$EmailNotVerified _value, $Res Function(_$EmailNotVerified) _then)
+      : super(_value, (v) => _then(v as _$EmailNotVerified));
 
   @override
-  EmailNotVerified get _value => super._value as EmailNotVerified;
+  _$EmailNotVerified get _value => super._value as _$EmailNotVerified;
 }
 
 /// @nodoc
@@ -981,7 +945,7 @@ class _$EmailNotVerified implements EmailNotVerified {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is EmailNotVerified);
+        (other.runtimeType == runtimeType && other is _$EmailNotVerified);
   }
 
   @override

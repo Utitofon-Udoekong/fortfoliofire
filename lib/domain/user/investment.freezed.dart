@@ -12,52 +12,7 @@ part of 'investment.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$InvestmentItemTearOff {
-  const _$InvestmentItemTearOff();
-
-  _InvestmentItem call(
-      {required String description,
-      required String uid,
-      String? coin,
-      String? bankAccountType,
-      required double amount,
-      required String traxId,
-      required int roi,
-      required int numberOfDays,
-      required String planName,
-      required DateTime paymentDate,
-      required DateTime dueDate,
-      required int duration,
-      required String status,
-      required String currency,
-      required double planYield,
-      required String paymentMethod}) {
-    return _InvestmentItem(
-      description: description,
-      uid: uid,
-      coin: coin,
-      bankAccountType: bankAccountType,
-      amount: amount,
-      traxId: traxId,
-      roi: roi,
-      numberOfDays: numberOfDays,
-      planName: planName,
-      paymentDate: paymentDate,
-      dueDate: dueDate,
-      duration: duration,
-      status: status,
-      currency: currency,
-      planYield: planYield,
-      paymentMethod: paymentMethod,
-    );
-  }
-}
-
-/// @nodoc
-const $InvestmentItem = _$InvestmentItemTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$InvestmentItem {
@@ -205,11 +160,11 @@ class _$InvestmentItemCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$InvestmentItemCopyWith<$Res>
+abstract class _$$_InvestmentItemCopyWith<$Res>
     implements $InvestmentItemCopyWith<$Res> {
-  factory _$InvestmentItemCopyWith(
-          _InvestmentItem value, $Res Function(_InvestmentItem) then) =
-      __$InvestmentItemCopyWithImpl<$Res>;
+  factory _$$_InvestmentItemCopyWith(
+          _$_InvestmentItem value, $Res Function(_$_InvestmentItem) then) =
+      __$$_InvestmentItemCopyWithImpl<$Res>;
   @override
   $Res call(
       {String description,
@@ -231,15 +186,15 @@ abstract class _$InvestmentItemCopyWith<$Res>
 }
 
 /// @nodoc
-class __$InvestmentItemCopyWithImpl<$Res>
+class __$$_InvestmentItemCopyWithImpl<$Res>
     extends _$InvestmentItemCopyWithImpl<$Res>
-    implements _$InvestmentItemCopyWith<$Res> {
-  __$InvestmentItemCopyWithImpl(
-      _InvestmentItem _value, $Res Function(_InvestmentItem) _then)
-      : super(_value, (v) => _then(v as _InvestmentItem));
+    implements _$$_InvestmentItemCopyWith<$Res> {
+  __$$_InvestmentItemCopyWithImpl(
+      _$_InvestmentItem _value, $Res Function(_$_InvestmentItem) _then)
+      : super(_value, (v) => _then(v as _$_InvestmentItem));
 
   @override
-  _InvestmentItem get _value => super._value as _InvestmentItem;
+  _$_InvestmentItem get _value => super._value as _$_InvestmentItem;
 
   @override
   $Res call({
@@ -260,7 +215,7 @@ class __$InvestmentItemCopyWithImpl<$Res>
     Object? planYield = freezed,
     Object? paymentMethod = freezed,
   }) {
-    return _then(_InvestmentItem(
+    return _then(_$_InvestmentItem(
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -393,7 +348,7 @@ class _$_InvestmentItem extends _InvestmentItem {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _InvestmentItem &&
+            other is _$_InvestmentItem &&
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
             const DeepCollectionEquality().equals(other.uid, uid) &&
@@ -439,64 +394,64 @@ class _$_InvestmentItem extends _InvestmentItem {
 
   @JsonKey(ignore: true)
   @override
-  _$InvestmentItemCopyWith<_InvestmentItem> get copyWith =>
-      __$InvestmentItemCopyWithImpl<_InvestmentItem>(this, _$identity);
+  _$$_InvestmentItemCopyWith<_$_InvestmentItem> get copyWith =>
+      __$$_InvestmentItemCopyWithImpl<_$_InvestmentItem>(this, _$identity);
 }
 
 abstract class _InvestmentItem extends InvestmentItem {
   const factory _InvestmentItem(
-      {required String description,
-      required String uid,
-      String? coin,
-      String? bankAccountType,
-      required double amount,
-      required String traxId,
-      required int roi,
-      required int numberOfDays,
-      required String planName,
-      required DateTime paymentDate,
-      required DateTime dueDate,
-      required int duration,
-      required String status,
-      required String currency,
-      required double planYield,
-      required String paymentMethod}) = _$_InvestmentItem;
+      {required final String description,
+      required final String uid,
+      final String? coin,
+      final String? bankAccountType,
+      required final double amount,
+      required final String traxId,
+      required final int roi,
+      required final int numberOfDays,
+      required final String planName,
+      required final DateTime paymentDate,
+      required final DateTime dueDate,
+      required final int duration,
+      required final String status,
+      required final String currency,
+      required final double planYield,
+      required final String paymentMethod}) = _$_InvestmentItem;
   const _InvestmentItem._() : super._();
 
   @override
-  String get description;
+  String get description => throw _privateConstructorUsedError;
   @override
-  String get uid;
+  String get uid => throw _privateConstructorUsedError;
   @override
-  String? get coin;
+  String? get coin => throw _privateConstructorUsedError;
   @override
-  String? get bankAccountType;
+  String? get bankAccountType => throw _privateConstructorUsedError;
   @override
-  double get amount;
+  double get amount => throw _privateConstructorUsedError;
   @override
-  String get traxId;
+  String get traxId => throw _privateConstructorUsedError;
   @override
-  int get roi;
+  int get roi => throw _privateConstructorUsedError;
   @override
-  int get numberOfDays;
+  int get numberOfDays => throw _privateConstructorUsedError;
   @override
-  String get planName;
+  String get planName => throw _privateConstructorUsedError;
   @override
-  DateTime get paymentDate;
+  DateTime get paymentDate => throw _privateConstructorUsedError;
   @override
-  DateTime get dueDate;
+  DateTime get dueDate => throw _privateConstructorUsedError;
   @override
-  int get duration;
+  int get duration => throw _privateConstructorUsedError;
   @override
-  String get status;
+  String get status => throw _privateConstructorUsedError;
   @override
-  String get currency;
+  String get currency => throw _privateConstructorUsedError;
   @override
-  double get planYield;
+  double get planYield => throw _privateConstructorUsedError;
   @override
-  String get paymentMethod;
+  String get paymentMethod => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$InvestmentItemCopyWith<_InvestmentItem> get copyWith =>
+  _$$_InvestmentItemCopyWith<_$_InvestmentItem> get copyWith =>
       throw _privateConstructorUsedError;
 }

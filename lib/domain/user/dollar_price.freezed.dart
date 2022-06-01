@@ -12,21 +12,7 @@ part of 'dollar_price.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$DollarPriceTearOff {
-  const _$DollarPriceTearOff();
-
-  _DollarPrice call({required int dollarToNaira}) {
-    return _DollarPrice(
-      dollarToNaira: dollarToNaira,
-    );
-  }
-}
-
-/// @nodoc
-const $DollarPrice = _$DollarPriceTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$DollarPrice {
@@ -67,30 +53,30 @@ class _$DollarPriceCopyWithImpl<$Res> implements $DollarPriceCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$DollarPriceCopyWith<$Res>
+abstract class _$$_DollarPriceCopyWith<$Res>
     implements $DollarPriceCopyWith<$Res> {
-  factory _$DollarPriceCopyWith(
-          _DollarPrice value, $Res Function(_DollarPrice) then) =
-      __$DollarPriceCopyWithImpl<$Res>;
+  factory _$$_DollarPriceCopyWith(
+          _$_DollarPrice value, $Res Function(_$_DollarPrice) then) =
+      __$$_DollarPriceCopyWithImpl<$Res>;
   @override
   $Res call({int dollarToNaira});
 }
 
 /// @nodoc
-class __$DollarPriceCopyWithImpl<$Res> extends _$DollarPriceCopyWithImpl<$Res>
-    implements _$DollarPriceCopyWith<$Res> {
-  __$DollarPriceCopyWithImpl(
-      _DollarPrice _value, $Res Function(_DollarPrice) _then)
-      : super(_value, (v) => _then(v as _DollarPrice));
+class __$$_DollarPriceCopyWithImpl<$Res> extends _$DollarPriceCopyWithImpl<$Res>
+    implements _$$_DollarPriceCopyWith<$Res> {
+  __$$_DollarPriceCopyWithImpl(
+      _$_DollarPrice _value, $Res Function(_$_DollarPrice) _then)
+      : super(_value, (v) => _then(v as _$_DollarPrice));
 
   @override
-  _DollarPrice get _value => super._value as _DollarPrice;
+  _$_DollarPrice get _value => super._value as _$_DollarPrice;
 
   @override
   $Res call({
     Object? dollarToNaira = freezed,
   }) {
-    return _then(_DollarPrice(
+    return _then(_$_DollarPrice(
       dollarToNaira: dollarToNaira == freezed
           ? _value.dollarToNaira
           : dollarToNaira // ignore: cast_nullable_to_non_nullable
@@ -116,7 +102,7 @@ class _$_DollarPrice implements _DollarPrice {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _DollarPrice &&
+            other is _$_DollarPrice &&
             const DeepCollectionEquality()
                 .equals(other.dollarToNaira, dollarToNaira));
   }
@@ -127,17 +113,18 @@ class _$_DollarPrice implements _DollarPrice {
 
   @JsonKey(ignore: true)
   @override
-  _$DollarPriceCopyWith<_DollarPrice> get copyWith =>
-      __$DollarPriceCopyWithImpl<_DollarPrice>(this, _$identity);
+  _$$_DollarPriceCopyWith<_$_DollarPrice> get copyWith =>
+      __$$_DollarPriceCopyWithImpl<_$_DollarPrice>(this, _$identity);
 }
 
 abstract class _DollarPrice implements DollarPrice {
-  const factory _DollarPrice({required int dollarToNaira}) = _$_DollarPrice;
+  const factory _DollarPrice({required final int dollarToNaira}) =
+      _$_DollarPrice;
 
   @override
-  int get dollarToNaira;
+  int get dollarToNaira => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$DollarPriceCopyWith<_DollarPrice> get copyWith =>
+  _$$_DollarPriceCopyWith<_$_DollarPrice> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -12,46 +12,7 @@ part of 'crypto_wallet_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$CryptoWalletStateTearOff {
-  const _$CryptoWalletStateTearOff();
-
-  _CryptoWalletState call(
-      {required String walletLabel,
-      required String coin,
-      required String network,
-      required String address,
-      required String platform,
-      required String failure,
-      required String success,
-      required bool isGeneral,
-      required bool isloading,
-      required int? selectedNetwork,
-      required List<DropdownMenuItem<String>> dropdownItems,
-      required List<CryptoWallet> cryptoAddresses,
-      required List<CryptoWallet> generalCryptoAddresses}) {
-    return _CryptoWalletState(
-      walletLabel: walletLabel,
-      coin: coin,
-      network: network,
-      address: address,
-      platform: platform,
-      failure: failure,
-      success: success,
-      isGeneral: isGeneral,
-      isloading: isloading,
-      selectedNetwork: selectedNetwork,
-      dropdownItems: dropdownItems,
-      cryptoAddresses: cryptoAddresses,
-      generalCryptoAddresses: generalCryptoAddresses,
-    );
-  }
-}
-
-/// @nodoc
-const $CryptoWalletState = _$CryptoWalletStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$CryptoWalletState {
@@ -180,11 +141,11 @@ class _$CryptoWalletStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$CryptoWalletStateCopyWith<$Res>
+abstract class _$$_CryptoWalletStateCopyWith<$Res>
     implements $CryptoWalletStateCopyWith<$Res> {
-  factory _$CryptoWalletStateCopyWith(
-          _CryptoWalletState value, $Res Function(_CryptoWalletState) then) =
-      __$CryptoWalletStateCopyWithImpl<$Res>;
+  factory _$$_CryptoWalletStateCopyWith(_$_CryptoWalletState value,
+          $Res Function(_$_CryptoWalletState) then) =
+      __$$_CryptoWalletStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {String walletLabel,
@@ -203,15 +164,15 @@ abstract class _$CryptoWalletStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$CryptoWalletStateCopyWithImpl<$Res>
+class __$$_CryptoWalletStateCopyWithImpl<$Res>
     extends _$CryptoWalletStateCopyWithImpl<$Res>
-    implements _$CryptoWalletStateCopyWith<$Res> {
-  __$CryptoWalletStateCopyWithImpl(
-      _CryptoWalletState _value, $Res Function(_CryptoWalletState) _then)
-      : super(_value, (v) => _then(v as _CryptoWalletState));
+    implements _$$_CryptoWalletStateCopyWith<$Res> {
+  __$$_CryptoWalletStateCopyWithImpl(
+      _$_CryptoWalletState _value, $Res Function(_$_CryptoWalletState) _then)
+      : super(_value, (v) => _then(v as _$_CryptoWalletState));
 
   @override
-  _CryptoWalletState get _value => super._value as _CryptoWalletState;
+  _$_CryptoWalletState get _value => super._value as _$_CryptoWalletState;
 
   @override
   $Res call({
@@ -229,7 +190,7 @@ class __$CryptoWalletStateCopyWithImpl<$Res>
     Object? cryptoAddresses = freezed,
     Object? generalCryptoAddresses = freezed,
   }) {
-    return _then(_CryptoWalletState(
+    return _then(_$_CryptoWalletState(
       walletLabel: walletLabel == freezed
           ? _value.walletLabel
           : walletLabel // ignore: cast_nullable_to_non_nullable
@@ -271,15 +232,15 @@ class __$CryptoWalletStateCopyWithImpl<$Res>
           : selectedNetwork // ignore: cast_nullable_to_non_nullable
               as int?,
       dropdownItems: dropdownItems == freezed
-          ? _value.dropdownItems
+          ? _value._dropdownItems
           : dropdownItems // ignore: cast_nullable_to_non_nullable
               as List<DropdownMenuItem<String>>,
       cryptoAddresses: cryptoAddresses == freezed
-          ? _value.cryptoAddresses
+          ? _value._cryptoAddresses
           : cryptoAddresses // ignore: cast_nullable_to_non_nullable
               as List<CryptoWallet>,
       generalCryptoAddresses: generalCryptoAddresses == freezed
-          ? _value.generalCryptoAddresses
+          ? _value._generalCryptoAddresses
           : generalCryptoAddresses // ignore: cast_nullable_to_non_nullable
               as List<CryptoWallet>,
     ));
@@ -300,10 +261,13 @@ class _$_CryptoWalletState extends _CryptoWalletState {
       required this.isGeneral,
       required this.isloading,
       required this.selectedNetwork,
-      required this.dropdownItems,
-      required this.cryptoAddresses,
-      required this.generalCryptoAddresses})
-      : super._();
+      required final List<DropdownMenuItem<String>> dropdownItems,
+      required final List<CryptoWallet> cryptoAddresses,
+      required final List<CryptoWallet> generalCryptoAddresses})
+      : _dropdownItems = dropdownItems,
+        _cryptoAddresses = cryptoAddresses,
+        _generalCryptoAddresses = generalCryptoAddresses,
+        super._();
 
   @override
   final String walletLabel;
@@ -325,12 +289,26 @@ class _$_CryptoWalletState extends _CryptoWalletState {
   final bool isloading;
   @override
   final int? selectedNetwork;
+  final List<DropdownMenuItem<String>> _dropdownItems;
   @override
-  final List<DropdownMenuItem<String>> dropdownItems;
+  List<DropdownMenuItem<String>> get dropdownItems {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_dropdownItems);
+  }
+
+  final List<CryptoWallet> _cryptoAddresses;
   @override
-  final List<CryptoWallet> cryptoAddresses;
+  List<CryptoWallet> get cryptoAddresses {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_cryptoAddresses);
+  }
+
+  final List<CryptoWallet> _generalCryptoAddresses;
   @override
-  final List<CryptoWallet> generalCryptoAddresses;
+  List<CryptoWallet> get generalCryptoAddresses {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_generalCryptoAddresses);
+  }
 
   @override
   String toString() {
@@ -341,7 +319,7 @@ class _$_CryptoWalletState extends _CryptoWalletState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _CryptoWalletState &&
+            other is _$_CryptoWalletState &&
             const DeepCollectionEquality()
                 .equals(other.walletLabel, walletLabel) &&
             const DeepCollectionEquality().equals(other.coin, coin) &&
@@ -355,11 +333,11 @@ class _$_CryptoWalletState extends _CryptoWalletState {
             const DeepCollectionEquality()
                 .equals(other.selectedNetwork, selectedNetwork) &&
             const DeepCollectionEquality()
-                .equals(other.dropdownItems, dropdownItems) &&
+                .equals(other._dropdownItems, _dropdownItems) &&
             const DeepCollectionEquality()
-                .equals(other.cryptoAddresses, cryptoAddresses) &&
-            const DeepCollectionEquality()
-                .equals(other.generalCryptoAddresses, generalCryptoAddresses));
+                .equals(other._cryptoAddresses, _cryptoAddresses) &&
+            const DeepCollectionEquality().equals(
+                other._generalCryptoAddresses, _generalCryptoAddresses));
   }
 
   @override
@@ -375,62 +353,65 @@ class _$_CryptoWalletState extends _CryptoWalletState {
       const DeepCollectionEquality().hash(isGeneral),
       const DeepCollectionEquality().hash(isloading),
       const DeepCollectionEquality().hash(selectedNetwork),
-      const DeepCollectionEquality().hash(dropdownItems),
-      const DeepCollectionEquality().hash(cryptoAddresses),
-      const DeepCollectionEquality().hash(generalCryptoAddresses));
+      const DeepCollectionEquality().hash(_dropdownItems),
+      const DeepCollectionEquality().hash(_cryptoAddresses),
+      const DeepCollectionEquality().hash(_generalCryptoAddresses));
 
   @JsonKey(ignore: true)
   @override
-  _$CryptoWalletStateCopyWith<_CryptoWalletState> get copyWith =>
-      __$CryptoWalletStateCopyWithImpl<_CryptoWalletState>(this, _$identity);
+  _$$_CryptoWalletStateCopyWith<_$_CryptoWalletState> get copyWith =>
+      __$$_CryptoWalletStateCopyWithImpl<_$_CryptoWalletState>(
+          this, _$identity);
 }
 
 abstract class _CryptoWalletState extends CryptoWalletState {
   const factory _CryptoWalletState(
-          {required String walletLabel,
-          required String coin,
-          required String network,
-          required String address,
-          required String platform,
-          required String failure,
-          required String success,
-          required bool isGeneral,
-          required bool isloading,
-          required int? selectedNetwork,
-          required List<DropdownMenuItem<String>> dropdownItems,
-          required List<CryptoWallet> cryptoAddresses,
-          required List<CryptoWallet> generalCryptoAddresses}) =
+          {required final String walletLabel,
+          required final String coin,
+          required final String network,
+          required final String address,
+          required final String platform,
+          required final String failure,
+          required final String success,
+          required final bool isGeneral,
+          required final bool isloading,
+          required final int? selectedNetwork,
+          required final List<DropdownMenuItem<String>> dropdownItems,
+          required final List<CryptoWallet> cryptoAddresses,
+          required final List<CryptoWallet> generalCryptoAddresses}) =
       _$_CryptoWalletState;
   const _CryptoWalletState._() : super._();
 
   @override
-  String get walletLabel;
+  String get walletLabel => throw _privateConstructorUsedError;
   @override
-  String get coin;
+  String get coin => throw _privateConstructorUsedError;
   @override
-  String get network;
+  String get network => throw _privateConstructorUsedError;
   @override
-  String get address;
+  String get address => throw _privateConstructorUsedError;
   @override
-  String get platform;
+  String get platform => throw _privateConstructorUsedError;
   @override
-  String get failure;
+  String get failure => throw _privateConstructorUsedError;
   @override
-  String get success;
+  String get success => throw _privateConstructorUsedError;
   @override
-  bool get isGeneral;
+  bool get isGeneral => throw _privateConstructorUsedError;
   @override
-  bool get isloading;
+  bool get isloading => throw _privateConstructorUsedError;
   @override
-  int? get selectedNetwork;
+  int? get selectedNetwork => throw _privateConstructorUsedError;
   @override
-  List<DropdownMenuItem<String>> get dropdownItems;
+  List<DropdownMenuItem<String>> get dropdownItems =>
+      throw _privateConstructorUsedError;
   @override
-  List<CryptoWallet> get cryptoAddresses;
+  List<CryptoWallet> get cryptoAddresses => throw _privateConstructorUsedError;
   @override
-  List<CryptoWallet> get generalCryptoAddresses;
+  List<CryptoWallet> get generalCryptoAddresses =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$CryptoWalletStateCopyWith<_CryptoWalletState> get copyWith =>
+  _$$_CryptoWalletStateCopyWith<_$_CryptoWalletState> get copyWith =>
       throw _privateConstructorUsedError;
 }

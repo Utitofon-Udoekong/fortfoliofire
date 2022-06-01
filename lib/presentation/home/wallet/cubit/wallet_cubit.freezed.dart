@@ -12,66 +12,7 @@ part of 'wallet_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$WalletStateTearOff {
-  const _$WalletStateTearOff();
-
-  _WalletState call(
-      {required double walletBalance,
-      required String exchange,
-      required bool loading,
-      required double fortDollarInvestmentBalance,
-      required double fortCryptoInvestmentBalance,
-      required double fortShieldInvestmentBalance,
-      required double fortDollarYieldBalance,
-      required double fortCryptoYieldBalance,
-      required double fortShieldYieldBalance,
-      required String withdrawalMethod,
-      required String failure,
-      required String success,
-      required Map<String, dynamic> withdrawalDetails,
-      required InvestmentItem investmentToBeWithdrawn,
-      required List<BankAddress> bankAddresses,
-      required List<CryptoWallet> cryptoAddresses,
-      required List<CryptoWallet> generalCryptoAddresses,
-      required List<InvestmentItem> fortDollarInvestments,
-      required List<InvestmentItem> fortCryptoInvestments,
-      required List<InvestmentItem> fortShieldInvestments,
-      required List<WithdrawalItem> withdrawals,
-      required List<TransactionItem> transactions,
-      required bool showDigits}) {
-    return _WalletState(
-      walletBalance: walletBalance,
-      exchange: exchange,
-      loading: loading,
-      fortDollarInvestmentBalance: fortDollarInvestmentBalance,
-      fortCryptoInvestmentBalance: fortCryptoInvestmentBalance,
-      fortShieldInvestmentBalance: fortShieldInvestmentBalance,
-      fortDollarYieldBalance: fortDollarYieldBalance,
-      fortCryptoYieldBalance: fortCryptoYieldBalance,
-      fortShieldYieldBalance: fortShieldYieldBalance,
-      withdrawalMethod: withdrawalMethod,
-      failure: failure,
-      success: success,
-      withdrawalDetails: withdrawalDetails,
-      investmentToBeWithdrawn: investmentToBeWithdrawn,
-      bankAddresses: bankAddresses,
-      cryptoAddresses: cryptoAddresses,
-      generalCryptoAddresses: generalCryptoAddresses,
-      fortDollarInvestments: fortDollarInvestments,
-      fortCryptoInvestments: fortCryptoInvestments,
-      fortShieldInvestments: fortShieldInvestments,
-      withdrawals: withdrawals,
-      transactions: transactions,
-      showDigits: showDigits,
-    );
-  }
-}
-
-/// @nodoc
-const $WalletState = _$WalletStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$WalletState {
@@ -283,11 +224,11 @@ class _$WalletStateCopyWithImpl<$Res> implements $WalletStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$WalletStateCopyWith<$Res>
+abstract class _$$_WalletStateCopyWith<$Res>
     implements $WalletStateCopyWith<$Res> {
-  factory _$WalletStateCopyWith(
-          _WalletState value, $Res Function(_WalletState) then) =
-      __$WalletStateCopyWithImpl<$Res>;
+  factory _$$_WalletStateCopyWith(
+          _$_WalletState value, $Res Function(_$_WalletState) then) =
+      __$$_WalletStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {double walletBalance,
@@ -319,14 +260,14 @@ abstract class _$WalletStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$WalletStateCopyWithImpl<$Res> extends _$WalletStateCopyWithImpl<$Res>
-    implements _$WalletStateCopyWith<$Res> {
-  __$WalletStateCopyWithImpl(
-      _WalletState _value, $Res Function(_WalletState) _then)
-      : super(_value, (v) => _then(v as _WalletState));
+class __$$_WalletStateCopyWithImpl<$Res> extends _$WalletStateCopyWithImpl<$Res>
+    implements _$$_WalletStateCopyWith<$Res> {
+  __$$_WalletStateCopyWithImpl(
+      _$_WalletState _value, $Res Function(_$_WalletState) _then)
+      : super(_value, (v) => _then(v as _$_WalletState));
 
   @override
-  _WalletState get _value => super._value as _WalletState;
+  _$_WalletState get _value => super._value as _$_WalletState;
 
   @override
   $Res call({
@@ -354,7 +295,7 @@ class __$WalletStateCopyWithImpl<$Res> extends _$WalletStateCopyWithImpl<$Res>
     Object? transactions = freezed,
     Object? showDigits = freezed,
   }) {
-    return _then(_WalletState(
+    return _then(_$_WalletState(
       walletBalance: walletBalance == freezed
           ? _value.walletBalance
           : walletBalance // ignore: cast_nullable_to_non_nullable
@@ -404,7 +345,7 @@ class __$WalletStateCopyWithImpl<$Res> extends _$WalletStateCopyWithImpl<$Res>
           : success // ignore: cast_nullable_to_non_nullable
               as String,
       withdrawalDetails: withdrawalDetails == freezed
-          ? _value.withdrawalDetails
+          ? _value._withdrawalDetails
           : withdrawalDetails // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
       investmentToBeWithdrawn: investmentToBeWithdrawn == freezed
@@ -412,35 +353,35 @@ class __$WalletStateCopyWithImpl<$Res> extends _$WalletStateCopyWithImpl<$Res>
           : investmentToBeWithdrawn // ignore: cast_nullable_to_non_nullable
               as InvestmentItem,
       bankAddresses: bankAddresses == freezed
-          ? _value.bankAddresses
+          ? _value._bankAddresses
           : bankAddresses // ignore: cast_nullable_to_non_nullable
               as List<BankAddress>,
       cryptoAddresses: cryptoAddresses == freezed
-          ? _value.cryptoAddresses
+          ? _value._cryptoAddresses
           : cryptoAddresses // ignore: cast_nullable_to_non_nullable
               as List<CryptoWallet>,
       generalCryptoAddresses: generalCryptoAddresses == freezed
-          ? _value.generalCryptoAddresses
+          ? _value._generalCryptoAddresses
           : generalCryptoAddresses // ignore: cast_nullable_to_non_nullable
               as List<CryptoWallet>,
       fortDollarInvestments: fortDollarInvestments == freezed
-          ? _value.fortDollarInvestments
+          ? _value._fortDollarInvestments
           : fortDollarInvestments // ignore: cast_nullable_to_non_nullable
               as List<InvestmentItem>,
       fortCryptoInvestments: fortCryptoInvestments == freezed
-          ? _value.fortCryptoInvestments
+          ? _value._fortCryptoInvestments
           : fortCryptoInvestments // ignore: cast_nullable_to_non_nullable
               as List<InvestmentItem>,
       fortShieldInvestments: fortShieldInvestments == freezed
-          ? _value.fortShieldInvestments
+          ? _value._fortShieldInvestments
           : fortShieldInvestments // ignore: cast_nullable_to_non_nullable
               as List<InvestmentItem>,
       withdrawals: withdrawals == freezed
-          ? _value.withdrawals
+          ? _value._withdrawals
           : withdrawals // ignore: cast_nullable_to_non_nullable
               as List<WithdrawalItem>,
       transactions: transactions == freezed
-          ? _value.transactions
+          ? _value._transactions
           : transactions // ignore: cast_nullable_to_non_nullable
               as List<TransactionItem>,
       showDigits: showDigits == freezed
@@ -467,18 +408,27 @@ class _$_WalletState extends _WalletState {
       required this.withdrawalMethod,
       required this.failure,
       required this.success,
-      required this.withdrawalDetails,
+      required final Map<String, dynamic> withdrawalDetails,
       required this.investmentToBeWithdrawn,
-      required this.bankAddresses,
-      required this.cryptoAddresses,
-      required this.generalCryptoAddresses,
-      required this.fortDollarInvestments,
-      required this.fortCryptoInvestments,
-      required this.fortShieldInvestments,
-      required this.withdrawals,
-      required this.transactions,
+      required final List<BankAddress> bankAddresses,
+      required final List<CryptoWallet> cryptoAddresses,
+      required final List<CryptoWallet> generalCryptoAddresses,
+      required final List<InvestmentItem> fortDollarInvestments,
+      required final List<InvestmentItem> fortCryptoInvestments,
+      required final List<InvestmentItem> fortShieldInvestments,
+      required final List<WithdrawalItem> withdrawals,
+      required final List<TransactionItem> transactions,
       required this.showDigits})
-      : super._();
+      : _withdrawalDetails = withdrawalDetails,
+        _bankAddresses = bankAddresses,
+        _cryptoAddresses = cryptoAddresses,
+        _generalCryptoAddresses = generalCryptoAddresses,
+        _fortDollarInvestments = fortDollarInvestments,
+        _fortCryptoInvestments = fortCryptoInvestments,
+        _fortShieldInvestments = fortShieldInvestments,
+        _withdrawals = withdrawals,
+        _transactions = transactions,
+        super._();
 
   @override
   final double walletBalance;
@@ -504,26 +454,71 @@ class _$_WalletState extends _WalletState {
   final String failure;
   @override
   final String success;
+  final Map<String, dynamic> _withdrawalDetails;
   @override
-  final Map<String, dynamic> withdrawalDetails;
+  Map<String, dynamic> get withdrawalDetails {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_withdrawalDetails);
+  }
+
   @override
   final InvestmentItem investmentToBeWithdrawn;
+  final List<BankAddress> _bankAddresses;
   @override
-  final List<BankAddress> bankAddresses;
+  List<BankAddress> get bankAddresses {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_bankAddresses);
+  }
+
+  final List<CryptoWallet> _cryptoAddresses;
   @override
-  final List<CryptoWallet> cryptoAddresses;
+  List<CryptoWallet> get cryptoAddresses {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_cryptoAddresses);
+  }
+
+  final List<CryptoWallet> _generalCryptoAddresses;
   @override
-  final List<CryptoWallet> generalCryptoAddresses;
+  List<CryptoWallet> get generalCryptoAddresses {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_generalCryptoAddresses);
+  }
+
+  final List<InvestmentItem> _fortDollarInvestments;
   @override
-  final List<InvestmentItem> fortDollarInvestments;
+  List<InvestmentItem> get fortDollarInvestments {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_fortDollarInvestments);
+  }
+
+  final List<InvestmentItem> _fortCryptoInvestments;
   @override
-  final List<InvestmentItem> fortCryptoInvestments;
+  List<InvestmentItem> get fortCryptoInvestments {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_fortCryptoInvestments);
+  }
+
+  final List<InvestmentItem> _fortShieldInvestments;
   @override
-  final List<InvestmentItem> fortShieldInvestments;
+  List<InvestmentItem> get fortShieldInvestments {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_fortShieldInvestments);
+  }
+
+  final List<WithdrawalItem> _withdrawals;
   @override
-  final List<WithdrawalItem> withdrawals;
+  List<WithdrawalItem> get withdrawals {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_withdrawals);
+  }
+
+  final List<TransactionItem> _transactions;
   @override
-  final List<TransactionItem> transactions;
+  List<TransactionItem> get transactions {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_transactions);
+  }
+
   @override
   final bool showDigits;
 
@@ -536,7 +531,7 @@ class _$_WalletState extends _WalletState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _WalletState &&
+            other is _$_WalletState &&
             const DeepCollectionEquality()
                 .equals(other.walletBalance, walletBalance) &&
             const DeepCollectionEquality().equals(other.exchange, exchange) &&
@@ -561,25 +556,25 @@ class _$_WalletState extends _WalletState {
             const DeepCollectionEquality().equals(other.failure, failure) &&
             const DeepCollectionEquality().equals(other.success, success) &&
             const DeepCollectionEquality()
-                .equals(other.withdrawalDetails, withdrawalDetails) &&
+                .equals(other._withdrawalDetails, _withdrawalDetails) &&
             const DeepCollectionEquality().equals(
                 other.investmentToBeWithdrawn, investmentToBeWithdrawn) &&
             const DeepCollectionEquality()
-                .equals(other.bankAddresses, bankAddresses) &&
+                .equals(other._bankAddresses, _bankAddresses) &&
             const DeepCollectionEquality()
-                .equals(other.cryptoAddresses, cryptoAddresses) &&
+                .equals(other._cryptoAddresses, _cryptoAddresses) &&
+            const DeepCollectionEquality().equals(
+                other._generalCryptoAddresses, _generalCryptoAddresses) &&
             const DeepCollectionEquality()
-                .equals(other.generalCryptoAddresses, generalCryptoAddresses) &&
+                .equals(other._fortDollarInvestments, _fortDollarInvestments) &&
             const DeepCollectionEquality()
-                .equals(other.fortDollarInvestments, fortDollarInvestments) &&
+                .equals(other._fortCryptoInvestments, _fortCryptoInvestments) &&
             const DeepCollectionEquality()
-                .equals(other.fortCryptoInvestments, fortCryptoInvestments) &&
+                .equals(other._fortShieldInvestments, _fortShieldInvestments) &&
             const DeepCollectionEquality()
-                .equals(other.fortShieldInvestments, fortShieldInvestments) &&
+                .equals(other._withdrawals, _withdrawals) &&
             const DeepCollectionEquality()
-                .equals(other.withdrawals, withdrawals) &&
-            const DeepCollectionEquality()
-                .equals(other.transactions, transactions) &&
+                .equals(other._transactions, _transactions) &&
             const DeepCollectionEquality()
                 .equals(other.showDigits, showDigits));
   }
@@ -599,100 +594,106 @@ class _$_WalletState extends _WalletState {
         const DeepCollectionEquality().hash(withdrawalMethod),
         const DeepCollectionEquality().hash(failure),
         const DeepCollectionEquality().hash(success),
-        const DeepCollectionEquality().hash(withdrawalDetails),
+        const DeepCollectionEquality().hash(_withdrawalDetails),
         const DeepCollectionEquality().hash(investmentToBeWithdrawn),
-        const DeepCollectionEquality().hash(bankAddresses),
-        const DeepCollectionEquality().hash(cryptoAddresses),
-        const DeepCollectionEquality().hash(generalCryptoAddresses),
-        const DeepCollectionEquality().hash(fortDollarInvestments),
-        const DeepCollectionEquality().hash(fortCryptoInvestments),
-        const DeepCollectionEquality().hash(fortShieldInvestments),
-        const DeepCollectionEquality().hash(withdrawals),
-        const DeepCollectionEquality().hash(transactions),
+        const DeepCollectionEquality().hash(_bankAddresses),
+        const DeepCollectionEquality().hash(_cryptoAddresses),
+        const DeepCollectionEquality().hash(_generalCryptoAddresses),
+        const DeepCollectionEquality().hash(_fortDollarInvestments),
+        const DeepCollectionEquality().hash(_fortCryptoInvestments),
+        const DeepCollectionEquality().hash(_fortShieldInvestments),
+        const DeepCollectionEquality().hash(_withdrawals),
+        const DeepCollectionEquality().hash(_transactions),
         const DeepCollectionEquality().hash(showDigits)
       ]);
 
   @JsonKey(ignore: true)
   @override
-  _$WalletStateCopyWith<_WalletState> get copyWith =>
-      __$WalletStateCopyWithImpl<_WalletState>(this, _$identity);
+  _$$_WalletStateCopyWith<_$_WalletState> get copyWith =>
+      __$$_WalletStateCopyWithImpl<_$_WalletState>(this, _$identity);
 }
 
 abstract class _WalletState extends WalletState {
   const factory _WalletState(
-      {required double walletBalance,
-      required String exchange,
-      required bool loading,
-      required double fortDollarInvestmentBalance,
-      required double fortCryptoInvestmentBalance,
-      required double fortShieldInvestmentBalance,
-      required double fortDollarYieldBalance,
-      required double fortCryptoYieldBalance,
-      required double fortShieldYieldBalance,
-      required String withdrawalMethod,
-      required String failure,
-      required String success,
-      required Map<String, dynamic> withdrawalDetails,
-      required InvestmentItem investmentToBeWithdrawn,
-      required List<BankAddress> bankAddresses,
-      required List<CryptoWallet> cryptoAddresses,
-      required List<CryptoWallet> generalCryptoAddresses,
-      required List<InvestmentItem> fortDollarInvestments,
-      required List<InvestmentItem> fortCryptoInvestments,
-      required List<InvestmentItem> fortShieldInvestments,
-      required List<WithdrawalItem> withdrawals,
-      required List<TransactionItem> transactions,
-      required bool showDigits}) = _$_WalletState;
+      {required final double walletBalance,
+      required final String exchange,
+      required final bool loading,
+      required final double fortDollarInvestmentBalance,
+      required final double fortCryptoInvestmentBalance,
+      required final double fortShieldInvestmentBalance,
+      required final double fortDollarYieldBalance,
+      required final double fortCryptoYieldBalance,
+      required final double fortShieldYieldBalance,
+      required final String withdrawalMethod,
+      required final String failure,
+      required final String success,
+      required final Map<String, dynamic> withdrawalDetails,
+      required final InvestmentItem investmentToBeWithdrawn,
+      required final List<BankAddress> bankAddresses,
+      required final List<CryptoWallet> cryptoAddresses,
+      required final List<CryptoWallet> generalCryptoAddresses,
+      required final List<InvestmentItem> fortDollarInvestments,
+      required final List<InvestmentItem> fortCryptoInvestments,
+      required final List<InvestmentItem> fortShieldInvestments,
+      required final List<WithdrawalItem> withdrawals,
+      required final List<TransactionItem> transactions,
+      required final bool showDigits}) = _$_WalletState;
   const _WalletState._() : super._();
 
   @override
-  double get walletBalance;
+  double get walletBalance => throw _privateConstructorUsedError;
   @override
-  String get exchange;
+  String get exchange => throw _privateConstructorUsedError;
   @override
-  bool get loading;
+  bool get loading => throw _privateConstructorUsedError;
   @override
-  double get fortDollarInvestmentBalance;
+  double get fortDollarInvestmentBalance => throw _privateConstructorUsedError;
   @override
-  double get fortCryptoInvestmentBalance;
+  double get fortCryptoInvestmentBalance => throw _privateConstructorUsedError;
   @override
-  double get fortShieldInvestmentBalance;
+  double get fortShieldInvestmentBalance => throw _privateConstructorUsedError;
   @override
-  double get fortDollarYieldBalance;
+  double get fortDollarYieldBalance => throw _privateConstructorUsedError;
   @override
-  double get fortCryptoYieldBalance;
+  double get fortCryptoYieldBalance => throw _privateConstructorUsedError;
   @override
-  double get fortShieldYieldBalance;
+  double get fortShieldYieldBalance => throw _privateConstructorUsedError;
   @override
-  String get withdrawalMethod;
+  String get withdrawalMethod => throw _privateConstructorUsedError;
   @override
-  String get failure;
+  String get failure => throw _privateConstructorUsedError;
   @override
-  String get success;
+  String get success => throw _privateConstructorUsedError;
   @override
-  Map<String, dynamic> get withdrawalDetails;
+  Map<String, dynamic> get withdrawalDetails =>
+      throw _privateConstructorUsedError;
   @override
-  InvestmentItem get investmentToBeWithdrawn;
+  InvestmentItem get investmentToBeWithdrawn =>
+      throw _privateConstructorUsedError;
   @override
-  List<BankAddress> get bankAddresses;
+  List<BankAddress> get bankAddresses => throw _privateConstructorUsedError;
   @override
-  List<CryptoWallet> get cryptoAddresses;
+  List<CryptoWallet> get cryptoAddresses => throw _privateConstructorUsedError;
   @override
-  List<CryptoWallet> get generalCryptoAddresses;
+  List<CryptoWallet> get generalCryptoAddresses =>
+      throw _privateConstructorUsedError;
   @override
-  List<InvestmentItem> get fortDollarInvestments;
+  List<InvestmentItem> get fortDollarInvestments =>
+      throw _privateConstructorUsedError;
   @override
-  List<InvestmentItem> get fortCryptoInvestments;
+  List<InvestmentItem> get fortCryptoInvestments =>
+      throw _privateConstructorUsedError;
   @override
-  List<InvestmentItem> get fortShieldInvestments;
+  List<InvestmentItem> get fortShieldInvestments =>
+      throw _privateConstructorUsedError;
   @override
-  List<WithdrawalItem> get withdrawals;
+  List<WithdrawalItem> get withdrawals => throw _privateConstructorUsedError;
   @override
-  List<TransactionItem> get transactions;
+  List<TransactionItem> get transactions => throw _privateConstructorUsedError;
   @override
-  bool get showDigits;
+  bool get showDigits => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$WalletStateCopyWith<_WalletState> get copyWith =>
+  _$$_WalletStateCopyWith<_$_WalletState> get copyWith =>
       throw _privateConstructorUsedError;
 }

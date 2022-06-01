@@ -12,38 +12,7 @@ part of 'notification_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$NotificationStateTearOff {
-  const _$NotificationStateTearOff();
-
-  _NotificationState call(
-      {required List<NotificationItem> notifications,
-      required List<NotificationItem> selectedNotifications,
-      required int notificationCount,
-      required bool loading,
-      required String type,
-      required String title,
-      required DateTime createdat,
-      required String id,
-      required String status}) {
-    return _NotificationState(
-      notifications: notifications,
-      selectedNotifications: selectedNotifications,
-      notificationCount: notificationCount,
-      loading: loading,
-      type: type,
-      title: title,
-      createdat: createdat,
-      id: id,
-      status: status,
-    );
-  }
-}
-
-/// @nodoc
-const $NotificationState = _$NotificationStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$NotificationState {
@@ -144,11 +113,11 @@ class _$NotificationStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$NotificationStateCopyWith<$Res>
+abstract class _$$_NotificationStateCopyWith<$Res>
     implements $NotificationStateCopyWith<$Res> {
-  factory _$NotificationStateCopyWith(
-          _NotificationState value, $Res Function(_NotificationState) then) =
-      __$NotificationStateCopyWithImpl<$Res>;
+  factory _$$_NotificationStateCopyWith(_$_NotificationState value,
+          $Res Function(_$_NotificationState) then) =
+      __$$_NotificationStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {List<NotificationItem> notifications,
@@ -163,15 +132,15 @@ abstract class _$NotificationStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$NotificationStateCopyWithImpl<$Res>
+class __$$_NotificationStateCopyWithImpl<$Res>
     extends _$NotificationStateCopyWithImpl<$Res>
-    implements _$NotificationStateCopyWith<$Res> {
-  __$NotificationStateCopyWithImpl(
-      _NotificationState _value, $Res Function(_NotificationState) _then)
-      : super(_value, (v) => _then(v as _NotificationState));
+    implements _$$_NotificationStateCopyWith<$Res> {
+  __$$_NotificationStateCopyWithImpl(
+      _$_NotificationState _value, $Res Function(_$_NotificationState) _then)
+      : super(_value, (v) => _then(v as _$_NotificationState));
 
   @override
-  _NotificationState get _value => super._value as _NotificationState;
+  _$_NotificationState get _value => super._value as _$_NotificationState;
 
   @override
   $Res call({
@@ -185,13 +154,13 @@ class __$NotificationStateCopyWithImpl<$Res>
     Object? id = freezed,
     Object? status = freezed,
   }) {
-    return _then(_NotificationState(
+    return _then(_$_NotificationState(
       notifications: notifications == freezed
-          ? _value.notifications
+          ? _value._notifications
           : notifications // ignore: cast_nullable_to_non_nullable
               as List<NotificationItem>,
       selectedNotifications: selectedNotifications == freezed
-          ? _value.selectedNotifications
+          ? _value._selectedNotifications
           : selectedNotifications // ignore: cast_nullable_to_non_nullable
               as List<NotificationItem>,
       notificationCount: notificationCount == freezed
@@ -230,8 +199,8 @@ class __$NotificationStateCopyWithImpl<$Res>
 
 class _$_NotificationState extends _NotificationState {
   const _$_NotificationState(
-      {required this.notifications,
-      required this.selectedNotifications,
+      {required final List<NotificationItem> notifications,
+      required final List<NotificationItem> selectedNotifications,
       required this.notificationCount,
       required this.loading,
       required this.type,
@@ -239,12 +208,24 @@ class _$_NotificationState extends _NotificationState {
       required this.createdat,
       required this.id,
       required this.status})
-      : super._();
+      : _notifications = notifications,
+        _selectedNotifications = selectedNotifications,
+        super._();
 
+  final List<NotificationItem> _notifications;
   @override
-  final List<NotificationItem> notifications;
+  List<NotificationItem> get notifications {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_notifications);
+  }
+
+  final List<NotificationItem> _selectedNotifications;
   @override
-  final List<NotificationItem> selectedNotifications;
+  List<NotificationItem> get selectedNotifications {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_selectedNotifications);
+  }
+
   @override
   final int notificationCount;
   @override
@@ -269,11 +250,11 @@ class _$_NotificationState extends _NotificationState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _NotificationState &&
+            other is _$_NotificationState &&
             const DeepCollectionEquality()
-                .equals(other.notifications, notifications) &&
+                .equals(other._notifications, _notifications) &&
             const DeepCollectionEquality()
-                .equals(other.selectedNotifications, selectedNotifications) &&
+                .equals(other._selectedNotifications, _selectedNotifications) &&
             const DeepCollectionEquality()
                 .equals(other.notificationCount, notificationCount) &&
             const DeepCollectionEquality().equals(other.loading, loading) &&
@@ -287,8 +268,8 @@ class _$_NotificationState extends _NotificationState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(notifications),
-      const DeepCollectionEquality().hash(selectedNotifications),
+      const DeepCollectionEquality().hash(_notifications),
+      const DeepCollectionEquality().hash(_selectedNotifications),
       const DeepCollectionEquality().hash(notificationCount),
       const DeepCollectionEquality().hash(loading),
       const DeepCollectionEquality().hash(type),
@@ -299,43 +280,46 @@ class _$_NotificationState extends _NotificationState {
 
   @JsonKey(ignore: true)
   @override
-  _$NotificationStateCopyWith<_NotificationState> get copyWith =>
-      __$NotificationStateCopyWithImpl<_NotificationState>(this, _$identity);
+  _$$_NotificationStateCopyWith<_$_NotificationState> get copyWith =>
+      __$$_NotificationStateCopyWithImpl<_$_NotificationState>(
+          this, _$identity);
 }
 
 abstract class _NotificationState extends NotificationState {
   const factory _NotificationState(
-      {required List<NotificationItem> notifications,
-      required List<NotificationItem> selectedNotifications,
-      required int notificationCount,
-      required bool loading,
-      required String type,
-      required String title,
-      required DateTime createdat,
-      required String id,
-      required String status}) = _$_NotificationState;
+      {required final List<NotificationItem> notifications,
+      required final List<NotificationItem> selectedNotifications,
+      required final int notificationCount,
+      required final bool loading,
+      required final String type,
+      required final String title,
+      required final DateTime createdat,
+      required final String id,
+      required final String status}) = _$_NotificationState;
   const _NotificationState._() : super._();
 
   @override
-  List<NotificationItem> get notifications;
+  List<NotificationItem> get notifications =>
+      throw _privateConstructorUsedError;
   @override
-  List<NotificationItem> get selectedNotifications;
+  List<NotificationItem> get selectedNotifications =>
+      throw _privateConstructorUsedError;
   @override
-  int get notificationCount;
+  int get notificationCount => throw _privateConstructorUsedError;
   @override
-  bool get loading;
+  bool get loading => throw _privateConstructorUsedError;
   @override
-  String get type;
+  String get type => throw _privateConstructorUsedError;
   @override
-  String get title;
+  String get title => throw _privateConstructorUsedError;
   @override
-  DateTime get createdat;
+  DateTime get createdat => throw _privateConstructorUsedError;
   @override
-  String get id;
+  String get id => throw _privateConstructorUsedError;
   @override
-  String get status;
+  String get status => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$NotificationStateCopyWith<_NotificationState> get copyWith =>
+  _$$_NotificationStateCopyWith<_$_NotificationState> get copyWith =>
       throw _privateConstructorUsedError;
 }

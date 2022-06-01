@@ -12,32 +12,7 @@ part of 'bank_address.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$BankAddressTearOff {
-  const _$BankAddressTearOff();
-
-  _BankAddress call(
-      {required String bankName,
-      required String accountNumber,
-      required String userName,
-      required String id,
-      required String trax,
-      required String type}) {
-    return _BankAddress(
-      bankName: bankName,
-      accountNumber: accountNumber,
-      userName: userName,
-      id: id,
-      trax: trax,
-      type: type,
-    );
-  }
-}
-
-/// @nodoc
-const $BankAddress = _$BankAddressTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$BankAddress {
@@ -114,11 +89,11 @@ class _$BankAddressCopyWithImpl<$Res> implements $BankAddressCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$BankAddressCopyWith<$Res>
+abstract class _$$_BankAddressCopyWith<$Res>
     implements $BankAddressCopyWith<$Res> {
-  factory _$BankAddressCopyWith(
-          _BankAddress value, $Res Function(_BankAddress) then) =
-      __$BankAddressCopyWithImpl<$Res>;
+  factory _$$_BankAddressCopyWith(
+          _$_BankAddress value, $Res Function(_$_BankAddress) then) =
+      __$$_BankAddressCopyWithImpl<$Res>;
   @override
   $Res call(
       {String bankName,
@@ -130,14 +105,14 @@ abstract class _$BankAddressCopyWith<$Res>
 }
 
 /// @nodoc
-class __$BankAddressCopyWithImpl<$Res> extends _$BankAddressCopyWithImpl<$Res>
-    implements _$BankAddressCopyWith<$Res> {
-  __$BankAddressCopyWithImpl(
-      _BankAddress _value, $Res Function(_BankAddress) _then)
-      : super(_value, (v) => _then(v as _BankAddress));
+class __$$_BankAddressCopyWithImpl<$Res> extends _$BankAddressCopyWithImpl<$Res>
+    implements _$$_BankAddressCopyWith<$Res> {
+  __$$_BankAddressCopyWithImpl(
+      _$_BankAddress _value, $Res Function(_$_BankAddress) _then)
+      : super(_value, (v) => _then(v as _$_BankAddress));
 
   @override
-  _BankAddress get _value => super._value as _BankAddress;
+  _$_BankAddress get _value => super._value as _$_BankAddress;
 
   @override
   $Res call({
@@ -148,7 +123,7 @@ class __$BankAddressCopyWithImpl<$Res> extends _$BankAddressCopyWithImpl<$Res>
     Object? trax = freezed,
     Object? type = freezed,
   }) {
-    return _then(_BankAddress(
+    return _then(_$_BankAddress(
       bankName: bankName == freezed
           ? _value.bankName
           : bankName // ignore: cast_nullable_to_non_nullable
@@ -211,7 +186,7 @@ class _$_BankAddress extends _BankAddress {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _BankAddress &&
+            other is _$_BankAddress &&
             const DeepCollectionEquality().equals(other.bankName, bankName) &&
             const DeepCollectionEquality()
                 .equals(other.accountNumber, accountNumber) &&
@@ -233,34 +208,34 @@ class _$_BankAddress extends _BankAddress {
 
   @JsonKey(ignore: true)
   @override
-  _$BankAddressCopyWith<_BankAddress> get copyWith =>
-      __$BankAddressCopyWithImpl<_BankAddress>(this, _$identity);
+  _$$_BankAddressCopyWith<_$_BankAddress> get copyWith =>
+      __$$_BankAddressCopyWithImpl<_$_BankAddress>(this, _$identity);
 }
 
 abstract class _BankAddress extends BankAddress {
   const factory _BankAddress(
-      {required String bankName,
-      required String accountNumber,
-      required String userName,
-      required String id,
-      required String trax,
-      required String type}) = _$_BankAddress;
+      {required final String bankName,
+      required final String accountNumber,
+      required final String userName,
+      required final String id,
+      required final String trax,
+      required final String type}) = _$_BankAddress;
   const _BankAddress._() : super._();
 
   @override
-  String get bankName;
+  String get bankName => throw _privateConstructorUsedError;
   @override
-  String get accountNumber;
+  String get accountNumber => throw _privateConstructorUsedError;
   @override
-  String get userName;
+  String get userName => throw _privateConstructorUsedError;
   @override
-  String get id;
+  String get id => throw _privateConstructorUsedError;
   @override
-  String get trax;
+  String get trax => throw _privateConstructorUsedError;
   @override
-  String get type;
+  String get type => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$BankAddressCopyWith<_BankAddress> get copyWith =>
+  _$$_BankAddressCopyWith<_$_BankAddress> get copyWith =>
       throw _privateConstructorUsedError;
 }

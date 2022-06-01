@@ -12,26 +12,7 @@ part of 'network_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$NetworkStateTearOff {
-  const _$NetworkStateTearOff();
-
-  _NetworkState call(
-      {required bool connected,
-      required bool disconnected,
-      required bool loading}) {
-    return _NetworkState(
-      connected: connected,
-      disconnected: disconnected,
-      loading: loading,
-    );
-  }
-}
-
-/// @nodoc
-const $NetworkState = _$NetworkStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$NetworkState {
@@ -84,24 +65,25 @@ class _$NetworkStateCopyWithImpl<$Res> implements $NetworkStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$NetworkStateCopyWith<$Res>
+abstract class _$$_NetworkStateCopyWith<$Res>
     implements $NetworkStateCopyWith<$Res> {
-  factory _$NetworkStateCopyWith(
-          _NetworkState value, $Res Function(_NetworkState) then) =
-      __$NetworkStateCopyWithImpl<$Res>;
+  factory _$$_NetworkStateCopyWith(
+          _$_NetworkState value, $Res Function(_$_NetworkState) then) =
+      __$$_NetworkStateCopyWithImpl<$Res>;
   @override
   $Res call({bool connected, bool disconnected, bool loading});
 }
 
 /// @nodoc
-class __$NetworkStateCopyWithImpl<$Res> extends _$NetworkStateCopyWithImpl<$Res>
-    implements _$NetworkStateCopyWith<$Res> {
-  __$NetworkStateCopyWithImpl(
-      _NetworkState _value, $Res Function(_NetworkState) _then)
-      : super(_value, (v) => _then(v as _NetworkState));
+class __$$_NetworkStateCopyWithImpl<$Res>
+    extends _$NetworkStateCopyWithImpl<$Res>
+    implements _$$_NetworkStateCopyWith<$Res> {
+  __$$_NetworkStateCopyWithImpl(
+      _$_NetworkState _value, $Res Function(_$_NetworkState) _then)
+      : super(_value, (v) => _then(v as _$_NetworkState));
 
   @override
-  _NetworkState get _value => super._value as _NetworkState;
+  _$_NetworkState get _value => super._value as _$_NetworkState;
 
   @override
   $Res call({
@@ -109,7 +91,7 @@ class __$NetworkStateCopyWithImpl<$Res> extends _$NetworkStateCopyWithImpl<$Res>
     Object? disconnected = freezed,
     Object? loading = freezed,
   }) {
-    return _then(_NetworkState(
+    return _then(_$_NetworkState(
       connected: connected == freezed
           ? _value.connected
           : connected // ignore: cast_nullable_to_non_nullable
@@ -150,7 +132,7 @@ class _$_NetworkState implements _NetworkState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _NetworkState &&
+            other is _$_NetworkState &&
             const DeepCollectionEquality().equals(other.connected, connected) &&
             const DeepCollectionEquality()
                 .equals(other.disconnected, disconnected) &&
@@ -166,24 +148,24 @@ class _$_NetworkState implements _NetworkState {
 
   @JsonKey(ignore: true)
   @override
-  _$NetworkStateCopyWith<_NetworkState> get copyWith =>
-      __$NetworkStateCopyWithImpl<_NetworkState>(this, _$identity);
+  _$$_NetworkStateCopyWith<_$_NetworkState> get copyWith =>
+      __$$_NetworkStateCopyWithImpl<_$_NetworkState>(this, _$identity);
 }
 
 abstract class _NetworkState implements NetworkState {
   const factory _NetworkState(
-      {required bool connected,
-      required bool disconnected,
-      required bool loading}) = _$_NetworkState;
+      {required final bool connected,
+      required final bool disconnected,
+      required final bool loading}) = _$_NetworkState;
 
   @override
-  bool get connected;
+  bool get connected => throw _privateConstructorUsedError;
   @override
-  bool get disconnected;
+  bool get disconnected => throw _privateConstructorUsedError;
   @override
-  bool get loading;
+  bool get loading => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$NetworkStateCopyWith<_NetworkState> get copyWith =>
+  _$$_NetworkStateCopyWith<_$_NetworkState> get copyWith =>
       throw _privateConstructorUsedError;
 }

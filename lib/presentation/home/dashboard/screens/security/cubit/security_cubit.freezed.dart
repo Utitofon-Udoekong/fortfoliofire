@@ -12,32 +12,7 @@ part of 'security_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$SecurityStateTearOff {
-  const _$SecurityStateTearOff();
-
-  _SecurityState call(
-      {required String emailAddress,
-      required String pin,
-      required bool showSnackbar,
-      required bool pinExists,
-      required String failure,
-      required String success}) {
-    return _SecurityState(
-      emailAddress: emailAddress,
-      pin: pin,
-      showSnackbar: showSnackbar,
-      pinExists: pinExists,
-      failure: failure,
-      success: success,
-    );
-  }
-}
-
-/// @nodoc
-const $SecurityState = _$SecurityStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$SecurityState {
@@ -115,11 +90,11 @@ class _$SecurityStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$SecurityStateCopyWith<$Res>
+abstract class _$$_SecurityStateCopyWith<$Res>
     implements $SecurityStateCopyWith<$Res> {
-  factory _$SecurityStateCopyWith(
-          _SecurityState value, $Res Function(_SecurityState) then) =
-      __$SecurityStateCopyWithImpl<$Res>;
+  factory _$$_SecurityStateCopyWith(
+          _$_SecurityState value, $Res Function(_$_SecurityState) then) =
+      __$$_SecurityStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {String emailAddress,
@@ -131,15 +106,15 @@ abstract class _$SecurityStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$SecurityStateCopyWithImpl<$Res>
+class __$$_SecurityStateCopyWithImpl<$Res>
     extends _$SecurityStateCopyWithImpl<$Res>
-    implements _$SecurityStateCopyWith<$Res> {
-  __$SecurityStateCopyWithImpl(
-      _SecurityState _value, $Res Function(_SecurityState) _then)
-      : super(_value, (v) => _then(v as _SecurityState));
+    implements _$$_SecurityStateCopyWith<$Res> {
+  __$$_SecurityStateCopyWithImpl(
+      _$_SecurityState _value, $Res Function(_$_SecurityState) _then)
+      : super(_value, (v) => _then(v as _$_SecurityState));
 
   @override
-  _SecurityState get _value => super._value as _SecurityState;
+  _$_SecurityState get _value => super._value as _$_SecurityState;
 
   @override
   $Res call({
@@ -150,7 +125,7 @@ class __$SecurityStateCopyWithImpl<$Res>
     Object? failure = freezed,
     Object? success = freezed,
   }) {
-    return _then(_SecurityState(
+    return _then(_$_SecurityState(
       emailAddress: emailAddress == freezed
           ? _value.emailAddress
           : emailAddress // ignore: cast_nullable_to_non_nullable
@@ -213,7 +188,7 @@ class _$_SecurityState extends _SecurityState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _SecurityState &&
+            other is _$_SecurityState &&
             const DeepCollectionEquality()
                 .equals(other.emailAddress, emailAddress) &&
             const DeepCollectionEquality().equals(other.pin, pin) &&
@@ -236,34 +211,34 @@ class _$_SecurityState extends _SecurityState {
 
   @JsonKey(ignore: true)
   @override
-  _$SecurityStateCopyWith<_SecurityState> get copyWith =>
-      __$SecurityStateCopyWithImpl<_SecurityState>(this, _$identity);
+  _$$_SecurityStateCopyWith<_$_SecurityState> get copyWith =>
+      __$$_SecurityStateCopyWithImpl<_$_SecurityState>(this, _$identity);
 }
 
 abstract class _SecurityState extends SecurityState {
   const factory _SecurityState(
-      {required String emailAddress,
-      required String pin,
-      required bool showSnackbar,
-      required bool pinExists,
-      required String failure,
-      required String success}) = _$_SecurityState;
+      {required final String emailAddress,
+      required final String pin,
+      required final bool showSnackbar,
+      required final bool pinExists,
+      required final String failure,
+      required final String success}) = _$_SecurityState;
   const _SecurityState._() : super._();
 
   @override
-  String get emailAddress;
+  String get emailAddress => throw _privateConstructorUsedError;
   @override
-  String get pin;
+  String get pin => throw _privateConstructorUsedError;
   @override
-  bool get showSnackbar;
+  bool get showSnackbar => throw _privateConstructorUsedError;
   @override
-  bool get pinExists;
+  bool get pinExists => throw _privateConstructorUsedError;
   @override
-  String get failure;
+  String get failure => throw _privateConstructorUsedError;
   @override
-  String get success;
+  String get success => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$SecurityStateCopyWith<_SecurityState> get copyWith =>
+  _$$_SecurityStateCopyWith<_$_SecurityState> get copyWith =>
       throw _privateConstructorUsedError;
 }

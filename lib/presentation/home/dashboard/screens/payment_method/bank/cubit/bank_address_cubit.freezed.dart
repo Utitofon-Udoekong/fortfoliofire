@@ -12,32 +12,7 @@ part of 'bank_address_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$BankAddressStateTearOff {
-  const _$BankAddressStateTearOff();
-
-  _BankAddressState call(
-      {required String bankName,
-      required String accountNumber,
-      required bool isLoading,
-      required String failure,
-      required String success,
-      required List<BankAddress> bankAddresses}) {
-    return _BankAddressState(
-      bankName: bankName,
-      accountNumber: accountNumber,
-      isLoading: isLoading,
-      failure: failure,
-      success: success,
-      bankAddresses: bankAddresses,
-    );
-  }
-}
-
-/// @nodoc
-const $BankAddressState = _$BankAddressStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$BankAddressState {
@@ -115,11 +90,11 @@ class _$BankAddressStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$BankAddressStateCopyWith<$Res>
+abstract class _$$_BankAddressStateCopyWith<$Res>
     implements $BankAddressStateCopyWith<$Res> {
-  factory _$BankAddressStateCopyWith(
-          _BankAddressState value, $Res Function(_BankAddressState) then) =
-      __$BankAddressStateCopyWithImpl<$Res>;
+  factory _$$_BankAddressStateCopyWith(
+          _$_BankAddressState value, $Res Function(_$_BankAddressState) then) =
+      __$$_BankAddressStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {String bankName,
@@ -131,15 +106,15 @@ abstract class _$BankAddressStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$BankAddressStateCopyWithImpl<$Res>
+class __$$_BankAddressStateCopyWithImpl<$Res>
     extends _$BankAddressStateCopyWithImpl<$Res>
-    implements _$BankAddressStateCopyWith<$Res> {
-  __$BankAddressStateCopyWithImpl(
-      _BankAddressState _value, $Res Function(_BankAddressState) _then)
-      : super(_value, (v) => _then(v as _BankAddressState));
+    implements _$$_BankAddressStateCopyWith<$Res> {
+  __$$_BankAddressStateCopyWithImpl(
+      _$_BankAddressState _value, $Res Function(_$_BankAddressState) _then)
+      : super(_value, (v) => _then(v as _$_BankAddressState));
 
   @override
-  _BankAddressState get _value => super._value as _BankAddressState;
+  _$_BankAddressState get _value => super._value as _$_BankAddressState;
 
   @override
   $Res call({
@@ -150,7 +125,7 @@ class __$BankAddressStateCopyWithImpl<$Res>
     Object? success = freezed,
     Object? bankAddresses = freezed,
   }) {
-    return _then(_BankAddressState(
+    return _then(_$_BankAddressState(
       bankName: bankName == freezed
           ? _value.bankName
           : bankName // ignore: cast_nullable_to_non_nullable
@@ -172,7 +147,7 @@ class __$BankAddressStateCopyWithImpl<$Res>
           : success // ignore: cast_nullable_to_non_nullable
               as String,
       bankAddresses: bankAddresses == freezed
-          ? _value.bankAddresses
+          ? _value._bankAddresses
           : bankAddresses // ignore: cast_nullable_to_non_nullable
               as List<BankAddress>,
     ));
@@ -188,8 +163,9 @@ class _$_BankAddressState extends _BankAddressState {
       required this.isLoading,
       required this.failure,
       required this.success,
-      required this.bankAddresses})
-      : super._();
+      required final List<BankAddress> bankAddresses})
+      : _bankAddresses = bankAddresses,
+        super._();
 
   @override
   final String bankName;
@@ -201,8 +177,12 @@ class _$_BankAddressState extends _BankAddressState {
   final String failure;
   @override
   final String success;
+  final List<BankAddress> _bankAddresses;
   @override
-  final List<BankAddress> bankAddresses;
+  List<BankAddress> get bankAddresses {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_bankAddresses);
+  }
 
   @override
   String toString() {
@@ -213,7 +193,7 @@ class _$_BankAddressState extends _BankAddressState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _BankAddressState &&
+            other is _$_BankAddressState &&
             const DeepCollectionEquality().equals(other.bankName, bankName) &&
             const DeepCollectionEquality()
                 .equals(other.accountNumber, accountNumber) &&
@@ -221,7 +201,7 @@ class _$_BankAddressState extends _BankAddressState {
             const DeepCollectionEquality().equals(other.failure, failure) &&
             const DeepCollectionEquality().equals(other.success, success) &&
             const DeepCollectionEquality()
-                .equals(other.bankAddresses, bankAddresses));
+                .equals(other._bankAddresses, _bankAddresses));
   }
 
   @override
@@ -232,38 +212,38 @@ class _$_BankAddressState extends _BankAddressState {
       const DeepCollectionEquality().hash(isLoading),
       const DeepCollectionEquality().hash(failure),
       const DeepCollectionEquality().hash(success),
-      const DeepCollectionEquality().hash(bankAddresses));
+      const DeepCollectionEquality().hash(_bankAddresses));
 
   @JsonKey(ignore: true)
   @override
-  _$BankAddressStateCopyWith<_BankAddressState> get copyWith =>
-      __$BankAddressStateCopyWithImpl<_BankAddressState>(this, _$identity);
+  _$$_BankAddressStateCopyWith<_$_BankAddressState> get copyWith =>
+      __$$_BankAddressStateCopyWithImpl<_$_BankAddressState>(this, _$identity);
 }
 
 abstract class _BankAddressState extends BankAddressState {
   const factory _BankAddressState(
-      {required String bankName,
-      required String accountNumber,
-      required bool isLoading,
-      required String failure,
-      required String success,
-      required List<BankAddress> bankAddresses}) = _$_BankAddressState;
+      {required final String bankName,
+      required final String accountNumber,
+      required final bool isLoading,
+      required final String failure,
+      required final String success,
+      required final List<BankAddress> bankAddresses}) = _$_BankAddressState;
   const _BankAddressState._() : super._();
 
   @override
-  String get bankName;
+  String get bankName => throw _privateConstructorUsedError;
   @override
-  String get accountNumber;
+  String get accountNumber => throw _privateConstructorUsedError;
   @override
-  bool get isLoading;
+  bool get isLoading => throw _privateConstructorUsedError;
   @override
-  String get failure;
+  String get failure => throw _privateConstructorUsedError;
   @override
-  String get success;
+  String get success => throw _privateConstructorUsedError;
   @override
-  List<BankAddress> get bankAddresses;
+  List<BankAddress> get bankAddresses => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$BankAddressStateCopyWith<_BankAddressState> get copyWith =>
+  _$$_BankAddressStateCopyWith<_$_BankAddressState> get copyWith =>
       throw _privateConstructorUsedError;
 }

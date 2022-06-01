@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -146,32 +147,32 @@ class _AppState extends State<App> with WidgetsBindingObserver {
           BlocProvider(
               create: (context) => getIt<InvestmentCubit>(), lazy: false),
         ],
-        child: MultiBlocListener(
-          listeners: [
+        child: MaterialApp.router(
+          title: 'Fortfolio',
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          routeInformationParser: _appRouter.defaultRouteParser(),
+          routerDelegate: _appRouter.delegate(),
+          builder: (context, widget) => MultiBlocListener(listeners: [
             BlocListener<NetworkCubit, NetworkState>(
-              listenWhen: (previous, current) => previous.connected != current.connected,
+              listenWhen: (previous, current) =>
+                  previous.connected != current.connected,
               listener: (context, state) {
                 CustomSnackbar.showSnackBar(context, "connected", false);
-                // context.router.pop();
+                context.router.pop();
               },
             ),
             BlocListener<NetworkCubit, NetworkState>(
-              listenWhen: (previous, current) => previous.disconnected != current.disconnected,
+              listenWhen: (previous, current) =>
+                  previous.disconnected != current.disconnected,
               listener: (context, state) {
                 CustomSnackbar.showSnackBar(context, "disconnected", true);
-                // context.router.push(const NoInternetPageRoute());
+                context.router.push(const NoInternetPageRoute());
               },
             ),
-          ],
-          child: MaterialApp.router(
-            title: 'Fortfolio',
-            debugShowCheckedModeBanner: false,
-            theme: ThemeData(
-              primarySwatch: Colors.blue,
-            ),
-            routeInformationParser: _appRouter.defaultRouteParser(),
-            routerDelegate: _appRouter.delegate(),
-          ),
+          ], child: widget!),
         ));
   }
 }

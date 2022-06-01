@@ -12,29 +12,11 @@ part of 'dollar_price_dto.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 DollarPriceDTO _$DollarPriceDTOFromJson(Map<String, dynamic> json) {
   return _DollarPriceDTO.fromJson(json);
 }
-
-/// @nodoc
-class _$DollarPriceDTOTearOff {
-  const _$DollarPriceDTOTearOff();
-
-  _DollarPriceDTO call({required int dollarToNaira}) {
-    return _DollarPriceDTO(
-      dollarToNaira: dollarToNaira,
-    );
-  }
-
-  DollarPriceDTO fromJson(Map<String, Object?> json) {
-    return DollarPriceDTO.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $DollarPriceDTO = _$DollarPriceDTOTearOff();
 
 /// @nodoc
 mixin _$DollarPriceDTO {
@@ -77,31 +59,31 @@ class _$DollarPriceDTOCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$DollarPriceDTOCopyWith<$Res>
+abstract class _$$_DollarPriceDTOCopyWith<$Res>
     implements $DollarPriceDTOCopyWith<$Res> {
-  factory _$DollarPriceDTOCopyWith(
-          _DollarPriceDTO value, $Res Function(_DollarPriceDTO) then) =
-      __$DollarPriceDTOCopyWithImpl<$Res>;
+  factory _$$_DollarPriceDTOCopyWith(
+          _$_DollarPriceDTO value, $Res Function(_$_DollarPriceDTO) then) =
+      __$$_DollarPriceDTOCopyWithImpl<$Res>;
   @override
   $Res call({int dollarToNaira});
 }
 
 /// @nodoc
-class __$DollarPriceDTOCopyWithImpl<$Res>
+class __$$_DollarPriceDTOCopyWithImpl<$Res>
     extends _$DollarPriceDTOCopyWithImpl<$Res>
-    implements _$DollarPriceDTOCopyWith<$Res> {
-  __$DollarPriceDTOCopyWithImpl(
-      _DollarPriceDTO _value, $Res Function(_DollarPriceDTO) _then)
-      : super(_value, (v) => _then(v as _DollarPriceDTO));
+    implements _$$_DollarPriceDTOCopyWith<$Res> {
+  __$$_DollarPriceDTOCopyWithImpl(
+      _$_DollarPriceDTO _value, $Res Function(_$_DollarPriceDTO) _then)
+      : super(_value, (v) => _then(v as _$_DollarPriceDTO));
 
   @override
-  _DollarPriceDTO get _value => super._value as _DollarPriceDTO;
+  _$_DollarPriceDTO get _value => super._value as _$_DollarPriceDTO;
 
   @override
   $Res call({
     Object? dollarToNaira = freezed,
   }) {
-    return _then(_DollarPriceDTO(
+    return _then(_$_DollarPriceDTO(
       dollarToNaira: dollarToNaira == freezed
           ? _value.dollarToNaira
           : dollarToNaira // ignore: cast_nullable_to_non_nullable
@@ -130,19 +112,20 @@ class _$_DollarPriceDTO extends _DollarPriceDTO {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _DollarPriceDTO &&
+            other is _$_DollarPriceDTO &&
             const DeepCollectionEquality()
                 .equals(other.dollarToNaira, dollarToNaira));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(dollarToNaira));
 
   @JsonKey(ignore: true)
   @override
-  _$DollarPriceDTOCopyWith<_DollarPriceDTO> get copyWith =>
-      __$DollarPriceDTOCopyWithImpl<_DollarPriceDTO>(this, _$identity);
+  _$$_DollarPriceDTOCopyWith<_$_DollarPriceDTO> get copyWith =>
+      __$$_DollarPriceDTOCopyWithImpl<_$_DollarPriceDTO>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -151,7 +134,7 @@ class _$_DollarPriceDTO extends _DollarPriceDTO {
 }
 
 abstract class _DollarPriceDTO extends DollarPriceDTO {
-  const factory _DollarPriceDTO({required int dollarToNaira}) =
+  const factory _DollarPriceDTO({required final int dollarToNaira}) =
       _$_DollarPriceDTO;
   const _DollarPriceDTO._() : super._();
 
@@ -159,9 +142,9 @@ abstract class _DollarPriceDTO extends DollarPriceDTO {
       _$_DollarPriceDTO.fromJson;
 
   @override
-  int get dollarToNaira;
+  int get dollarToNaira => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$DollarPriceDTOCopyWith<_DollarPriceDTO> get copyWith =>
+  _$$_DollarPriceDTOCopyWith<_$_DollarPriceDTO> get copyWith =>
       throw _privateConstructorUsedError;
 }

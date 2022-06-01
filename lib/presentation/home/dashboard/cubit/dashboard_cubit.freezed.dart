@@ -12,26 +12,7 @@ part of 'dashboard_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$DashboardStateTearOff {
-  const _$DashboardStateTearOff();
-
-  _DashboardState call(
-      {required List<String> newsList,
-      required bool loading,
-      required String failure}) {
-    return _DashboardState(
-      newsList: newsList,
-      loading: loading,
-      failure: failure,
-    );
-  }
-}
-
-/// @nodoc
-const $DashboardState = _$DashboardStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$DashboardState {
@@ -85,25 +66,25 @@ class _$DashboardStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$DashboardStateCopyWith<$Res>
+abstract class _$$_DashboardStateCopyWith<$Res>
     implements $DashboardStateCopyWith<$Res> {
-  factory _$DashboardStateCopyWith(
-          _DashboardState value, $Res Function(_DashboardState) then) =
-      __$DashboardStateCopyWithImpl<$Res>;
+  factory _$$_DashboardStateCopyWith(
+          _$_DashboardState value, $Res Function(_$_DashboardState) then) =
+      __$$_DashboardStateCopyWithImpl<$Res>;
   @override
   $Res call({List<String> newsList, bool loading, String failure});
 }
 
 /// @nodoc
-class __$DashboardStateCopyWithImpl<$Res>
+class __$$_DashboardStateCopyWithImpl<$Res>
     extends _$DashboardStateCopyWithImpl<$Res>
-    implements _$DashboardStateCopyWith<$Res> {
-  __$DashboardStateCopyWithImpl(
-      _DashboardState _value, $Res Function(_DashboardState) _then)
-      : super(_value, (v) => _then(v as _DashboardState));
+    implements _$$_DashboardStateCopyWith<$Res> {
+  __$$_DashboardStateCopyWithImpl(
+      _$_DashboardState _value, $Res Function(_$_DashboardState) _then)
+      : super(_value, (v) => _then(v as _$_DashboardState));
 
   @override
-  _DashboardState get _value => super._value as _DashboardState;
+  _$_DashboardState get _value => super._value as _$_DashboardState;
 
   @override
   $Res call({
@@ -111,9 +92,9 @@ class __$DashboardStateCopyWithImpl<$Res>
     Object? loading = freezed,
     Object? failure = freezed,
   }) {
-    return _then(_DashboardState(
+    return _then(_$_DashboardState(
       newsList: newsList == freezed
-          ? _value.newsList
+          ? _value._newsList
           : newsList // ignore: cast_nullable_to_non_nullable
               as List<String>,
       loading: loading == freezed
@@ -132,10 +113,18 @@ class __$DashboardStateCopyWithImpl<$Res>
 
 class _$_DashboardState implements _DashboardState {
   const _$_DashboardState(
-      {required this.newsList, required this.loading, required this.failure});
+      {required final List<String> newsList,
+      required this.loading,
+      required this.failure})
+      : _newsList = newsList;
 
+  final List<String> _newsList;
   @override
-  final List<String> newsList;
+  List<String> get newsList {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_newsList);
+  }
+
   @override
   final bool loading;
   @override
@@ -150,8 +139,8 @@ class _$_DashboardState implements _DashboardState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _DashboardState &&
-            const DeepCollectionEquality().equals(other.newsList, newsList) &&
+            other is _$_DashboardState &&
+            const DeepCollectionEquality().equals(other._newsList, _newsList) &&
             const DeepCollectionEquality().equals(other.loading, loading) &&
             const DeepCollectionEquality().equals(other.failure, failure));
   }
@@ -159,30 +148,30 @@ class _$_DashboardState implements _DashboardState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(newsList),
+      const DeepCollectionEquality().hash(_newsList),
       const DeepCollectionEquality().hash(loading),
       const DeepCollectionEquality().hash(failure));
 
   @JsonKey(ignore: true)
   @override
-  _$DashboardStateCopyWith<_DashboardState> get copyWith =>
-      __$DashboardStateCopyWithImpl<_DashboardState>(this, _$identity);
+  _$$_DashboardStateCopyWith<_$_DashboardState> get copyWith =>
+      __$$_DashboardStateCopyWithImpl<_$_DashboardState>(this, _$identity);
 }
 
 abstract class _DashboardState implements DashboardState {
   const factory _DashboardState(
-      {required List<String> newsList,
-      required bool loading,
-      required String failure}) = _$_DashboardState;
+      {required final List<String> newsList,
+      required final bool loading,
+      required final String failure}) = _$_DashboardState;
 
   @override
-  List<String> get newsList;
+  List<String> get newsList => throw _privateConstructorUsedError;
   @override
-  bool get loading;
+  bool get loading => throw _privateConstructorUsedError;
   @override
-  String get failure;
+  String get failure => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$DashboardStateCopyWith<_DashboardState> get copyWith =>
+  _$$_DashboardStateCopyWith<_$_DashboardState> get copyWith =>
       throw _privateConstructorUsedError;
 }
