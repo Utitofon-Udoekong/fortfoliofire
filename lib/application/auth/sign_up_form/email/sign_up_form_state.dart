@@ -27,6 +27,6 @@ class SignUpFormState with _$SignUpFormState {
     failure: "",
     success: ""
   );
-  bool get isValidState => emailAddress.isValid() && firstName.isValid() && lastName.isValid() && password.isValid();
+  bool get isValidState => emailAddress.isValid() && firstName.isValid() && lastName.isValid() && password.isValid() && accepted;
 }
 

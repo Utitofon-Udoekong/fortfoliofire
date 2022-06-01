@@ -70,7 +70,6 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> listenAuthStateChangesStream(AuthUserModel authUser) async {
-    listenDollarStream();
     if(authUser != AuthUserModel.empty()){
       emit(
         state.copyWith(
@@ -90,6 +89,7 @@ class AuthCubit extends Cubit<AuthState> {
       });
     }
     await startDatabaseUserSubscriptionIfPossible();
+    // listenDollarStream();
   }
 
   Future<void> signOut() async {
