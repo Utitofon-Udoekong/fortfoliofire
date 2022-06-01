@@ -18,7 +18,7 @@ class SignInFormEmailState with _$SignInFormEmailState {
     isSubmitting: false,
     failure: "",
     success: "",
-    isObscure: false
+    isObscure: true
       );
     
     bool get isValidState => emailAddress.isValid() && password.isValid();

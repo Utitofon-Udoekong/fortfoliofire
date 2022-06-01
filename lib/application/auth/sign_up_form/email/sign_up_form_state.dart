@@ -23,7 +23,7 @@ class SignUpFormState with _$SignUpFormState {
     showErrorMessages: false,
     accepted: false,
     isSubmitting: false,
-    isObscure: false,
+    isObscure: true,
     failure: "",
     success: ""
   );
