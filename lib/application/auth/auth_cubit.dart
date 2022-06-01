@@ -49,6 +49,7 @@ class AuthCubit extends Cubit<AuthState> {
         },
       );
     }
+    listenDollarStream();
   }
 
   void listenDollarStream() {
@@ -77,7 +78,6 @@ class AuthCubit extends Cubit<AuthState> {
           isUserCheckedFromAuthFacade: true,
         ),
       );
-      listenDollarStream();
     }else{
       final dbUserOption = await authFacade.getDatabaseUser(id: authUser.id);
       dbUserOption.fold(() => null, (authUser) {
@@ -88,7 +88,6 @@ class AuthCubit extends Cubit<AuthState> {
           ),
         );
       });
-      listenDollarStream();
     }
     await startDatabaseUserSubscriptionIfPossible();
   }
