@@ -40,7 +40,6 @@ class _AppState extends State<App> with WidgetsBindingObserver {
 
   @override
   void initState() {
-    Connectivity().checkConnectivity();
     super.initState();
     WidgetsBinding.instance.addObserver(this);
   }
