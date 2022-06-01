@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 // import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fortfolio/application/auth/auth_cubit.dart';
+import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:fortfolio/infrastructure/auth/local_auth_api.dart';
 
@@ -35,8 +36,9 @@ class _SplashScreenState extends State<SplashScreen> {
         bool didauthenticate = await LocalAuthApi.authenticate(
             localizedReason: 'Scan Fingerprint to authenticate');
         if (didauthenticate != true) {
-          exit(0);
+          CustomSnackbar.showSnackBar(context, "Authenticate to continue", true);
         } else {
+          print("yawa dey ohhhhhhhhhh");
           Future.delayed(const Duration(seconds: 2), () {
             context.router.replace(const HomePageRoute());
           });
