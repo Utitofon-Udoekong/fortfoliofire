@@ -27,7 +27,7 @@ class VerificationSuccess extends StatelessWidget {
               ),
               InkWell(
                 onTap: () => {
-                  context.router.push(const HomePageRoute())
+                  context.replaceRoute(const HomePageRoute(children: [DashboardRoute()]))
                 },
                 child: const Icon(Icons.close, color: kWhiteColor,),
               ),

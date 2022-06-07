@@ -12,44 +12,11 @@ part of 'crypto_address.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 CryptoWalletDTO _$CryptoWalletDTOFromJson(Map<String, dynamic> json) {
   return _CryptoWalletDTO.fromJson(json);
 }
-
-/// @nodoc
-class _$CryptoWalletDTOTearOff {
-  const _$CryptoWalletDTOTearOff();
-
-  _CryptoWalletDTO call(
-      {required String walletLabel,
-      required String address,
-      required String coin,
-      required String? network,
-      required String platform,
-      required String id,
-      required String trax,
-      required String type}) {
-    return _CryptoWalletDTO(
-      walletLabel: walletLabel,
-      address: address,
-      coin: coin,
-      network: network,
-      platform: platform,
-      id: id,
-      trax: trax,
-      type: type,
-    );
-  }
-
-  CryptoWalletDTO fromJson(Map<String, Object?> json) {
-    return CryptoWalletDTO.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $CryptoWalletDTO = _$CryptoWalletDTOTearOff();
 
 /// @nodoc
 mixin _$CryptoWalletDTO {
@@ -142,11 +109,11 @@ class _$CryptoWalletDTOCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$CryptoWalletDTOCopyWith<$Res>
+abstract class _$$_CryptoWalletDTOCopyWith<$Res>
     implements $CryptoWalletDTOCopyWith<$Res> {
-  factory _$CryptoWalletDTOCopyWith(
-          _CryptoWalletDTO value, $Res Function(_CryptoWalletDTO) then) =
-      __$CryptoWalletDTOCopyWithImpl<$Res>;
+  factory _$$_CryptoWalletDTOCopyWith(
+          _$_CryptoWalletDTO value, $Res Function(_$_CryptoWalletDTO) then) =
+      __$$_CryptoWalletDTOCopyWithImpl<$Res>;
   @override
   $Res call(
       {String walletLabel,
@@ -160,15 +127,15 @@ abstract class _$CryptoWalletDTOCopyWith<$Res>
 }
 
 /// @nodoc
-class __$CryptoWalletDTOCopyWithImpl<$Res>
+class __$$_CryptoWalletDTOCopyWithImpl<$Res>
     extends _$CryptoWalletDTOCopyWithImpl<$Res>
-    implements _$CryptoWalletDTOCopyWith<$Res> {
-  __$CryptoWalletDTOCopyWithImpl(
-      _CryptoWalletDTO _value, $Res Function(_CryptoWalletDTO) _then)
-      : super(_value, (v) => _then(v as _CryptoWalletDTO));
+    implements _$$_CryptoWalletDTOCopyWith<$Res> {
+  __$$_CryptoWalletDTOCopyWithImpl(
+      _$_CryptoWalletDTO _value, $Res Function(_$_CryptoWalletDTO) _then)
+      : super(_value, (v) => _then(v as _$_CryptoWalletDTO));
 
   @override
-  _CryptoWalletDTO get _value => super._value as _CryptoWalletDTO;
+  _$_CryptoWalletDTO get _value => super._value as _$_CryptoWalletDTO;
 
   @override
   $Res call({
@@ -181,7 +148,7 @@ class __$CryptoWalletDTOCopyWithImpl<$Res>
     Object? trax = freezed,
     Object? type = freezed,
   }) {
-    return _then(_CryptoWalletDTO(
+    return _then(_$_CryptoWalletDTO(
       walletLabel: walletLabel == freezed
           ? _value.walletLabel
           : walletLabel // ignore: cast_nullable_to_non_nullable
@@ -261,7 +228,7 @@ class _$_CryptoWalletDTO extends _CryptoWalletDTO {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _CryptoWalletDTO &&
+            other is _$_CryptoWalletDTO &&
             const DeepCollectionEquality()
                 .equals(other.walletLabel, walletLabel) &&
             const DeepCollectionEquality().equals(other.address, address) &&
@@ -273,6 +240,7 @@ class _$_CryptoWalletDTO extends _CryptoWalletDTO {
             const DeepCollectionEquality().equals(other.type, type));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -287,8 +255,8 @@ class _$_CryptoWalletDTO extends _CryptoWalletDTO {
 
   @JsonKey(ignore: true)
   @override
-  _$CryptoWalletDTOCopyWith<_CryptoWalletDTO> get copyWith =>
-      __$CryptoWalletDTOCopyWithImpl<_CryptoWalletDTO>(this, _$identity);
+  _$$_CryptoWalletDTOCopyWith<_$_CryptoWalletDTO> get copyWith =>
+      __$$_CryptoWalletDTOCopyWithImpl<_$_CryptoWalletDTO>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -298,37 +266,37 @@ class _$_CryptoWalletDTO extends _CryptoWalletDTO {
 
 abstract class _CryptoWalletDTO extends CryptoWalletDTO {
   const factory _CryptoWalletDTO(
-      {required String walletLabel,
-      required String address,
-      required String coin,
-      required String? network,
-      required String platform,
-      required String id,
-      required String trax,
-      required String type}) = _$_CryptoWalletDTO;
+      {required final String walletLabel,
+      required final String address,
+      required final String coin,
+      required final String? network,
+      required final String platform,
+      required final String id,
+      required final String trax,
+      required final String type}) = _$_CryptoWalletDTO;
   const _CryptoWalletDTO._() : super._();
 
   factory _CryptoWalletDTO.fromJson(Map<String, dynamic> json) =
       _$_CryptoWalletDTO.fromJson;
 
   @override
-  String get walletLabel;
+  String get walletLabel => throw _privateConstructorUsedError;
   @override
-  String get address;
+  String get address => throw _privateConstructorUsedError;
   @override
-  String get coin;
+  String get coin => throw _privateConstructorUsedError;
   @override
-  String? get network;
+  String? get network => throw _privateConstructorUsedError;
   @override
-  String get platform;
+  String get platform => throw _privateConstructorUsedError;
   @override
-  String get id;
+  String get id => throw _privateConstructorUsedError;
   @override
-  String get trax;
+  String get trax => throw _privateConstructorUsedError;
   @override
-  String get type;
+  String get type => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$CryptoWalletDTOCopyWith<_CryptoWalletDTO> get copyWith =>
+  _$$_CryptoWalletDTOCopyWith<_$_CryptoWalletDTO> get copyWith =>
       throw _privateConstructorUsedError;
 }

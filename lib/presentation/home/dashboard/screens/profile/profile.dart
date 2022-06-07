@@ -138,14 +138,15 @@ class ProfilePage extends StatelessWidget {
                                 size: 15,
                               )),
                           true,
-                          () => null, context),
+                          () => null,
+                          context),
                       buildtile(authUserModel.email, const Spacer(), false,
-                          () => showEditEmailModal(context: context),context),
+                          () => showEditEmailModal(context: context), context),
                       const SizedBox(
                         height: 10,
                       ),
                       buildtile(
-                          authUserModel.firstName,
+                          "${authUserModel.firstName} ${authUserModel.lastName}",
                           authUserModel.isVerified
                               ? Tooltip(
                                   message:
@@ -158,34 +159,34 @@ class ProfilePage extends StatelessWidget {
                                   padding: const EdgeInsets.all(8.0),
                                   margin: const EdgeInsets.symmetric(
                                       horizontal: 10),
-                                  child: Text(
-                                    authUserModel.lastName,
-                                    style: subTitle.copyWith(
-                                        color: kBlackColor, fontSize: 15),
+                                  child: const Icon(
+                                    Icons.keyboard_arrow_right,
+                                    color: kgreyColor,
                                   ),
                                 )
-                              : Text(
-                                  authUserModel.lastName,
-                                  style: subTitle.copyWith(
-                                      color: kBlackColor, fontSize: 15),
-                                ),
-                          true,
+                              : const Spacer(),
+                          authUserModel.isVerified ? true : false,
                           () => authUserModel.isVerified
                               ? null
-                              : showEditNameModal(context: context),context),
-                      buildtile(authUserModel.phoneNumber, const Spacer(),
-                          false, () => showEditPhoneModal(context: context),context),
-                      const SizedBox(
-                        height: 80,
-                      ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
+                              : showEditNameModal(context: context),
+                          context),
+                      buildtile(
+                          authUserModel.phoneNumber,
+                          const Spacer(),
+                          false,
+                          () => showEditPhoneModal(context: context),
+                          context),
+                      const Spacer(),
+                      Center(
                         child: Text(
                           'Fortfolio 2021',
                           style: subTitle.copyWith(
                               color: const Color(0XFF242424), fontSize: 13),
                         ),
                       ),
+                      const SizedBox(
+                        height: 20,
+                      )
                     ],
                   );
                 },
@@ -195,37 +196,33 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  Widget buildtile(
-      String leading, Widget trailing, bool trailexist, Function() ontap, BuildContext context) {
+  Widget buildtile(String leading, Widget trailing, bool trailexist,
+      Function() ontap, BuildContext context) {
     return GestureDetector(
       onTap: ontap,
       child: Container(
-        padding: const EdgeInsets.all(10.0),
-        width: MediaQuery.of(context).size.width,
-        decoration: const BoxDecoration(
-            border: Border(bottom: BorderSide(color: Color(0XFFF3F6F8)))),
-        child: trailexist
-            ? Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Text(
-                      leading,
-                      style:
-                          subTitle.copyWith(color: kBlackColor, fontSize: 15),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                      softWrap: false,
-                    ),
-                  ),
-                  const Spacer(),
-                  trailing
-                ],
-              )
-            : Text(
+          padding: const EdgeInsets.all(10.0),
+          width: MediaQuery.of(context).size.width,
+          decoration: const BoxDecoration(
+              border: Border(
+                  bottom:
+                      BorderSide(color: Color.fromARGB(255, 185, 185, 185)))),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
                 leading,
                 style: subTitle.copyWith(color: kBlackColor, fontSize: 15),
               ),
-      ),
+              trailexist
+                  ? trailing
+                  : const Icon(
+                      Icons.keyboard_arrow_right,
+                      color: kPrimaryColor,
+                    )
+            ],
+          )),
     );
   }
 

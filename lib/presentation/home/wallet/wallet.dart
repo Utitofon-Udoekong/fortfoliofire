@@ -19,10 +19,6 @@ class _WalletState extends State<Wallet> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    // context.read<WalletCubit>().initWithdrawals();
-    // context.read<WalletCubit>().initFortDollarInvestments();
-    // context.read<WalletCubit>().initFortShieldInvestments();
-    // context.read<WalletCubit>().initFortCryptoInvestments();
     _tabController = TabController(length: 2, vsync: this);
   }
 

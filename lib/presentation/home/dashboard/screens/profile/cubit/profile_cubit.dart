@@ -20,6 +20,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     emit(state.copyWith(firstName: firstName));
   }
 
+
   void lastNameChanged({required String lastName}) {
     emit(state.copyWith(lastName: lastName));
   }

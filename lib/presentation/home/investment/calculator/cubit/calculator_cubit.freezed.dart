@@ -12,34 +12,7 @@ part of 'calculator_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$CalculatorStateTearOff {
-  const _$CalculatorStateTearOff();
-
-  _CalculatorState call(
-      {required int investmentAmount,
-      required int duration,
-      required int returnRate,
-      required double totalReturns,
-      required String selectedPlan,
-      required List<DropdownMenuItem<String>> dropdownItems,
-      required List<DropdownMenuItem<int>> durations}) {
-    return _CalculatorState(
-      investmentAmount: investmentAmount,
-      duration: duration,
-      returnRate: returnRate,
-      totalReturns: totalReturns,
-      selectedPlan: selectedPlan,
-      dropdownItems: dropdownItems,
-      durations: durations,
-    );
-  }
-}
-
-/// @nodoc
-const $CalculatorState = _$CalculatorStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$CalculatorState {
@@ -126,11 +99,11 @@ class _$CalculatorStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$CalculatorStateCopyWith<$Res>
+abstract class _$$_CalculatorStateCopyWith<$Res>
     implements $CalculatorStateCopyWith<$Res> {
-  factory _$CalculatorStateCopyWith(
-          _CalculatorState value, $Res Function(_CalculatorState) then) =
-      __$CalculatorStateCopyWithImpl<$Res>;
+  factory _$$_CalculatorStateCopyWith(
+          _$_CalculatorState value, $Res Function(_$_CalculatorState) then) =
+      __$$_CalculatorStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {int investmentAmount,
@@ -143,15 +116,15 @@ abstract class _$CalculatorStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$CalculatorStateCopyWithImpl<$Res>
+class __$$_CalculatorStateCopyWithImpl<$Res>
     extends _$CalculatorStateCopyWithImpl<$Res>
-    implements _$CalculatorStateCopyWith<$Res> {
-  __$CalculatorStateCopyWithImpl(
-      _CalculatorState _value, $Res Function(_CalculatorState) _then)
-      : super(_value, (v) => _then(v as _CalculatorState));
+    implements _$$_CalculatorStateCopyWith<$Res> {
+  __$$_CalculatorStateCopyWithImpl(
+      _$_CalculatorState _value, $Res Function(_$_CalculatorState) _then)
+      : super(_value, (v) => _then(v as _$_CalculatorState));
 
   @override
-  _CalculatorState get _value => super._value as _CalculatorState;
+  _$_CalculatorState get _value => super._value as _$_CalculatorState;
 
   @override
   $Res call({
@@ -163,7 +136,7 @@ class __$CalculatorStateCopyWithImpl<$Res>
     Object? dropdownItems = freezed,
     Object? durations = freezed,
   }) {
-    return _then(_CalculatorState(
+    return _then(_$_CalculatorState(
       investmentAmount: investmentAmount == freezed
           ? _value.investmentAmount
           : investmentAmount // ignore: cast_nullable_to_non_nullable
@@ -185,11 +158,11 @@ class __$CalculatorStateCopyWithImpl<$Res>
           : selectedPlan // ignore: cast_nullable_to_non_nullable
               as String,
       dropdownItems: dropdownItems == freezed
-          ? _value.dropdownItems
+          ? _value._dropdownItems
           : dropdownItems // ignore: cast_nullable_to_non_nullable
               as List<DropdownMenuItem<String>>,
       durations: durations == freezed
-          ? _value.durations
+          ? _value._durations
           : durations // ignore: cast_nullable_to_non_nullable
               as List<DropdownMenuItem<int>>,
     ));
@@ -205,9 +178,11 @@ class _$_CalculatorState extends _CalculatorState {
       required this.returnRate,
       required this.totalReturns,
       required this.selectedPlan,
-      required this.dropdownItems,
-      required this.durations})
-      : super._();
+      required final List<DropdownMenuItem<String>> dropdownItems,
+      required final List<DropdownMenuItem<int>> durations})
+      : _dropdownItems = dropdownItems,
+        _durations = durations,
+        super._();
 
   @override
   final int investmentAmount;
@@ -219,10 +194,19 @@ class _$_CalculatorState extends _CalculatorState {
   final double totalReturns;
   @override
   final String selectedPlan;
+  final List<DropdownMenuItem<String>> _dropdownItems;
   @override
-  final List<DropdownMenuItem<String>> dropdownItems;
+  List<DropdownMenuItem<String>> get dropdownItems {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_dropdownItems);
+  }
+
+  final List<DropdownMenuItem<int>> _durations;
   @override
-  final List<DropdownMenuItem<int>> durations;
+  List<DropdownMenuItem<int>> get durations {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_durations);
+  }
 
   @override
   String toString() {
@@ -233,7 +217,7 @@ class _$_CalculatorState extends _CalculatorState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _CalculatorState &&
+            other is _$_CalculatorState &&
             const DeepCollectionEquality()
                 .equals(other.investmentAmount, investmentAmount) &&
             const DeepCollectionEquality().equals(other.duration, duration) &&
@@ -244,8 +228,9 @@ class _$_CalculatorState extends _CalculatorState {
             const DeepCollectionEquality()
                 .equals(other.selectedPlan, selectedPlan) &&
             const DeepCollectionEquality()
-                .equals(other.dropdownItems, dropdownItems) &&
-            const DeepCollectionEquality().equals(other.durations, durations));
+                .equals(other._dropdownItems, _dropdownItems) &&
+            const DeepCollectionEquality()
+                .equals(other._durations, _durations));
   }
 
   @override
@@ -256,42 +241,45 @@ class _$_CalculatorState extends _CalculatorState {
       const DeepCollectionEquality().hash(returnRate),
       const DeepCollectionEquality().hash(totalReturns),
       const DeepCollectionEquality().hash(selectedPlan),
-      const DeepCollectionEquality().hash(dropdownItems),
-      const DeepCollectionEquality().hash(durations));
+      const DeepCollectionEquality().hash(_dropdownItems),
+      const DeepCollectionEquality().hash(_durations));
 
   @JsonKey(ignore: true)
   @override
-  _$CalculatorStateCopyWith<_CalculatorState> get copyWith =>
-      __$CalculatorStateCopyWithImpl<_CalculatorState>(this, _$identity);
+  _$$_CalculatorStateCopyWith<_$_CalculatorState> get copyWith =>
+      __$$_CalculatorStateCopyWithImpl<_$_CalculatorState>(this, _$identity);
 }
 
 abstract class _CalculatorState extends CalculatorState {
   const factory _CalculatorState(
-      {required int investmentAmount,
-      required int duration,
-      required int returnRate,
-      required double totalReturns,
-      required String selectedPlan,
-      required List<DropdownMenuItem<String>> dropdownItems,
-      required List<DropdownMenuItem<int>> durations}) = _$_CalculatorState;
+          {required final int investmentAmount,
+          required final int duration,
+          required final int returnRate,
+          required final double totalReturns,
+          required final String selectedPlan,
+          required final List<DropdownMenuItem<String>> dropdownItems,
+          required final List<DropdownMenuItem<int>> durations}) =
+      _$_CalculatorState;
   const _CalculatorState._() : super._();
 
   @override
-  int get investmentAmount;
+  int get investmentAmount => throw _privateConstructorUsedError;
   @override
-  int get duration;
+  int get duration => throw _privateConstructorUsedError;
   @override
-  int get returnRate;
+  int get returnRate => throw _privateConstructorUsedError;
   @override
-  double get totalReturns;
+  double get totalReturns => throw _privateConstructorUsedError;
   @override
-  String get selectedPlan;
+  String get selectedPlan => throw _privateConstructorUsedError;
   @override
-  List<DropdownMenuItem<String>> get dropdownItems;
+  List<DropdownMenuItem<String>> get dropdownItems =>
+      throw _privateConstructorUsedError;
   @override
-  List<DropdownMenuItem<int>> get durations;
+  List<DropdownMenuItem<int>> get durations =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$CalculatorStateCopyWith<_CalculatorState> get copyWith =>
+  _$$_CalculatorStateCopyWith<_$_CalculatorState> get copyWith =>
       throw _privateConstructorUsedError;
 }

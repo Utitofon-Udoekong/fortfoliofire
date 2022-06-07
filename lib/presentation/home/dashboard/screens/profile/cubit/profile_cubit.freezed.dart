@@ -12,38 +12,7 @@ part of 'profile_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$ProfileStateTearOff {
-  const _$ProfileStateTearOff();
-
-  _ProfileState call(
-      {required String firstName,
-      required String lastName,
-      required String email,
-      required String phoneNumber,
-      required String failure,
-      required String success,
-      required String smsCode,
-      required String verificationId,
-      required bool loading}) {
-    return _ProfileState(
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      phoneNumber: phoneNumber,
-      failure: failure,
-      success: success,
-      smsCode: smsCode,
-      verificationId: verificationId,
-      loading: loading,
-    );
-  }
-}
-
-/// @nodoc
-const $ProfileState = _$ProfileStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$ProfileState {
@@ -141,11 +110,11 @@ class _$ProfileStateCopyWithImpl<$Res> implements $ProfileStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$ProfileStateCopyWith<$Res>
+abstract class _$$_ProfileStateCopyWith<$Res>
     implements $ProfileStateCopyWith<$Res> {
-  factory _$ProfileStateCopyWith(
-          _ProfileState value, $Res Function(_ProfileState) then) =
-      __$ProfileStateCopyWithImpl<$Res>;
+  factory _$$_ProfileStateCopyWith(
+          _$_ProfileState value, $Res Function(_$_ProfileState) then) =
+      __$$_ProfileStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {String firstName,
@@ -160,14 +129,15 @@ abstract class _$ProfileStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$ProfileStateCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
-    implements _$ProfileStateCopyWith<$Res> {
-  __$ProfileStateCopyWithImpl(
-      _ProfileState _value, $Res Function(_ProfileState) _then)
-      : super(_value, (v) => _then(v as _ProfileState));
+class __$$_ProfileStateCopyWithImpl<$Res>
+    extends _$ProfileStateCopyWithImpl<$Res>
+    implements _$$_ProfileStateCopyWith<$Res> {
+  __$$_ProfileStateCopyWithImpl(
+      _$_ProfileState _value, $Res Function(_$_ProfileState) _then)
+      : super(_value, (v) => _then(v as _$_ProfileState));
 
   @override
-  _ProfileState get _value => super._value as _ProfileState;
+  _$_ProfileState get _value => super._value as _$_ProfileState;
 
   @override
   $Res call({
@@ -181,7 +151,7 @@ class __$ProfileStateCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
     Object? verificationId = freezed,
     Object? loading = freezed,
   }) {
-    return _then(_ProfileState(
+    return _then(_$_ProfileState(
       firstName: firstName == freezed
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -264,7 +234,7 @@ class _$_ProfileState implements _ProfileState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ProfileState &&
+            other is _$_ProfileState &&
             const DeepCollectionEquality().equals(other.firstName, firstName) &&
             const DeepCollectionEquality().equals(other.lastName, lastName) &&
             const DeepCollectionEquality().equals(other.email, email) &&
@@ -293,42 +263,42 @@ class _$_ProfileState implements _ProfileState {
 
   @JsonKey(ignore: true)
   @override
-  _$ProfileStateCopyWith<_ProfileState> get copyWith =>
-      __$ProfileStateCopyWithImpl<_ProfileState>(this, _$identity);
+  _$$_ProfileStateCopyWith<_$_ProfileState> get copyWith =>
+      __$$_ProfileStateCopyWithImpl<_$_ProfileState>(this, _$identity);
 }
 
 abstract class _ProfileState implements ProfileState {
   const factory _ProfileState(
-      {required String firstName,
-      required String lastName,
-      required String email,
-      required String phoneNumber,
-      required String failure,
-      required String success,
-      required String smsCode,
-      required String verificationId,
-      required bool loading}) = _$_ProfileState;
+      {required final String firstName,
+      required final String lastName,
+      required final String email,
+      required final String phoneNumber,
+      required final String failure,
+      required final String success,
+      required final String smsCode,
+      required final String verificationId,
+      required final bool loading}) = _$_ProfileState;
 
   @override
-  String get firstName;
+  String get firstName => throw _privateConstructorUsedError;
   @override
-  String get lastName;
+  String get lastName => throw _privateConstructorUsedError;
   @override
-  String get email;
+  String get email => throw _privateConstructorUsedError;
   @override
-  String get phoneNumber;
+  String get phoneNumber => throw _privateConstructorUsedError;
   @override
-  String get failure;
+  String get failure => throw _privateConstructorUsedError;
   @override
-  String get success;
+  String get success => throw _privateConstructorUsedError;
   @override
-  String get smsCode;
+  String get smsCode => throw _privateConstructorUsedError;
   @override
-  String get verificationId;
+  String get verificationId => throw _privateConstructorUsedError;
   @override
-  bool get loading;
+  bool get loading => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ProfileStateCopyWith<_ProfileState> get copyWith =>
+  _$$_ProfileStateCopyWith<_$_ProfileState> get copyWith =>
       throw _privateConstructorUsedError;
 }

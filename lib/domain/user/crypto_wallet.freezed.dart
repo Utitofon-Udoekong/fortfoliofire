@@ -12,36 +12,7 @@ part of 'crypto_wallet.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$CryptoWalletTearOff {
-  const _$CryptoWalletTearOff();
-
-  _CryptoWallet call(
-      {required String walletLabel,
-      required String address,
-      required String coin,
-      required String? network,
-      required String platform,
-      required String type,
-      required String id,
-      required String trax}) {
-    return _CryptoWallet(
-      walletLabel: walletLabel,
-      address: address,
-      coin: coin,
-      network: network,
-      platform: platform,
-      type: type,
-      id: id,
-      trax: trax,
-    );
-  }
-}
-
-/// @nodoc
-const $CryptoWallet = _$CryptoWalletTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$CryptoWallet {
@@ -132,11 +103,11 @@ class _$CryptoWalletCopyWithImpl<$Res> implements $CryptoWalletCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$CryptoWalletCopyWith<$Res>
+abstract class _$$_CryptoWalletCopyWith<$Res>
     implements $CryptoWalletCopyWith<$Res> {
-  factory _$CryptoWalletCopyWith(
-          _CryptoWallet value, $Res Function(_CryptoWallet) then) =
-      __$CryptoWalletCopyWithImpl<$Res>;
+  factory _$$_CryptoWalletCopyWith(
+          _$_CryptoWallet value, $Res Function(_$_CryptoWallet) then) =
+      __$$_CryptoWalletCopyWithImpl<$Res>;
   @override
   $Res call(
       {String walletLabel,
@@ -150,14 +121,15 @@ abstract class _$CryptoWalletCopyWith<$Res>
 }
 
 /// @nodoc
-class __$CryptoWalletCopyWithImpl<$Res> extends _$CryptoWalletCopyWithImpl<$Res>
-    implements _$CryptoWalletCopyWith<$Res> {
-  __$CryptoWalletCopyWithImpl(
-      _CryptoWallet _value, $Res Function(_CryptoWallet) _then)
-      : super(_value, (v) => _then(v as _CryptoWallet));
+class __$$_CryptoWalletCopyWithImpl<$Res>
+    extends _$CryptoWalletCopyWithImpl<$Res>
+    implements _$$_CryptoWalletCopyWith<$Res> {
+  __$$_CryptoWalletCopyWithImpl(
+      _$_CryptoWallet _value, $Res Function(_$_CryptoWallet) _then)
+      : super(_value, (v) => _then(v as _$_CryptoWallet));
 
   @override
-  _CryptoWallet get _value => super._value as _CryptoWallet;
+  _$_CryptoWallet get _value => super._value as _$_CryptoWallet;
 
   @override
   $Res call({
@@ -170,7 +142,7 @@ class __$CryptoWalletCopyWithImpl<$Res> extends _$CryptoWalletCopyWithImpl<$Res>
     Object? id = freezed,
     Object? trax = freezed,
   }) {
-    return _then(_CryptoWallet(
+    return _then(_$_CryptoWallet(
       walletLabel: walletLabel == freezed
           ? _value.walletLabel
           : walletLabel // ignore: cast_nullable_to_non_nullable
@@ -247,7 +219,7 @@ class _$_CryptoWallet extends _CryptoWallet {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _CryptoWallet &&
+            other is _$_CryptoWallet &&
             const DeepCollectionEquality()
                 .equals(other.walletLabel, walletLabel) &&
             const DeepCollectionEquality().equals(other.address, address) &&
@@ -273,40 +245,40 @@ class _$_CryptoWallet extends _CryptoWallet {
 
   @JsonKey(ignore: true)
   @override
-  _$CryptoWalletCopyWith<_CryptoWallet> get copyWith =>
-      __$CryptoWalletCopyWithImpl<_CryptoWallet>(this, _$identity);
+  _$$_CryptoWalletCopyWith<_$_CryptoWallet> get copyWith =>
+      __$$_CryptoWalletCopyWithImpl<_$_CryptoWallet>(this, _$identity);
 }
 
 abstract class _CryptoWallet extends CryptoWallet {
   const factory _CryptoWallet(
-      {required String walletLabel,
-      required String address,
-      required String coin,
-      required String? network,
-      required String platform,
-      required String type,
-      required String id,
-      required String trax}) = _$_CryptoWallet;
+      {required final String walletLabel,
+      required final String address,
+      required final String coin,
+      required final String? network,
+      required final String platform,
+      required final String type,
+      required final String id,
+      required final String trax}) = _$_CryptoWallet;
   const _CryptoWallet._() : super._();
 
   @override
-  String get walletLabel;
+  String get walletLabel => throw _privateConstructorUsedError;
   @override
-  String get address;
+  String get address => throw _privateConstructorUsedError;
   @override
-  String get coin;
+  String get coin => throw _privateConstructorUsedError;
   @override
-  String? get network;
+  String? get network => throw _privateConstructorUsedError;
   @override
-  String get platform;
+  String get platform => throw _privateConstructorUsedError;
   @override
-  String get type;
+  String get type => throw _privateConstructorUsedError;
   @override
-  String get id;
+  String get id => throw _privateConstructorUsedError;
   @override
-  String get trax;
+  String get trax => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$CryptoWalletCopyWith<_CryptoWallet> get copyWith =>
+  _$$_CryptoWalletCopyWith<_$_CryptoWallet> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -12,47 +12,11 @@ part of 'auth_user_model_dto.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 AuthUserModelDto _$AuthUserModelDtoFromJson(Map<String, dynamic> json) {
   return _AuthUserModelDto.fromJson(json);
 }
-
-/// @nodoc
-class _$AuthUserModelDtoTearOff {
-  const _$AuthUserModelDtoTearOff();
-
-  _AuthUserModelDto call(
-      {required String id,
-      required String displayName,
-      required String phoneNumber,
-      required String firstName,
-      required String lastName,
-      required double balance,
-      required String email,
-      required bool isVerified,
-      @JsonKey(fromJson: sendDateTimeFromJson, toJson: sendDateTimeToJson)
-          required DateTime createdat}) {
-    return _AuthUserModelDto(
-      id: id,
-      displayName: displayName,
-      phoneNumber: phoneNumber,
-      firstName: firstName,
-      lastName: lastName,
-      balance: balance,
-      email: email,
-      isVerified: isVerified,
-      createdat: createdat,
-    );
-  }
-
-  AuthUserModelDto fromJson(Map<String, Object?> json) {
-    return AuthUserModelDto.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $AuthUserModelDto = _$AuthUserModelDtoTearOff();
 
 /// @nodoc
 mixin _$AuthUserModelDto {
@@ -155,11 +119,11 @@ class _$AuthUserModelDtoCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$AuthUserModelDtoCopyWith<$Res>
+abstract class _$$_AuthUserModelDtoCopyWith<$Res>
     implements $AuthUserModelDtoCopyWith<$Res> {
-  factory _$AuthUserModelDtoCopyWith(
-          _AuthUserModelDto value, $Res Function(_AuthUserModelDto) then) =
-      __$AuthUserModelDtoCopyWithImpl<$Res>;
+  factory _$$_AuthUserModelDtoCopyWith(
+          _$_AuthUserModelDto value, $Res Function(_$_AuthUserModelDto) then) =
+      __$$_AuthUserModelDtoCopyWithImpl<$Res>;
   @override
   $Res call(
       {String id,
@@ -175,15 +139,15 @@ abstract class _$AuthUserModelDtoCopyWith<$Res>
 }
 
 /// @nodoc
-class __$AuthUserModelDtoCopyWithImpl<$Res>
+class __$$_AuthUserModelDtoCopyWithImpl<$Res>
     extends _$AuthUserModelDtoCopyWithImpl<$Res>
-    implements _$AuthUserModelDtoCopyWith<$Res> {
-  __$AuthUserModelDtoCopyWithImpl(
-      _AuthUserModelDto _value, $Res Function(_AuthUserModelDto) _then)
-      : super(_value, (v) => _then(v as _AuthUserModelDto));
+    implements _$$_AuthUserModelDtoCopyWith<$Res> {
+  __$$_AuthUserModelDtoCopyWithImpl(
+      _$_AuthUserModelDto _value, $Res Function(_$_AuthUserModelDto) _then)
+      : super(_value, (v) => _then(v as _$_AuthUserModelDto));
 
   @override
-  _AuthUserModelDto get _value => super._value as _AuthUserModelDto;
+  _$_AuthUserModelDto get _value => super._value as _$_AuthUserModelDto;
 
   @override
   $Res call({
@@ -197,7 +161,7 @@ class __$AuthUserModelDtoCopyWithImpl<$Res>
     Object? isVerified = freezed,
     Object? createdat = freezed,
   }) {
-    return _then(_AuthUserModelDto(
+    return _then(_$_AuthUserModelDto(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -272,7 +236,8 @@ class _$_AuthUserModelDto implements _AuthUserModelDto {
   final String email;
   @override
   final bool isVerified;
-  @override // ignore: invalid_annotation_target
+// ignore: invalid_annotation_target
+  @override
   @JsonKey(fromJson: sendDateTimeFromJson, toJson: sendDateTimeToJson)
   final DateTime createdat;
 
@@ -285,7 +250,7 @@ class _$_AuthUserModelDto implements _AuthUserModelDto {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _AuthUserModelDto &&
+            other is _$_AuthUserModelDto &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality()
                 .equals(other.displayName, displayName) &&
@@ -300,6 +265,7 @@ class _$_AuthUserModelDto implements _AuthUserModelDto {
             const DeepCollectionEquality().equals(other.createdat, createdat));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -315,8 +281,8 @@ class _$_AuthUserModelDto implements _AuthUserModelDto {
 
   @JsonKey(ignore: true)
   @override
-  _$AuthUserModelDtoCopyWith<_AuthUserModelDto> get copyWith =>
-      __$AuthUserModelDtoCopyWithImpl<_AuthUserModelDto>(this, _$identity);
+  _$$_AuthUserModelDtoCopyWith<_$_AuthUserModelDto> get copyWith =>
+      __$$_AuthUserModelDtoCopyWithImpl<_$_AuthUserModelDto>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -326,41 +292,41 @@ class _$_AuthUserModelDto implements _AuthUserModelDto {
 
 abstract class _AuthUserModelDto implements AuthUserModelDto {
   factory _AuthUserModelDto(
-      {required String id,
-      required String displayName,
-      required String phoneNumber,
-      required String firstName,
-      required String lastName,
-      required double balance,
-      required String email,
-      required bool isVerified,
+      {required final String id,
+      required final String displayName,
+      required final String phoneNumber,
+      required final String firstName,
+      required final String lastName,
+      required final double balance,
+      required final String email,
+      required final bool isVerified,
       @JsonKey(fromJson: sendDateTimeFromJson, toJson: sendDateTimeToJson)
-          required DateTime createdat}) = _$_AuthUserModelDto;
+          required final DateTime createdat}) = _$_AuthUserModelDto;
 
   factory _AuthUserModelDto.fromJson(Map<String, dynamic> json) =
       _$_AuthUserModelDto.fromJson;
 
   @override
-  String get id;
+  String get id => throw _privateConstructorUsedError;
   @override
-  String get displayName;
+  String get displayName => throw _privateConstructorUsedError;
   @override
-  String get phoneNumber;
+  String get phoneNumber => throw _privateConstructorUsedError;
   @override
-  String get firstName;
+  String get firstName => throw _privateConstructorUsedError;
   @override
-  String get lastName;
+  String get lastName => throw _privateConstructorUsedError;
   @override
-  double get balance;
+  double get balance => throw _privateConstructorUsedError;
   @override
-  String get email;
+  String get email => throw _privateConstructorUsedError;
   @override
-  bool get isVerified;
+  bool get isVerified => throw _privateConstructorUsedError;
   @override // ignore: invalid_annotation_target
   @JsonKey(fromJson: sendDateTimeFromJson, toJson: sendDateTimeToJson)
-  DateTime get createdat;
+  DateTime get createdat => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$AuthUserModelDtoCopyWith<_AuthUserModelDto> get copyWith =>
+  _$$_AuthUserModelDtoCopyWith<_$_AuthUserModelDto> get copyWith =>
       throw _privateConstructorUsedError;
 }

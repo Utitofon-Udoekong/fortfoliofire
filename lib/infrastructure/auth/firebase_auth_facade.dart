@@ -390,7 +390,7 @@ class FirebaseAuthFacade implements IAuthFacade {
       "displayName": displayName
     });
     return right("Details updated successfully");
-    } on FirebaseException catch (e) {
+    } on FirebaseException{
       return left("Server error encountered");
     }
   }

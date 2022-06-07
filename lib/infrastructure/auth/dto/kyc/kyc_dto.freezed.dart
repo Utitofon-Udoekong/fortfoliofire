@@ -12,40 +12,11 @@ part of 'kyc_dto.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 KYCItemDTO _$KYCItemDTOFromJson(Map<String, dynamic> json) {
   return _KYCItemDTO.fromJson(json);
 }
-
-/// @nodoc
-class _$KYCItemDTOTearOff {
-  const _$KYCItemDTOTearOff();
-
-  _KYCItemDTO call(
-      {required String fullName,
-      required String id,
-      required String documentType,
-      required List<Map<String, dynamic>> documents,
-      required DateTime submitted,
-      required String status}) {
-    return _KYCItemDTO(
-      fullName: fullName,
-      id: id,
-      documentType: documentType,
-      documents: documents,
-      submitted: submitted,
-      status: status,
-    );
-  }
-
-  KYCItemDTO fromJson(Map<String, Object?> json) {
-    return KYCItemDTO.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $KYCItemDTO = _$KYCItemDTOTearOff();
 
 /// @nodoc
 mixin _$KYCItemDTO {
@@ -124,10 +95,11 @@ class _$KYCItemDTOCopyWithImpl<$Res> implements $KYCItemDTOCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$KYCItemDTOCopyWith<$Res> implements $KYCItemDTOCopyWith<$Res> {
-  factory _$KYCItemDTOCopyWith(
-          _KYCItemDTO value, $Res Function(_KYCItemDTO) then) =
-      __$KYCItemDTOCopyWithImpl<$Res>;
+abstract class _$$_KYCItemDTOCopyWith<$Res>
+    implements $KYCItemDTOCopyWith<$Res> {
+  factory _$$_KYCItemDTOCopyWith(
+          _$_KYCItemDTO value, $Res Function(_$_KYCItemDTO) then) =
+      __$$_KYCItemDTOCopyWithImpl<$Res>;
   @override
   $Res call(
       {String fullName,
@@ -139,14 +111,14 @@ abstract class _$KYCItemDTOCopyWith<$Res> implements $KYCItemDTOCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$KYCItemDTOCopyWithImpl<$Res> extends _$KYCItemDTOCopyWithImpl<$Res>
-    implements _$KYCItemDTOCopyWith<$Res> {
-  __$KYCItemDTOCopyWithImpl(
-      _KYCItemDTO _value, $Res Function(_KYCItemDTO) _then)
-      : super(_value, (v) => _then(v as _KYCItemDTO));
+class __$$_KYCItemDTOCopyWithImpl<$Res> extends _$KYCItemDTOCopyWithImpl<$Res>
+    implements _$$_KYCItemDTOCopyWith<$Res> {
+  __$$_KYCItemDTOCopyWithImpl(
+      _$_KYCItemDTO _value, $Res Function(_$_KYCItemDTO) _then)
+      : super(_value, (v) => _then(v as _$_KYCItemDTO));
 
   @override
-  _KYCItemDTO get _value => super._value as _KYCItemDTO;
+  _$_KYCItemDTO get _value => super._value as _$_KYCItemDTO;
 
   @override
   $Res call({
@@ -157,7 +129,7 @@ class __$KYCItemDTOCopyWithImpl<$Res> extends _$KYCItemDTOCopyWithImpl<$Res>
     Object? submitted = freezed,
     Object? status = freezed,
   }) {
-    return _then(_KYCItemDTO(
+    return _then(_$_KYCItemDTO(
       fullName: fullName == freezed
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
@@ -171,7 +143,7 @@ class __$KYCItemDTOCopyWithImpl<$Res> extends _$KYCItemDTOCopyWithImpl<$Res>
           : documentType // ignore: cast_nullable_to_non_nullable
               as String,
       documents: documents == freezed
-          ? _value.documents
+          ? _value._documents
           : documents // ignore: cast_nullable_to_non_nullable
               as List<Map<String, dynamic>>,
       submitted: submitted == freezed
@@ -193,10 +165,11 @@ class _$_KYCItemDTO extends _KYCItemDTO {
       {required this.fullName,
       required this.id,
       required this.documentType,
-      required this.documents,
+      required final List<Map<String, dynamic>> documents,
       required this.submitted,
       required this.status})
-      : super._();
+      : _documents = documents,
+        super._();
 
   factory _$_KYCItemDTO.fromJson(Map<String, dynamic> json) =>
       _$$_KYCItemDTOFromJson(json);
@@ -207,8 +180,13 @@ class _$_KYCItemDTO extends _KYCItemDTO {
   final String id;
   @override
   final String documentType;
+  final List<Map<String, dynamic>> _documents;
   @override
-  final List<Map<String, dynamic>> documents;
+  List<Map<String, dynamic>> get documents {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_documents);
+  }
+
   @override
   final DateTime submitted;
   @override
@@ -223,30 +201,32 @@ class _$_KYCItemDTO extends _KYCItemDTO {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _KYCItemDTO &&
+            other is _$_KYCItemDTO &&
             const DeepCollectionEquality().equals(other.fullName, fullName) &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality()
                 .equals(other.documentType, documentType) &&
-            const DeepCollectionEquality().equals(other.documents, documents) &&
+            const DeepCollectionEquality()
+                .equals(other._documents, _documents) &&
             const DeepCollectionEquality().equals(other.submitted, submitted) &&
             const DeepCollectionEquality().equals(other.status, status));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(fullName),
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(documentType),
-      const DeepCollectionEquality().hash(documents),
+      const DeepCollectionEquality().hash(_documents),
       const DeepCollectionEquality().hash(submitted),
       const DeepCollectionEquality().hash(status));
 
   @JsonKey(ignore: true)
   @override
-  _$KYCItemDTOCopyWith<_KYCItemDTO> get copyWith =>
-      __$KYCItemDTOCopyWithImpl<_KYCItemDTO>(this, _$identity);
+  _$$_KYCItemDTOCopyWith<_$_KYCItemDTO> get copyWith =>
+      __$$_KYCItemDTOCopyWithImpl<_$_KYCItemDTO>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -256,31 +236,32 @@ class _$_KYCItemDTO extends _KYCItemDTO {
 
 abstract class _KYCItemDTO extends KYCItemDTO {
   const factory _KYCItemDTO(
-      {required String fullName,
-      required String id,
-      required String documentType,
-      required List<Map<String, dynamic>> documents,
-      required DateTime submitted,
-      required String status}) = _$_KYCItemDTO;
+      {required final String fullName,
+      required final String id,
+      required final String documentType,
+      required final List<Map<String, dynamic>> documents,
+      required final DateTime submitted,
+      required final String status}) = _$_KYCItemDTO;
   const _KYCItemDTO._() : super._();
 
   factory _KYCItemDTO.fromJson(Map<String, dynamic> json) =
       _$_KYCItemDTO.fromJson;
 
   @override
-  String get fullName;
+  String get fullName => throw _privateConstructorUsedError;
   @override
-  String get id;
+  String get id => throw _privateConstructorUsedError;
   @override
-  String get documentType;
+  String get documentType => throw _privateConstructorUsedError;
   @override
-  List<Map<String, dynamic>> get documents;
+  List<Map<String, dynamic>> get documents =>
+      throw _privateConstructorUsedError;
   @override
-  DateTime get submitted;
+  DateTime get submitted => throw _privateConstructorUsedError;
   @override
-  String get status;
+  String get status => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$KYCItemDTOCopyWith<_KYCItemDTO> get copyWith =>
+  _$$_KYCItemDTOCopyWith<_$_KYCItemDTO> get copyWith =>
       throw _privateConstructorUsedError;
 }

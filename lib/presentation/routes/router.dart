@@ -14,6 +14,7 @@ import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/cry
 import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/crypto/crypto_wallet.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/crypto/verify_crypto_wallet.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/payment_method.dart';
+import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/success.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/profile/confirm_phone_update.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/profile/profile.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/security/change_password.dart';
@@ -39,6 +40,7 @@ import 'package:fortfolio/presentation/home/investment/payment/bank/domiciliary.
 import 'package:fortfolio/presentation/home/investment/payment/bank/naira.dart';
 import 'package:fortfolio/presentation/home/investment/payment/crypto/crypto_invest.dart';
 import 'package:fortfolio/presentation/home/investment/payment/select_method.dart';
+import 'package:fortfolio/presentation/home/investment/security/check.dart';
 import 'package:fortfolio/presentation/home/investment/success.dart';
 import 'package:fortfolio/presentation/home/investment/type/fortcrypto/fortcrypto.dart';
 import 'package:fortfolio/presentation/home/investment/type/fortcrypto/invest.dart';
@@ -53,6 +55,7 @@ import 'package:fortfolio/presentation/home/wallet/transactions/transactions.dar
 import 'package:fortfolio/presentation/home/wallet/wallet.dart';
 import 'package:fortfolio/presentation/home/wallet/withdraw/bank/bank_withdrawal.dart';
 import 'package:fortfolio/presentation/home/wallet/withdraw/crypto/crypto_withdrawal.dart';
+import 'package:fortfolio/presentation/home/wallet/withdraw/security/check.dart';
 import 'package:fortfolio/presentation/home/wallet/withdraw/select_method.dart';
 import 'package:fortfolio/presentation/home/wallet/withdraw/withdrawal.dart';
 import 'package:fortfolio/presentation/network/no_connection.dart';
@@ -82,12 +85,15 @@ import '../home/wallet/investment/fortshield_info.dart';
   AutoRoute( page: ChangePassword),
   AutoRoute( page: SetPin),
   AutoRoute( page: SetPinEngine),
+  AutoRoute( page: CheckInvestment),
+  AutoRoute( page: CheckWithdrawal),
   AutoRoute( page: AddBank),
   AutoRoute( page: VerifyBank),
   AutoRoute( page: AddCryptoWallet),
   AutoRoute( page: VerifyCryptoWallet),
   AutoRoute( page: BankAddressPage),
   AutoRoute( page: CryptoWalletPage),
+  AutoRoute( page: PaymentMethodSuccess),
   AutoRoute( page: PaymentMethod),
   AutoRoute( page: FAQPage),
   AutoRoute( page: SupportPage),

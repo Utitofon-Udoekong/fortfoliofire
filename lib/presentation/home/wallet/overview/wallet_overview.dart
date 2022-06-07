@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:intl/intl.dart';
@@ -16,8 +17,11 @@ class WalletOverview extends StatelessWidget {
     final regExp = RegExp(r".");
     final eye = SvgPicture.asset('images/eye.svg', width: 20);
     final formatter = NumberFormat("#,##0.##", "en_US");
+    final btcFormatter = NumberFormat("###.########", "en_US");
     final fortCryptoBalance = context.select((WalletCubit walletCubit) =>
         walletCubit.state.fortCryptoInvestmentBalance);
+    final dollarPrice = context.select((AuthCubit authCubit) =>
+        authCubit.state.dollarToNaira);
     final fortShieldBalance = context.select((WalletCubit walletCubit) =>
         walletCubit.state.fortShieldInvestmentBalance);
     final fortDollarBalance = context.select((WalletCubit walletCubit) =>
@@ -74,11 +78,11 @@ class WalletOverview extends StatelessWidget {
                           switch (state.exchange) {
                             case "NGN":
                               return state.showDigits
-                                ? Text('N${formatter.format(state.walletBalance * 590) }',
+                                ? Text('N${formatter.format(state.walletBalance * dollarPrice) }',
                                     style: titleText.copyWith(
                                         fontSize: 15, color: kWhiteColor))
                                 : Text(
-                                    formatter.format(state.walletBalance * 590)
+                                    formatter.format(state.walletBalance * dollarPrice)
                                         .replaceAll(regExp, "*"),
                                     style: titleText.copyWith(
                                         fontSize: 23, color: kWhiteColor));
@@ -94,7 +98,7 @@ class WalletOverview extends StatelessWidget {
                                         fontSize: 23, color: kWhiteColor));
                             case "BTC":
                               return state.showDigits
-                                ? Text('BTC ${state.walletBalance}',
+                                ? Text('BTC ${btcFormatter.format(state.walletBalance)}',
                                     style: titleText.copyWith(
                                         fontSize: 15, color: kWhiteColor))
                                 : Text("${state.walletBalance}"
@@ -103,36 +107,15 @@ class WalletOverview extends StatelessWidget {
                                         fontSize: 23, color: kWhiteColor));
                             default:
                               return state.showDigits
-                                ? Text('N${formatter.format(state.walletBalance * 590) }',
+                                ? Text('N${formatter.format(state.walletBalance * dollarPrice) }',
                                     style: titleText.copyWith(
                                         fontSize: 15, color: kWhiteColor))
                                 : Text(
-                                    formatter.format(state.walletBalance * 590)
+                                    formatter.format(state.walletBalance * dollarPrice)
                                         .replaceAll(regExp, "*"),
                                     style: titleText.copyWith(
                                         fontSize: 23, color: kWhiteColor));
                           }
-                          // if (state.exchange == "NGN") {
-                          //   return state.showDigits
-                          //       ? Text('N${formatter.format(state.walletBalance * 590) }',
-                          //           style: titleText.copyWith(
-                          //               fontSize: 15, color: kWhiteColor))
-                          //       : Text(
-                          //           formatter.format(state.walletBalance * 590)
-                          //               .replaceAll(regExp, "*"),
-                          //           style: titleText.copyWith(
-                          //               fontSize: 23, color: kWhiteColor));
-                          // } else {
-                          //   return state.showDigits
-                          //       ? Text('\$${formatter.format(state.walletBalance)}',
-                          //           style: titleText.copyWith(
-                          //               fontSize: 15, color: kWhiteColor))
-                          //       : Text(
-                          //           formatter.format(state.walletBalance)
-                          //               .replaceAll(regExp, "*"),
-                          //           style: titleText.copyWith(
-                          //               fontSize: 23, color: kWhiteColor));
-                          // }
                         },
                       )
                     ],
@@ -168,8 +151,7 @@ class WalletOverview extends StatelessWidget {
                                         ),
                                         buildtile('9ja', 'NGN Balance', () {
                                           context
-                                              .read<WalletCubit>()
-                                              .exchangeChanged(exchange: "NGN");
+                                              .read<WalletCubit>().getWalletBalanceInNaira();
                                           context.router.pop();
                                         }, selectedExchange, "NGN"),
                                         const SizedBox(
@@ -177,8 +159,7 @@ class WalletOverview extends StatelessWidget {
                                         ),
                                         buildtile('usa', 'USD Balance', () {
                                           context
-                                              .read<WalletCubit>()
-                                              .exchangeChanged(exchange: "USD");
+                                              .read<WalletCubit>().getWalletBalanceInUSD();
                                           context.router.pop();
                                         }, selectedExchange, "USD"),
                                         const SizedBox(
@@ -187,9 +168,6 @@ class WalletOverview extends StatelessWidget {
                                         buildtile('btc', 'BTC Balance', () {
                                           context
                                               .read<WalletCubit>().getWalletBalanceInBTC();
-                                          context
-                                              .read<WalletCubit>()
-                                              .exchangeChanged(exchange: "BTC");
                                           context.router.pop();
                                         }, selectedExchange, "BTC"),
                                       ],
@@ -279,7 +257,7 @@ class WalletOverview extends StatelessWidget {
                       },
                       "\$${formatter.format(fortDollarBalance)}",
                       state.showDigits,
-                      "\$$fortDollarYield",
+                      "\$${formatter.format(fortDollarYield)}",
                     ));
               },
             ),
@@ -293,7 +271,7 @@ class WalletOverview extends StatelessWidget {
                   child: buildcard('FortCrypto', 'fortcrypto', () {
                     context.router.push(const FortCryptoInvestmentInfoRoute());
                   }, "\$${formatter.format(fortCryptoBalance)}", state.showDigits,
-                      "\$$fortCryptoYield"),
+                      "\$${formatter.format(fortCryptoYield)}"),
                 );
               },
             ),
@@ -307,7 +285,7 @@ class WalletOverview extends StatelessWidget {
                   child: buildcard('FortShield', 'fortshield', () {
                     context.router.push(const FortShieldInvestmentInfoRoute());
                   }, "N${formatter.format(fortShieldBalance)}", state.showDigits,
-                      "N$fortShieldYield"),
+                      "N${formatter.format(fortShieldYield)}"),
                 );
               },
             ),

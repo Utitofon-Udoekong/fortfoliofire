@@ -83,7 +83,7 @@ class FortCryptoInvestmentInfo extends StatelessWidget {
                       pending: activeInvestments[index].status == "Pending",
                       isDue: activeInvestments[index].dueDate.isToday,
                       daysLeft:
-                          Jiffy(activeInvestments[index].dueDate).fromNow(),
+                          Jiffy(activeInvestments[index].dueDate).fromNow(), planYield: '\$${formatter.format(activeInvestments[index].planYield)}',
                     );
                   }),
                 ),
@@ -106,6 +106,7 @@ class FortCryptoInvestmentInfo extends StatelessWidget {
 Widget buildTile(
     {required String title,
     required String amount,
+    required String planYield,  
     required Function() ontap,
     required bool pending,
     required bool isDue,
@@ -127,10 +128,16 @@ Widget buildTile(
                 title,
                 style: subTitle.copyWith(fontSize: 12),
               ),
+              const SizedBox(height: 2.5),
               Text(
                 amount,
                 style: titleText.copyWith(fontSize: 15),
-              )
+              ),
+              const SizedBox(height: 2.5),
+              Text(
+                planYield,
+                style: subTitle.copyWith(fontSize: 12),
+              ),
             ],
           ),
           isDue
@@ -153,7 +160,23 @@ Widget buildTile(
                     ),
                   ),
                 )
-              : Tooltip(
+              : pending ? GestureDetector(
+                  onTap: null,
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: 45,
+                    width: 100,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: const Color.fromRGBO(3, 66, 109, 0.65)
+                    ),
+                    child: Text(
+                      'Pending',
+                      style:
+                          textButton.copyWith(color: kWhiteColor, fontSize: 15),
+                    ),
+                  ),
+                ) : Tooltip(
                   message: "Unlocks $daysLeft",
                   triggerMode: TooltipTriggerMode.tap,
                   decoration: BoxDecoration(

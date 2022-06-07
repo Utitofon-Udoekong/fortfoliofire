@@ -12,34 +12,7 @@ part of 'sign_in_form_email_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$SignInFormEmailStateTearOff {
-  const _$SignInFormEmailStateTearOff();
-
-  _SignInFormEmailState call(
-      {required EmailAddress emailAddress,
-      required Password password,
-      required bool isSubmitting,
-      required bool isObscure,
-      required bool showErrorMessages,
-      required String failure,
-      required String success}) {
-    return _SignInFormEmailState(
-      emailAddress: emailAddress,
-      password: password,
-      isSubmitting: isSubmitting,
-      isObscure: isObscure,
-      showErrorMessages: showErrorMessages,
-      failure: failure,
-      success: success,
-    );
-  }
-}
-
-/// @nodoc
-const $SignInFormEmailState = _$SignInFormEmailStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$SignInFormEmailState {
@@ -124,11 +97,11 @@ class _$SignInFormEmailStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$SignInFormEmailStateCopyWith<$Res>
+abstract class _$$_SignInFormEmailStateCopyWith<$Res>
     implements $SignInFormEmailStateCopyWith<$Res> {
-  factory _$SignInFormEmailStateCopyWith(_SignInFormEmailState value,
-          $Res Function(_SignInFormEmailState) then) =
-      __$SignInFormEmailStateCopyWithImpl<$Res>;
+  factory _$$_SignInFormEmailStateCopyWith(_$_SignInFormEmailState value,
+          $Res Function(_$_SignInFormEmailState) then) =
+      __$$_SignInFormEmailStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {EmailAddress emailAddress,
@@ -141,15 +114,15 @@ abstract class _$SignInFormEmailStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$SignInFormEmailStateCopyWithImpl<$Res>
+class __$$_SignInFormEmailStateCopyWithImpl<$Res>
     extends _$SignInFormEmailStateCopyWithImpl<$Res>
-    implements _$SignInFormEmailStateCopyWith<$Res> {
-  __$SignInFormEmailStateCopyWithImpl(
-      _SignInFormEmailState _value, $Res Function(_SignInFormEmailState) _then)
-      : super(_value, (v) => _then(v as _SignInFormEmailState));
+    implements _$$_SignInFormEmailStateCopyWith<$Res> {
+  __$$_SignInFormEmailStateCopyWithImpl(_$_SignInFormEmailState _value,
+      $Res Function(_$_SignInFormEmailState) _then)
+      : super(_value, (v) => _then(v as _$_SignInFormEmailState));
 
   @override
-  _SignInFormEmailState get _value => super._value as _SignInFormEmailState;
+  _$_SignInFormEmailState get _value => super._value as _$_SignInFormEmailState;
 
   @override
   $Res call({
@@ -161,7 +134,7 @@ class __$SignInFormEmailStateCopyWithImpl<$Res>
     Object? failure = freezed,
     Object? success = freezed,
   }) {
-    return _then(_SignInFormEmailState(
+    return _then(_$_SignInFormEmailState(
       emailAddress: emailAddress == freezed
           ? _value.emailAddress
           : emailAddress // ignore: cast_nullable_to_non_nullable
@@ -231,7 +204,7 @@ class _$_SignInFormEmailState extends _SignInFormEmailState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _SignInFormEmailState &&
+            other is _$_SignInFormEmailState &&
             const DeepCollectionEquality()
                 .equals(other.emailAddress, emailAddress) &&
             const DeepCollectionEquality().equals(other.password, password) &&
@@ -257,38 +230,38 @@ class _$_SignInFormEmailState extends _SignInFormEmailState {
 
   @JsonKey(ignore: true)
   @override
-  _$SignInFormEmailStateCopyWith<_SignInFormEmailState> get copyWith =>
-      __$SignInFormEmailStateCopyWithImpl<_SignInFormEmailState>(
+  _$$_SignInFormEmailStateCopyWith<_$_SignInFormEmailState> get copyWith =>
+      __$$_SignInFormEmailStateCopyWithImpl<_$_SignInFormEmailState>(
           this, _$identity);
 }
 
 abstract class _SignInFormEmailState extends SignInFormEmailState {
   const factory _SignInFormEmailState(
-      {required EmailAddress emailAddress,
-      required Password password,
-      required bool isSubmitting,
-      required bool isObscure,
-      required bool showErrorMessages,
-      required String failure,
-      required String success}) = _$_SignInFormEmailState;
+      {required final EmailAddress emailAddress,
+      required final Password password,
+      required final bool isSubmitting,
+      required final bool isObscure,
+      required final bool showErrorMessages,
+      required final String failure,
+      required final String success}) = _$_SignInFormEmailState;
   const _SignInFormEmailState._() : super._();
 
   @override
-  EmailAddress get emailAddress;
+  EmailAddress get emailAddress => throw _privateConstructorUsedError;
   @override
-  Password get password;
+  Password get password => throw _privateConstructorUsedError;
   @override
-  bool get isSubmitting;
+  bool get isSubmitting => throw _privateConstructorUsedError;
   @override
-  bool get isObscure;
+  bool get isObscure => throw _privateConstructorUsedError;
   @override
-  bool get showErrorMessages;
+  bool get showErrorMessages => throw _privateConstructorUsedError;
   @override
-  String get failure;
+  String get failure => throw _privateConstructorUsedError;
   @override
-  String get success;
+  String get success => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$SignInFormEmailStateCopyWith<_SignInFormEmailState> get copyWith =>
+  _$$_SignInFormEmailStateCopyWith<_$_SignInFormEmailState> get copyWith =>
       throw _privateConstructorUsedError;
 }

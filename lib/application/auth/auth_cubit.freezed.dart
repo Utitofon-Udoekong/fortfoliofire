@@ -12,29 +12,13 @@ part of 'auth_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$AuthStateTearOff {
-  const _$AuthStateTearOff();
-
-  _AuthState call(
-      {required AuthUserModel userModel,
-      required bool isUserCheckedFromAuthFacade}) {
-    return _AuthState(
-      userModel: userModel,
-      isUserCheckedFromAuthFacade: isUserCheckedFromAuthFacade,
-    );
-  }
-}
-
-/// @nodoc
-const $AuthState = _$AuthStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$AuthState {
   AuthUserModel get userModel => throw _privateConstructorUsedError;
   bool get isUserCheckedFromAuthFacade => throw _privateConstructorUsedError;
+  int get dollarToNaira => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AuthStateCopyWith<AuthState> get copyWith =>
@@ -45,7 +29,10 @@ mixin _$AuthState {
 abstract class $AuthStateCopyWith<$Res> {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
       _$AuthStateCopyWithImpl<$Res>;
-  $Res call({AuthUserModel userModel, bool isUserCheckedFromAuthFacade});
+  $Res call(
+      {AuthUserModel userModel,
+      bool isUserCheckedFromAuthFacade,
+      int dollarToNaira});
 
   $AuthUserModelCopyWith<$Res> get userModel;
 }
@@ -62,6 +49,7 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
   $Res call({
     Object? userModel = freezed,
     Object? isUserCheckedFromAuthFacade = freezed,
+    Object? dollarToNaira = freezed,
   }) {
     return _then(_value.copyWith(
       userModel: userModel == freezed
@@ -72,6 +60,10 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
           ? _value.isUserCheckedFromAuthFacade
           : isUserCheckedFromAuthFacade // ignore: cast_nullable_to_non_nullable
               as bool,
+      dollarToNaira: dollarToNaira == freezed
+          ? _value.dollarToNaira
+          : dollarToNaira // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 
@@ -84,32 +76,37 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$AuthStateCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
-  factory _$AuthStateCopyWith(
-          _AuthState value, $Res Function(_AuthState) then) =
-      __$AuthStateCopyWithImpl<$Res>;
+abstract class _$$_AuthStateCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
+  factory _$$_AuthStateCopyWith(
+          _$_AuthState value, $Res Function(_$_AuthState) then) =
+      __$$_AuthStateCopyWithImpl<$Res>;
   @override
-  $Res call({AuthUserModel userModel, bool isUserCheckedFromAuthFacade});
+  $Res call(
+      {AuthUserModel userModel,
+      bool isUserCheckedFromAuthFacade,
+      int dollarToNaira});
 
   @override
   $AuthUserModelCopyWith<$Res> get userModel;
 }
 
 /// @nodoc
-class __$AuthStateCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
-    implements _$AuthStateCopyWith<$Res> {
-  __$AuthStateCopyWithImpl(_AuthState _value, $Res Function(_AuthState) _then)
-      : super(_value, (v) => _then(v as _AuthState));
+class __$$_AuthStateCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
+    implements _$$_AuthStateCopyWith<$Res> {
+  __$$_AuthStateCopyWithImpl(
+      _$_AuthState _value, $Res Function(_$_AuthState) _then)
+      : super(_value, (v) => _then(v as _$_AuthState));
 
   @override
-  _AuthState get _value => super._value as _AuthState;
+  _$_AuthState get _value => super._value as _$_AuthState;
 
   @override
   $Res call({
     Object? userModel = freezed,
     Object? isUserCheckedFromAuthFacade = freezed,
+    Object? dollarToNaira = freezed,
   }) {
-    return _then(_AuthState(
+    return _then(_$_AuthState(
       userModel: userModel == freezed
           ? _value.userModel
           : userModel // ignore: cast_nullable_to_non_nullable
@@ -118,6 +115,10 @@ class __$AuthStateCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
           ? _value.isUserCheckedFromAuthFacade
           : isUserCheckedFromAuthFacade // ignore: cast_nullable_to_non_nullable
               as bool,
+      dollarToNaira: dollarToNaira == freezed
+          ? _value.dollarToNaira
+          : dollarToNaira // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -126,54 +127,64 @@ class __$AuthStateCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
 
 class _$_AuthState extends _AuthState {
   const _$_AuthState(
-      {required this.userModel, required this.isUserCheckedFromAuthFacade})
+      {required this.userModel,
+      required this.isUserCheckedFromAuthFacade,
+      required this.dollarToNaira})
       : super._();
 
   @override
   final AuthUserModel userModel;
   @override
   final bool isUserCheckedFromAuthFacade;
+  @override
+  final int dollarToNaira;
 
   @override
   String toString() {
-    return 'AuthState(userModel: $userModel, isUserCheckedFromAuthFacade: $isUserCheckedFromAuthFacade)';
+    return 'AuthState(userModel: $userModel, isUserCheckedFromAuthFacade: $isUserCheckedFromAuthFacade, dollarToNaira: $dollarToNaira)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _AuthState &&
+            other is _$_AuthState &&
             const DeepCollectionEquality().equals(other.userModel, userModel) &&
             const DeepCollectionEquality().equals(
                 other.isUserCheckedFromAuthFacade,
-                isUserCheckedFromAuthFacade));
+                isUserCheckedFromAuthFacade) &&
+            const DeepCollectionEquality()
+                .equals(other.dollarToNaira, dollarToNaira));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(userModel),
-      const DeepCollectionEquality().hash(isUserCheckedFromAuthFacade));
+      const DeepCollectionEquality().hash(isUserCheckedFromAuthFacade),
+      const DeepCollectionEquality().hash(dollarToNaira));
 
   @JsonKey(ignore: true)
   @override
-  _$AuthStateCopyWith<_AuthState> get copyWith =>
-      __$AuthStateCopyWithImpl<_AuthState>(this, _$identity);
+  _$$_AuthStateCopyWith<_$_AuthState> get copyWith =>
+      __$$_AuthStateCopyWithImpl<_$_AuthState>(this, _$identity);
 }
 
 abstract class _AuthState extends AuthState {
   const factory _AuthState(
-      {required AuthUserModel userModel,
-      required bool isUserCheckedFromAuthFacade}) = _$_AuthState;
+      {required final AuthUserModel userModel,
+      required final bool isUserCheckedFromAuthFacade,
+      required final int dollarToNaira}) = _$_AuthState;
   const _AuthState._() : super._();
 
   @override
-  AuthUserModel get userModel;
+  AuthUserModel get userModel => throw _privateConstructorUsedError;
   @override
-  bool get isUserCheckedFromAuthFacade;
+  bool get isUserCheckedFromAuthFacade => throw _privateConstructorUsedError;
+  @override
+  int get dollarToNaira => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$AuthStateCopyWith<_AuthState> get copyWith =>
+  _$$_AuthStateCopyWith<_$_AuthState> get copyWith =>
       throw _privateConstructorUsedError;
 }

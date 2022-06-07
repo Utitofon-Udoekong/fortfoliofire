@@ -12,42 +12,7 @@ part of 'withdrawal_item.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$WithdrawalItemTearOff {
-  const _$WithdrawalItemTearOff();
-
-  _WithdrawalItem call(
-      {required String description,
-      required double amount,
-      required String traxId,
-      required String uid,
-      required String planName,
-      required String status,
-      required DateTime createdat,
-      required String paymentMethod,
-      required String currency,
-      required int duration,
-      required int roi}) {
-    return _WithdrawalItem(
-      description: description,
-      amount: amount,
-      traxId: traxId,
-      uid: uid,
-      planName: planName,
-      status: status,
-      createdat: createdat,
-      paymentMethod: paymentMethod,
-      currency: currency,
-      duration: duration,
-      roi: roi,
-    );
-  }
-}
-
-/// @nodoc
-const $WithdrawalItem = _$WithdrawalItemTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$WithdrawalItem {
@@ -55,13 +20,14 @@ mixin _$WithdrawalItem {
   double get amount => throw _privateConstructorUsedError;
   String get traxId => throw _privateConstructorUsedError;
   String get uid => throw _privateConstructorUsedError;
-  String get planName => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   DateTime get createdat => throw _privateConstructorUsedError;
   String get paymentMethod => throw _privateConstructorUsedError;
   String get currency => throw _privateConstructorUsedError;
   int get duration => throw _privateConstructorUsedError;
   int get roi => throw _privateConstructorUsedError;
+  Map<String, dynamic> get withdrawalDetails =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $WithdrawalItemCopyWith<WithdrawalItem> get copyWith =>
@@ -78,13 +44,13 @@ abstract class $WithdrawalItemCopyWith<$Res> {
       double amount,
       String traxId,
       String uid,
-      String planName,
       String status,
       DateTime createdat,
       String paymentMethod,
       String currency,
       int duration,
-      int roi});
+      int roi,
+      Map<String, dynamic> withdrawalDetails});
 }
 
 /// @nodoc
@@ -102,13 +68,13 @@ class _$WithdrawalItemCopyWithImpl<$Res>
     Object? amount = freezed,
     Object? traxId = freezed,
     Object? uid = freezed,
-    Object? planName = freezed,
     Object? status = freezed,
     Object? createdat = freezed,
     Object? paymentMethod = freezed,
     Object? currency = freezed,
     Object? duration = freezed,
     Object? roi = freezed,
+    Object? withdrawalDetails = freezed,
   }) {
     return _then(_value.copyWith(
       description: description == freezed
@@ -127,10 +93,6 @@ class _$WithdrawalItemCopyWithImpl<$Res>
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String,
-      planName: planName == freezed
-          ? _value.planName
-          : planName // ignore: cast_nullable_to_non_nullable
-              as String,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -155,41 +117,45 @@ class _$WithdrawalItemCopyWithImpl<$Res>
           ? _value.roi
           : roi // ignore: cast_nullable_to_non_nullable
               as int,
+      withdrawalDetails: withdrawalDetails == freezed
+          ? _value.withdrawalDetails
+          : withdrawalDetails // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
     ));
   }
 }
 
 /// @nodoc
-abstract class _$WithdrawalItemCopyWith<$Res>
+abstract class _$$_WithdrawalItemCopyWith<$Res>
     implements $WithdrawalItemCopyWith<$Res> {
-  factory _$WithdrawalItemCopyWith(
-          _WithdrawalItem value, $Res Function(_WithdrawalItem) then) =
-      __$WithdrawalItemCopyWithImpl<$Res>;
+  factory _$$_WithdrawalItemCopyWith(
+          _$_WithdrawalItem value, $Res Function(_$_WithdrawalItem) then) =
+      __$$_WithdrawalItemCopyWithImpl<$Res>;
   @override
   $Res call(
       {String description,
       double amount,
       String traxId,
       String uid,
-      String planName,
       String status,
       DateTime createdat,
       String paymentMethod,
       String currency,
       int duration,
-      int roi});
+      int roi,
+      Map<String, dynamic> withdrawalDetails});
 }
 
 /// @nodoc
-class __$WithdrawalItemCopyWithImpl<$Res>
+class __$$_WithdrawalItemCopyWithImpl<$Res>
     extends _$WithdrawalItemCopyWithImpl<$Res>
-    implements _$WithdrawalItemCopyWith<$Res> {
-  __$WithdrawalItemCopyWithImpl(
-      _WithdrawalItem _value, $Res Function(_WithdrawalItem) _then)
-      : super(_value, (v) => _then(v as _WithdrawalItem));
+    implements _$$_WithdrawalItemCopyWith<$Res> {
+  __$$_WithdrawalItemCopyWithImpl(
+      _$_WithdrawalItem _value, $Res Function(_$_WithdrawalItem) _then)
+      : super(_value, (v) => _then(v as _$_WithdrawalItem));
 
   @override
-  _WithdrawalItem get _value => super._value as _WithdrawalItem;
+  _$_WithdrawalItem get _value => super._value as _$_WithdrawalItem;
 
   @override
   $Res call({
@@ -197,15 +163,15 @@ class __$WithdrawalItemCopyWithImpl<$Res>
     Object? amount = freezed,
     Object? traxId = freezed,
     Object? uid = freezed,
-    Object? planName = freezed,
     Object? status = freezed,
     Object? createdat = freezed,
     Object? paymentMethod = freezed,
     Object? currency = freezed,
     Object? duration = freezed,
     Object? roi = freezed,
+    Object? withdrawalDetails = freezed,
   }) {
-    return _then(_WithdrawalItem(
+    return _then(_$_WithdrawalItem(
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -222,10 +188,6 @@ class __$WithdrawalItemCopyWithImpl<$Res>
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String,
-      planName: planName == freezed
-          ? _value.planName
-          : planName // ignore: cast_nullable_to_non_nullable
-              as String,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -250,6 +212,10 @@ class __$WithdrawalItemCopyWithImpl<$Res>
           ? _value.roi
           : roi // ignore: cast_nullable_to_non_nullable
               as int,
+      withdrawalDetails: withdrawalDetails == freezed
+          ? _value._withdrawalDetails
+          : withdrawalDetails // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
     ));
   }
 }
@@ -262,14 +228,15 @@ class _$_WithdrawalItem extends _WithdrawalItem {
       required this.amount,
       required this.traxId,
       required this.uid,
-      required this.planName,
       required this.status,
       required this.createdat,
       required this.paymentMethod,
       required this.currency,
       required this.duration,
-      required this.roi})
-      : super._();
+      required this.roi,
+      required final Map<String, dynamic> withdrawalDetails})
+      : _withdrawalDetails = withdrawalDetails,
+        super._();
 
   @override
   final String description;
@@ -279,8 +246,6 @@ class _$_WithdrawalItem extends _WithdrawalItem {
   final String traxId;
   @override
   final String uid;
-  @override
-  final String planName;
   @override
   final String status;
   @override
@@ -293,30 +258,37 @@ class _$_WithdrawalItem extends _WithdrawalItem {
   final int duration;
   @override
   final int roi;
+  final Map<String, dynamic> _withdrawalDetails;
+  @override
+  Map<String, dynamic> get withdrawalDetails {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_withdrawalDetails);
+  }
 
   @override
   String toString() {
-    return 'WithdrawalItem(description: $description, amount: $amount, traxId: $traxId, uid: $uid, planName: $planName, status: $status, createdat: $createdat, paymentMethod: $paymentMethod, currency: $currency, duration: $duration, roi: $roi)';
+    return 'WithdrawalItem(description: $description, amount: $amount, traxId: $traxId, uid: $uid, status: $status, createdat: $createdat, paymentMethod: $paymentMethod, currency: $currency, duration: $duration, roi: $roi, withdrawalDetails: $withdrawalDetails)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _WithdrawalItem &&
+            other is _$_WithdrawalItem &&
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
             const DeepCollectionEquality().equals(other.amount, amount) &&
             const DeepCollectionEquality().equals(other.traxId, traxId) &&
             const DeepCollectionEquality().equals(other.uid, uid) &&
-            const DeepCollectionEquality().equals(other.planName, planName) &&
             const DeepCollectionEquality().equals(other.status, status) &&
             const DeepCollectionEquality().equals(other.createdat, createdat) &&
             const DeepCollectionEquality()
                 .equals(other.paymentMethod, paymentMethod) &&
             const DeepCollectionEquality().equals(other.currency, currency) &&
             const DeepCollectionEquality().equals(other.duration, duration) &&
-            const DeepCollectionEquality().equals(other.roi, roi));
+            const DeepCollectionEquality().equals(other.roi, roi) &&
+            const DeepCollectionEquality()
+                .equals(other._withdrawalDetails, _withdrawalDetails));
   }
 
   @override
@@ -326,59 +298,61 @@ class _$_WithdrawalItem extends _WithdrawalItem {
       const DeepCollectionEquality().hash(amount),
       const DeepCollectionEquality().hash(traxId),
       const DeepCollectionEquality().hash(uid),
-      const DeepCollectionEquality().hash(planName),
       const DeepCollectionEquality().hash(status),
       const DeepCollectionEquality().hash(createdat),
       const DeepCollectionEquality().hash(paymentMethod),
       const DeepCollectionEquality().hash(currency),
       const DeepCollectionEquality().hash(duration),
-      const DeepCollectionEquality().hash(roi));
+      const DeepCollectionEquality().hash(roi),
+      const DeepCollectionEquality().hash(_withdrawalDetails));
 
   @JsonKey(ignore: true)
   @override
-  _$WithdrawalItemCopyWith<_WithdrawalItem> get copyWith =>
-      __$WithdrawalItemCopyWithImpl<_WithdrawalItem>(this, _$identity);
+  _$$_WithdrawalItemCopyWith<_$_WithdrawalItem> get copyWith =>
+      __$$_WithdrawalItemCopyWithImpl<_$_WithdrawalItem>(this, _$identity);
 }
 
 abstract class _WithdrawalItem extends WithdrawalItem {
   const factory _WithdrawalItem(
-      {required String description,
-      required double amount,
-      required String traxId,
-      required String uid,
-      required String planName,
-      required String status,
-      required DateTime createdat,
-      required String paymentMethod,
-      required String currency,
-      required int duration,
-      required int roi}) = _$_WithdrawalItem;
+          {required final String description,
+          required final double amount,
+          required final String traxId,
+          required final String uid,
+          required final String status,
+          required final DateTime createdat,
+          required final String paymentMethod,
+          required final String currency,
+          required final int duration,
+          required final int roi,
+          required final Map<String, dynamic> withdrawalDetails}) =
+      _$_WithdrawalItem;
   const _WithdrawalItem._() : super._();
 
   @override
-  String get description;
+  String get description => throw _privateConstructorUsedError;
   @override
-  double get amount;
+  double get amount => throw _privateConstructorUsedError;
   @override
-  String get traxId;
+  String get traxId => throw _privateConstructorUsedError;
   @override
-  String get uid;
+  String get uid => throw _privateConstructorUsedError;
   @override
-  String get planName;
+  String get status => throw _privateConstructorUsedError;
   @override
-  String get status;
+  DateTime get createdat => throw _privateConstructorUsedError;
   @override
-  DateTime get createdat;
+  String get paymentMethod => throw _privateConstructorUsedError;
   @override
-  String get paymentMethod;
+  String get currency => throw _privateConstructorUsedError;
   @override
-  String get currency;
+  int get duration => throw _privateConstructorUsedError;
   @override
-  int get duration;
+  int get roi => throw _privateConstructorUsedError;
   @override
-  int get roi;
+  Map<String, dynamic> get withdrawalDetails =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$WithdrawalItemCopyWith<_WithdrawalItem> get copyWith =>
+  _$$_WithdrawalItemCopyWith<_$_WithdrawalItem> get copyWith =>
       throw _privateConstructorUsedError;
 }

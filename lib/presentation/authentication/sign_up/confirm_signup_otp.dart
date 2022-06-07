@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fortfolio/application/auth/auth_cubit.dart';
+// import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/application/auth/sign_up_form/phone/sign_up_form_phone_cubit.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
@@ -41,12 +41,6 @@ class ConfirmSignupWithOTP extends StatelessWidget {
                     context.router.replace(const HomePageRoute());
                   },
                 ),
-          BlocListener<AuthCubit, AuthState>(
-            listenWhen: (p, c) => p.isLoggedIn != c.isLoggedIn && c.isLoggedIn,
-            listener: (context, state) {
-              context.router.replace(const HomePageRoute());
-            },
-          ),
         ],
         child: BlocBuilder<SignUpFormPhoneCubit, SignUpFormPhoneState>(
           builder: (context, state) {

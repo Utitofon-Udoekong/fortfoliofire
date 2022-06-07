@@ -12,38 +12,7 @@ part of 'auth_user_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$AuthUserModelTearOff {
-  const _$AuthUserModelTearOff();
-
-  _AuthUserModel call(
-      {required String id,
-      required String displayName,
-      required String phoneNumber,
-      required String firstName,
-      required String lastName,
-      required double balance,
-      required String email,
-      required bool isVerified,
-      required DateTime createdat}) {
-    return _AuthUserModel(
-      id: id,
-      displayName: displayName,
-      phoneNumber: phoneNumber,
-      firstName: firstName,
-      lastName: lastName,
-      balance: balance,
-      email: email,
-      isVerified: isVerified,
-      createdat: createdat,
-    );
-  }
-}
-
-/// @nodoc
-const $AuthUserModel = _$AuthUserModelTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$AuthUserModel {
@@ -142,11 +111,11 @@ class _$AuthUserModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$AuthUserModelCopyWith<$Res>
+abstract class _$$_AuthUserModelCopyWith<$Res>
     implements $AuthUserModelCopyWith<$Res> {
-  factory _$AuthUserModelCopyWith(
-          _AuthUserModel value, $Res Function(_AuthUserModel) then) =
-      __$AuthUserModelCopyWithImpl<$Res>;
+  factory _$$_AuthUserModelCopyWith(
+          _$_AuthUserModel value, $Res Function(_$_AuthUserModel) then) =
+      __$$_AuthUserModelCopyWithImpl<$Res>;
   @override
   $Res call(
       {String id,
@@ -161,15 +130,15 @@ abstract class _$AuthUserModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$AuthUserModelCopyWithImpl<$Res>
+class __$$_AuthUserModelCopyWithImpl<$Res>
     extends _$AuthUserModelCopyWithImpl<$Res>
-    implements _$AuthUserModelCopyWith<$Res> {
-  __$AuthUserModelCopyWithImpl(
-      _AuthUserModel _value, $Res Function(_AuthUserModel) _then)
-      : super(_value, (v) => _then(v as _AuthUserModel));
+    implements _$$_AuthUserModelCopyWith<$Res> {
+  __$$_AuthUserModelCopyWithImpl(
+      _$_AuthUserModel _value, $Res Function(_$_AuthUserModel) _then)
+      : super(_value, (v) => _then(v as _$_AuthUserModel));
 
   @override
-  _AuthUserModel get _value => super._value as _AuthUserModel;
+  _$_AuthUserModel get _value => super._value as _$_AuthUserModel;
 
   @override
   $Res call({
@@ -183,7 +152,7 @@ class __$AuthUserModelCopyWithImpl<$Res>
     Object? isVerified = freezed,
     Object? createdat = freezed,
   }) {
-    return _then(_AuthUserModel(
+    return _then(_$_AuthUserModel(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -267,7 +236,7 @@ class _$_AuthUserModel extends _AuthUserModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _AuthUserModel &&
+            other is _$_AuthUserModel &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality()
                 .equals(other.displayName, displayName) &&
@@ -297,43 +266,43 @@ class _$_AuthUserModel extends _AuthUserModel {
 
   @JsonKey(ignore: true)
   @override
-  _$AuthUserModelCopyWith<_AuthUserModel> get copyWith =>
-      __$AuthUserModelCopyWithImpl<_AuthUserModel>(this, _$identity);
+  _$$_AuthUserModelCopyWith<_$_AuthUserModel> get copyWith =>
+      __$$_AuthUserModelCopyWithImpl<_$_AuthUserModel>(this, _$identity);
 }
 
 abstract class _AuthUserModel extends AuthUserModel {
   const factory _AuthUserModel(
-      {required String id,
-      required String displayName,
-      required String phoneNumber,
-      required String firstName,
-      required String lastName,
-      required double balance,
-      required String email,
-      required bool isVerified,
-      required DateTime createdat}) = _$_AuthUserModel;
+      {required final String id,
+      required final String displayName,
+      required final String phoneNumber,
+      required final String firstName,
+      required final String lastName,
+      required final double balance,
+      required final String email,
+      required final bool isVerified,
+      required final DateTime createdat}) = _$_AuthUserModel;
   const _AuthUserModel._() : super._();
 
   @override
-  String get id;
+  String get id => throw _privateConstructorUsedError;
   @override
-  String get displayName;
+  String get displayName => throw _privateConstructorUsedError;
   @override
-  String get phoneNumber;
+  String get phoneNumber => throw _privateConstructorUsedError;
   @override
-  String get firstName;
+  String get firstName => throw _privateConstructorUsedError;
   @override
-  String get lastName;
+  String get lastName => throw _privateConstructorUsedError;
   @override
-  double get balance;
+  double get balance => throw _privateConstructorUsedError;
   @override
-  String get email;
+  String get email => throw _privateConstructorUsedError;
   @override
-  bool get isVerified;
+  bool get isVerified => throw _privateConstructorUsedError;
   @override
-  DateTime get createdat;
+  DateTime get createdat => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$AuthUserModelCopyWith<_AuthUserModel> get copyWith =>
+  _$$_AuthUserModelCopyWith<_$_AuthUserModel> get copyWith =>
       throw _privateConstructorUsedError;
 }

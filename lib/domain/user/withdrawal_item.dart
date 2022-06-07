@@ -9,13 +9,13 @@ abstract class WithdrawalItem implements _$WithdrawalItem {
     required double amount,
     required String traxId,
     required String uid,
-    required String planName,
     required String status,
     required DateTime createdat,
     required String paymentMethod,
     required String currency,
     required int duration,
     required int roi,
+    required Map<String, dynamic> withdrawalDetails
     // add roi
   }) = _WithdrawalItem;
 
@@ -27,9 +27,9 @@ abstract class WithdrawalItem implements _$WithdrawalItem {
         description: '',
         paymentMethod: '',
         currency: '\$',
-        planName: '',
         status: "Pending",
         traxId: '',
         uid: '',
+        withdrawalDetails: {}
       );
 }

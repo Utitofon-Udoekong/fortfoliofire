@@ -12,54 +12,7 @@ part of 'investment_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$InvestmentStateTearOff {
-  const _$InvestmentStateTearOff();
-
-  _InvestmentState call(
-      {required String planName,
-      required int duration,
-      required int amountInvested,
-      required int roi,
-      required String failure,
-      required String success,
-      required bool agreementAccepted,
-      required bool isLoading,
-      required String exchangeType,
-      required String coin,
-      required String bankAccountType,
-      required List<bool> isSelected,
-      required List<int> durations,
-      required String paymentMethod,
-      required double baseAmount,
-      required ChargeObject charge,
-      required String paymentStatus}) {
-    return _InvestmentState(
-      planName: planName,
-      duration: duration,
-      amountInvested: amountInvested,
-      roi: roi,
-      failure: failure,
-      success: success,
-      agreementAccepted: agreementAccepted,
-      isLoading: isLoading,
-      exchangeType: exchangeType,
-      coin: coin,
-      bankAccountType: bankAccountType,
-      isSelected: isSelected,
-      durations: durations,
-      paymentMethod: paymentMethod,
-      baseAmount: baseAmount,
-      charge: charge,
-      paymentStatus: paymentStatus,
-    );
-  }
-}
-
-/// @nodoc
-const $InvestmentState = _$InvestmentStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$InvestmentState {
@@ -214,11 +167,11 @@ class _$InvestmentStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$InvestmentStateCopyWith<$Res>
+abstract class _$$_InvestmentStateCopyWith<$Res>
     implements $InvestmentStateCopyWith<$Res> {
-  factory _$InvestmentStateCopyWith(
-          _InvestmentState value, $Res Function(_InvestmentState) then) =
-      __$InvestmentStateCopyWithImpl<$Res>;
+  factory _$$_InvestmentStateCopyWith(
+          _$_InvestmentState value, $Res Function(_$_InvestmentState) then) =
+      __$$_InvestmentStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {String planName,
@@ -241,15 +194,15 @@ abstract class _$InvestmentStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$InvestmentStateCopyWithImpl<$Res>
+class __$$_InvestmentStateCopyWithImpl<$Res>
     extends _$InvestmentStateCopyWithImpl<$Res>
-    implements _$InvestmentStateCopyWith<$Res> {
-  __$InvestmentStateCopyWithImpl(
-      _InvestmentState _value, $Res Function(_InvestmentState) _then)
-      : super(_value, (v) => _then(v as _InvestmentState));
+    implements _$$_InvestmentStateCopyWith<$Res> {
+  __$$_InvestmentStateCopyWithImpl(
+      _$_InvestmentState _value, $Res Function(_$_InvestmentState) _then)
+      : super(_value, (v) => _then(v as _$_InvestmentState));
 
   @override
-  _InvestmentState get _value => super._value as _InvestmentState;
+  _$_InvestmentState get _value => super._value as _$_InvestmentState;
 
   @override
   $Res call({
@@ -271,7 +224,7 @@ class __$InvestmentStateCopyWithImpl<$Res>
     Object? charge = freezed,
     Object? paymentStatus = freezed,
   }) {
-    return _then(_InvestmentState(
+    return _then(_$_InvestmentState(
       planName: planName == freezed
           ? _value.planName
           : planName // ignore: cast_nullable_to_non_nullable
@@ -317,11 +270,11 @@ class __$InvestmentStateCopyWithImpl<$Res>
           : bankAccountType // ignore: cast_nullable_to_non_nullable
               as String,
       isSelected: isSelected == freezed
-          ? _value.isSelected
+          ? _value._isSelected
           : isSelected // ignore: cast_nullable_to_non_nullable
               as List<bool>,
       durations: durations == freezed
-          ? _value.durations
+          ? _value._durations
           : durations // ignore: cast_nullable_to_non_nullable
               as List<int>,
       paymentMethod: paymentMethod == freezed
@@ -359,13 +312,15 @@ class _$_InvestmentState extends _InvestmentState {
       required this.exchangeType,
       required this.coin,
       required this.bankAccountType,
-      required this.isSelected,
-      required this.durations,
+      required final List<bool> isSelected,
+      required final List<int> durations,
       required this.paymentMethod,
       required this.baseAmount,
       required this.charge,
       required this.paymentStatus})
-      : super._();
+      : _isSelected = isSelected,
+        _durations = durations,
+        super._();
 
   @override
   final String planName;
@@ -389,10 +344,20 @@ class _$_InvestmentState extends _InvestmentState {
   final String coin;
   @override
   final String bankAccountType;
+  final List<bool> _isSelected;
   @override
-  final List<bool> isSelected;
+  List<bool> get isSelected {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_isSelected);
+  }
+
+  final List<int> _durations;
   @override
-  final List<int> durations;
+  List<int> get durations {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_durations);
+  }
+
   @override
   final String paymentMethod;
   @override
@@ -411,7 +376,7 @@ class _$_InvestmentState extends _InvestmentState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _InvestmentState &&
+            other is _$_InvestmentState &&
             const DeepCollectionEquality().equals(other.planName, planName) &&
             const DeepCollectionEquality().equals(other.duration, duration) &&
             const DeepCollectionEquality()
@@ -428,8 +393,9 @@ class _$_InvestmentState extends _InvestmentState {
             const DeepCollectionEquality()
                 .equals(other.bankAccountType, bankAccountType) &&
             const DeepCollectionEquality()
-                .equals(other.isSelected, isSelected) &&
-            const DeepCollectionEquality().equals(other.durations, durations) &&
+                .equals(other._isSelected, _isSelected) &&
+            const DeepCollectionEquality()
+                .equals(other._durations, _durations) &&
             const DeepCollectionEquality()
                 .equals(other.paymentMethod, paymentMethod) &&
             const DeepCollectionEquality()
@@ -453,8 +419,8 @@ class _$_InvestmentState extends _InvestmentState {
       const DeepCollectionEquality().hash(exchangeType),
       const DeepCollectionEquality().hash(coin),
       const DeepCollectionEquality().hash(bankAccountType),
-      const DeepCollectionEquality().hash(isSelected),
-      const DeepCollectionEquality().hash(durations),
+      const DeepCollectionEquality().hash(_isSelected),
+      const DeepCollectionEquality().hash(_durations),
       const DeepCollectionEquality().hash(paymentMethod),
       const DeepCollectionEquality().hash(baseAmount),
       const DeepCollectionEquality().hash(charge),
@@ -462,67 +428,67 @@ class _$_InvestmentState extends _InvestmentState {
 
   @JsonKey(ignore: true)
   @override
-  _$InvestmentStateCopyWith<_InvestmentState> get copyWith =>
-      __$InvestmentStateCopyWithImpl<_InvestmentState>(this, _$identity);
+  _$$_InvestmentStateCopyWith<_$_InvestmentState> get copyWith =>
+      __$$_InvestmentStateCopyWithImpl<_$_InvestmentState>(this, _$identity);
 }
 
 abstract class _InvestmentState extends InvestmentState {
   const factory _InvestmentState(
-      {required String planName,
-      required int duration,
-      required int amountInvested,
-      required int roi,
-      required String failure,
-      required String success,
-      required bool agreementAccepted,
-      required bool isLoading,
-      required String exchangeType,
-      required String coin,
-      required String bankAccountType,
-      required List<bool> isSelected,
-      required List<int> durations,
-      required String paymentMethod,
-      required double baseAmount,
-      required ChargeObject charge,
-      required String paymentStatus}) = _$_InvestmentState;
+      {required final String planName,
+      required final int duration,
+      required final int amountInvested,
+      required final int roi,
+      required final String failure,
+      required final String success,
+      required final bool agreementAccepted,
+      required final bool isLoading,
+      required final String exchangeType,
+      required final String coin,
+      required final String bankAccountType,
+      required final List<bool> isSelected,
+      required final List<int> durations,
+      required final String paymentMethod,
+      required final double baseAmount,
+      required final ChargeObject charge,
+      required final String paymentStatus}) = _$_InvestmentState;
   const _InvestmentState._() : super._();
 
   @override
-  String get planName;
+  String get planName => throw _privateConstructorUsedError;
   @override
-  int get duration;
+  int get duration => throw _privateConstructorUsedError;
   @override
-  int get amountInvested;
+  int get amountInvested => throw _privateConstructorUsedError;
   @override
-  int get roi;
+  int get roi => throw _privateConstructorUsedError;
   @override
-  String get failure;
+  String get failure => throw _privateConstructorUsedError;
   @override
-  String get success;
+  String get success => throw _privateConstructorUsedError;
   @override
-  bool get agreementAccepted;
+  bool get agreementAccepted => throw _privateConstructorUsedError;
   @override
-  bool get isLoading;
+  bool get isLoading => throw _privateConstructorUsedError;
   @override
-  String get exchangeType;
+  String get exchangeType => throw _privateConstructorUsedError;
   @override
-  String get coin;
+  String get coin => throw _privateConstructorUsedError;
   @override
-  String get bankAccountType;
+  String get bankAccountType => throw _privateConstructorUsedError;
   @override
-  List<bool> get isSelected;
+  List<bool> get isSelected => throw _privateConstructorUsedError;
   @override
-  List<int> get durations;
+  List<int> get durations => throw _privateConstructorUsedError;
   @override
-  String get paymentMethod;
+  String get paymentMethod => throw _privateConstructorUsedError;
   @override
-  double get baseAmount;
+  double get baseAmount => throw _privateConstructorUsedError;
   @override
-  ChargeObject get charge;
+  ChargeObject get charge => throw _privateConstructorUsedError;
   @override
-  String get paymentStatus;
+  String get paymentStatus => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$InvestmentStateCopyWith<_InvestmentState> get copyWith =>
+  _$$_InvestmentStateCopyWith<_$_InvestmentState> get copyWith =>
       throw _privateConstructorUsedError;
 }

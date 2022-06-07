@@ -1,13 +1,17 @@
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fortfolio/infrastructure/auth/dto/crypto_address/crypto_address.dart';
+import 'package:fortfolio/infrastructure/auth/local_auth_api.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
 import 'package:fortfolio/domain/user/crypto_wallet.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/crypto/networks.dart';
 import 'package:injectable/injectable.dart';
 import 'package:nanoid/nanoid.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 import 'dart:async';
 
@@ -80,6 +84,32 @@ class CryptoWalletCubit extends Cubit<CryptoWalletState> {
 
   void selectedNetworkChanged({required int? selectedNetwork}) {
     emit(state.copyWith(selectedNetwork: selectedNetwork));
+  }
+
+  void authenticateBiometric() async {
+    bool canCheckBiometrics = await LocalAuthApi.hasBiometrics();
+    if (Platform.isAndroid) {
+      if (canCheckBiometrics) {
+        bool didauthenticate = await LocalAuthApi.authenticate(localizedReason: 'Scan fingerprint to invest');
+        if (didauthenticate != true) {
+          emit(state.copyWith(failure: "Authenticate to continue"));
+          Future.delayed(const Duration(seconds: 1), () =>emit(state.copyWith(failure: "")));
+        } else {
+          performWalletAddition();
+        }
+      }
+    }
+  }
+
+  void auhenticatePin({required String pin}) async {
+    final sp = await SharedPreferences.getInstance();
+    final traxPin = sp.getString("trax_key");
+    if(pin == traxPin){
+      performWalletAddition();
+    }else{
+      emit(state.copyWith(failure: "Incorrect Transaction Pin"));
+      Future.delayed(const Duration(seconds: 1), () =>emit(state.copyWith(failure: "")));
+    }
   }
 
   void performWalletAddition() async {

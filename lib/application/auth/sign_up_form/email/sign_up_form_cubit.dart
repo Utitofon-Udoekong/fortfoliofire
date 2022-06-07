@@ -26,6 +26,10 @@ class SignUpFormCubit extends Cubit<SignUpFormState> {
     emit(state.copyWith(firstName: UserName(firstName)));
   }
 
+  void acceptedChanged({required bool accepted}){
+    emit(state.copyWith(accepted: accepted));
+  }
+
   void lastNameChanged({required String lastName}) {
     emit(state.copyWith(lastName: UserName(lastName)));
   }
@@ -60,6 +64,7 @@ class SignUpFormCubit extends Cubit<SignUpFormState> {
       password: Password(""),
       firstName: UserName(""),
       lastName: UserName(""),
+      accepted: false
     ));
   }
 }

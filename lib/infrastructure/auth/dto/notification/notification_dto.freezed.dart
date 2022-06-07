@@ -12,38 +12,11 @@ part of 'notification_dto.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 NotificationItemDTO _$NotificationItemDTOFromJson(Map<String, dynamic> json) {
   return _NotificationItemDTO.fromJson(json);
 }
-
-/// @nodoc
-class _$NotificationItemDTOTearOff {
-  const _$NotificationItemDTOTearOff();
-
-  _NotificationItemDTO call(
-      {required String type,
-      required String id,
-      required String title,
-      required DateTime createdat,
-      required String status}) {
-    return _NotificationItemDTO(
-      type: type,
-      id: id,
-      title: title,
-      createdat: createdat,
-      status: status,
-    );
-  }
-
-  NotificationItemDTO fromJson(Map<String, Object?> json) {
-    return NotificationItemDTO.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $NotificationItemDTO = _$NotificationItemDTOTearOff();
 
 /// @nodoc
 mixin _$NotificationItemDTO {
@@ -115,11 +88,11 @@ class _$NotificationItemDTOCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$NotificationItemDTOCopyWith<$Res>
+abstract class _$$_NotificationItemDTOCopyWith<$Res>
     implements $NotificationItemDTOCopyWith<$Res> {
-  factory _$NotificationItemDTOCopyWith(_NotificationItemDTO value,
-          $Res Function(_NotificationItemDTO) then) =
-      __$NotificationItemDTOCopyWithImpl<$Res>;
+  factory _$$_NotificationItemDTOCopyWith(_$_NotificationItemDTO value,
+          $Res Function(_$_NotificationItemDTO) then) =
+      __$$_NotificationItemDTOCopyWithImpl<$Res>;
   @override
   $Res call(
       {String type,
@@ -130,15 +103,15 @@ abstract class _$NotificationItemDTOCopyWith<$Res>
 }
 
 /// @nodoc
-class __$NotificationItemDTOCopyWithImpl<$Res>
+class __$$_NotificationItemDTOCopyWithImpl<$Res>
     extends _$NotificationItemDTOCopyWithImpl<$Res>
-    implements _$NotificationItemDTOCopyWith<$Res> {
-  __$NotificationItemDTOCopyWithImpl(
-      _NotificationItemDTO _value, $Res Function(_NotificationItemDTO) _then)
-      : super(_value, (v) => _then(v as _NotificationItemDTO));
+    implements _$$_NotificationItemDTOCopyWith<$Res> {
+  __$$_NotificationItemDTOCopyWithImpl(_$_NotificationItemDTO _value,
+      $Res Function(_$_NotificationItemDTO) _then)
+      : super(_value, (v) => _then(v as _$_NotificationItemDTO));
 
   @override
-  _NotificationItemDTO get _value => super._value as _NotificationItemDTO;
+  _$_NotificationItemDTO get _value => super._value as _$_NotificationItemDTO;
 
   @override
   $Res call({
@@ -148,7 +121,7 @@ class __$NotificationItemDTOCopyWithImpl<$Res>
     Object? createdat = freezed,
     Object? status = freezed,
   }) {
-    return _then(_NotificationItemDTO(
+    return _then(_$_NotificationItemDTO(
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -207,7 +180,7 @@ class _$_NotificationItemDTO extends _NotificationItemDTO {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _NotificationItemDTO &&
+            other is _$_NotificationItemDTO &&
             const DeepCollectionEquality().equals(other.type, type) &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.title, title) &&
@@ -215,6 +188,7 @@ class _$_NotificationItemDTO extends _NotificationItemDTO {
             const DeepCollectionEquality().equals(other.status, status));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -226,8 +200,8 @@ class _$_NotificationItemDTO extends _NotificationItemDTO {
 
   @JsonKey(ignore: true)
   @override
-  _$NotificationItemDTOCopyWith<_NotificationItemDTO> get copyWith =>
-      __$NotificationItemDTOCopyWithImpl<_NotificationItemDTO>(
+  _$$_NotificationItemDTOCopyWith<_$_NotificationItemDTO> get copyWith =>
+      __$$_NotificationItemDTOCopyWithImpl<_$_NotificationItemDTO>(
           this, _$identity);
 
   @override
@@ -238,28 +212,28 @@ class _$_NotificationItemDTO extends _NotificationItemDTO {
 
 abstract class _NotificationItemDTO extends NotificationItemDTO {
   const factory _NotificationItemDTO(
-      {required String type,
-      required String id,
-      required String title,
-      required DateTime createdat,
-      required String status}) = _$_NotificationItemDTO;
+      {required final String type,
+      required final String id,
+      required final String title,
+      required final DateTime createdat,
+      required final String status}) = _$_NotificationItemDTO;
   const _NotificationItemDTO._() : super._();
 
   factory _NotificationItemDTO.fromJson(Map<String, dynamic> json) =
       _$_NotificationItemDTO.fromJson;
 
   @override
-  String get type;
+  String get type => throw _privateConstructorUsedError;
   @override
-  String get id;
+  String get id => throw _privateConstructorUsedError;
   @override
-  String get title;
+  String get title => throw _privateConstructorUsedError;
   @override
-  DateTime get createdat;
+  DateTime get createdat => throw _privateConstructorUsedError;
   @override
-  String get status;
+  String get status => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$NotificationItemDTOCopyWith<_NotificationItemDTO> get copyWith =>
+  _$$_NotificationItemDTOCopyWith<_$_NotificationItemDTO> get copyWith =>
       throw _privateConstructorUsedError;
 }

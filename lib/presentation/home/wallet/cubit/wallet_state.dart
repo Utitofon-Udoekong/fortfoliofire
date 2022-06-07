@@ -3,8 +3,9 @@ part of 'wallet_cubit.dart';
 @freezed
 class WalletState with _$WalletState {
   const factory WalletState(
-      {required String investmentPlan,
+      {
       required double walletBalance,
+      required String exchange,
       required bool loading,
       required double fortDollarInvestmentBalance,
       required double fortCryptoInvestmentBalance,
@@ -25,11 +26,10 @@ class WalletState with _$WalletState {
       required List<InvestmentItem> fortShieldInvestments,
       required List<WithdrawalItem> withdrawals,
       required List<TransactionItem> transactions,
-      required String exchange,
       required bool showDigits}) = _WalletState;
   const WalletState._();
   factory WalletState.initial() => WalletState(
-      investmentPlan: "",
+      exchange: "NGN",
       loading: false,
       walletBalance: 0,
       fortDollarInvestmentBalance: 0,
@@ -54,7 +54,6 @@ class WalletState with _$WalletState {
       ],
       withdrawals: [
       ],
-      exchange: "NGN",
       showDigits: false,
       transactions: [
         

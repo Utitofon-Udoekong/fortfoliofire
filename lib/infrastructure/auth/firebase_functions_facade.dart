@@ -24,7 +24,7 @@ class FirebaseFunctionsFacade implements IFunctionsFacade {
       {required String amount}) async {
     try {
       Map<String, dynamic> charge = {};
-      final url = Uri.https('us-central1-fortfolio-app.cloudfunctions.net',
+      final url = Uri.https('us-central1-fortfolio-c25d3.cloudfunctions.net',
           '/createCharge', {'amount': amount});
       final response = await http.get(
         url,
@@ -46,7 +46,7 @@ class FirebaseFunctionsFacade implements IFunctionsFacade {
     final StreamController<Option<TransactionStatus?>> streamController =
         StreamController<Option<TransactionStatus?>>();
     final url = Uri.https(
-      'us-central1-fortfolio-app.cloudfunctions.net',
+      'us-central1-fortfolio-c25d3.cloudfunctions.net',
       '/webhookHandler',
     );
     final response = await http.get(

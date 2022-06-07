@@ -45,7 +45,9 @@ class WithdrawalSuccess extends StatelessWidget {
               text: 'DONE',
               onTap: () {
                 context.read<WalletCubit>().reset();
-                context.router.push(const WalletRoute());
+                context.replaceRoute(const HomePageRoute(children: [
+                  WalletRoute()
+                ]));
               })
         ],
       ),

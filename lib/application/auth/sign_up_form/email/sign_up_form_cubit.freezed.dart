@@ -12,38 +12,7 @@ part of 'sign_up_form_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$SignUpFormStateTearOff {
-  const _$SignUpFormStateTearOff();
-
-  _SignUpFormState call(
-      {required EmailAddress emailAddress,
-      required UserName firstName,
-      required UserName lastName,
-      required Password password,
-      required bool isSubmitting,
-      required bool isObscure,
-      required bool showErrorMessages,
-      required String failure,
-      required String success}) {
-    return _SignUpFormState(
-      emailAddress: emailAddress,
-      firstName: firstName,
-      lastName: lastName,
-      password: password,
-      isSubmitting: isSubmitting,
-      isObscure: isObscure,
-      showErrorMessages: showErrorMessages,
-      failure: failure,
-      success: success,
-    );
-  }
-}
-
-/// @nodoc
-const $SignUpFormState = _$SignUpFormStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$SignUpFormState {
@@ -54,6 +23,7 @@ mixin _$SignUpFormState {
   bool get isSubmitting => throw _privateConstructorUsedError;
   bool get isObscure => throw _privateConstructorUsedError;
   bool get showErrorMessages => throw _privateConstructorUsedError;
+  bool get accepted => throw _privateConstructorUsedError;
   String get failure => throw _privateConstructorUsedError;
   String get success => throw _privateConstructorUsedError;
 
@@ -75,6 +45,7 @@ abstract class $SignUpFormStateCopyWith<$Res> {
       bool isSubmitting,
       bool isObscure,
       bool showErrorMessages,
+      bool accepted,
       String failure,
       String success});
 }
@@ -97,6 +68,7 @@ class _$SignUpFormStateCopyWithImpl<$Res>
     Object? isSubmitting = freezed,
     Object? isObscure = freezed,
     Object? showErrorMessages = freezed,
+    Object? accepted = freezed,
     Object? failure = freezed,
     Object? success = freezed,
   }) {
@@ -129,6 +101,10 @@ class _$SignUpFormStateCopyWithImpl<$Res>
           ? _value.showErrorMessages
           : showErrorMessages // ignore: cast_nullable_to_non_nullable
               as bool,
+      accepted: accepted == freezed
+          ? _value.accepted
+          : accepted // ignore: cast_nullable_to_non_nullable
+              as bool,
       failure: failure == freezed
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
@@ -142,11 +118,11 @@ class _$SignUpFormStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$SignUpFormStateCopyWith<$Res>
+abstract class _$$_SignUpFormStateCopyWith<$Res>
     implements $SignUpFormStateCopyWith<$Res> {
-  factory _$SignUpFormStateCopyWith(
-          _SignUpFormState value, $Res Function(_SignUpFormState) then) =
-      __$SignUpFormStateCopyWithImpl<$Res>;
+  factory _$$_SignUpFormStateCopyWith(
+          _$_SignUpFormState value, $Res Function(_$_SignUpFormState) then) =
+      __$$_SignUpFormStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {EmailAddress emailAddress,
@@ -156,20 +132,21 @@ abstract class _$SignUpFormStateCopyWith<$Res>
       bool isSubmitting,
       bool isObscure,
       bool showErrorMessages,
+      bool accepted,
       String failure,
       String success});
 }
 
 /// @nodoc
-class __$SignUpFormStateCopyWithImpl<$Res>
+class __$$_SignUpFormStateCopyWithImpl<$Res>
     extends _$SignUpFormStateCopyWithImpl<$Res>
-    implements _$SignUpFormStateCopyWith<$Res> {
-  __$SignUpFormStateCopyWithImpl(
-      _SignUpFormState _value, $Res Function(_SignUpFormState) _then)
-      : super(_value, (v) => _then(v as _SignUpFormState));
+    implements _$$_SignUpFormStateCopyWith<$Res> {
+  __$$_SignUpFormStateCopyWithImpl(
+      _$_SignUpFormState _value, $Res Function(_$_SignUpFormState) _then)
+      : super(_value, (v) => _then(v as _$_SignUpFormState));
 
   @override
-  _SignUpFormState get _value => super._value as _SignUpFormState;
+  _$_SignUpFormState get _value => super._value as _$_SignUpFormState;
 
   @override
   $Res call({
@@ -180,10 +157,11 @@ class __$SignUpFormStateCopyWithImpl<$Res>
     Object? isSubmitting = freezed,
     Object? isObscure = freezed,
     Object? showErrorMessages = freezed,
+    Object? accepted = freezed,
     Object? failure = freezed,
     Object? success = freezed,
   }) {
-    return _then(_SignUpFormState(
+    return _then(_$_SignUpFormState(
       emailAddress: emailAddress == freezed
           ? _value.emailAddress
           : emailAddress // ignore: cast_nullable_to_non_nullable
@@ -212,6 +190,10 @@ class __$SignUpFormStateCopyWithImpl<$Res>
           ? _value.showErrorMessages
           : showErrorMessages // ignore: cast_nullable_to_non_nullable
               as bool,
+      accepted: accepted == freezed
+          ? _value.accepted
+          : accepted // ignore: cast_nullable_to_non_nullable
+              as bool,
       failure: failure == freezed
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
@@ -235,6 +217,7 @@ class _$_SignUpFormState extends _SignUpFormState {
       required this.isSubmitting,
       required this.isObscure,
       required this.showErrorMessages,
+      required this.accepted,
       required this.failure,
       required this.success})
       : super._();
@@ -254,20 +237,22 @@ class _$_SignUpFormState extends _SignUpFormState {
   @override
   final bool showErrorMessages;
   @override
+  final bool accepted;
+  @override
   final String failure;
   @override
   final String success;
 
   @override
   String toString() {
-    return 'SignUpFormState(emailAddress: $emailAddress, firstName: $firstName, lastName: $lastName, password: $password, isSubmitting: $isSubmitting, isObscure: $isObscure, showErrorMessages: $showErrorMessages, failure: $failure, success: $success)';
+    return 'SignUpFormState(emailAddress: $emailAddress, firstName: $firstName, lastName: $lastName, password: $password, isSubmitting: $isSubmitting, isObscure: $isObscure, showErrorMessages: $showErrorMessages, accepted: $accepted, failure: $failure, success: $success)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _SignUpFormState &&
+            other is _$_SignUpFormState &&
             const DeepCollectionEquality()
                 .equals(other.emailAddress, emailAddress) &&
             const DeepCollectionEquality().equals(other.firstName, firstName) &&
@@ -278,6 +263,7 @@ class _$_SignUpFormState extends _SignUpFormState {
             const DeepCollectionEquality().equals(other.isObscure, isObscure) &&
             const DeepCollectionEquality()
                 .equals(other.showErrorMessages, showErrorMessages) &&
+            const DeepCollectionEquality().equals(other.accepted, accepted) &&
             const DeepCollectionEquality().equals(other.failure, failure) &&
             const DeepCollectionEquality().equals(other.success, success));
   }
@@ -292,48 +278,52 @@ class _$_SignUpFormState extends _SignUpFormState {
       const DeepCollectionEquality().hash(isSubmitting),
       const DeepCollectionEquality().hash(isObscure),
       const DeepCollectionEquality().hash(showErrorMessages),
+      const DeepCollectionEquality().hash(accepted),
       const DeepCollectionEquality().hash(failure),
       const DeepCollectionEquality().hash(success));
 
   @JsonKey(ignore: true)
   @override
-  _$SignUpFormStateCopyWith<_SignUpFormState> get copyWith =>
-      __$SignUpFormStateCopyWithImpl<_SignUpFormState>(this, _$identity);
+  _$$_SignUpFormStateCopyWith<_$_SignUpFormState> get copyWith =>
+      __$$_SignUpFormStateCopyWithImpl<_$_SignUpFormState>(this, _$identity);
 }
 
 abstract class _SignUpFormState extends SignUpFormState {
   const factory _SignUpFormState(
-      {required EmailAddress emailAddress,
-      required UserName firstName,
-      required UserName lastName,
-      required Password password,
-      required bool isSubmitting,
-      required bool isObscure,
-      required bool showErrorMessages,
-      required String failure,
-      required String success}) = _$_SignUpFormState;
+      {required final EmailAddress emailAddress,
+      required final UserName firstName,
+      required final UserName lastName,
+      required final Password password,
+      required final bool isSubmitting,
+      required final bool isObscure,
+      required final bool showErrorMessages,
+      required final bool accepted,
+      required final String failure,
+      required final String success}) = _$_SignUpFormState;
   const _SignUpFormState._() : super._();
 
   @override
-  EmailAddress get emailAddress;
+  EmailAddress get emailAddress => throw _privateConstructorUsedError;
   @override
-  UserName get firstName;
+  UserName get firstName => throw _privateConstructorUsedError;
   @override
-  UserName get lastName;
+  UserName get lastName => throw _privateConstructorUsedError;
   @override
-  Password get password;
+  Password get password => throw _privateConstructorUsedError;
   @override
-  bool get isSubmitting;
+  bool get isSubmitting => throw _privateConstructorUsedError;
   @override
-  bool get isObscure;
+  bool get isObscure => throw _privateConstructorUsedError;
   @override
-  bool get showErrorMessages;
+  bool get showErrorMessages => throw _privateConstructorUsedError;
   @override
-  String get failure;
+  bool get accepted => throw _privateConstructorUsedError;
   @override
-  String get success;
+  String get failure => throw _privateConstructorUsedError;
+  @override
+  String get success => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$SignUpFormStateCopyWith<_SignUpFormState> get copyWith =>
+  _$$_SignUpFormStateCopyWith<_$_SignUpFormState> get copyWith =>
       throw _privateConstructorUsedError;
 }

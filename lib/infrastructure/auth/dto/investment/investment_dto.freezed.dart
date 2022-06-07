@@ -12,60 +12,11 @@ part of 'investment_dto.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 InvestmentItemDTO _$InvestmentItemDTOFromJson(Map<String, dynamic> json) {
   return _InvestmentItemDTO.fromJson(json);
 }
-
-/// @nodoc
-class _$InvestmentItemDTOTearOff {
-  const _$InvestmentItemDTOTearOff();
-
-  _InvestmentItemDTO call(
-      {required String description,
-      required String uid,
-      String? coin,
-      String? bankAccountType,
-      required double amount,
-      required String traxId,
-      required int roi,
-      required int numberOfDays,
-      required String planName,
-      required DateTime paymentDate,
-      required DateTime dueDate,
-      required int duration,
-      required String status,
-      required String currency,
-      required double planYield,
-      required String paymentMethod}) {
-    return _InvestmentItemDTO(
-      description: description,
-      uid: uid,
-      coin: coin,
-      bankAccountType: bankAccountType,
-      amount: amount,
-      traxId: traxId,
-      roi: roi,
-      numberOfDays: numberOfDays,
-      planName: planName,
-      paymentDate: paymentDate,
-      dueDate: dueDate,
-      duration: duration,
-      status: status,
-      currency: currency,
-      planYield: planYield,
-      paymentMethod: paymentMethod,
-    );
-  }
-
-  InvestmentItemDTO fromJson(Map<String, Object?> json) {
-    return InvestmentItemDTO.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $InvestmentItemDTO = _$InvestmentItemDTOTearOff();
 
 /// @nodoc
 mixin _$InvestmentItemDTO {
@@ -214,11 +165,11 @@ class _$InvestmentItemDTOCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$InvestmentItemDTOCopyWith<$Res>
+abstract class _$$_InvestmentItemDTOCopyWith<$Res>
     implements $InvestmentItemDTOCopyWith<$Res> {
-  factory _$InvestmentItemDTOCopyWith(
-          _InvestmentItemDTO value, $Res Function(_InvestmentItemDTO) then) =
-      __$InvestmentItemDTOCopyWithImpl<$Res>;
+  factory _$$_InvestmentItemDTOCopyWith(_$_InvestmentItemDTO value,
+          $Res Function(_$_InvestmentItemDTO) then) =
+      __$$_InvestmentItemDTOCopyWithImpl<$Res>;
   @override
   $Res call(
       {String description,
@@ -240,15 +191,15 @@ abstract class _$InvestmentItemDTOCopyWith<$Res>
 }
 
 /// @nodoc
-class __$InvestmentItemDTOCopyWithImpl<$Res>
+class __$$_InvestmentItemDTOCopyWithImpl<$Res>
     extends _$InvestmentItemDTOCopyWithImpl<$Res>
-    implements _$InvestmentItemDTOCopyWith<$Res> {
-  __$InvestmentItemDTOCopyWithImpl(
-      _InvestmentItemDTO _value, $Res Function(_InvestmentItemDTO) _then)
-      : super(_value, (v) => _then(v as _InvestmentItemDTO));
+    implements _$$_InvestmentItemDTOCopyWith<$Res> {
+  __$$_InvestmentItemDTOCopyWithImpl(
+      _$_InvestmentItemDTO _value, $Res Function(_$_InvestmentItemDTO) _then)
+      : super(_value, (v) => _then(v as _$_InvestmentItemDTO));
 
   @override
-  _InvestmentItemDTO get _value => super._value as _InvestmentItemDTO;
+  _$_InvestmentItemDTO get _value => super._value as _$_InvestmentItemDTO;
 
   @override
   $Res call({
@@ -269,7 +220,7 @@ class __$InvestmentItemDTOCopyWithImpl<$Res>
     Object? planYield = freezed,
     Object? paymentMethod = freezed,
   }) {
-    return _then(_InvestmentItemDTO(
+    return _then(_$_InvestmentItemDTO(
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -405,7 +356,7 @@ class _$_InvestmentItemDTO extends _InvestmentItemDTO {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _InvestmentItemDTO &&
+            other is _$_InvestmentItemDTO &&
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
             const DeepCollectionEquality().equals(other.uid, uid) &&
@@ -429,6 +380,7 @@ class _$_InvestmentItemDTO extends _InvestmentItemDTO {
                 .equals(other.paymentMethod, paymentMethod));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -451,8 +403,9 @@ class _$_InvestmentItemDTO extends _InvestmentItemDTO {
 
   @JsonKey(ignore: true)
   @override
-  _$InvestmentItemDTOCopyWith<_InvestmentItemDTO> get copyWith =>
-      __$InvestmentItemDTOCopyWithImpl<_InvestmentItemDTO>(this, _$identity);
+  _$$_InvestmentItemDTOCopyWith<_$_InvestmentItemDTO> get copyWith =>
+      __$$_InvestmentItemDTOCopyWithImpl<_$_InvestmentItemDTO>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -462,61 +415,61 @@ class _$_InvestmentItemDTO extends _InvestmentItemDTO {
 
 abstract class _InvestmentItemDTO extends InvestmentItemDTO {
   const factory _InvestmentItemDTO(
-      {required String description,
-      required String uid,
-      String? coin,
-      String? bankAccountType,
-      required double amount,
-      required String traxId,
-      required int roi,
-      required int numberOfDays,
-      required String planName,
-      required DateTime paymentDate,
-      required DateTime dueDate,
-      required int duration,
-      required String status,
-      required String currency,
-      required double planYield,
-      required String paymentMethod}) = _$_InvestmentItemDTO;
+      {required final String description,
+      required final String uid,
+      final String? coin,
+      final String? bankAccountType,
+      required final double amount,
+      required final String traxId,
+      required final int roi,
+      required final int numberOfDays,
+      required final String planName,
+      required final DateTime paymentDate,
+      required final DateTime dueDate,
+      required final int duration,
+      required final String status,
+      required final String currency,
+      required final double planYield,
+      required final String paymentMethod}) = _$_InvestmentItemDTO;
   const _InvestmentItemDTO._() : super._();
 
   factory _InvestmentItemDTO.fromJson(Map<String, dynamic> json) =
       _$_InvestmentItemDTO.fromJson;
 
   @override
-  String get description;
+  String get description => throw _privateConstructorUsedError;
   @override
-  String get uid;
+  String get uid => throw _privateConstructorUsedError;
   @override
-  String? get coin;
+  String? get coin => throw _privateConstructorUsedError;
   @override
-  String? get bankAccountType;
+  String? get bankAccountType => throw _privateConstructorUsedError;
   @override
-  double get amount;
+  double get amount => throw _privateConstructorUsedError;
   @override
-  String get traxId;
+  String get traxId => throw _privateConstructorUsedError;
   @override
-  int get roi;
+  int get roi => throw _privateConstructorUsedError;
   @override
-  int get numberOfDays;
+  int get numberOfDays => throw _privateConstructorUsedError;
   @override
-  String get planName;
+  String get planName => throw _privateConstructorUsedError;
   @override
-  DateTime get paymentDate;
+  DateTime get paymentDate => throw _privateConstructorUsedError;
   @override
-  DateTime get dueDate;
+  DateTime get dueDate => throw _privateConstructorUsedError;
   @override
-  int get duration;
+  int get duration => throw _privateConstructorUsedError;
   @override
-  String get status;
+  String get status => throw _privateConstructorUsedError;
   @override
-  String get currency;
+  String get currency => throw _privateConstructorUsedError;
   @override
-  double get planYield;
+  double get planYield => throw _privateConstructorUsedError;
   @override
-  String get paymentMethod;
+  String get paymentMethod => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$InvestmentItemDTOCopyWith<_InvestmentItemDTO> get copyWith =>
+  _$$_InvestmentItemDTOCopyWith<_$_InvestmentItemDTO> get copyWith =>
       throw _privateConstructorUsedError;
 }

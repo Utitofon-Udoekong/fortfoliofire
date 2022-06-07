@@ -98,7 +98,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
           createdat: investmentItem.paymentDate,
           title: investmentItem.description,
           type: "Investment",
-          id: nanoid(8),
+          id: investmentItem.traxId,
           status: investmentItem.status);
       await createNotification(notificationItem: notificationItem).then((_){
         sp.setInt("notificationCount", (notificationCount! + 1));
@@ -126,7 +126,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
           .doc(docId)
           .set(WithdrawalItemDTO.fromDomain(withdrawalItem).toJson());
       NotificationItem notificationItem = NotificationItem(
-        id: nanoid(8),
+        id: withdrawalItem.traxId,
         type: "Withdrawal",
         title: withdrawalItem.description,
         createdat: withdrawalItem.createdat,
@@ -183,6 +183,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
     yield* firestore.authUserCollection
         .doc(auth.currentUser!.uid)
         .collection("notifications")
+        .orderBy("createdat",descending: true)
         .snapshots();
   }
 
@@ -219,6 +220,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
         .doc(auth.currentUser!.uid)
         .collection("investments")
         .where("planName", isEqualTo: "FortDollar")
+        .orderBy("paymentDate", descending: true)
         .snapshots();
   }
 
@@ -228,6 +230,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
         .doc(auth.currentUser!.uid)
         .collection("investments")
         .where("planName", isEqualTo: "FortCrypto")
+        .orderBy("paymentDate", descending: true)
         .snapshots();
   }
 
@@ -237,6 +240,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
         .doc(auth.currentUser!.uid)
         .collection("investments")
         .where("planName", isEqualTo: "FortShield")
+        .orderBy("paymentDate", descending: true)
         .snapshots();
   }
 
@@ -245,7 +249,13 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
     yield* firestore.authUserCollection
         .doc(auth.currentUser!.uid)
         .collection("withdrawals")
+        .orderBy("createdat", descending: true)
         .snapshots();
+  }
+
+  @override
+  Stream<QuerySnapshot> getDollarPrice() async* {
+    yield* firestore.collection("egoPrice").snapshots();
   }
 
   @override
@@ -313,6 +323,8 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
       return left('Server error encountered');
     }
   }
+  
+  
 
   
 }

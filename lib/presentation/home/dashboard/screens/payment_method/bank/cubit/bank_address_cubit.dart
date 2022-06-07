@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -6,9 +7,11 @@ import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
 import 'package:fortfolio/domain/user/bank_address.dart';
 import 'package:fortfolio/infrastructure/auth/dto/bank_address/bank_address_dto.dart';
+import 'package:fortfolio/infrastructure/auth/local_auth_api.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:nanoid/nanoid.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 
 part 'bank_address_state.dart';
@@ -40,6 +43,33 @@ class BankAddressCubit extends Cubit<BankAddressState> {
   void accountNumberChanged({required String accountNumber}){
     emit(state.copyWith(accountNumber: accountNumber));
   }
+
+  void authenticateBiometric() async {
+    bool canCheckBiometrics = await LocalAuthApi.hasBiometrics();
+    if (Platform.isAndroid) {
+      if (canCheckBiometrics) {
+        bool didauthenticate = await LocalAuthApi.authenticate(localizedReason: 'Scan fingerprint to invest');
+        if (didauthenticate != true) {
+          emit(state.copyWith(failure: "Authenticate to continue"));
+          Future.delayed(const Duration(seconds: 1), () =>emit(state.copyWith(failure: "")));
+        } else {
+          addbankClicked();
+        }
+      }
+    }
+  }
+
+  void auhenticatePin({required String pin}) async {
+    final sp = await SharedPreferences.getInstance();
+    final traxPin = sp.getString("trax_key");
+    if(pin == traxPin){
+      addbankClicked();
+    }else{
+      emit(state.copyWith(failure: "Incorrect Transaction Pin"));
+      Future.delayed(const Duration(seconds: 1), () =>emit(state.copyWith(failure: "")));
+    }
+  }
+  
   void addbankClicked() async{
     emit(state.copyWith( isLoading: true ,success: "",failure:"" ));
     final String bankName = state.bankName;

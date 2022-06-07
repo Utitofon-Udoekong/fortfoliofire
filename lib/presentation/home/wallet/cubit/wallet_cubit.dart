@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -15,11 +16,13 @@ import 'package:fortfolio/infrastructure/auth/dto/bank_address/bank_address_dto.
 import 'package:fortfolio/infrastructure/auth/dto/crypto_address/crypto_address.dart';
 import 'package:fortfolio/infrastructure/auth/dto/investment/investment_dto.dart';
 import 'package:fortfolio/infrastructure/auth/dto/withdrawal/withdrawal_dto.dart';
+import 'package:fortfolio/infrastructure/auth/local_auth_api.dart';
 import 'package:fortfolio/injection.dart';
 import 'package:fortfolio/utils/utils.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:nanoid/nanoid.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 
 part 'wallet_state.dart';
@@ -30,6 +33,7 @@ class WalletCubit extends Cubit<WalletState> {
   final IFirestoreFacade firestoreFacade;
   final IExternalFacade externalFacade;
   late final AuthCubit authCubit;
+  late final int dollarPrice;
   StreamSubscription<QuerySnapshot>? _logsFortDollarSubscription;
   StreamSubscription<QuerySnapshot>? _logsFortShieldSubscription;
   StreamSubscription<QuerySnapshot>? _logsFortCryptoSubscription;
@@ -37,8 +41,10 @@ class WalletCubit extends Cubit<WalletState> {
   StreamSubscription<QuerySnapshot>? _logsCryptoAddressSubscription;
   StreamSubscription<QuerySnapshot>? _logsGeneralCryptoAddressSubscription;
 
-  WalletCubit(this.firestoreFacade, this.externalFacade) : super(WalletState.initial()) {
+  WalletCubit(this.firestoreFacade, this.externalFacade)
+      : super(WalletState.initial()) {
     authCubit = getIt<AuthCubit>();
+    dollarPrice = authCubit.state.dollarToNaira;
     authCubit.stream.listen((state) {
       if (state.isLoggedIn) {
         initWithdrawals();
@@ -49,11 +55,6 @@ class WalletCubit extends Cubit<WalletState> {
     });
   }
 
-
-  void investmentPlanChanged({required String investmentPlan}) {
-    emit(state.copyWith(investmentPlan: investmentPlan));
-  }
-
   void showDigitsChanged() {
     final showDigits = state.showDigits;
     emit(state.copyWith(showDigits: !showDigits));
@@ -62,28 +63,28 @@ class WalletCubit extends Cubit<WalletState> {
   void getWalletBalanceInBTC() async {
     final btcPriceOption = await externalFacade.getBTCPriceInDollars();
     var walletBalance = state.walletBalance;
-    if(state.exchange == "NGN"){
-      walletBalance /= 590;
-    }
-    emit(state.copyWith(walletBalance: (walletBalance / btcPriceOption)));
+    emit(state.copyWith(walletBalance: (walletBalance / btcPriceOption), exchange: "BTC"));
+    
   }
 
   void getWalletBalanceInNaira() async {
-    var walletBalance = state.walletBalance;
     final btcPriceOption = await externalFacade.getBTCPriceInDollars();
-    if(state.exchange == "BTC"){
-      walletBalance *= btcPriceOption;
+    var walletBalance = state.walletBalance;
+    if (state.exchange == "BTC") {
+      emit(state.copyWith(walletBalance: walletBalance * btcPriceOption, exchange: "NGN"));
+    }else{
+      emit(state.copyWith(walletBalance: walletBalance, exchange: "NGN"));
     }
-    emit(state.copyWith(walletBalance: (walletBalance * 590)));
   }
 
   void getWalletBalanceInUSD() async {
-    var walletBalance = state.walletBalance;
     final btcPriceOption = await externalFacade.getBTCPriceInDollars();
-    if(state.exchange == "BTC"){
-      walletBalance *= btcPriceOption;
+    var walletBalance = state.walletBalance;
+    if (state.exchange == "BTC") {
+      emit(state.copyWith(walletBalance: walletBalance * btcPriceOption, exchange: "USD"));
+    }else{
+      emit(state.copyWith(walletBalance: walletBalance, exchange: "USD"));
     }
-    emit(state.copyWith(walletBalance: walletBalance));
   }
 
   void investmentToBeWithdrawnChanged(
@@ -152,12 +153,12 @@ class WalletCubit extends Cubit<WalletState> {
     var fortDollarActive = state.isFortDollarActive;
     var fortShieldActive = state.isFortShieldActive;
     var fortCryptoActive = state.isFortCryptoActive;
-     
+
     if (fortDollarActive && !fortShieldActive && !fortCryptoActive) {
       var balance = 0.0;
       for (var element in fortDollarInvestments) {
         var availableBalance = element.amount + element.planYield;
-        if(element.status != "Pending"){
+        if (element.status != "Pending") {
           balance += availableBalance;
         }
       }
@@ -166,8 +167,8 @@ class WalletCubit extends Cubit<WalletState> {
       var balance = 0.0;
       for (var element in fortShieldInvestments) {
         var availableBalance =
-            (element.amount / 590) + (element.planYield / 590);
-        if(element.status != "Pending"){
+            (element.amount / dollarPrice) + (element.planYield / dollarPrice);
+        if (element.status != "Pending") {
           balance += availableBalance;
         }
       }
@@ -175,9 +176,11 @@ class WalletCubit extends Cubit<WalletState> {
     } else if (!fortDollarActive && !fortShieldActive && fortCryptoActive) {
       var balance = 0.0;
       for (var element in fortCryptoInvestments) {
-        var btcToUsdPriceOption = await externalFacade.getCoinPrice(id: getCryptoNameFromSymbol(symbol: element.coin!));
-        var availableBalance = (element.amount * btcToUsdPriceOption) + (element.planYield * btcToUsdPriceOption);
-        if(element.status != "Pending"){
+        var btcToUsdPriceOption = await externalFacade.getCoinPrice(
+            id: getCryptoNameFromSymbol(symbol: element.coin!));
+        var availableBalance = (element.amount * btcToUsdPriceOption) +
+            (element.planYield * btcToUsdPriceOption);
+        if (element.status != "Pending") {
           balance += availableBalance;
         }
       }
@@ -186,14 +189,14 @@ class WalletCubit extends Cubit<WalletState> {
       var balance = 0.0;
       for (var element in fortShieldInvestments) {
         var availableBalance =
-            (element.amount / 590) + (element.planYield / 590);
-        if(element.status != "Pending"){
+            (element.amount / dollarPrice) + (element.planYield / dollarPrice);
+        if (element.status != "Pending") {
           balance += availableBalance;
         }
       }
       for (var element in fortDollarInvestments) {
         var availableBalance = element.amount + element.planYield;
-        if(element.status != "Pending"){
+        if (element.status != "Pending") {
           balance += availableBalance;
         }
       }
@@ -202,14 +205,16 @@ class WalletCubit extends Cubit<WalletState> {
       var balance = 0.0;
       for (var element in fortDollarInvestments) {
         var availableBalance = element.amount + element.planYield;
-        if(element.status != "Pending"){
+        if (element.status != "Pending") {
           balance += availableBalance;
         }
       }
       for (var element in fortCryptoInvestments) {
-        var btcToUsdPriceOption = await externalFacade.getCoinPrice(id: getCryptoNameFromSymbol(symbol: element.coin!));
-        var availableBalance = (element.amount * btcToUsdPriceOption) + (element.planYield * btcToUsdPriceOption);
-        if(element.status != "Pending"){
+        var btcToUsdPriceOption = await externalFacade.getCoinPrice(
+            id: getCryptoNameFromSymbol(symbol: element.coin!));
+        var availableBalance = (element.amount * btcToUsdPriceOption) +
+            (element.planYield * btcToUsdPriceOption);
+        if (element.status != "Pending") {
           balance += availableBalance;
         }
       }
@@ -218,15 +223,17 @@ class WalletCubit extends Cubit<WalletState> {
       var balance = 0.0;
       for (var element in fortShieldInvestments) {
         var availableBalance =
-            (element.amount / 590) + (element.planYield / 590);
-        if(element.status != "Pending"){
+            (element.amount / dollarPrice) + (element.planYield / dollarPrice);
+        if (element.status != "Pending") {
           balance += availableBalance;
         }
       }
       for (var element in fortCryptoInvestments) {
-        var btcToUsdPriceOption = await externalFacade.getCoinPrice(id: getCryptoNameFromSymbol(symbol: element.coin!));
-        var availableBalance = (element.amount * btcToUsdPriceOption) + (element.planYield * btcToUsdPriceOption);
-        if(element.status != "Pending"){
+        var btcToUsdPriceOption = await externalFacade.getCoinPrice(
+            id: getCryptoNameFromSymbol(symbol: element.coin!));
+        var availableBalance = (element.amount * btcToUsdPriceOption) +
+            (element.planYield * btcToUsdPriceOption);
+        if (element.status != "Pending") {
           balance += availableBalance;
         }
       }
@@ -235,21 +242,23 @@ class WalletCubit extends Cubit<WalletState> {
       var balance = 0.0;
       for (var element in fortDollarInvestments) {
         var availableBalance = element.amount + element.planYield;
-        if(element.status != "Pending"){
+        if (element.status != "Pending") {
           balance += availableBalance;
         }
       }
       for (var element in fortCryptoInvestments) {
-        var btcToUsdPriceOption = await externalFacade.getCoinPrice(id: getCryptoNameFromSymbol(symbol: element.coin!));
-        var availableBalance = (element.amount * btcToUsdPriceOption) + (element.planYield * btcToUsdPriceOption);
-        if(element.status != "Pending"){
+        var btcToUsdPriceOption = await externalFacade.getCoinPrice(
+            id: getCryptoNameFromSymbol(symbol: element.coin!));
+        var availableBalance = (element.amount * btcToUsdPriceOption) +
+            (element.planYield * btcToUsdPriceOption);
+        if (element.status != "Pending") {
           balance += availableBalance;
         }
       }
       for (var element in fortShieldInvestments) {
         var availableBalance =
-            (element.amount / 590) + (element.planYield / 590);
-        if(element.status != "Pending"){
+            (element.amount / dollarPrice) + (element.planYield / dollarPrice);
+        if (element.status != "Pending") {
           balance += availableBalance;
         }
       }
@@ -394,8 +403,8 @@ class WalletCubit extends Cubit<WalletState> {
   }
 
   void makeWithdrawalTransaction() async {
-    final String investmentPlan = state.investmentPlan;
-    final String description = "$investmentPlan withdrawal".toUpperCase();
+    final String description =
+        "${state.investmentToBeWithdrawn.planName} withdrawal".toUpperCase();
     final double amount = state.investmentToBeWithdrawn.amount;
     final int duration = state.investmentToBeWithdrawn.duration;
     final int roi = state.investmentToBeWithdrawn.roi;
@@ -403,17 +412,18 @@ class WalletCubit extends Cubit<WalletState> {
     final traxId = const Uuid().v4().substring(0, 7);
     final String uid = nanoid(8);
     final String currency = state.investmentToBeWithdrawn.currency;
+    final Map<String, dynamic> withdrawalDetails = state.withdrawalDetails;
     WithdrawalItem withdrawalItem = WithdrawalItem(
         description: description,
         amount: amount,
         traxId: traxId,
-        planName: investmentPlan,
         status: "Pending",
         createdat: DateTime.now(),
         paymentMethod: paymentMethod,
         uid: uid,
         duration: duration.toInt(),
         roi: roi,
+        withdrawalDetails: withdrawalDetails,
         currency: currency);
     final response = await firestoreFacade.createWithdrawalTransaction(
         withdrawalItem: withdrawalItem);
@@ -429,7 +439,8 @@ class WalletCubit extends Cubit<WalletState> {
     }
   }
 
-  void harvestInvestment({required String docId, required double amount}) async {
+  void harvestInvestment(
+      {required String docId, required double amount}) async {
     emit(state.copyWith(loading: true));
     final response =
         await firestoreFacade.harvestInvestment(docId: docId, amount: amount);
@@ -444,13 +455,38 @@ class WalletCubit extends Cubit<WalletState> {
     }
   }
 
+  void authenticateBiometricPayment() async {
+    bool canCheckBiometrics = await LocalAuthApi.hasBiometrics();
+    if (Platform.isAndroid) {
+      if (canCheckBiometrics) {
+        bool didauthenticate = await LocalAuthApi.authenticate(
+            localizedReason: 'Scan fingerprint to invest');
+        if (didauthenticate != true) {
+          emit(state.copyWith(failure: "Authenticate to continue"));
+          Future.delayed(const Duration(seconds: 1),
+              () => emit(state.copyWith(failure: "")));
+        } else {
+          makeWithdrawalTransaction();
+        }
+      }
+    }
+  }
+
+  void auhenticatePinPayment({required String pin}) async {
+    final sp = await SharedPreferences.getInstance();
+    final traxPin = sp.getString("trax_key");
+    if (pin == traxPin) {
+      makeWithdrawalTransaction();
+    } else {
+      emit(state.copyWith(failure: "Incorrect Transaction Pin"));
+      Future.delayed(
+          const Duration(seconds: 1), () => emit(state.copyWith(failure: "")));
+    }
+  }
+
   void reset() {
     emit(state.copyWith(
-        investmentPlan: "",
-        withdrawalMethod: "",
-        failure: "",
-        success: "",
-        withdrawalDetails: {}));
+        withdrawalMethod: "", failure: "", success: "", withdrawalDetails: {}));
   }
 
   @override

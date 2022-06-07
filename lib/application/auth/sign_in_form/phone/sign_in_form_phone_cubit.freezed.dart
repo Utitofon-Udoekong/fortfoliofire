@@ -12,34 +12,7 @@ part of 'sign_in_form_phone_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$SignInFormPhoneStateTearOff {
-  const _$SignInFormPhoneStateTearOff();
-
-  _SignInFormPhoneState call(
-      {required String phoneNumber,
-      required String smsCode,
-      required String verificationId,
-      required String failure,
-      required String success,
-      required bool isSubmitting,
-      required bool showErrorMessages}) {
-    return _SignInFormPhoneState(
-      phoneNumber: phoneNumber,
-      smsCode: smsCode,
-      verificationId: verificationId,
-      failure: failure,
-      success: success,
-      isSubmitting: isSubmitting,
-      showErrorMessages: showErrorMessages,
-    );
-  }
-}
-
-/// @nodoc
-const $SignInFormPhoneState = _$SignInFormPhoneStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$SignInFormPhoneState {
@@ -124,11 +97,11 @@ class _$SignInFormPhoneStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$SignInFormPhoneStateCopyWith<$Res>
+abstract class _$$_SignInFormPhoneStateCopyWith<$Res>
     implements $SignInFormPhoneStateCopyWith<$Res> {
-  factory _$SignInFormPhoneStateCopyWith(_SignInFormPhoneState value,
-          $Res Function(_SignInFormPhoneState) then) =
-      __$SignInFormPhoneStateCopyWithImpl<$Res>;
+  factory _$$_SignInFormPhoneStateCopyWith(_$_SignInFormPhoneState value,
+          $Res Function(_$_SignInFormPhoneState) then) =
+      __$$_SignInFormPhoneStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {String phoneNumber,
@@ -141,15 +114,15 @@ abstract class _$SignInFormPhoneStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$SignInFormPhoneStateCopyWithImpl<$Res>
+class __$$_SignInFormPhoneStateCopyWithImpl<$Res>
     extends _$SignInFormPhoneStateCopyWithImpl<$Res>
-    implements _$SignInFormPhoneStateCopyWith<$Res> {
-  __$SignInFormPhoneStateCopyWithImpl(
-      _SignInFormPhoneState _value, $Res Function(_SignInFormPhoneState) _then)
-      : super(_value, (v) => _then(v as _SignInFormPhoneState));
+    implements _$$_SignInFormPhoneStateCopyWith<$Res> {
+  __$$_SignInFormPhoneStateCopyWithImpl(_$_SignInFormPhoneState _value,
+      $Res Function(_$_SignInFormPhoneState) _then)
+      : super(_value, (v) => _then(v as _$_SignInFormPhoneState));
 
   @override
-  _SignInFormPhoneState get _value => super._value as _SignInFormPhoneState;
+  _$_SignInFormPhoneState get _value => super._value as _$_SignInFormPhoneState;
 
   @override
   $Res call({
@@ -161,7 +134,7 @@ class __$SignInFormPhoneStateCopyWithImpl<$Res>
     Object? isSubmitting = freezed,
     Object? showErrorMessages = freezed,
   }) {
-    return _then(_SignInFormPhoneState(
+    return _then(_$_SignInFormPhoneState(
       phoneNumber: phoneNumber == freezed
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
@@ -231,7 +204,7 @@ class _$_SignInFormPhoneState extends _SignInFormPhoneState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _SignInFormPhoneState &&
+            other is _$_SignInFormPhoneState &&
             const DeepCollectionEquality()
                 .equals(other.phoneNumber, phoneNumber) &&
             const DeepCollectionEquality().equals(other.smsCode, smsCode) &&
@@ -258,38 +231,38 @@ class _$_SignInFormPhoneState extends _SignInFormPhoneState {
 
   @JsonKey(ignore: true)
   @override
-  _$SignInFormPhoneStateCopyWith<_SignInFormPhoneState> get copyWith =>
-      __$SignInFormPhoneStateCopyWithImpl<_SignInFormPhoneState>(
+  _$$_SignInFormPhoneStateCopyWith<_$_SignInFormPhoneState> get copyWith =>
+      __$$_SignInFormPhoneStateCopyWithImpl<_$_SignInFormPhoneState>(
           this, _$identity);
 }
 
 abstract class _SignInFormPhoneState extends SignInFormPhoneState {
   const factory _SignInFormPhoneState(
-      {required String phoneNumber,
-      required String smsCode,
-      required String verificationId,
-      required String failure,
-      required String success,
-      required bool isSubmitting,
-      required bool showErrorMessages}) = _$_SignInFormPhoneState;
+      {required final String phoneNumber,
+      required final String smsCode,
+      required final String verificationId,
+      required final String failure,
+      required final String success,
+      required final bool isSubmitting,
+      required final bool showErrorMessages}) = _$_SignInFormPhoneState;
   const _SignInFormPhoneState._() : super._();
 
   @override
-  String get phoneNumber;
+  String get phoneNumber => throw _privateConstructorUsedError;
   @override
-  String get smsCode;
+  String get smsCode => throw _privateConstructorUsedError;
   @override
-  String get verificationId;
+  String get verificationId => throw _privateConstructorUsedError;
   @override
-  String get failure;
+  String get failure => throw _privateConstructorUsedError;
   @override
-  String get success;
+  String get success => throw _privateConstructorUsedError;
   @override
-  bool get isSubmitting;
+  bool get isSubmitting => throw _privateConstructorUsedError;
   @override
-  bool get showErrorMessages;
+  bool get showErrorMessages => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$SignInFormPhoneStateCopyWith<_SignInFormPhoneState> get copyWith =>
+  _$$_SignInFormPhoneStateCopyWith<_$_SignInFormPhoneState> get copyWith =>
       throw _privateConstructorUsedError;
 }

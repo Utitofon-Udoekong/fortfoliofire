@@ -4,7 +4,9 @@ import 'package:fortfolio/application/auth/sign_up_form/email/sign_up_form_cubit
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
+import 'package:fortfolio/domain/widgets/labelled_checkbox.dart';
 import 'package:fortfolio/domain/widgets/loading_view.dart';
+import 'package:fortfolio/domain/widgets/tac_text.dart';
 import 'package:fortfolio/injection.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
@@ -245,6 +247,19 @@ class SignUpForm extends StatelessWidget {
                                   );
                                 },
                               ),
+                              BlocBuilder<SignUpFormCubit, SignUpFormState>(
+                    builder: (context, state) {
+                      return LabeledCheckbox(
+                          label: const TACText(),
+                          value: state.accepted,
+                          onChanged: (value) {
+                            context
+                                .read<SignUpFormCubit>()
+                                .acceptedChanged(
+                                    accepted: value);
+                          });
+                    },
+                  ),
                               const SizedBox(
                                 height: 20,
                               ),
@@ -276,4 +291,5 @@ class SignUpForm extends StatelessWidget {
           )),
     );
   }
+  
 }

@@ -12,14 +12,15 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
 import 'application/auth/auth_cubit.dart' as _i3;
-import 'application/auth/reset_password_form/reset_password_cubit.dart' as _i21;
+import 'application/auth/reset_password_form/reset_password_cubit.dart' as _i22;
 import 'application/auth/sign_in_form/email/sign_in_form_email_cubit.dart'
-    as _i23;
-import 'application/auth/sign_in_form/phone/sign_in_form_phone_cubit.dart'
     as _i24;
-import 'application/auth/sign_up_form/email/sign_up_form_cubit.dart' as _i25;
+import 'application/auth/sign_in_form/phone/sign_in_form_phone_cubit.dart'
+    as _i25;
+import 'application/auth/sign_up_form/email/sign_up_form_cubit.dart' as _i26;
 import 'application/auth/sign_up_form/phone/sign_up_form_phone_cubit.dart'
-    as _i26;
+    as _i27;
+import 'application/network/network_cubit.dart' as _i19;
 import 'domain/auth/i_auth_facade.dart' as _i8;
 import 'domain/auth/i_external_facade.dart' as _i10;
 import 'domain/auth/i_firestore_facade.dart' as _i12;
@@ -30,23 +31,23 @@ import 'infrastructure/auth/firebase_auth_facade.dart' as _i9;
 import 'infrastructure/auth/firebase_firestore_facade.dart' as _i13;
 import 'infrastructure/auth/firebase_functions_facade.dart' as _i15;
 import 'infrastructure/auth/firebase_storage_facade.dart' as _i17;
-import 'infrastructure/core/firebase_injectible.dart' as _i32;
-import 'presentation/home/dashboard/cubit/dashboard_cubit.dart' as _i31;
+import 'infrastructure/core/firebase_injectible.dart' as _i33;
+import 'presentation/home/dashboard/cubit/dashboard_cubit.dart' as _i32;
 import 'presentation/home/dashboard/screens/notifications/cubit/notification_cubit.dart'
-    as _i19;
-import 'presentation/home/dashboard/screens/payment_method/bank/cubit/bank_address_cubit.dart'
-    as _i29;
-import 'presentation/home/dashboard/screens/payment_method/crypto/cubit/crypto_wallet_cubit.dart'
-    as _i30;
-import 'presentation/home/dashboard/screens/profile/cubit/profile_cubit.dart'
     as _i20;
+import 'presentation/home/dashboard/screens/payment_method/bank/cubit/bank_address_cubit.dart'
+    as _i30;
+import 'presentation/home/dashboard/screens/payment_method/crypto/cubit/crypto_wallet_cubit.dart'
+    as _i31;
+import 'presentation/home/dashboard/screens/profile/cubit/profile_cubit.dart'
+    as _i21;
 import 'presentation/home/dashboard/screens/security/cubit/security_cubit.dart'
-    as _i22;
+    as _i23;
 import 'presentation/home/dashboard/screens/verification/cubit/verification_cubit.dart'
-    as _i27;
+    as _i28;
 import 'presentation/home/investment/cubit/investment_cubit.dart' as _i18;
 import 'presentation/home/wallet/cubit/wallet_cubit.dart'
-    as _i28; // ignore_for_file: unnecessary_lambdas
+    as _i29; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -76,35 +77,36 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       get<_i12.IFirestoreFacade>(),
       get<_i10.IExternalFacade>(),
       get<_i14.IFunctionsFacade>()));
-  gh.factory<_i19.NotificationCubit>(
-      () => _i19.NotificationCubit(get<_i12.IFirestoreFacade>()));
-  gh.factory<_i20.ProfileCubit>(
-      () => _i20.ProfileCubit(get<_i8.IAuthFacade>()));
-  gh.factory<_i21.ResetPasswordCubit>(
-      () => _i21.ResetPasswordCubit(get<_i8.IAuthFacade>()));
-  gh.factory<_i22.SecurityCubit>(
-      () => _i22.SecurityCubit(get<_i8.IAuthFacade>()));
-  gh.factory<_i23.SignInFormEmailCubit>(() =>
-      _i23.SignInFormEmailCubit(get<_i8.IAuthFacade>(), get<_i3.AuthCubit>()));
-  gh.factory<_i24.SignInFormPhoneCubit>(
-      () => _i24.SignInFormPhoneCubit(get<_i3.AuthCubit>()));
-  gh.factory<_i25.SignUpFormCubit>(
-      () => _i25.SignUpFormCubit(get<_i8.IAuthFacade>()));
-  gh.factory<_i26.SignUpFormPhoneCubit>(
-      () => _i26.SignUpFormPhoneCubit(get<_i3.AuthCubit>()));
-  gh.factory<_i27.VerificationCubit>(() => _i27.VerificationCubit(
+  gh.factory<_i19.NetworkCubit>(() => _i19.NetworkCubit());
+  gh.factory<_i20.NotificationCubit>(
+      () => _i20.NotificationCubit(get<_i12.IFirestoreFacade>()));
+  gh.factory<_i21.ProfileCubit>(
+      () => _i21.ProfileCubit(get<_i8.IAuthFacade>()));
+  gh.factory<_i22.ResetPasswordCubit>(
+      () => _i22.ResetPasswordCubit(get<_i8.IAuthFacade>()));
+  gh.factory<_i23.SecurityCubit>(
+      () => _i23.SecurityCubit(get<_i8.IAuthFacade>()));
+  gh.factory<_i24.SignInFormEmailCubit>(
+      () => _i24.SignInFormEmailCubit(get<_i8.IAuthFacade>()));
+  gh.factory<_i25.SignInFormPhoneCubit>(
+      () => _i25.SignInFormPhoneCubit(get<_i3.AuthCubit>()));
+  gh.factory<_i26.SignUpFormCubit>(
+      () => _i26.SignUpFormCubit(get<_i8.IAuthFacade>()));
+  gh.factory<_i27.SignUpFormPhoneCubit>(
+      () => _i27.SignUpFormPhoneCubit(get<_i3.AuthCubit>()));
+  gh.factory<_i28.VerificationCubit>(() => _i28.VerificationCubit(
       get<_i16.IStorageFacade>(),
       get<_i12.IFirestoreFacade>(),
       get<_i3.AuthCubit>()));
-  gh.factory<_i28.WalletCubit>(() => _i28.WalletCubit(
+  gh.factory<_i29.WalletCubit>(() => _i29.WalletCubit(
       get<_i12.IFirestoreFacade>(), get<_i10.IExternalFacade>()));
-  gh.factory<_i29.BankAddressCubit>(() => _i29.BankAddressCubit(
+  gh.factory<_i30.BankAddressCubit>(() => _i30.BankAddressCubit(
       get<_i12.IFirestoreFacade>(), get<_i3.AuthCubit>()));
-  gh.factory<_i30.CryptoWalletCubit>(
-      () => _i30.CryptoWalletCubit(get<_i12.IFirestoreFacade>()));
-  gh.factory<_i31.DashboardCubit>(() =>
-      _i31.DashboardCubit(get<_i16.IStorageFacade>(), get<_i8.IAuthFacade>()));
+  gh.factory<_i31.CryptoWalletCubit>(
+      () => _i31.CryptoWalletCubit(get<_i12.IFirestoreFacade>()));
+  gh.factory<_i32.DashboardCubit>(() =>
+      _i32.DashboardCubit(get<_i16.IStorageFacade>(), get<_i8.IAuthFacade>()));
   return get;
 }
 
-class _$FirebaseInjectableModule extends _i32.FirebaseInjectableModule {}
+class _$FirebaseInjectableModule extends _i33.FirebaseInjectableModule {}

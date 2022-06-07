@@ -15,11 +15,11 @@ abstract class WithdrawalItemDTO implements _$WithdrawalItemDTO {
     required int roi,
     required String traxId,
     required String uid,
-    required String planName,
     required String status,
     required DateTime createdat,
     required String paymentMethod,
     required String currency,
+    required Map<String, dynamic> withdrawalDetails
   }) = _WithdrawalItemDTO;
 
   factory WithdrawalItemDTO.fromDomain(WithdrawalItem withdrawalItem) {
@@ -27,7 +27,6 @@ abstract class WithdrawalItemDTO implements _$WithdrawalItemDTO {
       amount: withdrawalItem.amount,
       duration: withdrawalItem.duration,
       roi: withdrawalItem.roi,
-      planName: withdrawalItem.planName,
       currency: withdrawalItem.currency,
       createdat: withdrawalItem.createdat,
       description: withdrawalItem.description,
@@ -35,6 +34,7 @@ abstract class WithdrawalItemDTO implements _$WithdrawalItemDTO {
       status: withdrawalItem.status,
       traxId: withdrawalItem.traxId,
       uid: withdrawalItem.uid,
+      withdrawalDetails: withdrawalItem.withdrawalDetails,
     );
   }
 
@@ -57,14 +57,14 @@ extension WithdrawalItemDTOX on WithdrawalItemDTO {
       amount: amount,
       duration: duration,
       roi: roi,
-      planName: planName,
       createdat: createdat,
       description: description,
       paymentMethod: paymentMethod,
       status: status,
       traxId: traxId,
       uid: uid,
-      currency: currency
+      currency: currency,
+      withdrawalDetails: withdrawalDetails
     );
   }
 }
