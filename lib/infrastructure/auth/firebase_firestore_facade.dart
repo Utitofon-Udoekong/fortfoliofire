@@ -18,7 +18,6 @@ import 'package:fortfolio/infrastructure/auth/dto/notification/notification_dto.
 import 'package:fortfolio/infrastructure/auth/dto/withdrawal/withdrawal_dto.dart';
 import 'package:fortfolio/infrastructure/core/firestore_helpers.dart';
 import 'package:injectable/injectable.dart';
-import 'package:nanoid/nanoid.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 @LazySingleton(as: IFirestoreFacade)
