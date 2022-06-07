@@ -160,6 +160,13 @@ class Dashboard extends StatelessWidget {
     );
   }
 
+  showModalToSetPin({required BuildContext context}){
+    var dialog = Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+      
+    );
+  }
+
   List<Widget> generateSlider(BuildContext context, List<String> list) {
     List<Widget> imageSlider = list
         .map((String item) {

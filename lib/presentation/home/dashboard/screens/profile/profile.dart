@@ -176,6 +176,19 @@ class ProfilePage extends StatelessWidget {
                           false,
                           () => showEditPhoneModal(context: context),
                           context),
+                          const SizedBox(
+                        height: 10,
+                      ),
+                      GestureDetector(
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 8),
+                          decoration: BoxDecoration(
+                            color: const Color(0XFFF3F6F8),
+                            borderRadius: BorderRadius.circular(5.0)
+                          ),
+                          child: Text("Delete Account", style: titleText.copyWith(color: kRedColor, fontSize: 15))
+                        ),
+                      ),
                       const Spacer(),
                       Center(
                         child: Text(
