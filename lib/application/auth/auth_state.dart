@@ -15,5 +15,5 @@ class AuthState with _$AuthState {
         dollarToNaira: 0
       );
 
-  bool get isLoggedIn => userModel.firstName.isNotEmpty;
+  bool get isLoggedIn => userModel.email.isNotEmpty;
 }

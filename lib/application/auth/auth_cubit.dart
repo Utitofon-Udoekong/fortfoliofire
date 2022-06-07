@@ -68,7 +68,6 @@ class AuthCubit extends Cubit<AuthState> {
             emit(state.copyWith(dollarToNaira: 500));
         }
       }
-      print("started dollar sub");
     },onError: (error) => print("Listen failed: $error"));
   }
 

@@ -1,7 +1,5 @@
 import 'dart:io';
 
-import 'package:auto_route/auto_route.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/application/auth/sign_in_form/phone/sign_in_form_phone_cubit.dart';
@@ -149,9 +147,6 @@ class _AppState extends State<App> with WidgetsBindingObserver {
         child: MaterialApp.router(
           title: 'Fortfolio',
           debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-          ),
           routeInformationParser: _appRouter.defaultRouteParser(),
           routerDelegate: _appRouter.delegate(),
           builder: (context, widget) => MultiBlocListener(listeners: [
