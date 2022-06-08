@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../domain/auth/auth_user_model.dart';
-
 import '../../core/json_converters.dart';
 
 part 'auth_user_model_dto.freezed.dart';
@@ -19,6 +18,7 @@ class AuthUserModelDto with _$AuthUserModelDto {
     required double balance,
     required String email,
     required bool isVerified,
+    required bool isAccountActive,
     // ignore: invalid_annotation_target
     @JsonKey(fromJson: sendDateTimeFromJson, toJson: sendDateTimeToJson)
         required DateTime createdat,
@@ -37,6 +37,7 @@ class AuthUserModelDto with _$AuthUserModelDto {
       email: userModel.email,
       firstName: userModel.firstName,
       isVerified: userModel.isVerified,
+      isAccountActive: userModel.isAccountActive,
       lastName: userModel.lastName,
     );
   }
@@ -63,6 +64,7 @@ extension AuthUserModelDtoX on AuthUserModelDto {
       email: email,
       firstName: firstName,
       isVerified: isVerified,
+      isAccountActive: isAccountActive,
       lastName: lastName,
       displayName: displayName,
     );

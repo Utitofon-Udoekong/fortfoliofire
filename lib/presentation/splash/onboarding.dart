@@ -121,17 +121,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   text: "REGISTER",
                   onTap: () =>
                       {context.router.replace(const SignUpFormRoute())},
-                ),
-                Center(
-                  child: TextButton(
-                      onPressed: () {
-                        context.router.replace(const HomePageRoute());
-                      },
-                      child: Text(
-                        'Home',
-                        style: titleText.copyWith(
-                            color: kBlackColor, fontSize: 15),
-                      )),
                 )
               ],
             ),

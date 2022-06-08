@@ -4,14 +4,13 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:injectable/injectable.dart';
-
 import 'package:fortfolio/domain/auth/auth_failure.dart';
 import 'package:fortfolio/domain/auth/auth_user_model.dart';
 import 'package:fortfolio/domain/auth/i_auth_facade.dart';
 import 'package:fortfolio/domain/auth/value_objects.dart';
 import 'package:fortfolio/infrastructure/auth/firebase_user_mapper.dart';
 import 'package:fortfolio/infrastructure/core/firestore_helpers.dart';
+import 'package:injectable/injectable.dart';
 import 'package:uuid/uuid.dart';
 
 import 'dto/auth_user_model_dto.dart';
@@ -138,6 +137,7 @@ class FirebaseAuthFacade implements IAuthFacade {
             balance: 0,
             createdat: DateTime.now(),
             isVerified: false,
+            isAccountActive: true,
             id: uuid,
             displayName: displayName);
         log(authUserModel.toString());
@@ -434,6 +434,19 @@ class FirebaseAuthFacade implements IAuthFacade {
         });
 
     yield* streamController.stream;
+  }
+
+  @override
+  Future<Either<String, String>> deleteUser() async {
+    final query =
+        firestore.authUserCollection.doc(firebaseAuth.currentUser!.uid);
+    try {
+      await query.update({"isAccountActive": false});
+      return right("Account submitted for deletion");
+    } on FirebaseException catch (e) {
+      log("Code: ${e.code}, Message: ${e.message}");
+      return left('Server error encountered');
+    }
   }
 
   @override

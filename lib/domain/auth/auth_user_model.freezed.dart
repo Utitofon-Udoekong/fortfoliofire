@@ -24,6 +24,9 @@ mixin _$AuthUserModel {
   double get balance => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   bool get isVerified => throw _privateConstructorUsedError;
+
+  bool get isAccountActive => throw _privateConstructorUsedError;
+
   DateTime get createdat => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -45,6 +48,7 @@ abstract class $AuthUserModelCopyWith<$Res> {
       double balance,
       String email,
       bool isVerified,
+      bool isAccountActive,
       DateTime createdat});
 }
 
@@ -67,6 +71,7 @@ class _$AuthUserModelCopyWithImpl<$Res>
     Object? balance = freezed,
     Object? email = freezed,
     Object? isVerified = freezed,
+    Object? isAccountActive = freezed,
     Object? createdat = freezed,
   }) {
     return _then(_value.copyWith(
@@ -102,6 +107,10 @@ class _$AuthUserModelCopyWithImpl<$Res>
           ? _value.isVerified
           : isVerified // ignore: cast_nullable_to_non_nullable
               as bool,
+      isAccountActive: isAccountActive == freezed
+          ? _value.isAccountActive
+          : isAccountActive // ignore: cast_nullable_to_non_nullable
+              as bool,
       createdat: createdat == freezed
           ? _value.createdat
           : createdat // ignore: cast_nullable_to_non_nullable
@@ -126,6 +135,7 @@ abstract class _$$_AuthUserModelCopyWith<$Res>
       double balance,
       String email,
       bool isVerified,
+      bool isAccountActive,
       DateTime createdat});
 }
 
@@ -150,6 +160,7 @@ class __$$_AuthUserModelCopyWithImpl<$Res>
     Object? balance = freezed,
     Object? email = freezed,
     Object? isVerified = freezed,
+    Object? isAccountActive = freezed,
     Object? createdat = freezed,
   }) {
     return _then(_$_AuthUserModel(
@@ -185,6 +196,10 @@ class __$$_AuthUserModelCopyWithImpl<$Res>
           ? _value.isVerified
           : isVerified // ignore: cast_nullable_to_non_nullable
               as bool,
+      isAccountActive: isAccountActive == freezed
+          ? _value.isAccountActive
+          : isAccountActive // ignore: cast_nullable_to_non_nullable
+              as bool,
       createdat: createdat == freezed
           ? _value.createdat
           : createdat // ignore: cast_nullable_to_non_nullable
@@ -205,6 +220,7 @@ class _$_AuthUserModel extends _AuthUserModel {
       required this.balance,
       required this.email,
       required this.isVerified,
+      required this.isAccountActive,
       required this.createdat})
       : super._();
 
@@ -225,11 +241,13 @@ class _$_AuthUserModel extends _AuthUserModel {
   @override
   final bool isVerified;
   @override
+  final bool isAccountActive;
+  @override
   final DateTime createdat;
 
   @override
   String toString() {
-    return 'AuthUserModel(id: $id, displayName: $displayName, phoneNumber: $phoneNumber, firstName: $firstName, lastName: $lastName, balance: $balance, email: $email, isVerified: $isVerified, createdat: $createdat)';
+    return 'AuthUserModel(id: $id, displayName: $displayName, phoneNumber: $phoneNumber, firstName: $firstName, lastName: $lastName, balance: $balance, email: $email, isVerified: $isVerified, isAccountActive: $isAccountActive, createdat: $createdat)';
   }
 
   @override
@@ -248,6 +266,8 @@ class _$_AuthUserModel extends _AuthUserModel {
             const DeepCollectionEquality().equals(other.email, email) &&
             const DeepCollectionEquality()
                 .equals(other.isVerified, isVerified) &&
+            const DeepCollectionEquality()
+                .equals(other.isAccountActive, isAccountActive) &&
             const DeepCollectionEquality().equals(other.createdat, createdat));
   }
 
@@ -262,6 +282,7 @@ class _$_AuthUserModel extends _AuthUserModel {
       const DeepCollectionEquality().hash(balance),
       const DeepCollectionEquality().hash(email),
       const DeepCollectionEquality().hash(isVerified),
+      const DeepCollectionEquality().hash(isAccountActive),
       const DeepCollectionEquality().hash(createdat));
 
   @JsonKey(ignore: true)
@@ -280,6 +301,7 @@ abstract class _AuthUserModel extends AuthUserModel {
       required final double balance,
       required final String email,
       required final bool isVerified,
+      required final bool isAccountActive,
       required final DateTime createdat}) = _$_AuthUserModel;
   const _AuthUserModel._() : super._();
 
@@ -289,18 +311,28 @@ abstract class _AuthUserModel extends AuthUserModel {
   String get displayName => throw _privateConstructorUsedError;
   @override
   String get phoneNumber => throw _privateConstructorUsedError;
+
   @override
   String get firstName => throw _privateConstructorUsedError;
+
   @override
   String get lastName => throw _privateConstructorUsedError;
+
   @override
   double get balance => throw _privateConstructorUsedError;
+
   @override
   String get email => throw _privateConstructorUsedError;
+
   @override
   bool get isVerified => throw _privateConstructorUsedError;
+
+  @override
+  bool get isAccountActive => throw _privateConstructorUsedError;
+
   @override
   DateTime get createdat => throw _privateConstructorUsedError;
+
   @override
   @JsonKey(ignore: true)
   _$$_AuthUserModelCopyWith<_$_AuthUserModel> get copyWith =>

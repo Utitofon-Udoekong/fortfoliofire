@@ -16,6 +16,7 @@ _$_AuthUserModelDto _$$_AuthUserModelDtoFromJson(Map<String, dynamic> json) =>
       balance: (json['balance'] as num).toDouble(),
       email: json['email'] as String,
       isVerified: json['isVerified'] as bool,
+      isAccountActive: json['isAccountActive'] as bool,
       createdat: sendDateTimeFromJson(json['createdat']),
     );
 
@@ -29,5 +30,6 @@ Map<String, dynamic> _$$_AuthUserModelDtoToJson(_$_AuthUserModelDto instance) =>
       'balance': instance.balance,
       'email': instance.email,
       'isVerified': instance.isVerified,
+      'isAccountActive': instance.isAccountActive,
       'createdat': sendDateTimeToJson(instance.createdat),
     };

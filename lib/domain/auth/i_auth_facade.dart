@@ -77,6 +77,8 @@ abstract class IAuthFacade {
   // get user with phone
   Future<Option<AuthUserModel>> getDatabaseUserWithPhoneNumber(
       {required String phoneNumber});
-      
+
+  Future<Either<String, String>> deleteUser();
+
   String getUserId(); 
 }

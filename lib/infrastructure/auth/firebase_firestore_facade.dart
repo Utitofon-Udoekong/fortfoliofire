@@ -1,15 +1,15 @@
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:dartz/dartz.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
+import 'package:fortfolio/domain/user/bank_address.dart';
+import 'package:fortfolio/domain/user/crypto_wallet.dart';
+import 'package:fortfolio/domain/user/investment.dart';
 import 'package:fortfolio/domain/user/kyc_item.dart';
 import 'package:fortfolio/domain/user/notification_item.dart';
 import 'package:fortfolio/domain/user/withdrawal_item.dart';
-import 'package:fortfolio/domain/user/investment.dart';
-import 'package:fortfolio/domain/user/crypto_wallet.dart';
-import 'package:fortfolio/domain/user/bank_address.dart';
 import 'package:fortfolio/infrastructure/auth/dto/bank_address/bank_address_dto.dart';
 import 'package:fortfolio/infrastructure/auth/dto/crypto_address/crypto_address.dart';
 import 'package:fortfolio/infrastructure/auth/dto/investment/investment_dto.dart';
@@ -322,8 +322,4 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
       return left('Server error encountered');
     }
   }
-  
-  
-
-  
 }

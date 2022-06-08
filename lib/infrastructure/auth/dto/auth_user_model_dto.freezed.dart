@@ -21,18 +21,28 @@ AuthUserModelDto _$AuthUserModelDtoFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$AuthUserModelDto {
   String get id => throw _privateConstructorUsedError;
+
   String get displayName => throw _privateConstructorUsedError;
+
   String get phoneNumber => throw _privateConstructorUsedError;
+
   String get firstName => throw _privateConstructorUsedError;
+
   String get lastName => throw _privateConstructorUsedError;
+
   double get balance => throw _privateConstructorUsedError;
+
   String get email => throw _privateConstructorUsedError;
-  bool get isVerified =>
+
+  bool get isVerified => throw _privateConstructorUsedError;
+
+  bool get isAccountActive =>
       throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(fromJson: sendDateTimeFromJson, toJson: sendDateTimeToJson)
   DateTime get createdat => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
   @JsonKey(ignore: true)
   $AuthUserModelDtoCopyWith<AuthUserModelDto> get copyWith =>
       throw _privateConstructorUsedError;
@@ -52,6 +62,7 @@ abstract class $AuthUserModelDtoCopyWith<$Res> {
       double balance,
       String email,
       bool isVerified,
+      bool isAccountActive,
       @JsonKey(fromJson: sendDateTimeFromJson, toJson: sendDateTimeToJson)
           DateTime createdat});
 }
@@ -75,6 +86,7 @@ class _$AuthUserModelDtoCopyWithImpl<$Res>
     Object? balance = freezed,
     Object? email = freezed,
     Object? isVerified = freezed,
+    Object? isAccountActive = freezed,
     Object? createdat = freezed,
   }) {
     return _then(_value.copyWith(
@@ -110,6 +122,10 @@ class _$AuthUserModelDtoCopyWithImpl<$Res>
           ? _value.isVerified
           : isVerified // ignore: cast_nullable_to_non_nullable
               as bool,
+      isAccountActive: isAccountActive == freezed
+          ? _value.isAccountActive
+          : isAccountActive // ignore: cast_nullable_to_non_nullable
+              as bool,
       createdat: createdat == freezed
           ? _value.createdat
           : createdat // ignore: cast_nullable_to_non_nullable
@@ -134,6 +150,7 @@ abstract class _$$_AuthUserModelDtoCopyWith<$Res>
       double balance,
       String email,
       bool isVerified,
+      bool isAccountActive,
       @JsonKey(fromJson: sendDateTimeFromJson, toJson: sendDateTimeToJson)
           DateTime createdat});
 }
@@ -159,6 +176,7 @@ class __$$_AuthUserModelDtoCopyWithImpl<$Res>
     Object? balance = freezed,
     Object? email = freezed,
     Object? isVerified = freezed,
+    Object? isAccountActive = freezed,
     Object? createdat = freezed,
   }) {
     return _then(_$_AuthUserModelDto(
@@ -194,6 +212,10 @@ class __$$_AuthUserModelDtoCopyWithImpl<$Res>
           ? _value.isVerified
           : isVerified // ignore: cast_nullable_to_non_nullable
               as bool,
+      isAccountActive: isAccountActive == freezed
+          ? _value.isAccountActive
+          : isAccountActive // ignore: cast_nullable_to_non_nullable
+              as bool,
       createdat: createdat == freezed
           ? _value.createdat
           : createdat // ignore: cast_nullable_to_non_nullable
@@ -214,6 +236,7 @@ class _$_AuthUserModelDto implements _AuthUserModelDto {
       required this.balance,
       required this.email,
       required this.isVerified,
+      required this.isAccountActive,
       @JsonKey(fromJson: sendDateTimeFromJson, toJson: sendDateTimeToJson)
           required this.createdat});
 
@@ -236,6 +259,9 @@ class _$_AuthUserModelDto implements _AuthUserModelDto {
   final String email;
   @override
   final bool isVerified;
+  @override
+  final bool isAccountActive;
+
 // ignore: invalid_annotation_target
   @override
   @JsonKey(fromJson: sendDateTimeFromJson, toJson: sendDateTimeToJson)
@@ -243,7 +269,7 @@ class _$_AuthUserModelDto implements _AuthUserModelDto {
 
   @override
   String toString() {
-    return 'AuthUserModelDto(id: $id, displayName: $displayName, phoneNumber: $phoneNumber, firstName: $firstName, lastName: $lastName, balance: $balance, email: $email, isVerified: $isVerified, createdat: $createdat)';
+    return 'AuthUserModelDto(id: $id, displayName: $displayName, phoneNumber: $phoneNumber, firstName: $firstName, lastName: $lastName, balance: $balance, email: $email, isVerified: $isVerified, isAccountActive: $isAccountActive, createdat: $createdat)';
   }
 
   @override
@@ -262,6 +288,8 @@ class _$_AuthUserModelDto implements _AuthUserModelDto {
             const DeepCollectionEquality().equals(other.email, email) &&
             const DeepCollectionEquality()
                 .equals(other.isVerified, isVerified) &&
+            const DeepCollectionEquality()
+                .equals(other.isAccountActive, isAccountActive) &&
             const DeepCollectionEquality().equals(other.createdat, createdat));
   }
 
@@ -277,6 +305,7 @@ class _$_AuthUserModelDto implements _AuthUserModelDto {
       const DeepCollectionEquality().hash(balance),
       const DeepCollectionEquality().hash(email),
       const DeepCollectionEquality().hash(isVerified),
+      const DeepCollectionEquality().hash(isAccountActive),
       const DeepCollectionEquality().hash(createdat));
 
   @JsonKey(ignore: true)
@@ -300,6 +329,7 @@ abstract class _AuthUserModelDto implements AuthUserModelDto {
       required final double balance,
       required final String email,
       required final bool isVerified,
+      required final bool isAccountActive,
       @JsonKey(fromJson: sendDateTimeFromJson, toJson: sendDateTimeToJson)
           required final DateTime createdat}) = _$_AuthUserModelDto;
 
@@ -312,19 +342,29 @@ abstract class _AuthUserModelDto implements AuthUserModelDto {
   String get displayName => throw _privateConstructorUsedError;
   @override
   String get phoneNumber => throw _privateConstructorUsedError;
+
   @override
   String get firstName => throw _privateConstructorUsedError;
+
   @override
   String get lastName => throw _privateConstructorUsedError;
+
   @override
   double get balance => throw _privateConstructorUsedError;
+
   @override
   String get email => throw _privateConstructorUsedError;
+
   @override
   bool get isVerified => throw _privateConstructorUsedError;
+
+  @override
+  bool get isAccountActive => throw _privateConstructorUsedError;
+
   @override // ignore: invalid_annotation_target
   @JsonKey(fromJson: sendDateTimeFromJson, toJson: sendDateTimeToJson)
   DateTime get createdat => throw _privateConstructorUsedError;
+
   @override
   @JsonKey(ignore: true)
   _$$_AuthUserModelDtoCopyWith<_$_AuthUserModelDto> get copyWith =>

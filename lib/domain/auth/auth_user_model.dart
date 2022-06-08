@@ -13,22 +13,23 @@ class AuthUserModel with _$AuthUserModel {
     required double balance,
     required String email,
     required bool isVerified,
+    required bool isAccountActive,
     required DateTime createdat,
   }) = _AuthUserModel;
 
   const AuthUserModel._();
 
   factory AuthUserModel.empty() => AuthUserModel(
-        id: '',
+    id: '',
         phoneNumber: '',
         email: '',
         balance: 0,
         firstName: '',
         lastName: '',
         isVerified: false,
-        createdat: DateTime.fromMillisecondsSinceEpoch(0), 
+        isAccountActive: true,
+        createdat: DateTime.fromMillisecondsSinceEpoch(0),
         displayName: '',
       );
 
-  // String get statusString => status.toCustomString();
 }

@@ -6,8 +6,9 @@ import 'package:fortfolio/domain/auth/i_auth_facade.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-part 'profile_state.dart';
 part 'profile_cubit.freezed.dart';
+
+part 'profile_state.dart';
 
 @injectable
 class ProfileCubit extends Cubit<ProfileState> {
@@ -93,13 +94,24 @@ class ProfileCubit extends Cubit<ProfileState> {
     );
   }
 
+  void deleteUser() async {
+    emit(state.copyWith(loading: true, failure: "", success: ""));
+    final Either<String, String> failureOrSuccess =
+        await authFacade.deleteUser();
+    failureOrSuccess.fold((failure) {
+      emit(
+        state.copyWith(failure: failure, loading: false),
+      );
+    }, (success) {
+      emit(
+        state.copyWith(success: success, loading: false),
+      );
+    });
+  }
+
   void reset() {
     emit(
-      state.copyWith(
-        failure: "",
-        smsCode: "",
-        loading: false,
-        success: ""
+      state.copyWith(failure: "", smsCode: "", loading: false, success: ""
       ),
     );
   }
