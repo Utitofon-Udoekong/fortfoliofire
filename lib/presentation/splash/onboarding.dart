@@ -112,7 +112,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 CustomFilledButton(
                   text: "LOGIN",
                   onTap: () =>
-                      {context.router.replace(const SignInFormEmailRoute())},
+                      {context.router.push(const SignInFormEmailRoute())},
                 ),
                 const SizedBox(
                   height: 10.0,
@@ -120,7 +120,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 CustomOutlinedButton(
                   text: "REGISTER",
                   onTap: () =>
-                      {context.router.replace(const SignUpFormRoute())},
+                      {context.router.push(const SignUpFormRoute())},
                 )
               ],
             ),
