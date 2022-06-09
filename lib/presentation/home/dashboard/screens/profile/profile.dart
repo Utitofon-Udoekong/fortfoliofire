@@ -122,32 +122,41 @@ class ProfilePage extends StatelessWidget {
                         height: 30,
                       ),
                       buildtile(
-                          'ID: ${authUserModel.id}',
-                          IconButton(
-                              onPressed: () {
-                                Clipboard.setData(
-                                        ClipboardData(text: authUserModel.id))
-                                    .then((_) {
-                                  CustomSnackbar.showSnackBar(
-                                      context, "Text copied", false);
-                                });
-                              },
-                              icon: const Icon(
-                                Icons.file_copy_rounded,
-                                color: kPrimaryColor,
-                                size: 15,
-                              )),
-                          true,
-                          () => null,
-                          context),
-                      buildtile(authUserModel.email, const Spacer(), false,
-                          () => showEditEmailModal(context: context), context),
+                        leading: 'ID: ${authUserModel.id}',
+                        trailing: IconButton(
+                            onPressed: () {
+                              Clipboard.setData(
+                                      ClipboardData(text: authUserModel.id))
+                                  .then((_) {
+                                CustomSnackbar.showSnackBar(
+                                    context, "Text copied", false);
+                              });
+                            },
+                            icon: const Icon(
+                              Icons.file_copy_rounded,
+                              color: kPrimaryColor,
+                              size: 15,
+                            )),
+                        trailexist: true,
+                        ontap: () => null,
+                        context: context,
+                        isAccountActive: authUserModel.isAccountActive,
+                      ),
+                      buildtile(
+                        leading: authUserModel.email,
+                        trailing: const Spacer(),
+                        trailexist: false,
+                        ontap: () => showEditEmailModal(context: context),
+                        context: context,
+                        isAccountActive: authUserModel.isAccountActive,
+                      ),
                       const SizedBox(
                         height: 10,
                       ),
                       buildtile(
-                          "${authUserModel.firstName} ${authUserModel.lastName}",
-                          authUserModel.isVerified
+                          leading:
+                              "${authUserModel.firstName} ${authUserModel.lastName}",
+                          trailing: authUserModel.isVerified
                               ? Tooltip(
                                   message:
                                       "Username cannot be changed once user account is verified",
@@ -165,18 +174,20 @@ class ProfilePage extends StatelessWidget {
                                   ),
                                 )
                               : const Spacer(),
-                          authUserModel.isVerified ? true : false,
-                          () => authUserModel.isVerified
+                          trailexist: authUserModel.isVerified ? true : false,
+                          ontap: () => authUserModel.isVerified
                               ? null
                               : showEditNameModal(context: context),
-                          context),
+                          context: context,
+                          isAccountActive: authUserModel.isAccountActive),
                       buildtile(
-                          authUserModel.phoneNumber,
-                          const Spacer(),
-                          false,
-                          () => showEditPhoneModal(context: context),
-                          context),
-                          const SizedBox(
+                          leading: authUserModel.phoneNumber,
+                          context: context,
+                          ontap: () => showEditPhoneModal(context: context),
+                          trailexist: false,
+                          isAccountActive: authUserModel.isAccountActive,
+                          trailing: const Spacer()),
+                      const SizedBox(
                         height: 10,
                       ),
                       GestureDetector(
@@ -188,7 +199,10 @@ class ProfilePage extends StatelessWidget {
                             decoration: BoxDecoration(
                                 color: const Color(0XFFF3F6F8),
                                 borderRadius: BorderRadius.circular(5.0)),
-                            child: Text("Delete Account",
+                            child: Text(
+                                authUserModel.isAccountActive
+                                    ? "Delete Account"
+                                    : "Reactivate Account",
                                 style: titleText.copyWith(
                                     color: kRedColor, fontSize: 15))),
                       ),
@@ -212,10 +226,15 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  Widget buildtile(String leading, Widget trailing, bool trailexist,
-      Function() ontap, BuildContext context) {
+  Widget buildtile(
+      {required String leading,
+      required Widget trailing,
+      required bool trailexist,
+      required Function() ontap,
+      required BuildContext context,
+      required bool isAccountActive}) {
     return GestureDetector(
-      onTap: ontap,
+      onTap: isAccountActive ? ontap : null,
       child: Container(
           padding: const EdgeInsets.all(10.0),
           width: MediaQuery.of(context).size.width,
@@ -229,7 +248,9 @@ class ProfilePage extends StatelessWidget {
             children: <Widget>[
               Text(
                 leading,
-                style: subTitle.copyWith(color: kBlackColor, fontSize: 15),
+                style: subTitle.copyWith(
+                    color: isAccountActive ? kBlackColor : kgreyColor,
+                    fontSize: 15),
               ),
               trailexist
                   ? trailing

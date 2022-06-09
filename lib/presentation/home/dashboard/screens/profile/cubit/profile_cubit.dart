@@ -109,6 +109,21 @@ class ProfileCubit extends Cubit<ProfileState> {
     });
   }
 
+  void reactivateUser() async {
+    emit(state.copyWith(loading: true, failure: "", success: ""));
+    final Either<String, String> failureOrSuccess =
+        await authFacade.reactivateUser();
+    failureOrSuccess.fold((failure) {
+      emit(
+        state.copyWith(failure: failure, loading: false),
+      );
+    }, (success) {
+      emit(
+        state.copyWith(success: success, loading: false),
+      );
+    });
+  }
+
   void reset() {
     emit(
       state.copyWith(failure: "", smsCode: "", loading: false, success: ""

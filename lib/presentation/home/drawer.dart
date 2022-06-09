@@ -12,6 +12,8 @@ class MainDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool isAccountActive = context
+        .select((AuthCubit authCubit) => authCubit.state.userModel.isAccountActive);
     final String displayName = context
         .select((AuthCubit authCubit) => authCubit.state.userModel.displayName);
     final String firstName = context
@@ -114,17 +116,17 @@ class MainDrawer extends StatelessWidget {
               height: 10,
             ),
             buildtile(Icons.account_circle, 'Profile Settings',
-                () => context.router.push(const ProfilePageRoute())),
+                () => context.router.push(const ProfilePageRoute()), isAccountActive, false),
             buildtile(Icons.account_balance_wallet, 'Payment Method',
-                () => context.router.push(const PaymentMethodRoute())),
+                () => context.router.push(const PaymentMethodRoute()), isAccountActive, true),
             buildtile(Icons.lock_open, 'Security',
-                () => context.router.push(const SecurityRoute())),
+                () => context.router.push(const SecurityRoute()), isAccountActive, true),
             buildtile(Icons.headset_mic, 'Help & Support',
-                () => context.router.push(const SupportPageRoute())),
+                () => context.router.push(const SupportPageRoute()), isAccountActive, true),
             buildtile(Icons.error, 'Terms & Condition',
-                () => context.router.push(const TACPageRoute())),
+                () => context.router.push(const TACPageRoute()), isAccountActive, true),
             buildtile(Icons.verified, 'Account Verification',
-                () => context.router.push(const VerificationPageRoute())),
+                () => context.router.push(const VerificationPageRoute()), isAccountActive, true),
             const SizedBox(
               height: 54,
             ),
@@ -162,9 +164,9 @@ class MainDrawer extends StatelessWidget {
     );
   }
 
-  buildtile(icon, String text, Function() onTap) {
+  buildtile(icon, String text, Function() onTap, bool isAccountActive, bool shouldDisable) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: isAccountActive ? onTap : shouldDisable ? null : onTap,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 7.0),
         child: Row(
@@ -186,7 +188,7 @@ class MainDrawer extends StatelessWidget {
             Text(
               text,
               style: subTitle.copyWith(
-                  color: const Color(0XFF242424), fontSize: 15),
+                  color: shouldDisable ? kgreyColor : const Color(0XFF242424), fontSize: 15),
             )
           ],
         ),

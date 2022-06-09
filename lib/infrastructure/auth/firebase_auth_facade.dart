@@ -450,7 +450,20 @@ class FirebaseAuthFacade implements IAuthFacade {
   }
 
   @override
+  Future<Either<String, String>> reactivateUser() async {
+    final query = firestore.authUserCollection.doc(firebaseAuth.currentUser!.uid);
+    try {
+      await query.update({"isAccountActive": true});
+      return right("Account reactivated successfully");
+    } on FirebaseException catch (e) {
+      log("Code: ${e.code}, Message: ${e.message}");
+      return left('Server error encountered');
+    }
+  }
+
+  @override
   Future<void> refresh() async {
     await firebaseAuth.currentUser!.reload();
   }
+
 }

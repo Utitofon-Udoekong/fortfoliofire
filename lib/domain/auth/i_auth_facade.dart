@@ -79,6 +79,7 @@ abstract class IAuthFacade {
       {required String phoneNumber});
 
   Future<Either<String, String>> deleteUser();
+  Future<Either<String, String>> reactivateUser();
 
   String getUserId(); 
 }

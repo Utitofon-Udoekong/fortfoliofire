@@ -7,6 +7,7 @@ import 'package:fortfolio/presentation/home/dashboard/screens/notifications/cubi
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
+import '../../application/auth/auth_cubit.dart';
 import 'drawer.dart';
 
 class HomePage extends StatelessWidget {
@@ -15,6 +16,8 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var scaffoldKey = GlobalKey<ScaffoldState>();
+    final bool isAccountActive = context
+        .select((AuthCubit authCubit) => authCubit.state.userModel.isAccountActive);
     return AutoTabsScaffold(
       scaffoldKey: scaffoldKey,
       extendBodyBehindAppBar: true,
@@ -53,8 +56,12 @@ class HomePage extends StatelessWidget {
                       value: state.notificationCount.toString(),
                       child: IconButton(
                           onPressed: () {
-                            context.router.push(const NotificationsPageRoute());
-                            context.read<NotificationCubit>().reset();
+                            if(isAccountActive) {
+                              context.router.push(const NotificationsPageRoute());
+                              context.read<NotificationCubit>().reset();
+                            }else {
+                              null;
+                            }
                           },
                           icon: const Icon(
                             Icons.notifications,
@@ -63,8 +70,8 @@ class HomePage extends StatelessWidget {
                     );
                   } else {
                     return IconButton(
-                        onPressed: () =>
-                            context.router.push(const NotificationsPageRoute()),
+                        onPressed: () => isAccountActive ?
+                            context.router.push(const NotificationsPageRoute()) : null,
                         icon: const Icon(
                           Icons.notifications,
                           size: 15,
@@ -86,7 +93,7 @@ class HomePage extends StatelessWidget {
         return SalomonBottomBar(
           margin: const EdgeInsets.fromLTRB(20, 20, 20, 10),
           currentIndex: tabsRouter.activeIndex,
-          onTap: tabsRouter.setActiveIndex,
+          onTap: isAccountActive ? tabsRouter.setActiveIndex : null,
           items: [
             SalomonBottomBarItem(
               selectedColor: kPrimaryColor,
