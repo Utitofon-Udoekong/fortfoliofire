@@ -68,7 +68,10 @@ class DisclaimerPage extends StatelessWidget {
                   ),
                   CustomFilledButton(
                       text: "Delete Account",
-                      onTap: () => context.read<ProfileCubit>().deleteUser())
+                      onTap: () => context.read<ProfileCubit>().deleteUser()),
+                  const SizedBox(
+                    height: 20,
+                  ),
                 ]),
           ),
         ),
