@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/application/auth/sign_in_form/phone/sign_in_form_phone_cubit.dart';
@@ -11,6 +12,7 @@ import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/ban
 import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/crypto/cubit/crypto_wallet_cubit.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/profile/cubit/profile_cubit.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/verification/cubit/verification_cubit.dart';
+import 'package:fortfolio/presentation/network/no_connection.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:fortfolio/application/auth/auth_cubit.dart';
@@ -149,22 +151,14 @@ class _AppState extends State<App> with WidgetsBindingObserver {
           debugShowCheckedModeBanner: false,
           routeInformationParser: _appRouter.defaultRouteParser(),
           routerDelegate: _appRouter.delegate(),
-          builder: (context, widget) => MultiBlocListener(listeners: [
-            BlocListener<NetworkCubit, NetworkState>(
-              listenWhen: (previous, current) =>
-                  previous.connected != current.connected,
-              listener: (context, state) {
-                CustomSnackbar.showSnackBar(context, "connected", false);
-              },
-            ),
-            BlocListener<NetworkCubit, NetworkState>(
-              listenWhen: (previous, current) =>
-                  previous.disconnected != current.disconnected,
-              listener: (context, state) {
-                CustomSnackbar.showSnackBar(context, "disconnected", true);
-              },
-            ),
-          ], child: widget!),
+          builder: (context, widget) => StreamBuilder(
+            stream: Connectivity().onConnectivityChanged,
+            builder: (context, AsyncSnapshot<ConnectivityResult> snapshot) {
+              return snapshot.data == ConnectivityResult.mobile ||
+                      snapshot.data == ConnectivityResult.wifi
+                  ? widget!
+                  : const NoInternetPage();
+            }),
         ));
   }
 }
