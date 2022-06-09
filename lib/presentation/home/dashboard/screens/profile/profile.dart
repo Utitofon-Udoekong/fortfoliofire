@@ -194,6 +194,7 @@ class ProfilePage extends StatelessWidget {
                         onTap: () =>
                             context.router.push(const DisclaimerPageRoute()),
                         child: Container(
+                          width: MediaQuery.of(context).size.width,
                             padding: const EdgeInsets.symmetric(
                                 vertical: 15, horizontal: 8),
                             decoration: BoxDecoration(
