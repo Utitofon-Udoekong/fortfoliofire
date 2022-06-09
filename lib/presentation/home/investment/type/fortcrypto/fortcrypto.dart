@@ -129,7 +129,7 @@ class FortCrypto extends StatelessWidget {
                     itemCount: plans.length,
                     itemBuilder: (context, index) {
                       return GestureDetector(
-                        onTap: () => plans[index].onPressed,
+                        onTap: () => context.router.push(plans[index].onPressed),
                         child: Container(
                           width: MediaQuery.of(context).size.width,
                           decoration: BoxDecoration(
@@ -213,7 +213,7 @@ class FortCrypto extends StatelessWidget {
                                             fontWeight: FontWeight.w600))
                                   ])),
                               TextButton(
-                                  onPressed: plans[index].onPressed,
+                                  onPressed: () => context.router.push(plans[index].onPressed),
                                   child: Flex(
                                     direction: Axis.horizontal,
                                     children: <Widget>[

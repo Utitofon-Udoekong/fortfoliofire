@@ -68,11 +68,11 @@ class Dashboard extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  buildSmallIcons(
-                      'images/Activity-small.svg',
-                      'Investments',
-                      () => context.pushRoute(const HomePageRoute(
-                          children: [InvestmentPageRoute()]))),
+                  // buildSmallIcons(
+                  //     'images/Activity-small.svg',
+                  //     'Investments',
+                  //     () => context.pushRoute(const HomePageRoute(
+                  //         children: [InvestmentPageRoute()]))),
                   buildSmallIcons(
                       'images/Swap.svg',
                       'Transactions',
@@ -110,7 +110,7 @@ class Dashboard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   buildBigIcons(
-                      'images/bolt.svg',
+                      'images/Activity-big.svg',
                       'Active Investments',
                       const Color(0XFF00ADEE),
                       'See your current investments, invest more and get recommendations.',
@@ -119,10 +119,10 @@ class Dashboard extends StatelessWidget {
                           const HomePageRoute(children: [WalletRoute()])),
                       context),
                   buildBigIcons(
-                      'images/Activity-big.svg',
+                      'images/bolt.svg',
                       'Quick Investments',
                       const Color(0XFF00C566),
-                      'Find invsestments that fit with your area of interest & get started!',
+                      'Find investments that fit with your area of interest & get started!',
                       'Quick Invest',
                       () => context.pushRoute(const HomePageRoute(
                           children: [InvestmentPageRoute()])),
@@ -139,7 +139,7 @@ class Dashboard extends StatelessWidget {
                       'images/support.svg',
                       'Need Help? Get Support',
                       const Color(0XFF00ADEE),
-                      'Contact our personnels available to help you with any thing on our app.',
+                      'Contact our personnel available to help you with any thing on our app.',
                       'Get help',
                       () => context.router.push(const SupportPageRoute()),
                       context),
@@ -160,12 +160,12 @@ class Dashboard extends StatelessWidget {
     );
   }
 
-  showModalToSetPin({required BuildContext context}){
-    var dialog = Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
-      
-    );
-  }
+  // showModalToSetPin({required BuildContext context}){
+  //   var dialog = Container(
+  //     padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+  //
+  //   );
+  // }
 
   List<Widget> generateSlider(BuildContext context, List<String> list) {
     List<Widget> imageSlider = list

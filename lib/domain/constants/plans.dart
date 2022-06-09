@@ -1,10 +1,13 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:fortfolio/presentation/routes/router.gr.dart';
+
 class PlanModel {
   final String icon; 
   final String title; 
   final String minPrice; 
   final String roi; 
   final String currency; 
-  final Function() onPressed;
+  final PageRouteInfo<dynamic> onPressed;
 
   
   PlanModel({
@@ -25,7 +28,7 @@ List<PlanModel> plans = <PlanModel>[
     minPrice: '\$1,000',
     roi: '30%',
     currency: 'Naira or USD',
-    onPressed: () => null,
+    onPressed: const FortDollarRoute(),
   ),
   PlanModel(
     icon: 'fortshield',
@@ -33,7 +36,7 @@ List<PlanModel> plans = <PlanModel>[
     minPrice: 'N1,000,000',
     roi: '18%',
     currency: 'Naira, USD or Crypto (USDC/BUSD or USDT only).',
-    onPressed: () => null,
+    onPressed: const FortCryptoRoute(),
   ),
   PlanModel(
     icon: 'fortcrypto',
@@ -41,6 +44,6 @@ List<PlanModel> plans = <PlanModel>[
     minPrice: '\$1,000',
     roi: '15%',
     currency: 'Cryptocurrency (BTC,ETH/USDT and more).',
-    onPressed: () => null,
+    onPressed: const FortShieldRoute(),
   ),
 ];
