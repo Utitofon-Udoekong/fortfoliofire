@@ -459,7 +459,7 @@ class FirebaseAuthFacade implements IAuthFacade {
     final query = firestore.authUserCollection.doc(firebaseAuth.currentUser!.uid);
     try {
       await query.update({
-        "isAccountActive": false,
+        "isAccountActive": true,
         "startDate": FieldValue.delete(),
         "deleteDate": FieldValue.delete()
       });
