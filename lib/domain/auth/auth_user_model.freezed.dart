@@ -24,10 +24,10 @@ mixin _$AuthUserModel {
   double get balance => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   bool get isVerified => throw _privateConstructorUsedError;
-
   bool get isAccountActive => throw _privateConstructorUsedError;
-
   DateTime get createdat => throw _privateConstructorUsedError;
+  DateTime? get startDate => throw _privateConstructorUsedError;
+  DateTime? get deleteDate => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AuthUserModelCopyWith<AuthUserModel> get copyWith =>
@@ -49,7 +49,9 @@ abstract class $AuthUserModelCopyWith<$Res> {
       String email,
       bool isVerified,
       bool isAccountActive,
-      DateTime createdat});
+      DateTime createdat,
+      DateTime? startDate,
+      DateTime? deleteDate});
 }
 
 /// @nodoc
@@ -73,6 +75,8 @@ class _$AuthUserModelCopyWithImpl<$Res>
     Object? isVerified = freezed,
     Object? isAccountActive = freezed,
     Object? createdat = freezed,
+    Object? startDate = freezed,
+    Object? deleteDate = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -115,6 +119,14 @@ class _$AuthUserModelCopyWithImpl<$Res>
           ? _value.createdat
           : createdat // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      startDate: startDate == freezed
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      deleteDate: deleteDate == freezed
+          ? _value.deleteDate
+          : deleteDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -136,7 +148,9 @@ abstract class _$$_AuthUserModelCopyWith<$Res>
       String email,
       bool isVerified,
       bool isAccountActive,
-      DateTime createdat});
+      DateTime createdat,
+      DateTime? startDate,
+      DateTime? deleteDate});
 }
 
 /// @nodoc
@@ -162,6 +176,8 @@ class __$$_AuthUserModelCopyWithImpl<$Res>
     Object? isVerified = freezed,
     Object? isAccountActive = freezed,
     Object? createdat = freezed,
+    Object? startDate = freezed,
+    Object? deleteDate = freezed,
   }) {
     return _then(_$_AuthUserModel(
       id: id == freezed
@@ -204,6 +220,14 @@ class __$$_AuthUserModelCopyWithImpl<$Res>
           ? _value.createdat
           : createdat // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      startDate: startDate == freezed
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      deleteDate: deleteDate == freezed
+          ? _value.deleteDate
+          : deleteDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -221,7 +245,9 @@ class _$_AuthUserModel extends _AuthUserModel {
       required this.email,
       required this.isVerified,
       required this.isAccountActive,
-      required this.createdat})
+      required this.createdat,
+      this.startDate,
+      this.deleteDate})
       : super._();
 
   @override
@@ -244,10 +270,14 @@ class _$_AuthUserModel extends _AuthUserModel {
   final bool isAccountActive;
   @override
   final DateTime createdat;
+  @override
+  final DateTime? startDate;
+  @override
+  final DateTime? deleteDate;
 
   @override
   String toString() {
-    return 'AuthUserModel(id: $id, displayName: $displayName, phoneNumber: $phoneNumber, firstName: $firstName, lastName: $lastName, balance: $balance, email: $email, isVerified: $isVerified, isAccountActive: $isAccountActive, createdat: $createdat)';
+    return 'AuthUserModel(id: $id, displayName: $displayName, phoneNumber: $phoneNumber, firstName: $firstName, lastName: $lastName, balance: $balance, email: $email, isVerified: $isVerified, isAccountActive: $isAccountActive, createdat: $createdat, startDate: $startDate, deleteDate: $deleteDate)';
   }
 
   @override
@@ -268,7 +298,10 @@ class _$_AuthUserModel extends _AuthUserModel {
                 .equals(other.isVerified, isVerified) &&
             const DeepCollectionEquality()
                 .equals(other.isAccountActive, isAccountActive) &&
-            const DeepCollectionEquality().equals(other.createdat, createdat));
+            const DeepCollectionEquality().equals(other.createdat, createdat) &&
+            const DeepCollectionEquality().equals(other.startDate, startDate) &&
+            const DeepCollectionEquality()
+                .equals(other.deleteDate, deleteDate));
   }
 
   @override
@@ -283,7 +316,9 @@ class _$_AuthUserModel extends _AuthUserModel {
       const DeepCollectionEquality().hash(email),
       const DeepCollectionEquality().hash(isVerified),
       const DeepCollectionEquality().hash(isAccountActive),
-      const DeepCollectionEquality().hash(createdat));
+      const DeepCollectionEquality().hash(createdat),
+      const DeepCollectionEquality().hash(startDate),
+      const DeepCollectionEquality().hash(deleteDate));
 
   @JsonKey(ignore: true)
   @override
@@ -302,7 +337,9 @@ abstract class _AuthUserModel extends AuthUserModel {
       required final String email,
       required final bool isVerified,
       required final bool isAccountActive,
-      required final DateTime createdat}) = _$_AuthUserModel;
+      required final DateTime createdat,
+      final DateTime? startDate,
+      final DateTime? deleteDate}) = _$_AuthUserModel;
   const _AuthUserModel._() : super._();
 
   @override
@@ -311,28 +348,24 @@ abstract class _AuthUserModel extends AuthUserModel {
   String get displayName => throw _privateConstructorUsedError;
   @override
   String get phoneNumber => throw _privateConstructorUsedError;
-
   @override
   String get firstName => throw _privateConstructorUsedError;
-
   @override
   String get lastName => throw _privateConstructorUsedError;
-
   @override
   double get balance => throw _privateConstructorUsedError;
-
   @override
   String get email => throw _privateConstructorUsedError;
-
   @override
   bool get isVerified => throw _privateConstructorUsedError;
-
   @override
   bool get isAccountActive => throw _privateConstructorUsedError;
-
   @override
   DateTime get createdat => throw _privateConstructorUsedError;
-
+  @override
+  DateTime? get startDate => throw _privateConstructorUsedError;
+  @override
+  DateTime? get deleteDate => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_AuthUserModelCopyWith<_$_AuthUserModel> get copyWith =>

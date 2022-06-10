@@ -22,6 +22,8 @@ class AuthUserModelDto with _$AuthUserModelDto {
     // ignore: invalid_annotation_target
     @JsonKey(fromJson: sendDateTimeFromJson, toJson: sendDateTimeToJson)
         required DateTime createdat,
+        DateTime? startDate,
+        DateTime? deleteDate,
   }) = _AuthUserModelDto;
 
   factory AuthUserModelDto.empty() =>
@@ -34,6 +36,8 @@ class AuthUserModelDto with _$AuthUserModelDto {
       phoneNumber: userModel.phoneNumber,
       balance: userModel.balance,
       createdat: userModel.createdat,
+      startDate: userModel.startDate,
+      deleteDate: userModel.deleteDate,
       email: userModel.email,
       firstName: userModel.firstName,
       isVerified: userModel.isVerified,
@@ -61,6 +65,8 @@ extension AuthUserModelDtoX on AuthUserModelDto {
       // status: Status.values.firstWhere((element) => element.name == status),
       balance: balance,
       createdat: createdat,
+      startDate: startDate,
+      deleteDate: deleteDate,
       email: email,
       firstName: firstName,
       isVerified: isVerified,

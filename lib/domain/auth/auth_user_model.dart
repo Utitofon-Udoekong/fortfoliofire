@@ -15,6 +15,8 @@ class AuthUserModel with _$AuthUserModel {
     required bool isVerified,
     required bool isAccountActive,
     required DateTime createdat,
+    DateTime? startDate,
+    DateTime? deleteDate,
   }) = _AuthUserModel;
 
   const AuthUserModel._();

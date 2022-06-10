@@ -21,28 +21,21 @@ AuthUserModelDto _$AuthUserModelDtoFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$AuthUserModelDto {
   String get id => throw _privateConstructorUsedError;
-
   String get displayName => throw _privateConstructorUsedError;
-
   String get phoneNumber => throw _privateConstructorUsedError;
-
   String get firstName => throw _privateConstructorUsedError;
-
   String get lastName => throw _privateConstructorUsedError;
-
   double get balance => throw _privateConstructorUsedError;
-
   String get email => throw _privateConstructorUsedError;
-
   bool get isVerified => throw _privateConstructorUsedError;
-
   bool get isAccountActive =>
       throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(fromJson: sendDateTimeFromJson, toJson: sendDateTimeToJson)
   DateTime get createdat => throw _privateConstructorUsedError;
+  DateTime? get startDate => throw _privateConstructorUsedError;
+  DateTime? get deleteDate => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
   $AuthUserModelDtoCopyWith<AuthUserModelDto> get copyWith =>
       throw _privateConstructorUsedError;
@@ -64,7 +57,9 @@ abstract class $AuthUserModelDtoCopyWith<$Res> {
       bool isVerified,
       bool isAccountActive,
       @JsonKey(fromJson: sendDateTimeFromJson, toJson: sendDateTimeToJson)
-          DateTime createdat});
+          DateTime createdat,
+      DateTime? startDate,
+      DateTime? deleteDate});
 }
 
 /// @nodoc
@@ -88,6 +83,8 @@ class _$AuthUserModelDtoCopyWithImpl<$Res>
     Object? isVerified = freezed,
     Object? isAccountActive = freezed,
     Object? createdat = freezed,
+    Object? startDate = freezed,
+    Object? deleteDate = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -130,6 +127,14 @@ class _$AuthUserModelDtoCopyWithImpl<$Res>
           ? _value.createdat
           : createdat // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      startDate: startDate == freezed
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      deleteDate: deleteDate == freezed
+          ? _value.deleteDate
+          : deleteDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -152,7 +157,9 @@ abstract class _$$_AuthUserModelDtoCopyWith<$Res>
       bool isVerified,
       bool isAccountActive,
       @JsonKey(fromJson: sendDateTimeFromJson, toJson: sendDateTimeToJson)
-          DateTime createdat});
+          DateTime createdat,
+      DateTime? startDate,
+      DateTime? deleteDate});
 }
 
 /// @nodoc
@@ -178,6 +185,8 @@ class __$$_AuthUserModelDtoCopyWithImpl<$Res>
     Object? isVerified = freezed,
     Object? isAccountActive = freezed,
     Object? createdat = freezed,
+    Object? startDate = freezed,
+    Object? deleteDate = freezed,
   }) {
     return _then(_$_AuthUserModelDto(
       id: id == freezed
@@ -220,6 +229,14 @@ class __$$_AuthUserModelDtoCopyWithImpl<$Res>
           ? _value.createdat
           : createdat // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      startDate: startDate == freezed
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      deleteDate: deleteDate == freezed
+          ? _value.deleteDate
+          : deleteDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -238,7 +255,9 @@ class _$_AuthUserModelDto implements _AuthUserModelDto {
       required this.isVerified,
       required this.isAccountActive,
       @JsonKey(fromJson: sendDateTimeFromJson, toJson: sendDateTimeToJson)
-          required this.createdat});
+          required this.createdat,
+      this.startDate,
+      this.deleteDate});
 
   factory _$_AuthUserModelDto.fromJson(Map<String, dynamic> json) =>
       _$$_AuthUserModelDtoFromJson(json);
@@ -261,15 +280,18 @@ class _$_AuthUserModelDto implements _AuthUserModelDto {
   final bool isVerified;
   @override
   final bool isAccountActive;
-
 // ignore: invalid_annotation_target
   @override
   @JsonKey(fromJson: sendDateTimeFromJson, toJson: sendDateTimeToJson)
   final DateTime createdat;
+  @override
+  final DateTime? startDate;
+  @override
+  final DateTime? deleteDate;
 
   @override
   String toString() {
-    return 'AuthUserModelDto(id: $id, displayName: $displayName, phoneNumber: $phoneNumber, firstName: $firstName, lastName: $lastName, balance: $balance, email: $email, isVerified: $isVerified, isAccountActive: $isAccountActive, createdat: $createdat)';
+    return 'AuthUserModelDto(id: $id, displayName: $displayName, phoneNumber: $phoneNumber, firstName: $firstName, lastName: $lastName, balance: $balance, email: $email, isVerified: $isVerified, isAccountActive: $isAccountActive, createdat: $createdat, startDate: $startDate, deleteDate: $deleteDate)';
   }
 
   @override
@@ -290,7 +312,10 @@ class _$_AuthUserModelDto implements _AuthUserModelDto {
                 .equals(other.isVerified, isVerified) &&
             const DeepCollectionEquality()
                 .equals(other.isAccountActive, isAccountActive) &&
-            const DeepCollectionEquality().equals(other.createdat, createdat));
+            const DeepCollectionEquality().equals(other.createdat, createdat) &&
+            const DeepCollectionEquality().equals(other.startDate, startDate) &&
+            const DeepCollectionEquality()
+                .equals(other.deleteDate, deleteDate));
   }
 
   @JsonKey(ignore: true)
@@ -306,7 +331,9 @@ class _$_AuthUserModelDto implements _AuthUserModelDto {
       const DeepCollectionEquality().hash(email),
       const DeepCollectionEquality().hash(isVerified),
       const DeepCollectionEquality().hash(isAccountActive),
-      const DeepCollectionEquality().hash(createdat));
+      const DeepCollectionEquality().hash(createdat),
+      const DeepCollectionEquality().hash(startDate),
+      const DeepCollectionEquality().hash(deleteDate));
 
   @JsonKey(ignore: true)
   @override
@@ -331,7 +358,9 @@ abstract class _AuthUserModelDto implements AuthUserModelDto {
       required final bool isVerified,
       required final bool isAccountActive,
       @JsonKey(fromJson: sendDateTimeFromJson, toJson: sendDateTimeToJson)
-          required final DateTime createdat}) = _$_AuthUserModelDto;
+          required final DateTime createdat,
+      final DateTime? startDate,
+      final DateTime? deleteDate}) = _$_AuthUserModelDto;
 
   factory _AuthUserModelDto.fromJson(Map<String, dynamic> json) =
       _$_AuthUserModelDto.fromJson;
@@ -342,29 +371,25 @@ abstract class _AuthUserModelDto implements AuthUserModelDto {
   String get displayName => throw _privateConstructorUsedError;
   @override
   String get phoneNumber => throw _privateConstructorUsedError;
-
   @override
   String get firstName => throw _privateConstructorUsedError;
-
   @override
   String get lastName => throw _privateConstructorUsedError;
-
   @override
   double get balance => throw _privateConstructorUsedError;
-
   @override
   String get email => throw _privateConstructorUsedError;
-
   @override
   bool get isVerified => throw _privateConstructorUsedError;
-
   @override
   bool get isAccountActive => throw _privateConstructorUsedError;
-
   @override // ignore: invalid_annotation_target
   @JsonKey(fromJson: sendDateTimeFromJson, toJson: sendDateTimeToJson)
   DateTime get createdat => throw _privateConstructorUsedError;
-
+  @override
+  DateTime? get startDate => throw _privateConstructorUsedError;
+  @override
+  DateTime? get deleteDate => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_AuthUserModelDtoCopyWith<_$_AuthUserModelDto> get copyWith =>

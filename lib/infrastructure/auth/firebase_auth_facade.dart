@@ -11,6 +11,7 @@ import 'package:fortfolio/domain/auth/value_objects.dart';
 import 'package:fortfolio/infrastructure/auth/firebase_user_mapper.dart';
 import 'package:fortfolio/infrastructure/core/firestore_helpers.dart';
 import 'package:injectable/injectable.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:uuid/uuid.dart';
 
 import 'dto/auth_user_model_dto.dart';
@@ -441,7 +442,11 @@ class FirebaseAuthFacade implements IAuthFacade {
     final query =
         firestore.authUserCollection.doc(firebaseAuth.currentUser!.uid);
     try {
-      await query.update({"isAccountActive": false});
+      await query.update({
+        "isAccountActive": false,
+        "startDate": DateTime.now(),
+        "deleteDate": Jiffy(DateTime.now()).add(days: 30).dateTime
+      });
       return right("Account submitted for deletion");
     } on FirebaseException catch (e) {
       log("Code: ${e.code}, Message: ${e.message}");
@@ -453,7 +458,11 @@ class FirebaseAuthFacade implements IAuthFacade {
   Future<Either<String, String>> reactivateUser() async {
     final query = firestore.authUserCollection.doc(firebaseAuth.currentUser!.uid);
     try {
-      await query.update({"isAccountActive": true});
+      await query.update({
+        "isAccountActive": false,
+        "startDate": FieldValue.delete(),
+        "deleteDate": FieldValue.delete()
+      });
       return right("Account reactivated successfully");
     } on FirebaseException catch (e) {
       log("Code: ${e.code}, Message: ${e.message}");

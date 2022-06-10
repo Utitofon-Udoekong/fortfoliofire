@@ -18,6 +18,12 @@ _$_AuthUserModelDto _$$_AuthUserModelDtoFromJson(Map<String, dynamic> json) =>
       isVerified: json['isVerified'] as bool,
       isAccountActive: json['isAccountActive'] as bool,
       createdat: sendDateTimeFromJson(json['createdat']),
+      startDate: json['startDate'] == null
+          ? null
+          : DateTime.parse(json['startDate'] as String),
+      deleteDate: json['deleteDate'] == null
+          ? null
+          : DateTime.parse(json['deleteDate'] as String),
     );
 
 Map<String, dynamic> _$$_AuthUserModelDtoToJson(_$_AuthUserModelDto instance) =>
@@ -32,4 +38,6 @@ Map<String, dynamic> _$$_AuthUserModelDtoToJson(_$_AuthUserModelDto instance) =>
       'isVerified': instance.isVerified,
       'isAccountActive': instance.isAccountActive,
       'createdat': sendDateTimeToJson(instance.createdat),
+      'startDate': instance.startDate?.toIso8601String(),
+      'deleteDate': instance.deleteDate?.toIso8601String(),
     };
