@@ -207,7 +207,7 @@ class SignUpForm extends StatelessWidget {
                                     autovalidateMode: AutovalidateMode.onUserInteraction,
                                     obscureText: isObscure,
                                     decoration: InputDecoration(
-                                      errorMaxLines: 2,
+                                      errorMaxLines: 3,
                                       filled: true,
                                       fillColor: const Color(0xFFF3F6F8),
                                       border: InputBorder.none,
@@ -247,6 +247,9 @@ class SignUpForm extends StatelessWidget {
                                   );
                                 },
                               ),
+                              const SizedBox(
+                                height: 20,
+                              ), 
                               BlocBuilder<SignUpFormCubit, SignUpFormState>(
                     builder: (context, state) {
                       return LabeledCheckbox(
@@ -293,3 +296,5 @@ class SignUpForm extends StatelessWidget {
   }
   
 }
+
+

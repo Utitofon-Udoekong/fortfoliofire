@@ -1,9 +1,7 @@
-import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
@@ -31,19 +29,19 @@ class _SplashScreenState extends State<SplashScreen> {
         context.read<AuthCubit>().state.isUserCheckedFromAuthFacade;
     final bool isLoggedIn = context.read<AuthCubit>().state.isLoggedIn;
 
-    if (isChecked && isLoggedIn) {
+    if (isChecked) {
       if (canCheckBiometrics) {
         bool didauthenticate = await LocalAuthApi.authenticate(
             localizedReason: 'Scan Fingerprint to authenticate');
         if (didauthenticate != true) {
           CustomSnackbar.showSnackBar(context, "Authenticate to continue", true);
         } else {
-          context.router.replace(const HomePageRoute());
-          // if(isLoggedIn){
-          // }
+          if(isLoggedIn){
+            context.router.replace(const HomePageRoute());
+          }
         }
       }
-    } else {
+    } else { 
       print("yawa dey ohhhhhhhhhh");
       context.router.replace(const OnboardingScreenRoute());
     }
