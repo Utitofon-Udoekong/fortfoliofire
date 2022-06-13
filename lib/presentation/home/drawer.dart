@@ -4,6 +4,7 @@ import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_icon_filled_button.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -145,19 +146,41 @@ class MainDrawer extends StatelessWidget {
           ]),
           Padding(
             padding: const EdgeInsets.only(left: 20),
-            child: TextButton(
+            child:  FutureBuilder<PackageInfo>(
+              future: PackageInfo.fromPlatform(),
+              builder: (context, snapshot) {
+                switch (snapshot.connectionState) {
+                  case ConnectionState.done:
+                    return TextButton(
                 onPressed: () => showAboutDialog(
                     context: context,
-                    applicationName: "Fortfolio",
-                    applicationVersion: "0.0.1",
+                    applicationName: snapshot.data!.appName,
+                    applicationVersion: "${snapshot.data!.version}+${snapshot.data!.buildNumber}",
                     applicationIcon: const Image(
                       image: AssetImage("images/logo.png"),
                       width: 50,
                       height: 50,
                     )),
-                child: Text("Version 0.0.1",
+                child: Text("Version ${snapshot.data!.version}+${snapshot.data!.buildNumber}",
                     style: subTitle.copyWith(
-                        color: const Color(0XFF242424), fontSize: 13))),
+                        color: const Color(0XFF242424), fontSize: 13)));
+                  default:
+                    return TextButton(
+                onPressed: () => showAboutDialog(
+                    context: context,
+                    applicationName: "Fortfolio",
+                    applicationVersion: "1.0.0",
+                    applicationIcon: const Image(
+                      image: AssetImage("images/logo.png"),
+                      width: 50,
+                      height: 50,
+                    )),
+                child: Text("Version 1.0.0",
+                    style: subTitle.copyWith(
+                        color: const Color(0XFF242424), fontSize: 13)));
+                }
+              },
+            ),
           ),
         ],
       ),
