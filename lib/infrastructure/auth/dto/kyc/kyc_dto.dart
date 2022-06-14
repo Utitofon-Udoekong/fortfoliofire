@@ -15,7 +15,8 @@ abstract class KYCItemDTO implements _$KYCItemDTO {
     required String documentType,
     required List<Map<String, dynamic>> documents,
     required DateTime submitted,
-    required String status
+    required String status,
+    String? rejectionReason,
   }) = _KYCItemDTO;
 
   factory KYCItemDTO.fromDomain(KYCItem kycItem) {
@@ -25,7 +26,8 @@ abstract class KYCItemDTO implements _$KYCItemDTO {
     documentType: kycItem.documentType,
     documents: kycItem.documents,
     submitted: kycItem.submitted,
-    status: kycItem.status
+    status: kycItem.status,
+    rejectionReason: kycItem.rejectionReason,
     );
   }
 
@@ -50,7 +52,8 @@ extension KYCItemDTOX on KYCItemDTO {
     documentType: documentType,
     documents: documents,
     submitted: submitted,
-    status: status
+    status: status,
+    rejectionReason: rejectionReason,
     );
   }
 }

@@ -16,6 +16,7 @@ _$_KYCItemDTO _$$_KYCItemDTOFromJson(Map<String, dynamic> json) =>
           .toList(),
       submitted: DateTime.parse(json['submitted'] as String),
       status: json['status'] as String,
+      rejectionReason: json['rejectionReason'] as String?,
     );
 
 Map<String, dynamic> _$$_KYCItemDTOToJson(_$_KYCItemDTO instance) =>
@@ -26,4 +27,5 @@ Map<String, dynamic> _$$_KYCItemDTOToJson(_$_KYCItemDTO instance) =>
       'documents': instance.documents,
       'submitted': instance.submitted.toIso8601String(),
       'status': instance.status,
+      'rejectionReason': instance.rejectionReason,
     };

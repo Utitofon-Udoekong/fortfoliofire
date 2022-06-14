@@ -9,7 +9,8 @@ abstract class KYCItem implements _$KYCItem {
     required String documentType,
     required List<Map<String, dynamic>> documents,
     required DateTime submitted,
-    required String status
+    required String status,
+    String? rejectionReason
   }) = _KYCItem;
   factory KYCItem.empty() => KYCItem(
     fullName: "",
@@ -17,7 +18,7 @@ abstract class KYCItem implements _$KYCItem {
     documentType: "",
     documents: List.empty(growable: true),
     submitted: DateTime.now(),
-    status: ""
-
+    status: "",
+    rejectionReason: ""
   );
 }

@@ -27,6 +27,7 @@ mixin _$KYCItemDTO {
       throw _privateConstructorUsedError;
   DateTime get submitted => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
+  String? get rejectionReason => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,7 +46,8 @@ abstract class $KYCItemDTOCopyWith<$Res> {
       String documentType,
       List<Map<String, dynamic>> documents,
       DateTime submitted,
-      String status});
+      String status,
+      String? rejectionReason});
 }
 
 /// @nodoc
@@ -64,6 +66,7 @@ class _$KYCItemDTOCopyWithImpl<$Res> implements $KYCItemDTOCopyWith<$Res> {
     Object? documents = freezed,
     Object? submitted = freezed,
     Object? status = freezed,
+    Object? rejectionReason = freezed,
   }) {
     return _then(_value.copyWith(
       fullName: fullName == freezed
@@ -90,6 +93,10 @@ class _$KYCItemDTOCopyWithImpl<$Res> implements $KYCItemDTOCopyWith<$Res> {
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
+      rejectionReason: rejectionReason == freezed
+          ? _value.rejectionReason
+          : rejectionReason // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -107,7 +114,8 @@ abstract class _$$_KYCItemDTOCopyWith<$Res>
       String documentType,
       List<Map<String, dynamic>> documents,
       DateTime submitted,
-      String status});
+      String status,
+      String? rejectionReason});
 }
 
 /// @nodoc
@@ -128,6 +136,7 @@ class __$$_KYCItemDTOCopyWithImpl<$Res> extends _$KYCItemDTOCopyWithImpl<$Res>
     Object? documents = freezed,
     Object? submitted = freezed,
     Object? status = freezed,
+    Object? rejectionReason = freezed,
   }) {
     return _then(_$_KYCItemDTO(
       fullName: fullName == freezed
@@ -154,6 +163,10 @@ class __$$_KYCItemDTOCopyWithImpl<$Res> extends _$KYCItemDTOCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
+      rejectionReason: rejectionReason == freezed
+          ? _value.rejectionReason
+          : rejectionReason // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -167,7 +180,8 @@ class _$_KYCItemDTO extends _KYCItemDTO {
       required this.documentType,
       required final List<Map<String, dynamic>> documents,
       required this.submitted,
-      required this.status})
+      required this.status,
+      this.rejectionReason})
       : _documents = documents,
         super._();
 
@@ -191,10 +205,12 @@ class _$_KYCItemDTO extends _KYCItemDTO {
   final DateTime submitted;
   @override
   final String status;
+  @override
+  final String? rejectionReason;
 
   @override
   String toString() {
-    return 'KYCItemDTO(fullName: $fullName, id: $id, documentType: $documentType, documents: $documents, submitted: $submitted, status: $status)';
+    return 'KYCItemDTO(fullName: $fullName, id: $id, documentType: $documentType, documents: $documents, submitted: $submitted, status: $status, rejectionReason: $rejectionReason)';
   }
 
   @override
@@ -209,7 +225,9 @@ class _$_KYCItemDTO extends _KYCItemDTO {
             const DeepCollectionEquality()
                 .equals(other._documents, _documents) &&
             const DeepCollectionEquality().equals(other.submitted, submitted) &&
-            const DeepCollectionEquality().equals(other.status, status));
+            const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality()
+                .equals(other.rejectionReason, rejectionReason));
   }
 
   @JsonKey(ignore: true)
@@ -221,7 +239,8 @@ class _$_KYCItemDTO extends _KYCItemDTO {
       const DeepCollectionEquality().hash(documentType),
       const DeepCollectionEquality().hash(_documents),
       const DeepCollectionEquality().hash(submitted),
-      const DeepCollectionEquality().hash(status));
+      const DeepCollectionEquality().hash(status),
+      const DeepCollectionEquality().hash(rejectionReason));
 
   @JsonKey(ignore: true)
   @override
@@ -241,7 +260,8 @@ abstract class _KYCItemDTO extends KYCItemDTO {
       required final String documentType,
       required final List<Map<String, dynamic>> documents,
       required final DateTime submitted,
-      required final String status}) = _$_KYCItemDTO;
+      required final String status,
+      final String? rejectionReason}) = _$_KYCItemDTO;
   const _KYCItemDTO._() : super._();
 
   factory _KYCItemDTO.fromJson(Map<String, dynamic> json) =
@@ -260,6 +280,8 @@ abstract class _KYCItemDTO extends KYCItemDTO {
   DateTime get submitted => throw _privateConstructorUsedError;
   @override
   String get status => throw _privateConstructorUsedError;
+  @override
+  String? get rejectionReason => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_KYCItemDTOCopyWith<_$_KYCItemDTO> get copyWith =>
