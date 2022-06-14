@@ -22,101 +22,100 @@ class WithdrawalPage extends StatelessWidget {
           return state.loading;
         },
         builder: (context, loading) {
-          if (loading) {
-            return const LoadingView();
-          } else {
-            return SafeArea(
-              child: Padding(
-                padding: kDefaultPadding,
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      InkWell(
-                        onTap: () => context.router.pop(),
-                        child: const Icon(Icons.close),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        "Withdraw",
-                        style: titleText,
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        'Select where you want to withdraw from. Withdrawals have a time lock of 7 days.',
-                        style:
-                            subTitle.copyWith(color: kgreyColor, fontSize: 15),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        'Note that all rewards must be harvested before investments can be withdrawn',
-                        style:
-                            subTitle.copyWith(color: kgreyColor, fontSize: 15),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Row(children: <Widget>[
-                        const Expanded(child: Divider()),
-                        Container(
-                          padding: const EdgeInsets.all(13),
-                          decoration: BoxDecoration(
-                              color: const Color.fromRGBO(203, 241, 255, 0.18),
-                              borderRadius: BorderRadius.circular(20)),
-                          child: Text(
-                            '\$1 = N585',
-                            style: subTitle.copyWith(
-                                fontSize: 13, color: kPrimaryColor),
-                          ),
-                          alignment: Alignment.center,
+          return LoadingView(
+              isLoading: loading,
+              child: SafeArea(
+                child: Padding(
+                  padding: kDefaultPadding,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        const SizedBox(
+                          height: 20,
                         ),
-                        const Expanded(child: Divider())
-                      ]),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      buildTile(
-                          'Invested',
-                          withdrawalItem.amount,
-                          'Withdraw',
-                          () => harvested
-                              ? context.router
-                                  .push(const SelectWithdrawalMethodRoute())
-                              : null,
-                          harvested
-                              ? kPrimaryColor
-                              : const Color.fromRGBO(3, 66, 109, 0.65)),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      buildTile(
-                          'Reward',
-                          withdrawalItem.planYield,
-                          'Harvest',
-                          () => harvested
-                              ? null
-                              : context.read<WalletCubit>().harvestInvestment(
-                                  docId: withdrawalItem.uid +
-                                      withdrawalItem.traxId,
-                                  amount: withdrawalItem.planYield),
-                          harvested
-                              ? const Color.fromRGBO(3, 66, 109, 0.65)
-                              : kPrimaryColor)
-                    ],
+                        InkWell(
+                          onTap: () => context.router.pop(),
+                          child: const Icon(Icons.close),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          "Withdraw",
+                          style: titleText,
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          'Select where you want to withdraw from. Withdrawals have a time lock of 7 days.',
+                          style:
+                              subTitle.copyWith(color: kgreyColor, fontSize: 15),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          'Note that all rewards must be harvested before investments can be withdrawn',
+                          style:
+                              subTitle.copyWith(color: kgreyColor, fontSize: 15),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Row(children: <Widget>[
+                          const Expanded(child: Divider()),
+                          Container(
+                            padding: const EdgeInsets.all(13),
+                            decoration: BoxDecoration(
+                                color: const Color.fromRGBO(203, 241, 255, 0.18),
+                                borderRadius: BorderRadius.circular(20)),
+                            child: Text(
+                              '\$1 = N585',
+                              style: subTitle.copyWith(
+                                  fontSize: 13, color: kPrimaryColor),
+                            ),
+                            alignment: Alignment.center,
+                          ),
+                          const Expanded(child: Divider())
+                        ]),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        buildTile(
+                            'Invested',
+                            withdrawalItem.amount,
+                            'Withdraw',
+                            () => harvested
+                                ? context.router
+                                    .push(const SelectWithdrawalMethodRoute())
+                                : null,
+                            harvested
+                                ? kPrimaryColor
+                                : const Color.fromRGBO(3, 66, 109, 0.65)),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        buildTile(
+                            'Reward',
+                            withdrawalItem.planYield,
+                            'Harvest',
+                            () => harvested
+                                ? null
+                                : context.read<WalletCubit>().harvestInvestment(
+                                    docId: withdrawalItem.uid +
+                                        withdrawalItem.traxId,
+                                    amount: withdrawalItem.planYield),
+                            harvested
+                                ? const Color.fromRGBO(3, 66, 109, 0.65)
+                                : kPrimaryColor)
+                      ],
+                    ),
                   ),
                 ),
               ),
             );
-          }
         },
       ),
     );
