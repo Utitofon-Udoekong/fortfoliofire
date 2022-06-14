@@ -57,11 +57,11 @@ class NairaAccount extends StatelessWidget {
               decoration: BoxDecoration(
                   color: const Color.fromRGBO(203, 241, 255, 0.18),
                   borderRadius: BorderRadius.circular(20)),
+              alignment: Alignment.center,
               child: Text(
-                '\$1 = NdollarPrice',
+                '\$1 = N$dollarPrice',
                 style: subTitle.copyWith(fontSize: 13, color: kPrimaryColor),
               ),
-              alignment: Alignment.center,
             ),
             const Expanded(child: Divider())
           ]),
@@ -120,6 +120,7 @@ class NairaAccount extends StatelessWidget {
                 ),
                 Flex(
                   direction: Axis.horizontal,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     buildtile('Account Number', '0627767963'),
                     IconButton(
@@ -136,7 +137,6 @@ class NairaAccount extends StatelessWidget {
                           color: kPrimaryColor,
                         ))
                   ],
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 )
               ],
             ),

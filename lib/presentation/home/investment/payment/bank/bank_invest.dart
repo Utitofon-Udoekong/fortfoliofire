@@ -1,11 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
-import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
-import 'package:fortfolio/domain/widgets/loading_view.dart';
-import 'package:fortfolio/presentation/home/investment/cubit/investment_cubit.dart';
-import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'domiciliary.dart';
 import 'naira.dart';
 
