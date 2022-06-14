@@ -20,6 +20,8 @@ class VerificationPage extends StatelessWidget {
         context.select((VerificationCubit cubit) => cubit.state.kycExists);
     final bool isRejected =
         context.select((VerificationCubit cubit) => cubit.state.isRejected);
+    final String rejectionReason =
+        context.select((VerificationCubit cubit) => cubit.state.rejectionReason);
     final Widget svg = SvgPicture.asset('images/shield.svg',
         width: MediaQuery.of(context).size.width * 0.35);
     return Scaffold(
@@ -76,37 +78,43 @@ class VerificationPage extends StatelessWidget {
                         onTap: () => context.router.pop(),
                         child: const Icon(Icons.close),
                       ),
-                      BlocSelector<VerificationCubit, VerificationState, bool>(
-                        selector: (state) {
-                          return state.isRejected;
-                        },
-                        builder: (context, isRejected) {
-                          return Visibility(
-                            visible: isRejected,
-                            child: Container(
-                              padding: const EdgeInsets.all(12.0),
-                              margin: const EdgeInsets.symmetric(vertical: 10.0),
-                              width: MediaQuery.of(context).size.width,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  color:
-                                      const Color.fromARGB(76, 218, 102, 102)),
-                              child: Text(
-                                "Verification documents rejected.",
-                                style: subTitle.copyWith(
-                                    color: kRedColor,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold),
-                              ),
+                      Visibility(
+                        visible: isRejected,
+                        child: Container(
+                          padding: const EdgeInsets.all(12.0),
+                          margin: const EdgeInsets.symmetric(vertical: 10.0),
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.0),
+                              color: const Color.fromARGB(76, 218, 102, 102)),
+                          child: Tooltip(
+                            message: rejectionReason,
+                            triggerMode: TooltipTriggerMode.tap,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(6),
+                                color: kSecondaryColor),
+                            height: 50,
+                            padding: const EdgeInsets.all(8.0),
+                            margin: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Text(
+                              "Verification documents rejected.",
+                              style: subTitle.copyWith(
+                                  color: kRedColor,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  decoration: TextDecoration.underline,
+                        decorationStyle: TextDecorationStyle.dashed),
                             ),
-                          );
-                        },
+                          ),
+                        ),
                       ),
                       const SizedBox(
                         height: 20,
                       ),
                       Text(
-                        context.read<VerificationCubit>().state.isRejected ? "Verify Again" : "Verify Account",
+                        isRejected
+                            ? "Verify Again"
+                            : "Verify Account",
                         style: titleText,
                       ),
                       const SizedBox(

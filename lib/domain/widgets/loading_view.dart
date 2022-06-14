@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
-import 'package:fortfolio/domain/constants/theme.dart';
+import 'theme.dart';
 
 class LoadingView extends StatefulWidget {
   final Color color1;
   final Color color2;
   final Color color3;
+  final bool isLoading;
+  final Widget child;
 
   const LoadingView(
-      {Key? key, this.color1 = kPrimaryColor,
+      {Key? key, this.color1 = kWhiteColor,
       this.color2 = klightblue,
-      this.color3 = kGreenColor}) : super(key: key);
+      this.color3 = kGreenColor,
+      required this.isLoading,
+      required this.child}) : super(key: key);
 
   @override
   _LoadingViewState createState() => _LoadingViewState();
@@ -56,46 +60,56 @@ class _LoadingViewState extends State<LoadingView>
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        color: Colors.transparent
-      ),
-      child: Center(
-        child: Stack(
-          children: <Widget>[
-            RotationTransition(
+    return Stack(
+      children: <Widget>[
+        widget.child,
+        if(widget.isLoading) ... [
+          const Opacity(
+            opacity: 0.8,
+            child: ModalBarrier(dismissible: false, color: Color.fromARGB(255, 3, 66, 109)),
+          ),
+          Center(
+            child: RotationTransition(
               turns: animation1,
               child: CustomPaint(
                 painter: Arc1Painter(widget.color1),
                 child: const SizedBox(
-                  width: 50.0,
-                  height: 50.0,
+                  width: 70.0,
+                  height: 70.0,
                 ),
               ),
             ),
-            RotationTransition(
-              turns: animation2,
-              child: CustomPaint(
-                painter: Arc2Painter(widget.color2),
-                child: const SizedBox(
-                  width: 50.0,
-                  height: 50.0,
-                ),
+          ),
+        Center(
+          child: RotationTransition(
+            turns: animation2,
+            child: CustomPaint(
+              painter: Arc2Painter(widget.color2),
+              child: const SizedBox(
+                width: 75.0,
+                height: 75.0,
               ),
             ),
-            RotationTransition(
-              turns: animation3,
-              child: CustomPaint(
-                painter: Arc3Painter(widget.color3),
-                child: const SizedBox(
-                  width: 50.0,
-                  height: 50.0,
-                ),
-              ),
-            )
-          ],
+          ),
         ),
-      ),
+        Center(
+          child: RotationTransition(
+            turns: animation3,
+            child: CustomPaint(
+              painter: Arc3Painter(widget.color3),
+              child: const SizedBox(
+                width: 85.0,
+                height: 85.0,
+              ),
+            ),
+          ),
+        ),
+        const Center(
+          child: Image(image: AssetImage("images/logo.png"), width: 50, height: 50,),
+        ),
+
+        ]
+      ],
     );
   }
 

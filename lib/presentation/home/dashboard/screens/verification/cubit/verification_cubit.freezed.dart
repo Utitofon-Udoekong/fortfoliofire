@@ -19,6 +19,7 @@ mixin _$VerificationState {
   bool get submitting => throw _privateConstructorUsedError;
   bool get kycExists => throw _privateConstructorUsedError;
   String get failure => throw _privateConstructorUsedError;
+  String get rejectionReason => throw _privateConstructorUsedError;
   String get success => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   String get documentType => throw _privateConstructorUsedError;
@@ -40,6 +41,7 @@ abstract class $VerificationStateCopyWith<$Res> {
       {bool submitting,
       bool kycExists,
       String failure,
+      String rejectionReason,
       String success,
       String status,
       String documentType,
@@ -62,6 +64,7 @@ class _$VerificationStateCopyWithImpl<$Res>
     Object? submitting = freezed,
     Object? kycExists = freezed,
     Object? failure = freezed,
+    Object? rejectionReason = freezed,
     Object? success = freezed,
     Object? status = freezed,
     Object? documentType = freezed,
@@ -81,6 +84,10 @@ class _$VerificationStateCopyWithImpl<$Res>
       failure: failure == freezed
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
+              as String,
+      rejectionReason: rejectionReason == freezed
+          ? _value.rejectionReason
+          : rejectionReason // ignore: cast_nullable_to_non_nullable
               as String,
       success: success == freezed
           ? _value.success
@@ -121,6 +128,7 @@ abstract class _$$_VerificationStateCopyWith<$Res>
       {bool submitting,
       bool kycExists,
       String failure,
+      String rejectionReason,
       String success,
       String status,
       String documentType,
@@ -145,6 +153,7 @@ class __$$_VerificationStateCopyWithImpl<$Res>
     Object? submitting = freezed,
     Object? kycExists = freezed,
     Object? failure = freezed,
+    Object? rejectionReason = freezed,
     Object? success = freezed,
     Object? status = freezed,
     Object? documentType = freezed,
@@ -164,6 +173,10 @@ class __$$_VerificationStateCopyWithImpl<$Res>
       failure: failure == freezed
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
+              as String,
+      rejectionReason: rejectionReason == freezed
+          ? _value.rejectionReason
+          : rejectionReason // ignore: cast_nullable_to_non_nullable
               as String,
       success: success == freezed
           ? _value.success
@@ -200,6 +213,7 @@ class _$_VerificationState extends _VerificationState {
       {required this.submitting,
       required this.kycExists,
       required this.failure,
+      required this.rejectionReason,
       required this.success,
       required this.status,
       required this.documentType,
@@ -215,6 +229,8 @@ class _$_VerificationState extends _VerificationState {
   @override
   final String failure;
   @override
+  final String rejectionReason;
+  @override
   final String success;
   @override
   final String status;
@@ -229,7 +245,7 @@ class _$_VerificationState extends _VerificationState {
 
   @override
   String toString() {
-    return 'VerificationState(submitting: $submitting, kycExists: $kycExists, failure: $failure, success: $success, status: $status, documentType: $documentType, frontFile: $frontFile, backFile: $backFile, utilityFile: $utilityFile)';
+    return 'VerificationState(submitting: $submitting, kycExists: $kycExists, failure: $failure, rejectionReason: $rejectionReason, success: $success, status: $status, documentType: $documentType, frontFile: $frontFile, backFile: $backFile, utilityFile: $utilityFile)';
   }
 
   @override
@@ -241,6 +257,8 @@ class _$_VerificationState extends _VerificationState {
                 .equals(other.submitting, submitting) &&
             const DeepCollectionEquality().equals(other.kycExists, kycExists) &&
             const DeepCollectionEquality().equals(other.failure, failure) &&
+            const DeepCollectionEquality()
+                .equals(other.rejectionReason, rejectionReason) &&
             const DeepCollectionEquality().equals(other.success, success) &&
             const DeepCollectionEquality().equals(other.status, status) &&
             const DeepCollectionEquality()
@@ -257,6 +275,7 @@ class _$_VerificationState extends _VerificationState {
       const DeepCollectionEquality().hash(submitting),
       const DeepCollectionEquality().hash(kycExists),
       const DeepCollectionEquality().hash(failure),
+      const DeepCollectionEquality().hash(rejectionReason),
       const DeepCollectionEquality().hash(success),
       const DeepCollectionEquality().hash(status),
       const DeepCollectionEquality().hash(documentType),
@@ -276,6 +295,7 @@ abstract class _VerificationState extends VerificationState {
       {required final bool submitting,
       required final bool kycExists,
       required final String failure,
+      required final String rejectionReason,
       required final String success,
       required final String status,
       required final String documentType,
@@ -290,6 +310,8 @@ abstract class _VerificationState extends VerificationState {
   bool get kycExists => throw _privateConstructorUsedError;
   @override
   String get failure => throw _privateConstructorUsedError;
+  @override
+  String get rejectionReason => throw _privateConstructorUsedError;
   @override
   String get success => throw _privateConstructorUsedError;
   @override

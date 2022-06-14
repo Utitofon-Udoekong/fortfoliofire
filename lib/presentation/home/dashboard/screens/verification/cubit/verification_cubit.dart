@@ -47,7 +47,8 @@ class VerificationCubit extends Cubit<VerificationState> {
     }, (r) {
       if(r.status == "Rejected" || r.status == "Approved" || isVerified){
         sp.setBool("kycExists", false);
-        if (r.status == "Rejected" || r.status == "Approved") emit(state.copyWith(status: r.status));
+        if (r.status == "Approved") emit(state.copyWith(status: r.status));
+        if (r.status == "Rejected") emit(state.copyWith(status: r.status, rejectionReason: r.rejectionReason!));
       }else {
         emit(state.copyWith(kycExists: kycExists!));
       }
