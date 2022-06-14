@@ -33,98 +33,97 @@ class ResetPassword extends StatelessWidget {
           child: BlocBuilder<ResetPasswordCubit, ResetPasswordState>(
             buildWhen: (p, c) => p.isSubmitting != c.isSubmitting,
             builder: (context, state) {
-              if (state.isSubmitting) {
-                return const LoadingView();
-              } else {
-                return Scaffold(
-                  body: SafeArea(
-                      child: SingleChildScrollView(
-                    child: Form(
-                        child: Padding(
-                      padding: kDefaultPadding,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          InkWell(
-                            onTap: () => context.router.pop(),
-                            child: const Icon(Icons.close),
-                          ),
-                          const SizedBox(
-                            height: 40,
-                          ),
-                          Text(
-                            "Create new\nPassword",
-                            style: titleText,
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          const Text(
-                            "A password reset link will be sent to your email address",
-                            style: TextStyle(
-                                fontSize: 15, color: Color(0xFF656565)),
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          const Text(
-                            "Email address",
-                            style: TextStyle(
-                                fontSize: 15, color: Color(0xFF656565)),
-                          ),
-                          BlocBuilder<ResetPasswordCubit, ResetPasswordState>(
-                            buildWhen: (p, c) =>
-                                p.emailAddress != c.emailAddress,
-                            builder: (context, state) {
-                              return TextFormField(
-                                autocorrect: false,
-                                keyboardType: TextInputType.emailAddress,
-                                textInputAction: TextInputAction.next,
-                                decoration: const InputDecoration(
-                                    filled: true,
-                                    fillColor: Color(0xFFF3F6F8),
-                                    border: InputBorder.none),
-                                onChanged: (value) => context
-                                    .read<ResetPasswordCubit>()
-                                    .emailAddressChanged(emailAddress: value),
-                                validator: (_) => context
-                                    .read<ResetPasswordCubit>()
-                                    .state
-                                    .emailAddress
-                                    .value
-                                    .fold(
-                                      (f) => f.maybeMap(
-                                          invalidEmail: (_) => "Invalid email address",
-                                          orElse: () => null),
-                                      (r) => null,
-                                    ),
-                              );
-                            },
-                          ),
-                          const SizedBox(
-                            height: 50,
-                          ),
-                          BlocBuilder<ResetPasswordCubit, ResetPasswordState>(
-                            buildWhen: (p, c) => p.emailAddress != c.emailAddress,
-                            builder: (context, state) {
-                              return CustomAuthFilledButton(
-                                text: 'RESET PASSWORD',
-                                onTap: () => context
-                                    .read<ResetPasswordCubit>()
-                                    .requestReset(),
-                                disabled: !state.emailAddress.isValid(),
-                              );
-                            },
-                          ),
-                        ],
-                      ),
+              return LoadingView(
+                  isLoading: state.isSubmitting,
+                  child: Scaffold(
+                    body: SafeArea(
+                        child: SingleChildScrollView(
+                      child: Form(
+                          child: Padding(
+                        padding: kDefaultPadding,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            InkWell(
+                              onTap: () => context.router.pop(),
+                              child: const Icon(Icons.close),
+                            ),
+                            const SizedBox(
+                              height: 40,
+                            ),
+                            Text(
+                              "Create new\nPassword",
+                              style: titleText,
+                            ),
+                            const SizedBox(
+                              height: 30,
+                            ),
+                            const Text(
+                              "A password reset link will be sent to your email address",
+                              style: TextStyle(
+                                  fontSize: 15, color: Color(0xFF656565)),
+                            ),
+                            const SizedBox(
+                              height: 30,
+                            ),
+                            const Text(
+                              "Email address",
+                              style: TextStyle(
+                                  fontSize: 15, color: Color(0xFF656565)),
+                            ),
+                            BlocBuilder<ResetPasswordCubit, ResetPasswordState>(
+                              buildWhen: (p, c) =>
+                                  p.emailAddress != c.emailAddress,
+                              builder: (context, state) {
+                                return TextFormField(
+                                  autocorrect: false,
+                                  keyboardType: TextInputType.emailAddress,
+                                  textInputAction: TextInputAction.next,
+                                  decoration: const InputDecoration(
+                                      filled: true,
+                                      fillColor: Color(0xFFF3F6F8),
+                                      border: InputBorder.none),
+                                  onChanged: (value) => context
+                                      .read<ResetPasswordCubit>()
+                                      .emailAddressChanged(emailAddress: value),
+                                  validator: (_) => context
+                                      .read<ResetPasswordCubit>()
+                                      .state
+                                      .emailAddress
+                                      .value
+                                      .fold(
+                                        (f) => f.maybeMap(
+                                            invalidEmail: (_) => "Invalid email address",
+                                            orElse: () => null),
+                                        (r) => null,
+                                      ),
+                                );
+                              },
+                            ),
+                            const SizedBox(
+                              height: 50,
+                            ),
+                            BlocBuilder<ResetPasswordCubit, ResetPasswordState>(
+                              buildWhen: (p, c) => p.emailAddress != c.emailAddress,
+                              builder: (context, state) {
+                                return CustomAuthFilledButton(
+                                  text: 'RESET PASSWORD',
+                                  onTap: () => context
+                                      .read<ResetPasswordCubit>()
+                                      .requestReset(),
+                                  disabled: !state.emailAddress.isValid(),
+                                );
+                              },
+                            ),
+                          ],
+                        ),
+                      )),
                     )),
-                  )),
+                  ),
                 );
-              }
             },
           ),
         ));

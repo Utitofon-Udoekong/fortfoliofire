@@ -48,95 +48,94 @@ class ConfirmLoginWithOTP extends StatelessWidget {
         ],
         child: BlocBuilder<SignInFormPhoneCubit, SignInFormPhoneState>(
           builder: (context, state) {
-            if (state.isSubmitting) {
-              return const LoadingView();
-            } else {
-              return SafeArea(
-                  child: SingleChildScrollView(
-                child: Padding(
-                  padding: kDefaultPadding,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      InkWell(
-                        onTap: () => context.router.pop(),
-                        child: const Icon(Icons.close),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        'We sent an OTP to the number $phoneNumber',
-                        style: titleText.copyWith(fontSize: 24),
-                      ),
-                      const SizedBox(
-                        height: 50,
-                      ),
-                      BlocBuilder<SignInFormPhoneCubit, SignInFormPhoneState>(
-                        builder: (context, state) {
-                          return OTPTextField(
-                            length: 6,
-                            width: MediaQuery.of(context).size.width,
-                            fieldWidth: 38,
-                            fieldHeight: 42,
-                            style: subTitle.copyWith(color: kPrimaryColor),
-                            textFieldAlignment: MainAxisAlignment.spaceAround,
-                            fieldStyle: FieldStyle.box,
-                            otpFieldStyle: OtpFieldStyle(
-                                borderColor: kgreyColor,
-                                focusBorderColor: kPrimaryColor),
-                            keyboardType: TextInputType.number,
-                            onCompleted: (value) => context
+            return LoadingView(
+                isLoading: state.isSubmitting,
+                child: SafeArea(
+                    child: SingleChildScrollView(
+                  child: Padding(
+                    padding: kDefaultPadding,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        InkWell(
+                          onTap: () => context.router.pop(),
+                          child: const Icon(Icons.close),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          'We sent an OTP to the number $phoneNumber',
+                          style: titleText.copyWith(fontSize: 24),
+                        ),
+                        const SizedBox(
+                          height: 50,
+                        ),
+                        BlocBuilder<SignInFormPhoneCubit, SignInFormPhoneState>(
+                          builder: (context, state) {
+                            return OTPTextField(
+                              length: 6,
+                              width: MediaQuery.of(context).size.width,
+                              fieldWidth: 38,
+                              fieldHeight: 42,
+                              style: subTitle.copyWith(color: kPrimaryColor),
+                              textFieldAlignment: MainAxisAlignment.spaceAround,
+                              fieldStyle: FieldStyle.box,
+                              otpFieldStyle: OtpFieldStyle(
+                                  borderColor: kgreyColor,
+                                  focusBorderColor: kPrimaryColor),
+                              keyboardType: TextInputType.number,
+                              onCompleted: (value) => context
+                                  .read<SignInFormPhoneCubit>()
+                                  .smsCodeChanged(smsCode: value),
+                            );
+                          },
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        BlocSelector<SignInFormPhoneCubit, SignInFormPhoneState,
+                            bool>(
+                          selector: (state) {
+                            return state.phoneNumber.isEmpty;
+                          },
+                          builder: (context, inValidPhone) {
+                            return CustomAuthFilledButton(
+                              text: "VERIFY",
+                              onTap: () => context
+                                  .read<SignInFormPhoneCubit>()
+                                  .verifySmsCode(),
+                              disabled: inValidPhone,
+                            );
+                          },
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        Row(
+                          children: [
+                            TextButton(onPressed: () => context
                                 .read<SignInFormPhoneCubit>()
-                                .smsCodeChanged(smsCode: value),
-                          );
-                        },
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      BlocSelector<SignInFormPhoneCubit, SignInFormPhoneState,
-                          bool>(
-                        selector: (state) {
-                          return state.phoneNumber.isEmpty;
-                        },
-                        builder: (context, inValidPhone) {
-                          return CustomAuthFilledButton(
-                            text: "VERIFY",
-                            onTap: () => context
-                                .read<SignInFormPhoneCubit>()
-                                .verifySmsCode(),
-                            disabled: inValidPhone,
-                          );
-                        },
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Row(
-                        children: [
-                          TextButton(onPressed: () => context
-                              .read<SignInFormPhoneCubit>()
-                              .signInWithPhoneNumber(), child: Text("Resend", style: subTitle.copyWith(fontSize: 13, color: kBlackColor),)),
-                          const Spacer(),
-                          CountDownTimer(
-                            smsCodeTimeoutSeconds: smsCodeTimeoutSeconds,
-                            onTimerCompleted: () {
-                              CustomSnackbar.showSnackBar(
-                                  context, "SMS Code Timeout!", true);
-                              context.read<SignInFormPhoneCubit>().reset();
-                            },
-                          ),
-                        ],
-                      ),
-                    ],
+                                .signInWithPhoneNumber(), child: Text("Resend", style: subTitle.copyWith(fontSize: 13, color: kBlackColor),)),
+                            const Spacer(),
+                            CountDownTimer(
+                              smsCodeTimeoutSeconds: smsCodeTimeoutSeconds,
+                              onTimerCompleted: () {
+                                CustomSnackbar.showSnackBar(
+                                    context, "SMS Code Timeout!", true);
+                                context.read<SignInFormPhoneCubit>().reset();
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ));
-            }
+                )),
+              );
           },
         ),
       ),
