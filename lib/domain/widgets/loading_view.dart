@@ -74,8 +74,8 @@ class _LoadingViewState extends State<LoadingView>
               child: CustomPaint(
                 painter: Arc1Painter(widget.color1),
                 child: const SizedBox(
-                  width: 70.0,
-                  height: 70.0,
+                  width: 75.0,
+                  height: 75.0,
                 ),
               ),
             ),
@@ -86,8 +86,8 @@ class _LoadingViewState extends State<LoadingView>
             child: CustomPaint(
               painter: Arc2Painter(widget.color2),
               child: const SizedBox(
-                width: 75.0,
-                height: 75.0,
+                width: 80.0,
+                height: 80.0,
               ),
             ),
           ),
@@ -98,8 +98,8 @@ class _LoadingViewState extends State<LoadingView>
             child: CustomPaint(
               painter: Arc3Painter(widget.color3),
               child: const SizedBox(
-                width: 85.0,
-                height: 85.0,
+                width: 90.0,
+                height: 90.0,
               ),
             ),
           ),
