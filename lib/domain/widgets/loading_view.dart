@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
-import 'theme.dart';
+import 'package:fortfolio/domain/constants/theme.dart';
 
 class LoadingView extends StatefulWidget {
   final Color color1;

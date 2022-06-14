@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
@@ -40,83 +39,82 @@ class VerifyCryptoWallet extends StatelessWidget {
             return state.isloading;
           },
           builder: (context, isLoading) {
-            if (isLoading) {
-              return const LoadingView();
-            } else {
-              return SafeArea(
-                child: Padding(
-                  padding: kDefaultPadding,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      InkWell(
-                        onTap: () => context.router.pop(),
-                        child: const Icon(Icons.close),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        "Enter Transaction Pin",
-                        style: titleText.copyWith(color: kBlackColor),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      TextButton(
-                        onPressed: () => context.router.push(const SetPinEngineRoute()),
-                        child: Text(
-                          "Haven't set a pin?",
-                          style: titleText.copyWith(color: kPrimaryColor, fontSize: 14),
+            return LoadingView(
+                isLoading: isLoading,
+                child: SafeArea(
+                  child: Padding(
+                    padding: kDefaultPadding,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        InkWell(
+                          onTap: () => context.router.pop(),
+                          child: const Icon(Icons.close),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      SizedBox(
-                        height: 60,
-                        child: Center(
-                            child: TextField(
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          "Enter Transaction Pin",
+                          style: titleText.copyWith(color: kBlackColor),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        TextButton(
+                          onPressed: () => context.router.push(const SetPinEngineRoute()),
+                          child: Text(
+                            "Haven't set a pin?",
+                            style: titleText.copyWith(color: kPrimaryColor, fontSize: 14),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        SizedBox(
+                          height: 60,
+                          child: Center(
+                              child: TextField(
+                            controller: _myController,
+                            textAlign: TextAlign.center,
+                            showCursor: false,
+                            style: const TextStyle(fontSize: 35),
+                            // Disable the default soft keybaord
+                            keyboardType: TextInputType.none,
+                            decoration: InputDecoration(
+                                suffix: IconButton(
+                                    onPressed: () {
+                                      _myController.text = _myController.text
+                                          .substring(
+                                              0, _myController.text.length - 1);
+                                    },
+                                    icon: const Icon(Icons.backspace,
+                                        color: kPrimaryColor))),
+                          )),
+                        ),
+                        // implement the custom NumPad
+                        NumPad(
+                          buttonSize: 60,
                           controller: _myController,
-                          textAlign: TextAlign.center,
-                          showCursor: false,
-                          style: const TextStyle(fontSize: 35),
-                          // Disable the default soft keybaord
-                          keyboardType: TextInputType.none,
-                          decoration: InputDecoration(
-                              suffix: IconButton(
-                                  onPressed: () {
-                                    _myController.text = _myController.text
-                                        .substring(
-                                            0, _myController.text.length - 1);
-                                  },
-                                  icon: const Icon(Icons.backspace,
-                                      color: kPrimaryColor))),
-                        )),
-                      ),
-                      // implement the custom NumPad
-                      NumPad(
-                        buttonSize: 60,
-                        controller: _myController,
-                        onSubmit: () {
-                          context
-                              .read<CryptoWalletCubit>()
-                              .auhenticatePin(pin: _myController.text);
-                          _myController.clear();
-                        },
-                        fingerPrint: () {
-                          context
-                              .read<CryptoWalletCubit>()
-                              .authenticateBiometric();
-                          _myController.clear();
-                        },
-                      ),
-                    ],
+                          onSubmit: () {
+                            context
+                                .read<CryptoWalletCubit>()
+                                .auhenticatePin(pin: _myController.text);
+                            _myController.clear();
+                          },
+                          fingerPrint: () {
+                            context
+                                .read<CryptoWalletCubit>()
+                                .authenticateBiometric();
+                            _myController.clear();
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               );
-            }
           },
         ),
       ),

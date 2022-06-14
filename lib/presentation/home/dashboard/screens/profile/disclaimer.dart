@@ -27,79 +27,79 @@ class DisclaimerPage extends StatelessWidget {
           BlocListener<ProfileCubit, ProfileState>(
             listener: (context, state) {
               CustomSnackbar.showSnackBar(context, state.success, false);
+              context.router.pop();
             },
           ),
         ],
         child: BlocBuilder<ProfileCubit, ProfileState>(
           builder: (context, state) {
-            if(state.loading){
-              return const LoadingView();
-            }else{
-              return SafeArea(
-              child: Padding(
-                padding: kDefaultPadding,
-                child: SingleChildScrollView(
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        InkWell(
-                          onTap: () => context.router.pop(),
-                          child: const Icon(Icons.close),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Text(
-                          "Disclaimer",
-                          style: titleText.copyWith(color: kBlackColor),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        buildbody(
-                            text:
-                                "The following disclaimer affects deletion of an account."),
-                        const SizedBox(
-                          height: 25,
-                        ),
-                        buildbody(
-                            text:
-                                "You cant delete your account if you have an active investment."),
-                        const SizedBox(
-                          height: 25,
-                        ),
-                        buildbody(
-                            text:
-                                "Delete any active investment or wait for its maturity date and then withdraw your funds before proceeding to delete your account."),
-                        const SizedBox(
-                          height: 25,
-                        ),
-                        buildbody(
-                            text:
-                                "After you delete your account, you can reactivate it within 30 days, after which your account is permanently deleted and your data cleared from our database."),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        CustomOutlinedButton(
-                            text: "Cancel", onTap: () => context.router.pop()),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        CustomFilledButton(
-                            text: isAccountActive ? "Delete Account" : "Reactivate Account",
-                            onTap: () => isAccountActive ?
-                                context.read<ProfileCubit>().deleteUser() : context.read<ProfileCubit>().reactivateUser()),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                      ]),
+            return LoadingView(
+                isLoading: state.loading,
+                child: SafeArea(
+                child: Padding(
+                  padding: kDefaultPadding,
+                  child: SingleChildScrollView(
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          InkWell(
+                            onTap: () => context.router.pop(),
+                            child: const Icon(Icons.close),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            "Disclaimer",
+                            style: titleText.copyWith(color: kBlackColor),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          buildbody(
+                              text:
+                                  "The following disclaimer affects deletion of an account."),
+                          const SizedBox(
+                            height: 25,
+                          ),
+                          buildbody(
+                              text:
+                                  "You cant delete your account if you have an active investment."),
+                          const SizedBox(
+                            height: 25,
+                          ),
+                          buildbody(
+                              text:
+                                  "Delete any active investment or wait for its maturity date and then withdraw your funds before proceeding to delete your account."),
+                          const SizedBox(
+                            height: 25,
+                          ),
+                          buildbody(
+                              text:
+                                  "After you delete your account, you can reactivate it within 30 days, after which your account is permanently deleted and your data cleared from our database."),
+                          const SizedBox(
+                            height: 15,
+                          ),
+                          CustomOutlinedButton(
+                              text: "Cancel", onTap: () => context.router.pop()),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          CustomFilledButton(
+                              text: isAccountActive ? "Delete Account" : "Reactivate Account",
+                              onTap: () => isAccountActive ?
+                                  context.read<ProfileCubit>().deleteUser() : context.read<ProfileCubit>().reactivateUser()),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                        ]),
+                  ),
                 ),
-              ),
-            );
-            }
+                          ),
+              );
           },
         ),
       ),
