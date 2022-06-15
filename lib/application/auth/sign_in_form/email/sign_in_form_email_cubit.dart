@@ -16,7 +16,7 @@ part 'sign_in_form_email_cubit.freezed.dart';
 class SignInFormEmailCubit extends Cubit<SignInFormEmailState> {
   final IAuthFacade _authFacade;
   late final AuthCubit authCubit;
-  SignInFormEmailCubit(this._authFacade, this.authCubit): super(SignInFormEmailState.initial()){
+  SignInFormEmailCubit(this._authFacade): super(SignInFormEmailState.initial()){
     authCubit = getIt<AuthCubit>();
   }
 

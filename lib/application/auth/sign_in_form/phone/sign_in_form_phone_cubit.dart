@@ -18,7 +18,7 @@ class SignInFormPhoneCubit extends Cubit<SignInFormPhoneState> {
       _phoneNumberSignInSubscription;
   final int verificationCodeTimeout = 60;
   late final AuthCubit authCubit;
-  SignInFormPhoneCubit(this.authCubit) : super(SignInFormPhoneState.initial()) {
+  SignInFormPhoneCubit() : super(SignInFormPhoneState.initial()) {
     _authFacade = getIt<IAuthFacade>();
     authCubit = getIt<AuthCubit>();
   }
