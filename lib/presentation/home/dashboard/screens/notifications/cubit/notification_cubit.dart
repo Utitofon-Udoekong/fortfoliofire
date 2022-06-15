@@ -22,7 +22,7 @@ class NotificationCubit extends Cubit<NotificationState> {
   NotificationCubit(this.firestoreFacade) : super(NotificationState.empty()){
     authCubit = getIt<AuthCubit>();
     authCubit.stream.listen((state) {
-      if(state.isUserCheckedFromAuthFacade){
+      if(state.isLoggedIn){
         initNotifications();
       }
     });

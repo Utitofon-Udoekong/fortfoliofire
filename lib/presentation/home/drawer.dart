@@ -34,6 +34,9 @@ class MainDrawer extends StatelessWidget {
           Flex(direction: Axis.vertical, children: <Widget>[
             DrawerHeader(
               padding: kDefaultPadding,
+              decoration: const BoxDecoration(
+                color: kPrimaryColor,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -41,6 +44,7 @@ class MainDrawer extends StatelessWidget {
                   Container(
                     decoration: const BoxDecoration(
                         shape: BoxShape.circle, color: Color(0XFFF5F7FA)),
+                    padding: const EdgeInsets.all(5.0),
                     child: CircleAvatar(
                       backgroundColor: const Color(0XFFE7E7E7),
                       child: Center(
@@ -51,7 +55,6 @@ class MainDrawer extends StatelessWidget {
                             )),
                       ),
                     ),
-                    padding: const EdgeInsets.all(5.0),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 5),
@@ -108,9 +111,6 @@ class MainDrawer extends StatelessWidget {
                     ],
                   )
                 ],
-              ),
-              decoration: const BoxDecoration(
-                color: kPrimaryColor,
               ),
             ),
             const SizedBox(
@@ -211,7 +211,7 @@ class MainDrawer extends StatelessWidget {
             Text(
               text,
               style: subTitle.copyWith(
-                  color: shouldDisable ? kgreyColor : const Color(0XFF242424), fontSize: 15),
+                  color: shouldDisable ? kgreyColor : kBlackColor, fontSize: 15),
             )
           ],
         ),

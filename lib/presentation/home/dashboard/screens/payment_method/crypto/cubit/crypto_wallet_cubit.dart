@@ -3,8 +3,10 @@ import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/infrastructure/auth/dto/crypto_address/crypto_address.dart';
 import 'package:fortfolio/infrastructure/auth/local_auth_api.dart';
+import 'package:fortfolio/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
 import 'package:fortfolio/domain/user/crypto_wallet.dart';
@@ -21,11 +23,17 @@ part 'crypto_wallet_cubit.freezed.dart';
 @injectable
 class CryptoWalletCubit extends Cubit<CryptoWalletState> {
   final IFirestoreFacade firestoreFacade;
+  late final AuthCubit authCubit;
   StreamSubscription<QuerySnapshot>? _logsCryptoAddressSubscription;
   StreamSubscription<QuerySnapshot>? _logsGeneralCryptoAddressSubscription;
   CryptoWalletCubit(this.firestoreFacade) : super(CryptoWalletState.initial()) {
-    initCryptoWallet();
-    initGeneralCryptoWallet();
+    authCubit = getIt<AuthCubit>();
+    authCubit.stream.listen((state) {
+      if (state.isLoggedIn) {
+        initCryptoWallet();
+        initGeneralCryptoWallet();
+      }
+    });
   }
 
   void initCryptoWallet() {
@@ -90,10 +98,12 @@ class CryptoWalletCubit extends Cubit<CryptoWalletState> {
     bool canCheckBiometrics = await LocalAuthApi.hasBiometrics();
     if (Platform.isAndroid) {
       if (canCheckBiometrics) {
-        bool didauthenticate = await LocalAuthApi.authenticate(localizedReason: 'Scan fingerprint to invest');
+        bool didauthenticate = await LocalAuthApi.authenticate(
+            localizedReason: 'Scan fingerprint to invest');
         if (didauthenticate != true) {
           emit(state.copyWith(failure: "Authenticate to continue"));
-          Future.delayed(const Duration(seconds: 1), () =>emit(state.copyWith(failure: "")));
+          Future.delayed(const Duration(seconds: 1),
+              () => emit(state.copyWith(failure: "")));
         } else {
           performWalletAddition();
         }
@@ -104,11 +114,12 @@ class CryptoWalletCubit extends Cubit<CryptoWalletState> {
   void auhenticatePin({required String pin}) async {
     final sp = await SharedPreferences.getInstance();
     final traxPin = sp.getString("trax_key");
-    if(pin == traxPin){
+    if (pin == traxPin) {
       performWalletAddition();
-    }else{
+    } else {
       emit(state.copyWith(failure: "Incorrect Transaction Pin"));
-      Future.delayed(const Duration(seconds: 1), () =>emit(state.copyWith(failure: "")));
+      Future.delayed(
+          const Duration(seconds: 1), () => emit(state.copyWith(failure: "")));
     }
   }
 

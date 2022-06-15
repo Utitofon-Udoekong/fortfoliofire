@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/domain/auth/i_auth_facade.dart';
 import 'package:fortfolio/domain/auth/i_storage_facade.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -11,8 +12,13 @@ part 'dashboard_cubit.freezed.dart';
 class DashboardCubit extends Cubit<DashboardState> {
   final IStorageFacade storageFacade;
   final IAuthFacade authFacade;
+  late final AuthCubit authCubit;
   DashboardCubit(this.storageFacade, this.authFacade) : super(DashboardState.initial()){
-    // initNews();
+    authCubit.stream.listen((state) {
+      if (state.isLoggedIn) {
+        // initNews();
+      }
+    });
   }
 
   void initNews() async {
