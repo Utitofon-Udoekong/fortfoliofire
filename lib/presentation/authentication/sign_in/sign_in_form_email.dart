@@ -49,9 +49,6 @@ class SignInFormEmail extends StatelessWidget {
                   child: SafeArea(
                     child: SingleChildScrollView(
                       child: Form(
-                          autovalidateMode: state.showErrorMessages
-                              ? AutovalidateMode.onUserInteraction
-                              : AutovalidateMode.disabled,
                           key: _formKey,
                           child: Padding(
                             padding: kDefaultPadding,
@@ -114,6 +111,7 @@ class SignInFormEmail extends StatelessWidget {
                                       p.emailAddress != c.emailAddress,
                                   builder: (context, state) {
                                     return TextFormField(
+                                      autovalidateMode: AutovalidateMode.onUserInteraction,
                                         decoration: const InputDecoration(
                                             filled: true,
                                             fillColor: Color(0xFFF3F6F8),
@@ -150,6 +148,7 @@ class SignInFormEmail extends StatelessWidget {
                                     buildWhen: (p, c) => p.isObscure != c.isObscure,
                                     builder: (context, state) {
                                       return TextFormField(
+                                        autovalidateMode: AutovalidateMode.onUserInteraction,
                                         obscureText: state.isObscure,
                                         decoration: InputDecoration(
                                           errorMaxLines: 3,

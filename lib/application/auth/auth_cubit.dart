@@ -53,6 +53,30 @@ class AuthCubit extends Cubit<AuthState> {
     listenDollarStream();
   }
 
+  Future<void> listenAuthStateChangesStream(AuthUserModel authUser) async {
+    if(authUser != AuthUserModel.empty()){
+      print("not empty");
+      emit(
+        state.copyWith(
+          userModel: authUser,
+          isUserCheckedFromAuthFacade: true,
+        ),
+      );
+    }
+      // final dbUserOption = await authFacade.getDatabaseUser(id: authUser.id);
+      // dbUserOption.fold(() => null, (authUser) {
+      //   emit(
+      //     state.copyWith(
+      //       userModel: authUser,
+      //       isUserCheckedFromAuthFacade: true,
+      //     ),
+      //   );
+      // });
+    // else{
+    // }
+    await startDatabaseUserSubscriptionIfPossible();
+  }
+
   void listenDollarStream() {
     _dollarToNairaSubscription = firestoreFacade.getDollarPrice().listen((event) {
       for (var change in event.docChanges) {
@@ -69,28 +93,6 @@ class AuthCubit extends Cubit<AuthState> {
         }
       }
     },onError: (error) => print("Listen failed: $error"));
-  }
-
-  Future<void> listenAuthStateChangesStream(AuthUserModel authUser) async {
-    if(authUser != AuthUserModel.empty()){
-      emit(
-        state.copyWith(
-          userModel: authUser,
-          isUserCheckedFromAuthFacade: true,
-        ),
-      );
-    }else{
-      final dbUserOption = await authFacade.getDatabaseUser(id: authUser.id);
-      dbUserOption.fold(() => null, (authUser) {
-        emit(
-          state.copyWith(
-            userModel: authUser,
-            isUserCheckedFromAuthFacade: true,
-          ),
-        );
-      });
-    }
-    await startDatabaseUserSubscriptionIfPossible();
   }
 
   Future<void> signOut() async {
