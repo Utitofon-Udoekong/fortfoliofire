@@ -42,7 +42,6 @@ class _SplashScreenState extends State<SplashScreen> {
         }
       }
     } else { 
-      print("yawa dey ohhhhhhhhhh");
       context.router.replace(const OnboardingScreenRoute());
     }
   }

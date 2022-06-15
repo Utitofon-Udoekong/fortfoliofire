@@ -8,7 +8,7 @@ class NetworkState with _$NetworkState {
     required bool loading,
   }) = _NetworkState;
   factory NetworkState.empty() => const NetworkState(
-    connected: false,
+    connected: true,
     disconnected: false,
     loading: false
   );

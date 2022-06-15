@@ -50,13 +50,11 @@ class AuthCubit extends Cubit<AuthState> {
         },
       );
     }
-    print("started database sub");
     listenDollarStream();
   }
 
   Future<void> listenAuthStateChangesStream(AuthUserModel authUser) async {
     if(authUser != AuthUserModel.empty()){
-      print("not empty");
       emit(
         state.copyWith(
           userModel: authUser,
