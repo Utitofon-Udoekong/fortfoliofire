@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/application/auth/sign_in_form/phone/sign_in_form_phone_cubit.dart';
 import 'package:fortfolio/application/auth/sign_up_form/phone/sign_up_form_phone_cubit.dart';
-import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/infrastructure/auth/local_auth_api.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/notifications/cubit/notification_cubit.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/bank/cubit/bank_address_cubit.dart';
@@ -114,7 +113,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    final _appRouter = AppRouter();
+    final appRouter = AppRouter();
     return MultiBlocProvider(
         providers: [
           BlocProvider(
@@ -149,8 +148,8 @@ class _AppState extends State<App> with WidgetsBindingObserver {
         child: MaterialApp.router(
           title: 'Fortfolio',
           debugShowCheckedModeBanner: false,
-          routeInformationParser: _appRouter.defaultRouteParser(),
-          routerDelegate: _appRouter.delegate(),
+          routeInformationParser: appRouter.defaultRouteParser(),
+          routerDelegate: appRouter.delegate(),
           builder: (context, widget) => StreamBuilder(
             stream: Connectivity().onConnectivityChanged,
             builder: (context, AsyncSnapshot<ConnectivityResult> snapshot) {
