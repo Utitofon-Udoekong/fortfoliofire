@@ -94,7 +94,7 @@ class SignInFormPhoneCubit extends Cubit<SignInFormPhoneState> {
         );
       },
       (success) async {
-        emit(state.copyWith(success: success));
+        emit(state.copyWith(success: "$success. Setting up user"));
         authCubit.stream.listen((authState) {
           if(authState.isLoggedIn){
             emit(state.copyWith(isSubmitting: false));
