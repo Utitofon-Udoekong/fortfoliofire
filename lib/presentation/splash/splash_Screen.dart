@@ -30,16 +30,13 @@ class _SplashScreenState extends State<SplashScreen> {
     final bool isLoggedIn = context.read<AuthCubit>().state.isLoggedIn;
 
     if (isChecked) {
-      CustomSnackbar.showSnackBar(context, "loggedin", false);
       if (canCheckBiometrics) {
         bool didauthenticate = await LocalAuthApi.authenticate(
             localizedReason: 'Scan Fingerprint to authenticate');
         if (didauthenticate != true) {
           CustomSnackbar.showSnackBar(context, "Authenticate to continue", true);
         } else {
-          CustomSnackbar.showSnackBar(context, "awaiting details", false);
           if(isLoggedIn){
-          CustomSnackbar.showSnackBar(context, "gotten details", false);
             context.router.replace(const HomePageRoute());
           }
         }
