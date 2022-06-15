@@ -17,9 +17,10 @@ class SignInFormPhoneCubit extends Cubit<SignInFormPhoneState> {
   StreamSubscription<Either<String, String>>?
       _phoneNumberSignInSubscription;
   final int verificationCodeTimeout = 60;
-  final AuthCubit authCubit;
+  late final AuthCubit authCubit;
   SignInFormPhoneCubit(this.authCubit) : super(SignInFormPhoneState.initial()) {
     _authFacade = getIt<IAuthFacade>();
+    authCubit = getIt<AuthCubit>();
   }
 
   @override
@@ -93,7 +94,12 @@ class SignInFormPhoneCubit extends Cubit<SignInFormPhoneState> {
         );
       },
       (success) async {
-        emit(state.copyWith(success: success, isSubmitting: false));
+        emit(state.copyWith(success: success));
+        authCubit.stream.listen((authState) {
+          if(authState.isLoggedIn){
+            emit(state.copyWith(isSubmitting: false));
+          }
+        });
         // Verification completed successfully case.
         reset();
       },

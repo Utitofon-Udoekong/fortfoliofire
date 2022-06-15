@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:fortfolio/domain/auth/i_auth_facade.dart';
 import 'package:fortfolio/domain/auth/value_objects.dart';
+import 'package:fortfolio/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:fortfolio/application/auth/auth_cubit.dart';
@@ -14,8 +15,10 @@ part 'sign_in_form_email_cubit.freezed.dart';
 @injectable
 class SignInFormEmailCubit extends Cubit<SignInFormEmailState> {
   final IAuthFacade _authFacade;
-  final AuthCubit authCubit;
-  SignInFormEmailCubit(this._authFacade, this.authCubit): super(SignInFormEmailState.initial());
+  late final AuthCubit authCubit;
+  SignInFormEmailCubit(this._authFacade, this.authCubit): super(SignInFormEmailState.initial()){
+    authCubit = getIt<AuthCubit>();
+  }
 
   @override
   Future<void> close() async {
@@ -51,12 +54,12 @@ class SignInFormEmailCubit extends Cubit<SignInFormEmailState> {
         reset();
       }, (success) async{
         emit(state.copyWith(success: success));
+        reset();
         authCubit.stream.listen((authState) {
           if(authState.isLoggedIn){
             emit(state.copyWith(isSubmitting: false));
           }
         });
-        reset();
       });
     }
     emit(state.copyWith(showErrorMessages: true));

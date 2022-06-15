@@ -28,7 +28,9 @@ class ConfirmLoginWithOTP extends StatelessWidget {
           BlocListener<AuthCubit, AuthState>(
             listenWhen: (p, c) => p.isLoggedIn != c.isLoggedIn && c.isLoggedIn,
             listener: (context, state) {
-              context.router.replace(const HomePageRoute());
+              Future.delayed(const Duration(seconds: 1),() {
+                context.router.replace(const HomePageRoute());
+              });
             },
           ),
           BlocListener<SignInFormPhoneCubit, SignInFormPhoneState>(
