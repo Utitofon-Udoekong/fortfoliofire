@@ -45,8 +45,7 @@ class AuthCubit extends Cubit<AuthState> {
           authFacade.databaseUserChanges(userId: state.userModel.id).listen(
         (AuthUserModel databaseUser) {
           emit(
-            state.copyWith(userModel: databaseUser,
-            isUserCheckedFromAuthFacade: true,),
+            state.copyWith(userModel: databaseUser),
           );
         },
       );
@@ -66,6 +65,7 @@ class AuthCubit extends Cubit<AuthState> {
         emit(
           state.copyWith(
             userModel: authUser,
+            isUserCheckedFromAuthFacade: true
           ),
         );
       // final dbUserOption = await authFacade.getDatabaseUser(id: authUser.id);
