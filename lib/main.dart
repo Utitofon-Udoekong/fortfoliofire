@@ -16,9 +16,9 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await FirebaseAppCheck.instance.activate(
-    webRecaptchaSiteKey: '6Le-eCcgAAAAAC3IN0RKos4l2gLT60GvLLGoobbq',
-  );
+  // await FirebaseAppCheck.instance.activate(
+  //   webRecaptchaSiteKey: '6Le-eCcgAAAAAC3IN0RKos4l2gLT60GvLLGoobbq',
+  // );
   // await FirebaseAppCheck.instance.setTokenAutoRefreshEnabled(true);
 
   BlocOverrides.runZoned(() => runApp(const App()),
