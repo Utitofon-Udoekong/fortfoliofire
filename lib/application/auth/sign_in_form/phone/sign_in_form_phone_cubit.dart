@@ -48,7 +48,6 @@ class SignInFormPhoneCubit extends Cubit<SignInFormPhoneState> {
         failure: "",
         verificationId: "",
         smsCode: "",
-        isSubmitting: false,
       ),
     );
   }

@@ -45,7 +45,8 @@ class AuthCubit extends Cubit<AuthState> {
           authFacade.databaseUserChanges(userId: state.userModel.id).listen(
         (AuthUserModel databaseUser) {
           emit(
-            state.copyWith(userModel: databaseUser),
+            state.copyWith(userModel: databaseUser,
+            isUserCheckedFromAuthFacade: true,),
           );
         },
       );
@@ -65,7 +66,6 @@ class AuthCubit extends Cubit<AuthState> {
         emit(
           state.copyWith(
             userModel: authUser,
-            isUserCheckedFromAuthFacade: true,
           ),
         );
       // final dbUserOption = await authFacade.getDatabaseUser(id: authUser.id);
@@ -98,3 +98,9 @@ class AuthCubit extends Cubit<AuthState> {
     await authFacade.signOut();
   }
 }
+
+// Execution failed for task ':app:mergeLibDexDebug'.
+// > Could not resolve all files for configuration ':app:debugRuntimeClasspath'.
+//    > Failed to transform classes.jar (project :cloud_firestore) to match attributes {artifactType=android-dex, asm-transformed-variant=NONE, com.android.build.api.attributes.AgpVersionAttr=7.1.2, com.android.build.api.attributes.BuildTypeAttr=debug, com.android.build.gradle.internal.attributes.VariantAttr=debug, dexing-enable-desugaring=true, dexing-is-debuggable=true, dexing-min-sdk=23, org.gradle.libraryelements=jar, org.gradle.usage=java-runtime}.
+//       > Execution failed for DexingWithClasspathTransform: C:\Users\MrsNsikak\Videos\MEmu Video\test\fortfolio\build\cloud_firestore\intermediates\runtime_library_classes_jar\debug\classes.jar.
+//          > Cannot create directory C:\Users\MrsNsikak\Videos\MEmu Video\test\fortfolio\build\cloud_firestore\.transforms\8669c97e50a6908abd64c185ae9dec4a\transformed\classes

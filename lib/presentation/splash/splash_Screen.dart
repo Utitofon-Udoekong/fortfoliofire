@@ -30,6 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
         context.read<AuthCubit>().state.isUserCheckedFromAuthFacade;
     final bool isLoggedIn = context.read<AuthCubit>().state.isLoggedIn;
 
+
     if (isChecked) {
           CustomSnackbar.showSnackBar(context, "logged in", true);
       if (canCheckBiometrics) {
