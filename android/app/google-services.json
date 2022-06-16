@@ -1,41 +1,33 @@
 {
   "project_info": {
-    "project_number": "208106167215",
-    "project_id": "fortfolio-c25d3",
-    "storage_bucket": "fortfolio-c25d3.appspot.com"
+    "project_number": "981811466568",
+    "project_id": "fortfolio-64207",
+    "storage_bucket": "fortfolio-64207.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:208106167215:android:b0d53ab0953ea790216d5a",
+        "mobilesdk_app_id": "1:981811466568:android:c7b16f9970dde4496d237d",
         "android_client_info": {
           "package_name": "com.mega.fortfolio"
         }
       },
       "oauth_client": [
         {
-          "client_id": "208106167215-0d85ppl74ph9npn80r1v3n8kmqr08knr.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.mega.fortfolio",
-            "certificate_hash": "750ef04e3d5aabdfb860461b4a4a52205d3c8ad7"
-          }
-        },
-        {
-          "client_id": "208106167215-k80r9i3aic1grfvr4pvm2l3qaropql5v.apps.googleusercontent.com",
+          "client_id": "981811466568-oi33ejr737ip7tqiismabfoia87pfnin.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCxb2QhekQ8qjSrkAF0jGQqhsYRAbNFWps"
+          "current_key": "AIzaSyBC1_-SsgDOVEIRhwOL2VFBdLlgvNw4hMU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "208106167215-k80r9i3aic1grfvr4pvm2l3qaropql5v.apps.googleusercontent.com",
+              "client_id": "981811466568-oi33ejr737ip7tqiismabfoia87pfnin.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
