@@ -54,26 +54,25 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> listenAuthStateChangesStream(AuthUserModel authUser) async {
-    if(authUser != AuthUserModel.empty()){
+    if(authUser == AuthUserModel.empty()){
       emit(
         state.copyWith(
           userModel: authUser,
-          isUserCheckedFromAuthFacade: true,
+          isUserCheckedFromAuthFacade: false,
         ),
       );
+    }else{
+      final dbUserOption = await authFacade.getDatabaseUser(id: authUser.id);
+      dbUserOption.fold(() => null, (authUser) {
+        emit(
+          state.copyWith(
+            userModel: authUser,
+            isUserCheckedFromAuthFacade: true,
+          ),
+        );
+      });
+      await startDatabaseUserSubscriptionIfPossible();
     }
-      // final dbUserOption = await authFacade.getDatabaseUser(id: authUser.id);
-      // dbUserOption.fold(() => null, (authUser) {
-      //   emit(
-      //     state.copyWith(
-      //       userModel: authUser,
-      //       isUserCheckedFromAuthFacade: true,
-      //     ),
-      //   );
-      // });
-    // else{
-    // }
-    await startDatabaseUserSubscriptionIfPossible();
   }
 
   void listenDollarStream() {
