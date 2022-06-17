@@ -14,7 +14,7 @@ class SignInFormEmail extends StatelessWidget {
   const SignInFormEmail({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
     return BlocProvider(
       create: (BuildContext context) => getIt<SignInFormEmailCubit>(),
       child: Scaffold(
@@ -50,187 +50,198 @@ class SignInFormEmail extends StatelessWidget {
                   isLoading: state.isSubmitting,
                   child: SafeArea(
                     child: SingleChildScrollView(
-                      child: Form(
-                          key: _formKey,
-                          child: Padding(
-                            padding: kDefaultPadding,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                const SizedBox(
-                                  height: 20,
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: <Widget>[
-                                    InkWell(
-                                      onTap: () => context.router.pop(),
-                                      child: const Icon(Icons.close),
-                                    ),
-                                    InkWell(
-                                      onTap: () => context.router
-                                          .push(const SignUpFormRoute()),
-                                      child: Text(
-                                        "Register",
-                                        style:
-                                            subTitle.copyWith(color: kPrimaryColor),
+                      child: Semantics(
+                        label: "Login with email page",
+                        child: Form(
+                            key: formKey,
+                            child: Padding(
+                              padding: kDefaultPadding,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: <Widget>[
+                                      InkWell(
+                                        onTap: () => context.router.pop(),
+                                        child: const Icon(Icons.close),
                                       ),
-                                    )
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: 40,
-                                ),
-                                Text(
-                                  "Hey, \nWelcome Back",
-                                  style: titleText,
-                                ),
-                                const SizedBox(
-                                  height: 30,
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: <Widget>[
-                                    const Text(
-                                      "Your Email",
-                                      style: TextStyle(
-                                          fontSize: 15, color: Color(0xFF656565)),
-                                    ),
-                                    TextButton(
-                                      onPressed: () => context.router
-                                          .push(const SignInFormPhoneRoute()),
-                                      child: const Text(
-                                        "Login with phone",
+                                      InkWell(
+                                        onTap: () => context.router
+                                            .push(const SignUpFormRoute()),
+                                        child: Text(
+                                          "Register",
+                                          style:
+                                              subTitle.copyWith(color: kPrimaryColor),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    height: 40,
+                                  ),
+                                  Text(
+                                    "Hey, \nWelcome Back",
+                                    style: titleText,
+                                  ),
+                                  const SizedBox(
+                                    height: 30,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: <Widget>[
+                                      const Text(
+                                        "Your Email",
                                         style: TextStyle(
-                                            fontSize: 15, color: kPrimaryColor),
+                                            fontSize: 15, color: Color(0xFF656565)),
                                       ),
-                                    )
-                                  ],
-                                ),
-                                BlocBuilder<SignInFormEmailCubit,
-                                    SignInFormEmailState>(
-                                  buildWhen: (p, c) =>
-                                      p.emailAddress != c.emailAddress,
-                                  builder: (context, state) {
-                                    return TextFormField(
-                                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                                        decoration: const InputDecoration(
-                                            filled: true,
-                                            fillColor: Color(0xFFF3F6F8),
-                                            border: InputBorder.none),
-                                        autocorrect: false,
-                                        keyboardType: TextInputType.emailAddress,
-                                        textInputAction: TextInputAction.next,
-                                        onChanged: (value) => context
-                                            .read<SignInFormEmailCubit>()
-                                            .emailChanged(emailString: value),
-                                        validator: (_) => context
-                                            .read<SignInFormEmailCubit>()
-                                            .state
-                                            .emailAddress
-                                            .value
-                                            .fold(
-                                                (f) => f.maybeMap(
-                                                    invalidEmail: (_) =>
-                                                        "Invalid email address.",
-                                                    orElse: () => null),
-                                                (r) => null));
-                                  },
-                                ),
-                                const SizedBox(
-                                  height: 30,
-                                ),
-                                const Text(
-                                  "Your Password",
-                                  style: TextStyle(
-                                      fontSize: 15, color: Color(0xFF656565)),
-                                ),
-                                BlocBuilder<SignInFormEmailCubit,
-                                        SignInFormEmailState>(
-                                    buildWhen: (p, c) => p.isObscure != c.isObscure,
-                                    builder: (context, state) {
-                                      return TextFormField(
-                                        autovalidateMode: AutovalidateMode.onUserInteraction,
-                                        obscureText: state.isObscure,
-                                        decoration: InputDecoration(
-                                          errorMaxLines: 3,
-                                            filled: true,
-                                            fillColor: const Color(0xFFF3F6F8),
-                                            border: InputBorder.none,
-                                            hintText: "ABCdef@123",
-                                            hintStyle: TextStyle(
-                                                fontSize: 12,
-                                                color:
-                                                    kgreyColor.withOpacity(0.4)),
-                                            suffixIcon: IconButton(
-                                              onPressed: () => context
-                                                  .read<SignInFormEmailCubit>()
-                                                  .isObscureChanged(),
-                                              icon: state.isObscure
-                                                  ? const Icon(
-                                                      Icons.visibility,
-                                                      color: kPrimaryColor,
-                                                    )
-                                                  : const Icon(
-                                                      Icons.visibility_off,
-                                                      color: kPrimaryColor,
-                                                    ),
-                                            )),
-                                        textInputAction: TextInputAction.done,
-                                        onChanged: (value) => context
-                                            .read<SignInFormEmailCubit>()
-                                            .passwordChanged(passwordString: value),
-                                        validator: (_) => context
-                                            .read<SignInFormEmailCubit>()
-                                            .state
-                                            .password
-                                            .value
-                                            .fold(
-                                              (f) => f.maybeMap(
-                                                  invalidPassword: (_) => "Invalid password. Must contain upper and lowercase letters, special chractersand numbers, at least 8 characters long.",
-                                                  orElse: () => null),
-                                              (r) => null,
-                                            ),
-                                      );
-                                    }),
-                                const SizedBox(
-                                  height: 3.0,
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: <Widget>[
-                                    InkWell(
-                                        onTap: () {
-                                          context.router
-                                              .push(const ResetPasswordRoute());
-                                        },
+                                      TextButton(
+                                        onPressed: () => context.router
+                                            .push(const SignInFormPhoneRoute()),
                                         child: const Text(
-                                          'Forgot password?',
+                                          "Login with phone",
                                           style: TextStyle(
-                                              fontSize: 13.5, color: kPrimaryColor),
-                                        )),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: 20,
-                                ),
-                                BlocBuilder<SignInFormEmailCubit,
-                                    SignInFormEmailState>(
-                                  builder: (context, state) {
-                                    return CustomAuthFilledButton(
-                                      text: 'LOGIN',
-                                      onTap: () => {
-                                        context
-                                            .read<SignInFormEmailCubit>()
-                                            .signInWithEmailAndPasswordpressed(),
-                                      },
-                                      disabled: !state.isValidState,
-                                    );
-                                  },
-                                ),
-                              ],
-                            ),
-                          )),
+                                              fontSize: 15, color: kPrimaryColor),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  BlocBuilder<SignInFormEmailCubit,
+                                      SignInFormEmailState>(
+                                    buildWhen: (p, c) =>
+                                        p.emailAddress != c.emailAddress,
+                                    builder: (context, state) {
+                                      return Semantics(
+                                        label: "Email field",
+                                        textField: true,
+                                        child: TextFormField(
+                                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                                            decoration: const InputDecoration(
+                                                filled: true,
+                                                fillColor: Color(0xFFF3F6F8),
+                                                border: InputBorder.none),
+                                            autocorrect: false,
+                                            keyboardType: TextInputType.emailAddress,
+                                            textInputAction: TextInputAction.next,
+                                            onChanged: (value) => context
+                                                .read<SignInFormEmailCubit>()
+                                                .emailChanged(emailString: value),
+                                            validator: (_) => context
+                                                .read<SignInFormEmailCubit>()
+                                                .state
+                                                .emailAddress
+                                                .value
+                                                .fold(
+                                                    (f) => f.maybeMap(
+                                                        invalidEmail: (_) =>
+                                                            "Invalid email address.",
+                                                        orElse: () => null),
+                                                    (r) => null)),
+                                      );
+                                    },
+                                  ),
+                                  const SizedBox(
+                                    height: 30,
+                                  ),
+                                  const Text(
+                                    "Your Password",
+                                    style: TextStyle(
+                                        fontSize: 15, color: Color(0xFF656565)),
+                                  ),
+                                  BlocBuilder<SignInFormEmailCubit,
+                                          SignInFormEmailState>(
+                                      buildWhen: (p, c) => p.isObscure != c.isObscure,
+                                      builder: (context, state) {
+                                        return Semantics(
+                                          label: "Password field",
+                                          textField: true,
+                                          child: TextFormField(
+                                            autovalidateMode: AutovalidateMode.onUserInteraction,
+                                            obscureText: state.isObscure,
+                                            decoration: InputDecoration(
+                                              errorMaxLines: 3,
+                                                filled: true,
+                                                fillColor: const Color(0xFFF3F6F8),
+                                                border: InputBorder.none,
+                                                hintText: "ABCdef@123",
+                                                hintStyle: TextStyle(
+                                                    fontSize: 12,
+                                                    color:
+                                                        kgreyColor.withOpacity(0.4)),
+                                                suffixIcon: IconButton(
+                                                  onPressed: () => context
+                                                      .read<SignInFormEmailCubit>()
+                                                      .isObscureChanged(),
+                                                  icon: state.isObscure
+                                                      ? const Icon(
+                                                          Icons.visibility,
+                                                          color: kPrimaryColor,
+                                                        )
+                                                      : const Icon(
+                                                          Icons.visibility_off,
+                                                          color: kPrimaryColor,
+                                                        ),
+                                                )),
+                                            textInputAction: TextInputAction.done,
+                                            onChanged: (value) => context
+                                                .read<SignInFormEmailCubit>()
+                                                .passwordChanged(passwordString: value),
+                                            validator: (_) => context
+                                                .read<SignInFormEmailCubit>()
+                                                .state
+                                                .password
+                                                .value
+                                                .fold(
+                                                  (f) => f.maybeMap(
+                                                      invalidPassword: (_) => "Invalid password. Must contain upper and lowercase letters, special chractersand numbers, at least 8 characters long.",
+                                                      orElse: () => null),
+                                                  (r) => null,
+                                                ),
+                                          ),
+                                        );
+                                      }),
+                                  const SizedBox(
+                                    height: 3.0,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: <Widget>[
+                                      InkWell(
+                                          onTap: () {
+                                            context.router
+                                                .push(const ResetPasswordRoute());
+                                          },
+                                          child: const Text(
+                                            'Forgot password?',
+                                            style: TextStyle(
+                                                fontSize: 13.5, color: kPrimaryColor),
+                                          )),
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  BlocBuilder<SignInFormEmailCubit,
+                                      SignInFormEmailState>(
+                                    builder: (context, state) {
+                                      return CustomAuthFilledButton(
+                                        text: 'LOGIN',
+                                        onTap: () => {
+                                          context
+                                              .read<SignInFormEmailCubit>()
+                                              .signInWithEmailAndPasswordpressed(),
+                                        },
+                                        disabled: !state.isValidState,
+                                      );
+                                    },
+                                  ),
+                                ],
+                              ),
+                            )),
+                      ),
                     ),
                   ),
                 );

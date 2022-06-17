@@ -47,80 +47,88 @@ class _SignUpFormPhoneState extends State<SignUpFormPhone> {
                   isLoading: state.displayLoadingIndicator,
                   child: SafeArea(
                     child: SingleChildScrollView(
-                      child: Form(
-                          autovalidateMode: state.showErrorMessages
-                              ? AutovalidateMode.onUserInteraction
-                              : AutovalidateMode.disabled,
-                          key: _formKey,
-                          child: Padding(
-                            padding: kDefaultPadding,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                const SizedBox(
-                                  height: 20,
-                                ),
-                                InkWell(
-                                  onTap: () => context.router.pop(),
-                                  child: const Icon(Icons.close),
-                                ),
-                                const SizedBox(
-                                  height: 40,
-                                ),
-                                Text(
-                                  "Add a \nPhone number",
-                                  style: titleText,
-                                ),
-                                const SizedBox(
-                                  height: 30,
-                                ),
-                                const Text(
-                                  "Your Phone Number",
-                                  style: TextStyle(
-                                      fontSize: 15, color: Color(0xFF656565)),
-                                ),
-                                BlocBuilder<SignUpFormPhoneCubit,
-                                    SignUpFormPhoneState>(
-                                  builder: (context, state) {
-                                    return IntlPhoneField(
-                                      decoration: const InputDecoration(
-                                        border: InputBorder.none,
-                                        filled: true,
-                                        fillColor: Color(0xFFF3F6F8),
-                                      ),
-                                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                                      initialCountryCode: 'NG',
-                                      keyboardType: TextInputType.phone,
-                                      textInputAction: TextInputAction.next,
-                                      onChanged: (value) => context
-                                          .read<SignUpFormPhoneCubit>()
-                                          .phoneNumberChanged(
-                                              phoneNumber:
-                                                  value.completeNumber),
-                                    );
-                                  },
-                                ),
-                                const SizedBox(
-                                  height: 30,
-                                ),
-                                BlocSelector<SignUpFormPhoneCubit,
-                                    SignUpFormPhoneState, bool>(
-                                  selector: (state) {
-                                    return state.phoneNumber.isValidPhone();
-                                  },
-                                  builder: (context, validPhone) {
-                                    return CustomAuthFilledButton(
-                                      text: "VERIFY OTP",
-                                      onTap: () => context
-                                          .read<SignUpFormPhoneCubit>()
-                                          .signUpWithPhoneNumber(),
-                                      disabled: !validPhone,
-                                    );
-                                  },
-                                ),
-                              ],
-                            ),
-                          )),
+                      child: Semantics(
+                        label: "Sign up with phone number",
+                        child: Form(
+                            autovalidateMode: state.showErrorMessages
+                                ? AutovalidateMode.onUserInteraction
+                                : AutovalidateMode.disabled,
+                            key: _formKey,
+                            child: Padding(
+                              padding: kDefaultPadding,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  InkWell(
+                                    onTap: () => context.router.pop(),
+                                    child: const Icon(Icons.close),
+                                  ),
+                                  const SizedBox(
+                                    height: 40,
+                                  ),
+                                  Text(
+                                    "Add a \nPhone number",
+                                    style: titleText,
+                                  ),
+                                  const SizedBox(
+                                    height: 30,
+                                  ),
+                                  const Text(
+                                    "Your Phone Number",
+                                    style: TextStyle(
+                                        fontSize: 15, color: Color(0xFF656565)),
+                                  ),
+                                  BlocBuilder<SignUpFormPhoneCubit,
+                                      SignUpFormPhoneState>(
+                                    builder: (context, state) {
+                                      return Semantics(
+                                        textField: true,
+                                        textDirection: TextDirection.ltr,
+                                        label: "Phone Inout Field",
+                                        child: IntlPhoneField(
+                                          decoration: const InputDecoration(
+                                            border: InputBorder.none,
+                                            filled: true,
+                                            fillColor: Color(0xFFF3F6F8),
+                                          ),
+                                          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                                          initialCountryCode: 'NG',
+                                          keyboardType: TextInputType.phone,
+                                          textInputAction: TextInputAction.next,
+                                          onChanged: (value) => context
+                                              .read<SignUpFormPhoneCubit>()
+                                              .phoneNumberChanged(
+                                                  phoneNumber:
+                                                      value.completeNumber),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                  const SizedBox(
+                                    height: 30,
+                                  ),
+                                  BlocSelector<SignUpFormPhoneCubit,
+                                      SignUpFormPhoneState, bool>(
+                                    selector: (state) {
+                                      return state.phoneNumber.isValidPhone();
+                                    },
+                                    builder: (context, validPhone) {
+                                      return CustomAuthFilledButton(
+                                        text: "VERIFY OTP",
+                                        onTap: () => context
+                                            .read<SignUpFormPhoneCubit>()
+                                            .signUpWithPhoneNumber(),
+                                        disabled: !validPhone,
+                                      );
+                                    },
+                                  ),
+                                ],
+                              ),
+                            )),
+                      ),
                     ),
                   ),
                 );
