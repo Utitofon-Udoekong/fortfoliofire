@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "981811466568-gllh526cvugnghtaa4gm7pmrtskd7vf5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mega.fortfolio",
+            "certificate_hash": "750ef04e3d5aabdfb860461b4a4a52205d3c8ad7"
+          }
+        },
+        {
           "client_id": "981811466568-oi33ejr737ip7tqiismabfoia87pfnin.apps.googleusercontent.com",
           "client_type": 3
         }
