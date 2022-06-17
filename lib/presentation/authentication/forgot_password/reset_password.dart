@@ -13,6 +13,7 @@ class ResetPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    FocusNode emailFocusNode = FocusNode();
     return BlocProvider(
         create: (context) => getIt<ResetPasswordCubit>(),
         child: MultiBlocListener(
@@ -86,6 +87,7 @@ class ResetPassword extends StatelessWidget {
                                       autocorrect: false,
                                       keyboardType: TextInputType.emailAddress,
                                       textInputAction: TextInputAction.next,
+                                      focusNode: emailFocusNode,
                                       decoration: const InputDecoration(
                                           filled: true,
                                           fillColor: Color(0xFFF3F6F8),
@@ -116,9 +118,12 @@ class ResetPassword extends StatelessWidget {
                                 builder: (context, state) {
                                   return CustomAuthFilledButton(
                                     text: 'RESET PASSWORD',
-                                    onTap: () => context
+                                    onTap: () {
+                                      emailFocusNode.unfocus();
+                                      context
                                         .read<ResetPasswordCubit>()
-                                        .requestReset(),
+                                        .requestReset();
+                                    },
                                     disabled: !state.emailAddress.isValid(),
                                   );
                                 },

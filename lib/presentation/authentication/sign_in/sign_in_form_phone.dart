@@ -20,6 +20,8 @@ class SignInFormPhone extends StatefulWidget {
 
 class _SignInFormPhoneState extends State<SignInFormPhone> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  FocusNode phoneFocusNode = FocusNode();
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -128,6 +130,7 @@ class _SignInFormPhoneState extends State<SignInFormPhone> {
                                           initialCountryCode: 'NG',
                                           keyboardType: TextInputType.phone,
                                           textInputAction: TextInputAction.next,
+                                          focusNode: phoneFocusNode,
                                           onChanged: (value) => context
                                               .read<SignInFormPhoneCubit>()
                                               .phoneNumberChanged(
@@ -148,9 +151,12 @@ class _SignInFormPhoneState extends State<SignInFormPhone> {
                                     builder: (context, validPhone) {
                                       return CustomAuthFilledButton(
                                         text: "VERIFY OTP",
-                                        onTap: () => context
+                                        onTap: () {
+                                          phoneFocusNode.unfocus();
+                                          context
                                             .read<SignInFormPhoneCubit>()
-                                            .signInWithPhoneNumber(),
+                                            .signInWithPhoneNumber();
+                                            },
                                         disabled: !validPhone,
                                       );
                                     },
