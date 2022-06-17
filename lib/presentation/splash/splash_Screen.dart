@@ -6,7 +6,6 @@ import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:fortfolio/infrastructure/auth/local_auth_api.dart';
-import 'package:fortfolio/domain/widgets/loading_view.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -23,12 +22,10 @@ class _SplashScreenState extends State<SplashScreen> {
       _resume();
     });
   }
-  bool isLoading = false;
   Future _resume() async {
     bool canCheckBiometrics = await LocalAuthApi.hasBiometrics();
     final bool isChecked =
         context.read<AuthCubit>().state.isUserCheckedFromAuthFacade;
-
 
     if (isChecked) {
       if (canCheckBiometrics) {
@@ -37,15 +34,7 @@ class _SplashScreenState extends State<SplashScreen> {
         if (didauthenticate != true) {
           CustomSnackbar.showSnackBar(context, "Authenticate to continue", true);
         } else {
-          // setState(() {
-          //   isLoading = true;
-          // });
             context.router.replace(const HomePageRoute());
-          // if(isLoggedIn){
-          //   setState(() {
-          //     isLoading = false;
-          //   });
-          // }
         }
       }
     } else { 
@@ -61,32 +50,29 @@ class _SplashScreenState extends State<SplashScreen> {
     // );
     return Scaffold(
       backgroundColor: Colors.white,
-      body: LoadingView(
-        isLoading: isLoading,
-        child: Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: MediaQuery.of(context).size.width / 1.3,
-                height: MediaQuery.of(context).size.height / 5,
-                // child: svg,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage('images/logo.png'),
-                      fit: BoxFit.fitHeight),
-                ),
+      body: Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width / 1.3,
+              height: MediaQuery.of(context).size.height / 5,
+              // child: svg,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('images/logo.png'),
+                    fit: BoxFit.fitHeight),
               ),
-              const Text(
-                "Fortfolio",
-                style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.w400,
-                    color: Color(0XFF00ADEF)),
-              ),
-            ],
-          ),
+            ),
+            const Text(
+              "Fortfolio",
+              style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.w400,
+                  color: Color(0XFF00ADEF)),
+            ),
+          ],
         ),
       ),
     );
