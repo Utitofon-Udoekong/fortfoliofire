@@ -50,7 +50,7 @@ class MainDrawer extends StatelessWidget {
                       child: Center(
                         child: Text(displayName,
                             style: const TextStyle(
-                              fontSize: 25,
+                              fontSize: 20,
                               color: Color(0XFF242424),
                             )),
                       ),
