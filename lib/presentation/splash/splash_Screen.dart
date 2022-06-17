@@ -32,24 +32,21 @@ class _SplashScreenState extends State<SplashScreen> {
 
 
     if (isChecked) {
-          CustomSnackbar.showSnackBar(context, "logged in", true);
       if (canCheckBiometrics) {
         bool didauthenticate = await LocalAuthApi.authenticate(
             localizedReason: 'Scan Fingerprint to authenticate');
         if (didauthenticate != true) {
           CustomSnackbar.showSnackBar(context, "Authenticate to continue", true);
         } else {
-          setState(() {
-            isLoading = true;
-          });
-          CustomSnackbar.showSnackBar(context, "awaiting", true);
-          if(isLoggedIn){
-            setState(() {
-              isLoading = false;
-            });
-            CustomSnackbar.showSnackBar(context, "gotten", true);
+          // setState(() {
+          //   isLoading = true;
+          // });
             context.router.replace(const HomePageRoute());
-          }
+          // if(isLoggedIn){
+          //   setState(() {
+          //     isLoading = false;
+          //   });
+          // }
         }
       }
     } else { 
