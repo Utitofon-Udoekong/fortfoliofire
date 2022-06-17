@@ -52,7 +52,7 @@ android {
         applicationId "com.mega.fortfolio"
         minSdkVersion 23
         targetSdkVersion 31
-        versionCode 8
+        versionCode 9
         versionName "1.4.0"
     }
 
