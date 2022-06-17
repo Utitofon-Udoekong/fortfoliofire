@@ -28,7 +28,6 @@ class _SplashScreenState extends State<SplashScreen> {
     bool canCheckBiometrics = await LocalAuthApi.hasBiometrics();
     final bool isChecked =
         context.read<AuthCubit>().state.isUserCheckedFromAuthFacade;
-    final bool isLoggedIn = context.read<AuthCubit>().state.isLoggedIn;
 
 
     if (isChecked) {

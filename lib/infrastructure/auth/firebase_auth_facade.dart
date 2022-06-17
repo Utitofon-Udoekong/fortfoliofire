@@ -104,6 +104,8 @@ class FirebaseAuthFacade implements IAuthFacade {
             result = left("Too many requests at a time");
           } else if (e.code == 'app-not-authorized') {
             result = left("Device not supported");
+          } else if (e.code == 'network-request-failed') {
+            result = left("Device has a weak network");
           } else {
             result = left("Server error encountered");
           }
