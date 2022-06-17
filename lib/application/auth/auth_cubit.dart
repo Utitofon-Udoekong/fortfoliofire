@@ -40,7 +40,7 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> startDatabaseUserSubscriptionIfPossible() async {
     await _databaseUserSubscription?.cancel();
 
-    if (state.userModel.id.length > 6) {
+    if (state.userModel != AuthUserModel.empty()) {
       _databaseUserSubscription =
           authFacade.databaseUserChanges(userId: state.userModel.id).listen(
         (AuthUserModel databaseUser) {
@@ -54,24 +54,21 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> listenAuthStateChangesStream(AuthUserModel authUser) async {
-    if(authUser == AuthUserModel.empty()){
+    if(authUser != AuthUserModel.empty()){
       emit(
         state.copyWith(
           userModel: authUser,
-          isUserCheckedFromAuthFacade: false,
+          isUserCheckedFromAuthFacade: true,
         ),
       );
+      await startDatabaseUserSubscriptionIfPossible();
     }else{
         emit(
           state.copyWith(
             userModel: authUser,
-            isUserCheckedFromAuthFacade: true
+            isUserCheckedFromAuthFacade: false,
           ),
         );
-      // final dbUserOption = await authFacade.getDatabaseUser(id: authUser.id);
-      // dbUserOption.fold(() => null, (authUser) {
-      // });
-      await startDatabaseUserSubscriptionIfPossible();
     }
   }
 
