@@ -22,7 +22,6 @@ mixin _$SignUpFormPhoneState {
   String get failure => throw _privateConstructorUsedError;
   String get success => throw _privateConstructorUsedError;
   bool get isSubmitting => throw _privateConstructorUsedError;
-  bool get showErrorMessages => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SignUpFormPhoneStateCopyWith<SignUpFormPhoneState> get copyWith =>
@@ -40,8 +39,7 @@ abstract class $SignUpFormPhoneStateCopyWith<$Res> {
       String verificationId,
       String failure,
       String success,
-      bool isSubmitting,
-      bool showErrorMessages});
+      bool isSubmitting});
 }
 
 /// @nodoc
@@ -61,7 +59,6 @@ class _$SignUpFormPhoneStateCopyWithImpl<$Res>
     Object? failure = freezed,
     Object? success = freezed,
     Object? isSubmitting = freezed,
-    Object? showErrorMessages = freezed,
   }) {
     return _then(_value.copyWith(
       phoneNumber: phoneNumber == freezed
@@ -88,10 +85,6 @@ class _$SignUpFormPhoneStateCopyWithImpl<$Res>
           ? _value.isSubmitting
           : isSubmitting // ignore: cast_nullable_to_non_nullable
               as bool,
-      showErrorMessages: showErrorMessages == freezed
-          ? _value.showErrorMessages
-          : showErrorMessages // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -109,8 +102,7 @@ abstract class _$$_SignUpFormPhoneStateCopyWith<$Res>
       String verificationId,
       String failure,
       String success,
-      bool isSubmitting,
-      bool showErrorMessages});
+      bool isSubmitting});
 }
 
 /// @nodoc
@@ -132,7 +124,6 @@ class __$$_SignUpFormPhoneStateCopyWithImpl<$Res>
     Object? failure = freezed,
     Object? success = freezed,
     Object? isSubmitting = freezed,
-    Object? showErrorMessages = freezed,
   }) {
     return _then(_$_SignUpFormPhoneState(
       phoneNumber: phoneNumber == freezed
@@ -159,10 +150,6 @@ class __$$_SignUpFormPhoneStateCopyWithImpl<$Res>
           ? _value.isSubmitting
           : isSubmitting // ignore: cast_nullable_to_non_nullable
               as bool,
-      showErrorMessages: showErrorMessages == freezed
-          ? _value.showErrorMessages
-          : showErrorMessages // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -176,8 +163,7 @@ class _$_SignUpFormPhoneState extends _SignUpFormPhoneState {
       required this.verificationId,
       required this.failure,
       required this.success,
-      required this.isSubmitting,
-      required this.showErrorMessages})
+      required this.isSubmitting})
       : super._();
 
   @override
@@ -192,12 +178,10 @@ class _$_SignUpFormPhoneState extends _SignUpFormPhoneState {
   final String success;
   @override
   final bool isSubmitting;
-  @override
-  final bool showErrorMessages;
 
   @override
   String toString() {
-    return 'SignUpFormPhoneState(phoneNumber: $phoneNumber, smsCode: $smsCode, verificationId: $verificationId, failure: $failure, success: $success, isSubmitting: $isSubmitting, showErrorMessages: $showErrorMessages)';
+    return 'SignUpFormPhoneState(phoneNumber: $phoneNumber, smsCode: $smsCode, verificationId: $verificationId, failure: $failure, success: $success, isSubmitting: $isSubmitting)';
   }
 
   @override
@@ -213,9 +197,7 @@ class _$_SignUpFormPhoneState extends _SignUpFormPhoneState {
             const DeepCollectionEquality().equals(other.failure, failure) &&
             const DeepCollectionEquality().equals(other.success, success) &&
             const DeepCollectionEquality()
-                .equals(other.isSubmitting, isSubmitting) &&
-            const DeepCollectionEquality()
-                .equals(other.showErrorMessages, showErrorMessages));
+                .equals(other.isSubmitting, isSubmitting));
   }
 
   @override
@@ -226,8 +208,7 @@ class _$_SignUpFormPhoneState extends _SignUpFormPhoneState {
       const DeepCollectionEquality().hash(verificationId),
       const DeepCollectionEquality().hash(failure),
       const DeepCollectionEquality().hash(success),
-      const DeepCollectionEquality().hash(isSubmitting),
-      const DeepCollectionEquality().hash(showErrorMessages));
+      const DeepCollectionEquality().hash(isSubmitting));
 
   @JsonKey(ignore: true)
   @override
@@ -243,8 +224,7 @@ abstract class _SignUpFormPhoneState extends SignUpFormPhoneState {
       required final String verificationId,
       required final String failure,
       required final String success,
-      required final bool isSubmitting,
-      required final bool showErrorMessages}) = _$_SignUpFormPhoneState;
+      required final bool isSubmitting}) = _$_SignUpFormPhoneState;
   const _SignUpFormPhoneState._() : super._();
 
   @override
@@ -259,8 +239,6 @@ abstract class _SignUpFormPhoneState extends SignUpFormPhoneState {
   String get success => throw _privateConstructorUsedError;
   @override
   bool get isSubmitting => throw _privateConstructorUsedError;
-  @override
-  bool get showErrorMessages => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_SignUpFormPhoneStateCopyWith<_$_SignUpFormPhoneState> get copyWith =>

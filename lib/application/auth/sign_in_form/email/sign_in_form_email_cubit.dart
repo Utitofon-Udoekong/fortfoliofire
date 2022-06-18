@@ -62,7 +62,6 @@ class SignInFormEmailCubit extends Cubit<SignInFormEmailState> {
         });
       });
     }
-    emit(state.copyWith(showErrorMessages: true));
   }
 
   void reset(){

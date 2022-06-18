@@ -51,9 +51,6 @@ class _SignUpFormPhoneState extends State<SignUpFormPhone> {
                       child: Semantics(
                         label: "Sign up with phone number",
                         child: Form(
-                            autovalidateMode: state.showErrorMessages
-                                ? AutovalidateMode.onUserInteraction
-                                : AutovalidateMode.disabled,
                             key: _formKey,
                             child: Padding(
                               padding: kDefaultPadding,

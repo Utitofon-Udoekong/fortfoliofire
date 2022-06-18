@@ -9,7 +9,6 @@ class SignInFormPhoneState with _$SignInFormPhoneState {
     required String failure,
     required String success,
     required bool isSubmitting,
-    required bool showErrorMessages,
   }) = _SignInFormPhoneState;
   const SignInFormPhoneState._();
   factory SignInFormPhoneState.initial() => const SignInFormPhoneState(
@@ -19,7 +18,6 @@ class SignInFormPhoneState with _$SignInFormPhoneState {
         failure: "",
         success: "",
         isSubmitting: false,
-        showErrorMessages: false,
       );
  bool get displayNextButton => verificationId.isEmpty && !isSubmitting;
   bool get displaySmsCodeForm => verificationId.isNotEmpty;

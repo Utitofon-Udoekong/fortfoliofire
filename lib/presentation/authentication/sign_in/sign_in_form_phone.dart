@@ -52,9 +52,6 @@ class _SignInFormPhoneState extends State<SignInFormPhone> {
                       child: Semantics(
                         label: "Sign in with phone screen",
                         child: Form(
-                            autovalidateMode: state.showErrorMessages
-                                ? AutovalidateMode.onUserInteraction
-                                : AutovalidateMode.disabled,
                             key: _formKey,
                             child: Padding(
                               padding: kDefaultPadding,

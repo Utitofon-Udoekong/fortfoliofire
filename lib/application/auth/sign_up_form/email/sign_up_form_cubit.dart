@@ -56,7 +56,6 @@ class SignUpFormCubit extends Cubit<SignUpFormState> {
         reset();
       });
     }
-    emit(state.copyWith(showErrorMessages: true));
   }
   void reset(){
     emit(state.copyWith(

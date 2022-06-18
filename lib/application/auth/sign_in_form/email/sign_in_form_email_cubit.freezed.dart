@@ -20,7 +20,6 @@ mixin _$SignInFormEmailState {
   Password get password => throw _privateConstructorUsedError;
   bool get isSubmitting => throw _privateConstructorUsedError;
   bool get isObscure => throw _privateConstructorUsedError;
-  bool get showErrorMessages => throw _privateConstructorUsedError;
   String get failure => throw _privateConstructorUsedError;
   String get success => throw _privateConstructorUsedError;
 
@@ -39,7 +38,6 @@ abstract class $SignInFormEmailStateCopyWith<$Res> {
       Password password,
       bool isSubmitting,
       bool isObscure,
-      bool showErrorMessages,
       String failure,
       String success});
 }
@@ -59,7 +57,6 @@ class _$SignInFormEmailStateCopyWithImpl<$Res>
     Object? password = freezed,
     Object? isSubmitting = freezed,
     Object? isObscure = freezed,
-    Object? showErrorMessages = freezed,
     Object? failure = freezed,
     Object? success = freezed,
   }) {
@@ -79,10 +76,6 @@ class _$SignInFormEmailStateCopyWithImpl<$Res>
       isObscure: isObscure == freezed
           ? _value.isObscure
           : isObscure // ignore: cast_nullable_to_non_nullable
-              as bool,
-      showErrorMessages: showErrorMessages == freezed
-          ? _value.showErrorMessages
-          : showErrorMessages // ignore: cast_nullable_to_non_nullable
               as bool,
       failure: failure == freezed
           ? _value.failure
@@ -108,7 +101,6 @@ abstract class _$$_SignInFormEmailStateCopyWith<$Res>
       Password password,
       bool isSubmitting,
       bool isObscure,
-      bool showErrorMessages,
       String failure,
       String success});
 }
@@ -130,7 +122,6 @@ class __$$_SignInFormEmailStateCopyWithImpl<$Res>
     Object? password = freezed,
     Object? isSubmitting = freezed,
     Object? isObscure = freezed,
-    Object? showErrorMessages = freezed,
     Object? failure = freezed,
     Object? success = freezed,
   }) {
@@ -150,10 +141,6 @@ class __$$_SignInFormEmailStateCopyWithImpl<$Res>
       isObscure: isObscure == freezed
           ? _value.isObscure
           : isObscure // ignore: cast_nullable_to_non_nullable
-              as bool,
-      showErrorMessages: showErrorMessages == freezed
-          ? _value.showErrorMessages
-          : showErrorMessages // ignore: cast_nullable_to_non_nullable
               as bool,
       failure: failure == freezed
           ? _value.failure
@@ -175,7 +162,6 @@ class _$_SignInFormEmailState extends _SignInFormEmailState {
       required this.password,
       required this.isSubmitting,
       required this.isObscure,
-      required this.showErrorMessages,
       required this.failure,
       required this.success})
       : super._();
@@ -189,15 +175,13 @@ class _$_SignInFormEmailState extends _SignInFormEmailState {
   @override
   final bool isObscure;
   @override
-  final bool showErrorMessages;
-  @override
   final String failure;
   @override
   final String success;
 
   @override
   String toString() {
-    return 'SignInFormEmailState(emailAddress: $emailAddress, password: $password, isSubmitting: $isSubmitting, isObscure: $isObscure, showErrorMessages: $showErrorMessages, failure: $failure, success: $success)';
+    return 'SignInFormEmailState(emailAddress: $emailAddress, password: $password, isSubmitting: $isSubmitting, isObscure: $isObscure, failure: $failure, success: $success)';
   }
 
   @override
@@ -211,8 +195,6 @@ class _$_SignInFormEmailState extends _SignInFormEmailState {
             const DeepCollectionEquality()
                 .equals(other.isSubmitting, isSubmitting) &&
             const DeepCollectionEquality().equals(other.isObscure, isObscure) &&
-            const DeepCollectionEquality()
-                .equals(other.showErrorMessages, showErrorMessages) &&
             const DeepCollectionEquality().equals(other.failure, failure) &&
             const DeepCollectionEquality().equals(other.success, success));
   }
@@ -224,7 +206,6 @@ class _$_SignInFormEmailState extends _SignInFormEmailState {
       const DeepCollectionEquality().hash(password),
       const DeepCollectionEquality().hash(isSubmitting),
       const DeepCollectionEquality().hash(isObscure),
-      const DeepCollectionEquality().hash(showErrorMessages),
       const DeepCollectionEquality().hash(failure),
       const DeepCollectionEquality().hash(success));
 
@@ -241,7 +222,6 @@ abstract class _SignInFormEmailState extends SignInFormEmailState {
       required final Password password,
       required final bool isSubmitting,
       required final bool isObscure,
-      required final bool showErrorMessages,
       required final String failure,
       required final String success}) = _$_SignInFormEmailState;
   const _SignInFormEmailState._() : super._();
@@ -254,8 +234,6 @@ abstract class _SignInFormEmailState extends SignInFormEmailState {
   bool get isSubmitting => throw _privateConstructorUsedError;
   @override
   bool get isObscure => throw _privateConstructorUsedError;
-  @override
-  bool get showErrorMessages => throw _privateConstructorUsedError;
   @override
   String get failure => throw _privateConstructorUsedError;
   @override
