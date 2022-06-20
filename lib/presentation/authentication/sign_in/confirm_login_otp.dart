@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/application/auth/auth_cubit.dart';
@@ -14,10 +16,63 @@ import 'package:auto_route/auto_route.dart';
 
 import '../../../domain/widgets/countdown_timer.dart';
 
-class ConfirmLoginWithOTP extends StatelessWidget {
-  final int smsCodeTimeoutSeconds = 60;
+class ConfirmLoginWithOTP extends StatefulWidget {
 
   const ConfirmLoginWithOTP({Key? key}) : super(key: key);
+
+  @override
+  State<ConfirmLoginWithOTP> createState() => _ConfirmLoginWithOTPState();
+}
+
+class _ConfirmLoginWithOTPState extends State<ConfirmLoginWithOTP> {
+  int smsCodeTimeoutSeconds = 60;
+  bool resend = false;
+  void onTimerCompleted(){
+    if(resend) startTimer();
+  }
+  ///The timer instance.
+  late Timer? _timer;
+
+  ///The number of seconds past since the timer started.
+  int _seconds = 0;
+
+  @override
+  void initState() {
+    startTimer();
+    super.initState();
+  }
+
+  ///Start the timer.
+  void startTimer() {
+    _timer = Timer.periodic(
+      const Duration(seconds: 1),
+      (Timer timer) {
+        if (_seconds == smsCodeTimeoutSeconds) {
+          timer.cancel();
+          onTimerCompleted();
+        } else {
+          setState(() {
+            _seconds++;
+          });
+        }
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  ///Format [value] seconds into the mm:ss format.
+  String formatSeconds(int value) =>
+      '${formatDecimal(value ~/ 60)}:${formatDecimal(value % 60)}';
+
+  ///Format decimals into the ss format.
+  String formatDecimal(int value) => value < 10 ? '0$value' : value.toString();
+
+
   @override
   Widget build(BuildContext context) {
     final phoneNumber = context.select(
@@ -65,7 +120,10 @@ class ConfirmLoginWithOTP extends StatelessWidget {
                             height: 20,
                           ),
                           InkWell(
-                            onTap: () => context.router.pop(),
+                            onTap: () {
+                              context.read<SignInFormPhoneCubit>().reset();
+                              context.router.pop();
+                            },
                             child: const Icon(Icons.close),
                           ),
                           const SizedBox(
@@ -126,15 +184,17 @@ class ConfirmLoginWithOTP extends StatelessWidget {
                           ),
                           Row(
                             children: [
-                              TextButton(onPressed: () => context
+                              TextButton(onPressed: () {
+                                setState(() {
+                                  resend = true;
+                                });
+                                context
                                   .read<SignInFormPhoneCubit>()
-                                  .signInWithPhoneNumber(), child: Text("Resend", style: subTitle.copyWith(fontSize: 13, color: kBlackColor),)),
+                                  .signInWithPhoneNumber();
+                              }, child: Text("Resend", style: subTitle.copyWith(fontSize: 13, color: kBlackColor),)),
                               const Spacer(),
-                              CountDownTimer(
+                              countDownTimer(
                                 smsCodeTimeoutSeconds: smsCodeTimeoutSeconds,
-                                onTimerCompleted: () {
-                                  
-                                },
                               ),
                             ],
                           ),
@@ -147,6 +207,13 @@ class ConfirmLoginWithOTP extends StatelessWidget {
           },
         ),
       ),
+    );
+  }
+
+  Widget countDownTimer({required int smsCodeTimeoutSeconds}){
+    return Text(
+      formatSeconds(smsCodeTimeoutSeconds - _seconds),
+      style: const TextStyle(color: Colors.grey),
     );
   }
 }
