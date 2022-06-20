@@ -10,13 +10,65 @@ import 'package:fortfolio/domain/widgets/otp_field/otp_box_style.dart';
 import 'package:fortfolio/domain/widgets/otp_field/otp_field_style.dart';
 import 'package:fortfolio/domain/widgets/otp_field/otp_text_field.dart';
 import 'package:auto_route/auto_route.dart';
+import 'dart:async';
 
-import '../../../domain/widgets/countdown_timer.dart';
 
-class ConfirmSignupWithOTP extends StatelessWidget {
-  final int smsCodeTimeoutSeconds = 60;
+class ConfirmSignupWithOTP extends StatefulWidget {
 
   const ConfirmSignupWithOTP({Key? key}) : super(key: key);
+
+  @override
+  State<ConfirmSignupWithOTP> createState() => _ConfirmSignupWithOTPState();
+}
+
+class _ConfirmSignupWithOTPState extends State<ConfirmSignupWithOTP> {
+  int smsCodeTimeoutSeconds = 60;
+  bool resend = false;
+  void onTimerCompleted(){
+    if(resend) startTimer();
+  }
+  ///The timer instance.
+  late Timer? _timer;
+
+  ///The number of seconds past since the timer started.
+  int _seconds = 0;
+
+  @override
+  void initState() {
+    startTimer();
+    super.initState();
+  }
+
+  ///Start the timer.
+  void startTimer() {
+    _timer = Timer.periodic(
+      const Duration(seconds: 1),
+      (Timer timer) {
+        if (_seconds == smsCodeTimeoutSeconds) {
+          timer.cancel();
+          onTimerCompleted();
+        } else {
+          setState(() {
+            _seconds++;
+          });
+        }
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  ///Format [value] seconds into the mm:ss format.
+  String formatSeconds(int value) =>
+      '${formatDecimal(value ~/ 60)}:${formatDecimal(value % 60)}';
+
+  ///Format decimals into the ss format.
+  String formatDecimal(int value) => value < 10 ? '0$value' : value.toString();
+
   @override
   Widget build(BuildContext context) {
     final phoneNumber = context.select(
@@ -118,26 +170,36 @@ class ConfirmSignupWithOTP extends StatelessWidget {
                           ),
                           Row(
                             children: [
-                              TextButton(onPressed: () => context
+                              TextButton(onPressed: () {
+                                setState(() {
+                                  resend = true;
+                                });
+                                context
                                   .read<SignUpFormPhoneCubit>()
-                                  .signUpWithPhoneNumber(), child: Text("Resend", style: subTitle.copyWith(fontSize: 13, color: kPrimaryColor),)),
+                                  .signUpWithPhoneNumber();
+                              }, child: Text("Resend", style: subTitle.copyWith(fontSize: 13, color: kPrimaryColor),)),
                               const Spacer(),
-                              CountDownTimer(
+                              countDownTimer(
                                 smsCodeTimeoutSeconds: smsCodeTimeoutSeconds,
-                                onTimerCompleted: () {
-                                },
                               ),
                             ],
                           ),
                         ],
                       ),
-                                      ),
-                                    ),
+                    ),
+                    ),
                     )),
               );
           },
         ),
       ),
+    );
+  }
+
+  Widget countDownTimer({required int smsCodeTimeoutSeconds}){
+    return Text(
+      formatSeconds(smsCodeTimeoutSeconds - _seconds),
+      style: const TextStyle(color: Colors.grey),
     );
   }
 }

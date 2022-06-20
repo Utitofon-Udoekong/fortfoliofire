@@ -15,7 +15,6 @@ class SignUpForm extends StatelessWidget {
   const SignUpForm({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
     return Scaffold(
       body: BlocProvider(
           create: (context) => getIt<SignUpFormCubit>(),
@@ -45,7 +44,6 @@ class SignUpForm extends StatelessWidget {
                       child: Semantics(
                         label: "The login screen",
                         child: Form(
-                            key: formKey,
                             child: Padding(
                               padding: kDefaultPadding,
                               child: Column(

@@ -26,12 +26,12 @@ class _CountDownTimerState extends State<CountDownTimer> {
 
   @override
   void initState() {
-    _startTimer();
+    startTimer();
     super.initState();
   }
 
   ///Start the timer.
-  void _startTimer() {
+  void startTimer() {
     _timer = Timer.periodic(
       const Duration(seconds: 1),
       (Timer timer) {
