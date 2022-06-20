@@ -44,7 +44,7 @@ class SignUpFormPhoneCubit extends Cubit<SignUpFormPhoneState> {
 
   void reset() {
     emit(
-      state.copyWith(phoneNumber: "",verificationId: "", smsCode: ""),
+      state.copyWith(phoneNumber: "",verificationId: "", smsCode: "", failure: ""),
     );
   }
 

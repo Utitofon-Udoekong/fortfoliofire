@@ -110,7 +110,10 @@ class _ConfirmSignupWithOTPState extends State<ConfirmSignupWithOTP> {
                             height: 20,
                           ),
                           InkWell(
-                            onTap: () => context.router.pop(),
+                            onTap: () {
+                              context.read<SignUpFormPhoneCubit>().reset();
+                              context.router.pop();
+                            },
                             child: const Icon(Icons.close),
                           ),
                           const SizedBox(
