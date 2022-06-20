@@ -109,7 +109,7 @@ class FirebaseAuthFacade implements IAuthFacade {
           } else {
             result = left("Server error encountered");
           }
-          streamController.add(result);
+          streamController.add(left("${e.code} ${e.message}"));
         });
 
     yield* streamController.stream;
