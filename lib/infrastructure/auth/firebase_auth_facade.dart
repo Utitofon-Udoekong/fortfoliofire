@@ -93,22 +93,22 @@ class FirebaseAuthFacade implements IAuthFacade {
         },
         codeAutoRetrievalTimeout: (String verificationId) {
           // Auto-resolution timed out...
-          streamController.add(left("SMS Code timeout"));
+          // streamController.add(left("SMS Code timeout"));
         },
         verificationFailed: (FirebaseAuthException e) {
-          late final Either<String, String> result;
+          // late final Either<String, String> result;
 
-          if (e.code == 'invalid-phone-number') {
-            result = left("Invalid phone number");
-          } else if (e.code == 'too-many-requests') {
-            result = left("Too many requests at a time");
-          } else if (e.code == 'app-not-authorized') {
-            result = left("Device not supported");
-          } else if (e.code == 'network-request-failed') {
-            result = left("Device has a weak network");
-          } else {
-            result = left("Server error encountered");
-          }
+          // if (e.code == 'invalid-phone-number') {
+          //   result = left("Invalid phone number");
+          // } else if (e.code == 'too-many-requests') {
+          //   result = left("Too many requests at a time");
+          // } else if (e.code == 'app-not-authorized') {
+          //   result = left("Device not supported");
+          // } else if (e.code == 'network-request-failed') {
+          //   result = left("Device has a weak network");
+          // } else {
+          //   result = left("Server error encountered");
+          // }
           streamController.add(left("${e.code} ${e.message}"));
         });
 
@@ -209,7 +209,7 @@ class FirebaseAuthFacade implements IAuthFacade {
         },
         codeAutoRetrievalTimeout: (String verificationId) {
           // Auto-resolution timed out...
-          streamController.add(left("SMS code timeout"));
+          // streamController.add(left("SMS code timeout"));
         },
         verificationFailed: (FirebaseAuthException e) {
           late final Either<String, String> result;

@@ -167,7 +167,7 @@ class AddCryptoWallet extends StatelessWidget {
                           },
                         ),
                         const SizedBox(
-                          height: 60,
+                          height: 30,
                         ),
                         BlocSelector<CryptoWalletCubit, CryptoWalletState,
                                 bool>(

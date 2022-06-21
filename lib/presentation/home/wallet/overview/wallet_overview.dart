@@ -261,9 +261,6 @@ class WalletOverview extends StatelessWidget {
                     ));
               },
             ),
-            const SizedBox(
-              height: 20,
-            ),
             BlocBuilder<WalletCubit, WalletState>(
               builder: (context, state) {
                 return Visibility(
@@ -274,9 +271,6 @@ class WalletOverview extends StatelessWidget {
                       "\$${formatter.format(fortCryptoYield)}"),
                 );
               },
-            ),
-            const SizedBox(
-              height: 20,
             ),
             BlocBuilder<WalletCubit, WalletState>(
               builder: (context, state) {
@@ -329,7 +323,8 @@ class WalletOverview extends StatelessWidget {
       bool showDigits, String yield) {
     return GestureDetector(
       onTap: ontap,
-      child: SizedBox(
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 20.0),
         width: double.infinity,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

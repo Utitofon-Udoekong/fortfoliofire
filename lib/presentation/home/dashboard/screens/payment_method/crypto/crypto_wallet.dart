@@ -41,42 +41,44 @@ class CryptoWalletPage extends StatelessWidget {
               ),
             );
           } else {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(
-                  height: 30,
-                ),
-                Text(
-                  'Wallet Addresses',
-                  style: subTitle,
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                BlocBuilder<CryptoWalletCubit, CryptoWalletState>(
-                  builder: (context, state) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: state.cryptoAddresses.map((address) {
-                        return buildtile(
-                            address.address, address.walletLabel, address.coin, context);
-                      }).toList(),
-                    );
-                  },
-                ),
-                BlocBuilder<CryptoWalletCubit, CryptoWalletState>(
-                  builder: (context, state) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: state.generalCryptoAddresses.map((address) {
-                        return buildtile(
-                            address.address, address.walletLabel, address.coin, context);
-                      }).toList(),
-                    );
-                  },
-                ),
-              ],
+            return SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Text(
+                    'Wallet Addresses',
+                    style: subTitle,
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  BlocBuilder<CryptoWalletCubit, CryptoWalletState>(
+                    builder: (context, state) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: state.cryptoAddresses.map((address) {
+                          return buildtile(
+                              address.address, address.walletLabel, address.coin, context);
+                        }).toList(),
+                      );
+                    },
+                  ),
+                  BlocBuilder<CryptoWalletCubit, CryptoWalletState>(
+                    builder: (context, state) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: state.generalCryptoAddresses.map((address) {
+                          return buildtile(
+                              address.address, address.walletLabel, address.coin, context);
+                        }).toList(),
+                      );
+                    },
+                  ),
+                ],
+              ),
             );
           }
         },
