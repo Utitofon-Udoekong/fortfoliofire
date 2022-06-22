@@ -109,7 +109,7 @@ class FirebaseAuthFacade implements IAuthFacade {
           // } else {
           //   result = left("Server error encountered");
           // }
-          streamController.add(left("${e.code} ${e.message}"));
+          streamController.add(left("${e.code}"));
         });
 
     yield* streamController.stream;
@@ -217,11 +217,11 @@ class FirebaseAuthFacade implements IAuthFacade {
           if (e.code == 'invalid-phone-number') {
             result = left("Invalid phone number");
           } else if (e.code == 'too-many-requests') {
-            result = left("Too many requests at a time");
+            result = left("Too many requests at this time");
           } else if (e.code == 'app-not-authorized') {
-            result = left("Device not supported");
+            result = left("Device not supported ");
           } else {
-            result = left("Server error encountered");
+            result = left("${e.code} Server error encountered");
           }
           streamController.add(result);
         });

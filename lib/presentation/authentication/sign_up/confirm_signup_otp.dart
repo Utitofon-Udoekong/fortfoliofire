@@ -88,6 +88,7 @@ class _ConfirmSignupWithOTPState extends State<ConfirmSignupWithOTP> {
                   listenWhen: (p, c) =>
                       p.success != c.success && c.success.isNotEmpty,
                   listener: (context, state) {
+                    _timer!.cancel();
                     CustomSnackbar.showSnackBar(context, state.success, false);
                     context.router.replace(const HomePageRoute());
                   },
