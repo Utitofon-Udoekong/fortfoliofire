@@ -96,7 +96,6 @@ class _AppState extends State<App> with WidgetsBindingObserver {
         DateTime.now().millisecondsSinceEpoch > allowedBackgroundTime;
 
     if (shouldShowPIN) {
-      if (Platform.isAndroid) {
         if (canCheckBiometrics) {
           bool didauthenticate = await LocalAuthApi.authenticate(
               localizedReason: 'Scan Fingerprint to authenticate');
@@ -104,7 +103,6 @@ class _AppState extends State<App> with WidgetsBindingObserver {
             exit(0);
           }
         }
-      }
     }
 
     sp.remove(backgroundedTimeKey);
