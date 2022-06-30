@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/application/auth/sign_in_form/phone/sign_in_form_phone_cubit.dart';
@@ -63,6 +64,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
 
   final lastKnownStateKey = 'lastKnownStateKey';
   final backgroundedTimeKey = 'backgroundedTimeKey';
+  bool isIos = Platform.isIOS;
 
   Future _paused() async {
     final sp = await SharedPreferences.getInstance();
@@ -143,7 +145,20 @@ class _AppState extends State<App> with WidgetsBindingObserver {
           BlocProvider(
               create: (context) => getIt<InvestmentCubit>(), lazy: false),
         ],
-        child: MaterialApp.router(
+        child: isIos ? CupertinoApp.router(
+          title: 'Fortfolio',
+          debugShowCheckedModeBanner: false,
+          routeInformationParser: appRouter.defaultRouteParser(),
+          routerDelegate: appRouter.delegate(),
+          builder: (context, widget) => StreamBuilder(
+            stream: Connectivity().onConnectivityChanged,
+            builder: (context, AsyncSnapshot<ConnectivityResult> snapshot) {
+              return snapshot.data == ConnectivityResult.mobile ||
+                      snapshot.data == ConnectivityResult.wifi
+                  ? widget!
+                  : const NoInternetPage();
+            }),
+        ) : MaterialApp.router(
           title: 'Fortfolio',
           debugShowCheckedModeBanner: false,
           routeInformationParser: appRouter.defaultRouteParser(),
