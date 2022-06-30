@@ -13,6 +13,7 @@ import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/cry
 import 'package:fortfolio/presentation/home/dashboard/screens/profile/cubit/profile_cubit.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/verification/cubit/verification_cubit.dart';
 import 'package:fortfolio/presentation/network/no_connection.dart';
+import 'package:fortfolio/presentation/routes/ios_router.gr.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:fortfolio/application/auth/auth_cubit.dart';
@@ -114,6 +115,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     final appRouter = AppRouter();
+    final iosAppRouter = IOSAppRouter();
     return MultiBlocProvider(
         providers: [
           BlocProvider(
@@ -148,8 +150,8 @@ class _AppState extends State<App> with WidgetsBindingObserver {
         child: isIos ? CupertinoApp.router(
           title: 'Fortfolio',
           debugShowCheckedModeBanner: false,
-          routeInformationParser: appRouter.defaultRouteParser(),
-          routerDelegate: appRouter.delegate(),
+          routeInformationParser: iosAppRouter.defaultRouteParser(),
+          routerDelegate: iosAppRouter.delegate(),
           builder: (context, widget) => StreamBuilder(
             stream: Connectivity().onConnectivityChanged,
             builder: (context, AsyncSnapshot<ConnectivityResult> snapshot) {
