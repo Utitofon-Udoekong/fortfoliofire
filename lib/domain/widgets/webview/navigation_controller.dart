@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'dart:io';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -10,6 +12,7 @@ class NavigationControls extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isIOS = Platform.isIOS;
     return FutureBuilder<WebViewController>(
       future: controller.future,
       builder: (context, snapshot) {
@@ -17,10 +20,10 @@ class NavigationControls extends StatelessWidget {
         if (snapshot.connectionState != ConnectionState.done ||
             controller == null) {
           return Row(
-            children: const <Widget>[
-              Icon(Icons.arrow_back_ios, size: 13,),
-              Icon(Icons.arrow_forward_ios, size: 13,),
-              Icon(Icons.replay, size: 13,),
+            children: <Widget>[
+              Icon(Icons.adaptive.arrow_back, size: 13,),
+              Icon(Icons.adaptive.arrow_forward, size: 13,),
+              const Icon(Icons.replay, size: 13,),
             ],
           );
         }
@@ -28,7 +31,7 @@ class NavigationControls extends StatelessWidget {
         return Row(
           children: <Widget>[
             IconButton(
-              icon: const Icon(Icons.arrow_back_ios, size: 13),
+              icon: Icon(Icons.adaptive.arrow_back, size: 13),
               onPressed: () async {
                 if (await controller.canGoBack()) {
                   await controller.goBack();
@@ -41,7 +44,7 @@ class NavigationControls extends StatelessWidget {
               },
             ),
             IconButton(
-              icon: const Icon(Icons.arrow_forward_ios, size: 13),
+              icon: Icon(Icons.adaptive.arrow_forward, size: 13),
               onPressed: () async {
                 if (await controller.canGoForward()) {
                   await controller.goForward();
@@ -54,7 +57,7 @@ class NavigationControls extends StatelessWidget {
               },
             ),
             IconButton(
-              icon: const Icon(Icons.replay, size: 13),
+              icon: Icon(isIOS ? CupertinoIcons.arrow_counterclockwise : Icons.replay, size: 13),
               onPressed: () {
                 controller.reload();
               },
