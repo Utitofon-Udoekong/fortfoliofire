@@ -21,7 +21,7 @@ class CustomLoadingButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           color: loading ? const Color.fromRGBO(3, 66, 109, 0.65) : kPrimaryColor,
         ),
-        child: loading ? const CircularProgressIndicator(color: kWhiteColor,) : Text(text,
+        child: loading ? const CircularProgressIndicator.adaptive(backgroundColor: kWhiteColor,) : Text(text,
         style: textButton.copyWith(color: kWhiteColor),
         ),
         // color: kPrimaryColor,

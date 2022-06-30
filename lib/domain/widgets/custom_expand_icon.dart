@@ -2,8 +2,10 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+import 'dart:io';
 import 'dart:math' as math;
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 /// A widget representing a rotating expand/collapse button. The icon rotates
@@ -96,6 +98,7 @@ class CustomExpandIcon extends StatefulWidget {
 class _ExpandIconState extends State<CustomExpandIcon> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _iconTurns;
+  bool isIos = Platform.isIOS;
 
   static final Animatable<double> _iconTurnTween = Tween<double>(begin: 0.0, end: 0.75)
     .chain(CurveTween(curve: Curves.fastOutSlowIn));
@@ -172,7 +175,7 @@ class _ExpandIconState extends State<CustomExpandIcon> with SingleTickerProvider
         onPressed: widget.onPressed == null ? null : _handlePressed,
         icon: RotationTransition(
           turns: _iconTurns,
-          child: const Icon(Icons.add),
+          child: Icon(isIos ? CupertinoIcons.add : Icons.add),
         ),
       ),
     );

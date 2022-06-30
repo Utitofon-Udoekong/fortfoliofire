@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 
@@ -8,6 +11,7 @@ class CustomIconButton extends StatelessWidget {
   final PageRouteInfo page;
   @override
   Widget build(BuildContext context) {
+    bool isIos = Platform.isIOS;
     return InkWell(
       onTap: () => context.router.push(page),
       child: Container(
@@ -18,7 +22,7 @@ class CustomIconButton extends StatelessWidget {
         ),
         child: Row(
           children: <Widget>[
-            const Icon(Icons.lock, color: kPrimaryColor,),
+            Icon(isIos ? CupertinoIcons.lock : Icons.lock, color: kPrimaryColor,),
             const SizedBox(width: 20,),
             Text(title, style: subTitle.copyWith(color: kBlackColor, fontWeight: FontWeight.w600, fontSize: 15),),
             const Spacer(),
