@@ -24,7 +24,6 @@ class CustomLoadingButton extends StatelessWidget {
         child: loading ? const CircularProgressIndicator.adaptive(backgroundColor: kWhiteColor,) : Text(text,
         style: textButton.copyWith(color: kWhiteColor),
         ),
-        // color: kPrimaryColor,
       ),
     );
   }
