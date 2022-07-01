@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/application/auth/reset_password_form/reset_password_cubit.dart';
@@ -14,6 +17,7 @@ class ResetPassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     FocusNode emailFocusNode = FocusNode();
+    bool isIos = Platform.isIOS;
     return BlocProvider(
         create: (context) => getIt<ResetPasswordCubit>(),
         child: MultiBlocListener(
@@ -36,7 +40,14 @@ class ResetPassword extends StatelessWidget {
             builder: (context, state) {
               return LoadingView(
                   isLoading: state.isSubmitting,
-                  child: Scaffold(
+                  child: isIos ? iosPage(context: context, emailFocusNode: emailFocusNode) : androidPage(context: context, emailFocusNode: emailFocusNode)
+                );
+            },
+          ),
+        ));
+  }
+  Widget androidPage({required BuildContext context, required FocusNode emailFocusNode}){
+    return Scaffold(
                     body: SafeArea(
                         child: SingleChildScrollView(
                       child: Semantics(
@@ -133,10 +144,101 @@ class ResetPassword extends StatelessWidget {
                         )),
                       ),
                     )),
-                  ),
-                );
-            },
-          ),
-        ));
+                  );
+  }
+
+  Widget iosPage({required BuildContext context, required FocusNode emailFocusNode}){
+    return CupertinoPageScaffold(
+      child: SafeArea(
+                        child: SingleChildScrollView(
+                      child: Semantics(
+                        label: "Reset Password page",
+                        child: Padding(
+                          padding: kDefaultPadding,
+                          child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          InkWell(
+                            onTap: () => context.router.pop(),
+                            child: const Icon(Icons.close),
+                          ),
+                          const SizedBox(
+                            height: 40,
+                          ),
+                          Text(
+                            "Create a new\nPassword",
+                            style: titleText,
+                          ),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          const Text(
+                            "A password reset link will be sent to your email address",
+                            style: TextStyle(
+                                fontSize: 15, color: Color(0xFF656565)),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          BlocBuilder<ResetPasswordCubit, ResetPasswordState>(
+                            buildWhen: (p, c) =>
+                                p.emailAddress != c.emailAddress,
+                            builder: (context, state) {
+                              return Semantics(
+                                label: "Email address field",
+                                child: CupertinoTextFormFieldRow(
+                                  placeholder: 'Enter email',
+                                  autocorrect: false,
+                                  keyboardType: TextInputType.emailAddress,
+                                  textInputAction: TextInputAction.next,
+                                  focusNode: emailFocusNode,
+                                  decoration: const BoxDecoration(
+                                      color: Color(0xFFF3F6F8)
+                                    ),
+                                  onChanged: (value) => context
+                                      .read<ResetPasswordCubit>()
+                                      .emailAddressChanged(emailAddress: value),
+                                  validator: (_) => context
+                                      .read<ResetPasswordCubit>()
+                                      .state
+                                      .emailAddress
+                                      .value
+                                      .fold(
+                                        (f) => f.maybeMap(
+                                            invalidEmail: (_) => "Invalid email address",
+                                            orElse: () => null),
+                                        (r) => null,
+                                      ),
+                                ),
+                              );
+                            },
+                          ),
+                          const SizedBox(
+                            height: 50,
+                          ),
+                          BlocBuilder<ResetPasswordCubit, ResetPasswordState>(
+                            buildWhen: (p, c) => p.emailAddress != c.emailAddress,
+                            builder: (context, state) {
+                              return CustomAuthFilledButton(
+                                text: 'RESET PASSWORD',
+                                onTap: () {
+                                  emailFocusNode.unfocus();
+                                  context
+                                    .read<ResetPasswordCubit>()
+                                    .requestReset();
+                                },
+                                disabled: !state.emailAddress.isValid(),
+                              );
+                            },
+                          ),
+                        ],
+                          ),
+                        ),
+                      ),
+                    ))
+    );
   }
 }
