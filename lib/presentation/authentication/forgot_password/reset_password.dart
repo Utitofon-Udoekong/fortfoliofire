@@ -16,7 +16,6 @@ class ResetPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    FocusNode emailFocusNode = FocusNode();
     bool isIos = Platform.isIOS;
     return BlocProvider(
         create: (context) => getIt<ResetPasswordCubit>(),
@@ -40,13 +39,13 @@ class ResetPassword extends StatelessWidget {
             builder: (context, state) {
               return LoadingView(
                   isLoading: state.isSubmitting,
-                  child: isIos ? iosPage(context: context, emailFocusNode: emailFocusNode) : androidPage(context: context, emailFocusNode: emailFocusNode)
+                  child: isIos ? iosPage(context: context) : androidPage(context: context)
                 );
             },
           ),
         ));
   }
-  Widget androidPage({required BuildContext context, required FocusNode emailFocusNode}){
+  Widget androidPage({required BuildContext context}){
     return Scaffold(
                     body: SafeArea(
                         child: SingleChildScrollView(
@@ -98,7 +97,6 @@ class ResetPassword extends StatelessWidget {
                                       autocorrect: false,
                                       keyboardType: TextInputType.emailAddress,
                                       textInputAction: TextInputAction.next,
-                                      focusNode: emailFocusNode,
                                       decoration: const InputDecoration(
                                           filled: true,
                                           fillColor: Color(0xFFF3F6F8),
@@ -129,12 +127,9 @@ class ResetPassword extends StatelessWidget {
                                 builder: (context, state) {
                                   return CustomAuthFilledButton(
                                     text: 'RESET PASSWORD',
-                                    onTap: () {
-                                      emailFocusNode.unfocus();
-                                      context
+                                    onTap: () => context
                                         .read<ResetPasswordCubit>()
-                                        .requestReset();
-                                    },
+                                        .requestReset(),
                                     disabled: !state.emailAddress.isValid(),
                                   );
                                 },
@@ -147,7 +142,7 @@ class ResetPassword extends StatelessWidget {
                   );
   }
 
-  Widget iosPage({required BuildContext context, required FocusNode emailFocusNode}){
+  Widget iosPage({required BuildContext context}){
     return CupertinoPageScaffold(
       child: SafeArea(
                         child: SingleChildScrollView(
@@ -194,7 +189,6 @@ class ResetPassword extends StatelessWidget {
                                   autocorrect: false,
                                   keyboardType: TextInputType.emailAddress,
                                   textInputAction: TextInputAction.next,
-                                  focusNode: emailFocusNode,
                                   decoration: const BoxDecoration(
                                       color: Color(0xFFF3F6F8)
                                     ),
@@ -224,12 +218,9 @@ class ResetPassword extends StatelessWidget {
                             builder: (context, state) {
                               return CustomAuthFilledButton(
                                 text: 'RESET PASSWORD',
-                                onTap: () {
-                                  emailFocusNode.unfocus();
-                                  context
+                                onTap: () => context
                                     .read<ResetPasswordCubit>()
-                                    .requestReset();
-                                },
+                                    .requestReset(),
                                 disabled: !state.emailAddress.isValid(),
                               );
                             },

@@ -16,7 +16,6 @@ class SignInFormEmail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
-    FocusNode passwordFocusNode = FocusNode();
     return BlocProvider(
       create: (BuildContext context) => getIt<SignInFormEmailCubit>(),
       child: Scaffold(
@@ -170,7 +169,6 @@ class SignInFormEmail extends StatelessWidget {
                                           autovalidateMode: AutovalidateMode
                                               .onUserInteraction,
                                           obscureText: state.isObscure,
-                                          focusNode: passwordFocusNode,
                                           decoration: InputDecoration(
                                               errorMaxLines: 3,
                                               filled: true,
@@ -244,12 +242,9 @@ class SignInFormEmail extends StatelessWidget {
                                   builder: (context, state) {
                                     return CustomAuthFilledButton(
                                       text: 'LOGIN',
-                                      onTap: () {
-                                        passwordFocusNode.unfocus();
-                                        context
+                                      onTap: () => context
                                             .read<SignInFormEmailCubit>()
-                                            .signInWithEmailAndPasswordpressed();
-                                      },
+                                            .signInWithEmailAndPasswordpressed(),
                                       disabled: !state.isValidState,
                                     );
                                   },
@@ -267,7 +262,7 @@ class SignInFormEmail extends StatelessWidget {
   }
 
   Widget iosPage(
-      {required BuildContext context, required FocusNode passwordFocusNode}) {
+      {required BuildContext context}) {
     return CupertinoPageScaffold(
       child: SafeArea(
         child: Padding(
@@ -369,7 +364,6 @@ class SignInFormEmail extends StatelessWidget {
                       child: TextFormField(
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         obscureText: state.isObscure,
-                        focusNode: passwordFocusNode,
                         decoration: InputDecoration(
                             errorMaxLines: 3,
                             filled: true,
@@ -435,12 +429,9 @@ class SignInFormEmail extends StatelessWidget {
                 builder: (context, state) {
                   return CustomAuthFilledButton(
                     text: 'LOGIN',
-                    onTap: () {
-                      passwordFocusNode.unfocus();
-                      context
+                    onTap: () => context
                           .read<SignInFormEmailCubit>()
-                          .signInWithEmailAndPasswordpressed();
-                    },
+                          .signInWithEmailAndPasswordpressed(),
                     disabled: !state.isValidState,
                   );
                 },
