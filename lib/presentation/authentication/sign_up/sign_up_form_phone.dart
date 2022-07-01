@@ -21,7 +21,6 @@ class SignUpFormPhone extends StatefulWidget {
 
 class _SignUpFormPhoneState extends State<SignUpFormPhone> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  FocusNode phoneFocusNode = FocusNode();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,7 +86,6 @@ class _SignUpFormPhoneState extends State<SignUpFormPhone> {
                                         textDirection: TextDirection.ltr,
                                         label: "Phone Input Field",
                                         child: IntlPhoneField(
-                                          focusNode: phoneFocusNode,
                                           decoration: const InputDecoration(
                                             border: InputBorder.none,
                                             filled: true,
@@ -117,12 +115,9 @@ class _SignUpFormPhoneState extends State<SignUpFormPhone> {
                                     builder: (context, validPhone) {
                                       return CustomAuthFilledButton(
                                         text: "VERIFY OTP",
-                                        onTap: () {
-                                          phoneFocusNode.unfocus();
-                                          context
+                                        onTap: () => context
                                             .read<SignUpFormPhoneCubit>()
-                                            .signUpWithPhoneNumber();
-                                        },
+                                            .signUpWithPhoneNumber(),
                                         disabled: !validPhone,
                                       );
                                     },
