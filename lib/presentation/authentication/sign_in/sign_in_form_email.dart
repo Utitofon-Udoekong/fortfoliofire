@@ -243,8 +243,8 @@ class SignInFormEmail extends StatelessWidget {
                                     return CustomAuthFilledButton(
                                       text: 'LOGIN',
                                       onTap: () => context
-                                            .read<SignInFormEmailCubit>()
-                                            .signInWithEmailAndPasswordpressed(),
+                                          .read<SignInFormEmailCubit>()
+                                          .signInWithEmailAndPasswordpressed(),
                                       disabled: !state.isValidState,
                                     );
                                   },
@@ -261,14 +261,13 @@ class SignInFormEmail extends StatelessWidget {
     );
   }
 
-  Widget iosPage(
-      {required BuildContext context}) {
+  Widget iosPage({required BuildContext context}) {
     return CupertinoPageScaffold(
       child: SafeArea(
         child: Padding(
           padding: kDefaultPadding,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: ListView(
+            // crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               const SizedBox(
                 height: 20,
@@ -299,143 +298,113 @@ class SignInFormEmail extends StatelessWidget {
               const SizedBox(
                 height: 30,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  const Text(
-                    "Your Email",
-                    style: TextStyle(fontSize: 15, color: Color(0xFF656565)),
-                  ),
-                  TextButton(
-                    onPressed: () =>
-                        context.router.push(const SignInFormPhoneRoute()),
-                    child: const Text(
-                      "Login with phone",
-                      style: TextStyle(fontSize: 15, color: kPrimaryColor),
-                    ),
-                  )
-                ],
+              TextButton(
+                onPressed: () =>
+                    context.router.push(const SignInFormPhoneRoute()),
+                child: const Text(
+                  "Login with phone",
+                  style: TextStyle(fontSize: 15, color: kPrimaryColor),
+                ),
               ),
-              BlocBuilder<SignInFormEmailCubit, SignInFormEmailState>(
-                buildWhen: (p, c) => p.emailAddress != c.emailAddress,
-                builder: (context, state) {
-                  return Semantics(
-                    label: "Email field",
-                    textField: true,
-                    child: TextFormField(
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
-                        decoration: const InputDecoration(
-                            filled: true,
-                            fillColor: Color(0xFFF3F6F8),
-                            border: InputBorder.none),
-                        autocorrect: false,
-                        keyboardType: TextInputType.emailAddress,
-                        textInputAction: TextInputAction.next,
-                        onChanged: (value) => context
-                            .read<SignInFormEmailCubit>()
-                            .emailChanged(emailString: value),
-                        validator: (_) => context
-                            .read<SignInFormEmailCubit>()
-                            .state
-                            .emailAddress
-                            .value
-                            .fold(
-                                (f) => f.maybeMap(
-                                    invalidEmail: (_) =>
-                                        "Invalid email address.",
-                                    orElse: () => null),
-                                (r) => null)),
-                  );
-                },
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              const Text(
-                "Your Password",
-                style: TextStyle(fontSize: 15, color: Color(0xFF656565)),
-              ),
-              BlocBuilder<SignInFormEmailCubit, SignInFormEmailState>(
-                  buildWhen: (p, c) => p.isObscure != c.isObscure,
+              CupertinoFormSection(children: [
+                BlocBuilder<SignInFormEmailCubit, SignInFormEmailState>(
+                  buildWhen: (p, c) => p.emailAddress != c.emailAddress,
                   builder: (context, state) {
                     return Semantics(
-                      label: "Password field",
+                      label: "Email field",
                       textField: true,
-                      child: TextFormField(
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
-                        obscureText: state.isObscure,
-                        decoration: InputDecoration(
-                            errorMaxLines: 3,
-                            filled: true,
-                            fillColor: const Color(0xFFF3F6F8),
-                            border: InputBorder.none,
-                            hintText: "ABCdef@123",
-                            hintStyle: TextStyle(
-                                fontSize: 12,
-                                color: kgreyColor.withOpacity(0.4)),
-                            suffixIcon: IconButton(
-                              onPressed: () => context
-                                  .read<SignInFormEmailCubit>()
-                                  .isObscureChanged(),
-                              icon: state.isObscure
-                                  ? const Icon(
-                                      Icons.visibility,
-                                      color: kPrimaryColor,
-                                    )
-                                  : const Icon(
-                                      Icons.visibility_off,
-                                      color: kPrimaryColor,
-                                    ),
-                            )),
-                        textInputAction: TextInputAction.done,
-                        onChanged: (value) => context
-                            .read<SignInFormEmailCubit>()
-                            .passwordChanged(passwordString: value),
-                        validator: (_) => context
-                            .read<SignInFormEmailCubit>()
-                            .state
-                            .password
-                            .value
-                            .fold(
-                              (f) => f.maybeMap(
-                                  invalidPassword: (_) =>
-                                      "Invalid password. Must contain upper and lowercase letters, special chractersand numbers, at least 8 characters long.",
-                                  orElse: () => null),
-                              (r) => null,
-                            ),
-                      ),
+                      child: CupertinoTextFormFieldRow(
+                          placeholder: 'Your email',
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          decoration:
+                              const BoxDecoration(color: Color(0xFFF3F6F8)),
+                          autocorrect: false,
+                          keyboardType: TextInputType.emailAddress,
+                          textInputAction: TextInputAction.next,
+                          onChanged: (value) => context
+                              .read<SignInFormEmailCubit>()
+                              .emailChanged(emailString: value),
+                          validator: (_) => context
+                              .read<SignInFormEmailCubit>()
+                              .state
+                              .emailAddress
+                              .value
+                              .fold(
+                                  (f) => f.maybeMap(
+                                      invalidEmail: (_) =>
+                                          "Invalid email address.",
+                                      orElse: () => null),
+                                  (r) => null)),
                     );
-                  }),
-              const SizedBox(
-                height: 3.0,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[
-                  InkWell(
-                      onTap: () {
-                        context.router.push(const ResetPasswordRoute());
-                      },
-                      child: const Text(
-                        'Forgot password?',
-                        style: TextStyle(fontSize: 13.5, color: kPrimaryColor),
-                      )),
-                ],
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              BlocBuilder<SignInFormEmailCubit, SignInFormEmailState>(
-                builder: (context, state) {
-                  return CustomAuthFilledButton(
-                    text: 'LOGIN',
-                    onTap: () => context
+                  },
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                BlocBuilder<SignInFormEmailCubit, SignInFormEmailState>(
+                    buildWhen: (p, c) => p.isObscure != c.isObscure,
+                    builder: (context, state) {
+                      return Semantics(
+                        label: "Password field",
+                        textField: true,
+                        child: CupertinoTextFormFieldRow(
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          obscureText: state.isObscure,
+                          placeholder: 'Your password',
+                          decoration: const BoxDecoration(
+                            color: Color(0xFFF3F6F8),
+                          ),
+                          textInputAction: TextInputAction.done,
+                          onChanged: (value) => context
+                              .read<SignInFormEmailCubit>()
+                              .passwordChanged(passwordString: value),
+                          validator: (_) => context
+                              .read<SignInFormEmailCubit>()
+                              .state
+                              .password
+                              .value
+                              .fold(
+                                (f) => f.maybeMap(
+                                    invalidPassword: (_) =>
+                                        "Invalid password. Must contain upper and lowercase letters, special chractersand numbers, at least 8 characters long.",
+                                    orElse: () => null),
+                                (r) => null,
+                              ),
+                        ),
+                      );
+                    }),
+                const SizedBox(
+                  height: 3.0,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    InkWell(
+                        onTap: () {
+                          context.router.push(const ResetPasswordRoute());
+                        },
+                        child: const Text(
+                          'Forgot password?',
+                          style:
+                              TextStyle(fontSize: 13.5, color: kPrimaryColor),
+                        )),
+                  ],
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                BlocBuilder<SignInFormEmailCubit, SignInFormEmailState>(
+                  builder: (context, state) {
+                    return CustomAuthFilledButton(
+                      text: 'LOGIN',
+                      onTap: () => context
                           .read<SignInFormEmailCubit>()
                           .signInWithEmailAndPasswordpressed(),
-                    disabled: !state.isValidState,
-                  );
-                },
-              ),
+                      disabled: !state.isValidState,
+                    );
+                  },
+                ),
+              ]),
             ],
           ),
         ),
