@@ -348,7 +348,7 @@ class SignUpForm extends StatelessWidget {
                   decoration: const BoxDecoration(
                     color: Color(0xFFF3F6F8),
                   ),
-                  textInputAction: TextInputAction.done,
+                  textInputAction: TextInputAction.next,
                   onChanged: (value) => context
                       .read<SignUpFormCubit>()
                       .passwordChanged(password: value),
@@ -404,11 +404,10 @@ class SignUpForm extends StatelessWidget {
                 return CupertinoTextFormFieldRow(
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   placeholder: 'Last Name',
-                  decoration: const BoxDecoration(
-                      color: Color(0xFFF3F6F8)),
+                  decoration: const BoxDecoration(color: Color(0xFFF3F6F8)),
                   autocorrect: false,
                   keyboardType: TextInputType.name,
-                  textInputAction: TextInputAction.next,
+                  textInputAction: TextInputAction.done,
                   onChanged: (value) => context
                       .read<SignUpFormCubit>()
                       .lastNameChanged(lastName: value),
@@ -422,7 +421,39 @@ class SignUpForm extends StatelessWidget {
                 );
               },
             ),
-          ])
+          ]),
+          const SizedBox(
+            height: 20,
+          ),
+          BlocBuilder<SignUpFormCubit, SignUpFormState>(
+            builder: (context, state) {
+              return LabeledCheckbox(
+                  label: const TACText(),
+                  value: state.accepted,
+                  onChanged: (value) {
+                    context
+                        .read<SignUpFormCubit>()
+                        .acceptedChanged(accepted: value);
+                  });
+            },
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          BlocSelector<SignUpFormCubit, SignUpFormState, bool>(
+            selector: (state) {
+              return state.isValidState;
+            },
+            builder: (context, isValidState) {
+              return CustomAuthFilledButton(
+                text: 'Register',
+                onTap: () => context
+                    .read<SignUpFormCubit>()
+                    .registerWithEmailAndPasswordpressed(),
+                disabled: !isValidState,
+              );
+            },
+          ),
         ],
       ),
     )));
