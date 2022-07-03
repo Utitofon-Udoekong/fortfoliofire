@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_badge.dart';
@@ -15,6 +18,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isIos = Platform.isIOS;
     var scaffoldKey = GlobalKey<ScaffoldState>();
     final bool isAccountActive = context
         .select((AuthCubit authCubit) => authCubit.state.userModel.isAccountActive);
@@ -22,7 +26,7 @@ class HomePage extends StatelessWidget {
       scaffoldKey: scaffoldKey,
       extendBodyBehindAppBar: true,
       appBarBuilder: (context, tabsRouter) {
-        return AppBar(
+        return isIos ? iosAppbar(isAccountActive: isAccountActive, scaffoldKey: scaffoldKey) : AppBar(
           backgroundColor: kWhiteColor,
           leading: InkWell(
             onTap: () {
@@ -125,6 +129,66 @@ class HomePage extends StatelessWidget {
           ],
         );
       },
+    );
+  }
+
+  Widget iosAppbar({required bool isAccountActive, required GlobalKey<ScaffoldState> scaffoldKey}){
+    return CupertinoNavigationBar(
+      backgroundColor: kWhiteColor,
+          leading: InkWell(
+            onTap: () {
+              scaffoldKey.currentState!.openDrawer();
+            },
+            child: const Image(
+              image: AssetImage('images/nav.png'),
+              width: 20,
+              height: 20,
+            ),
+          ),
+          trailing: Container(
+              margin: const EdgeInsets.only(right: 20),
+              decoration: const BoxDecoration(
+                color: Color(0XFFF5F7FA),
+                shape: BoxShape.circle,
+              ),
+              width: 30,
+              alignment: Alignment.center,
+              height: 30,
+              child: BlocBuilder<NotificationCubit, NotificationState>(
+                buildWhen: (previous, current) => previous.notificationCount != current.notificationCount,
+                builder: (context, state) {
+                  if (state.notificationExists) {
+                    return CustomBadge(
+                      top: 1,
+                      right: 1,
+                      value: state.notificationCount.toString(),
+                      child: IconButton(
+                          onPressed: () {
+                            if(isAccountActive) {
+                              context.router.push(const NotificationsPageRoute());
+                              context.read<NotificationCubit>().reset();
+                            }else {
+                              null;
+                            }
+                          },
+                          icon: const Icon(
+                            Icons.notifications,
+                            size: 15,
+                            color: Color(0XFF130F26)
+                          )),
+                    );
+                  } else {
+                    return IconButton(
+                        onPressed: () => isAccountActive ?
+                            context.router.push(const NotificationsPageRoute()) : null,
+                        icon: const Icon(
+                          Icons.notifications,
+                          size: 15,
+                        ));
+                  }
+                },
+              ),
+            ),
     );
   }
 }
