@@ -26,7 +26,7 @@ class HomePage extends StatelessWidget {
       scaffoldKey: scaffoldKey,
       extendBodyBehindAppBar: true,
       appBarBuilder: (context, tabsRouter) {
-        return isIos ? iosAppbar(isAccountActive: isAccountActive, scaffoldKey: scaffoldKey) : AppBar(
+        return isIos ? iosAppbar(isAccountActive: isAccountActive, scaffoldKey: scaffoldKey) as PreferredSizeWidget : AppBar(
           backgroundColor: kWhiteColor,
           leading: InkWell(
             onTap: () {
@@ -189,6 +189,7 @@ class HomePage extends StatelessWidget {
                 },
               ),
             ),
+            
     );
   }
 }
