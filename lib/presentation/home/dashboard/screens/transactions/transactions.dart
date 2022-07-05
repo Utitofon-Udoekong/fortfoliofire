@@ -232,25 +232,25 @@ class DashboardTransactions extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
+                          padding: const EdgeInsets.all(3.0),
+                          decoration: const BoxDecoration(
+                              color: Color(0XFFF0FFFA), shape: BoxShape.circle),
                           child: const Icon(
                             Icons.north_east_rounded,
                             color: Color.fromRGBO(16, 180, 107, 1),
                           ),
-                          padding: const EdgeInsets.all(3.0),
-                          decoration: const BoxDecoration(
-                              color: Color(0XFFF0FFFA), shape: BoxShape.circle),
                         ),
                         GestureDetector(
                           onTap: ontap,
                           child: Container(
-                            child: const Icon(
-                              Icons.share,
-                              color: kgreyColor,
-                            ),
                             padding: const EdgeInsets.all(3.0),
                             decoration: const BoxDecoration(
                                 color: Color(0XFFF0FFFA),
                                 shape: BoxShape.circle),
+                            child: Icon(
+                              Icons.adaptive.share,
+                              color: kgreyColor,
+                            ),
                           ),
                         ),
                       ],
@@ -477,25 +477,25 @@ class DashboardTransactions extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
+                          padding: const EdgeInsets.all(3.0),
+                          decoration: const BoxDecoration(
+                              color: Color(0XFFF0FFFA), shape: BoxShape.circle),
                           child: const Icon(
                             Icons.north_east_rounded,
                             color: Color.fromRGBO(16, 180, 107, 1),
                           ),
-                          padding: const EdgeInsets.all(3.0),
-                          decoration: const BoxDecoration(
-                              color: Color(0XFFF0FFFA), shape: BoxShape.circle),
                         ),
                         GestureDetector(
                           onTap: ontap,
                           child: Container(
-                            child: const Icon(
-                              Icons.share,
-                              color: kgreyColor,
-                            ),
                             padding: const EdgeInsets.all(3.0),
                             decoration: const BoxDecoration(
                                 color: Color(0XFFF0FFFA),
                                 shape: BoxShape.circle),
+                            child: Icon(
+                              Icons.adaptive.share,
+                              color: kgreyColor,
+                            ),
                           ),
                         ),
                       ],

@@ -81,7 +81,7 @@ class NoInternetPage extends StatelessWidget {
                 height: 20,
               ),
               Text(
-                "No internet connection found. Please check your connection and try again.",
+                "CONNECTION LOST - Please check your internet connection to continue",
                 style: subTitle.copyWith(
                     fontSize: 18, fontWeight: FontWeight.w400),
                 textAlign: TextAlign.center,

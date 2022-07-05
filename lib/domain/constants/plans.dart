@@ -33,7 +33,7 @@ List<PlanModel> plans = <PlanModel>[
   PlanModel(
     icon: 'fortshield',
     title: 'FortShield',
-    minPrice: 'N1,000,000',
+    minPrice: '₦1,000,000',
     roi: '18%',
     currency: 'Naira, USD or Crypto (USDC/BUSD or USDT only).',
     onPressed: const FortShieldRoute(),
