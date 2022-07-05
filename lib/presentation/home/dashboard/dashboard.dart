@@ -113,7 +113,7 @@ class Dashboard extends StatelessWidget {
                       'images/Activity-big.svg',
                       'Active Investments',
                       const Color(0XFF00ADEE),
-                      'See your current investments, invest more and get recommendations.',
+                      'View your investment status, portfolio and transaction details.',
                       'Active Invests',
                       () => context.pushRoute(
                           const HomePageRoute(children: [WalletRoute()])),
@@ -122,7 +122,7 @@ class Dashboard extends StatelessWidget {
                       'images/bolt.svg',
                       'Quick Investments',
                       const Color(0XFF00C566),
-                      'Find investments that fit with your area of interest & get started!',
+                      'Find available investment packages of interest and get started.',
                       'Quick Invest',
                       () => context.pushRoute(const HomePageRoute(
                           children: [InvestmentPageRoute()])),
@@ -139,7 +139,7 @@ class Dashboard extends StatelessWidget {
                       'images/support.svg',
                       'Need Help? Get Support',
                       const Color(0XFF00ADEE),
-                      'Contact our personnel available to help you with any thing on our app.',
+                      'Contact our customer care service today for help.',
                       'Get help',
                       () => context.router.push(const SupportPageRoute()),
                       context),
