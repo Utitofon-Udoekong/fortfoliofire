@@ -108,20 +108,20 @@ class Item {
 List<Item> item = <Item>[
   Item(
       question: 'Is the company regulated?',
-      answer: 'We are registered under CAC RC:1742448'),
+      answer: 'We are registered by the Corporate Affairs Commision(CAC). View our registration status using -  RC1742448'),
   Item(
       question: 'Do you give loans?',
       answer:
-          'No we don\'t give loans but we give our investors a free asset finance'),
+          'No, we do not offer loans. Our investors are only offered free asset finance.'),
   Item(
       question: 'How does the company generate its profit?',
       answer:
-          'Fortfolio generate their income from the businesses that we do which are; cryptocurrency trading, car windshield, e-commerce, POS services, real estate, social media management and Shortlets'),
+          'Fortfolio generates its income from speculation on the financial markets, real estate, fintech innovation, car windshield and agriculture.'),
   Item(
       question: 'Do you have a Physical Office?',
-      answer: 'Yes, Suite 269 Road 5 Ikota shopping complex lagos'),
-  Item(question: 'What is the Minimum investment tenure?', answer: '6 months'),
+      answer: 'Yes, our office is located at Suite J269, Road 5, ikota shopping complex, VGC, Ajah, Lagos state. More branches will be established in various locations nationwide.'),
+  Item(question: 'What is the Minimum investment tenure?', answer: 'You need to invest for at least 6 months to be able to profit from our investment packages.'),
   Item(
       question: 'What is the minimum amount to invest?',
-      answer: 'The minimum investment is 50,000 naira'),
+      answer: 'The least amount one can invest is ₦500,000(\$1,000) .'),
 ];

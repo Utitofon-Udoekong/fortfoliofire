@@ -58,8 +58,8 @@ class VerificationPage extends StatelessWidget {
                         Center(
                           child: Text(
                               isVerified
-                                  ? "Account Verified"
-                                  : "Details submitted. Awaiting review",
+                                  ? "Your account has been successfully verified."
+                                  : "We are processing your verification, this may take a few minutes.",
                               style: titleText.copyWith(
                                   color: isVerified ? kWhiteColor : kWhiteColor,
                                   fontSize: 20),
@@ -121,14 +121,14 @@ class VerificationPage extends StatelessWidget {
                         height: 15,
                       ),
                       Text(
-                        'Verify your account using an authentic identification document that belongs to you.',
+                        'To verify your account, please upload a photo or scan of your government issued identification document.',
                         style: subTitle.copyWith(color: kgreyColor),
                       ),
                       const SizedBox(
                         height: 15,
                       ),
                       Text(
-                          'Select the type of document you wish to upload for verification:',
+                          'Select an identification document to upload for verification.',
                           style: subTitle.copyWith(color: kgreyColor)),
                       const SizedBox(
                         height: 40,
