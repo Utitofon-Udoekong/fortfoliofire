@@ -45,14 +45,14 @@ class FortShieldInvestmentInfo extends StatelessWidget {
               const SizedBox(height: 30),
               Text("Total", style: subTitle.copyWith(fontSize: 12)),
               const SizedBox(height: 8),
-              Text("N${formatter.format(balance)}",
+              Text("₦${formatter.format(balance)}",
                   style: titleText.copyWith(
                       fontSize: 16, fontWeight: FontWeight.w500)),
               const SizedBox(height: 30),
               Text("Available for yield",
                   style: subTitle.copyWith(fontSize: 12)),
               const SizedBox(height: 8),
-              Text("N ${formatter.format(yield)}",
+              Text("₦ ${formatter.format(yield)}",
                   style: titleText.copyWith(
                       fontSize: 16, fontWeight: FontWeight.w500)),
               const SizedBox(height: 30),
@@ -71,7 +71,7 @@ class FortShieldInvestmentInfo extends StatelessWidget {
                       title:
                           '${activeInvestments[index].planName} / ${activeInvestments[index].duration.toInt()} month(s)',
                       amount:
-                          'N${formatter.format(activeInvestments[index].amount)}',
+                          '₦${formatter.format(activeInvestments[index].amount)}',
                       ontap: () {
                         context
                             .read<WalletCubit>()
@@ -84,7 +84,7 @@ class FortShieldInvestmentInfo extends StatelessWidget {
                       isDue: activeInvestments[index].dueDate.isToday,
                       daysLeft:
                           Jiffy(activeInvestments[index].dueDate).fromNow(),
-                      planYield: 'N${formatter.format(activeInvestments[index].planYield)}'
+                      planYield: '₦${formatter.format(activeInvestments[index].planYield)}'
                     );
                   }),
                 ),

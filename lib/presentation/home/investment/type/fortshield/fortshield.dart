@@ -36,8 +36,8 @@ class FortShield extends StatelessWidget {
                   height: 180,
                   decoration: const BoxDecoration(
                       image: DecorationImage(image: AssetImage('images/estate.png'))),
-                  child: const Image(image: AssetImage('images/fortshield.png')),
                   alignment: Alignment.center,
+                  child: const Image(image: AssetImage('images/fortshield.png')),
                 ),
                 const SizedBox(
                 height: 20,

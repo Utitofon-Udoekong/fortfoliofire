@@ -78,7 +78,7 @@ class WalletOverview extends StatelessWidget {
                           switch (state.exchange) {
                             case "NGN":
                               return state.showDigits
-                                ? Text('N${formatter.format(state.walletBalance * dollarPrice) }',
+                                ? Text('₦${formatter.format(state.walletBalance * dollarPrice) }',
                                     style: titleText.copyWith(
                                         fontSize: 15, color: kWhiteColor))
                                 : Text(
@@ -98,7 +98,7 @@ class WalletOverview extends StatelessWidget {
                                         fontSize: 23, color: kWhiteColor));
                             case "BTC":
                               return state.showDigits
-                                ? Text('BTC ${btcFormatter.format(state.walletBalance)}',
+                                ? Text('${btcFormatter.format(state.walletBalance)} BTC',
                                     style: titleText.copyWith(
                                         fontSize: 15, color: kWhiteColor))
                                 : Text("${state.walletBalance}"
@@ -107,7 +107,7 @@ class WalletOverview extends StatelessWidget {
                                         fontSize: 23, color: kWhiteColor));
                             default:
                               return state.showDigits
-                                ? Text('N${formatter.format(state.walletBalance * dollarPrice) }',
+                                ? Text('₦${formatter.format(state.walletBalance * dollarPrice) }',
                                     style: titleText.copyWith(
                                         fontSize: 15, color: kWhiteColor))
                                 : Text(
@@ -278,8 +278,8 @@ class WalletOverview extends StatelessWidget {
                   visible: state.isFortShieldActive,
                   child: buildcard('FortShield', 'fortshield', () {
                     context.router.push(const FortShieldInvestmentInfoRoute());
-                  }, "N${formatter.format(fortShieldBalance)}", state.showDigits,
-                      "N${formatter.format(fortShieldYield)}"),
+                  }, "₦${formatter.format(fortShieldBalance)}", state.showDigits,
+                      "₦${formatter.format(fortShieldYield)}"),
                 );
               },
             ),

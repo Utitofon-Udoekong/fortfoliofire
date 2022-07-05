@@ -135,11 +135,11 @@ class FortShieldInvestment extends StatelessWidget {
                               color: state.duration == 6 ? kPrimaryColor : kWhiteColor,
                               border: Border.all(color: state.duration == 6 ? kPrimaryColor : kWhiteColor, width: state.duration == 6 ? 1.0 : 0.0),),
                           margin: const EdgeInsets.only(right: 30),
+                          alignment: Alignment.center,
                           child: const Text(
                             '6 months',
                             style: TextStyle(fontSize: 15),
                           ),
-                          alignment: Alignment.center,
                         ),
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -147,11 +147,11 @@ class FortShieldInvestment extends StatelessWidget {
                               borderRadius: BorderRadius.circular(6),
                               color: state.duration == 12 ? kPrimaryColor : kWhiteColor,
                               border: Border.all(color: state.duration == 12 ? kPrimaryColor : kWhiteColor, width: state.duration == 12 ? 1.0 : 0.0),),
+                          alignment: Alignment.center,
                           child: const Text(
                             '12 months',
                             style: TextStyle(fontSize: 15),
                           ),
-                          alignment: Alignment.center,
                         ),
                       ],
                       onPressed: (int newIndex) => context

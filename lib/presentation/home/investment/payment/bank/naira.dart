@@ -36,11 +36,10 @@ class NairaAccount extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text(
-                'N',
+                '₦',
                 style: subTitle.copyWith(
                     color: kBlackColor,
-                    fontSize: 14,
-                    decoration: TextDecoration.lineThrough),
+                    fontSize: 14,),
               ),
               Text(
                 exchangeType == "USD"
@@ -59,7 +58,7 @@ class NairaAccount extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20)),
               alignment: Alignment.center,
               child: Text(
-                '\$1 = N$dollarPrice',
+                '\$1 = ₦$dollarPrice',
                 style: subTitle.copyWith(fontSize: 13, color: kPrimaryColor),
               ),
             ),
