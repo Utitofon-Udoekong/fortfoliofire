@@ -20,11 +20,13 @@ class DisclaimerPage extends StatelessWidget {
       body: MultiBlocListener(
         listeners: [
           BlocListener<ProfileCubit, ProfileState>(
+            listenWhen: (previous, current) => previous.failure != current.failure && current.failure.isNotEmpty,
             listener: (context, state) {
               CustomSnackbar.showSnackBar(context, state.failure, true);
             },
           ),
           BlocListener<ProfileCubit, ProfileState>(
+            listenWhen: (previous, current) => previous.success != current.success && current.success.isNotEmpty,
             listener: (context, state) {
               CustomSnackbar.showSnackBar(context, state.success, false);
               context.router.pop();

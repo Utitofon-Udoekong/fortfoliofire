@@ -211,7 +211,7 @@ class MainDrawer extends StatelessWidget {
             Text(
               text,
               style: subTitle.copyWith(
-                  color: shouldDisable ? kgreyColor : kBlackColor, fontSize: 15),
+                  color: !isAccountActive && shouldDisable ? kgreyColor : kBlackColor, fontSize: 15),
             )
           ],
         ),
