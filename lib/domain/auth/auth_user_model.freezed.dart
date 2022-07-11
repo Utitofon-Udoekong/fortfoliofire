@@ -26,6 +26,7 @@ mixin _$AuthUserModel {
   bool get isVerified => throw _privateConstructorUsedError;
   bool get isAccountActive => throw _privateConstructorUsedError;
   DateTime get createdat => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
   DateTime? get startDate => throw _privateConstructorUsedError;
   DateTime? get deleteDate => throw _privateConstructorUsedError;
 
@@ -50,6 +51,7 @@ abstract class $AuthUserModelCopyWith<$Res> {
       bool isVerified,
       bool isAccountActive,
       DateTime createdat,
+      String status,
       DateTime? startDate,
       DateTime? deleteDate});
 }
@@ -75,6 +77,7 @@ class _$AuthUserModelCopyWithImpl<$Res>
     Object? isVerified = freezed,
     Object? isAccountActive = freezed,
     Object? createdat = freezed,
+    Object? status = freezed,
     Object? startDate = freezed,
     Object? deleteDate = freezed,
   }) {
@@ -119,6 +122,10 @@ class _$AuthUserModelCopyWithImpl<$Res>
           ? _value.createdat
           : createdat // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
       startDate: startDate == freezed
           ? _value.startDate
           : startDate // ignore: cast_nullable_to_non_nullable
@@ -149,6 +156,7 @@ abstract class _$$_AuthUserModelCopyWith<$Res>
       bool isVerified,
       bool isAccountActive,
       DateTime createdat,
+      String status,
       DateTime? startDate,
       DateTime? deleteDate});
 }
@@ -176,6 +184,7 @@ class __$$_AuthUserModelCopyWithImpl<$Res>
     Object? isVerified = freezed,
     Object? isAccountActive = freezed,
     Object? createdat = freezed,
+    Object? status = freezed,
     Object? startDate = freezed,
     Object? deleteDate = freezed,
   }) {
@@ -220,6 +229,10 @@ class __$$_AuthUserModelCopyWithImpl<$Res>
           ? _value.createdat
           : createdat // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
       startDate: startDate == freezed
           ? _value.startDate
           : startDate // ignore: cast_nullable_to_non_nullable
@@ -246,6 +259,7 @@ class _$_AuthUserModel extends _AuthUserModel {
       required this.isVerified,
       required this.isAccountActive,
       required this.createdat,
+      required this.status,
       this.startDate,
       this.deleteDate})
       : super._();
@@ -271,13 +285,15 @@ class _$_AuthUserModel extends _AuthUserModel {
   @override
   final DateTime createdat;
   @override
+  final String status;
+  @override
   final DateTime? startDate;
   @override
   final DateTime? deleteDate;
 
   @override
   String toString() {
-    return 'AuthUserModel(id: $id, displayName: $displayName, phoneNumber: $phoneNumber, firstName: $firstName, lastName: $lastName, balance: $balance, email: $email, isVerified: $isVerified, isAccountActive: $isAccountActive, createdat: $createdat, startDate: $startDate, deleteDate: $deleteDate)';
+    return 'AuthUserModel(id: $id, displayName: $displayName, phoneNumber: $phoneNumber, firstName: $firstName, lastName: $lastName, balance: $balance, email: $email, isVerified: $isVerified, isAccountActive: $isAccountActive, createdat: $createdat, status: $status, startDate: $startDate, deleteDate: $deleteDate)';
   }
 
   @override
@@ -299,6 +315,7 @@ class _$_AuthUserModel extends _AuthUserModel {
             const DeepCollectionEquality()
                 .equals(other.isAccountActive, isAccountActive) &&
             const DeepCollectionEquality().equals(other.createdat, createdat) &&
+            const DeepCollectionEquality().equals(other.status, status) &&
             const DeepCollectionEquality().equals(other.startDate, startDate) &&
             const DeepCollectionEquality()
                 .equals(other.deleteDate, deleteDate));
@@ -317,6 +334,7 @@ class _$_AuthUserModel extends _AuthUserModel {
       const DeepCollectionEquality().hash(isVerified),
       const DeepCollectionEquality().hash(isAccountActive),
       const DeepCollectionEquality().hash(createdat),
+      const DeepCollectionEquality().hash(status),
       const DeepCollectionEquality().hash(startDate),
       const DeepCollectionEquality().hash(deleteDate));
 
@@ -338,6 +356,7 @@ abstract class _AuthUserModel extends AuthUserModel {
       required final bool isVerified,
       required final bool isAccountActive,
       required final DateTime createdat,
+      required final String status,
       final DateTime? startDate,
       final DateTime? deleteDate}) = _$_AuthUserModel;
   const _AuthUserModel._() : super._();
@@ -362,6 +381,8 @@ abstract class _AuthUserModel extends AuthUserModel {
   bool get isAccountActive => throw _privateConstructorUsedError;
   @override
   DateTime get createdat => throw _privateConstructorUsedError;
+  @override
+  String get status => throw _privateConstructorUsedError;
   @override
   DateTime? get startDate => throw _privateConstructorUsedError;
   @override

@@ -27,6 +27,7 @@ mixin _$AuthUserModelDto {
   String get lastName => throw _privateConstructorUsedError;
   double get balance => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
   bool get isVerified => throw _privateConstructorUsedError;
   bool get isAccountActive =>
       throw _privateConstructorUsedError; // ignore: invalid_annotation_target
@@ -54,6 +55,7 @@ abstract class $AuthUserModelDtoCopyWith<$Res> {
       String lastName,
       double balance,
       String email,
+      String status,
       bool isVerified,
       bool isAccountActive,
       @JsonKey(fromJson: sendDateTimeFromJson, toJson: sendDateTimeToJson)
@@ -80,6 +82,7 @@ class _$AuthUserModelDtoCopyWithImpl<$Res>
     Object? lastName = freezed,
     Object? balance = freezed,
     Object? email = freezed,
+    Object? status = freezed,
     Object? isVerified = freezed,
     Object? isAccountActive = freezed,
     Object? createdat = freezed,
@@ -114,6 +117,10 @@ class _$AuthUserModelDtoCopyWithImpl<$Res>
       email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
               as String,
       isVerified: isVerified == freezed
           ? _value.isVerified
@@ -154,6 +161,7 @@ abstract class _$$_AuthUserModelDtoCopyWith<$Res>
       String lastName,
       double balance,
       String email,
+      String status,
       bool isVerified,
       bool isAccountActive,
       @JsonKey(fromJson: sendDateTimeFromJson, toJson: sendDateTimeToJson)
@@ -182,6 +190,7 @@ class __$$_AuthUserModelDtoCopyWithImpl<$Res>
     Object? lastName = freezed,
     Object? balance = freezed,
     Object? email = freezed,
+    Object? status = freezed,
     Object? isVerified = freezed,
     Object? isAccountActive = freezed,
     Object? createdat = freezed,
@@ -216,6 +225,10 @@ class __$$_AuthUserModelDtoCopyWithImpl<$Res>
       email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
               as String,
       isVerified: isVerified == freezed
           ? _value.isVerified
@@ -252,6 +265,7 @@ class _$_AuthUserModelDto implements _AuthUserModelDto {
       required this.lastName,
       required this.balance,
       required this.email,
+      required this.status,
       required this.isVerified,
       required this.isAccountActive,
       @JsonKey(fromJson: sendDateTimeFromJson, toJson: sendDateTimeToJson)
@@ -277,6 +291,8 @@ class _$_AuthUserModelDto implements _AuthUserModelDto {
   @override
   final String email;
   @override
+  final String status;
+  @override
   final bool isVerified;
   @override
   final bool isAccountActive;
@@ -291,7 +307,7 @@ class _$_AuthUserModelDto implements _AuthUserModelDto {
 
   @override
   String toString() {
-    return 'AuthUserModelDto(id: $id, displayName: $displayName, phoneNumber: $phoneNumber, firstName: $firstName, lastName: $lastName, balance: $balance, email: $email, isVerified: $isVerified, isAccountActive: $isAccountActive, createdat: $createdat, startDate: $startDate, deleteDate: $deleteDate)';
+    return 'AuthUserModelDto(id: $id, displayName: $displayName, phoneNumber: $phoneNumber, firstName: $firstName, lastName: $lastName, balance: $balance, email: $email, status: $status, isVerified: $isVerified, isAccountActive: $isAccountActive, createdat: $createdat, startDate: $startDate, deleteDate: $deleteDate)';
   }
 
   @override
@@ -308,6 +324,7 @@ class _$_AuthUserModelDto implements _AuthUserModelDto {
             const DeepCollectionEquality().equals(other.lastName, lastName) &&
             const DeepCollectionEquality().equals(other.balance, balance) &&
             const DeepCollectionEquality().equals(other.email, email) &&
+            const DeepCollectionEquality().equals(other.status, status) &&
             const DeepCollectionEquality()
                 .equals(other.isVerified, isVerified) &&
             const DeepCollectionEquality()
@@ -329,6 +346,7 @@ class _$_AuthUserModelDto implements _AuthUserModelDto {
       const DeepCollectionEquality().hash(lastName),
       const DeepCollectionEquality().hash(balance),
       const DeepCollectionEquality().hash(email),
+      const DeepCollectionEquality().hash(status),
       const DeepCollectionEquality().hash(isVerified),
       const DeepCollectionEquality().hash(isAccountActive),
       const DeepCollectionEquality().hash(createdat),
@@ -355,6 +373,7 @@ abstract class _AuthUserModelDto implements AuthUserModelDto {
       required final String lastName,
       required final double balance,
       required final String email,
+      required final String status,
       required final bool isVerified,
       required final bool isAccountActive,
       @JsonKey(fromJson: sendDateTimeFromJson, toJson: sendDateTimeToJson)
@@ -379,6 +398,8 @@ abstract class _AuthUserModelDto implements AuthUserModelDto {
   double get balance => throw _privateConstructorUsedError;
   @override
   String get email => throw _privateConstructorUsedError;
+  @override
+  String get status => throw _privateConstructorUsedError;
   @override
   bool get isVerified => throw _privateConstructorUsedError;
   @override
