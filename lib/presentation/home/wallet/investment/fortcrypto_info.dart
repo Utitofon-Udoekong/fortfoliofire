@@ -1,13 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
+import 'package:jiffy/jiffy.dart';
+
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/core/validator_helpers.dart';
 import 'package:fortfolio/domain/widgets/custom_outlined_button.dart';
 import 'package:fortfolio/presentation/home/wallet/cubit/wallet_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
-import 'package:intl/intl.dart';
-import 'package:jiffy/jiffy.dart';
 
 class FortCryptoInvestmentInfo extends StatelessWidget {
   const FortCryptoInvestmentInfo({Key? key}) : super(key: key);

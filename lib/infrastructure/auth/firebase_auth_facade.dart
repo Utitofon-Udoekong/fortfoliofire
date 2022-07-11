@@ -447,6 +447,7 @@ class FirebaseAuthFacade implements IAuthFacade {
     try {
       await query.update({
         "isAccountActive": false,
+        "status": "Deleted",
         "startDate": DateTime.now(),
         "deleteDate": Jiffy(DateTime.now()).add(days: 30).dateTime
       });
