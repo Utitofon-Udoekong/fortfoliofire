@@ -142,6 +142,7 @@ class FirebaseAuthFacade implements IAuthFacade {
             isVerified: false,
             isAccountActive: true,
             id: uuid,
+            status: 'Enabled',
             displayName: displayName);
         log(authUserModel.toString());
         await firebaseAuth.currentUser!.updateDisplayName(displayName);

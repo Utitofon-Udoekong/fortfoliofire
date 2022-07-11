@@ -17,6 +17,7 @@ class AuthUserModelDto with _$AuthUserModelDto {
     required String lastName,
     required double balance,
     required String email,
+    required String status,
     required bool isVerified,
     required bool isAccountActive,
     // ignore: invalid_annotation_target
@@ -43,6 +44,7 @@ class AuthUserModelDto with _$AuthUserModelDto {
       isVerified: userModel.isVerified,
       isAccountActive: userModel.isAccountActive,
       lastName: userModel.lastName,
+      status: userModel.status,
     );
   }
 
@@ -73,6 +75,7 @@ extension AuthUserModelDtoX on AuthUserModelDto {
       isAccountActive: isAccountActive,
       lastName: lastName,
       displayName: displayName,
+      status: status,
     );
   }
 }

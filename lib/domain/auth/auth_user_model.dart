@@ -15,6 +15,7 @@ class AuthUserModel with _$AuthUserModel {
     required bool isVerified,
     required bool isAccountActive,
     required DateTime createdat,
+    required String status,
     DateTime? startDate,
     DateTime? deleteDate,
   }) = _AuthUserModel;
@@ -32,6 +33,7 @@ class AuthUserModel with _$AuthUserModel {
         isAccountActive: true,
         createdat: DateTime.fromMillisecondsSinceEpoch(0),
         displayName: '',
+        status: '',
       );
 
 }
