@@ -16,4 +16,5 @@ class AuthState with _$AuthState {
       );
 
   bool get isLoggedIn => userModel.email.isNotEmpty && userModel.firstName.isNotEmpty && userModel.lastName.isNotEmpty;
+  bool get isAccountActive => userModel.isAccountActive && userModel.status == "Enabled";
 }
