@@ -41,6 +41,7 @@ class HomePage extends StatelessWidget {
           iconTheme: const IconThemeData(color: Color(0XFF130F26)),
           elevation: 0,
           actions: [
+            Flex(direction: Axis.vertical,children:[]),
             Container(
               margin: const EdgeInsets.only(right: 20),
               decoration: const BoxDecoration(
