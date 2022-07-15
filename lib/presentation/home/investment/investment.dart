@@ -30,6 +30,14 @@ class InvestmentPage extends StatelessWidget {
                 'Choose from our current investment plans and begin your financial freedom journey!',
                 style: subTitle.copyWith(color: kgreyColor, fontSize: 14),
               ),
+              Text(
+                'How to earn',
+                style: titleText.copyWith(color: kgreyColor, fontSize: 18),
+              ),
+              Text(
+                'To earn the yields from these packages, you just have to do one thing, Subscribe!',
+                style: subTitle.copyWith(color: kgreyColor, fontSize: 14),
+              ),
               const SizedBox(
                 height: 30,
               ),

@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/domain/constants/plans.dart';
@@ -6,12 +7,19 @@ import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
 import 'package:fortfolio/presentation/home/investment/cubit/investment_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class FortDollar extends StatelessWidget {
   const FortDollar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final Uri _url = Uri.parse('https://fortfolio.info/#about');
+    Future<void> _launchUrl() async {
+      if (!await launchUrl(_url)) {
+        throw 'Could not launch $_url';
+      }
+    }
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -36,9 +44,9 @@ class FortDollar extends StatelessWidget {
                   decoration: const BoxDecoration(
                       image: DecorationImage(
                           image: AssetImage('images/estate.png'))),
+                  alignment: Alignment.center,
                   child:
                       const Image(image: AssetImage('images/fortdollar.png')),
-                  alignment: Alignment.center,
                 ),
                 const SizedBox(
                   height: 20,
@@ -50,8 +58,23 @@ class FortDollar extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                Text(
-                  'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet. Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.',
+                Text.rich(
+                  TextSpan(
+                    children: <TextSpan>[
+                      const TextSpan(
+                        text: 'In the fort dollar plan, your capital is invested in the various ventures referenced ',
+                      ),
+                      TextSpan(
+                        text: 'here ',
+                        style: subTitle.copyWith(color: klightblue, decoration: TextDecoration.underline, fontSize: 13),
+                        recognizer: TapGestureRecognizer()
+                        ..onTap = _launchUrl,
+                      ),
+                      const TextSpan(
+                        text: ', in dollars. You earn 30% returns annually. The minimum investment amount is \$1000.'
+                      )
+                    ]
+                  ),
                   style: subTitle.copyWith(fontSize: 13, color: kgreyColor),
                 ),
                 const SizedBox(
@@ -92,7 +115,7 @@ class FortDollar extends StatelessWidget {
                   height: 10,
                 ),
                 Text(
-                  'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet. Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.',
+                  'To earn the yields from these packages, you just have to do one thing, Subscribe!',
                   style: subTitle.copyWith(fontSize: 13, color: kgreyColor),
                 ),
                 const SizedBox(
@@ -106,7 +129,14 @@ class FortDollar extends StatelessWidget {
                   height: 10,
                 ),
                 Text(
-                  'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet. Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.',
+                  'The investment date begins Two (2) weeks after we receive your capital. The investment period may be three(3) months, six (6) months or Twelve (12) months depending on your choice of duration. You may choose to roll over your capital at the end of the agreed investment period. The Return on Investment to be paid may be subject to change from time to time due to external factors. You will be informed of this change (if any) when you opt to roll over your capital',
+                  style: subTitle.copyWith(fontSize: 13, color: kgreyColor),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  'During the period of investment, Return on Investment is to be paid every month. You may choose to be paid your Return on Investment in a lump sum at the end of the investment period together with your capital. You may also choose to roll over the capital together with the return on investment.',
                   style: subTitle.copyWith(fontSize: 13, color: kgreyColor),
                 ),
                 const SizedBox(
