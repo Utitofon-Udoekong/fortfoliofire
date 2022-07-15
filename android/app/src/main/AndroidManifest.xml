@@ -2,7 +2,7 @@
     package="com.mega.fortfolio">
     <uses-permission android:name="android.permission.USE_BIOMETRIC"/>
     <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.SEND_SMS"/>
    <application
         android:label="fortfolio"
         android:name="${applicationName}"
