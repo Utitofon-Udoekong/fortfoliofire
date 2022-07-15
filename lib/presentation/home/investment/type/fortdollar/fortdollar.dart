@@ -108,20 +108,6 @@ class FortDollar extends StatelessWidget {
                   height: 20,
                 ),
                 Text(
-                  'HOW YOU EARN',
-                  style: subTitle.copyWith(fontSize: 13.5, color: kgreyColor),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  'To earn the yields from these packages, you just have to do one thing, Subscribe!',
-                  style: subTitle.copyWith(fontSize: 13, color: kgreyColor),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Text(
                   'TERMS OF USE',
                   style: subTitle.copyWith(fontSize: 13.5, color: kgreyColor),
                 ),

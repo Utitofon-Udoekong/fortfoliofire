@@ -50,7 +50,7 @@ class FortShield extends StatelessWidget {
                   height: 20,
                 ),
                 Text(
-                  'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet. Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.',
+                  'Invest a minimum of a million naira and get a plot of land as collateral. These lands are located in Lagos, Abuja, Asaba, and Ogun state and they are the same value as your investment plan. You earn 18% returns annually. The minimum investment plan is N1,000,000.',
                   style: subTitle.copyWith(fontSize: 13, color: kgreyColor),
                 ),
                 const SizedBox(
@@ -82,20 +82,6 @@ class FortShield extends StatelessWidget {
                   height: 20,
                 ),
                 Text(
-                  'HOW YOU EARN',
-                  style: subTitle.copyWith(fontSize: 13.5, color: kgreyColor),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet. Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.',
-                  style: subTitle.copyWith(fontSize: 13, color: kgreyColor),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Text(
                   'TERMS OF USE',
                   style: subTitle.copyWith(fontSize: 13.5, color: kgreyColor),
                 ),
@@ -103,7 +89,14 @@ class FortShield extends StatelessWidget {
                   height: 10,
                 ),
                 Text(
-                  'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet. Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.',
+                  'The investment date begins Two (2) weeks after we receive your capital. The investment period may be six (6) months or Twelve (12) months depending on your choice of duration. You may choose to roll over your capital at the end of the agreed investment period. The Return on Investment to be paid may be subject to change from time to time due to external factors. You will be informed of this change (if any) when you opt to roll over your capital',
+                  style: subTitle.copyWith(fontSize: 13, color: kgreyColor),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  'During the period of investment, Return on Investment is to be paid every month. You may choose to be paid your Return on Investment in a lump sum at the end of the investment period together with your capital. You may also choose to roll over the capital together with the return on investment.',
                   style: subTitle.copyWith(fontSize: 13, color: kgreyColor),
                 ),
                 const SizedBox(
