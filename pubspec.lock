@@ -1127,13 +1127,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
-  sms:
-    dependency: "direct main"
-    description:
-      name: sms
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.2.4"
   source_gen:
     dependency: transitive
     description:
@@ -1204,6 +1197,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.0+2"
+  telephony:
+    dependency: "direct main"
+    description:
+      name: telephony
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.0"
   term_glyph:
     dependency: transitive
     description:
