@@ -5,6 +5,7 @@ class SecurityState with _$SecurityState {
   const factory SecurityState({
     required String emailAddress,
     required String pin,
+    required int otp,
     required bool showSnackbar,
     required bool pinExists,
     required String failure,
@@ -14,6 +15,7 @@ class SecurityState with _$SecurityState {
   factory SecurityState.empty() => const SecurityState(
         emailAddress: "",
         pin: "",
+        otp: 0,
         failure: "",
         success: "",
         showSnackbar: false,

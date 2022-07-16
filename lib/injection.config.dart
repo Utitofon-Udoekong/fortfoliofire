@@ -10,6 +10,7 @@ import 'package:firebase_auth/firebase_auth.dart' as _i4;
 import 'package:firebase_storage/firebase_storage.dart' as _i7;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
+import 'package:telephony/telephony.dart' as _i28;
 
 import 'application/auth/auth_cubit.dart' as _i3;
 import 'application/auth/reset_password_form/reset_password_cubit.dart' as _i22;
@@ -31,23 +32,23 @@ import 'infrastructure/auth/firebase_auth_facade.dart' as _i9;
 import 'infrastructure/auth/firebase_firestore_facade.dart' as _i13;
 import 'infrastructure/auth/firebase_functions_facade.dart' as _i15;
 import 'infrastructure/auth/firebase_storage_facade.dart' as _i17;
-import 'infrastructure/core/firebase_injectible.dart' as _i33;
-import 'presentation/home/dashboard/cubit/dashboard_cubit.dart' as _i32;
+import 'infrastructure/core/app_injectibles.dart' as _i34;
+import 'presentation/home/dashboard/cubit/dashboard_cubit.dart' as _i33;
 import 'presentation/home/dashboard/screens/notifications/cubit/notification_cubit.dart'
     as _i20;
 import 'presentation/home/dashboard/screens/payment_method/bank/cubit/bank_address_cubit.dart'
-    as _i30;
-import 'presentation/home/dashboard/screens/payment_method/crypto/cubit/crypto_wallet_cubit.dart'
     as _i31;
+import 'presentation/home/dashboard/screens/payment_method/crypto/cubit/crypto_wallet_cubit.dart'
+    as _i32;
 import 'presentation/home/dashboard/screens/profile/cubit/profile_cubit.dart'
     as _i21;
 import 'presentation/home/dashboard/screens/security/cubit/security_cubit.dart'
     as _i23;
 import 'presentation/home/dashboard/screens/verification/cubit/verification_cubit.dart'
-    as _i28;
+    as _i29;
 import 'presentation/home/investment/cubit/investment_cubit.dart' as _i18;
 import 'presentation/home/wallet/cubit/wallet_cubit.dart'
-    as _i29; // ignore_for_file: unnecessary_lambdas
+    as _i30; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -93,17 +94,18 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i26.SignUpFormCubit(get<_i8.IAuthFacade>()));
   gh.factory<_i27.SignUpFormPhoneCubit>(
       () => _i27.SignUpFormPhoneCubit(get<_i3.AuthCubit>()));
-  gh.factory<_i28.VerificationCubit>(() => _i28.VerificationCubit(
+  gh.lazySingleton<_i28.Telephony>(() => firebaseInjectableModule.telephony);
+  gh.factory<_i29.VerificationCubit>(() => _i29.VerificationCubit(
       get<_i16.IStorageFacade>(), get<_i12.IFirestoreFacade>()));
-  gh.factory<_i29.WalletCubit>(() => _i29.WalletCubit(
+  gh.factory<_i30.WalletCubit>(() => _i30.WalletCubit(
       get<_i12.IFirestoreFacade>(), get<_i10.IExternalFacade>()));
-  gh.factory<_i30.BankAddressCubit>(
-      () => _i30.BankAddressCubit(get<_i12.IFirestoreFacade>()));
-  gh.factory<_i31.CryptoWalletCubit>(
-      () => _i31.CryptoWalletCubit(get<_i12.IFirestoreFacade>()));
-  gh.factory<_i32.DashboardCubit>(() =>
-      _i32.DashboardCubit(get<_i16.IStorageFacade>(), get<_i8.IAuthFacade>()));
+  gh.factory<_i31.BankAddressCubit>(
+      () => _i31.BankAddressCubit(get<_i12.IFirestoreFacade>()));
+  gh.factory<_i32.CryptoWalletCubit>(
+      () => _i32.CryptoWalletCubit(get<_i12.IFirestoreFacade>()));
+  gh.factory<_i33.DashboardCubit>(() =>
+      _i33.DashboardCubit(get<_i16.IStorageFacade>(), get<_i8.IAuthFacade>()));
   return get;
 }
 
-class _$FirebaseInjectableModule extends _i33.FirebaseInjectableModule {}
+class _$FirebaseInjectableModule extends _i34.FirebaseInjectableModule {}

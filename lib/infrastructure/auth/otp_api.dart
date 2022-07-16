@@ -1,22 +1,27 @@
-// import 'dart:math';
-// import 'package:sms/sms.dart';
+import 'dart:math';
 
-// class OTPApi {
-//   int otp = 0, _minOtpValue = 0, _maxOtpValue = 0;
-//   void generateOtp() {
-//     _minOtpValue = 100000;
-//     _maxOtpValue = 999999;
-//     otp = _minOtpValue + Random().nextInt(_maxOtpValue - _minOtpValue);
-//   }
+import 'package:telephony/telephony.dart';
 
-//   void sendOtp({required String phoneNumber}) {
-//     generateOtp();
-//     SmsSender sender = SmsSender();
-//     sender.sendSms(SmsMessage( phoneNumber, 'Fortfolio: Your OTP code is : $otp'));
-//   }
+class OTPApi {
 
-//   bool verifyOTP({required int smsCode}) {
-//     return smsCode == otp;
-//   }
+  int otp = 0;
+  final Telephony telephony = Telephony.instance;
+  Future<int> generateOtp() async{
+    otp = Random().nextInt(999999) + 100000;
+    return otp;
+  }
 
-// }
+  Future<String> sendOtp({required String phoneNumber}) async{
+    bool? permissionsGranted = await telephony.requestSmsPermissions;
+    if(!permissionsGranted!) return "You dont have the permission to perform this action";
+    await generateOtp().then((_) {
+      if(otp < 10000) return;
+      telephony.sendSms(
+        to: phoneNumber,
+        message: "Fortfolio OTP code: $otp"
+      );
+    });
+    return "OTP code sent to the number $phoneNumber";
+  }
+
+}
