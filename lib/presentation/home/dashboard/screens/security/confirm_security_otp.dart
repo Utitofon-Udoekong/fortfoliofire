@@ -9,10 +9,10 @@ import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/domain/widgets/otp_field/otp_box_style.dart';
 import 'package:fortfolio/domain/widgets/otp_field/otp_field_style.dart';
 import 'package:fortfolio/domain/widgets/otp_field/otp_text_field.dart';
+import 'package:fortfolio/presentation/home/dashboard/screens/security/cubit/security_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 
-import '../profile/cubit/profile_cubit.dart';
 
 
 class ConfirmSecurityOTP extends StatefulWidget {
@@ -78,14 +78,15 @@ class _ConfirmSecurityOTPState extends State<ConfirmSecurityOTP> {
     return Scaffold(
       body: MultiBlocListener(
         listeners: [
-          BlocListener<ProfileCubit, ProfileState>(
+          BlocListener<SecurityCubit, SecurityState>(
             listenWhen: (p, c) =>
                 p.success != c.success && c.success.isNotEmpty,
             listener: (context, state) {
               CustomSnackbar.showSnackBar(context, state.success, false);
+              context.router..pop()..pop();
             },
           ),
-          BlocListener<ProfileCubit, ProfileState>(
+          BlocListener<SecurityCubit, SecurityState>(
             listenWhen: (p, c) =>
                 p.failure != c.failure && c.failure.isNotEmpty,
             listener: (context, state) {
@@ -93,7 +94,7 @@ class _ConfirmSecurityOTPState extends State<ConfirmSecurityOTP> {
             },
           ),
         ],
-        child: BlocBuilder<ProfileCubit, ProfileState>(
+        child: BlocBuilder<SecurityCubit, SecurityState>(
           builder: (context, state) {
             return SafeArea(
                 child: Semantics(
@@ -109,7 +110,7 @@ class _ConfirmSecurityOTPState extends State<ConfirmSecurityOTP> {
                       ),
                       InkWell(
                         onTap: () {
-                          context.read<ProfileCubit>().reset();
+                          context.read<SecurityCubit>().reset();
                           context.router.pop();
                         },
                         child: const Icon(Icons.close),
@@ -124,7 +125,7 @@ class _ConfirmSecurityOTPState extends State<ConfirmSecurityOTP> {
                       const SizedBox(
                         height: 50,
                       ),
-                      BlocBuilder<ProfileCubit, ProfileState>(
+                      BlocBuilder<SecurityCubit, SecurityState>(
                         builder: (context, state) {
                           return Semantics(
                             textField: true,
@@ -143,8 +144,8 @@ class _ConfirmSecurityOTPState extends State<ConfirmSecurityOTP> {
                                   focusBorderColor: kPrimaryColor),
                               keyboardType: TextInputType.number,
                               onCompleted: (value) => context
-                                  .read<ProfileCubit>()
-                                  .smsCodeChanged(smsCode: value),
+                                  .read<SecurityCubit>()
+                                  .otpChanged(otp: value),
                             ),
                           );
                         },
@@ -152,17 +153,17 @@ class _ConfirmSecurityOTPState extends State<ConfirmSecurityOTP> {
                       const SizedBox(
                         height: 20,
                       ),
-                      BlocSelector<ProfileCubit, ProfileState,
+                      BlocSelector<SecurityCubit, SecurityState,
                           bool>(
                         selector: (state) {
-                          return state.phoneNumber.isEmpty;
+                          return state.sentOtp.isEmpty;
                         },
                         builder: (context, inValidPhone) {
                           return CustomAuthFilledButton(
                             text: "VERIFY",
                             onTap: () => context
-                                .read<ProfileCubit>()
-                                .verifySmsCode(),
+                                .read<SecurityCubit>()
+                                .verifyOtp(),
                             disabled: inValidPhone,
                           );
                         },
@@ -177,8 +178,8 @@ class _ConfirmSecurityOTPState extends State<ConfirmSecurityOTP> {
                               resend = true;
                             });
                             context
-                              .read<ProfileCubit>()
-                              .signInWithPhoneNumber();
+                              .read<SecurityCubit>()
+                              .sendOtp(phoneNumber: phoneNumber);
                           }, child: Text("Resend", style: subTitle.copyWith(fontSize: 13, color: kBlackColor),)),
                           const Spacer(),
                           countDownTimer(

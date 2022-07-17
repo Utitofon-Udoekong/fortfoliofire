@@ -14,6 +14,8 @@ class SecurityCubit extends Cubit<SecurityState> {
   final IAuthFacade authFacade;
   SecurityCubit(this.authFacade) : super(SecurityState.empty());
 
+  void reset() => emit(state.copyWith(pin: "", otp: "", sentOtp: ""));
+  void clear() => emit(state.copyWith(success: "", failure: ""));
   void emailAddressChanged({required String emailAddress}){
     emit(state.copyWith(emailAddress: emailAddress));
   }
@@ -21,19 +23,24 @@ class SecurityCubit extends Cubit<SecurityState> {
   void pinChanged({required String pin}){
     emit(state.copyWith(pin: pin));
   }
+  void otpChanged({required String otp}){
+    emit(state.copyWith(sentOtp: otp));
+  }
 
   void sendOtp({required String phoneNumber}) async{
+    clear();
     final sendOtpMap = await OTPApi.sendOtp(phoneNumber: phoneNumber);
     sendOtpMap.fold((failure) {
       emit(state.copyWith(showSnackbar: true, failure: failure));
     }, (otpValue) {
-      emit(state.copyWith(otp: otpValue, showSnackbar: true, success: "OTP sent to the number $phoneNumber"));
+      emit(state.copyWith(otp: otpValue.toString(), showSnackbar: true, success: "OTP sent to the number $phoneNumber"));
     });
   }
 
-  void verifyOtp({required String otp}) async{
-    final int otpValue = int.parse(otp);
-    final int sentOTP = state.otp;
+  void verifyOtp() async{
+    clear();
+    final int otpValue = int.parse(state.otp);
+    final int sentOTP = int.parse(state.sentOtp);
     final sp = await SharedPreferences.getInstance();
     final pin = state.pin;
 
@@ -43,22 +50,12 @@ class SecurityCubit extends Cubit<SecurityState> {
     }
     if(!sp.containsKey("trax_key")){
       sp.setString("trax_key",pin);
-      emit(state.copyWith(pinExists: true, pin: "", otp: 0, success: "Pin saved successfully"));
+      reset();
+      emit(state.copyWith(pinExists: true, success: "Pin saved successfully"));
     }else {
       sp.setString("trax_key",pin);
-      emit(state.copyWith(pinExists: true, pin: "", otp: 0, success: "Pin updated successfully"));
-    }
-  }
-
-  void savePin() async {
-    final sp = await SharedPreferences.getInstance();
-    final pin = state.pin;
-    if(!sp.containsKey("trax_key")){
-      sp.setString("trax_key",pin);
-      emit(state.copyWith(pinExists: true, pin: "", success: "Pin saved successfully"));
-    }else {
-      sp.setString("trax_key",pin);
-      emit(state.copyWith(pinExists: true, pin: "", success: "Pin updated successfully"));
+      reset();
+      emit(state.copyWith(pinExists: true, success: "Pin updated successfully"));
     }
   }
 
@@ -71,6 +68,7 @@ class SecurityCubit extends Cubit<SecurityState> {
   }
 
   void requestReset() async {
+    clear();
     final emailAddress = state.emailAddress;
     final reset = await authFacade.resetPassword(emailAddress: EmailAddress(emailAddress));
     reset.fold((failure) {

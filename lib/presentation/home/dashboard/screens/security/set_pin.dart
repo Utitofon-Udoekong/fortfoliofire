@@ -6,9 +6,11 @@ import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/domain/widgets/otp_field/otp_box_style.dart';
 import 'package:fortfolio/domain/widgets/otp_field/otp_field_style.dart';
 import 'package:fortfolio/domain/widgets/otp_field/otp_text_field.dart';
+import 'package:fortfolio/presentation/home/dashboard/screens/security/confirm_security_otp.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/security/cubit/security_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
+import 'package:fortfolio/presentation/routes/router.gr.dart';
 
 class SetPin extends StatelessWidget {
   const SetPin({Key? key}) : super(key: key);
@@ -24,18 +26,16 @@ class SetPin extends StatelessWidget {
       listeners: [
         BlocListener<SecurityCubit, SecurityState>(
           listenWhen: (previous, current) =>
-              previous.success != current.success && current.success.isNotEmpty,
+              previous.otp != current.otp && current.otp.isNotEmpty,
           listener: (context, state) {
-            CustomSnackbar.showSnackBar(context, state.success, false);
-            Future.delayed(const Duration(seconds: 1), () {
-            });
+            context.router.push(const ConfirmSecurityOTPRoute());
           },
         ),
         BlocListener<SecurityCubit, SecurityState>(
           listenWhen: (previous, current) =>
               previous.failure != current.failure && current.failure.isNotEmpty,
           listener: (context, state) {
-            // TODO: implement listener
+            CustomSnackbar.showSnackBar(context, state.failure, true);
           },
         ),
       ],
