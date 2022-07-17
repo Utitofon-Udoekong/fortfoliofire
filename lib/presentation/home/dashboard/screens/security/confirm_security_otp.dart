@@ -97,7 +97,7 @@ class _ConfirmSecurityOTPState extends State<ConfirmSecurityOTP> {
           builder: (context, state) {
             return SafeArea(
                 child: Semantics(
-                  label: "confirm phone login with otp",
+                  label: "Confirm security pin update with otp",
                   child: SingleChildScrollView(
                                   child: Padding(
                   padding: kDefaultPadding,

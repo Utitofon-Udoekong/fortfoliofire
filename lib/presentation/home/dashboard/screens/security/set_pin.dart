@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
@@ -15,15 +16,29 @@ class SetPin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     context.read<SecurityCubit>().getPinStatus();
-    final pinExists = context.select((SecurityCubit cubit) => cubit.state.pinExists);
-    return BlocListener<SecurityCubit, SecurityState>(
-      listenWhen: (previous, current) => previous.success != current.success && current.success.isNotEmpty,
-      listener: (context, state) {
-        CustomSnackbar.showSnackBar(context, state.success, false);
-        Future.delayed(const Duration(seconds: 1),() {
-          context.router.pop();
-        });
-      },
+    final pinExists =
+        context.select((SecurityCubit cubit) => cubit.state.pinExists);
+    final phoneNumber = context
+        .select((AuthCubit authCubit) => authCubit.state.userModel.phoneNumber);
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<SecurityCubit, SecurityState>(
+          listenWhen: (previous, current) =>
+              previous.success != current.success && current.success.isNotEmpty,
+          listener: (context, state) {
+            CustomSnackbar.showSnackBar(context, state.success, false);
+            Future.delayed(const Duration(seconds: 1), () {
+            });
+          },
+        ),
+        BlocListener<SecurityCubit, SecurityState>(
+          listenWhen: (previous, current) =>
+              previous.failure != current.failure && current.failure.isNotEmpty,
+          listener: (context, state) {
+            // TODO: implement listener
+          },
+        ),
+      ],
       child: Scaffold(
         body: SafeArea(
             child: SingleChildScrollView(
@@ -70,9 +85,8 @@ class SetPin extends StatelessWidget {
                           borderColor: kgreyColor,
                           focusBorderColor: kPrimaryColor),
                       keyboardType: TextInputType.number,
-                      onCompleted: (value) => context
-                          .read<SecurityCubit>()
-                          .pinChanged(pin: value),
+                      onCompleted: (value) =>
+                          context.read<SecurityCubit>().pinChanged(pin: value),
                     );
                   },
                 ),
@@ -86,7 +100,9 @@ class SetPin extends StatelessWidget {
                   builder: (context, isValidState) {
                     return CustomAuthFilledButton(
                       text: pinExists ? 'UPDATE PIN' : 'SET PIN',
-                      onTap: () => context.read<SecurityCubit>().savePin(),
+                      onTap: () => context
+                          .read<SecurityCubit>()
+                          .sendOtp(phoneNumber: phoneNumber),
                       disabled: !isValidState,
                     );
                   },
