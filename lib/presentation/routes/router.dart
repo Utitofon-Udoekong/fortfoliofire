@@ -20,6 +20,7 @@ import 'package:fortfolio/presentation/home/dashboard/screens/profile/confirm_ph
 import 'package:fortfolio/presentation/home/dashboard/screens/profile/disclaimer.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/profile/profile.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/security/change_password.dart';
+import 'package:fortfolio/presentation/home/dashboard/screens/security/confirm_security_otp.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/security/security.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/security/set_engine.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/security/set_pin.dart';
@@ -76,6 +77,7 @@ import '../home/wallet/investment/fortshield_info.dart';
   AutoRoute(page: ConfirmLoginWithOTP),
   AutoRoute(page: ConfirmSignupWithOTP),
   AutoRoute(page: ConfirmPhoneUpdate),
+  AutoRoute(page: ConfirmSecurityOTP),
   AutoRoute(page: SignUpForm),
   AutoRoute(page: ResetPassword),
   AutoRoute(page: NotificationsPage),

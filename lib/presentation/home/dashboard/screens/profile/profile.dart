@@ -83,6 +83,7 @@ class ProfilePage extends StatelessWidget {
                               decoration: const BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: Color(0XFFF5F7FA)),
+                              padding: const EdgeInsets.all(5.0),
                               child: CircleAvatar(
                                 backgroundColor: const Color(0XFFE7E7E7),
                                 child: Text(authUserModel.displayName,
@@ -91,7 +92,6 @@ class ProfilePage extends StatelessWidget {
                                       color: Color(0XFF242424),
                                     )),
                               ),
-                              padding: const EdgeInsets.all(5.0),
                             ),
                             const SizedBox(
                               height: 3,
