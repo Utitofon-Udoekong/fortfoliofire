@@ -99,7 +99,7 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   void deleteUser() async {
-    const investmentDoesNotExist = walletCubit.investmentDoesNotExist;
+    final bool investmentDoesNotExist = walletCubit.state.investmentDoesNotExist;
     if(investmentDoesNotExist){
       emit(state.copyWith(loading: true, failure: "", success: ""));
       final Either<String, String> failureOrSuccess =
