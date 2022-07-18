@@ -13,14 +13,16 @@ part 'profile_state.dart';
 @injectable
 class ProfileCubit extends Cubit<ProfileState> {
   final IAuthFacade authFacade;
+  late final WalletCubit walletCubit;
   StreamSubscription<Either<String, String>>? _phoneNumberChangeSubscription;
   final Duration verificationCodeTimeout = const Duration(seconds: 60);
-  ProfileCubit(this.authFacade) : super(ProfileState.initial());
+  ProfileCubit(this.authFacade) : super(ProfileState.initial()){
+    walletCubit = getIt<WalletCubit>();
+  }
 
   void firstNameChanged({required String firstName}) {
     emit(state.copyWith(firstName: firstName));
   }
-
 
   void lastNameChanged({required String lastName}) {
     emit(state.copyWith(lastName: lastName));
@@ -95,18 +97,25 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   void deleteUser() async {
-    emit(state.copyWith(loading: true, failure: "", success: ""));
-    final Either<String, String> failureOrSuccess =
-        await authFacade.deleteUser();
-    failureOrSuccess.fold((failure) {
+    const investmentDoesNotExist = walletCubit.investmentDoesNotExist;
+    if(investmentDoesNotExist){
+      emit(state.copyWith(loading: true, failure: "", success: ""));
+      final Either<String, String> failureOrSuccess =
+          await authFacade.deleteUser();
+      failureOrSuccess.fold((failure) {
+        emit(
+          state.copyWith(failure: failure, loading: false),
+        );
+      }, (success) {
+        emit(
+          state.copyWith(success: success, loading: false),
+        );
+      });
+    }else{
       emit(
-        state.copyWith(failure: failure, loading: false),
-      );
-    }, (success) {
-      emit(
-        state.copyWith(success: success, loading: false),
-      );
-    });
+          state.copyWith(failure: "You still have pending investments. "),
+        );
+    }
   }
 
   void reactivateUser() async {
