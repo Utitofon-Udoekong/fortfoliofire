@@ -2,6 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fortfolio/application/auth/auth_cubit.dart';
 
 
 class InvestmentPage extends StatelessWidget {
@@ -9,6 +11,8 @@ class InvestmentPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool isAccountActive = context
+        .select((AuthCubit authCubit) => authCubit.state.userModel.isAccountActive);
     return SafeArea(
           child: SingleChildScrollView(
         child: Padding(
@@ -30,6 +34,9 @@ class InvestmentPage extends StatelessWidget {
                 'Choose from our current investment plans and begin your financial freedom journey!',
                 style: subTitle.copyWith(color: kgreyColor, fontSize: 14),
               ),
+              const SizedBox(
+                height: 15,
+              ),
               Text(
                 'How to earn',
                 style: titleText.copyWith(color: kgreyColor, fontSize: 18),
@@ -45,21 +52,21 @@ class InvestmentPage extends StatelessWidget {
                   'fortdollar', 'FortDollar', '\$1,000', '30%', 'Naira or USD',
                   () {
                     context.router.push(const FortDollarRoute());
-              }),
+              }, isAccountActive),
               const SizedBox(
                 height: 15,
               ),
               buildCard('fortshield', 'FortShield', 'N1,000,000', '18%',
                   'Naira, USD or Crypto (USDC/BUSD or USDT only).', () {
                 context.router.push(const FortShieldRoute());
-              }),
+              }, isAccountActive),
               const SizedBox(
                 height: 15,
               ),
               buildCard('fortcrypto', 'FortCrypto', '\$1,000', '15%',
                   'Cryptocurrency (BTC,ETH/USDT and more).', () {
                 context.router.push(const FortCryptoRoute());
-              }),
+              }, isAccountActive),
               const SizedBox(
                 height: 15,
               ),
@@ -71,9 +78,9 @@ class InvestmentPage extends StatelessWidget {
   }
 
   Widget buildCard(String icon, String title, String minPrice, String roi,
-      String currency, Function() onPressed) {
+      String currency, Function() onPressed, bool isAccountActive) {
     return InkWell(
-      onTap: onPressed,
+      onTap: isAccountActive ? onPressed : null,
       child: Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(6.0),

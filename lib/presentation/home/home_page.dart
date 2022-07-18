@@ -41,7 +41,9 @@ class HomePage extends StatelessWidget {
           iconTheme: const IconThemeData(color: Color(0XFF130F26)),
           elevation: 0,
           actions: [
-            Flex(direction: Axis.vertical,children:[]),
+            Flex(direction: Axis.vertical,children:[
+
+            ]),
             Container(
               margin: const EdgeInsets.only(right: 20),
               decoration: const BoxDecoration(
@@ -98,7 +100,7 @@ class HomePage extends StatelessWidget {
         return SalomonBottomBar(
           margin: const EdgeInsets.fromLTRB(20, 20, 20, 10),
           currentIndex: tabsRouter.activeIndex,
-          onTap: isAccountActive ? tabsRouter.setActiveIndex : null,
+          onTap: tabsRouter.setActiveIndex,
           items: [
             SalomonBottomBarItem(
               selectedColor: kPrimaryColor,

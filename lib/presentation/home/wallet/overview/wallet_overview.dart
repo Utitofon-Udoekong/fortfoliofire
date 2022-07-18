@@ -34,6 +34,8 @@ class WalletOverview extends StatelessWidget {
         (WalletCubit walletCubit) => walletCubit.state.fortDollarYieldBalance);
     final selectedExchange =
         context.select((WalletCubit cubit) => cubit.state.exchange);
+    final bool isAccountActive = context
+        .select((AuthCubit authCubit) => authCubit.state.userModel.isAccountActive);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -258,6 +260,7 @@ class WalletOverview extends StatelessWidget {
                       "\$${formatter.format(fortDollarBalance)}",
                       state.showDigits,
                       "\$${formatter.format(fortDollarYield)}",
+                      isAccountActive
                     ));
               },
             ),
@@ -268,7 +271,7 @@ class WalletOverview extends StatelessWidget {
                   child: buildcard('FortCrypto', 'fortcrypto', () {
                     context.router.push(const FortCryptoInvestmentInfoRoute());
                   }, "\$${formatter.format(fortCryptoBalance)}", state.showDigits,
-                      "\$${formatter.format(fortCryptoYield)}"),
+                      "\$${formatter.format(fortCryptoYield)}",isAccountActive),
                 );
               },
             ),
@@ -279,7 +282,7 @@ class WalletOverview extends StatelessWidget {
                   child: buildcard('FortShield', 'fortshield', () {
                     context.router.push(const FortShieldInvestmentInfoRoute());
                   }, "₦${formatter.format(fortShieldBalance)}", state.showDigits,
-                      "₦${formatter.format(fortShieldYield)}"),
+                      "₦${formatter.format(fortShieldYield)}",isAccountActive),
                 );
               },
             ),
@@ -320,9 +323,9 @@ class WalletOverview extends StatelessWidget {
   }
 
   Widget buildcard(String title, String path, Function() ontap, String balance,
-      bool showDigits, String yield) {
+      bool showDigits, String yield, bool isAccountActive) {
     return GestureDetector(
-      onTap: ontap,
+      onTap: isAccountActive ? ontap : null,
       child: Container(
         margin: const EdgeInsets.only(bottom: 20.0),
         width: double.infinity,
