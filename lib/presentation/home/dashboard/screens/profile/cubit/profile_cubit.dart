@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:fortfolio/domain/auth/i_auth_facade.dart';
+import 'package:fortfolio/injection.dart';
+import 'package:fortfolio/presentation/home/wallet/cubit/wallet_cubit.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 

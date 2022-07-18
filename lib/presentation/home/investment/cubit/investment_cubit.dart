@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fortfolio/domain/auth/i_auth_facade.dart';
 import 'package:fortfolio/domain/auth/i_external_facade.dart';
 import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
 import 'package:fortfolio/domain/auth/i_functions_facade.dart';
@@ -25,12 +26,13 @@ part 'investment_cubit.freezed.dart';
 @injectable
 class InvestmentCubit extends Cubit<InvestmentState> {
   final IFirestoreFacade firestoreFacade;
+  final IAuthFacade authFacade; 
   final IExternalFacade externalFacade;
   final IFunctionsFacade functionsFacade;
   late final SecurityCubit securityCubit;
   StreamSubscription<Option<TransactionStatus?>>? _logPaymentStatusSubscription;
   InvestmentCubit(
-      this.firestoreFacade, this.externalFacade, this.functionsFacade)
+      this.firestoreFacade, this.externalFacade, this.functionsFacade, this.authFacade)
       : super(InvestmentState.initial()){
         securityCubit = getIt<SecurityCubit>();
       }
@@ -163,6 +165,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     const String status = "Pending";
     final String traxId = const Uuid().v4().substring(0, 7);
     final String uid = nanoid(8);
+    final String refId = authFacade.getUserId();
     final dueDate = Jiffy(paymentDate).add(months: duration.toInt()).dateTime;
     final int numberOfDays = dueDate.difference(paymentDate).inDays;
     final String currency = state.exchangeType == "USD" ? "\$" : "N";
@@ -174,6 +177,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
           description: description,
           currency: currency,
           uid: uid,
+          refId: refId,
           amount: amount.toDouble(),
           traxId: traxId,
           roi: roi,
@@ -191,6 +195,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
           description: description,
           currency: currency,
           uid: uid,
+          refId: refId,
           amount: amount.toDouble(),
           traxId: traxId,
           roi: roi,

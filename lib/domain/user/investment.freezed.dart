@@ -32,6 +32,7 @@ mixin _$InvestmentItem {
   String get currency => throw _privateConstructorUsedError;
   double get planYield => throw _privateConstructorUsedError;
   String get paymentMethod => throw _privateConstructorUsedError;
+  String get refId => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $InvestmentItemCopyWith<InvestmentItem> get copyWith =>
@@ -59,7 +60,8 @@ abstract class $InvestmentItemCopyWith<$Res> {
       String status,
       String currency,
       double planYield,
-      String paymentMethod});
+      String paymentMethod,
+      String refId});
 }
 
 /// @nodoc
@@ -89,6 +91,7 @@ class _$InvestmentItemCopyWithImpl<$Res>
     Object? currency = freezed,
     Object? planYield = freezed,
     Object? paymentMethod = freezed,
+    Object? refId = freezed,
   }) {
     return _then(_value.copyWith(
       description: description == freezed
@@ -155,6 +158,10 @@ class _$InvestmentItemCopyWithImpl<$Res>
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
               as String,
+      refId: refId == freezed
+          ? _value.refId
+          : refId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -182,7 +189,8 @@ abstract class _$$_InvestmentItemCopyWith<$Res>
       String status,
       String currency,
       double planYield,
-      String paymentMethod});
+      String paymentMethod,
+      String refId});
 }
 
 /// @nodoc
@@ -214,6 +222,7 @@ class __$$_InvestmentItemCopyWithImpl<$Res>
     Object? currency = freezed,
     Object? planYield = freezed,
     Object? paymentMethod = freezed,
+    Object? refId = freezed,
   }) {
     return _then(_$_InvestmentItem(
       description: description == freezed
@@ -280,6 +289,10 @@ class __$$_InvestmentItemCopyWithImpl<$Res>
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
               as String,
+      refId: refId == freezed
+          ? _value.refId
+          : refId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -303,7 +316,8 @@ class _$_InvestmentItem extends _InvestmentItem {
       required this.status,
       required this.currency,
       required this.planYield,
-      required this.paymentMethod})
+      required this.paymentMethod,
+      required this.refId})
       : super._();
 
   @override
@@ -338,10 +352,12 @@ class _$_InvestmentItem extends _InvestmentItem {
   final double planYield;
   @override
   final String paymentMethod;
+  @override
+  final String refId;
 
   @override
   String toString() {
-    return 'InvestmentItem(description: $description, uid: $uid, coin: $coin, bankAccountType: $bankAccountType, amount: $amount, traxId: $traxId, roi: $roi, numberOfDays: $numberOfDays, planName: $planName, paymentDate: $paymentDate, dueDate: $dueDate, duration: $duration, status: $status, currency: $currency, planYield: $planYield, paymentMethod: $paymentMethod)';
+    return 'InvestmentItem(description: $description, uid: $uid, coin: $coin, bankAccountType: $bankAccountType, amount: $amount, traxId: $traxId, roi: $roi, numberOfDays: $numberOfDays, planName: $planName, paymentDate: $paymentDate, dueDate: $dueDate, duration: $duration, status: $status, currency: $currency, planYield: $planYield, paymentMethod: $paymentMethod, refId: $refId)';
   }
 
   @override
@@ -369,7 +385,8 @@ class _$_InvestmentItem extends _InvestmentItem {
             const DeepCollectionEquality().equals(other.currency, currency) &&
             const DeepCollectionEquality().equals(other.planYield, planYield) &&
             const DeepCollectionEquality()
-                .equals(other.paymentMethod, paymentMethod));
+                .equals(other.paymentMethod, paymentMethod) &&
+            const DeepCollectionEquality().equals(other.refId, refId));
   }
 
   @override
@@ -390,7 +407,8 @@ class _$_InvestmentItem extends _InvestmentItem {
       const DeepCollectionEquality().hash(status),
       const DeepCollectionEquality().hash(currency),
       const DeepCollectionEquality().hash(planYield),
-      const DeepCollectionEquality().hash(paymentMethod));
+      const DeepCollectionEquality().hash(paymentMethod),
+      const DeepCollectionEquality().hash(refId));
 
   @JsonKey(ignore: true)
   @override
@@ -415,7 +433,8 @@ abstract class _InvestmentItem extends InvestmentItem {
       required final String status,
       required final String currency,
       required final double planYield,
-      required final String paymentMethod}) = _$_InvestmentItem;
+      required final String paymentMethod,
+      required final String refId}) = _$_InvestmentItem;
   const _InvestmentItem._() : super._();
 
   @override
@@ -450,6 +469,8 @@ abstract class _InvestmentItem extends InvestmentItem {
   double get planYield => throw _privateConstructorUsedError;
   @override
   String get paymentMethod => throw _privateConstructorUsedError;
+  @override
+  String get refId => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_InvestmentItemCopyWith<_$_InvestmentItem> get copyWith =>

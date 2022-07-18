@@ -77,7 +77,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i18.InvestmentCubit>(() => _i18.InvestmentCubit(
       get<_i12.IFirestoreFacade>(),
       get<_i10.IExternalFacade>(),
-      get<_i14.IFunctionsFacade>()));
+      get<_i14.IFunctionsFacade>(),
+      get<_i8.IAuthFacade>()));
   gh.factory<_i19.NetworkCubit>(() => _i19.NetworkCubit());
   gh.factory<_i20.NotificationCubit>(
       () => _i20.NotificationCubit(get<_i12.IFirestoreFacade>()));

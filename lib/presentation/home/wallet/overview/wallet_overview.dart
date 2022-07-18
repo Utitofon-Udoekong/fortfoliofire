@@ -36,6 +36,8 @@ class WalletOverview extends StatelessWidget {
         context.select((WalletCubit cubit) => cubit.state.exchange);
     final bool isAccountActive = context
         .select((AuthCubit authCubit) => authCubit.state.userModel.isAccountActive);
+    final double accountBalance = context
+        .select((AuthCubit authCubit) => authCubit.state.userModel.balance);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -80,40 +82,40 @@ class WalletOverview extends StatelessWidget {
                           switch (state.exchange) {
                             case "NGN":
                               return state.showDigits
-                                ? Text('₦${formatter.format(state.walletBalance * dollarPrice) }',
+                                ? Text('₦${formatter.format(accountBalance * dollarPrice) }',
                                     style: titleText.copyWith(
                                         fontSize: 15, color: kWhiteColor))
                                 : Text(
-                                    formatter.format(state.walletBalance * dollarPrice)
+                                    formatter.format(accountBalance * dollarPrice)
                                         .replaceAll(regExp, "*"),
                                     style: titleText.copyWith(
                                         fontSize: 23, color: kWhiteColor));
                             case "USD":
                               return state.showDigits
-                                ? Text('\$${formatter.format(state.walletBalance)}',
+                                ? Text('\$${formatter.format(accountBalance)}',
                                     style: titleText.copyWith(
                                         fontSize: 15, color: kWhiteColor))
                                 : Text(
-                                    formatter.format(state.walletBalance)
+                                    formatter.format(accountBalance)
                                         .replaceAll(regExp, "*"),
                                     style: titleText.copyWith(
                                         fontSize: 23, color: kWhiteColor));
                             case "BTC":
                               return state.showDigits
-                                ? Text('${btcFormatter.format(state.walletBalance)} BTC',
+                                ? Text('${btcFormatter.format(accountBalance)} BTC',
                                     style: titleText.copyWith(
                                         fontSize: 15, color: kWhiteColor))
-                                : Text("${state.walletBalance}"
+                                : Text("$accountBalance"
                                         .replaceAll(regExp, "*"),
                                     style: titleText.copyWith(
                                         fontSize: 23, color: kWhiteColor));
                             default:
                               return state.showDigits
-                                ? Text('₦${formatter.format(state.walletBalance * dollarPrice) }',
+                                ? Text('₦${formatter.format(accountBalance * dollarPrice) }',
                                     style: titleText.copyWith(
                                         fontSize: 15, color: kWhiteColor))
                                 : Text(
-                                    formatter.format(state.walletBalance * dollarPrice)
+                                    formatter.format(accountBalance * dollarPrice)
                                         .replaceAll(regExp, "*"),
                                     style: titleText.copyWith(
                                         fontSize: 23, color: kWhiteColor));

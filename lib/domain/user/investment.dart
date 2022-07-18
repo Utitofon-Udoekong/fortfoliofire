@@ -22,6 +22,7 @@ abstract class InvestmentItem implements _$InvestmentItem {
     required String currency,
     required double planYield,
     required String paymentMethod,
+    required String refId,
   }) = _InvestmentItem;
 
   factory InvestmentItem.empty() => InvestmentItem(
@@ -40,7 +41,8 @@ abstract class InvestmentItem implements _$InvestmentItem {
         coin: 'BTC',
         bankAccountType: 'Naira',
         currency: '\$',
-        paymentMethod: ''
+        paymentMethod: '',
+        refId: '',
       );
   
 }

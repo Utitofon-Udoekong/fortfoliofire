@@ -36,6 +36,7 @@ mixin _$InvestmentItemDTO {
   String get currency => throw _privateConstructorUsedError;
   double get planYield => throw _privateConstructorUsedError;
   String get paymentMethod => throw _privateConstructorUsedError;
+  String get refId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -64,7 +65,8 @@ abstract class $InvestmentItemDTOCopyWith<$Res> {
       String status,
       String currency,
       double planYield,
-      String paymentMethod});
+      String paymentMethod,
+      String refId});
 }
 
 /// @nodoc
@@ -94,6 +96,7 @@ class _$InvestmentItemDTOCopyWithImpl<$Res>
     Object? currency = freezed,
     Object? planYield = freezed,
     Object? paymentMethod = freezed,
+    Object? refId = freezed,
   }) {
     return _then(_value.copyWith(
       description: description == freezed
@@ -160,6 +163,10 @@ class _$InvestmentItemDTOCopyWithImpl<$Res>
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
               as String,
+      refId: refId == freezed
+          ? _value.refId
+          : refId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -187,7 +194,8 @@ abstract class _$$_InvestmentItemDTOCopyWith<$Res>
       String status,
       String currency,
       double planYield,
-      String paymentMethod});
+      String paymentMethod,
+      String refId});
 }
 
 /// @nodoc
@@ -219,6 +227,7 @@ class __$$_InvestmentItemDTOCopyWithImpl<$Res>
     Object? currency = freezed,
     Object? planYield = freezed,
     Object? paymentMethod = freezed,
+    Object? refId = freezed,
   }) {
     return _then(_$_InvestmentItemDTO(
       description: description == freezed
@@ -285,6 +294,10 @@ class __$$_InvestmentItemDTOCopyWithImpl<$Res>
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
               as String,
+      refId: refId == freezed
+          ? _value.refId
+          : refId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -308,7 +321,8 @@ class _$_InvestmentItemDTO extends _InvestmentItemDTO {
       required this.status,
       required this.currency,
       required this.planYield,
-      required this.paymentMethod})
+      required this.paymentMethod,
+      required this.refId})
       : super._();
 
   factory _$_InvestmentItemDTO.fromJson(Map<String, dynamic> json) =>
@@ -346,10 +360,12 @@ class _$_InvestmentItemDTO extends _InvestmentItemDTO {
   final double planYield;
   @override
   final String paymentMethod;
+  @override
+  final String refId;
 
   @override
   String toString() {
-    return 'InvestmentItemDTO(description: $description, uid: $uid, coin: $coin, bankAccountType: $bankAccountType, amount: $amount, traxId: $traxId, roi: $roi, numberOfDays: $numberOfDays, planName: $planName, paymentDate: $paymentDate, dueDate: $dueDate, duration: $duration, status: $status, currency: $currency, planYield: $planYield, paymentMethod: $paymentMethod)';
+    return 'InvestmentItemDTO(description: $description, uid: $uid, coin: $coin, bankAccountType: $bankAccountType, amount: $amount, traxId: $traxId, roi: $roi, numberOfDays: $numberOfDays, planName: $planName, paymentDate: $paymentDate, dueDate: $dueDate, duration: $duration, status: $status, currency: $currency, planYield: $planYield, paymentMethod: $paymentMethod, refId: $refId)';
   }
 
   @override
@@ -377,7 +393,8 @@ class _$_InvestmentItemDTO extends _InvestmentItemDTO {
             const DeepCollectionEquality().equals(other.currency, currency) &&
             const DeepCollectionEquality().equals(other.planYield, planYield) &&
             const DeepCollectionEquality()
-                .equals(other.paymentMethod, paymentMethod));
+                .equals(other.paymentMethod, paymentMethod) &&
+            const DeepCollectionEquality().equals(other.refId, refId));
   }
 
   @JsonKey(ignore: true)
@@ -399,7 +416,8 @@ class _$_InvestmentItemDTO extends _InvestmentItemDTO {
       const DeepCollectionEquality().hash(status),
       const DeepCollectionEquality().hash(currency),
       const DeepCollectionEquality().hash(planYield),
-      const DeepCollectionEquality().hash(paymentMethod));
+      const DeepCollectionEquality().hash(paymentMethod),
+      const DeepCollectionEquality().hash(refId));
 
   @JsonKey(ignore: true)
   @override
@@ -430,7 +448,8 @@ abstract class _InvestmentItemDTO extends InvestmentItemDTO {
       required final String status,
       required final String currency,
       required final double planYield,
-      required final String paymentMethod}) = _$_InvestmentItemDTO;
+      required final String paymentMethod,
+      required final String refId}) = _$_InvestmentItemDTO;
   const _InvestmentItemDTO._() : super._();
 
   factory _InvestmentItemDTO.fromJson(Map<String, dynamic> json) =
@@ -468,6 +487,8 @@ abstract class _InvestmentItemDTO extends InvestmentItemDTO {
   double get planYield => throw _privateConstructorUsedError;
   @override
   String get paymentMethod => throw _privateConstructorUsedError;
+  @override
+  String get refId => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_InvestmentItemDTOCopyWith<_$_InvestmentItemDTO> get copyWith =>

@@ -25,7 +25,8 @@ abstract class InvestmentItemDTO implements _$InvestmentItemDTO {
     required String status,
     required String currency,
     required double planYield,
-    required String paymentMethod
+    required String paymentMethod,
+    required String refId,
   }) = _InvestmentItemDTO;
 
   factory InvestmentItemDTO.fromDomain(InvestmentItem investmentItem) {
@@ -43,6 +44,7 @@ abstract class InvestmentItemDTO implements _$InvestmentItemDTO {
       status: investmentItem.status,
       traxId: investmentItem.traxId,
       uid: investmentItem.uid,
+      refId: investmentItem.refId,
       coin: investmentItem.coin,
       paymentMethod: investmentItem.paymentMethod
     );
@@ -76,6 +78,7 @@ extension InvestmentItemDTOX on InvestmentItemDTO {
       status: status,
       traxId: traxId,
       uid: uid,
+      refId: refId,
       coin: coin,
       bankAccountType: bankAccountType,
       paymentMethod: paymentMethod,

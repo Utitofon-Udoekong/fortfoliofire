@@ -7,6 +7,7 @@ import 'package:fortfolio/domain/widgets/custom_outlined_button.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/domain/widgets/loading_view.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/profile/cubit/profile_cubit.dart';
+import 'package:fortfolio/presentation/routes/router.gr.dart';
 
 import '../../../../../domain/constants/theme.dart';
 
