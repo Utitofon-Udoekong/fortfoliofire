@@ -41,8 +41,18 @@ class HomePage extends StatelessWidget {
           iconTheme: const IconThemeData(color: Color(0XFF130F26)),
           elevation: 0,
           actions: [
-            Flex(direction: Axis.vertical,children:[
-
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children:[
+              Text("We buy / We sell", style: subTitle.copyWith(fontSize: 12, color: kgreyColor)),
+              Text.rich(TextSpan(
+                children: [
+                  TextSpan(text: "500", style: subTitle.copyWith(fontSize: 15, color: kGreenColor)),
+                  TextSpan(text: " / ", style: subTitle.copyWith(fontSize: 15, color: kgreyColor)),
+                  TextSpan(text: "600", style: subTitle.copyWith(fontSize: 15, color: kRedColor)),
+                ]
+              ), style: subTitle.copyWith(fontSize: 12, color: kgreyColor))
             ]),
             Container(
               margin: const EdgeInsets.only(right: 20),
