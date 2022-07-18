@@ -115,7 +115,7 @@ class ProfileCubit extends Cubit<ProfileState> {
       });
     }else{
       emit(
-          state.copyWith(failure: "You still have pending investments. "),
+          state.copyWith(failure: "You still have pending investments."),
         );
     }
   }
