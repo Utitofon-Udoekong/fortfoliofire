@@ -451,7 +451,6 @@ class FirebaseAuthFacade implements IAuthFacade {
         "startDate": DateTime.now(),
         "deleteDate": Jiffy(DateTime.now()).add(days: 30).dateTime
       });
-      refresh();
       return right("Account submitted for deletion");
     } on FirebaseException catch (e) {
       return left('Server error encountered');
