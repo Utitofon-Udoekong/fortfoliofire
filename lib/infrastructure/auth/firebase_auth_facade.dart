@@ -453,7 +453,7 @@ class FirebaseAuthFacade implements IAuthFacade {
       });
       return right("Account submitted for deletion");
     } on FirebaseException catch (e) {
-      return left('Server error encountered');
+      return left('Code: ${e.code} Message: ${e.message}');
     }
   }
 
@@ -468,7 +468,7 @@ class FirebaseAuthFacade implements IAuthFacade {
       });
       return right("Account reactivated successfully");
     } on FirebaseException catch (e) {
-      log("Code: ${e.code}, Message: ${e.message}");
+      // log("Code: ${e.code}, Message: ${e.message}");
       return left('Server error encountered');
     }
   }
