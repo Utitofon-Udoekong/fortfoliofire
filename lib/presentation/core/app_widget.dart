@@ -127,6 +127,10 @@ class _AppState extends State<App> with WidgetsBindingObserver {
             lazy: false,
           ),
           BlocProvider(
+            create: (context) => getIt<AuthCubit>(),
+            lazy: false,
+          ),
+          BlocProvider(
             create: (context) => getIt<DashboardCubit>(),
             lazy: false,
           ),
