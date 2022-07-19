@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/application/auth/sign_in_form/phone/sign_in_form_phone_cubit.dart';
 import 'package:fortfolio/application/auth/sign_up_form/phone/sign_up_form_phone_cubit.dart';
+import 'package:fortfolio/application/notification/local_notification_cubit.dart';
 import 'package:fortfolio/infrastructure/auth/local_auth_api.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/notifications/cubit/notification_cubit.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/bank/cubit/bank_address_cubit.dart';
@@ -127,7 +128,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
             lazy: false,
           ),
           BlocProvider(
-            create: (context) => getIt<AuthCubit>(),
+            create: (context) => getIt<LocalNotificationCubit>(),
             lazy: false,
           ),
           BlocProvider(
