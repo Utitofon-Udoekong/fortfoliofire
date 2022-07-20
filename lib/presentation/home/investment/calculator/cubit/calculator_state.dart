@@ -13,15 +13,15 @@ class CalculatorState with _$CalculatorState {
   }) = _CalculatorState;
   factory CalculatorState.initial() => const CalculatorState(
         dropdownItems: [
-          DropdownMenuItem(child: Text("FortDollar"), value: "FortDollar"),
-          DropdownMenuItem(child: Text("FortCrypto"), value: "FortCrypto"),
-          DropdownMenuItem(child: Text("FortShield"), value: "FortShield"),
+          DropdownMenuItem(value: "FortDollar", child: Text("FortDollar")),
+          DropdownMenuItem(value: "FortCrypto", child: Text("FortCrypto")),
+          DropdownMenuItem(value: "FortShield", child: Text("FortShield")),
         ],
         duration: 3,
         durations: [
-          DropdownMenuItem(child: Text("3"), value: 3),
-          DropdownMenuItem(child: Text("6"), value: 6),
-          DropdownMenuItem(child: Text("12"), value: 12),
+          DropdownMenuItem(value: 3, child: Text("3")),
+          DropdownMenuItem(value: 6, child: Text("6")),
+          DropdownMenuItem(value: 12, child: Text("12")),
         ],
         investmentAmount: 0,
         returnRate: 30,

@@ -14,7 +14,6 @@ import 'package:fortfolio/domain/widgets/otp_field/otp_text_field.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 
-import '../../../domain/widgets/countdown_timer.dart';
 
 class ConfirmLoginWithOTP extends StatefulWidget {
 
