@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fortfolio/domain/constants/theme.dart';
@@ -17,33 +14,24 @@ class CustomOutlinedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isIos = Platform.isIOS;
-    return isIos
-        ? CupertinoButton(
-          minSize: 45,
-          color: kPrimaryColor,
-            onPressed: onTap,
-            borderRadius: BorderRadius.circular(10),
-            child: Text(
-              text,
-              style: textButton.copyWith(color: kPrimaryColor),
-            ))
-        : InkWell(
-            onTap: onTap,
-            child: Container(
-              alignment: Alignment.center,
-              height: 45,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: kWhiteColor,
-                  border: Border.all(
-                      style: BorderStyle.solid, color: kPrimaryColor)),
-              child: Text(
-                text,
-                style: textButton.copyWith(color: kPrimaryColor),
-              ),
-            ),
-          );
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        alignment: Alignment.center,
+        height: 45,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: kWhiteColor,
+          border: Border.all(
+            style: BorderStyle.solid,
+            color: kPrimaryColor
+          )
+        ),
+        child: Text(text,
+        style: textButton.copyWith(color: kPrimaryColor),
+        ),
+      ),
+    );
   }
 }
