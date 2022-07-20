@@ -83,7 +83,7 @@ import '../home/wallet/withdraw/select_method.dart' as _i53;
 import '../home/wallet/withdraw/withdrawal.dart' as _i59;
 import '../network/no_connection.dart' as _i62;
 import '../splash/onboarding.dart' as _i2;
-import '../splash/splash_Screen.dart' as _i1;
+import '../splash/splash_screen.dart' as _i1;
 
 class AppRouter extends _i67.RootStackRouter {
   AppRouter([_i68.GlobalKey<_i68.NavigatorState>? navigatorKey])

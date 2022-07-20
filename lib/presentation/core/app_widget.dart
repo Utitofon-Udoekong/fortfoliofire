@@ -14,9 +14,7 @@ import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/cry
 import 'package:fortfolio/presentation/home/dashboard/screens/profile/cubit/profile_cubit.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/verification/cubit/verification_cubit.dart';
 import 'package:fortfolio/presentation/network/no_connection.dart';
-import 'package:fortfolio/presentation/routes/ios_router.gr.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/application/network/network_cubit.dart';
 import 'package:fortfolio/injection.dart';
@@ -66,7 +64,6 @@ class _AppState extends State<App> with WidgetsBindingObserver {
 
   final lastKnownStateKey = 'lastKnownStateKey';
   final backgroundedTimeKey = 'backgroundedTimeKey';
-  bool isIos = Platform.isIOS;
 
   Future _paused() async {
     final sp = await SharedPreferences.getInstance();
@@ -116,7 +113,6 @@ class _AppState extends State<App> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     final appRouter = AppRouter();
-    final iosAppRouter = IOSAppRouter();
     return MultiBlocProvider(
         providers: [
           BlocProvider(
@@ -152,20 +148,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
           BlocProvider(
               create: (context) => getIt<InvestmentCubit>(), lazy: false),
         ],
-        child: isIos ? CupertinoApp.router(
-          title: 'Fortfolio',
-          debugShowCheckedModeBanner: false,
-          routeInformationParser: iosAppRouter.defaultRouteParser(),
-          routerDelegate: iosAppRouter.delegate(),
-          builder: (context, widget) => StreamBuilder(
-            stream: Connectivity().onConnectivityChanged,
-            builder: (context, AsyncSnapshot<ConnectivityResult> snapshot) {
-              return snapshot.data == ConnectivityResult.mobile ||
-                      snapshot.data == ConnectivityResult.wifi
-                  ? widget!
-                  : const NoInternetPage();
-            }),
-        ) : MaterialApp.router(
+        child: MaterialApp.router(
           title: 'Fortfolio',
           debugShowCheckedModeBanner: false,
           routeInformationParser: appRouter.defaultRouteParser(),

@@ -62,7 +62,7 @@ import 'package:fortfolio/presentation/home/wallet/withdraw/select_method.dart';
 import 'package:fortfolio/presentation/home/wallet/withdraw/withdrawal.dart';
 import 'package:fortfolio/presentation/network/no_connection.dart';
 import 'package:fortfolio/presentation/splash/onboarding.dart';
-import 'package:fortfolio/presentation/splash/splash_Screen.dart';
+import 'package:fortfolio/presentation/splash/splash_screen.dart';
 
 import '../authentication/sign_up/sign_up_form_phone.dart';
 import '../home/wallet/investment/fortcrypto_info.dart';
