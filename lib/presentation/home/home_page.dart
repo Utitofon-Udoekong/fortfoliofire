@@ -42,15 +42,16 @@ class HomePage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children:[
-              Text("We buy / We sell", style: subTitle.copyWith(fontSize: 12, color: kgreyColor)),
+              Text("We buy / We sell", style: subTitle.copyWith(fontSize: 12, color: kgreyColor, fontWeight: FontWeight.bold)),
               Text.rich(TextSpan(
                 children: [
-                  TextSpan(text: "600", style: subTitle.copyWith(fontSize: 15, color: kGreenColor)),
-                  TextSpan(text: " / ", style: subTitle.copyWith(fontSize: 15, color: kgreyColor)),
-                  TextSpan(text: "625", style: subTitle.copyWith(fontSize: 15, color: kRedColor)),
+                  TextSpan(text: "600", style: subTitle.copyWith(fontSize: 16, color: kGreenColor, fontWeight: FontWeight.bold)),
+                  TextSpan(text: " / ", style: subTitle.copyWith(fontSize: 16, color: kgreyColor, fontWeight: FontWeight.bold)),
+                  TextSpan(text: "625", style: subTitle.copyWith(fontSize: 16, color: kRedColor, fontWeight: FontWeight.bold)),
                 ]
               ), style: subTitle.copyWith(fontSize: 12, color: kgreyColor))
             ]),
+            const SizedBox(width:20),
             Container(
               margin: const EdgeInsets.only(right: 20),
               decoration: const BoxDecoration(
