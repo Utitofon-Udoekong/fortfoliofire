@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,7 +6,6 @@ import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/presentation/home/investment/cubit/investment_cubit.dart';
-import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:intl/intl.dart';
 
 class DomiciliaryAccount extends StatelessWidget {
@@ -154,7 +152,7 @@ class DomiciliaryAccount extends StatelessWidget {
                       context
                           .read<InvestmentCubit>()
                           .bankAccountTypeChanged(bankAccountType: "Domiciliary");
-                      context.router.push(const CheckInvestmentRoute());
+                      context.read<InvestmentCubit>().iHavePaid();
                     }),
               )
             ],

@@ -127,31 +127,6 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     await externalFacade.cancelCharge(id: id);
   }
 
-  void authenticateBiometricPayment() async {
-    bool canCheckBiometrics = await LocalAuthApi.hasBiometrics();
-    if (Platform.isAndroid) {
-      if (canCheckBiometrics) {
-        bool didauthenticate = await LocalAuthApi.authenticate(localizedReason: 'Scan fingerprint to invest');
-        if (didauthenticate != true) {
-          emit(state.copyWith(failure: "Authenticate to continue"));
-          Future.delayed(const Duration(seconds: 1), () =>emit(state.copyWith(failure: "")));
-        } else {
-          iHavePaid();
-        }
-      }
-    }
-  }
-
-  void auhenticatePinPayment({required String pin}) async {
-    final sp = await SharedPreferences.getInstance();
-    final traxPin = sp.getString("trax_key");
-    if(pin == traxPin){
-      iHavePaid();
-    }else{
-      emit(state.copyWith(failure: "Incorrect Transaction Pin"));
-      Future.delayed(const Duration(seconds: 1), () =>emit(state.copyWith(failure: "")));
-    }
-  }
 
   void iHavePaid() async {
     emit(state.copyWith(isLoading: true));
