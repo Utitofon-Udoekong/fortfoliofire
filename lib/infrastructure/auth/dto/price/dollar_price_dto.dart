@@ -10,12 +10,15 @@ part 'dollar_price_dto.g.dart';
 abstract class DollarPriceDTO implements _$DollarPriceDTO {
   const DollarPriceDTO._();
   const factory DollarPriceDTO({
-    required int dollarToNaira
+    required int buyPrice,
+    required int sellPrice,
+
   }) = _DollarPriceDTO;
 
   factory DollarPriceDTO.fromDomain(DollarPrice dollarPrice) {
     return DollarPriceDTO(
-      dollarToNaira: dollarPrice.dollarToNaira
+      buyPrice: dollarPrice.buyPrice,
+      buyPrice: dollarPrice.sellPrice,
     );
   }
 
@@ -35,7 +38,8 @@ abstract class DollarPriceDTO implements _$DollarPriceDTO {
 extension DollarPriceDTOX on DollarPriceDTO {
   DollarPrice toDomain() {
     return DollarPrice(
-    dollarToNaira: dollarToNaira
+    buyPrice: buyPrice,
+    sellPrice: sellPrice,
     );
   }
 }

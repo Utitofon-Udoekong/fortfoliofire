@@ -5,14 +5,16 @@ class AuthState with _$AuthState {
   const factory AuthState({
     required AuthUserModel userModel,
     required bool isUserCheckedFromAuthFacade,
-    required int dollarToNaira
+    required int buyPrice,
+    required int sellPrice,
   }) = _AuthState;
   const AuthState._();
 
   factory AuthState.empty() => AuthState(
         userModel: AuthUserModel.empty(),
         isUserCheckedFromAuthFacade: false,
-        dollarToNaira: 0
+        buyPrice: 0,
+        sellPrice: 0,
       );
 
   bool get isLoggedIn => userModel.email.isNotEmpty && userModel.firstName.isNotEmpty && userModel.lastName.isNotEmpty;

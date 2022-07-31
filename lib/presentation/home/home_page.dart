@@ -19,6 +19,9 @@ class HomePage extends StatelessWidget {
     var scaffoldKey = GlobalKey<ScaffoldState>();
     final bool isAccountActive = context
         .select((AuthCubit authCubit) => authCubit.state.userModel.isAccountActive);
+    final int buyPrice = context.select(
+        (AuthCubit authCubit) =>
+            authCubit.state.buyPrice);
     return AutoTabsScaffold(
       scaffoldKey: scaffoldKey,
       extendBodyBehindAppBar: true,
@@ -45,7 +48,7 @@ class HomePage extends StatelessWidget {
               Text("We buy / We sell", style: subTitle.copyWith(fontSize: 12, color: kgreyColor, fontWeight: FontWeight.bold)),
               Text.rich(TextSpan(
                 children: [
-                  TextSpan(text: "600", style: subTitle.copyWith(fontSize: 16, color: kGreenColor, fontWeight: FontWeight.bold)),
+                  TextSpan(text: "$buyPrice", style: subTitle.copyWith(fontSize: 16, color: kGreenColor, fontWeight: FontWeight.bold)),
                   TextSpan(text: " / ", style: subTitle.copyWith(fontSize: 16, color: kgreyColor, fontWeight: FontWeight.bold)),
                   TextSpan(text: "625", style: subTitle.copyWith(fontSize: 16, color: kRedColor, fontWeight: FontWeight.bold)),
                 ]

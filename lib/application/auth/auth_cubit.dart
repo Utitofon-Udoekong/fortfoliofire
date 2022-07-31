@@ -78,13 +78,13 @@ class AuthCubit extends Cubit<AuthState> {
         final docData = DollarPriceDTO.fromFirestore(change.doc).toDomain();
         switch (change.type) {
           case DocumentChangeType.added:
-            emit(state.copyWith(dollarToNaira: docData.dollarToNaira));
+            emit(state.copyWith(buyPrice: docData.buyPrice, sellPrice: docData.sellPrice));
             break;
           case DocumentChangeType.modified:
-            emit(state.copyWith(dollarToNaira: docData.dollarToNaira));
+            emit(state.copyWith(buyPrice: docData.buyPrice, sellPrice: docData.sellPrice));
             break;
           default:
-            emit(state.copyWith(dollarToNaira: 500));
+            emit(state.copyWith(buyPrice: 500, sellPrice: 525));
         }
       }
     },onError: (error) => print("Listen failed: $error"));
