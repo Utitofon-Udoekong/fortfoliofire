@@ -18,7 +18,7 @@ abstract class DollarPriceDTO implements _$DollarPriceDTO {
   factory DollarPriceDTO.fromDomain(DollarPrice dollarPrice) {
     return DollarPriceDTO(
       buyPrice: dollarPrice.buyPrice,
-      buyPrice: dollarPrice.sellPrice,
+      sellPrice: dollarPrice.sellPrice,
     );
   }
 

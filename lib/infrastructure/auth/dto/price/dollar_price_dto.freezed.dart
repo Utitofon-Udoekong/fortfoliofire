@@ -20,7 +20,8 @@ DollarPriceDTO _$DollarPriceDTOFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$DollarPriceDTO {
-  int get dollarToNaira => throw _privateConstructorUsedError;
+  int get buyPrice => throw _privateConstructorUsedError;
+  int get sellPrice => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -33,7 +34,7 @@ abstract class $DollarPriceDTOCopyWith<$Res> {
   factory $DollarPriceDTOCopyWith(
           DollarPriceDTO value, $Res Function(DollarPriceDTO) then) =
       _$DollarPriceDTOCopyWithImpl<$Res>;
-  $Res call({int dollarToNaira});
+  $Res call({int buyPrice, int sellPrice});
 }
 
 /// @nodoc
@@ -47,12 +48,17 @@ class _$DollarPriceDTOCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? dollarToNaira = freezed,
+    Object? buyPrice = freezed,
+    Object? sellPrice = freezed,
   }) {
     return _then(_value.copyWith(
-      dollarToNaira: dollarToNaira == freezed
-          ? _value.dollarToNaira
-          : dollarToNaira // ignore: cast_nullable_to_non_nullable
+      buyPrice: buyPrice == freezed
+          ? _value.buyPrice
+          : buyPrice // ignore: cast_nullable_to_non_nullable
+              as int,
+      sellPrice: sellPrice == freezed
+          ? _value.sellPrice
+          : sellPrice // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -65,7 +71,7 @@ abstract class _$$_DollarPriceDTOCopyWith<$Res>
           _$_DollarPriceDTO value, $Res Function(_$_DollarPriceDTO) then) =
       __$$_DollarPriceDTOCopyWithImpl<$Res>;
   @override
-  $Res call({int dollarToNaira});
+  $Res call({int buyPrice, int sellPrice});
 }
 
 /// @nodoc
@@ -81,12 +87,17 @@ class __$$_DollarPriceDTOCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? dollarToNaira = freezed,
+    Object? buyPrice = freezed,
+    Object? sellPrice = freezed,
   }) {
     return _then(_$_DollarPriceDTO(
-      dollarToNaira: dollarToNaira == freezed
-          ? _value.dollarToNaira
-          : dollarToNaira // ignore: cast_nullable_to_non_nullable
+      buyPrice: buyPrice == freezed
+          ? _value.buyPrice
+          : buyPrice // ignore: cast_nullable_to_non_nullable
+              as int,
+      sellPrice: sellPrice == freezed
+          ? _value.sellPrice
+          : sellPrice // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -95,17 +106,20 @@ class __$$_DollarPriceDTOCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_DollarPriceDTO extends _DollarPriceDTO {
-  const _$_DollarPriceDTO({required this.dollarToNaira}) : super._();
+  const _$_DollarPriceDTO({required this.buyPrice, required this.sellPrice})
+      : super._();
 
   factory _$_DollarPriceDTO.fromJson(Map<String, dynamic> json) =>
       _$$_DollarPriceDTOFromJson(json);
 
   @override
-  final int dollarToNaira;
+  final int buyPrice;
+  @override
+  final int sellPrice;
 
   @override
   String toString() {
-    return 'DollarPriceDTO(dollarToNaira: $dollarToNaira)';
+    return 'DollarPriceDTO(buyPrice: $buyPrice, sellPrice: $sellPrice)';
   }
 
   @override
@@ -113,14 +127,16 @@ class _$_DollarPriceDTO extends _DollarPriceDTO {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_DollarPriceDTO &&
-            const DeepCollectionEquality()
-                .equals(other.dollarToNaira, dollarToNaira));
+            const DeepCollectionEquality().equals(other.buyPrice, buyPrice) &&
+            const DeepCollectionEquality().equals(other.sellPrice, sellPrice));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(dollarToNaira));
+      runtimeType,
+      const DeepCollectionEquality().hash(buyPrice),
+      const DeepCollectionEquality().hash(sellPrice));
 
   @JsonKey(ignore: true)
   @override
@@ -134,15 +150,18 @@ class _$_DollarPriceDTO extends _DollarPriceDTO {
 }
 
 abstract class _DollarPriceDTO extends DollarPriceDTO {
-  const factory _DollarPriceDTO({required final int dollarToNaira}) =
-      _$_DollarPriceDTO;
+  const factory _DollarPriceDTO(
+      {required final int buyPrice,
+      required final int sellPrice}) = _$_DollarPriceDTO;
   const _DollarPriceDTO._() : super._();
 
   factory _DollarPriceDTO.fromJson(Map<String, dynamic> json) =
       _$_DollarPriceDTO.fromJson;
 
   @override
-  int get dollarToNaira => throw _privateConstructorUsedError;
+  int get buyPrice => throw _privateConstructorUsedError;
+  @override
+  int get sellPrice => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_DollarPriceDTOCopyWith<_$_DollarPriceDTO> get copyWith =>

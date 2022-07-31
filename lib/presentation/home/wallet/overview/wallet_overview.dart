@@ -21,7 +21,7 @@ class WalletOverview extends StatelessWidget {
     final fortCryptoBalance = context.select((WalletCubit walletCubit) =>
         walletCubit.state.fortCryptoInvestmentBalance);
     final dollarPrice = context.select((AuthCubit authCubit) =>
-        authCubit.state.dollarToNaira);
+        authCubit.state.buyPrice);
     final fortShieldBalance = context.select((WalletCubit walletCubit) =>
         walletCubit.state.fortShieldInvestmentBalance);
     final fortDollarBalance = context.select((WalletCubit walletCubit) =>

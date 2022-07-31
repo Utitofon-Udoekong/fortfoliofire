@@ -18,7 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AuthState {
   AuthUserModel get userModel => throw _privateConstructorUsedError;
   bool get isUserCheckedFromAuthFacade => throw _privateConstructorUsedError;
-  int get dollarToNaira => throw _privateConstructorUsedError;
+  int get buyPrice => throw _privateConstructorUsedError;
+  int get sellPrice => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AuthStateCopyWith<AuthState> get copyWith =>
@@ -32,7 +33,8 @@ abstract class $AuthStateCopyWith<$Res> {
   $Res call(
       {AuthUserModel userModel,
       bool isUserCheckedFromAuthFacade,
-      int dollarToNaira});
+      int buyPrice,
+      int sellPrice});
 
   $AuthUserModelCopyWith<$Res> get userModel;
 }
@@ -49,7 +51,8 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
   $Res call({
     Object? userModel = freezed,
     Object? isUserCheckedFromAuthFacade = freezed,
-    Object? dollarToNaira = freezed,
+    Object? buyPrice = freezed,
+    Object? sellPrice = freezed,
   }) {
     return _then(_value.copyWith(
       userModel: userModel == freezed
@@ -60,9 +63,13 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
           ? _value.isUserCheckedFromAuthFacade
           : isUserCheckedFromAuthFacade // ignore: cast_nullable_to_non_nullable
               as bool,
-      dollarToNaira: dollarToNaira == freezed
-          ? _value.dollarToNaira
-          : dollarToNaira // ignore: cast_nullable_to_non_nullable
+      buyPrice: buyPrice == freezed
+          ? _value.buyPrice
+          : buyPrice // ignore: cast_nullable_to_non_nullable
+              as int,
+      sellPrice: sellPrice == freezed
+          ? _value.sellPrice
+          : sellPrice // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -84,7 +91,8 @@ abstract class _$$_AuthStateCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
   $Res call(
       {AuthUserModel userModel,
       bool isUserCheckedFromAuthFacade,
-      int dollarToNaira});
+      int buyPrice,
+      int sellPrice});
 
   @override
   $AuthUserModelCopyWith<$Res> get userModel;
@@ -104,7 +112,8 @@ class __$$_AuthStateCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
   $Res call({
     Object? userModel = freezed,
     Object? isUserCheckedFromAuthFacade = freezed,
-    Object? dollarToNaira = freezed,
+    Object? buyPrice = freezed,
+    Object? sellPrice = freezed,
   }) {
     return _then(_$_AuthState(
       userModel: userModel == freezed
@@ -115,9 +124,13 @@ class __$$_AuthStateCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
           ? _value.isUserCheckedFromAuthFacade
           : isUserCheckedFromAuthFacade // ignore: cast_nullable_to_non_nullable
               as bool,
-      dollarToNaira: dollarToNaira == freezed
-          ? _value.dollarToNaira
-          : dollarToNaira // ignore: cast_nullable_to_non_nullable
+      buyPrice: buyPrice == freezed
+          ? _value.buyPrice
+          : buyPrice // ignore: cast_nullable_to_non_nullable
+              as int,
+      sellPrice: sellPrice == freezed
+          ? _value.sellPrice
+          : sellPrice // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -129,7 +142,8 @@ class _$_AuthState extends _AuthState {
   const _$_AuthState(
       {required this.userModel,
       required this.isUserCheckedFromAuthFacade,
-      required this.dollarToNaira})
+      required this.buyPrice,
+      required this.sellPrice})
       : super._();
 
   @override
@@ -137,11 +151,13 @@ class _$_AuthState extends _AuthState {
   @override
   final bool isUserCheckedFromAuthFacade;
   @override
-  final int dollarToNaira;
+  final int buyPrice;
+  @override
+  final int sellPrice;
 
   @override
   String toString() {
-    return 'AuthState(userModel: $userModel, isUserCheckedFromAuthFacade: $isUserCheckedFromAuthFacade, dollarToNaira: $dollarToNaira)';
+    return 'AuthState(userModel: $userModel, isUserCheckedFromAuthFacade: $isUserCheckedFromAuthFacade, buyPrice: $buyPrice, sellPrice: $sellPrice)';
   }
 
   @override
@@ -153,8 +169,8 @@ class _$_AuthState extends _AuthState {
             const DeepCollectionEquality().equals(
                 other.isUserCheckedFromAuthFacade,
                 isUserCheckedFromAuthFacade) &&
-            const DeepCollectionEquality()
-                .equals(other.dollarToNaira, dollarToNaira));
+            const DeepCollectionEquality().equals(other.buyPrice, buyPrice) &&
+            const DeepCollectionEquality().equals(other.sellPrice, sellPrice));
   }
 
   @override
@@ -162,7 +178,8 @@ class _$_AuthState extends _AuthState {
       runtimeType,
       const DeepCollectionEquality().hash(userModel),
       const DeepCollectionEquality().hash(isUserCheckedFromAuthFacade),
-      const DeepCollectionEquality().hash(dollarToNaira));
+      const DeepCollectionEquality().hash(buyPrice),
+      const DeepCollectionEquality().hash(sellPrice));
 
   @JsonKey(ignore: true)
   @override
@@ -174,7 +191,8 @@ abstract class _AuthState extends AuthState {
   const factory _AuthState(
       {required final AuthUserModel userModel,
       required final bool isUserCheckedFromAuthFacade,
-      required final int dollarToNaira}) = _$_AuthState;
+      required final int buyPrice,
+      required final int sellPrice}) = _$_AuthState;
   const _AuthState._() : super._();
 
   @override
@@ -182,7 +200,9 @@ abstract class _AuthState extends AuthState {
   @override
   bool get isUserCheckedFromAuthFacade => throw _privateConstructorUsedError;
   @override
-  int get dollarToNaira => throw _privateConstructorUsedError;
+  int get buyPrice => throw _privateConstructorUsedError;
+  @override
+  int get sellPrice => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_AuthStateCopyWith<_$_AuthState> get copyWith =>

@@ -20,7 +20,7 @@ class DomiciliaryAccount extends StatelessWidget {
             investmentCubit.state.amountInvested);
     final int dollarPrice = context.select(
         (AuthCubit authCubit) =>
-            authCubit.state.dollarToNaira);
+            authCubit.state.buyPrice);
     final String exchangeType = context.select(
         (InvestmentCubit investmentCubit) =>
             investmentCubit.state.exchangeType);

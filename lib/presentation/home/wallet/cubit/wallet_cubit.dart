@@ -44,7 +44,7 @@ class WalletCubit extends Cubit<WalletState> {
   WalletCubit(this.firestoreFacade, this.externalFacade)
       : super(WalletState.initial()) {
     authCubit = getIt<AuthCubit>();
-    dollarPrice = authCubit.state.dollarToNaira;
+    dollarPrice = authCubit.state.buyPrice;
     authCubit.stream.listen((state) {
       if (state.isLoggedIn) {
         initWithdrawals();

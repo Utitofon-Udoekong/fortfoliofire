@@ -16,7 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$DollarPrice {
-  int get dollarToNaira => throw _privateConstructorUsedError;
+  int get buyPrice => throw _privateConstructorUsedError;
+  int get sellPrice => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $DollarPriceCopyWith<DollarPrice> get copyWith =>
@@ -28,7 +29,7 @@ abstract class $DollarPriceCopyWith<$Res> {
   factory $DollarPriceCopyWith(
           DollarPrice value, $Res Function(DollarPrice) then) =
       _$DollarPriceCopyWithImpl<$Res>;
-  $Res call({int dollarToNaira});
+  $Res call({int buyPrice, int sellPrice});
 }
 
 /// @nodoc
@@ -41,12 +42,17 @@ class _$DollarPriceCopyWithImpl<$Res> implements $DollarPriceCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? dollarToNaira = freezed,
+    Object? buyPrice = freezed,
+    Object? sellPrice = freezed,
   }) {
     return _then(_value.copyWith(
-      dollarToNaira: dollarToNaira == freezed
-          ? _value.dollarToNaira
-          : dollarToNaira // ignore: cast_nullable_to_non_nullable
+      buyPrice: buyPrice == freezed
+          ? _value.buyPrice
+          : buyPrice // ignore: cast_nullable_to_non_nullable
+              as int,
+      sellPrice: sellPrice == freezed
+          ? _value.sellPrice
+          : sellPrice // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -59,7 +65,7 @@ abstract class _$$_DollarPriceCopyWith<$Res>
           _$_DollarPrice value, $Res Function(_$_DollarPrice) then) =
       __$$_DollarPriceCopyWithImpl<$Res>;
   @override
-  $Res call({int dollarToNaira});
+  $Res call({int buyPrice, int sellPrice});
 }
 
 /// @nodoc
@@ -74,12 +80,17 @@ class __$$_DollarPriceCopyWithImpl<$Res> extends _$DollarPriceCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? dollarToNaira = freezed,
+    Object? buyPrice = freezed,
+    Object? sellPrice = freezed,
   }) {
     return _then(_$_DollarPrice(
-      dollarToNaira: dollarToNaira == freezed
-          ? _value.dollarToNaira
-          : dollarToNaira // ignore: cast_nullable_to_non_nullable
+      buyPrice: buyPrice == freezed
+          ? _value.buyPrice
+          : buyPrice // ignore: cast_nullable_to_non_nullable
+              as int,
+      sellPrice: sellPrice == freezed
+          ? _value.sellPrice
+          : sellPrice // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -88,14 +99,16 @@ class __$$_DollarPriceCopyWithImpl<$Res> extends _$DollarPriceCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_DollarPrice implements _DollarPrice {
-  const _$_DollarPrice({required this.dollarToNaira});
+  const _$_DollarPrice({required this.buyPrice, required this.sellPrice});
 
   @override
-  final int dollarToNaira;
+  final int buyPrice;
+  @override
+  final int sellPrice;
 
   @override
   String toString() {
-    return 'DollarPrice(dollarToNaira: $dollarToNaira)';
+    return 'DollarPrice(buyPrice: $buyPrice, sellPrice: $sellPrice)';
   }
 
   @override
@@ -103,13 +116,15 @@ class _$_DollarPrice implements _DollarPrice {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_DollarPrice &&
-            const DeepCollectionEquality()
-                .equals(other.dollarToNaira, dollarToNaira));
+            const DeepCollectionEquality().equals(other.buyPrice, buyPrice) &&
+            const DeepCollectionEquality().equals(other.sellPrice, sellPrice));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(dollarToNaira));
+      runtimeType,
+      const DeepCollectionEquality().hash(buyPrice),
+      const DeepCollectionEquality().hash(sellPrice));
 
   @JsonKey(ignore: true)
   @override
@@ -118,11 +133,14 @@ class _$_DollarPrice implements _DollarPrice {
 }
 
 abstract class _DollarPrice implements DollarPrice {
-  const factory _DollarPrice({required final int dollarToNaira}) =
-      _$_DollarPrice;
+  const factory _DollarPrice(
+      {required final int buyPrice,
+      required final int sellPrice}) = _$_DollarPrice;
 
   @override
-  int get dollarToNaira => throw _privateConstructorUsedError;
+  int get buyPrice => throw _privateConstructorUsedError;
+  @override
+  int get sellPrice => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_DollarPriceCopyWith<_$_DollarPrice> get copyWith =>

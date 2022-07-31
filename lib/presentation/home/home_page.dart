@@ -22,6 +22,9 @@ class HomePage extends StatelessWidget {
     final int buyPrice = context.select(
         (AuthCubit authCubit) =>
             authCubit.state.buyPrice);
+    final int sellPrice= context.select(
+        (AuthCubit authCubit) =>
+            authCubit.state.sellPrice);
     return AutoTabsScaffold(
       scaffoldKey: scaffoldKey,
       extendBodyBehindAppBar: true,
@@ -50,7 +53,7 @@ class HomePage extends StatelessWidget {
                 children: [
                   TextSpan(text: "$buyPrice", style: subTitle.copyWith(fontSize: 16, color: kGreenColor, fontWeight: FontWeight.bold)),
                   TextSpan(text: " / ", style: subTitle.copyWith(fontSize: 16, color: kgreyColor, fontWeight: FontWeight.bold)),
-                  TextSpan(text: "625", style: subTitle.copyWith(fontSize: 16, color: kRedColor, fontWeight: FontWeight.bold)),
+                  TextSpan(text: "$sellPrice", style: subTitle.copyWith(fontSize: 16, color: kRedColor, fontWeight: FontWeight.bold)),
                 ]
               ), style: subTitle.copyWith(fontSize: 12, color: kgreyColor))
             ]),
