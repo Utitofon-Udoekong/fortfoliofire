@@ -4,6 +4,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'dart:typed_data';
 
 import 'package:fortfolio/domain/auth/i_storage_facade.dart';
+import 'package:fortfolio/utils/utils.dart';
 import 'package:injectable/injectable.dart';
 
 @LazySingleton(as: IStorageFacade)
@@ -24,14 +25,7 @@ class FirebaseStorageFacade implements IStorageFacade {
       String downloadUrl = await snapshot.ref.getDownloadURL();
       return some(downloadUrl);
     } on FirebaseException catch (e) {
-      if (e.code == 'permission-denied') {
-        return some('User does not have permission to upload to the database.');
-      }else if (e.code == 'canceled'){
-        return some('Upload task has been cancelled');
-      }else{
-        return some('Server error encountered');
-      }
-      
+      return none();
     }
   }
 
@@ -44,13 +38,7 @@ class FirebaseStorageFacade implements IStorageFacade {
       final List<Reference> newsList = refList.items;
       return right(newsList);
     } on FirebaseException catch (e) {
-      if (e.code == 'permission-denied') {
-        return left('User does not have permission to upload to the database.');
-      }else if (e.code == 'canceled'){
-        return left('Upload task has been cancelled');
-      }else{
-        return left('Server error encountered');
-      }
+      return left(getErrorFromCode(symbol: e.code));
     }
   }
   

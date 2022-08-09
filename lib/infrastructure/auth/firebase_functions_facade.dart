@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:dartz/dartz.dart';
+import 'package:fortfolio/utils/utils.dart';
 import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
 
@@ -34,11 +35,11 @@ class FirebaseFunctionsFacade implements IFunctionsFacade {
       if (response.statusCode == 200) {
         charge = jsonDecode(response.body);
       } else {
-        throw Exception('Failed to create charge.');
+        return left('Failed to create charge.');
       }
       return right(charge);
-    } on FirebaseFunctionsException catch (error) {
-      return left(error.message!);
+    } on FirebaseFunctionsException catch (e) {
+      return left(getErrorFromCode(symbol: e.code));
     }
   }
 

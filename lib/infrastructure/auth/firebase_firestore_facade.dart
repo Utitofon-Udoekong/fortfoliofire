@@ -17,6 +17,7 @@ import 'package:fortfolio/infrastructure/auth/dto/kyc/kyc_dto.dart';
 import 'package:fortfolio/infrastructure/auth/dto/notification/notification_dto.dart';
 import 'package:fortfolio/infrastructure/auth/dto/withdrawal/withdrawal_dto.dart';
 import 'package:fortfolio/infrastructure/core/firestore_helpers.dart';
+import 'package:fortfolio/utils/utils.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -39,8 +40,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
           .set(BankAddressDTO.fromDomain(bankAddress).toJson());
       return right("Bank account added successfully");
     } on FirebaseException catch (e) {
-      log("Code: ${e.code}, Message: ${e.message}");
-      return left('Unable to add wallet');
+      return left(getErrorFromCode(symbol: e.code));
     }
   }
 
@@ -56,8 +56,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
           .set(CryptoWalletDTO.fromDomain(cryptoWallet).toJson());
       return right("Crypto wallet added successfully");
     } on FirebaseException catch (e) {
-      log("Code: ${e.code}, Message: ${e.message}");
-      return left('Unable to add wallet');
+      return left(getErrorFromCode(symbol: e.code));
     }
   }
 
@@ -73,8 +72,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
           .set(CryptoWalletDTO.fromDomain(cryptoWallet).toJson());
       return right("Crypto wallet added successfully");
     } on FirebaseException catch (e) {
-      log("Code: ${e.code}, Message: ${e.message}");
-      return left('Unable to add wallet');
+      return left(getErrorFromCode(symbol: e.code));
     }
   }
 
@@ -104,8 +102,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
       });
       return right("Investment made. Awaiting approval");
     } on FirebaseException catch (e) {
-      log("Code: ${e.code}, Message: ${e.message}");
-      return left('Unable to create transaction at the moment');
+      return left(getErrorFromCode(symbol: e.code));
     }
   }
 
@@ -136,8 +133,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
       });
       return right("Withdrawal submitted. Awaiting approval");
     } on FirebaseException catch (e) {
-      log("Code: ${e.code}, Message: ${e.message}");
-      return left('Unable to create withdrawals at the moment');
+      return left(getErrorFromCode(symbol: e.code));
     }
   }
 
@@ -151,8 +147,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
       sp.setBool("kycExists", true);
       return right("KYC Documents submitted");
     } on FirebaseException catch (e) {
-      log("Code: ${e.code}, Message: ${e.message}");
-      return left('Unable to submit documents at the moment');
+      return left(getErrorFromCode(symbol: e.code));
     }
   }
 
@@ -172,8 +167,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
       }
       return right("notification created");
     } on FirebaseException catch (e) {
-      log("Code: ${e.code}, Message: ${e.message}");
-      return left('Unable to create notifications at the moment');
+      return left(getErrorFromCode(symbol: e.code));
     }
   }
 
@@ -268,8 +262,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
       await query.update({"planYield": 0, "amount": FieldValue.increment(amount)});
       return right('Investment harvested');
     } on FirebaseException catch (e) {
-      log("Code: ${e.code}, Message: ${e.message}");
-      return left('Unable to harvest');
+      return left(getErrorFromCode(symbol: e.code));
     }
   }
 
@@ -287,8 +280,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
       await batch.commit();
       return right("Notifications deleted successfully");
     } on FirebaseException catch (e) {
-      log("Code: ${e.code}, Message: ${e.message}");
-      return left('Unable to delete notifications');
+      return left(getErrorFromCode(symbol: e.code));
     }
   }
 
@@ -303,8 +295,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
       await notification.delete();
       return right("Notification deleted successfully");
     } on FirebaseException catch (e) {
-      log("Code: ${e.code}, Message: ${e.message}");
-      return left('Unable to delete notification');
+      return left(getErrorFromCode(symbol: e.code));
     }
   }
 
@@ -318,8 +309,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
       }
       return right(doc);
     } on FirebaseException catch (e) {
-      log("Code: ${e.code}, Message: ${e.message}");
-      return left('Server error encountered');
+      return left(getErrorFromCode(symbol: e.code));
     }
   }
 }

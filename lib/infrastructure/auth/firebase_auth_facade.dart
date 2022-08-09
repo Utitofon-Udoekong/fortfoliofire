@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
@@ -10,6 +9,7 @@ import 'package:fortfolio/domain/auth/i_auth_facade.dart';
 import 'package:fortfolio/domain/auth/value_objects.dart';
 import 'package:fortfolio/infrastructure/auth/firebase_user_mapper.dart';
 import 'package:fortfolio/infrastructure/core/firestore_helpers.dart';
+import 'package:fortfolio/utils/utils.dart';
 import 'package:injectable/injectable.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:uuid/uuid.dart';
@@ -65,11 +65,7 @@ class FirebaseAuthFacade implements IAuthFacade {
           email: emailAddressString, password: passwordString);
       return right("Login successful");
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found' || e.code == 'wrong-password') {
-        return left("Invalid email and password combination");
-      } else {
-        return left("Encountered a server error");
-      }
+      return left(getErrorFromCode(symbol: e.code));
     }
   }
 
@@ -96,20 +92,7 @@ class FirebaseAuthFacade implements IAuthFacade {
           // streamController.add(left("SMS Code timeout"));
         },
         verificationFailed: (FirebaseAuthException e) {
-          // late final Either<String, String> result;
-
-          // if (e.code == 'invalid-phone-number') {
-          //   result = left("Invalid phone number");
-          // } else if (e.code == 'too-many-requests') {
-          //   result = left("Too many requests at a time");
-          // } else if (e.code == 'app-not-authorized') {
-          //   result = left("Device not supported");
-          // } else if (e.code == 'network-request-failed') {
-          //   result = left("Device has a weak network");
-          // } else {
-          //   result = left("Server error encountered");
-          // }
-          streamController.add(left("${e.code}"));
+          streamController.add(left(getErrorFromCode(symbol: e.code)));
         });
 
     yield* streamController.stream;
@@ -144,20 +127,14 @@ class FirebaseAuthFacade implements IAuthFacade {
             id: uuid,
             status: 'Enabled',
             displayName: displayName);
-        log(authUserModel.toString());
+        print(authUserModel.toString());
         await firebaseAuth.currentUser!.updateDisplayName(displayName);
         await saveUserToDatabase(
             userModel: authUserModel, uid: value.user!.uid);
       });
       return right("Registration successful");
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'email-already-in-use') {
-        return left("Email address already in use");
-      } else if (e.code == 'operation-not-allowed') {
-        return left("Operation is not permitted at the moment");
-      } else {
-        return left("Encountered a server error");
-      }
+      return left(getErrorFromCode(symbol: e.code));
     }
   }
 
@@ -169,25 +146,21 @@ class FirebaseAuthFacade implements IAuthFacade {
       await firebaseAuth.sendPasswordResetEmail(email: email);
       return right("Successful. Check your mail for a link to reset");
     } on FirebaseAuthException catch (e) {
-      if (e.code == "auth/invalid-email") {
-        return left("Invalid email address");
-      } else {
-        return left("Encountered a server error.");
-      }
+      return left(getErrorFromCode(symbol: e.code));
     }
   }
 
   @override
   Future<Option<String>> saveUserToDatabase(
       {required AuthUserModel userModel, required String uid}) async {
-    log(userModel.toString());
+    print(userModel.toString());
     try {
       await firestore.authUserCollection
           .doc(uid)
           .set(AuthUserModelDto.fromDomain(userModel).toJson());
       return some("Registration successful");
     } catch (e) {
-      log("saveUserToDatabase error: $e");
+      print("saveUserToDatabase error: $e");
       return none();
     }
   }
@@ -213,18 +186,7 @@ class FirebaseAuthFacade implements IAuthFacade {
           // streamController.add(left("SMS code timeout"));
         },
         verificationFailed: (FirebaseAuthException e) {
-          late final Either<String, String> result;
-
-          if (e.code == 'invalid-phone-number') {
-            result = left("Invalid phone number");
-          } else if (e.code == 'too-many-requests') {
-            result = left("Too many requests at this time");
-          } else if (e.code == 'app-not-authorized') {
-            result = left("Device not supported ");
-          } else {
-            result = left("${e.code} Server error encountered");
-          }
-          streamController.add(result);
+          streamController.add(left(getErrorFromCode(symbol: e.code)));
         });
 
     yield* streamController.stream;
@@ -248,13 +210,7 @@ class FirebaseAuthFacade implements IAuthFacade {
       await firebaseAuth.currentUser!.linkWithCredential(phoneAuthCredential);
       return right("Verification successful");
     } on FirebaseAuthException catch (e) {
-      if (e.code == "session-expired") {
-        return left("Session expired");
-      } else if (e.code == "invalid-verification-code" ||
-          e.code == "invalid-verification-code") {
-        return left("Invalid verification code");
-      }
-      return left("Server error encountered");
+      return left(getErrorFromCode(symbol: e.code));
     }
   }
   @override
@@ -267,13 +223,7 @@ class FirebaseAuthFacade implements IAuthFacade {
       await firebaseAuth.signInWithCredential(phoneAuthCredential);
       return right("Verification successful");
     } on FirebaseAuthException catch (e) {
-      if (e.code == "session-expired") {
-        return left("Session expired");
-      } else if (e.code == "invalid-verification-code" ||
-          e.code == "invalid-verification-code") {
-        return left("Invalid verification code");
-      }
-      return left("Server error encountered");
+      return left(getErrorFromCode(symbol: e.code));
     }
   }
 
@@ -290,13 +240,7 @@ class FirebaseAuthFacade implements IAuthFacade {
       await firebaseAuth.currentUser!.updatePhoneNumber(phoneAuthCredential);
       return right("Phone number updated");
     } on FirebaseAuthException catch (e) {
-      if (e.code == "session-expired") {
-        return left("Session expired");
-      } else if (e.code == "invalid-verification-code" ||
-          e.code == "invalid-verification-code") {
-        return left("Invalid verification code");
-      }
-      return left("Server error encountered");
+      return left(getErrorFromCode(symbol: e.code));
     }
   }
 
@@ -321,14 +265,14 @@ class FirebaseAuthFacade implements IAuthFacade {
       final DocumentSnapshot snapshot =
           await firestore.authUserCollection.doc(id).get();
       if (snapshot.exists) {
-        log("authh getDatabaseUser EXISTS snapshot: ${snapshot.data()}");
+        print("authh getDatabaseUser EXISTS snapshot: ${snapshot.data()}");
         return some(AuthUserModelDto.fromFirestore(snapshot).toDomain());
       } else {
-        log("authh getDatabaseUser DOES NOT EXIST");
+        print("authh getDatabaseUser DOES NOT EXIST");
         return none();
       }
-    } catch (e) {
-      log("authh Error $e on getDatabaseUser");
+    }catch (e) {
+      print("authh Error $e on getDatabaseUser");
       return none();
     }
   }
@@ -344,11 +288,11 @@ class FirebaseAuthFacade implements IAuthFacade {
         final doc = query.docs[0];
         return some(AuthUserModelDto.fromFirestore(doc).toDomain());
       } else {
-        log("authh getDatabaseUserWithPhoneNumber DOES NOT EXIST");
+        print("authh getDatabaseUserWithPhoneNumber DOES NOT EXIST");
         return none();
       }
     } on FirebaseException catch (e) {
-      log("authh Error $e on getDatabaseUserWithPhoneNumber");
+      print("authh Error $e on getDatabaseUserWithPhoneNumber");
       return none();
     }
   }
@@ -367,16 +311,7 @@ class FirebaseAuthFacade implements IAuthFacade {
       });
         return right("Email verification sent");
     } on FirebaseException catch (e) {
-      switch (e.code) {
-        case "invalid-email":
-          return left("Invalid email address");
-        case "email-already-in-use":
-          return left("Email already in use");
-        case "requires-recent-login":
-          return left("Login again to continue");
-        default:
-          return left("Server Error encounteres");
-      }
+      return left(getErrorFromCode(symbol: e.code));
     }
   }
 
@@ -394,8 +329,8 @@ class FirebaseAuthFacade implements IAuthFacade {
       "displayName": displayName
     });
     return right("Details updated successfully");
-    } on FirebaseException{
-      return left("Server error encountered");
+    } on FirebaseException catch (e){
+      return left(getErrorFromCode(symbol: e.code));
     }
   }
 
@@ -423,18 +358,7 @@ class FirebaseAuthFacade implements IAuthFacade {
           streamController.add(left("SMS Timeout"));
         },
         verificationFailed: (FirebaseAuthException e) {
-          late final Either<String, String> result;
-
-          if (e.code == 'invalid-phone-number') {
-            result = left("Invalid Phone Number");
-          } else if (e.code == 'too-many-requests') {
-            result = left("Too many Requests");
-          } else if (e.code == 'app-not-authorized') {
-            result = left("Device not suppported");
-          } else {
-            result = left("Server Error encountered");
-          }
-          streamController.add(result);
+          streamController.add(left(getErrorFromCode(symbol: e.code)));
         });
 
     yield* streamController.stream;
@@ -453,7 +377,7 @@ class FirebaseAuthFacade implements IAuthFacade {
       });
       return right("Account submitted for deletion");
     } on FirebaseException catch (e) {
-      return left('Code: ${e.code} Message: ${e.message}');
+      return left(getErrorFromCode(symbol: e.code));
     }
   }
 
@@ -468,8 +392,7 @@ class FirebaseAuthFacade implements IAuthFacade {
       });
       return right("Account reactivated successfully");
     } on FirebaseException catch (e) {
-      // log("Code: ${e.code}, Message: ${e.message}");
-      return left('Server error encountered');
+      return left(getErrorFromCode(symbol: e.code));
     }
   }
 

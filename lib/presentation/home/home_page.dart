@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_badge.dart';
@@ -22,7 +21,7 @@ class HomePage extends StatelessWidget {
     final int buyPrice = context.select(
         (AuthCubit authCubit) =>
             authCubit.state.buyPrice);
-    final int sellPrice= context.select(
+    final int sellPrice = context.select(
         (AuthCubit authCubit) =>
             authCubit.state.sellPrice);
     return AutoTabsScaffold(
