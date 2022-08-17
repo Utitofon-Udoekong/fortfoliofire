@@ -204,10 +204,10 @@ class FirebaseAuthFacade implements IAuthFacade {
       final PhoneAuthCredential phoneAuthCredential =
           PhoneAuthProvider.credential(
               smsCode: smsCode, verificationId: verificationId);
+      await firebaseAuth.currentUser!.linkWithCredential(phoneAuthCredential);
       await firestore.authUserCollection
               .doc(firebaseAuth.currentUser!.uid)
               .update({"phoneNumber": phoneNumber});
-      await firebaseAuth.currentUser!.linkWithCredential(phoneAuthCredential);
       return right("Verification successful");
     } on FirebaseAuthException catch (e) {
       return left(getErrorFromCode(symbol: e.code));

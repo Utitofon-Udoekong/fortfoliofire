@@ -1,13 +1,13 @@
 import 'dart:io';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/application/auth/sign_in_form/phone/sign_in_form_phone_cubit.dart';
 import 'package:fortfolio/application/auth/sign_up_form/phone/sign_up_form_phone_cubit.dart';
 import 'package:fortfolio/application/notification/local_notification_cubit.dart';
 import 'package:fortfolio/infrastructure/auth/local_auth_api.dart';
+import 'package:fortfolio/presentation/authentication/sign_up/sign_up_form.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/notifications/cubit/notification_cubit.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/bank/cubit/bank_address_cubit.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/crypto/cubit/crypto_wallet_cubit.dart';
@@ -21,6 +21,7 @@ import 'package:fortfolio/injection.dart';
 import 'package:fortfolio/presentation/home/investment/cubit/investment_cubit.dart';
 import 'package:fortfolio/presentation/home/wallet/cubit/wallet_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
+import 'package:auto_route/auto_route.dart';
 
 import '../home/dashboard/cubit/dashboard_cubit.dart';
 
@@ -32,6 +33,7 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> with WidgetsBindingObserver {
+  bool resumed = false;
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
@@ -67,12 +69,17 @@ class _AppState extends State<App> with WidgetsBindingObserver {
 
   Future _paused() async {
     final sp = await SharedPreferences.getInstance();
-    print("paused");
+    setState(() {
+      resumed = false;
+    });
     sp.setInt(backgroundedTimeKey, DateTime.now().millisecondsSinceEpoch);
     sp.setInt(lastKnownStateKey, AppLifecycleState.paused.index);
   }
 
   Future _inactive() async {
+    setState(() {
+      resumed = true;
+    });
     final sp = await SharedPreferences.getInstance();
     final prevState = sp.getInt(lastKnownStateKey);
 
@@ -88,7 +95,10 @@ class _AppState extends State<App> with WidgetsBindingObserver {
   final pinLockMillis = 10000;
 
   Future _resumed() async {
-    print('resumed');
+    setState(() {
+      resumed = true;
+    });
+    print("resumed");
     final sp = await SharedPreferences.getInstance();
     bool canCheckBiometrics = await LocalAuthApi.hasBiometrics();
     final bgTime = sp.getInt(backgroundedTimeKey) ?? 0;
@@ -113,6 +123,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     final appRouter = AppRouter();
+    // final resume = widget.resume;
     return MultiBlocProvider(
         providers: [
           BlocProvider(
@@ -148,19 +159,24 @@ class _AppState extends State<App> with WidgetsBindingObserver {
           BlocProvider(
               create: (context) => getIt<InvestmentCubit>(), lazy: false),
         ],
-        child: MaterialApp.router(
-          title: 'Fortfolio',
-          debugShowCheckedModeBanner: false,
-          routeInformationParser: appRouter.defaultRouteParser(),
-          routerDelegate: appRouter.delegate(),
-          builder: (context, widget) => StreamBuilder(
-            stream: Connectivity().onConnectivityChanged,
-            builder: (context, AsyncSnapshot<ConnectivityResult> snapshot) {
-              return snapshot.data == ConnectivityResult.mobile ||
-                      snapshot.data == ConnectivityResult.wifi
-                  ? widget!
-                  : const NoInternetPage();
-            }),
+        child: BlocListener<AuthCubit, AuthState>(
+          listenWhen: (p,c) => c.isLoggedIn == false && resumed,
+          listener: (context, state) {
+            context.router.push(const SignUpFormRoute());
+          },
+          child: MaterialApp.router(
+                  title: 'Fortfolio',
+                  debugShowCheckedModeBanner: false,
+                  routeInformationParser: appRouter.defaultRouteParser(),
+                  routerDelegate: appRouter.delegate(),
+                  builder: (context, widget) => StreamBuilder(
+                    stream: Connectivity().onConnectivityChanged,
+                    builder: (context, AsyncSnapshot<ConnectivityResult> snapshot) {
+                      return snapshot.data == ConnectivityResult.mobile ||
+                              snapshot.data == ConnectivityResult.wifi
+                          ? widget! : const NoInternetPage();
+                    }),
+                ),
         ));
   }
 }

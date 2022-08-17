@@ -120,7 +120,7 @@ List<Item> item = <Item>[
   Item(
       question: 'Do you have a Physical Office?',
       answer: 'Yes, our office is located at Suite J269, Road 5, ikota shopping complex, VGC, Ajah, Lagos state. More branches will be established in various locations nationwide.'),
-  Item(question: 'What is the Minimum investment tenure?', answer: 'You need to invest for at least 6 months to be able to profit from our investment packages.'),
+  Item(question: 'What is the Minimum investment tenure?', answer: 'You need to invest for at least 3 months to be able to profit from our investment packages.'),
   Item(
       question: 'What is the minimum amount to invest?',
       answer: 'The least amount one can invest is ₦500,000 or a \$1,000.'),
