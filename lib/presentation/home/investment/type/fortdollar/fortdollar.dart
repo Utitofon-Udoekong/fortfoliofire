@@ -14,10 +14,10 @@ class FortDollar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Uri _url = Uri.parse('https://fortfolio.info/#about');
+    final Uri url = Uri.parse('https://fortfolio.info/#about');
     Future<void> _launchUrl() async {
-      if (!await launchUrl(_url)) {
-        throw 'Could not launch $_url';
+      if (!await launchUrl(url)) {
+        throw 'Could not launch $url';
       }
     }
     return Scaffold(
@@ -99,10 +99,8 @@ class FortDollar extends StatelessWidget {
                 ),
                 Text(
                   'Investment info',
-                  style: subTitle.copyWith(
-                      fontSize: 15,
-                      color: kgreyColor,
-                      fontWeight: FontWeight.w500),
+                  style: titleText.copyWith(
+                      fontSize: 15),
                 ),
                 const SizedBox(
                   height: 20,
@@ -130,10 +128,8 @@ class FortDollar extends StatelessWidget {
                 ),
                 Text(
                   'Similar Investments',
-                  style: subTitle.copyWith(
-                      fontSize: 15,
-                      color: kgreyColor,
-                      fontWeight: FontWeight.w500),
+                  style: titleText.copyWith(
+                      fontSize: 15),
                 ),
                 const SizedBox(
                   height: 10,

@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/user/investment.dart';
 import 'package:fortfolio/domain/widgets/loading_view.dart';
@@ -16,6 +17,8 @@ class WithdrawalPage extends StatelessWidget {
         (WalletCubit walletCubit) => walletCubit.state.investmentToBeWithdrawn);
     final bool harvested = context.select((WalletCubit walletCubit) =>
         walletCubit.state.investmentToBeWithdrawn.planYield == 0);
+    final dollarPrice = context.select((AuthCubit walletCubit) =>
+        walletCubit.state.buyPrice);
     return Scaffold(
       body: BlocSelector<WalletCubit, WalletState, bool>(
         selector: (state) {
@@ -71,12 +74,12 @@ class WithdrawalPage extends StatelessWidget {
                             decoration: BoxDecoration(
                                 color: const Color.fromRGBO(203, 241, 255, 0.18),
                                 borderRadius: BorderRadius.circular(20)),
+                            alignment: Alignment.center,
                             child: Text(
-                              '\$1 = N585',
+                              '\$1 = N$dollarPrice',
                               style: subTitle.copyWith(
                                   fontSize: 13, color: kPrimaryColor),
                             ),
-                            alignment: Alignment.center,
                           ),
                           const Expanded(child: Divider())
                         ]),
@@ -142,7 +145,7 @@ class WithdrawalPage extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              Text('\$' + amount.toString(),
+              Text('\$$amount',
                   style: titleText.copyWith(
                     fontWeight: FontWeight.w700,
                     fontSize: 20,

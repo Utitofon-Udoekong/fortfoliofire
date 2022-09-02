@@ -75,10 +75,8 @@ class FortCrypto extends StatelessWidget {
                 ),
                 Text(
                   'Investment info',
-                  style: subTitle.copyWith(
-                      fontSize: 15,
-                      color: kgreyColor,
-                      fontWeight: FontWeight.w500),
+                  style: titleText.copyWith(
+                      fontSize: 15),
                 ),
                 const SizedBox(
                   height: 20,
@@ -106,10 +104,8 @@ class FortCrypto extends StatelessWidget {
                 ),
                 Text(
                   'Similar Investments',
-                  style: subTitle.copyWith(
-                      fontSize: 15,
-                      color: kgreyColor,
-                      fontWeight: FontWeight.w500),
+                  style: titleText.copyWith(
+                      fontSize: 15),
                 ),
                 const SizedBox(
                   height: 10,

@@ -14,6 +14,7 @@ import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/cry
 import 'package:fortfolio/presentation/home/dashboard/screens/profile/cubit/profile_cubit.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/verification/cubit/verification_cubit.dart';
 import 'package:fortfolio/presentation/network/no_connection.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/application/network/network_cubit.dart';
@@ -69,24 +70,18 @@ class _AppState extends State<App> with WidgetsBindingObserver {
 
   Future _paused() async {
     final sp = await SharedPreferences.getInstance();
-    setState(() {
-      resumed = false;
-    });
-    sp.setInt(backgroundedTimeKey, DateTime.now().millisecondsSinceEpoch);
+    sp.setString(backgroundedTimeKey, DateTime.now().toString());
     sp.setInt(lastKnownStateKey, AppLifecycleState.paused.index);
   }
 
   Future _inactive() async {
-    setState(() {
-      resumed = true;
-    });
     final sp = await SharedPreferences.getInstance();
     final prevState = sp.getInt(lastKnownStateKey);
 
     final prevStateIsNotPaused = prevState != null &&
         AppLifecycleState.values[prevState] != AppLifecycleState.paused;
     if (prevStateIsNotPaused) {
-      sp.setInt(backgroundedTimeKey, DateTime.now().millisecondsSinceEpoch);
+      sp.setString(backgroundedTimeKey, DateTime.now().toString());
     }
 
     sp.setInt(lastKnownStateKey, AppLifecycleState.inactive.index);
@@ -95,16 +90,13 @@ class _AppState extends State<App> with WidgetsBindingObserver {
   final pinLockMillis = 10000;
 
   Future _resumed() async {
-    setState(() {
-      resumed = true;
-    });
     print("resumed");
     final sp = await SharedPreferences.getInstance();
     bool canCheckBiometrics = await LocalAuthApi.hasBiometrics();
-    final bgTime = sp.getInt(backgroundedTimeKey) ?? 0;
-    final allowedBackgroundTime = bgTime + pinLockMillis;
-    final shouldShowPIN =
-        DateTime.now().millisecondsSinceEpoch > allowedBackgroundTime;
+    final bgTime = sp.getString(backgroundedTimeKey);
+    final biometricsExist = sp.getBool("bio_enabled");
+    final difference = DateTime.now().difference(DateTime.parse(bgTime!)).inSeconds;
+    final shouldShowPIN = difference > 10 && biometricsExist!;
 
     if (shouldShowPIN) {
         if (canCheckBiometrics) {
@@ -123,7 +115,6 @@ class _AppState extends State<App> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     final appRouter = AppRouter();
-    // final resume = widget.resume;
     return MultiBlocProvider(
         providers: [
           BlocProvider(

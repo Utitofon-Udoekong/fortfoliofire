@@ -9,6 +9,7 @@ class SecurityState with _$SecurityState {
     required String sentOtp,
     required bool showSnackbar,
     required bool pinExists,
+    required bool biometricsExists,
     required String failure,
     required String success,
   }) = _SecurityState;
@@ -21,7 +22,8 @@ class SecurityState with _$SecurityState {
         failure: "",
         success: "",
         showSnackbar: false,
-        pinExists: false
+        pinExists: false,
+        biometricsExists: false
       );
   bool get isValidState => emailAddress.isNotEmpty;
 }

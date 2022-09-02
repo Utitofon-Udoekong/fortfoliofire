@@ -25,7 +25,6 @@ class FortCryptoInvestment extends StatelessWidget {
     final duration =
         context.select((InvestmentCubit element) => element.state.duration);
     final endDate = Jiffy(DateTime.now()).add(months: duration.toInt()).yMMMMd;
-
     return Scaffold(
       body: MultiBlocListener(
         listeners: [
@@ -200,11 +199,11 @@ class FortCryptoInvestment extends StatelessWidget {
                                   width: state.duration == 3 ? 1.0 : 0.0),
                             ),
                             margin: const EdgeInsets.only(right: 14),
+                            alignment: Alignment.center,
                             child: const Text(
                               '3 months',
                               style: TextStyle(fontSize: 15),
                             ),
-                            alignment: Alignment.center,
                           ),
                           Container(
                             padding:
@@ -221,11 +220,11 @@ class FortCryptoInvestment extends StatelessWidget {
                                   width: state.duration == 6 ? 1.0 : 0.0),
                             ),
                             margin: const EdgeInsets.only(right: 14),
+                            alignment: Alignment.center,
                             child: const Text(
                               '6 months',
                               style: TextStyle(fontSize: 15),
                             ),
-                            alignment: Alignment.center,
                           ),
                           Container(
                             padding:
@@ -241,11 +240,11 @@ class FortCryptoInvestment extends StatelessWidget {
                                       : kWhiteColor,
                                   width: state.duration == 12 ? 1.0 : 0.0),
                             ),
+                            alignment: Alignment.center,
                             child: const Text(
                               '12 months',
                               style: TextStyle(fontSize: 15),
                             ),
-                            alignment: Alignment.center,
                           ),
                         ],
                         onPressed: (int newIndex) => context

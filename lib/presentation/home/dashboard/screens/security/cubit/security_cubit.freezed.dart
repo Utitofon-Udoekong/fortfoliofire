@@ -22,6 +22,7 @@ mixin _$SecurityState {
   String get sentOtp => throw _privateConstructorUsedError;
   bool get showSnackbar => throw _privateConstructorUsedError;
   bool get pinExists => throw _privateConstructorUsedError;
+  bool get biometricsExists => throw _privateConstructorUsedError;
   String get failure => throw _privateConstructorUsedError;
   String get success => throw _privateConstructorUsedError;
 
@@ -42,6 +43,7 @@ abstract class $SecurityStateCopyWith<$Res> {
       String sentOtp,
       bool showSnackbar,
       bool pinExists,
+      bool biometricsExists,
       String failure,
       String success});
 }
@@ -63,6 +65,7 @@ class _$SecurityStateCopyWithImpl<$Res>
     Object? sentOtp = freezed,
     Object? showSnackbar = freezed,
     Object? pinExists = freezed,
+    Object? biometricsExists = freezed,
     Object? failure = freezed,
     Object? success = freezed,
   }) {
@@ -91,6 +94,10 @@ class _$SecurityStateCopyWithImpl<$Res>
           ? _value.pinExists
           : pinExists // ignore: cast_nullable_to_non_nullable
               as bool,
+      biometricsExists: biometricsExists == freezed
+          ? _value.biometricsExists
+          : biometricsExists // ignore: cast_nullable_to_non_nullable
+              as bool,
       failure: failure == freezed
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
@@ -117,6 +124,7 @@ abstract class _$$_SecurityStateCopyWith<$Res>
       String sentOtp,
       bool showSnackbar,
       bool pinExists,
+      bool biometricsExists,
       String failure,
       String success});
 }
@@ -140,6 +148,7 @@ class __$$_SecurityStateCopyWithImpl<$Res>
     Object? sentOtp = freezed,
     Object? showSnackbar = freezed,
     Object? pinExists = freezed,
+    Object? biometricsExists = freezed,
     Object? failure = freezed,
     Object? success = freezed,
   }) {
@@ -168,6 +177,10 @@ class __$$_SecurityStateCopyWithImpl<$Res>
           ? _value.pinExists
           : pinExists // ignore: cast_nullable_to_non_nullable
               as bool,
+      biometricsExists: biometricsExists == freezed
+          ? _value.biometricsExists
+          : biometricsExists // ignore: cast_nullable_to_non_nullable
+              as bool,
       failure: failure == freezed
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
@@ -190,6 +203,7 @@ class _$_SecurityState extends _SecurityState {
       required this.sentOtp,
       required this.showSnackbar,
       required this.pinExists,
+      required this.biometricsExists,
       required this.failure,
       required this.success})
       : super._();
@@ -207,13 +221,15 @@ class _$_SecurityState extends _SecurityState {
   @override
   final bool pinExists;
   @override
+  final bool biometricsExists;
+  @override
   final String failure;
   @override
   final String success;
 
   @override
   String toString() {
-    return 'SecurityState(emailAddress: $emailAddress, pin: $pin, otp: $otp, sentOtp: $sentOtp, showSnackbar: $showSnackbar, pinExists: $pinExists, failure: $failure, success: $success)';
+    return 'SecurityState(emailAddress: $emailAddress, pin: $pin, otp: $otp, sentOtp: $sentOtp, showSnackbar: $showSnackbar, pinExists: $pinExists, biometricsExists: $biometricsExists, failure: $failure, success: $success)';
   }
 
   @override
@@ -229,6 +245,8 @@ class _$_SecurityState extends _SecurityState {
             const DeepCollectionEquality()
                 .equals(other.showSnackbar, showSnackbar) &&
             const DeepCollectionEquality().equals(other.pinExists, pinExists) &&
+            const DeepCollectionEquality()
+                .equals(other.biometricsExists, biometricsExists) &&
             const DeepCollectionEquality().equals(other.failure, failure) &&
             const DeepCollectionEquality().equals(other.success, success));
   }
@@ -242,6 +260,7 @@ class _$_SecurityState extends _SecurityState {
       const DeepCollectionEquality().hash(sentOtp),
       const DeepCollectionEquality().hash(showSnackbar),
       const DeepCollectionEquality().hash(pinExists),
+      const DeepCollectionEquality().hash(biometricsExists),
       const DeepCollectionEquality().hash(failure),
       const DeepCollectionEquality().hash(success));
 
@@ -259,6 +278,7 @@ abstract class _SecurityState extends SecurityState {
       required final String sentOtp,
       required final bool showSnackbar,
       required final bool pinExists,
+      required final bool biometricsExists,
       required final String failure,
       required final String success}) = _$_SecurityState;
   const _SecurityState._() : super._();
@@ -275,6 +295,8 @@ abstract class _SecurityState extends SecurityState {
   bool get showSnackbar => throw _privateConstructorUsedError;
   @override
   bool get pinExists => throw _privateConstructorUsedError;
+  @override
+  bool get biometricsExists => throw _privateConstructorUsedError;
   @override
   String get failure => throw _privateConstructorUsedError;
   @override

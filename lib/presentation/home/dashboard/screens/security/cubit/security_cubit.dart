@@ -64,6 +64,28 @@ class SecurityCubit extends Cubit<SecurityState> {
     }
   }
 
+  void getBiometricState()async {
+    final sp = await SharedPreferences.getInstance();
+    if(!sp.containsKey("bio_enabled")){
+      sp.setBool("bio_enabled",false);
+      emit(state.copyWith(biometricsExists: true));
+      return;
+    }
+    final bioExists = sp.getBool("bio_enabled");
+    emit(state.copyWith(biometricsExists: bioExists!));
+  }
+
+  toggleBiometricState({required bool val}) async {
+    final sp = await SharedPreferences.getInstance();
+    if(val){
+      sp.setBool("bio_enabled",true);
+      emit(state.copyWith(biometricsExists: true));
+    }else{
+      sp.setBool("bio_enabled",false);
+      emit(state.copyWith(biometricsExists: false));
+    }
+  }
+
   void getPinStatus() async {
     final sp = await SharedPreferences.getInstance();
     if(sp.containsKey("trax_key")){
