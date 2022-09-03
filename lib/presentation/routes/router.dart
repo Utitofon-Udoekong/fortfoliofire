@@ -87,7 +87,6 @@ import '../home/wallet/investment/fortshield_info.dart';
   AutoRoute(page: Security),
   AutoRoute(page: ChangePassword),
   AutoRoute(page: SetPin),
-  AutoRoute(page: SetPinEngine),
   AutoRoute(page: CheckWithdrawal),
   AutoRoute(page: AddBank),
   AutoRoute(page: VerifyBank),

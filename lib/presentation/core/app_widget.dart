@@ -13,6 +13,7 @@ import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/ban
 import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/crypto/cubit/crypto_wallet_cubit.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/profile/cubit/profile_cubit.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/verification/cubit/verification_cubit.dart';
+import 'package:fortfolio/presentation/home/dashboard/screens/security/cubit/security_cubit.dart';
 import 'package:fortfolio/presentation/network/no_connection.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -134,6 +135,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
             lazy: false,
           ),
           BlocProvider(create: (context) => getIt<WalletCubit>(), lazy: false),
+          BlocProvider(create: (context) => getIt<SecurityCubit>(), lazy: false),
           BlocProvider(
               create: (context) => getIt<SignUpFormPhoneCubit>(), lazy: false),
           BlocProvider(

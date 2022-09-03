@@ -43,19 +43,21 @@ class Security extends StatelessWidget {
                 height: 10,
               ),
               const CustomIconButton(
-                  title: 'Set pin', page: SetPinEngineRoute()),
+                  title: 'Set pin', page: SetPinRoute()),
               const SizedBox(
                 height: 10,
               ),
               SwitchListTile.adaptive(
                 value: biometricsExists,
                 tileColor: const Color(0XFFF3F6F8),
+                activeColor: kPrimaryColor,
+                inactiveThumbColor: kgreyColor,
+                inactiveTrackColor: kgreyColor,
+                activeTrackColor: kPrimaryColor,
                 onChanged: (val) => context.read<SecurityCubit>().toggleBiometricState(val: val),
                 contentPadding:
                     const EdgeInsets.symmetric(horizontal: 8.0, vertical: 15.0),
               ),
-              const CustomIconButton(
-                  title: 'Use Biometrics', page: SetPinEngineRoute()),
             ],
           ),
         ),

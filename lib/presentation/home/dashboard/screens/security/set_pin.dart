@@ -25,9 +25,11 @@ class SetPin extends StatelessWidget {
       listeners: [
         BlocListener<SecurityCubit, SecurityState>(
           listenWhen: (previous, current) =>
-              previous.otp != current.otp && current.otp.isNotEmpty,
+              previous.success != current.success && current.success.isNotEmpty,
           listener: (context, state) {
-            context.router.push(const ConfirmSecurityOTPRoute());
+            CustomSnackbar.showSnackBar(context, state.success, false);
+            Future.delayed(const Duration(seconds: 1), () {
+            });
           },
         ),
         BlocListener<SecurityCubit, SecurityState>(
@@ -101,7 +103,7 @@ class SetPin extends StatelessWidget {
                       text: pinExists ? 'UPDATE PIN' : 'SET PIN',
                       onTap: () => context
                           .read<SecurityCubit>()
-                          .sendOtp(phoneNumber: phoneNumber),
+                          .savePin(),
                       disabled: !isValidState,
                     );
                   },
