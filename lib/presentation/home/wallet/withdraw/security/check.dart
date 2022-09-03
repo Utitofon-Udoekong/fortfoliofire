@@ -63,7 +63,7 @@ class CheckWithdrawal extends StatelessWidget {
                         ),
                         TextButton(
                           onPressed: () =>
-                              context.router.push(const SetPinEngineRoute()),
+                              context.router.push(const SetPinRoute()),
                           child: Text(
                             "Haven't set a pin?",
                             style: titleText.copyWith(

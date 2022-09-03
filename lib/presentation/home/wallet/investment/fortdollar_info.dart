@@ -21,97 +21,85 @@ class FortDollarInvestmentInfo extends StatelessWidget {
         (WalletCubit walletCubit) => walletCubit.state.fortDollarYieldBalance);
     final activeInvestments = context.select(
         (WalletCubit walletCubit) => walletCubit.state.fortDollarInvestments);
-    return LayoutBuilder(
-      builder: (context,constraints) {
-        return Scaffold(
-          body: SafeArea(
-              child: Padding(
-                padding: kDefaultPadding,
-                child: SingleChildScrollView(
-                  child: ConstrainedBox(
-                     constraints: BoxConstraints(
-                  minHeight: constraints.maxHeight,
+    return Scaffold(
+      body: SafeArea(
+          child: SingleChildScrollView(
+        child: Padding(
+          padding: kDefaultPadding,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              const SizedBox(height: 30),
+              Row(children: <Widget>[
+                InkWell(
+                  onTap: () => context.router.pop(),
+                  child: const Icon(Icons.close),
                 ),
-                    child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: <Widget>[
-                    Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 30),
-                    Row(children: <Widget>[
-                      InkWell(
-                        onTap: () => context.router.pop(),
-                        child: const Icon(Icons.close),
-                      ),
-                      Text(
-                        "Fortdollar",
-                        style: titleText.copyWith(
-                            fontSize: 18, fontWeight: FontWeight.w700),
-                        textAlign: TextAlign.center,
-                      )
-                    ]),
-                    const SizedBox(height: 30),
-                    Text("Total", style: subTitle.copyWith(fontSize: 12)),
-                    const SizedBox(height: 8),
-                    Text("\$ ${formatter.format(balance)}",
-                        style: titleText.copyWith(
-                            fontSize: 16, fontWeight: FontWeight.w500)),
-                    const SizedBox(height: 30),
-                    Text("Available for yield",
-                        style: subTitle.copyWith(fontSize: 12)),
-                    const SizedBox(height: 8),
-                    Text("\$ ${formatter.format(yield)}",
-                        style: titleText.copyWith(
-                            fontSize: 16, fontWeight: FontWeight.w500)),
-                    const SizedBox(height: 30),
-                    Text("Active Investments",
-                        style: subTitle.copyWith(fontSize: 12, color: kPrimaryColor)),
-                    const SizedBox(height: 15),
-                    SizedBox(
-                      height: activeInvestments.length * 100 + 80,
-                      child: ListView.builder(
-                        itemCount: activeInvestments.length,
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        scrollDirection: Axis.vertical,
-                        itemBuilder: ((context, index) {
-                          return buildTile(
-                            title:
-                                '${activeInvestments[index].planName} / ${activeInvestments[index].duration.toInt()} month(s)',
-                            amount:
-                                '\$${formatter.format(activeInvestments[index].amount)}',
-                            ontap: () {
-                              context
-                                  .read<WalletCubit>()
-                                  .investmentToBeWithdrawnChanged(
-                                      investmentToBeWithdrawn:
-                                          activeInvestments[index]);
-                              context.router.push(const WithdrawalPageRoute());
-                            },
-                            pending: activeInvestments[index].status == "Pending",
-                            isDue: activeInvestments[index].dueDate.isToday,
-                            daysLeft:
-                                Jiffy(activeInvestments[index].dueDate).fromNow(),
-                            planYield: '\$${formatter.format(activeInvestments[index].planYield)}'
-                          );
-                        }),
-                      ),
-                    ),
-                  ]
-                    ),
-                    CustomOutlinedButton(
-                        text: 'INVEST',
-                        onTap: () =>
-                            context.router.push(const FortDollarInvestmentRoute())),
-                                  ],
-                                ),
-                  ),
+                Text(
+                  "Fortdollar",
+                  style: titleText.copyWith(
+                      fontSize: 18, fontWeight: FontWeight.w700),
+                  textAlign: TextAlign.center,
+                )
+              ]),
+              const SizedBox(height: 30),
+              Text("Total", style: subTitle.copyWith(fontSize: 12)),
+              const SizedBox(height: 8),
+              Text("\$ ${formatter.format(balance)}",
+                  style: titleText.copyWith(
+                      fontSize: 16, fontWeight: FontWeight.w500)),
+              const SizedBox(height: 30),
+              Text("Available for yield",
+                  style: subTitle.copyWith(fontSize: 12)),
+              const SizedBox(height: 8),
+              Text("\$ ${formatter.format(yield)}",
+                  style: titleText.copyWith(
+                      fontSize: 16, fontWeight: FontWeight.w500)),
+              const SizedBox(height: 30),
+              Text("Active Investments",
+                  style: subTitle.copyWith(fontSize: 12, color: kPrimaryColor)),
+              const SizedBox(height: 15),
+              SizedBox(
+                height: activeInvestments.length * 100 + 80,
+                child: ListView.builder(
+                  itemCount: activeInvestments.length,
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
+                  itemBuilder: ((context, index) {
+                    return buildTile(
+                      title:
+                          '${activeInvestments[index].planName} / ${activeInvestments[index].duration.toInt()} month(s)',
+                      amount:
+                          '\$${formatter.format(activeInvestments[index].amount)}',
+                      ontap: () {
+                        context
+                            .read<WalletCubit>()
+                            .investmentToBeWithdrawnChanged(
+                                investmentToBeWithdrawn:
+                                    activeInvestments[index]);
+                        context.router.push(const WithdrawalPageRoute());
+                      },
+                      pending: activeInvestments[index].status == "Pending",
+                      isDue: activeInvestments[index].dueDate.isToday,
+                      daysLeft:
+                          Jiffy(activeInvestments[index].dueDate).fromNow(),
+                      planYield: '\$${formatter.format(activeInvestments[index].planYield)}'
+                    );
+                  }),
                 ),
-              )),
-        );
-      }
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: CustomOutlinedButton(
+                    text: 'INVEST',
+                    onTap: () =>
+                        context.router.push(const FortDollarInvestmentRoute())),
+              ),
+            ],
+          ),
+        ),
+      )),
     );
   }
 }

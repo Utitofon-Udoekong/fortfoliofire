@@ -197,6 +197,10 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
         .where("type", isEqualTo: "CRYPTOWALLET")
         .snapshots();
   }
+  @override
+  Stream<QuerySnapshot> getNews() async* {
+    yield* firestore.newsCollection.snapshots();
+  }
 
   @override
   Stream<QuerySnapshot> getGeneralCryptoWallets() async* {

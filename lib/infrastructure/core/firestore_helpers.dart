@@ -16,4 +16,5 @@ extension FirebaseFirestoreX on FirebaseFirestore {
   CollectionReference get kycCollection => collection("kyc");
   CollectionReference get investmentCollection => collection("investments");
   CollectionReference get withdrawalCollection => collection("withdrawals");
+  CollectionReference get newsCollection => collection("news");
 }

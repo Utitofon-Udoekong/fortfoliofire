@@ -5,9 +5,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
+import 'package:fortfolio/domain/user/news.dart';
 import 'package:fortfolio/presentation/home/dashboard/cubit/dashboard_cubit.dart';
 import 'package:fortfolio/presentation/home/failure_view.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
+import 'package:url_launcher/link.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -68,11 +70,6 @@ class Dashboard extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  // buildSmallIcons(
-                  //     'images/Activity-small.svg',
-                  //     'Investments',
-                  //     () => context.pushRoute(const HomePageRoute(
-                  //         children: [InvestmentPageRoute()]))),
                   buildSmallIcons(
                       'images/Swap.svg',
                       'Transactions',
@@ -160,31 +157,33 @@ class Dashboard extends StatelessWidget {
     );
   }
 
-  // showModalToSetPin({required BuildContext context}){
-  //   var dialog = Container(
-  //     padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
-  //
-  //   );
-  // }
 
-  List<Widget> generateSlider(BuildContext context, List<String> list) {
+  List<Widget> generateSlider(BuildContext context, List<NewsModel> list) {
     List<Widget> imageSlider = list
-        .map((String item) {
-          return Container(
-            margin: const EdgeInsets.all(5),
-            child: ClipRRect(
-              borderRadius: const BorderRadius.all(Radius.circular(10)),
-              child: CachedNetworkImage(
-                imageUrl: item,
-                fit: BoxFit.fill,
-                width: MediaQuery.of(context).size.width,
-                placeholder: (context, url) => Container(color: Colors.grey),
-                errorWidget: (context, url, error) => const Icon(
-                  Icons.error,
-                  color: Colors.red,
-                ),
-              ),
-            ),
+        .map((NewsModel item) {
+          return Link(
+            uri: Uri.parse(item.redirectLink),
+            builder: (BuildContext context, Future<void> Function()? followLink) { 
+                return GestureDetector(
+                  onTap: followLink,
+                  child: Container(
+                              margin: const EdgeInsets.all(5),
+                              child: ClipRRect(
+                  borderRadius: const BorderRadius.all(Radius.circular(10)),
+                  child: CachedNetworkImage(
+                    imageUrl: item.url,
+                    fit: BoxFit.fill,
+                    width: MediaQuery.of(context).size.width,
+                    placeholder: (context, url) => Container(color: Colors.grey),
+                    errorWidget: (context, url, error) => const Icon(
+                      Icons.error,
+                      color: Colors.red,
+                    ),
+                  ),
+                              ),
+                            ),
+                );
+             }
           );
         })
         .cast<Widget>()

@@ -1,0 +1,27 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+part 'news.freezed.dart';
+@freezed
+abstract class NewsModel implements _$NewsModel {
+  const NewsModel._();
+  
+  const factory NewsModel({
+    required String name,
+    required String description,
+    required String url,
+    required String imageRef,
+    required String redirectLink,
+    required String createdat,
+    required String size,
+    required String fullPath,
+  }) = _NewsModel;
+  factory NewsModel.empty() => const NewsModel(
+    name: "",
+    description: "",
+    url: "",
+    imageRef: "",
+    redirectLink: "",
+    createdat: "",
+    size: "",
+    fullPath: "",
+  );
+}

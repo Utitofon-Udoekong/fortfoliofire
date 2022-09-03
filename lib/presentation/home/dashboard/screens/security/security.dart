@@ -48,15 +48,15 @@ class Security extends StatelessWidget {
                 height: 10,
               ),
               SwitchListTile.adaptive(
+                title: Text(biometricsExists ? "Turn off biometrics" : "Turn on biometrics", style: subTitle.copyWith(color: kBlackColor, fontWeight: FontWeight.w600, fontSize: 14.2),),
                 value: biometricsExists,
                 tileColor: const Color(0XFFF3F6F8),
                 activeColor: kPrimaryColor,
                 inactiveThumbColor: kgreyColor,
-                inactiveTrackColor: kgreyColor,
                 activeTrackColor: kPrimaryColor,
                 onChanged: (val) => context.read<SecurityCubit>().toggleBiometricState(val: val),
                 contentPadding:
-                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 15.0),
+                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10.0),
               ),
             ],
           ),

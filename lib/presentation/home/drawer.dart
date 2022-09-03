@@ -124,7 +124,7 @@ class MainDrawer extends StatelessWidget {
                 () => context.router.push(const SecurityRoute()), isAccountActive, true),
             buildtile(Icons.headset_mic, 'Help & Support',
                 () => context.router.push(const SupportPageRoute()), isAccountActive, true),
-            buildtile(Icons.error, 'Terms & Condition',
+            buildtile(Icons.error, 'Terms & Conditions',
                 () => context.router.push(const TACPageRoute()), isAccountActive, true),
             buildtile(Icons.verified, 'Account Verification',
                 () => context.router.push(const VerificationPageRoute()), isAccountActive, true),

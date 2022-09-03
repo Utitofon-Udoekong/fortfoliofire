@@ -19,12 +19,12 @@ abstract class IFirestoreFacade {
   Stream<QuerySnapshot> getBankAddress();
   Stream<QuerySnapshot> getCryptoWallets();
   Stream<QuerySnapshot> getGeneralCryptoWallets();
-  // Future<Option<List<InvestmentItem>>> getInvestments();
   Stream<QuerySnapshot> getFortShieldInvestments();
   Stream<QuerySnapshot> getFortDollarInvestments();
   Stream<QuerySnapshot> getFortCryptoInvestments();
   Stream<QuerySnapshot> getWithdrawals();
   Stream<QuerySnapshot> getDollarPrice();
+  Stream<QuerySnapshot> getNews();
   Future<Either<String,KYCItem>> getKYC();
   Future<Either<String,String>> createWithdrawalTransaction( {required WithdrawalItem withdrawalItem});
   Future<Either<String,String>> createNotification( {required NotificationItem notificationItem});

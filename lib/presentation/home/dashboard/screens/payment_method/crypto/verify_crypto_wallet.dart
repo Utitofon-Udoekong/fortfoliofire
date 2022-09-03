@@ -63,7 +63,7 @@ class VerifyCryptoWallet extends StatelessWidget {
                           height: 5,
                         ),
                         TextButton(
-                          onPressed: () => context.router.push(const SetPinEngineRoute()),
+                          onPressed: () => context.router.push(const SetPinRoute()),
                           child: Text(
                             "Haven't set a pin?",
                             style: titleText.copyWith(color: kPrimaryColor, fontSize: 14),

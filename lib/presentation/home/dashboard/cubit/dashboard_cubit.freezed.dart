@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$DashboardState {
-  List<String> get newsList => throw _privateConstructorUsedError;
+  List<NewsModel> get newsList => throw _privateConstructorUsedError;
   bool get loading => throw _privateConstructorUsedError;
   String get failure => throw _privateConstructorUsedError;
 
@@ -30,7 +30,7 @@ abstract class $DashboardStateCopyWith<$Res> {
   factory $DashboardStateCopyWith(
           DashboardState value, $Res Function(DashboardState) then) =
       _$DashboardStateCopyWithImpl<$Res>;
-  $Res call({List<String> newsList, bool loading, String failure});
+  $Res call({List<NewsModel> newsList, bool loading, String failure});
 }
 
 /// @nodoc
@@ -52,7 +52,7 @@ class _$DashboardStateCopyWithImpl<$Res>
       newsList: newsList == freezed
           ? _value.newsList
           : newsList // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<NewsModel>,
       loading: loading == freezed
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
@@ -72,7 +72,7 @@ abstract class _$$_DashboardStateCopyWith<$Res>
           _$_DashboardState value, $Res Function(_$_DashboardState) then) =
       __$$_DashboardStateCopyWithImpl<$Res>;
   @override
-  $Res call({List<String> newsList, bool loading, String failure});
+  $Res call({List<NewsModel> newsList, bool loading, String failure});
 }
 
 /// @nodoc
@@ -96,7 +96,7 @@ class __$$_DashboardStateCopyWithImpl<$Res>
       newsList: newsList == freezed
           ? _value._newsList
           : newsList // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<NewsModel>,
       loading: loading == freezed
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
@@ -113,14 +113,14 @@ class __$$_DashboardStateCopyWithImpl<$Res>
 
 class _$_DashboardState implements _DashboardState {
   const _$_DashboardState(
-      {required final List<String> newsList,
+      {required final List<NewsModel> newsList,
       required this.loading,
       required this.failure})
       : _newsList = newsList;
 
-  final List<String> _newsList;
+  final List<NewsModel> _newsList;
   @override
-  List<String> get newsList {
+  List<NewsModel> get newsList {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_newsList);
   }
@@ -160,12 +160,12 @@ class _$_DashboardState implements _DashboardState {
 
 abstract class _DashboardState implements DashboardState {
   const factory _DashboardState(
-      {required final List<String> newsList,
+      {required final List<NewsModel> newsList,
       required final bool loading,
       required final String failure}) = _$_DashboardState;
 
   @override
-  List<String> get newsList => throw _privateConstructorUsedError;
+  List<NewsModel> get newsList => throw _privateConstructorUsedError;
   @override
   bool get loading => throw _privateConstructorUsedError;
   @override
