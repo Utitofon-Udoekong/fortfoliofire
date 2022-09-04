@@ -183,7 +183,7 @@ class FortDollar extends StatelessWidget {
                                               children: <TextSpan>[
                                                 TextSpan(
                                                     text:
-                                                        '${plans[index].roi} returns',
+                                                        '${plans[index].roi} returns ',
                                                     style: subTitle.copyWith(
                                                       color: kGreenColor,
                                                       fontSize: 12,
@@ -216,7 +216,7 @@ class FortDollar extends StatelessWidget {
                                 height: 20,
                               ),
                               Text.rich(TextSpan(
-                                  text: 'Minimum Investment',
+                                  text: 'Minimum Investment ',
                                   style: subTitle.copyWith(
                                       fontSize: 15, color: kBlackColor),
                                   children: <TextSpan>[

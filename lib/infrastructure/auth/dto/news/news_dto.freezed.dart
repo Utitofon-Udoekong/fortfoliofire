@@ -24,9 +24,9 @@ mixin _$NewsModelDTO {
   String get description => throw _privateConstructorUsedError;
   String get url => throw _privateConstructorUsedError;
   String get imageRef => throw _privateConstructorUsedError;
-  String get redirectLink => throw _privateConstructorUsedError;
+  String? get redirectLink => throw _privateConstructorUsedError;
   String get createdat => throw _privateConstructorUsedError;
-  String get size => throw _privateConstructorUsedError;
+  int get size => throw _privateConstructorUsedError;
   String get fullPath => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -45,9 +45,9 @@ abstract class $NewsModelDTOCopyWith<$Res> {
       String description,
       String url,
       String imageRef,
-      String redirectLink,
+      String? redirectLink,
       String createdat,
-      String size,
+      int size,
       String fullPath});
 }
 
@@ -90,7 +90,7 @@ class _$NewsModelDTOCopyWithImpl<$Res> implements $NewsModelDTOCopyWith<$Res> {
       redirectLink: redirectLink == freezed
           ? _value.redirectLink
           : redirectLink // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       createdat: createdat == freezed
           ? _value.createdat
           : createdat // ignore: cast_nullable_to_non_nullable
@@ -98,7 +98,7 @@ class _$NewsModelDTOCopyWithImpl<$Res> implements $NewsModelDTOCopyWith<$Res> {
       size: size == freezed
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       fullPath: fullPath == freezed
           ? _value.fullPath
           : fullPath // ignore: cast_nullable_to_non_nullable
@@ -119,9 +119,9 @@ abstract class _$$_NewsModelDTOCopyWith<$Res>
       String description,
       String url,
       String imageRef,
-      String redirectLink,
+      String? redirectLink,
       String createdat,
-      String size,
+      int size,
       String fullPath});
 }
 
@@ -167,7 +167,7 @@ class __$$_NewsModelDTOCopyWithImpl<$Res>
       redirectLink: redirectLink == freezed
           ? _value.redirectLink
           : redirectLink // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       createdat: createdat == freezed
           ? _value.createdat
           : createdat // ignore: cast_nullable_to_non_nullable
@@ -175,7 +175,7 @@ class __$$_NewsModelDTOCopyWithImpl<$Res>
       size: size == freezed
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       fullPath: fullPath == freezed
           ? _value.fullPath
           : fullPath // ignore: cast_nullable_to_non_nullable
@@ -210,11 +210,11 @@ class _$_NewsModelDTO extends _NewsModelDTO {
   @override
   final String imageRef;
   @override
-  final String redirectLink;
+  final String? redirectLink;
   @override
   final String createdat;
   @override
-  final String size;
+  final int size;
   @override
   final String fullPath;
 
@@ -270,9 +270,9 @@ abstract class _NewsModelDTO extends NewsModelDTO {
       required final String description,
       required final String url,
       required final String imageRef,
-      required final String redirectLink,
+      required final String? redirectLink,
       required final String createdat,
-      required final String size,
+      required final int size,
       required final String fullPath}) = _$_NewsModelDTO;
   const _NewsModelDTO._() : super._();
 
@@ -288,11 +288,11 @@ abstract class _NewsModelDTO extends NewsModelDTO {
   @override
   String get imageRef => throw _privateConstructorUsedError;
   @override
-  String get redirectLink => throw _privateConstructorUsedError;
+  String? get redirectLink => throw _privateConstructorUsedError;
   @override
   String get createdat => throw _privateConstructorUsedError;
   @override
-  String get size => throw _privateConstructorUsedError;
+  int get size => throw _privateConstructorUsedError;
   @override
   String get fullPath => throw _privateConstructorUsedError;
   @override

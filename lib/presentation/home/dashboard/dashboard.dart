@@ -162,7 +162,7 @@ class Dashboard extends StatelessWidget {
     List<Widget> imageSlider = list
         .map((NewsModel item) {
           return Link(
-            uri: Uri.parse(item.redirectLink),
+            uri: Uri.parse(item.redirectLink ?? "#"),
             builder: (BuildContext context, Future<void> Function()? followLink) { 
                 return GestureDetector(
                   onTap: followLink,

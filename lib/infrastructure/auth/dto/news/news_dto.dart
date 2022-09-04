@@ -14,9 +14,9 @@ abstract class NewsModelDTO implements _$NewsModelDTO {
     required String description,
     required String url,
     required String imageRef,
-    required String redirectLink,
+    required String? redirectLink,
     required String createdat,
-    required String size,
+    required int size,
     required String fullPath,
   }) = _NewsModelDTO;
 

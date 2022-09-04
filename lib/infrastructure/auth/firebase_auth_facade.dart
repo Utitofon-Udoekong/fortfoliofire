@@ -58,8 +58,8 @@ class FirebaseAuthFacade implements IAuthFacade {
   @override
   Future<Either<String, String>> loginWithEmailAndPassword(
       {required EmailAddress emailAddress, required Password password}) async {
-    final emailAddressString = emailAddress.getOrCrash();
-    final passwordString = password.getOrCrash();
+    final emailAddressString = emailAddress.getOrCrash().trim();
+    final passwordString = password.getOrCrash().trim();
     try {
       await firebaseAuth.signInWithEmailAndPassword(
           email: emailAddressString, password: passwordString);

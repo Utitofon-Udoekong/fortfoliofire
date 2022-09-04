@@ -107,9 +107,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i33.CryptoWalletCubit>(
       () => _i33.CryptoWalletCubit(get<_i12.IFirestoreFacade>()));
   gh.factory<_i34.DashboardCubit>(() => _i34.DashboardCubit(
-      get<_i8.IAuthFacade>(),
-      get<_i12.IFirestoreFacade>(),
-      get<_i3.AuthCubit>()));
+      get<_i8.IAuthFacade>(), get<_i12.IFirestoreFacade>()));
   return get;
 }
 

@@ -12,9 +12,9 @@ _$_NewsModelDTO _$$_NewsModelDTOFromJson(Map<String, dynamic> json) =>
       description: json['description'] as String,
       url: json['url'] as String,
       imageRef: json['imageRef'] as String,
-      redirectLink: json['redirectLink'] as String,
+      redirectLink: json['redirectLink'] as String?,
       createdat: json['createdat'] as String,
-      size: json['size'] as String,
+      size: json['size'] as int,
       fullPath: json['fullPath'] as String,
     );
 

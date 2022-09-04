@@ -43,6 +43,7 @@ class SecurityCubit extends Cubit<SecurityState> {
   }
 
   void savePin() async {
+    emit(state.copyWith(success: ""));
     final sp = await SharedPreferences.getInstance();
     final pin = state.pin;
     if(!sp.containsKey("trax_key")){

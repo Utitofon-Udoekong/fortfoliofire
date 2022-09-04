@@ -20,9 +20,9 @@ mixin _$NewsModel {
   String get description => throw _privateConstructorUsedError;
   String get url => throw _privateConstructorUsedError;
   String get imageRef => throw _privateConstructorUsedError;
-  String get redirectLink => throw _privateConstructorUsedError;
+  String? get redirectLink => throw _privateConstructorUsedError;
   String get createdat => throw _privateConstructorUsedError;
-  String get size => throw _privateConstructorUsedError;
+  int get size => throw _privateConstructorUsedError;
   String get fullPath => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -39,9 +39,9 @@ abstract class $NewsModelCopyWith<$Res> {
       String description,
       String url,
       String imageRef,
-      String redirectLink,
+      String? redirectLink,
       String createdat,
-      String size,
+      int size,
       String fullPath});
 }
 
@@ -84,7 +84,7 @@ class _$NewsModelCopyWithImpl<$Res> implements $NewsModelCopyWith<$Res> {
       redirectLink: redirectLink == freezed
           ? _value.redirectLink
           : redirectLink // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       createdat: createdat == freezed
           ? _value.createdat
           : createdat // ignore: cast_nullable_to_non_nullable
@@ -92,7 +92,7 @@ class _$NewsModelCopyWithImpl<$Res> implements $NewsModelCopyWith<$Res> {
       size: size == freezed
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       fullPath: fullPath == freezed
           ? _value.fullPath
           : fullPath // ignore: cast_nullable_to_non_nullable
@@ -112,9 +112,9 @@ abstract class _$$_NewsModelCopyWith<$Res> implements $NewsModelCopyWith<$Res> {
       String description,
       String url,
       String imageRef,
-      String redirectLink,
+      String? redirectLink,
       String createdat,
-      String size,
+      int size,
       String fullPath});
 }
 
@@ -159,7 +159,7 @@ class __$$_NewsModelCopyWithImpl<$Res> extends _$NewsModelCopyWithImpl<$Res>
       redirectLink: redirectLink == freezed
           ? _value.redirectLink
           : redirectLink // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       createdat: createdat == freezed
           ? _value.createdat
           : createdat // ignore: cast_nullable_to_non_nullable
@@ -167,7 +167,7 @@ class __$$_NewsModelCopyWithImpl<$Res> extends _$NewsModelCopyWithImpl<$Res>
       size: size == freezed
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       fullPath: fullPath == freezed
           ? _value.fullPath
           : fullPath // ignore: cast_nullable_to_non_nullable
@@ -199,11 +199,11 @@ class _$_NewsModel extends _NewsModel {
   @override
   final String imageRef;
   @override
-  final String redirectLink;
+  final String? redirectLink;
   @override
   final String createdat;
   @override
-  final String size;
+  final int size;
   @override
   final String fullPath;
 
@@ -253,9 +253,9 @@ abstract class _NewsModel extends NewsModel {
       required final String description,
       required final String url,
       required final String imageRef,
-      required final String redirectLink,
+      required final String? redirectLink,
       required final String createdat,
-      required final String size,
+      required final int size,
       required final String fullPath}) = _$_NewsModel;
   const _NewsModel._() : super._();
 
@@ -268,11 +268,11 @@ abstract class _NewsModel extends NewsModel {
   @override
   String get imageRef => throw _privateConstructorUsedError;
   @override
-  String get redirectLink => throw _privateConstructorUsedError;
+  String? get redirectLink => throw _privateConstructorUsedError;
   @override
   String get createdat => throw _privateConstructorUsedError;
   @override
-  String get size => throw _privateConstructorUsedError;
+  int get size => throw _privateConstructorUsedError;
   @override
   String get fullPath => throw _privateConstructorUsedError;
   @override

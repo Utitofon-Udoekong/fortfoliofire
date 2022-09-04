@@ -20,7 +20,7 @@ class DashboardCubit extends Cubit<DashboardState> {
   final IAuthFacade authFacade;
   late final AuthCubit authCubit;
   StreamSubscription<QuerySnapshot>? _logsNewsSubscription;
-  DashboardCubit(this.authFacade, this.firestoreFacade, this.authCubit) : super(DashboardState.initial()){
+  DashboardCubit(this.authFacade, this.firestoreFacade) : super(DashboardState.initial()){
     authCubit = getIt<AuthCubit>();
     authCubit.stream.listen((state) {
       if (state.isLoggedIn) {

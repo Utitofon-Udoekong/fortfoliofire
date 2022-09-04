@@ -29,6 +29,7 @@ class SetPin extends StatelessWidget {
           listener: (context, state) {
             CustomSnackbar.showSnackBar(context, state.success, false);
             Future.delayed(const Duration(seconds: 1), () {
+              context.router.pop();
             });
           },
         ),
