@@ -263,21 +263,19 @@ abstract class _CalculatorState extends CalculatorState {
   const _CalculatorState._() : super._();
 
   @override
-  int get investmentAmount => throw _privateConstructorUsedError;
+  int get investmentAmount;
   @override
-  int get duration => throw _privateConstructorUsedError;
+  int get duration;
   @override
-  int get returnRate => throw _privateConstructorUsedError;
+  int get returnRate;
   @override
-  double get totalReturns => throw _privateConstructorUsedError;
+  double get totalReturns;
   @override
-  String get selectedPlan => throw _privateConstructorUsedError;
+  String get selectedPlan;
   @override
-  List<DropdownMenuItem<String>> get dropdownItems =>
-      throw _privateConstructorUsedError;
+  List<DropdownMenuItem<String>> get dropdownItems;
   @override
-  List<DropdownMenuItem<int>> get durations =>
-      throw _privateConstructorUsedError;
+  List<DropdownMenuItem<int>> get durations;
   @override
   @JsonKey(ignore: true)
   _$$_CalculatorStateCopyWith<_$_CalculatorState> get copyWith =>

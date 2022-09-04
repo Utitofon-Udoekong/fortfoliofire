@@ -454,39 +454,39 @@ abstract class _InvestmentState extends InvestmentState {
   const _InvestmentState._() : super._();
 
   @override
-  String get planName => throw _privateConstructorUsedError;
+  String get planName;
   @override
-  int get duration => throw _privateConstructorUsedError;
+  int get duration;
   @override
-  int get amountInvested => throw _privateConstructorUsedError;
+  int get amountInvested;
   @override
-  int get roi => throw _privateConstructorUsedError;
+  int get roi;
   @override
-  String get failure => throw _privateConstructorUsedError;
+  String get failure;
   @override
-  String get success => throw _privateConstructorUsedError;
+  String get success;
   @override
-  bool get agreementAccepted => throw _privateConstructorUsedError;
+  bool get agreementAccepted;
   @override
-  bool get isLoading => throw _privateConstructorUsedError;
+  bool get isLoading;
   @override
-  String get exchangeType => throw _privateConstructorUsedError;
+  String get exchangeType;
   @override
-  String get coin => throw _privateConstructorUsedError;
+  String get coin;
   @override
-  String get bankAccountType => throw _privateConstructorUsedError;
+  String get bankAccountType;
   @override
-  List<bool> get isSelected => throw _privateConstructorUsedError;
+  List<bool> get isSelected;
   @override
-  List<int> get durations => throw _privateConstructorUsedError;
+  List<int> get durations;
   @override
-  String get paymentMethod => throw _privateConstructorUsedError;
+  String get paymentMethod;
   @override
-  double get baseAmount => throw _privateConstructorUsedError;
+  double get baseAmount;
   @override
-  ChargeObject get charge => throw _privateConstructorUsedError;
+  ChargeObject get charge;
   @override
-  String get paymentStatus => throw _privateConstructorUsedError;
+  String get paymentStatus;
   @override
   @JsonKey(ignore: true)
   _$$_InvestmentStateCopyWith<_$_InvestmentState> get copyWith =>

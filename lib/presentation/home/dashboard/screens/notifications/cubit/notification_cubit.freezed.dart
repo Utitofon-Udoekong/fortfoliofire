@@ -299,25 +299,23 @@ abstract class _NotificationState extends NotificationState {
   const _NotificationState._() : super._();
 
   @override
-  List<NotificationItem> get notifications =>
-      throw _privateConstructorUsedError;
+  List<NotificationItem> get notifications;
   @override
-  List<NotificationItem> get selectedNotifications =>
-      throw _privateConstructorUsedError;
+  List<NotificationItem> get selectedNotifications;
   @override
-  int get notificationCount => throw _privateConstructorUsedError;
+  int get notificationCount;
   @override
-  bool get loading => throw _privateConstructorUsedError;
+  bool get loading;
   @override
-  String get type => throw _privateConstructorUsedError;
+  String get type;
   @override
-  String get title => throw _privateConstructorUsedError;
+  String get title;
   @override
-  DateTime get createdat => throw _privateConstructorUsedError;
+  DateTime get createdat;
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String get status => throw _privateConstructorUsedError;
+  String get status;
   @override
   @JsonKey(ignore: true)
   _$$_NotificationStateCopyWith<_$_NotificationState> get copyWith =>

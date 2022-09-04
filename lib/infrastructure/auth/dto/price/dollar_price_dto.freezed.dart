@@ -145,7 +145,9 @@ class _$_DollarPriceDTO extends _DollarPriceDTO {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DollarPriceDTOToJson(this);
+    return _$$_DollarPriceDTOToJson(
+      this,
+    );
   }
 }
 
@@ -159,9 +161,9 @@ abstract class _DollarPriceDTO extends DollarPriceDTO {
       _$_DollarPriceDTO.fromJson;
 
   @override
-  int get buyPrice => throw _privateConstructorUsedError;
+  int get buyPrice;
   @override
-  int get sellPrice => throw _privateConstructorUsedError;
+  int get sellPrice;
   @override
   @JsonKey(ignore: true)
   _$$_DollarPriceDTOCopyWith<_$_DollarPriceDTO> get copyWith =>

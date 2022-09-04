@@ -224,7 +224,9 @@ class _$_BankAddressDTO extends _BankAddressDTO {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_BankAddressDTOToJson(this);
+    return _$$_BankAddressDTOToJson(
+      this,
+    );
   }
 }
 
@@ -242,17 +244,17 @@ abstract class _BankAddressDTO extends BankAddressDTO {
       _$_BankAddressDTO.fromJson;
 
   @override
-  String get bankName => throw _privateConstructorUsedError;
+  String get bankName;
   @override
-  String get accountNumber => throw _privateConstructorUsedError;
+  String get accountNumber;
   @override
-  String get userName => throw _privateConstructorUsedError;
+  String get userName;
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String get trax => throw _privateConstructorUsedError;
+  String get trax;
   @override
-  String get type => throw _privateConstructorUsedError;
+  String get type;
   @override
   @JsonKey(ignore: true)
   _$$_BankAddressDTOCopyWith<_$_BankAddressDTO> get copyWith =>

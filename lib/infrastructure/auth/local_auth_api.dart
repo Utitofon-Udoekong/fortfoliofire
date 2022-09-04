@@ -41,6 +41,7 @@ class LocalAuthApi {
         );
       }
     } on PlatformException catch (e) {
+      print(e);
       return false;
     }
   }

@@ -228,17 +228,17 @@ abstract class _SignInFormPhoneState extends SignInFormPhoneState {
   const _SignInFormPhoneState._() : super._();
 
   @override
-  String get phoneNumber => throw _privateConstructorUsedError;
+  String get phoneNumber;
   @override
-  String get smsCode => throw _privateConstructorUsedError;
+  String get smsCode;
   @override
-  String get verificationId => throw _privateConstructorUsedError;
+  String get verificationId;
   @override
-  String get failure => throw _privateConstructorUsedError;
+  String get failure;
   @override
-  String get success => throw _privateConstructorUsedError;
+  String get success;
   @override
-  bool get isSubmitting => throw _privateConstructorUsedError;
+  bool get isSubmitting;
   @override
   @JsonKey(ignore: true)
   _$$_SignInFormPhoneStateCopyWith<_$_SignInFormPhoneState> get copyWith =>

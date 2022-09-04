@@ -196,13 +196,13 @@ abstract class _AuthState extends AuthState {
   const _AuthState._() : super._();
 
   @override
-  AuthUserModel get userModel => throw _privateConstructorUsedError;
+  AuthUserModel get userModel;
   @override
-  bool get isUserCheckedFromAuthFacade => throw _privateConstructorUsedError;
+  bool get isUserCheckedFromAuthFacade;
   @override
-  int get buyPrice => throw _privateConstructorUsedError;
+  int get buyPrice;
   @override
-  int get sellPrice => throw _privateConstructorUsedError;
+  int get sellPrice;
   @override
   @JsonKey(ignore: true)
   _$$_AuthStateCopyWith<_$_AuthState> get copyWith =>

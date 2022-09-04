@@ -280,23 +280,23 @@ abstract class _ProfileState implements ProfileState {
       required final bool loading}) = _$_ProfileState;
 
   @override
-  String get firstName => throw _privateConstructorUsedError;
+  String get firstName;
   @override
-  String get lastName => throw _privateConstructorUsedError;
+  String get lastName;
   @override
-  String get email => throw _privateConstructorUsedError;
+  String get email;
   @override
-  String get phoneNumber => throw _privateConstructorUsedError;
+  String get phoneNumber;
   @override
-  String get failure => throw _privateConstructorUsedError;
+  String get failure;
   @override
-  String get success => throw _privateConstructorUsedError;
+  String get success;
   @override
-  String get smsCode => throw _privateConstructorUsedError;
+  String get smsCode;
   @override
-  String get verificationId => throw _privateConstructorUsedError;
+  String get verificationId;
   @override
-  bool get loading => throw _privateConstructorUsedError;
+  bool get loading;
   @override
   @JsonKey(ignore: true)
   _$$_ProfileStateCopyWith<_$_ProfileState> get copyWith =>

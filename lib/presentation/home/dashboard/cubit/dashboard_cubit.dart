@@ -30,7 +30,7 @@ class DashboardCubit extends Cubit<DashboardState> {
   }
 
   void initNews() async {
-    emit(state.copyWith(loading: true,failure: "", newsList: []));
+    emit(state.copyWith(loading: true,failure: ""));
     _logsNewsSubscription = firestoreFacade.getNews().listen((data) {
       final List<QueryDocumentSnapshot<Object?>> docs = data.docs;
       List<NewsModel> newsList = [];
@@ -39,9 +39,10 @@ class DashboardCubit extends Cubit<DashboardState> {
           final doc = NewsModelDTO.fromFirestore(element).toDomain();
           newsList.add(doc);
         }
-        emit(state.copyWith(newsList: newsList));
+        emit(state.copyWith(loading: false,newsList: newsList));
       }
     });
+    emit(state.copyWith(loading: false,failure: ""));
   }
 
   void refresh() async{

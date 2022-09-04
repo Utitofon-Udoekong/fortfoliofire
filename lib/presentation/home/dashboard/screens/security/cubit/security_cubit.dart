@@ -1,11 +1,7 @@
-import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fortfolio/application/notification/local_notification_cubit.dart';
 import 'package:fortfolio/domain/auth/i_auth_facade.dart';
 import 'package:fortfolio/domain/auth/value_objects.dart';
-import 'package:fortfolio/infrastructure/auth/otp_api.dart';
-import 'package:fortfolio/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -16,9 +12,8 @@ part 'security_cubit.freezed.dart';
 @injectable
 class SecurityCubit extends Cubit<SecurityState> {
   final IAuthFacade authFacade;
-  late final LocalNotificationCubit localNotificationCubit;
   SecurityCubit(this.authFacade) : super(SecurityState.empty()){
-    localNotificationCubit = getIt<LocalNotificationCubit>();
+    getBiometricState();
   }
 
   void reset() => emit(state.copyWith(pin: "", otp: "", sentOtp: ""));
@@ -34,13 +29,13 @@ class SecurityCubit extends Cubit<SecurityState> {
     emit(state.copyWith(sentOtp: otp));
   }
 
-  void sendOtp({required String phoneNumber}) async{
-    clear();
-    final sendOtpMap = await localNotificationCubit.showNotification(id: 0);
-    sendOtpMap.fold(() => null, (otp) {
-      emit(state.copyWith(otp: otp.toString(), showSnackbar: true, success: "OTP sent to the number $phoneNumber"));
-    });
-  }
+  // void sendOtp({required String phoneNumber}) async{
+  //   clear();
+  //   final sendOtpMap = await localNotificationCubit.showNotification(id: 0);
+  //   sendOtpMap.fold(() => null, (otp) {
+  //     emit(state.copyWith(otp: otp.toString(), showSnackbar: true, success: "OTP sent to the number $phoneNumber"));
+  //   });
+  // }
 
   void savePin() async {
     emit(state.copyWith(success: ""));

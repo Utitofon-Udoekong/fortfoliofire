@@ -262,21 +262,21 @@ abstract class _CryptoWallet extends CryptoWallet {
   const _CryptoWallet._() : super._();
 
   @override
-  String get walletLabel => throw _privateConstructorUsedError;
+  String get walletLabel;
   @override
-  String get address => throw _privateConstructorUsedError;
+  String get address;
   @override
-  String get coin => throw _privateConstructorUsedError;
+  String get coin;
   @override
-  String? get network => throw _privateConstructorUsedError;
+  String? get network;
   @override
-  String get platform => throw _privateConstructorUsedError;
+  String get platform;
   @override
-  String get type => throw _privateConstructorUsedError;
+  String get type;
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String get trax => throw _privateConstructorUsedError;
+  String get trax;
   @override
   @JsonKey(ignore: true)
   _$$_CryptoWalletCopyWith<_$_CryptoWallet> get copyWith =>

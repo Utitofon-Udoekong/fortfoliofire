@@ -223,17 +223,17 @@ abstract class _BankAddress extends BankAddress {
   const _BankAddress._() : super._();
 
   @override
-  String get bankName => throw _privateConstructorUsedError;
+  String get bankName;
   @override
-  String get accountNumber => throw _privateConstructorUsedError;
+  String get accountNumber;
   @override
-  String get userName => throw _privateConstructorUsedError;
+  String get userName;
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String get trax => throw _privateConstructorUsedError;
+  String get trax;
   @override
-  String get type => throw _privateConstructorUsedError;
+  String get type;
   @override
   @JsonKey(ignore: true)
   _$$_BankAddressCopyWith<_$_BankAddress> get copyWith =>

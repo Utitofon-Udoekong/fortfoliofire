@@ -205,15 +205,15 @@ abstract class _NotificationItem extends NotificationItem {
   const _NotificationItem._() : super._();
 
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String get type => throw _privateConstructorUsedError;
+  String get type;
   @override
-  String get title => throw _privateConstructorUsedError;
+  String get title;
   @override
-  DateTime get createdat => throw _privateConstructorUsedError;
+  DateTime get createdat;
   @override
-  String get status => throw _privateConstructorUsedError;
+  String get status;
   @override
   @JsonKey(ignore: true)
   _$$_NotificationItemCopyWith<_$_NotificationItem> get copyWith =>

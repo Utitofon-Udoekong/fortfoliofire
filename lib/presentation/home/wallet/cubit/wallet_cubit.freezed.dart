@@ -641,57 +641,51 @@ abstract class _WalletState extends WalletState {
   const _WalletState._() : super._();
 
   @override
-  double get walletBalance => throw _privateConstructorUsedError;
+  double get walletBalance;
   @override
-  String get exchange => throw _privateConstructorUsedError;
+  String get exchange;
   @override
-  bool get loading => throw _privateConstructorUsedError;
+  bool get loading;
   @override
-  double get fortDollarInvestmentBalance => throw _privateConstructorUsedError;
+  double get fortDollarInvestmentBalance;
   @override
-  double get fortCryptoInvestmentBalance => throw _privateConstructorUsedError;
+  double get fortCryptoInvestmentBalance;
   @override
-  double get fortShieldInvestmentBalance => throw _privateConstructorUsedError;
+  double get fortShieldInvestmentBalance;
   @override
-  double get fortDollarYieldBalance => throw _privateConstructorUsedError;
+  double get fortDollarYieldBalance;
   @override
-  double get fortCryptoYieldBalance => throw _privateConstructorUsedError;
+  double get fortCryptoYieldBalance;
   @override
-  double get fortShieldYieldBalance => throw _privateConstructorUsedError;
+  double get fortShieldYieldBalance;
   @override
-  String get withdrawalMethod => throw _privateConstructorUsedError;
+  String get withdrawalMethod;
   @override
-  String get failure => throw _privateConstructorUsedError;
+  String get failure;
   @override
-  String get success => throw _privateConstructorUsedError;
+  String get success;
   @override
-  Map<String, dynamic> get withdrawalDetails =>
-      throw _privateConstructorUsedError;
+  Map<String, dynamic> get withdrawalDetails;
   @override
-  InvestmentItem get investmentToBeWithdrawn =>
-      throw _privateConstructorUsedError;
+  InvestmentItem get investmentToBeWithdrawn;
   @override
-  List<BankAddress> get bankAddresses => throw _privateConstructorUsedError;
+  List<BankAddress> get bankAddresses;
   @override
-  List<CryptoWallet> get cryptoAddresses => throw _privateConstructorUsedError;
+  List<CryptoWallet> get cryptoAddresses;
   @override
-  List<CryptoWallet> get generalCryptoAddresses =>
-      throw _privateConstructorUsedError;
+  List<CryptoWallet> get generalCryptoAddresses;
   @override
-  List<InvestmentItem> get fortDollarInvestments =>
-      throw _privateConstructorUsedError;
+  List<InvestmentItem> get fortDollarInvestments;
   @override
-  List<InvestmentItem> get fortCryptoInvestments =>
-      throw _privateConstructorUsedError;
+  List<InvestmentItem> get fortCryptoInvestments;
   @override
-  List<InvestmentItem> get fortShieldInvestments =>
-      throw _privateConstructorUsedError;
+  List<InvestmentItem> get fortShieldInvestments;
   @override
-  List<WithdrawalItem> get withdrawals => throw _privateConstructorUsedError;
+  List<WithdrawalItem> get withdrawals;
   @override
-  List<TransactionItem> get transactions => throw _privateConstructorUsedError;
+  List<TransactionItem> get transactions;
   @override
-  bool get showDigits => throw _privateConstructorUsedError;
+  bool get showDigits;
   @override
   @JsonKey(ignore: true)
   _$$_WalletStateCopyWith<_$_WalletState> get copyWith =>

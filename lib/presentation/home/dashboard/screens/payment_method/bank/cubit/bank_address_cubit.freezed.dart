@@ -231,17 +231,17 @@ abstract class _BankAddressState extends BankAddressState {
   const _BankAddressState._() : super._();
 
   @override
-  String get bankName => throw _privateConstructorUsedError;
+  String get bankName;
   @override
-  String get accountNumber => throw _privateConstructorUsedError;
+  String get accountNumber;
   @override
-  bool get isLoading => throw _privateConstructorUsedError;
+  bool get isLoading;
   @override
-  String get failure => throw _privateConstructorUsedError;
+  String get failure;
   @override
-  String get success => throw _privateConstructorUsedError;
+  String get success;
   @override
-  List<BankAddress> get bankAddresses => throw _privateConstructorUsedError;
+  List<BankAddress> get bankAddresses;
   @override
   @JsonKey(ignore: true)
   _$$_BankAddressStateCopyWith<_$_BankAddressState> get copyWith =>

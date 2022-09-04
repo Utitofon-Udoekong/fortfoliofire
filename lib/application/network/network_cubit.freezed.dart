@@ -159,11 +159,11 @@ abstract class _NetworkState implements NetworkState {
       required final bool loading}) = _$_NetworkState;
 
   @override
-  bool get connected => throw _privateConstructorUsedError;
+  bool get connected;
   @override
-  bool get disconnected => throw _privateConstructorUsedError;
+  bool get disconnected;
   @override
-  bool get loading => throw _privateConstructorUsedError;
+  bool get loading;
   @override
   @JsonKey(ignore: true)
   _$$_NetworkStateCopyWith<_$_NetworkState> get copyWith =>

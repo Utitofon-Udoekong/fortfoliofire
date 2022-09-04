@@ -284,23 +284,23 @@ abstract class _SecurityState extends SecurityState {
   const _SecurityState._() : super._();
 
   @override
-  String get emailAddress => throw _privateConstructorUsedError;
+  String get emailAddress;
   @override
-  String get pin => throw _privateConstructorUsedError;
+  String get pin;
   @override
-  String get otp => throw _privateConstructorUsedError;
+  String get otp;
   @override
-  String get sentOtp => throw _privateConstructorUsedError;
+  String get sentOtp;
   @override
-  bool get showSnackbar => throw _privateConstructorUsedError;
+  bool get showSnackbar;
   @override
-  bool get pinExists => throw _privateConstructorUsedError;
+  bool get pinExists;
   @override
-  bool get biometricsExists => throw _privateConstructorUsedError;
+  bool get biometricsExists;
   @override
-  String get failure => throw _privateConstructorUsedError;
+  String get failure;
   @override
-  String get success => throw _privateConstructorUsedError;
+  String get success;
   @override
   @JsonKey(ignore: true)
   _$$_SecurityStateCopyWith<_$_SecurityState> get copyWith =>

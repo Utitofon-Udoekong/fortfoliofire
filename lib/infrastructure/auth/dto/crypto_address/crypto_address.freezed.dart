@@ -260,7 +260,9 @@ class _$_CryptoWalletDTO extends _CryptoWalletDTO {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CryptoWalletDTOToJson(this);
+    return _$$_CryptoWalletDTOToJson(
+      this,
+    );
   }
 }
 
@@ -280,21 +282,21 @@ abstract class _CryptoWalletDTO extends CryptoWalletDTO {
       _$_CryptoWalletDTO.fromJson;
 
   @override
-  String get walletLabel => throw _privateConstructorUsedError;
+  String get walletLabel;
   @override
-  String get address => throw _privateConstructorUsedError;
+  String get address;
   @override
-  String get coin => throw _privateConstructorUsedError;
+  String get coin;
   @override
-  String? get network => throw _privateConstructorUsedError;
+  String? get network;
   @override
-  String get platform => throw _privateConstructorUsedError;
+  String get platform;
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String get trax => throw _privateConstructorUsedError;
+  String get trax;
   @override
-  String get type => throw _privateConstructorUsedError;
+  String get type;
   @override
   @JsonKey(ignore: true)
   _$$_CryptoWalletDTOCopyWith<_$_CryptoWalletDTO> get copyWith =>

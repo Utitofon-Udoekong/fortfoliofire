@@ -5,9 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/application/auth/sign_in_form/phone/sign_in_form_phone_cubit.dart';
 import 'package:fortfolio/application/auth/sign_up_form/phone/sign_up_form_phone_cubit.dart';
-import 'package:fortfolio/application/notification/local_notification_cubit.dart';
 import 'package:fortfolio/infrastructure/auth/local_auth_api.dart';
-import 'package:fortfolio/presentation/authentication/sign_up/sign_up_form.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/notifications/cubit/notification_cubit.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/bank/cubit/bank_address_cubit.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/crypto/cubit/crypto_wallet_cubit.dart';
@@ -15,7 +13,6 @@ import 'package:fortfolio/presentation/home/dashboard/screens/profile/cubit/prof
 import 'package:fortfolio/presentation/home/dashboard/screens/verification/cubit/verification_cubit.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/security/cubit/security_cubit.dart';
 import 'package:fortfolio/presentation/network/no_connection.dart';
-import 'package:jiffy/jiffy.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/application/network/network_cubit.dart';
@@ -94,10 +91,14 @@ class _AppState extends State<App> with WidgetsBindingObserver {
     print("resumed");
     final sp = await SharedPreferences.getInstance();
     bool canCheckBiometrics = await LocalAuthApi.hasBiometrics();
-    final bgTime = sp.getString(backgroundedTimeKey);
-    final biometricsExist = sp.getBool("bio_enabled");
-    final difference = DateTime.now().difference(DateTime.parse(bgTime!)).inSeconds;
-    final shouldShowPIN = difference > 10 && biometricsExist!;
+    String bgTime = DateTime.now().toString();
+    bool biometricsExist = false;
+    if(sp.containsKey("bio_enabled")){
+      biometricsExist = sp.getBool("bio_enabled")!;
+      bgTime = sp.getString("backgroundedTimeKey")!;
+    }
+    final difference = DateTime.now().difference(DateTime.parse(bgTime)).inSeconds;
+    final shouldShowPIN = difference > 10 && biometricsExist;
 
     if (shouldShowPIN) {
         if (canCheckBiometrics) {
@@ -124,10 +125,6 @@ class _AppState extends State<App> with WidgetsBindingObserver {
           ),
           BlocProvider(
             create: (context) => getIt<AuthCubit>(),
-            lazy: false,
-          ),
-          BlocProvider(
-            create: (context) => getIt<LocalNotificationCubit>(),
             lazy: false,
           ),
           BlocProvider(

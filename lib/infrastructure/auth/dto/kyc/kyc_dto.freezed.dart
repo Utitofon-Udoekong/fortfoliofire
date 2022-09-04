@@ -249,7 +249,9 @@ class _$_KYCItemDTO extends _KYCItemDTO {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_KYCItemDTOToJson(this);
+    return _$$_KYCItemDTOToJson(
+      this,
+    );
   }
 }
 
@@ -268,20 +270,19 @@ abstract class _KYCItemDTO extends KYCItemDTO {
       _$_KYCItemDTO.fromJson;
 
   @override
-  String get fullName => throw _privateConstructorUsedError;
+  String get fullName;
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String get documentType => throw _privateConstructorUsedError;
+  String get documentType;
   @override
-  List<Map<String, dynamic>> get documents =>
-      throw _privateConstructorUsedError;
+  List<Map<String, dynamic>> get documents;
   @override
-  DateTime get submitted => throw _privateConstructorUsedError;
+  DateTime get submitted;
   @override
-  String get status => throw _privateConstructorUsedError;
+  String get status;
   @override
-  String? get rejectionReason => throw _privateConstructorUsedError;
+  String? get rejectionReason;
   @override
   @JsonKey(ignore: true)
   _$$_KYCItemDTOCopyWith<_$_KYCItemDTO> get copyWith =>

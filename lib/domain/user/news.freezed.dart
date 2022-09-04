@@ -260,21 +260,21 @@ abstract class _NewsModel extends NewsModel {
   const _NewsModel._() : super._();
 
   @override
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
-  String get description => throw _privateConstructorUsedError;
+  String get description;
   @override
-  String get url => throw _privateConstructorUsedError;
+  String get url;
   @override
-  String get imageRef => throw _privateConstructorUsedError;
+  String get imageRef;
   @override
-  String? get redirectLink => throw _privateConstructorUsedError;
+  String? get redirectLink;
   @override
-  String get createdat => throw _privateConstructorUsedError;
+  String get createdat;
   @override
-  int get size => throw _privateConstructorUsedError;
+  int get size;
   @override
-  String get fullPath => throw _privateConstructorUsedError;
+  String get fullPath;
   @override
   @JsonKey(ignore: true)
   _$$_NewsModelCopyWith<_$_NewsModel> get copyWith =>

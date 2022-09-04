@@ -383,33 +383,31 @@ abstract class _CryptoWalletState extends CryptoWalletState {
   const _CryptoWalletState._() : super._();
 
   @override
-  String get walletLabel => throw _privateConstructorUsedError;
+  String get walletLabel;
   @override
-  String get coin => throw _privateConstructorUsedError;
+  String get coin;
   @override
-  String get network => throw _privateConstructorUsedError;
+  String get network;
   @override
-  String get address => throw _privateConstructorUsedError;
+  String get address;
   @override
-  String get platform => throw _privateConstructorUsedError;
+  String get platform;
   @override
-  String get failure => throw _privateConstructorUsedError;
+  String get failure;
   @override
-  String get success => throw _privateConstructorUsedError;
+  String get success;
   @override
-  bool get isGeneral => throw _privateConstructorUsedError;
+  bool get isGeneral;
   @override
-  bool get isloading => throw _privateConstructorUsedError;
+  bool get isloading;
   @override
-  int? get selectedNetwork => throw _privateConstructorUsedError;
+  int? get selectedNetwork;
   @override
-  List<DropdownMenuItem<String>> get dropdownItems =>
-      throw _privateConstructorUsedError;
+  List<DropdownMenuItem<String>> get dropdownItems;
   @override
-  List<CryptoWallet> get cryptoAddresses => throw _privateConstructorUsedError;
+  List<CryptoWallet> get cryptoAddresses;
   @override
-  List<CryptoWallet> get generalCryptoAddresses =>
-      throw _privateConstructorUsedError;
+  List<CryptoWallet> get generalCryptoAddresses;
   @override
   @JsonKey(ignore: true)
   _$$_CryptoWalletStateCopyWith<_$_CryptoWalletState> get copyWith =>

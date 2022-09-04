@@ -206,7 +206,9 @@ class _$_NotificationItemDTO extends _NotificationItemDTO {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_NotificationItemDTOToJson(this);
+    return _$$_NotificationItemDTOToJson(
+      this,
+    );
   }
 }
 
@@ -223,15 +225,15 @@ abstract class _NotificationItemDTO extends NotificationItemDTO {
       _$_NotificationItemDTO.fromJson;
 
   @override
-  String get type => throw _privateConstructorUsedError;
+  String get type;
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String get title => throw _privateConstructorUsedError;
+  String get title;
   @override
-  DateTime get createdat => throw _privateConstructorUsedError;
+  DateTime get createdat;
   @override
-  String get status => throw _privateConstructorUsedError;
+  String get status;
   @override
   @JsonKey(ignore: true)
   _$$_NotificationItemDTOCopyWith<_$_NotificationItemDTO> get copyWith =>

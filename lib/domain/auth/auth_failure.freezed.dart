@@ -2487,7 +2487,7 @@ abstract class SignInMethodNotAvailable implements AuthFailure {
   const factory SignInMethodNotAvailable(final String methodName) =
       _$SignInMethodNotAvailable;
 
-  String get methodName => throw _privateConstructorUsedError;
+  String get methodName;
   @JsonKey(ignore: true)
   _$$SignInMethodNotAvailableCopyWith<_$SignInMethodNotAvailable>
       get copyWith => throw _privateConstructorUsedError;

@@ -227,17 +227,17 @@ abstract class _SignInFormEmailState extends SignInFormEmailState {
   const _SignInFormEmailState._() : super._();
 
   @override
-  EmailAddress get emailAddress => throw _privateConstructorUsedError;
+  EmailAddress get emailAddress;
   @override
-  Password get password => throw _privateConstructorUsedError;
+  Password get password;
   @override
-  bool get isSubmitting => throw _privateConstructorUsedError;
+  bool get isSubmitting;
   @override
-  bool get isObscure => throw _privateConstructorUsedError;
+  bool get isObscure;
   @override
-  String get failure => throw _privateConstructorUsedError;
+  String get failure;
   @override
-  String get success => throw _privateConstructorUsedError;
+  String get success;
   @override
   @JsonKey(ignore: true)
   _$$_SignInFormEmailStateCopyWith<_$_SignInFormEmailState> get copyWith =>

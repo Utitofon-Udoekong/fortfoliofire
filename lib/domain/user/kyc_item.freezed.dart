@@ -247,20 +247,19 @@ abstract class _KYCItem extends KYCItem {
   const _KYCItem._() : super._();
 
   @override
-  String get fullName => throw _privateConstructorUsedError;
+  String get fullName;
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String get documentType => throw _privateConstructorUsedError;
+  String get documentType;
   @override
-  List<Map<String, dynamic>> get documents =>
-      throw _privateConstructorUsedError;
+  List<Map<String, dynamic>> get documents;
   @override
-  DateTime get submitted => throw _privateConstructorUsedError;
+  DateTime get submitted;
   @override
-  String get status => throw _privateConstructorUsedError;
+  String get status;
   @override
-  String? get rejectionReason => throw _privateConstructorUsedError;
+  String? get rejectionReason;
   @override
   @JsonKey(ignore: true)
   _$$_KYCItemCopyWith<_$_KYCItem> get copyWith =>

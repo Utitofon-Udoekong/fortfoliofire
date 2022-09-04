@@ -189,13 +189,13 @@ abstract class _ResetPasswordState extends ResetPasswordState {
   const _ResetPasswordState._() : super._();
 
   @override
-  EmailAddress get emailAddress => throw _privateConstructorUsedError;
+  EmailAddress get emailAddress;
   @override
-  bool get isSubmitting => throw _privateConstructorUsedError;
+  bool get isSubmitting;
   @override
-  String get failure => throw _privateConstructorUsedError;
+  String get failure;
   @override
-  String get success => throw _privateConstructorUsedError;
+  String get success;
   @override
   @JsonKey(ignore: true)
   _$$_ResetPasswordStateCopyWith<_$_ResetPasswordState> get copyWith =>

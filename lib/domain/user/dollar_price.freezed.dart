@@ -138,9 +138,9 @@ abstract class _DollarPrice implements DollarPrice {
       required final int sellPrice}) = _$_DollarPrice;
 
   @override
-  int get buyPrice => throw _privateConstructorUsedError;
+  int get buyPrice;
   @override
-  int get sellPrice => throw _privateConstructorUsedError;
+  int get sellPrice;
   @override
   @JsonKey(ignore: true)
   _$$_DollarPriceCopyWith<_$_DollarPrice> get copyWith =>

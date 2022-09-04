@@ -283,23 +283,23 @@ abstract class _SignUpFormState extends SignUpFormState {
   const _SignUpFormState._() : super._();
 
   @override
-  EmailAddress get emailAddress => throw _privateConstructorUsedError;
+  EmailAddress get emailAddress;
   @override
-  UserName get firstName => throw _privateConstructorUsedError;
+  UserName get firstName;
   @override
-  UserName get lastName => throw _privateConstructorUsedError;
+  UserName get lastName;
   @override
-  Password get password => throw _privateConstructorUsedError;
+  Password get password;
   @override
-  bool get isSubmitting => throw _privateConstructorUsedError;
+  bool get isSubmitting;
   @override
-  bool get isObscure => throw _privateConstructorUsedError;
+  bool get isObscure;
   @override
-  bool get accepted => throw _privateConstructorUsedError;
+  bool get accepted;
   @override
-  String get failure => throw _privateConstructorUsedError;
+  String get failure;
   @override
-  String get success => throw _privateConstructorUsedError;
+  String get success;
   @override
   @JsonKey(ignore: true)
   _$$_SignUpFormStateCopyWith<_$_SignUpFormState> get copyWith =>

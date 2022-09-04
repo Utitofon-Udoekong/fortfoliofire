@@ -165,11 +165,11 @@ abstract class _DashboardState implements DashboardState {
       required final String failure}) = _$_DashboardState;
 
   @override
-  List<NewsModel> get newsList => throw _privateConstructorUsedError;
+  List<NewsModel> get newsList;
   @override
-  bool get loading => throw _privateConstructorUsedError;
+  bool get loading;
   @override
-  String get failure => throw _privateConstructorUsedError;
+  String get failure;
   @override
   @JsonKey(ignore: true)
   _$$_DashboardStateCopyWith<_$_DashboardState> get copyWith =>

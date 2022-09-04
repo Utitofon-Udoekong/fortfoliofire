@@ -305,25 +305,25 @@ abstract class _VerificationState extends VerificationState {
   const _VerificationState._() : super._();
 
   @override
-  bool get submitting => throw _privateConstructorUsedError;
+  bool get submitting;
   @override
-  bool get kycExists => throw _privateConstructorUsedError;
+  bool get kycExists;
   @override
-  String get failure => throw _privateConstructorUsedError;
+  String get failure;
   @override
-  String get rejectionReason => throw _privateConstructorUsedError;
+  String get rejectionReason;
   @override
-  String get success => throw _privateConstructorUsedError;
+  String get success;
   @override
-  String get status => throw _privateConstructorUsedError;
+  String get status;
   @override
-  String get documentType => throw _privateConstructorUsedError;
+  String get documentType;
   @override
-  Uint8List get frontFile => throw _privateConstructorUsedError;
+  Uint8List get frontFile;
   @override
-  Uint8List get backFile => throw _privateConstructorUsedError;
+  Uint8List get backFile;
   @override
-  Uint8List get utilityFile => throw _privateConstructorUsedError;
+  Uint8List get utilityFile;
   @override
   @JsonKey(ignore: true)
   _$$_VerificationStateCopyWith<_$_VerificationState> get copyWith =>

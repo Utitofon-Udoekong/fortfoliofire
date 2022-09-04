@@ -54,7 +54,7 @@ class UploadDocumentImage extends StatelessWidget {
                             padding: const EdgeInsets.all(20),
                             child: const Text('Take a photo'),
                             onPressed: () async {
-                              Navigator.pop(context);
+                              context.router.pop();
                               Uint8List file =
                                   await pickImage(ImageSource.camera);
                               context
@@ -65,7 +65,7 @@ class UploadDocumentImage extends StatelessWidget {
                             padding: const EdgeInsets.all(20),
                             child: const Text('Choose from Gallery'),
                             onPressed: () async {
-                              Navigator.of(context).pop();
+                              context.router.pop();
                               Uint8List file =
                                   await pickImage(ImageSource.gallery);
                               context

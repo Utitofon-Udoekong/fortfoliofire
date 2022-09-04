@@ -296,7 +296,7 @@ abstract class InvalidEmail<T> implements ValueFailure<T> {
       _$InvalidEmail<T>;
 
   @override
-  T get failedValue => throw _privateConstructorUsedError;
+  T get failedValue;
   @override
   @JsonKey(ignore: true)
   _$$InvalidEmailCopyWith<T, _$InvalidEmail<T>> get copyWith =>
@@ -473,7 +473,7 @@ abstract class InvalidPassword<T> implements ValueFailure<T> {
       _$InvalidPassword<T>;
 
   @override
-  T get failedValue => throw _privateConstructorUsedError;
+  T get failedValue;
   @override
   @JsonKey(ignore: true)
   _$$InvalidPasswordCopyWith<T, _$InvalidPassword<T>> get copyWith =>
@@ -649,7 +649,7 @@ abstract class InvalidPhone<T> implements ValueFailure<T> {
       _$InvalidPhone<T>;
 
   @override
-  T get failedValue => throw _privateConstructorUsedError;
+  T get failedValue;
   @override
   @JsonKey(ignore: true)
   _$$InvalidPhoneCopyWith<T, _$InvalidPhone<T>> get copyWith =>
@@ -825,7 +825,7 @@ abstract class ShortPassword<T> implements ValueFailure<T> {
       _$ShortPassword<T>;
 
   @override
-  T get failedValue => throw _privateConstructorUsedError;
+  T get failedValue;
   @override
   @JsonKey(ignore: true)
   _$$ShortPasswordCopyWith<T, _$ShortPassword<T>> get copyWith =>
@@ -1000,7 +1000,7 @@ abstract class ShortName<T> implements ValueFailure<T> {
   const factory ShortName({required final T failedValue}) = _$ShortName<T>;
 
   @override
-  T get failedValue => throw _privateConstructorUsedError;
+  T get failedValue;
   @override
   @JsonKey(ignore: true)
   _$$ShortNameCopyWith<T, _$ShortName<T>> get copyWith =>
@@ -1172,7 +1172,7 @@ abstract class Empty<T> implements ValueFailure<T> {
   const factory Empty({required final T failedValue}) = _$Empty<T>;
 
   @override
-  T get failedValue => throw _privateConstructorUsedError;
+  T get failedValue;
   @override
   @JsonKey(ignore: true)
   _$$EmptyCopyWith<T, _$Empty<T>> get copyWith =>
@@ -1359,8 +1359,8 @@ abstract class ListTooLong<T> implements ValueFailure<T> {
       required final int max}) = _$ListTooLong<T>;
 
   @override
-  T get failedValue => throw _privateConstructorUsedError;
-  int get max => throw _privateConstructorUsedError;
+  T get failedValue;
+  int get max;
   @override
   @JsonKey(ignore: true)
   _$$ListTooLongCopyWith<T, _$ListTooLong<T>> get copyWith =>
@@ -1547,8 +1547,8 @@ abstract class InvalidAmount<T> implements ValueFailure<T> {
       required final int min}) = _$InvalidAmount<T>;
 
   @override
-  T get failedValue => throw _privateConstructorUsedError;
-  int get min => throw _privateConstructorUsedError;
+  T get failedValue;
+  int get min;
   @override
   @JsonKey(ignore: true)
   _$$InvalidAmountCopyWith<T, _$InvalidAmount<T>> get copyWith =>

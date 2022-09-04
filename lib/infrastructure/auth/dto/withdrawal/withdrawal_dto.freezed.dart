@@ -323,7 +323,9 @@ class _$_WithdrawalItemDTO extends _WithdrawalItemDTO {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_WithdrawalItemDTOToJson(this);
+    return _$$_WithdrawalItemDTOToJson(
+      this,
+    );
   }
 }
 
@@ -347,28 +349,27 @@ abstract class _WithdrawalItemDTO extends WithdrawalItemDTO {
       _$_WithdrawalItemDTO.fromJson;
 
   @override
-  String get description => throw _privateConstructorUsedError;
+  String get description;
   @override
-  double get amount => throw _privateConstructorUsedError;
+  double get amount;
   @override
-  int get duration => throw _privateConstructorUsedError;
+  int get duration;
   @override
-  int get roi => throw _privateConstructorUsedError;
+  int get roi;
   @override
-  String get traxId => throw _privateConstructorUsedError;
+  String get traxId;
   @override
-  String get uid => throw _privateConstructorUsedError;
+  String get uid;
   @override
-  String get status => throw _privateConstructorUsedError;
+  String get status;
   @override
-  DateTime get createdat => throw _privateConstructorUsedError;
+  DateTime get createdat;
   @override
-  String get paymentMethod => throw _privateConstructorUsedError;
+  String get paymentMethod;
   @override
-  String get currency => throw _privateConstructorUsedError;
+  String get currency;
   @override
-  Map<String, dynamic> get withdrawalDetails =>
-      throw _privateConstructorUsedError;
+  Map<String, dynamic> get withdrawalDetails;
   @override
   @JsonKey(ignore: true)
   _$$_WithdrawalItemDTOCopyWith<_$_WithdrawalItemDTO> get copyWith =>

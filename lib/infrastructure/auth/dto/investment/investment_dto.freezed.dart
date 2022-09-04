@@ -427,7 +427,9 @@ class _$_InvestmentItemDTO extends _InvestmentItemDTO {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_InvestmentItemDTOToJson(this);
+    return _$$_InvestmentItemDTOToJson(
+      this,
+    );
   }
 }
 
@@ -456,39 +458,39 @@ abstract class _InvestmentItemDTO extends InvestmentItemDTO {
       _$_InvestmentItemDTO.fromJson;
 
   @override
-  String get description => throw _privateConstructorUsedError;
+  String get description;
   @override
-  String get uid => throw _privateConstructorUsedError;
+  String get uid;
   @override
-  String? get coin => throw _privateConstructorUsedError;
+  String? get coin;
   @override
-  String? get bankAccountType => throw _privateConstructorUsedError;
+  String? get bankAccountType;
   @override
-  double get amount => throw _privateConstructorUsedError;
+  double get amount;
   @override
-  String get traxId => throw _privateConstructorUsedError;
+  String get traxId;
   @override
-  int get roi => throw _privateConstructorUsedError;
+  int get roi;
   @override
-  int get numberOfDays => throw _privateConstructorUsedError;
+  int get numberOfDays;
   @override
-  String get planName => throw _privateConstructorUsedError;
+  String get planName;
   @override
-  DateTime get paymentDate => throw _privateConstructorUsedError;
+  DateTime get paymentDate;
   @override
-  DateTime get dueDate => throw _privateConstructorUsedError;
+  DateTime get dueDate;
   @override
-  int get duration => throw _privateConstructorUsedError;
+  int get duration;
   @override
-  String get status => throw _privateConstructorUsedError;
+  String get status;
   @override
-  String get currency => throw _privateConstructorUsedError;
+  String get currency;
   @override
-  double get planYield => throw _privateConstructorUsedError;
+  double get planYield;
   @override
-  String get paymentMethod => throw _privateConstructorUsedError;
+  String get paymentMethod;
   @override
-  String get refId => throw _privateConstructorUsedError;
+  String get refId;
   @override
   @JsonKey(ignore: true)
   _$$_InvestmentItemDTOCopyWith<_$_InvestmentItemDTO> get copyWith =>

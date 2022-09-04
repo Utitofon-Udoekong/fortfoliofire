@@ -11,7 +11,6 @@ class Security extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<SecurityCubit>().getBiometricState();
     final biometricsExists = context.select((SecurityCubit element) => element.state.biometricsExists);
     return Scaffold(
       body: SafeArea(
@@ -47,22 +46,27 @@ class Security extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              SwitchListTile.adaptive(
-                title: Row(
-                  children: [
-                    const Icon(Icons.fingerprint, color: kPrimaryColor,),
-                    const SizedBox(width: 20,),
-                    Text(biometricsExists ? "Disable biometrics" : "Enable biometrics", style: subTitle.copyWith(color: kBlackColor, fontWeight: FontWeight.w600, fontSize: 14.2),)
-                  ]
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5.0),
+                  color: const Color(0XFFF3F6F8)
                 ),
-                value: biometricsExists,
-                tileColor: const Color(0XFFF3F6F8),
-                activeColor: kPrimaryColor,
-                inactiveThumbColor: kgreyColor,
-                activeTrackColor: kPrimaryColor,
-                onChanged: (val) => context.read<SecurityCubit>().toggleBiometricState(val: val),
-                contentPadding:
-                    const EdgeInsets.symmetric(horizontal: 9.0, vertical: 7.0),
+                child: SwitchListTile.adaptive(
+                  title: Row(
+                    children: [
+                      const Icon(Icons.fingerprint, color: kPrimaryColor,),
+                      const SizedBox(width: 20,),
+                      Text(biometricsExists ? "Disable biometrics" : "Enable biometrics", style: subTitle.copyWith(color: kBlackColor, fontWeight: FontWeight.w600, fontSize: 14.2),)
+                    ]
+                  ),
+                  value: biometricsExists,
+                  activeColor: kPrimaryColor,
+                  inactiveThumbColor: kgreyColor,
+                  activeTrackColor: kSecondaryColor.withOpacity(0.65),
+                  onChanged: (val) => context.read<SecurityCubit>().toggleBiometricState(val: val),
+                  contentPadding:
+                      const EdgeInsets.symmetric(horizontal: 9.0, vertical: 0.0),
+                ),
               ),
             ],
           ),

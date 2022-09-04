@@ -362,31 +362,31 @@ abstract class _AuthUserModel extends AuthUserModel {
   const _AuthUserModel._() : super._();
 
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String get displayName => throw _privateConstructorUsedError;
+  String get displayName;
   @override
-  String get phoneNumber => throw _privateConstructorUsedError;
+  String get phoneNumber;
   @override
-  String get firstName => throw _privateConstructorUsedError;
+  String get firstName;
   @override
-  String get lastName => throw _privateConstructorUsedError;
+  String get lastName;
   @override
-  double get balance => throw _privateConstructorUsedError;
+  double get balance;
   @override
-  String get email => throw _privateConstructorUsedError;
+  String get email;
   @override
-  bool get isVerified => throw _privateConstructorUsedError;
+  bool get isVerified;
   @override
-  bool get isAccountActive => throw _privateConstructorUsedError;
+  bool get isAccountActive;
   @override
-  DateTime get createdat => throw _privateConstructorUsedError;
+  DateTime get createdat;
   @override
-  String get status => throw _privateConstructorUsedError;
+  String get status;
   @override
-  DateTime? get startDate => throw _privateConstructorUsedError;
+  DateTime? get startDate;
   @override
-  DateTime? get deleteDate => throw _privateConstructorUsedError;
+  DateTime? get deleteDate;
   @override
   @JsonKey(ignore: true)
   _$$_AuthUserModelCopyWith<_$_AuthUserModel> get copyWith =>
