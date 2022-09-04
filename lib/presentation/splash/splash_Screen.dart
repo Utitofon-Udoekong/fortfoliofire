@@ -5,6 +5,7 @@ import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:fortfolio/infrastructure/auth/local_auth_api.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -22,18 +23,31 @@ class _SplashScreenState extends State<SplashScreen> {
     });
   }
   Future _resume() async {
+    final sp = await SharedPreferences.getInstance();
     bool canCheckBiometrics = await LocalAuthApi.hasBiometrics();
+    final bgTime = sp.getString("backgroundedTimeKey");
+    final biometricsExist = sp.getBool("bio_enabled");
+    final difference = DateTime.now().difference(DateTime.parse(bgTime!)).inSeconds;
+    final shouldShowPIN = difference >= 10 && biometricsExist!;
     final bool isChecked =
         context.read<AuthCubit>().state.isUserCheckedFromAuthFacade;
+    print(biometricsExist);
+    print(shouldShowPIN);
+    print(isChecked);
 
     if (isChecked) {
+          CustomSnackbar.showSnackBar(context, "checked", false);
+      if(shouldShowPIN == false){
+        context.router.replace(const HomePageRoute());
+        return;
+      }
       if (canCheckBiometrics) {
         bool didauthenticate = await LocalAuthApi.authenticate(
             localizedReason: 'Scan Fingerprint to authenticate');
         if (didauthenticate != true) {
-          CustomSnackbar.showSnackBar(context, "Authenticate to continue", true);
+          // CustomSnackbar.showSnackBar(context, "Authenticate to continue", true);
         } else {
-            context.router.replace(const HomePageRoute());
+          context.router.replace(const HomePageRoute());
         }
       }
     } else { 

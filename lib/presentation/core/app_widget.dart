@@ -153,7 +153,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
               create: (context) => getIt<InvestmentCubit>(), lazy: false),
         ],
         child: BlocListener<AuthCubit, AuthState>(
-          listenWhen: (p,c) => c.isLoggedIn == false && resumed,
+          listenWhen: (p,c) => c.isLoggedIn == false,
           listener: (context, state) {
             context.router.push(const SignUpFormRoute());
           },

@@ -29,9 +29,11 @@ class Dashboard extends StatelessWidget {
                 },
                 builder: (context, loading) {
                   if (loading) {
-                    return Container(
-                      margin: const EdgeInsets.all(8),
-                      child: const CircularProgressIndicator(),
+                    return Center(
+                      child: Container(
+                        margin: const EdgeInsets.all(8),
+                        child: const CircularProgressIndicator(),
+                      ),
                     );
                   } else {
                     return BlocSelector<DashboardCubit, DashboardState, bool>(

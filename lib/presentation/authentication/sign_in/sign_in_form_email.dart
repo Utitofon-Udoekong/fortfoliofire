@@ -39,7 +39,7 @@ class SignInFormEmail extends StatelessWidget {
                 listenWhen: (p, c) =>
                     p.isLoggedIn != c.isLoggedIn && c.isLoggedIn,
                 listener: (context, state) {
-                  Future.delayed(const Duration(seconds: 300), () {
+                  Future.delayed(const Duration(milliseconds: 300), () {
                     context.router.replace(const HomePageRoute());
                   });
                 },
