@@ -36,10 +36,8 @@ class _SplashScreenState extends State<SplashScreen> {
       bgTime = sp.getString("backgroundedTimeKey")!;
     }
     final difference = DateTime.now().difference(DateTime.parse(bgTime)).inSeconds;
-    final shouldShowPIN = difference <= 10 && biometricsExist;
+    final shouldShowPIN = difference >= 10 && biometricsExist;
     final bool isChecked = context.read<AuthCubit>().state.isUserCheckedFromAuthFacade;
-  print("biometricsExist");
-  print(biometricsExist);
     if (isChecked) {
       if(shouldShowPIN == false){
         context.router.replace(const HomePageRoute());
