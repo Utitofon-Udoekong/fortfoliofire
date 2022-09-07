@@ -305,11 +305,16 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
 
    @override
   Future<Either<String, KYCItem>> getKYC() async {
+    final sp = await SharedPreferences.getInstance(); 
     final query = await firestore.kycCollection.doc(auth.currentUser!.uid).get();
     KYCItem doc = KYCItem.empty();
     try {
       if(query.exists){
+        if(!sp.containsKey("kycExists")){
+          sp.setBool("kycExists",true);
+        }
         doc = KYCItemDTO.fromFirestore(query).toDomain();
+        return right(doc);
       }
       return right(doc);
     } on FirebaseException catch (e) {

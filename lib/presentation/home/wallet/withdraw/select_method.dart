@@ -45,15 +45,14 @@ class SelectWithdrawalMethod extends StatelessWidget {
                 const SizedBox(
                   height: 30,
                 ),
-                BlocBuilder<WalletCubit, WalletState>(
-                  builder: (context, state) {
-                    var element;
-                    final svg = SvgPicture.asset(
-                      'images/blank-wallet.svg',
-                      semanticsLabel: 'Blank Wallet',
-                    );
-                    if (state.paymentMethodExists) {
-                      List<Widget> widgetTree = [
+                BlocSelector<WalletCubit, WalletState, bool>(
+                  selector: (state) {
+                    return state.paymentMethodExists;
+                  },
+                  builder: (context, paymentMethodExists) {
+                    List<Widget> children = [];
+                    if(paymentMethodExists){
+                      children = [
                         CustomIconTrailingFunctionButton(
                             icon: 'withdraw-bank',
                             title: 'Bank Account',
@@ -79,12 +78,12 @@ class SelectWithdrawalMethod extends StatelessWidget {
                           },
                         ),
                       ];
-                      for (var widgetElement in widgetTree) {
-                        element = widgetElement;
-                       }
-                      //  return element;
-                    }else {
-                      element = Center(
+                    }else{
+                      final svg = SvgPicture.asset(
+                        'images/blank-wallet.svg',
+                        semanticsLabel: 'Blank Wallet',
+                      );
+                      children = [Center(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
@@ -109,11 +108,14 @@ class SelectWithdrawalMethod extends StatelessWidget {
                             ))
                           ],
                         ),
-                      );
+                      )];
                     }
-                    return element;
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: children,
+                    );
                   },
-                )
+                ),
               ],
             ),
           ),

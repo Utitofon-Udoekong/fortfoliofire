@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
+import 'package:fortfolio/domain/user/bank_address.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 
@@ -44,6 +45,37 @@ class BankWithdrawal extends StatelessWidget {
                       const SizedBox(
                         height: 30,
                       ),
+                      BlocSelector<WalletCubit, WalletState, List<BankAddress>>(
+                        selector: (state) {
+                          return state.bankAddresses;
+                        },
+                        builder: (context, bankAddresses) {
+                          List<Widget> children = [];
+                          if(bankAddresses.isEmpty){
+                            children = [Center(
+                            child: TextButton(
+                                onPressed: () =>
+                                    context.router.push(const AddBankRoute()),
+                                child: Text(
+                                  'Add a new bank',
+                                  style: subTitle.copyWith(
+                                      fontSize: 13, color: kPrimaryColor),
+                                )),
+                          )];
+                          }else{
+                            children = bankAddresses.map((address) {
+                              return buildtile(
+                                  address.accountNumber,
+                                  () => context
+                                      .read<WalletCubit>()
+                                      .withdrawalDetailsChanged(
+                                          withdrawalDetails: address.toMap()),
+                                  address.userName);
+                            }).toList();
+                          }
+                          return Column(crossAxisAlignment: CrossAxisAlignment.start, children: children,);
+                        },
+                      ),
                       BlocBuilder<WalletCubit, WalletState>(
                           builder: (context, state) {
                         return Column(
@@ -58,19 +90,6 @@ class BankWithdrawal extends StatelessWidget {
                           }).toList(),
                         );
                       }),
-                      const SizedBox(
-                        height: 50,
-                      ),
-                      Center(
-                        child: TextButton(
-                            onPressed: () =>
-                                context.router.push(const AddBankRoute()),
-                            child: Text(
-                              'Add a new bank',
-                              style: subTitle.copyWith(
-                                  fontSize: 13, color: kPrimaryColor),
-                            )),
-                      ),
                       const SizedBox(
                         height: 20,
                       ),

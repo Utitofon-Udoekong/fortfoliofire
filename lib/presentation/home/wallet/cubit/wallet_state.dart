@@ -54,7 +54,7 @@ class WalletState with _$WalletState {
       ],
       withdrawals: [
       ],
-      showDigits: false,
+      showDigits: true,
       transactions: [
         
       ]);

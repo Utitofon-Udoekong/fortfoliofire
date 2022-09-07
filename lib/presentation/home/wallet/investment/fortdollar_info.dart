@@ -20,7 +20,7 @@ class FortDollarInvestmentInfo extends StatelessWidget {
     final yield = context.select(
         (WalletCubit walletCubit) => walletCubit.state.fortDollarYieldBalance);
     final activeInvestments = context.select(
-        (WalletCubit walletCubit) => walletCubit.state.fortDollarInvestments);
+        (WalletCubit walletCubit) => walletCubit.state.fortDollarInvestments.where((element) => element.status == "Pending" || element.status == "Successful")).toList();
     return Scaffold(
       body: SafeArea(
           child: SingleChildScrollView(

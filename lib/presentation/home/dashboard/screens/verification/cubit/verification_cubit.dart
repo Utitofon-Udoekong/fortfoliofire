@@ -48,18 +48,26 @@ class VerificationCubit extends Cubit<VerificationState> {
     final sp = await SharedPreferences.getInstance();
     final databaseKYC = await firestoreFacade.getKYC();
     final bool isVerified = authCubit.state.userModel.isVerified;
-    bool? kycExists = sp.getBool('kycExists');
+    bool kycExists = false;
+    if(sp.containsKey("kycExists")){
+      kycExists = sp.getBool('kycExists')!;
+    }
     databaseKYC.fold((l) {
       emit(state.copyWith(failure: l));
     }, (r) {
+      if (r == KYCItem.empty()){
+        sp.setBool("kycExists", false);
+        emit(state.copyWith(kycExists: false));
+      }
       if (r.status == "Rejected" || r.status == "Approved" || isVerified) {
         sp.setBool("kycExists", false);
         if (r.status == "Approved") emit(state.copyWith(status: r.status));
-        if (r.status == "Rejected")
+        if (r.status == "Rejected") {
           emit(state.copyWith(
               status: r.status, rejectionReason: r.rejectionReason!));
+        }
       } else {
-        emit(state.copyWith(kycExists: kycExists!));
+        emit(state.copyWith(kycExists: kycExists));
       }
     });
   }

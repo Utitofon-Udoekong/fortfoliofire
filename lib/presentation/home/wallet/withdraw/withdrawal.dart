@@ -13,6 +13,9 @@ class WithdrawalPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<WalletCubit>().initBankAddresses();
+    context.read<WalletCubit>().initCryptoWallet();
+    context.read<WalletCubit>().initGeneralCryptoWallet();
     final InvestmentItem withdrawalItem = context.select(
         (WalletCubit walletCubit) => walletCubit.state.investmentToBeWithdrawn);
     final bool harvested = context.select((WalletCubit walletCubit) =>
