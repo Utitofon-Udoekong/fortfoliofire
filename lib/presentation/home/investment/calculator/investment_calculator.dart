@@ -1,7 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
+import 'package:fortfolio/injection.dart';
 import 'package:intl/intl.dart';
 import 'package:jiffy/jiffy.dart';
 
@@ -13,8 +15,12 @@ class Calculator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final formatter = NumberFormat("#,##0.##", "en_US");
+    final selectedExchange =
+        context.select((CalculatorCubit cubit) => cubit.state.exchange);
+    final sellPrice =
+        context.select((AuthCubit cubit) => cubit.state.sellPrice);
     return BlocProvider(
-      create: (context) => CalculatorCubit(),
+      create: (context) => getIt<CalculatorCubit>(),
       child: Scaffold(
           body: SafeArea(
             child: Padding(
@@ -33,9 +39,95 @@ class Calculator extends StatelessWidget {
                           const SizedBox(
                             height: 20,
                           ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
                           Text(
                             "Investment Calculator",
                             style: titleText.copyWith(color: kBlackColor),
+                          ),
+Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 5.0, vertical: 4.0),
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                          color: kWhiteColor,
+                        ),
+                        borderRadius: BorderRadius.circular(5.0)),
+                    child: GestureDetector(
+                        onTap: () {
+                          showModalBottomSheet<dynamic>(
+                              isScrollControlled: true,
+                              context: context,
+                              builder: (BuildContext context) {
+                                return SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.35,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(20.0),
+                                    child: Column(
+                                      children: <Widget>[
+                                        Text(
+                                          'Select balance',
+                                          style:
+                                              titleText.copyWith(fontSize: 15),
+                                        ),
+                                        const SizedBox(
+                                          height: 20,
+                                        ),
+                                        buildModalTile('9ja', 'NGN Balance', () {
+                                          context
+                                              .read<CalculatorCubit>().calculateInNaira(sellPrice: sellPrice);
+                                          context.router.pop();
+                                        }, selectedExchange, "NGN"),
+                                        const SizedBox(
+                                          height: 16,
+                                        ),
+                                        buildModalTile('usa', 'USD Balance', () {
+                                          context
+                                              .read<CalculatorCubit>().calculateInUSD(sellPrice: sellPrice);
+                                          context.router.pop();
+                                        }, selectedExchange, "USD"),
+                                        const SizedBox(
+                                          height: 16,
+                                        ),
+                                        buildModalTile('btc', 'BTC Balance', () {
+                                          context
+                                              .read<CalculatorCubit>().calculateInBTC(sellPrice: sellPrice);
+                                          context.router.pop();
+                                        }, selectedExchange, "BTC"),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              },
+                              backgroundColor: kWhiteColor);
+                        },
+                        child: BlocBuilder<CalculatorCubit, CalculatorState>(
+                          buildWhen: (previous, current) =>
+                              previous.exchange != current.exchange,
+                          builder: (context, state) {
+                            return Flex(
+                              direction: Axis.horizontal,
+                              children: <Widget>[
+                                Text(
+                                  state.exchange,
+                                  style: subTitle.copyWith(
+                                      color: kWhiteColor, fontSize: 15),
+                                ),
+                                const SizedBox(
+                                  width: 20,
+                                ),
+                                const Icon(
+                                  Icons.keyboard_arrow_down,
+                                  color: kWhiteColor,
+                                )
+                              ],
+                            );
+                          },
+                        )),
+                  ),
+                            ],
                           ),
                           const SizedBox(
                             height: 30,
@@ -61,7 +153,7 @@ class Calculator extends StatelessWidget {
                                 onChanged: (String amount) => context
                                     .read<CalculatorCubit>()
                                     .investmentAmountChanged(
-                                        investmentAmount: int.parse(amount)),
+                                        investmentAmount: double.parse(amount)),
                               );
                             },
                           ),
@@ -203,6 +295,33 @@ class Calculator extends StatelessWidget {
               ),
             ),
           )),
+    );
+  }
+
+  Widget buildModalTile(String icon, String title, Function() ontap,
+      String seletedExchange, String exchange) {
+    return GestureDetector(
+      onTap: ontap,
+      child: Row(
+        children: <Widget>[
+          Image(image: AssetImage("images/$icon.png")),
+          const SizedBox(
+            width: 20,
+          ),
+          Text(
+            title,
+            style: subTitle.copyWith(
+                color: kBlackColor, fontWeight: FontWeight.w600, fontSize: 15),
+          ),
+          const Spacer(),
+          Icon(
+            seletedExchange == exchange
+                ? Icons.circle_rounded
+                : Icons.circle_outlined,
+            color: klightblue,
+          )
+        ],
+      ),
     );
   }
 

@@ -76,20 +76,6 @@ class BankWithdrawal extends StatelessWidget {
                           return Column(crossAxisAlignment: CrossAxisAlignment.start, children: children,);
                         },
                       ),
-                      BlocBuilder<WalletCubit, WalletState>(
-                          builder: (context, state) {
-                        return Column(
-                          children: state.bankAddresses.map((address) {
-                            return buildtile(
-                                address.accountNumber,
-                                () => context
-                                    .read<WalletCubit>()
-                                    .withdrawalDetailsChanged(
-                                        withdrawalDetails: address.toMap()),
-                                address.userName);
-                          }).toList(),
-                        );
-                      }),
                       const SizedBox(
                         height: 20,
                       ),

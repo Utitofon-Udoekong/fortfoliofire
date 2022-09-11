@@ -16,11 +16,12 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CalculatorState {
-  int get investmentAmount => throw _privateConstructorUsedError;
+  double get investmentAmount => throw _privateConstructorUsedError;
   int get duration => throw _privateConstructorUsedError;
   int get returnRate => throw _privateConstructorUsedError;
   double get totalReturns => throw _privateConstructorUsedError;
   String get selectedPlan => throw _privateConstructorUsedError;
+  String get exchange => throw _privateConstructorUsedError;
   List<DropdownMenuItem<String>> get dropdownItems =>
       throw _privateConstructorUsedError;
   List<DropdownMenuItem<int>> get durations =>
@@ -37,11 +38,12 @@ abstract class $CalculatorStateCopyWith<$Res> {
           CalculatorState value, $Res Function(CalculatorState) then) =
       _$CalculatorStateCopyWithImpl<$Res>;
   $Res call(
-      {int investmentAmount,
+      {double investmentAmount,
       int duration,
       int returnRate,
       double totalReturns,
       String selectedPlan,
+      String exchange,
       List<DropdownMenuItem<String>> dropdownItems,
       List<DropdownMenuItem<int>> durations});
 }
@@ -62,6 +64,7 @@ class _$CalculatorStateCopyWithImpl<$Res>
     Object? returnRate = freezed,
     Object? totalReturns = freezed,
     Object? selectedPlan = freezed,
+    Object? exchange = freezed,
     Object? dropdownItems = freezed,
     Object? durations = freezed,
   }) {
@@ -69,7 +72,7 @@ class _$CalculatorStateCopyWithImpl<$Res>
       investmentAmount: investmentAmount == freezed
           ? _value.investmentAmount
           : investmentAmount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       duration: duration == freezed
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
@@ -85,6 +88,10 @@ class _$CalculatorStateCopyWithImpl<$Res>
       selectedPlan: selectedPlan == freezed
           ? _value.selectedPlan
           : selectedPlan // ignore: cast_nullable_to_non_nullable
+              as String,
+      exchange: exchange == freezed
+          ? _value.exchange
+          : exchange // ignore: cast_nullable_to_non_nullable
               as String,
       dropdownItems: dropdownItems == freezed
           ? _value.dropdownItems
@@ -106,11 +113,12 @@ abstract class _$$_CalculatorStateCopyWith<$Res>
       __$$_CalculatorStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {int investmentAmount,
+      {double investmentAmount,
       int duration,
       int returnRate,
       double totalReturns,
       String selectedPlan,
+      String exchange,
       List<DropdownMenuItem<String>> dropdownItems,
       List<DropdownMenuItem<int>> durations});
 }
@@ -133,6 +141,7 @@ class __$$_CalculatorStateCopyWithImpl<$Res>
     Object? returnRate = freezed,
     Object? totalReturns = freezed,
     Object? selectedPlan = freezed,
+    Object? exchange = freezed,
     Object? dropdownItems = freezed,
     Object? durations = freezed,
   }) {
@@ -140,7 +149,7 @@ class __$$_CalculatorStateCopyWithImpl<$Res>
       investmentAmount: investmentAmount == freezed
           ? _value.investmentAmount
           : investmentAmount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       duration: duration == freezed
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
@@ -156,6 +165,10 @@ class __$$_CalculatorStateCopyWithImpl<$Res>
       selectedPlan: selectedPlan == freezed
           ? _value.selectedPlan
           : selectedPlan // ignore: cast_nullable_to_non_nullable
+              as String,
+      exchange: exchange == freezed
+          ? _value.exchange
+          : exchange // ignore: cast_nullable_to_non_nullable
               as String,
       dropdownItems: dropdownItems == freezed
           ? _value._dropdownItems
@@ -178,6 +191,7 @@ class _$_CalculatorState extends _CalculatorState {
       required this.returnRate,
       required this.totalReturns,
       required this.selectedPlan,
+      required this.exchange,
       required final List<DropdownMenuItem<String>> dropdownItems,
       required final List<DropdownMenuItem<int>> durations})
       : _dropdownItems = dropdownItems,
@@ -185,7 +199,7 @@ class _$_CalculatorState extends _CalculatorState {
         super._();
 
   @override
-  final int investmentAmount;
+  final double investmentAmount;
   @override
   final int duration;
   @override
@@ -194,6 +208,8 @@ class _$_CalculatorState extends _CalculatorState {
   final double totalReturns;
   @override
   final String selectedPlan;
+  @override
+  final String exchange;
   final List<DropdownMenuItem<String>> _dropdownItems;
   @override
   List<DropdownMenuItem<String>> get dropdownItems {
@@ -210,7 +226,7 @@ class _$_CalculatorState extends _CalculatorState {
 
   @override
   String toString() {
-    return 'CalculatorState(investmentAmount: $investmentAmount, duration: $duration, returnRate: $returnRate, totalReturns: $totalReturns, selectedPlan: $selectedPlan, dropdownItems: $dropdownItems, durations: $durations)';
+    return 'CalculatorState(investmentAmount: $investmentAmount, duration: $duration, returnRate: $returnRate, totalReturns: $totalReturns, selectedPlan: $selectedPlan, exchange: $exchange, dropdownItems: $dropdownItems, durations: $durations)';
   }
 
   @override
@@ -227,6 +243,7 @@ class _$_CalculatorState extends _CalculatorState {
                 .equals(other.totalReturns, totalReturns) &&
             const DeepCollectionEquality()
                 .equals(other.selectedPlan, selectedPlan) &&
+            const DeepCollectionEquality().equals(other.exchange, exchange) &&
             const DeepCollectionEquality()
                 .equals(other._dropdownItems, _dropdownItems) &&
             const DeepCollectionEquality()
@@ -241,6 +258,7 @@ class _$_CalculatorState extends _CalculatorState {
       const DeepCollectionEquality().hash(returnRate),
       const DeepCollectionEquality().hash(totalReturns),
       const DeepCollectionEquality().hash(selectedPlan),
+      const DeepCollectionEquality().hash(exchange),
       const DeepCollectionEquality().hash(_dropdownItems),
       const DeepCollectionEquality().hash(_durations));
 
@@ -252,18 +270,19 @@ class _$_CalculatorState extends _CalculatorState {
 
 abstract class _CalculatorState extends CalculatorState {
   const factory _CalculatorState(
-          {required final int investmentAmount,
+          {required final double investmentAmount,
           required final int duration,
           required final int returnRate,
           required final double totalReturns,
           required final String selectedPlan,
+          required final String exchange,
           required final List<DropdownMenuItem<String>> dropdownItems,
           required final List<DropdownMenuItem<int>> durations}) =
       _$_CalculatorState;
   const _CalculatorState._() : super._();
 
   @override
-  int get investmentAmount;
+  double get investmentAmount;
   @override
   int get duration;
   @override
@@ -272,6 +291,8 @@ abstract class _CalculatorState extends CalculatorState {
   double get totalReturns;
   @override
   String get selectedPlan;
+  @override
+  String get exchange;
   @override
   List<DropdownMenuItem<String>> get dropdownItems;
   @override

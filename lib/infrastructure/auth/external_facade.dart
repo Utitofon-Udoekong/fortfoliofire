@@ -31,6 +31,7 @@ class ExternalFacade implements IExternalFacade {
       var response = await http.get(url);
       var json = jsonDecode(response.body);
       var value = json['market_data']['current_price']['usd'].toString();
+      print(value);
       return double.parse(value);
     } catch (e) {
       log(e.toString());

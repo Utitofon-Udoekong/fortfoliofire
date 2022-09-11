@@ -67,13 +67,15 @@ class CryptoWithdrawal extends StatelessWidget {
                         },
                         builder: (context, cryptoAddresses) {
                           List<Widget> children = [];
-                            children = cryptoAddresses.map((address) {
+                            if(cryptoAddresses.isNotEmpty){
+                              children = cryptoAddresses.map((address) {
                                 return buildtile(
                                     address.address,() => context
                             .read<WalletCubit>()
                             .withdrawalDetailsChanged(
                                 withdrawalDetails: address.toMap()), address.walletLabel);
                               }).toList();
+                            }
                           return Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: children,
@@ -86,13 +88,15 @@ class CryptoWithdrawal extends StatelessWidget {
                         },
                         builder: (context, cryptoAddresses) {
                           List<Widget> children = [];
-                            children = cryptoAddresses.map((address) {
+                            if(cryptoAddresses.isNotEmpty){
+                              children = cryptoAddresses.map((address) {
                                 return buildtile(
                                     address.address,() => context
                             .read<WalletCubit>()
                             .withdrawalDetailsChanged(
                                 withdrawalDetails: address.toMap()), address.walletLabel);
                               }).toList();
+                            }
                           return Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: children,

@@ -3,11 +3,12 @@ part of 'calculator_cubit.dart';
 @freezed
 class CalculatorState with _$CalculatorState {
   const factory CalculatorState({
-    required int investmentAmount,
+    required double investmentAmount,
     required int duration,
     required int returnRate,
     required double totalReturns,
     required String selectedPlan,
+    required String exchange,
     required List<DropdownMenuItem<String>> dropdownItems,
     required List<DropdownMenuItem<int>> durations,
   }) = _CalculatorState;
@@ -27,6 +28,7 @@ class CalculatorState with _$CalculatorState {
         returnRate: 30,
         totalReturns: 0.0,
         selectedPlan: 'FortDollar',
+        exchange: 'USD',
       );
   const CalculatorState._();
 }

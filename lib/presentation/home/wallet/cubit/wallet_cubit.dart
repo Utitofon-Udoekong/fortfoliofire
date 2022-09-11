@@ -63,8 +63,10 @@ class WalletCubit extends Cubit<WalletState> {
   void getWalletBalanceInBTC() async {
     final btcPriceOption = await externalFacade.getBTCPriceInDollars();
     var walletBalance = state.walletBalance;
-    emit(state.copyWith(walletBalance: (walletBalance / btcPriceOption), exchange: "BTC"));
-    
+    print(btcPriceOption);
+    print(walletBalance);
+    print(walletBalance / btcPriceOption);
+    emit(state.copyWith(walletBalance: walletBalance / btcPriceOption, exchange: "BTC"));
   }
 
   void getWalletBalanceInNaira() async {
@@ -403,6 +405,7 @@ class WalletCubit extends Cubit<WalletState> {
   }
 
   void makeWithdrawalTransaction() async {
+    emit(state.copyWith(loading: true, success: "", failure: ""));
     final String description =
         "${state.investmentToBeWithdrawn.planName} withdrawal".toUpperCase();
     final double amount = state.investmentToBeWithdrawn.amount;
@@ -429,9 +432,9 @@ class WalletCubit extends Cubit<WalletState> {
         withdrawalItem: withdrawalItem);
     try {
       response.fold((failure) {
-        emit(state.copyWith(failure: failure));
+        emit(state.copyWith(failure: failure,loading: false));
       }, (success) {
-        emit(state.copyWith(success: success));
+        emit(state.copyWith(success: success,loading: false));
         initTransactions();
       });
     } catch (e) {
@@ -467,7 +470,8 @@ class WalletCubit extends Cubit<WalletState> {
           Future.delayed(const Duration(seconds: 1),
               () => emit(state.copyWith(failure: "")));
         } else {
-          makeWithdrawalTransaction();
+          Future.delayed(const Duration(seconds: 1),
+              () => makeWithdrawalTransaction());
         }
       }
     }

@@ -204,7 +204,6 @@ class Dashboard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            child: svg,
             decoration: const BoxDecoration(
               color: Color(0XFFF4FFFA),
               borderRadius: BorderRadius.all(Radius.circular(5)),
@@ -212,6 +211,7 @@ class Dashboard extends StatelessWidget {
             width: 40,
             height: 40,
             alignment: Alignment.center,
+            child: svg,
           ),
           const SizedBox(
             height: 3,
