@@ -396,6 +396,12 @@ class WalletCubit extends Cubit<WalletState> {
       newTransactions.add(
           TransactionItem(withdrawalItem: withdrawal, investmentItem: null));
     }
+    if(investments.isNotEmpty){
+    newTransactions.sort((a, b) => b.investmentItem!.paymentDate.compareTo(a.investmentItem!.paymentDate));
+    }
+    if(withdrawals.isNotEmpty){
+    newTransactions.sort((a, b) => b.withdrawalItem!.createdat.compareTo(a.withdrawalItem!.createdat));
+    }
     emit(state.copyWith(transactions: newTransactions));
   }
 
