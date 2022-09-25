@@ -18,9 +18,7 @@ import '../authentication/forgot_password/reset_password.dart' as _i10;
 import '../authentication/sign_in/confirm_login_otp.dart' as _i6;
 import '../authentication/sign_in/sign_in_form_email.dart' as _i3;
 import '../authentication/sign_in/sign_in_form_phone.dart' as _i4;
-import '../authentication/sign_up/confirm_signup_otp.dart' as _i7;
 import '../authentication/sign_up/sign_up_form.dart' as _i9;
-import '../authentication/sign_up/sign_up_form_phone.dart' as _i5;
 import '../home/dashboard/dashboard.dart' as _i61;
 import '../home/dashboard/screens/notifications/notifications.dart' as _i11;
 import '../home/dashboard/screens/payment_method/bank/add_bank.dart' as _i20;
@@ -105,17 +103,9 @@ class AppRouter extends _i64.RootStackRouter {
       return _i64.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i4.SignInFormPhone());
     },
-    SignUpFormPhoneRoute.name: (routeData) {
-      return _i64.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i5.SignUpFormPhone());
-    },
     ConfirmLoginWithOTPRoute.name: (routeData) {
       return _i64.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i6.ConfirmLoginWithOTP());
-    },
-    ConfirmSignupWithOTPRoute.name: (routeData) {
-      return _i64.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i7.ConfirmSignupWithOTP());
     },
     ConfirmPhoneUpdateRoute.name: (routeData) {
       return _i64.MaterialPageX<dynamic>(

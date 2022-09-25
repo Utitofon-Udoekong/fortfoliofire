@@ -30,7 +30,7 @@ class SignUpForm extends StatelessWidget {
               listenWhen: (p, c) =>
                   p.success != c.success && c.success.isNotEmpty,
               listener: (context, state) {
-                context.router.push(const SignUpFormPhoneRoute());
+                context.router.replace(const HomePageRoute());
               },
             ),
           ],

@@ -61,38 +61,20 @@ class WalletCubit extends Cubit<WalletState> {
   }
 
   void getWalletBalanceInBTC() async {
-    final btcPriceOption = await externalFacade.getBTCPriceInDollars();
-    var walletBalance = state.walletBalance;
-    print(btcPriceOption);
-    print(walletBalance);
-    print(walletBalance / btcPriceOption);
-    emit(state.copyWith(walletBalance: walletBalance / btcPriceOption, exchange: "BTC"));
+    emit(state.copyWith( exchange: "BTC"));
   }
 
   void getWalletBalanceInNaira() async {
-    final btcPriceOption = await externalFacade.getBTCPriceInDollars();
-    var walletBalance = state.walletBalance;
-    if (state.exchange == "BTC") {
-      emit(state.copyWith(walletBalance: walletBalance * btcPriceOption, exchange: "NGN"));
-    }else{
-      emit(state.copyWith(walletBalance: walletBalance, exchange: "NGN"));
-    }
+      emit(state.copyWith(exchange: "NGN"));
   }
 
   void getWalletBalanceInUSD() async {
-    final btcPriceOption = await externalFacade.getBTCPriceInDollars();
-    var walletBalance = state.walletBalance;
-    if (state.exchange == "BTC") {
-      emit(state.copyWith(walletBalance: walletBalance * btcPriceOption, exchange: "USD"));
-    }else{
-      emit(state.copyWith(walletBalance: walletBalance, exchange: "USD"));
-    }
+    emit(state.copyWith(exchange: "USD"));
   }
 
   void investmentToBeWithdrawnChanged(
       {required InvestmentItem investmentToBeWithdrawn}) {
     emit(state.copyWith(investmentToBeWithdrawn: investmentToBeWithdrawn));
-    print(investmentToBeWithdrawn);
   }
 
   void withdrawalMethodChanged({required String withdrawalMethod}) {
@@ -147,126 +129,6 @@ class WalletCubit extends Cubit<WalletState> {
         fortCryptoYieldBalance: planYield,
         fortCryptoInvestmentBalance: amount));
   }
-
-  // void initWalletBalance() async {
-  //   var fortDollarInvestments = state.fortDollarInvestments;
-  //   var fortShieldInvestments = state.fortShieldInvestments;
-  //   var fortCryptoInvestments = state.fortCryptoInvestments;
-  //   var fortDollarActive = state.isFortDollarActive;
-  //   var fortShieldActive = state.isFortShieldActive;
-  //   var fortCryptoActive = state.isFortCryptoActive;
-
-  //   if (fortDollarActive && !fortShieldActive && !fortCryptoActive) {
-  //     var balance = 0.0;
-  //     for (var element in fortDollarInvestments) {
-  //       var availableBalance = element.amount + element.planYield;
-  //       if (element.status != "Pending") {
-  //         balance += availableBalance;
-  //       }
-  //     }
-  //     emit(state.copyWith(walletBalance: balance));
-  //   } else if (!fortDollarActive && fortShieldActive && !fortCryptoActive) {
-  //     var balance = 0.0;
-  //     for (var element in fortShieldInvestments) {
-  //       var availableBalance =
-  //           (element.amount / dollarPrice) + (element.planYield / dollarPrice);
-  //       if (element.status != "Pending") {
-  //         balance += availableBalance;
-  //       }
-  //     }
-  //     emit(state.copyWith(walletBalance: balance));
-  //   } else if (!fortDollarActive && !fortShieldActive && fortCryptoActive) {
-  //     var balance = 0.0;
-  //     for (var element in fortCryptoInvestments) {
-  //       var btcToUsdPriceOption = await externalFacade.getCoinPrice(
-  //           id: getCryptoNameFromSymbol(symbol: element.coin!));
-  //       var availableBalance = (element.amount * btcToUsdPriceOption) +
-  //           (element.planYield * btcToUsdPriceOption);
-  //       if (element.status != "Pending") {
-  //         balance += availableBalance;
-  //       }
-  //     }
-  //     emit(state.copyWith(walletBalance: balance));
-  //   } else if (fortDollarActive && fortShieldActive && !fortCryptoActive) {
-  //     var balance = 0.0;
-  //     for (var element in fortShieldInvestments) {
-  //       var availableBalance =
-  //           (element.amount / dollarPrice) + (element.planYield / dollarPrice);
-  //       if (element.status != "Pending") {
-  //         balance += availableBalance;
-  //       }
-  //     }
-  //     for (var element in fortDollarInvestments) {
-  //       var availableBalance = element.amount + element.planYield;
-  //       if (element.status != "Pending") {
-  //         balance += availableBalance;
-  //       }
-  //     }
-  //     emit(state.copyWith(walletBalance: balance));
-  //   } else if (fortDollarActive && !fortShieldActive && fortCryptoActive) {
-  //     var balance = 0.0;
-  //     for (var element in fortDollarInvestments) {
-  //       var availableBalance = element.amount + element.planYield;
-  //       if (element.status != "Pending") {
-  //         balance += availableBalance;
-  //       }
-  //     }
-  //     for (var element in fortCryptoInvestments) {
-  //       var btcToUsdPriceOption = await externalFacade.getCoinPrice(
-  //           id: getCryptoNameFromSymbol(symbol: element.coin!));
-  //       var availableBalance = (element.amount * btcToUsdPriceOption) +
-  //           (element.planYield * btcToUsdPriceOption);
-  //       if (element.status != "Pending") {
-  //         balance += availableBalance;
-  //       }
-  //     }
-  //     emit(state.copyWith(walletBalance: balance));
-  //   } else if (!fortDollarActive && fortShieldActive && fortCryptoActive) {
-  //     var balance = 0.0;
-  //     for (var element in fortShieldInvestments) {
-  //       var availableBalance =
-  //           (element.amount / dollarPrice) + (element.planYield / dollarPrice);
-  //       if (element.status != "Pending") {
-  //         balance += availableBalance;
-  //       }
-  //     }
-  //     for (var element in fortCryptoInvestments) {
-  //       var btcToUsdPriceOption = await externalFacade.getCoinPrice(
-  //           id: getCryptoNameFromSymbol(symbol: element.coin!));
-  //       var availableBalance = (element.amount * btcToUsdPriceOption) +
-  //           (element.planYield * btcToUsdPriceOption);
-  //       if (element.status != "Pending") {
-  //         balance += availableBalance;
-  //       }
-  //     }
-  //     emit(state.copyWith(walletBalance: balance));
-  //   } else if (fortDollarActive && fortShieldActive && fortCryptoActive) {
-  //     var balance = 0.0;
-  //     for (var element in fortDollarInvestments) {
-  //       var availableBalance = element.amount + element.planYield;
-  //       if (element.status != "Pending") {
-  //         balance += availableBalance;
-  //       }
-  //     }
-  //     for (var element in fortCryptoInvestments) {
-  //       var btcToUsdPriceOption = await externalFacade.getCoinPrice(
-  //           id: getCryptoNameFromSymbol(symbol: element.coin!));
-  //       var availableBalance = (element.amount * btcToUsdPriceOption) +
-  //           (element.planYield * btcToUsdPriceOption);
-  //       if (element.status != "Pending") {
-  //         balance += availableBalance;
-  //       }
-  //     }
-  //     for (var element in fortShieldInvestments) {
-  //       var availableBalance =
-  //           (element.amount / dollarPrice) + (element.planYield / dollarPrice);
-  //       if (element.status != "Pending") {
-  //         balance += availableBalance;
-  //       }
-  //     }
-  //     emit(state.copyWith(walletBalance: balance));
-  //   }
-  // }
 
   void initBankAddresses() {
     _logsBankAddressSubscription =

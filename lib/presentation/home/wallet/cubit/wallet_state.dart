@@ -4,7 +4,6 @@ part of 'wallet_cubit.dart';
 class WalletState with _$WalletState {
   const factory WalletState(
       {
-      required double walletBalance,
       required String exchange,
       required bool loading,
       required double fortDollarInvestmentBalance,
@@ -31,7 +30,6 @@ class WalletState with _$WalletState {
   factory WalletState.initial() => WalletState(
       exchange: "NGN",
       loading: false,
-      walletBalance: 0,
       fortDollarInvestmentBalance: 0,
       fortCryptoInvestmentBalance: 0,
       fortShieldInvestmentBalance: 0,

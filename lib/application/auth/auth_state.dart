@@ -7,6 +7,7 @@ class AuthState with _$AuthState {
     required bool isUserCheckedFromAuthFacade,
     required int buyPrice,
     required int sellPrice,
+    required double btcPrice,
   }) = _AuthState;
   const AuthState._();
 
@@ -15,6 +16,7 @@ class AuthState with _$AuthState {
         isUserCheckedFromAuthFacade: false,
         buyPrice: 0,
         sellPrice: 0,
+        btcPrice: 0,
       );
 
   bool get isLoggedIn => userModel.email.isNotEmpty && userModel.firstName.isNotEmpty && userModel.lastName.isNotEmpty;

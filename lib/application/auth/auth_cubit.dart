@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fortfolio/infrastructure/auth/external_facade.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -17,6 +18,7 @@ part 'auth_state.dart';
 @lazySingleton
 class AuthCubit extends Cubit<AuthState> {
   late final IAuthFacade authFacade;
+  late final ExternalFacade externalFacade;
   late final IFirestoreFacade firestoreFacade;
 
   ///The stream subscription for listening to the auth state changes
@@ -25,6 +27,7 @@ class AuthCubit extends Cubit<AuthState> {
   StreamSubscription<QuerySnapshot>? _dollarToNairaSubscription;
   AuthCubit() : super(AuthState.empty()) {
     authFacade = getIt<IAuthFacade>();
+    externalFacade = getIt<ExternalFacade>();
     firestoreFacade = getIt<IFirestoreFacade>();
     _authUserSubscription =
         authFacade.authStateChanges.listen(listenAuthStateChangesStream);
@@ -51,6 +54,7 @@ class AuthCubit extends Cubit<AuthState> {
       );
     }
     listenDollarStream();
+    initBTCPrice();
   }
 
   Future<void> listenAuthStateChangesStream(AuthUserModel authUser) async {
@@ -70,6 +74,11 @@ class AuthCubit extends Cubit<AuthState> {
           ),
         );
     }
+  }
+
+  void initBTCPrice () async {
+    final btcPrice = await externalFacade.getBTCPriceInDollars();
+    emit(state.copyWith(btcPrice: btcPrice));
   }
 
   void listenDollarStream() {

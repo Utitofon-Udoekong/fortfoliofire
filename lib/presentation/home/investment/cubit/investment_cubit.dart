@@ -13,6 +13,7 @@ import 'package:fortfolio/infrastructure/auth/local_auth_api.dart';
 import 'package:dartz/dartz.dart';
 import 'package:fortfolio/injection.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/security/cubit/security_cubit.dart';
+import 'package:fortfolio/utils/utils.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:jiffy/jiffy.dart';
@@ -102,8 +103,11 @@ class InvestmentCubit extends Cubit<InvestmentState> {
   void createCharge() async {
     emit(state.copyWith(isLoading: true));
     final amount = state.amountInvested;
+    final coin = state.coin;
+    final coinPriceinUSD = await externalFacade.getCoinPrice(id: coinCode(coin: coin));
+    final chargeAmount = amount * coinPriceinUSD;
     final chargeOption =
-        await functionsFacade.createCharge(amount: amount.toString());
+        await functionsFacade.createCharge(amount: chargeAmount.toString());
     chargeOption.fold((failure) {
       emit(state.copyWith(isLoading: false));
       emit(state.copyWith(failure: failure));

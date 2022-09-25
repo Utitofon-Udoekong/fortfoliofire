@@ -10,6 +10,26 @@ pickImage(ImageSource source) async {
   print('No Image Selected');
 }
 
+String coinCode({required String coin}){
+  switch(coin){
+    case "BTC":
+      return "bitcoin";
+    case "BCH":
+      return "bitcoin-cash";
+    case "ETH":
+      return "ethereum";
+    case "LTC":
+      return "litecoin";
+    case "USDC":
+      return "usd-coin";
+    case "DAI":
+      return "dai";
+    case "DOGE":
+      return "doge";
+    default:
+      return "bitcoin";
+  }
+}
 
 String getErrorFromCode({required String symbol}){
   switch (symbol) {

@@ -25,6 +25,19 @@ class ExternalFacade implements IExternalFacade {
     }
   }
   @override
+  Future<double> getCoinPriceInBTC({ required String id}) async {
+    try {
+      var url = Uri.parse("https://api.coingecko.com/api/v3/coins/$id");
+      var response = await http.get(url);
+      var json = jsonDecode(response.body);
+      var value = json['market_data']['current_price']['btc'].toString();
+      return double.parse(value);
+    } catch (e) {
+      log(e.toString());
+      return 0.0;
+    }
+  }
+  @override
   Future<double> getBTCPriceInDollars() async {
     try {
       var url = Uri.parse("https://api.coingecko.com/api/v3/coins/bitcoin");

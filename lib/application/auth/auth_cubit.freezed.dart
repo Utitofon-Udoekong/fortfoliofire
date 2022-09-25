@@ -20,6 +20,7 @@ mixin _$AuthState {
   bool get isUserCheckedFromAuthFacade => throw _privateConstructorUsedError;
   int get buyPrice => throw _privateConstructorUsedError;
   int get sellPrice => throw _privateConstructorUsedError;
+  double get btcPrice => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AuthStateCopyWith<AuthState> get copyWith =>
@@ -34,7 +35,8 @@ abstract class $AuthStateCopyWith<$Res> {
       {AuthUserModel userModel,
       bool isUserCheckedFromAuthFacade,
       int buyPrice,
-      int sellPrice});
+      int sellPrice,
+      double btcPrice});
 
   $AuthUserModelCopyWith<$Res> get userModel;
 }
@@ -53,6 +55,7 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
     Object? isUserCheckedFromAuthFacade = freezed,
     Object? buyPrice = freezed,
     Object? sellPrice = freezed,
+    Object? btcPrice = freezed,
   }) {
     return _then(_value.copyWith(
       userModel: userModel == freezed
@@ -71,6 +74,10 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
           ? _value.sellPrice
           : sellPrice // ignore: cast_nullable_to_non_nullable
               as int,
+      btcPrice: btcPrice == freezed
+          ? _value.btcPrice
+          : btcPrice // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 
@@ -92,7 +99,8 @@ abstract class _$$_AuthStateCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
       {AuthUserModel userModel,
       bool isUserCheckedFromAuthFacade,
       int buyPrice,
-      int sellPrice});
+      int sellPrice,
+      double btcPrice});
 
   @override
   $AuthUserModelCopyWith<$Res> get userModel;
@@ -114,6 +122,7 @@ class __$$_AuthStateCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
     Object? isUserCheckedFromAuthFacade = freezed,
     Object? buyPrice = freezed,
     Object? sellPrice = freezed,
+    Object? btcPrice = freezed,
   }) {
     return _then(_$_AuthState(
       userModel: userModel == freezed
@@ -132,6 +141,10 @@ class __$$_AuthStateCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
           ? _value.sellPrice
           : sellPrice // ignore: cast_nullable_to_non_nullable
               as int,
+      btcPrice: btcPrice == freezed
+          ? _value.btcPrice
+          : btcPrice // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -143,7 +156,8 @@ class _$_AuthState extends _AuthState {
       {required this.userModel,
       required this.isUserCheckedFromAuthFacade,
       required this.buyPrice,
-      required this.sellPrice})
+      required this.sellPrice,
+      required this.btcPrice})
       : super._();
 
   @override
@@ -154,10 +168,12 @@ class _$_AuthState extends _AuthState {
   final int buyPrice;
   @override
   final int sellPrice;
+  @override
+  final double btcPrice;
 
   @override
   String toString() {
-    return 'AuthState(userModel: $userModel, isUserCheckedFromAuthFacade: $isUserCheckedFromAuthFacade, buyPrice: $buyPrice, sellPrice: $sellPrice)';
+    return 'AuthState(userModel: $userModel, isUserCheckedFromAuthFacade: $isUserCheckedFromAuthFacade, buyPrice: $buyPrice, sellPrice: $sellPrice, btcPrice: $btcPrice)';
   }
 
   @override
@@ -170,7 +186,8 @@ class _$_AuthState extends _AuthState {
                 other.isUserCheckedFromAuthFacade,
                 isUserCheckedFromAuthFacade) &&
             const DeepCollectionEquality().equals(other.buyPrice, buyPrice) &&
-            const DeepCollectionEquality().equals(other.sellPrice, sellPrice));
+            const DeepCollectionEquality().equals(other.sellPrice, sellPrice) &&
+            const DeepCollectionEquality().equals(other.btcPrice, btcPrice));
   }
 
   @override
@@ -179,7 +196,8 @@ class _$_AuthState extends _AuthState {
       const DeepCollectionEquality().hash(userModel),
       const DeepCollectionEquality().hash(isUserCheckedFromAuthFacade),
       const DeepCollectionEquality().hash(buyPrice),
-      const DeepCollectionEquality().hash(sellPrice));
+      const DeepCollectionEquality().hash(sellPrice),
+      const DeepCollectionEquality().hash(btcPrice));
 
   @JsonKey(ignore: true)
   @override
@@ -192,7 +210,8 @@ abstract class _AuthState extends AuthState {
       {required final AuthUserModel userModel,
       required final bool isUserCheckedFromAuthFacade,
       required final int buyPrice,
-      required final int sellPrice}) = _$_AuthState;
+      required final int sellPrice,
+      required final double btcPrice}) = _$_AuthState;
   const _AuthState._() : super._();
 
   @override
@@ -203,6 +222,8 @@ abstract class _AuthState extends AuthState {
   int get buyPrice;
   @override
   int get sellPrice;
+  @override
+  double get btcPrice;
   @override
   @JsonKey(ignore: true)
   _$$_AuthStateCopyWith<_$_AuthState> get copyWith =>

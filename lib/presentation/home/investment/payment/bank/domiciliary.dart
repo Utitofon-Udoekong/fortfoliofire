@@ -23,6 +23,7 @@ class DomiciliaryAccount extends StatelessWidget {
         (InvestmentCubit investmentCubit) =>
             investmentCubit.state.exchangeType);
     final formatter = NumberFormat("#,##0.##", "en_US");
+    final isLoading = context.select((InvestmentCubit element) => element.state.isLoading);
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -145,7 +146,7 @@ class DomiciliaryAccount extends StatelessWidget {
                 alignment: Alignment.bottomCenter,
                 child: CustomFilledButton(
                     text: 'I HAVE PAID',
-                    onTap: () {
+                    onTap: isLoading ? () => null : () {
                       context
                           .read<InvestmentCubit>()
                           .paymentMethodChanged(paymentMethod: "Bank");

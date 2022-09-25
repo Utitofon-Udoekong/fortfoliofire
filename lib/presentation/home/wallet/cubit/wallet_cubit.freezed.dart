@@ -16,7 +16,6 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$WalletState {
-  double get walletBalance => throw _privateConstructorUsedError;
   String get exchange => throw _privateConstructorUsedError;
   bool get loading => throw _privateConstructorUsedError;
   double get fortDollarInvestmentBalance => throw _privateConstructorUsedError;
@@ -57,8 +56,7 @@ abstract class $WalletStateCopyWith<$Res> {
           WalletState value, $Res Function(WalletState) then) =
       _$WalletStateCopyWithImpl<$Res>;
   $Res call(
-      {double walletBalance,
-      String exchange,
+      {String exchange,
       bool loading,
       double fortDollarInvestmentBalance,
       double fortCryptoInvestmentBalance,
@@ -94,7 +92,6 @@ class _$WalletStateCopyWithImpl<$Res> implements $WalletStateCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? walletBalance = freezed,
     Object? exchange = freezed,
     Object? loading = freezed,
     Object? fortDollarInvestmentBalance = freezed,
@@ -119,10 +116,6 @@ class _$WalletStateCopyWithImpl<$Res> implements $WalletStateCopyWith<$Res> {
     Object? showDigits = freezed,
   }) {
     return _then(_value.copyWith(
-      walletBalance: walletBalance == freezed
-          ? _value.walletBalance
-          : walletBalance // ignore: cast_nullable_to_non_nullable
-              as double,
       exchange: exchange == freezed
           ? _value.exchange
           : exchange // ignore: cast_nullable_to_non_nullable
@@ -231,8 +224,7 @@ abstract class _$$_WalletStateCopyWith<$Res>
       __$$_WalletStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {double walletBalance,
-      String exchange,
+      {String exchange,
       bool loading,
       double fortDollarInvestmentBalance,
       double fortCryptoInvestmentBalance,
@@ -271,7 +263,6 @@ class __$$_WalletStateCopyWithImpl<$Res> extends _$WalletStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? walletBalance = freezed,
     Object? exchange = freezed,
     Object? loading = freezed,
     Object? fortDollarInvestmentBalance = freezed,
@@ -296,10 +287,6 @@ class __$$_WalletStateCopyWithImpl<$Res> extends _$WalletStateCopyWithImpl<$Res>
     Object? showDigits = freezed,
   }) {
     return _then(_$_WalletState(
-      walletBalance: walletBalance == freezed
-          ? _value.walletBalance
-          : walletBalance // ignore: cast_nullable_to_non_nullable
-              as double,
       exchange: exchange == freezed
           ? _value.exchange
           : exchange // ignore: cast_nullable_to_non_nullable
@@ -396,8 +383,7 @@ class __$$_WalletStateCopyWithImpl<$Res> extends _$WalletStateCopyWithImpl<$Res>
 
 class _$_WalletState extends _WalletState {
   const _$_WalletState(
-      {required this.walletBalance,
-      required this.exchange,
+      {required this.exchange,
       required this.loading,
       required this.fortDollarInvestmentBalance,
       required this.fortCryptoInvestmentBalance,
@@ -430,8 +416,6 @@ class _$_WalletState extends _WalletState {
         _transactions = transactions,
         super._();
 
-  @override
-  final double walletBalance;
   @override
   final String exchange;
   @override
@@ -524,7 +508,7 @@ class _$_WalletState extends _WalletState {
 
   @override
   String toString() {
-    return 'WalletState(walletBalance: $walletBalance, exchange: $exchange, loading: $loading, fortDollarInvestmentBalance: $fortDollarInvestmentBalance, fortCryptoInvestmentBalance: $fortCryptoInvestmentBalance, fortShieldInvestmentBalance: $fortShieldInvestmentBalance, fortDollarYieldBalance: $fortDollarYieldBalance, fortCryptoYieldBalance: $fortCryptoYieldBalance, fortShieldYieldBalance: $fortShieldYieldBalance, withdrawalMethod: $withdrawalMethod, failure: $failure, success: $success, withdrawalDetails: $withdrawalDetails, investmentToBeWithdrawn: $investmentToBeWithdrawn, bankAddresses: $bankAddresses, cryptoAddresses: $cryptoAddresses, generalCryptoAddresses: $generalCryptoAddresses, fortDollarInvestments: $fortDollarInvestments, fortCryptoInvestments: $fortCryptoInvestments, fortShieldInvestments: $fortShieldInvestments, withdrawals: $withdrawals, transactions: $transactions, showDigits: $showDigits)';
+    return 'WalletState(exchange: $exchange, loading: $loading, fortDollarInvestmentBalance: $fortDollarInvestmentBalance, fortCryptoInvestmentBalance: $fortCryptoInvestmentBalance, fortShieldInvestmentBalance: $fortShieldInvestmentBalance, fortDollarYieldBalance: $fortDollarYieldBalance, fortCryptoYieldBalance: $fortCryptoYieldBalance, fortShieldYieldBalance: $fortShieldYieldBalance, withdrawalMethod: $withdrawalMethod, failure: $failure, success: $success, withdrawalDetails: $withdrawalDetails, investmentToBeWithdrawn: $investmentToBeWithdrawn, bankAddresses: $bankAddresses, cryptoAddresses: $cryptoAddresses, generalCryptoAddresses: $generalCryptoAddresses, fortDollarInvestments: $fortDollarInvestments, fortCryptoInvestments: $fortCryptoInvestments, fortShieldInvestments: $fortShieldInvestments, withdrawals: $withdrawals, transactions: $transactions, showDigits: $showDigits)';
   }
 
   @override
@@ -532,8 +516,6 @@ class _$_WalletState extends _WalletState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_WalletState &&
-            const DeepCollectionEquality()
-                .equals(other.walletBalance, walletBalance) &&
             const DeepCollectionEquality().equals(other.exchange, exchange) &&
             const DeepCollectionEquality().equals(other.loading, loading) &&
             const DeepCollectionEquality().equals(
@@ -582,7 +564,6 @@ class _$_WalletState extends _WalletState {
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        const DeepCollectionEquality().hash(walletBalance),
         const DeepCollectionEquality().hash(exchange),
         const DeepCollectionEquality().hash(loading),
         const DeepCollectionEquality().hash(fortDollarInvestmentBalance),
@@ -615,8 +596,7 @@ class _$_WalletState extends _WalletState {
 
 abstract class _WalletState extends WalletState {
   const factory _WalletState(
-      {required final double walletBalance,
-      required final String exchange,
+      {required final String exchange,
       required final bool loading,
       required final double fortDollarInvestmentBalance,
       required final double fortCryptoInvestmentBalance,
@@ -640,8 +620,6 @@ abstract class _WalletState extends WalletState {
       required final bool showDigits}) = _$_WalletState;
   const _WalletState._() : super._();
 
-  @override
-  double get walletBalance;
   @override
   String get exchange;
   @override

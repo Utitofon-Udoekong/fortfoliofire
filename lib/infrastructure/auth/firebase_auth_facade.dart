@@ -12,6 +12,7 @@ import 'package:fortfolio/infrastructure/core/firestore_helpers.dart';
 import 'package:fortfolio/utils/utils.dart';
 import 'package:injectable/injectable.dart';
 import 'package:jiffy/jiffy.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 
 import 'dto/auth_user_model_dto.dart';
@@ -194,6 +195,8 @@ class FirebaseAuthFacade implements IAuthFacade {
 
   @override
   Future<void> signOut() async {
+    final sp = await SharedPreferences.getInstance();
+    sp.remove("kycExists");
     await firebaseAuth.signOut();
   }
 
@@ -339,7 +342,13 @@ class FirebaseAuthFacade implements IAuthFacade {
       {required String phoneNumber, required Duration timeout}) async* {
     final StreamController<Either<String, String>> streamController =
         StreamController<Either<String, String>>();
-
+    
+    final existingaccounts = await firestore.authUserCollection.where("phoneNumber",isEqualTo: phoneNumber).get();
+    if(existingaccounts.docs.isNotEmpty){
+      streamController.add(left("Phone number in use"));
+      yield* streamController.stream;
+      return;
+    }
     await firebaseAuth.verifyPhoneNumber(
         timeout: timeout,
         phoneNumber: phoneNumber,

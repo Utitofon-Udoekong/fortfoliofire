@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
@@ -15,13 +14,14 @@ class WalletOverview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final regExp = RegExp(r".");
-    final eye = SvgPicture.asset('images/eye.svg', width: 20);
     final formatter = NumberFormat("#,##0.##", "en_US");
     final btcFormatter = NumberFormat("###.########", "en_US");
     final fortCryptoBalance = context.select((WalletCubit walletCubit) =>
         walletCubit.state.fortCryptoInvestmentBalance);
     final dollarPrice = context.select((AuthCubit authCubit) =>
         authCubit.state.buyPrice);
+    final btcPrice = context.select((AuthCubit authCubit) =>
+        authCubit.state.btcPrice);
     final fortShieldBalance = context.select((WalletCubit walletCubit) =>
         walletCubit.state.fortShieldInvestmentBalance);
     final fortDollarBalance = context.select((WalletCubit walletCubit) =>
@@ -36,6 +36,8 @@ class WalletOverview extends StatelessWidget {
         context.select((WalletCubit cubit) => cubit.state.exchange);
     final bool isAccountActive = context
         .select((AuthCubit authCubit) => authCubit.state.userModel.isAccountActive);
+    final bool showDigits = context
+        .select((WalletCubit wallet) => wallet.state.showDigits);
     final double accountBalance = context
         .select((AuthCubit authCubit) => authCubit.state.userModel.balance);
     return Scaffold(
@@ -71,7 +73,7 @@ class WalletOverview extends StatelessWidget {
                               onPressed: () => context
                                   .read<WalletCubit>()
                                   .showDigitsChanged(),
-                              icon: eye)
+                              icon: showDigits ? const Icon(Icons.visibility) : const Icon(Icons.visibility_off))
                         ],
                       ),
                       const SizedBox(
@@ -102,7 +104,7 @@ class WalletOverview extends StatelessWidget {
                                         fontSize: 23, color: kWhiteColor));
                             case "BTC":
                               return state.showDigits
-                                ? Text('${btcFormatter.format(accountBalance)} BTC',
+                                ? Text('${btcFormatter.format(accountBalance / btcPrice)} BTC',
                                     style: titleText.copyWith(
                                         fontSize: 15, color: kWhiteColor))
                                 : Text("$accountBalance"
