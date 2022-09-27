@@ -25,7 +25,7 @@ String coinCode({required String coin}){
     case "DAI":
       return "dai";
     case "DOGE":
-      return "doge";
+      return "dogecoin";
     default:
       return "bitcoin";
   }

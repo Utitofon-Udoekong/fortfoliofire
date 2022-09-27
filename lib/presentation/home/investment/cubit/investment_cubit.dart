@@ -55,8 +55,13 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     newList[newIndex] = true;
     emit(state.copyWith(isSelected: newList));
   }
+  void setCryptoBaseAmount({required String coin}) async {
+    final coinPriceinUSD = await externalFacade.getCoinPrice(id: coinCode(coin: coin));
+    double baseAmount = double.parse((1000 / coinPriceinUSD).toStringAsFixed(2));
+    emit(state.copyWith(baseAmount: baseAmount));
+  }
 
-  void planNameChanged({required String planName}) {
+  void planNameChanged({required String planName}) async{
     switch (planName) {
       case "FortDollar":
         emit(state.copyWith(roi: 30));
@@ -66,6 +71,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
         break;
       case "FortCrypto":
         emit(state.copyWith(roi: 15));
+        setCryptoBaseAmount(coin: "BTC");
         break;
       default:
     }
@@ -80,7 +86,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     emit(state.copyWith(coin: coin));
   }
 
-  void amountInvestedChanged({required int amountInvested}) {
+  void amountInvestedChanged({required double amountInvested}) {
     emit(state.copyWith(amountInvested: amountInvested));
   }
 
@@ -136,7 +142,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     emit(state.copyWith(isLoading: true));
     late InvestmentItem investmentItem;
     final String description = "${state.planName} Investment";
-    final int amount = state.amountInvested;
+    final double amount = state.amountInvested;
     final DateTime paymentDate = DateTime.now();
     final String planName = state.planName;
     final int roi = state.roi;
@@ -158,7 +164,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
           currency: currency,
           uid: uid,
           refId: refId,
-          amount: amount.toDouble(),
+          amount: amount,
           traxId: traxId,
           roi: roi,
           planName: planName,
@@ -176,7 +182,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
           currency: currency,
           uid: uid,
           refId: refId,
-          amount: amount.toDouble(),
+          amount: amount,
           traxId: traxId,
           roi: roi,
           planName: planName,

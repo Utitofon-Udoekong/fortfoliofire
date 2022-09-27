@@ -32,20 +32,22 @@ import 'infrastructure/auth/firebase_auth_facade.dart' as _i9;
 import 'infrastructure/auth/firebase_firestore_facade.dart' as _i13;
 import 'infrastructure/auth/firebase_functions_facade.dart' as _i15;
 import 'infrastructure/auth/firebase_storage_facade.dart' as _i17;
-import 'infrastructure/core/app_injectibles.dart' as _i33;
-import 'presentation/home/dashboard/cubit/dashboard_cubit.dart' as _i32;
+import 'infrastructure/core/app_injectibles.dart' as _i34;
+import 'presentation/home/dashboard/cubit/dashboard_cubit.dart' as _i33;
 import 'presentation/home/dashboard/screens/notifications/cubit/notification_cubit.dart'
     as _i20;
 import 'presentation/home/dashboard/screens/payment_method/bank/cubit/bank_address_cubit.dart'
     as _i30;
 import 'presentation/home/dashboard/screens/payment_method/crypto/cubit/crypto_wallet_cubit.dart'
-    as _i31;
+    as _i32;
 import 'presentation/home/dashboard/screens/profile/cubit/profile_cubit.dart'
     as _i21;
 import 'presentation/home/dashboard/screens/security/cubit/security_cubit.dart'
     as _i23;
 import 'presentation/home/dashboard/screens/verification/cubit/verification_cubit.dart'
     as _i28;
+import 'presentation/home/investment/calculator/cubit/calculator_cubit.dart'
+    as _i31;
 import 'presentation/home/investment/cubit/investment_cubit.dart' as _i18;
 import 'presentation/home/wallet/cubit/wallet_cubit.dart'
     as _i29; // ignore_for_file: unnecessary_lambdas
@@ -101,11 +103,13 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       get<_i12.IFirestoreFacade>(), get<_i10.IExternalFacade>()));
   gh.factory<_i30.BankAddressCubit>(
       () => _i30.BankAddressCubit(get<_i12.IFirestoreFacade>()));
-  gh.factory<_i31.CryptoWalletCubit>(
-      () => _i31.CryptoWalletCubit(get<_i12.IFirestoreFacade>()));
-  gh.factory<_i32.DashboardCubit>(() => _i32.DashboardCubit(
+  gh.factory<_i31.CalculatorCubit>(
+      () => _i31.CalculatorCubit(get<_i10.IExternalFacade>()));
+  gh.factory<_i32.CryptoWalletCubit>(
+      () => _i32.CryptoWalletCubit(get<_i12.IFirestoreFacade>()));
+  gh.factory<_i33.DashboardCubit>(() => _i33.DashboardCubit(
       get<_i8.IAuthFacade>(), get<_i12.IFirestoreFacade>()));
   return get;
 }
 
-class _$FirebaseInjectableModule extends _i33.FirebaseInjectableModule {}
+class _$FirebaseInjectableModule extends _i34.FirebaseInjectableModule {}

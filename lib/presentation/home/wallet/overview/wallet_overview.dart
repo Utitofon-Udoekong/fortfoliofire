@@ -73,7 +73,7 @@ class WalletOverview extends StatelessWidget {
                               onPressed: () => context
                                   .read<WalletCubit>()
                                   .showDigitsChanged(),
-                              icon: showDigits ? const Icon(Icons.visibility) : const Icon(Icons.visibility_off))
+                              icon: showDigits ? const Icon(Icons.visibility, color: kWhiteColor) : const Icon(Icons.visibility_off, color: kWhiteColor))
                         ],
                       ),
                       const SizedBox(

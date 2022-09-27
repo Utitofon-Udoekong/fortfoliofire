@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$InvestmentState {
   String get planName => throw _privateConstructorUsedError;
   int get duration => throw _privateConstructorUsedError;
-  int get amountInvested => throw _privateConstructorUsedError;
+  double get amountInvested => throw _privateConstructorUsedError;
   int get roi => throw _privateConstructorUsedError;
   String get failure => throw _privateConstructorUsedError;
   String get success => throw _privateConstructorUsedError;
@@ -47,7 +47,7 @@ abstract class $InvestmentStateCopyWith<$Res> {
   $Res call(
       {String planName,
       int duration,
-      int amountInvested,
+      double amountInvested,
       int roi,
       String failure,
       String success,
@@ -105,7 +105,7 @@ class _$InvestmentStateCopyWithImpl<$Res>
       amountInvested: amountInvested == freezed
           ? _value.amountInvested
           : amountInvested // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       roi: roi == freezed
           ? _value.roi
           : roi // ignore: cast_nullable_to_non_nullable
@@ -176,7 +176,7 @@ abstract class _$$_InvestmentStateCopyWith<$Res>
   $Res call(
       {String planName,
       int duration,
-      int amountInvested,
+      double amountInvested,
       int roi,
       String failure,
       String success,
@@ -236,7 +236,7 @@ class __$$_InvestmentStateCopyWithImpl<$Res>
       amountInvested: amountInvested == freezed
           ? _value.amountInvested
           : amountInvested // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       roi: roi == freezed
           ? _value.roi
           : roi // ignore: cast_nullable_to_non_nullable
@@ -327,7 +327,7 @@ class _$_InvestmentState extends _InvestmentState {
   @override
   final int duration;
   @override
-  final int amountInvested;
+  final double amountInvested;
   @override
   final int roi;
   @override
@@ -436,7 +436,7 @@ abstract class _InvestmentState extends InvestmentState {
   const factory _InvestmentState(
       {required final String planName,
       required final int duration,
-      required final int amountInvested,
+      required final double amountInvested,
       required final int roi,
       required final String failure,
       required final String success,
@@ -458,7 +458,7 @@ abstract class _InvestmentState extends InvestmentState {
   @override
   int get duration;
   @override
-  int get amountInvested;
+  double get amountInvested;
   @override
   int get roi;
   @override

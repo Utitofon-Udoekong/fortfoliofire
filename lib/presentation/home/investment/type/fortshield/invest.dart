@@ -102,8 +102,8 @@ class FortShieldInvestment extends StatelessWidget {
                         onChanged: (value) => context
                             .read<InvestmentCubit>()
                             .amountInvestedChanged(
-                                amountInvested: int.parse(value)),
-                        validator: (String? value) => int.tryParse(value!) == null ? 'Field cannot be empty' : int.parse(value) < state.baseAmount  ? 'Minimum investment is N1,000,000' : int.parse(value).isNaN ? 'Invalid amount' : null,
+                                amountInvested: double.parse(value)),
+                        validator: (String? value) => double.tryParse(value!) == null ? 'Field cannot be empty' : double.parse(value) < state.baseAmount  ? 'Minimum investment is N1,000,000' : double.parse(value).isNaN ? 'Invalid amount' : null,
                       ),
                     );
                   },

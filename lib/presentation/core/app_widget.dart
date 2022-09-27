@@ -149,12 +149,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
           BlocProvider(
               create: (context) => getIt<InvestmentCubit>(), lazy: false),
         ],
-        child: BlocListener<AuthCubit, AuthState>(
-          listenWhen: (p,c) => c.isLoggedIn == false,
-          listener: (context, state) {
-            context.router.push(const SignUpFormRoute());
-          },
-          child: MaterialApp.router(
+        child: MaterialApp.router(
                   title: 'Fortfolio',
                   debugShowCheckedModeBanner: false,
                   routeInformationParser: appRouter.defaultRouteParser(),
@@ -166,7 +161,6 @@ class _AppState extends State<App> with WidgetsBindingObserver {
                               snapshot.data == ConnectivityResult.wifi
                           ? widget! : const NoInternetPage();
                     }),
-                ),
-        ));
+                ));
   }
 }

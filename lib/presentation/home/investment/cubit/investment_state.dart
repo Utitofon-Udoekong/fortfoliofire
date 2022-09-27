@@ -5,7 +5,7 @@ class InvestmentState with _$InvestmentState {
   const factory InvestmentState(
       {required String planName,
       required int duration,
-      required int amountInvested,
+      required double amountInvested,
       required int roi,
       required String failure,
       required String success,

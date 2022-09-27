@@ -13,7 +13,7 @@ class DomiciliaryAccount extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final int amountInvested = context.select(
+    final double amountInvested = context.select(
         (InvestmentCubit investmentCubit) =>
             investmentCubit.state.amountInvested);
     final int dollarPrice = context.select(

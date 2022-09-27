@@ -113,9 +113,6 @@ class FortCryptoInvestment extends StatelessWidget {
                         child: TextFormField(
                           autocorrect: false,
                           keyboardType: TextInputType.number,
-                          inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly
-                          ],
                           textInputAction: TextInputAction.next,
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           decoration: InputDecoration(
@@ -144,6 +141,9 @@ class FortCryptoInvestment extends StatelessWidget {
                                   context
                                       .read<InvestmentCubit>()
                                       .coinChanged(coin: coin!);
+                                  context
+                                      .read<InvestmentCubit>()
+                                      .setCryptoBaseAmount(coin: coin);
                                 }),
                             suffixStyle: TextStyle(
                                 color: Colors.grey.shade400, fontSize: 13),
@@ -151,13 +151,13 @@ class FortCryptoInvestment extends StatelessWidget {
                           onChanged: (value) => context
                               .read<InvestmentCubit>()
                               .amountInvestedChanged(
-                                  amountInvested: int.parse(value)),
-                          validator: (String? value) => int.tryParse(value!) ==
+                                  amountInvested: double.parse(value)),
+                          validator: (String? value) => double.tryParse(value!) ==
                                   null
                               ? 'Field cannot be empty'
-                              : int.parse(value) < state.baseAmount
-                                  ? 'Minimum investment is \$${state.baseAmount}'
-                                  : int.parse(value).isNaN
+                              : double.parse(value) < state.baseAmount
+                                  ? 'Minimum investment is ${state.baseAmount} ${state.coin}'
+                                  : double.parse(value).isNaN
                                       ? 'Invalid amount'
                                       : null,
                         ),

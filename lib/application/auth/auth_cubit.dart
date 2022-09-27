@@ -2,13 +2,13 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fortfolio/infrastructure/auth/external_facade.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 import 'package:fortfolio/domain/auth/auth_user_model.dart';
 import 'package:fortfolio/domain/auth/i_auth_facade.dart';
 import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
+import 'package:fortfolio/domain/auth/i_external_facade.dart';
 import 'package:fortfolio/infrastructure/auth/dto/price/dollar_price_dto.dart';
 import 'package:fortfolio/injection.dart';
 
@@ -18,7 +18,7 @@ part 'auth_state.dart';
 @lazySingleton
 class AuthCubit extends Cubit<AuthState> {
   late final IAuthFacade authFacade;
-  late final ExternalFacade externalFacade;
+  late final IExternalFacade externalFacade;
   late final IFirestoreFacade firestoreFacade;
 
   ///The stream subscription for listening to the auth state changes
@@ -27,7 +27,7 @@ class AuthCubit extends Cubit<AuthState> {
   StreamSubscription<QuerySnapshot>? _dollarToNairaSubscription;
   AuthCubit() : super(AuthState.empty()) {
     authFacade = getIt<IAuthFacade>();
-    externalFacade = getIt<ExternalFacade>();
+    externalFacade = getIt<IExternalFacade>();
     firestoreFacade = getIt<IFirestoreFacade>();
     _authUserSubscription =
         authFacade.authStateChanges.listen(listenAuthStateChangesStream);

@@ -2,10 +2,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:fortfolio/domain/auth/i_external_facade.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 
 part 'calculator_state.dart';
 part 'calculator_cubit.freezed.dart';
 
+@injectable
 class CalculatorCubit extends Cubit<CalculatorState> {
   final IExternalFacade externalFacade;
   CalculatorCubit(this.externalFacade) : super(CalculatorState.initial());
