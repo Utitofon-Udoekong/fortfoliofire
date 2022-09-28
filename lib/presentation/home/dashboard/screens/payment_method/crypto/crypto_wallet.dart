@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
-import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/crypto/cubit/crypto_wallet_cubit.dart';
+import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/cubit/payment_method_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 
 class CryptoWalletPage extends StatelessWidget {
@@ -16,7 +16,7 @@ class CryptoWalletPage extends StatelessWidget {
       semanticsLabel: 'Blank Wallet',
     );
     return Scaffold(
-      body: BlocSelector<CryptoWalletCubit, CryptoWalletState, bool>(
+      body: BlocSelector<PaymentMethodCubit, PaymentMethodState, bool>(
         selector: (state) {
           return state.emptyWallet;
         },
@@ -55,7 +55,7 @@ class CryptoWalletPage extends StatelessWidget {
                   const SizedBox(
                     height: 15,
                   ),
-                  BlocBuilder<CryptoWalletCubit, CryptoWalletState>(
+                  BlocBuilder<PaymentMethodCubit, PaymentMethodState>(
                     builder: (context, state) {
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,7 +66,7 @@ class CryptoWalletPage extends StatelessWidget {
                       );
                     },
                   ),
-                  BlocBuilder<CryptoWalletCubit, CryptoWalletState>(
+                  BlocBuilder<PaymentMethodCubit, PaymentMethodState>(
                     builder: (context, state) {
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

@@ -8,7 +8,8 @@ import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 
 class PaymentMethodSuccess extends StatelessWidget {
-  const PaymentMethodSuccess({Key? key}) : super(key: key);
+  final PageRouteInfo<dynamic> nextPage;
+  const PaymentMethodSuccess({Key? key, required this.nextPage}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +46,8 @@ class PaymentMethodSuccess extends StatelessWidget {
             CustomFilledButton(
                 text: 'DONE',
                 onTap: () {
-                  context.router.replaceAll([const HomePageRoute()]);
+                  context.router.popUntil((route) => nextPage);
+                  // try popuntil
                 })
           ],
         ),

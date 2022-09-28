@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
-import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/bank/cubit/bank_address_cubit.dart';
+import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/cubit/payment_method_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 
 class AddBank extends StatelessWidget {
@@ -69,7 +69,7 @@ class AddBank extends StatelessWidget {
                       style:
                           TextStyle(fontSize: 15, color: Color(0xFF656565)),
                     ),
-                    BlocBuilder<BankAddressCubit, BankAddressState>(
+                    BlocBuilder<PaymentMethodCubit, PaymentMethodState>(
                       builder: (context, state) {
                         return TextFormField(
                           autocorrect: false,
@@ -81,7 +81,7 @@ class AddBank extends StatelessWidget {
                               fillColor: Color(0xFFF3F6F8),
                               border: InputBorder.none),
                           onChanged: (value) => context
-                              .read<BankAddressCubit>()
+                              .read<PaymentMethodCubit>()
                               .accountNumberChanged(accountNumber: value),
                         );
                       },
@@ -94,7 +94,7 @@ class AddBank extends StatelessWidget {
                       style:
                           TextStyle(fontSize: 15, color: Color(0xFF656565)),
                     ),
-                    BlocBuilder<BankAddressCubit, BankAddressState>(
+                    BlocBuilder<PaymentMethodCubit, PaymentMethodState>(
                       builder: (context, state) {
                         return TextFormField(
                             autocorrect: false,
@@ -105,15 +105,15 @@ class AddBank extends StatelessWidget {
                                 fillColor: Color(0xFFF3F6F8),
                                 border: InputBorder.none),
                             onChanged: (value) => context
-                                .read<BankAddressCubit>()
+                                .read<PaymentMethodCubit>()
                                 .bankNameChanged(bankName: value));
                       },
                     ),
                     const SizedBox(
                       height: 60,
                     ),
-                    BlocSelector<BankAddressCubit, BankAddressState, bool>(
-                      selector: (state) => state.isValidState,
+                    BlocSelector<PaymentMethodCubit, PaymentMethodState, bool>(
+                      selector: (state) => state.isValidBankState,
                       builder: (context, valid) {
                         return CustomAuthFilledButton(
                           text: 'ADD BANK',

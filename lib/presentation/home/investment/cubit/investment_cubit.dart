@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/domain/auth/i_auth_facade.dart';
 import 'package:fortfolio/domain/auth/i_external_facade.dart';
 import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
@@ -31,11 +32,13 @@ class InvestmentCubit extends Cubit<InvestmentState> {
   final IExternalFacade externalFacade;
   final IFunctionsFacade functionsFacade;
   late final SecurityCubit securityCubit;
+  late final AuthCubit authCubit;
   StreamSubscription<Option<TransactionStatus?>>? _logPaymentStatusSubscription;
   InvestmentCubit(
       this.firestoreFacade, this.externalFacade, this.functionsFacade, this.authFacade)
       : super(InvestmentState.initial()){
         securityCubit = getIt<SecurityCubit>();
+        authCubit = getIt<AuthCubit>();
       }
 
   void exchangeTypeChanged({required String exchangeType}) {
@@ -71,7 +74,6 @@ class InvestmentCubit extends Cubit<InvestmentState> {
         break;
       case "FortCrypto":
         emit(state.copyWith(roi: 15));
-        setCryptoBaseAmount(coin: "BTC");
         break;
       default:
     }
@@ -176,7 +178,25 @@ class InvestmentCubit extends Cubit<InvestmentState> {
           paymentMethod: paymentMethod,
           coin: coin,
           numberOfDays: numberOfDays);
-    } else {
+    }else if (state.planName == "FortShield") {
+      investmentItem = InvestmentItem(
+          description: description,
+          currency: currency,
+          uid: uid,
+          refId: refId,
+          amount: amount / authCubit.state.sellPrice,
+          traxId: traxId,
+          roi: roi,
+          planName: planName,
+          bankAccountType: bankAccountType,
+          paymentDate: paymentDate,
+          dueDate: dueDate,
+          duration: duration,
+          status: status,
+          planYield: 0,
+          paymentMethod: paymentMethod,
+          numberOfDays: numberOfDays);
+    }else {
       investmentItem = InvestmentItem(
           description: description,
           currency: currency,

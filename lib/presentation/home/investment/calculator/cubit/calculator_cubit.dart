@@ -20,43 +20,13 @@ class CalculatorCubit extends Cubit<CalculatorState> {
     emit(state.copyWith(duration: duration));
     totalReturnsChange();
   }
+  void exchangeChanged({required String exchange}){
+    emit(state.copyWith(exchange: exchange));
+    totalReturnsChange();
+  }
   void selectedPlanChanged({required String selectedPlan}){
     emit(state.copyWith(selectedPlan: selectedPlan));
     roiChange();
-    totalReturnsChange();
-  }
-  Future<void> calculateInBTC({required int sellPrice}) async {
-    final btcPriceOption = await externalFacade.getBTCPriceInDollars();
-    var investmentAmount = state.investmentAmount;
-    if (state.exchange == "NGN"){
-      investmentAmount = investmentAmount * sellPrice;
-    }
-    emit(state.copyWith(investmentAmount: investmentAmount / btcPriceOption, exchange: "BTC"));
-    totalReturnsChange();
-  }
-
-  void calculateInNaira({required int sellPrice}) async{
-    final btcPriceOption = await externalFacade.getBTCPriceInDollars();
-    var investmentAmount = state.investmentAmount;
-    if (state.exchange == "USD"){
-      investmentAmount = investmentAmount * sellPrice;
-    }
-    if (state.exchange == "BTC") {
-      investmentAmount = investmentAmount * sellPrice * btcPriceOption;
-    }
-    emit(state.copyWith(investmentAmount: investmentAmount, exchange: "NGN"));
-    totalReturnsChange();
-  }
-
-  void calculateInUSD({required int sellPrice}) async{
-    final btcPriceOption = await externalFacade.getBTCPriceInDollars();
-    var investmentAmount = state.investmentAmount;
-    if (state.exchange == "BTC") {
-      investmentAmount = investmentAmount * btcPriceOption;
-    }else if(state.exchange == "NGN"){
-      investmentAmount = investmentAmount / sellPrice;
-    }
-    emit(state.copyWith(investmentAmount: investmentAmount, exchange: "USD"));
     totalReturnsChange();
   }
 

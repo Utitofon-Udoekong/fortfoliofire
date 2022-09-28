@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/user/bank_address.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
+import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/cubit/payment_method_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 
 import '../../cubit/wallet_cubit.dart';
@@ -45,7 +46,7 @@ class BankWithdrawal extends StatelessWidget {
                       const SizedBox(
                         height: 30,
                       ),
-                      BlocSelector<WalletCubit, WalletState, List<BankAddress>>(
+                      BlocSelector<PaymentMethodCubit, PaymentMethodState, List<BankAddress>>(
                         selector: (state) {
                           return state.bankAddresses;
                         },

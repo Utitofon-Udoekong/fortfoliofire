@@ -5,7 +5,7 @@ import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/domain/widgets/loading_view.dart';
 import 'package:fortfolio/domain/widgets/num_pad.dart';
-import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/bank/cubit/bank_address_cubit.dart';
+import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/cubit/payment_method_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 
 class VerifyBank extends StatelessWidget {
@@ -16,14 +16,14 @@ class VerifyBank extends StatelessWidget {
     final TextEditingController _myController = TextEditingController();
     return MultiBlocListener(
       listeners: [
-        BlocListener<BankAddressCubit, BankAddressState>(
+        BlocListener<PaymentMethodCubit, PaymentMethodState>(
           listenWhen: (previous, current) =>
               previous.failure != current.failure && current.failure.isNotEmpty,
           listener: (context, state) {
             CustomSnackbar.showSnackBar(context, state.failure, true);
           },
         ),
-        BlocListener<BankAddressCubit, BankAddressState>(
+        BlocListener<PaymentMethodCubit, PaymentMethodState>(
           listenWhen: (previous, current) =>
               previous.success != current.success && current.success.isNotEmpty,
           listener: (context, state) {
@@ -33,7 +33,7 @@ class VerifyBank extends StatelessWidget {
         ),
       ],
       child: Scaffold(
-        body: BlocSelector<BankAddressCubit, BankAddressState, bool>(
+        body: BlocSelector<PaymentMethodCubit, PaymentMethodState, bool>(
           selector: (state) {
             return state.isLoading;
           },
@@ -96,14 +96,14 @@ class VerifyBank extends StatelessWidget {
                           controller: _myController,
                           onSubmit: () {
                             context
-                                .read<BankAddressCubit>()
-                                .auhenticatePin(pin: _myController.text);
+                                .read<PaymentMethodCubit>()
+                                .auhenticateBankPin(pin: _myController.text);
                             _myController.clear();
                           },
                           fingerPrint: () {
                             context
-                                .read<BankAddressCubit>()
-                                .authenticateBiometric();
+                                .read<PaymentMethodCubit>()
+                                .authenticateBankBiometric();
                             _myController.clear();
                           },
                         ),

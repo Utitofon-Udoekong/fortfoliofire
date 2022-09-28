@@ -140,11 +140,25 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
   @override
   Future<Either<String, String>> createKYC({required KYCItem kycItem}) async {
     final sp = await SharedPreferences.getInstance();
+    if(!sp.containsKey("notificationCount")){
+      sp.setInt("notificationCount", 0);
+    }
+    int? notificationCount = sp.getInt("notificationCount");
     try {
       await firestore.kycCollection
           .doc(auth.currentUser!.uid)
           .set(KYCItemDTO.fromDomain(kycItem).toJson());
-      sp.setBool("kycExists", true);
+      NotificationItem notificationItem = NotificationItem(
+        id: kycItem.id,
+        type: "KYC",
+        title: kycItem.documentType,
+        createdat: kycItem.submitted,
+        status: kycItem.status,
+      );
+      await createNotification(notificationItem: notificationItem).then((_) {
+        sp.setBool("kycExists", true);
+        sp.setInt("notificationCount", (notificationCount! + 1));
+      });
       return right("KYC Documents submitted");
     } on FirebaseException catch (e) {
       return left(getErrorFromCode(symbol: e.code));

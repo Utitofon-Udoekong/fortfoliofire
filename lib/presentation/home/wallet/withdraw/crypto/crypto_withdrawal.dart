@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/user/crypto_wallet.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
+import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/cubit/payment_method_cubit.dart';
 import 'package:fortfolio/presentation/home/wallet/cubit/wallet_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 
@@ -44,9 +45,9 @@ class CryptoWithdrawal extends StatelessWidget {
                       const SizedBox(
                         height: 30,
                       ),
-                      BlocSelector<WalletCubit, WalletState, bool>(
+                      BlocSelector<PaymentMethodCubit, PaymentMethodState, bool>(
                         selector: (state) {
-                          return state.cryptoAddresses.isEmpty && state.generalCryptoAddresses.isEmpty;
+                          return state.emptyWallet;
                         },
                         builder: (context, state) {
                           return Center(
@@ -61,7 +62,7 @@ class CryptoWithdrawal extends StatelessWidget {
                             );
                         },
                       ),
-                      BlocSelector<WalletCubit, WalletState, List<CryptoWallet>>(
+                      BlocSelector<PaymentMethodCubit, PaymentMethodState, List<CryptoWallet>>(
                         selector: (state) {
                           return state.cryptoAddresses;
                         },
@@ -82,7 +83,7 @@ class CryptoWithdrawal extends StatelessWidget {
                           );
                         },
                       ),
-                      BlocSelector<WalletCubit, WalletState, List<CryptoWallet>>(
+                      BlocSelector<PaymentMethodCubit, PaymentMethodState, List<CryptoWallet>>(
                         selector: (state) {
                           return state.generalCryptoAddresses;
                         },

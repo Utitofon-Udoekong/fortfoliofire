@@ -6,7 +6,7 @@ import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
 import 'package:fortfolio/domain/widgets/labelled_checkbox.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 
-import 'cubit/crypto_wallet_cubit.dart';
+import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/cubit/payment_method_cubit.dart';
 import 'networks.dart';
 
 class AddCryptoWallet extends StatelessWidget {
@@ -51,7 +51,7 @@ class AddCryptoWallet extends StatelessWidget {
                           style: TextStyle(
                               fontSize: 15, color: Color(0xFF656565)),
                         ),
-                        BlocBuilder<CryptoWalletCubit, CryptoWalletState>(
+                        BlocBuilder<PaymentMethodCubit, PaymentMethodState>(
                           buildWhen: (previous, current) =>
                               previous.platform != current.platform,
                           builder: (context, state) {
@@ -66,7 +66,7 @@ class AddCryptoWallet extends StatelessWidget {
                                   fillColor: const Color(0xFFF3F6F8),
                                   border: InputBorder.none),
                               onChanged: (value) => context
-                                  .read<CryptoWalletCubit>()
+                                  .read<PaymentMethodCubit>()
                                   .platformChanged(platform: value),
                             );
                           },
@@ -79,7 +79,7 @@ class AddCryptoWallet extends StatelessWidget {
                           style: TextStyle(
                               fontSize: 15, color: Color(0xFF656565)),
                         ),
-                        BlocBuilder<CryptoWalletCubit, CryptoWalletState>(
+                        BlocBuilder<PaymentMethodCubit, PaymentMethodState>(
                           buildWhen: (previous, current) =>
                               previous.walletLabel != current.walletLabel,
                           builder: (context, state) {
@@ -93,7 +93,7 @@ class AddCryptoWallet extends StatelessWidget {
                                   fillColor: Color(0xFFF3F6F8),
                                   border: InputBorder.none),
                               onChanged: (value) => context
-                                  .read<CryptoWalletCubit>()
+                                  .read<PaymentMethodCubit>()
                                   .walletLabelChanged(walletLabel: value),
                             );
                           },
@@ -106,14 +106,14 @@ class AddCryptoWallet extends StatelessWidget {
                           style: TextStyle(
                               fontSize: 15, color: Color(0xFF656565)),
                         ),
-                        BlocBuilder<CryptoWalletCubit, CryptoWalletState>(
+                        BlocBuilder<PaymentMethodCubit, PaymentMethodState>(
                           buildWhen: (previous, current) =>
                               previous.coin != current.coin,
                           builder: (context, state) {
                             return DropdownButtonFormField(
                               items: state.dropdownItems,
                               onChanged: (String? coin) => context
-                                  .read<CryptoWalletCubit>()
+                                  .read<PaymentMethodCubit>()
                                   .coinChanged(coin: coin!),
                               value: state.coin,
                               decoration: InputDecoration(
@@ -129,14 +129,14 @@ class AddCryptoWallet extends StatelessWidget {
                         const SizedBox(
                           height: 10,
                         ),
-                        BlocBuilder<CryptoWalletCubit, CryptoWalletState>(
+                        BlocBuilder<PaymentMethodCubit, PaymentMethodState>(
                             builder: ((context, state) {
                           return LabeledCheckbox(
                             label:
                                 const Text('Set as universal address, without specific coins'),
                             value: state.isGeneral,
                             onChanged: (bool newValue) => context
-                                .read<CryptoWalletCubit>()
+                                .read<PaymentMethodCubit>()
                                 .isGeneralChanged(isGeneral: newValue),
                           );
                         })),
@@ -148,7 +148,7 @@ class AddCryptoWallet extends StatelessWidget {
                           style: TextStyle(
                               fontSize: 15, color: Color(0xFF656565)),
                         ),
-                        BlocBuilder<CryptoWalletCubit, CryptoWalletState>(
+                        BlocBuilder<PaymentMethodCubit, PaymentMethodState>(
                           buildWhen: (previous, current) =>
                               previous.address != current.address,
                           builder: (context, state) {
@@ -161,7 +161,7 @@ class AddCryptoWallet extends StatelessWidget {
                                   fillColor: Color(0xFFF3F6F8),
                                   border: InputBorder.none),
                               onChanged: (value) => context
-                                  .read<CryptoWalletCubit>()
+                                  .read<PaymentMethodCubit>()
                                   .addressChanged(address: value),
                             );
                           },
@@ -169,7 +169,7 @@ class AddCryptoWallet extends StatelessWidget {
                         const SizedBox(
                           height: 30,
                         ),
-                        BlocSelector<CryptoWalletCubit, CryptoWalletState,
+                        BlocSelector<PaymentMethodCubit, PaymentMethodState,
                                 bool>(
                             selector: (state) => state.isGeneral,
                             builder: (context, isGeneral) {
@@ -185,8 +185,8 @@ class AddCryptoWallet extends StatelessWidget {
                                             fontSize: 15,
                                             color: Color(0xFF656565)),
                                       ),
-                                      BlocSelector<CryptoWalletCubit,
-                                          CryptoWalletState, int?>(
+                                      BlocSelector<PaymentMethodCubit,
+                                          PaymentMethodState, int?>(
                                         selector: (state) =>
                                             state.selectedNetwork,
                                         builder:
@@ -211,7 +211,7 @@ class AddCryptoWallet extends StatelessWidget {
                                                         (bool selected) {
                                                       context
                                                           .read<
-                                                              CryptoWalletCubit>()
+                                                              PaymentMethodCubit>()
                                                           .selectedNetworkChanged(
                                                               selectedNetwork: selected
                                                                   ? item
@@ -223,7 +223,7 @@ class AddCryptoWallet extends StatelessWidget {
                                                               .title;
                                                       context
                                                           .read<
-                                                              CryptoWalletCubit>()
+                                                              PaymentMethodCubit>()
                                                           .networkChanged(
                                                               network:
                                                                   coinNetwork);
@@ -248,9 +248,9 @@ class AddCryptoWallet extends StatelessWidget {
                         const SizedBox(
                           height: 30,
                         ),
-                        BlocSelector<CryptoWalletCubit, CryptoWalletState,
+                        BlocSelector<PaymentMethodCubit, PaymentMethodState,
                             bool>(
-                          selector: (state) => state.isValidState,
+                          selector: (state) => state.isValidCryptoState,
                           builder: (context, isValidState) {
                             return CustomAuthFilledButton(
                               text: 'ADD CRYPTO WALLET',

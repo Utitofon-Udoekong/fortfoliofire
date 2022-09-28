@@ -1,41 +1,43 @@
-import 'dart:io';
+import 'dart:async';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fortfolio/application/auth/auth_cubit.dart';
+import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
+import 'package:fortfolio/domain/user/bank_address.dart';
+import 'package:fortfolio/domain/user/crypto_wallet.dart';
+import 'package:fortfolio/infrastructure/auth/dto/bank_address/bank_address_dto.dart';
 import 'package:fortfolio/infrastructure/auth/dto/crypto_address/crypto_address.dart';
 import 'package:fortfolio/infrastructure/auth/local_auth_api.dart';
 import 'package:fortfolio/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
-import 'package:fortfolio/domain/user/crypto_wallet.dart';
-import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/crypto/networks.dart';
 import 'package:injectable/injectable.dart';
 import 'package:nanoid/nanoid.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
-import 'dart:async';
 
-part 'crypto_wallet_state.dart';
-part 'crypto_wallet_cubit.freezed.dart';
+part 'payment_method_state.dart';
+part 'payment_method_cubit.freezed.dart';
+
 
 @injectable
-class CryptoWalletCubit extends Cubit<CryptoWalletState> {
+class PaymentMethodCubit extends Cubit<PaymentMethodState> {
   final IFirestoreFacade firestoreFacade;
   late final AuthCubit authCubit;
   StreamSubscription<QuerySnapshot>? _logsCryptoAddressSubscription;
   StreamSubscription<QuerySnapshot>? _logsGeneralCryptoAddressSubscription;
-  CryptoWalletCubit(this.firestoreFacade) : super(CryptoWalletState.initial()) {
+  StreamSubscription<QuerySnapshot>? _logsBankAddressSubscription;
+  PaymentMethodCubit(this.firestoreFacade, this.authCubit) : super(PaymentMethodState.initial()){
     authCubit = getIt<AuthCubit>();
     authCubit.stream.listen((state) {
       if (state.isLoggedIn) {
         initCryptoWallet();
         initGeneralCryptoWallet();
+        initBank();
       }
     });
   }
-
   void initCryptoWallet() {
     _logsCryptoAddressSubscription =
         firestoreFacade.getCryptoWallets().listen((data) {
@@ -94,9 +96,31 @@ class CryptoWalletCubit extends Cubit<CryptoWalletState> {
     emit(state.copyWith(selectedNetwork: selectedNetwork));
   }
 
-  void authenticateBiometric() async {
+  void initBank() {
+    _logsBankAddressSubscription =
+        firestoreFacade.getBankAddress().listen((data) {
+      final List<QueryDocumentSnapshot<Object?>> docs = data.docs;
+      List<BankAddress> bankAddresses = [];
+      if (data.size > 0) {
+        for (var element in docs) {
+          final doc = BankAddressDTO.fromFirestore(element).toDomain();
+          bankAddresses.add(doc);
+        }
+        emit(state.copyWith(bankAddresses: bankAddresses));
+      }
+    });
+  }
+
+  void bankNameChanged({required String bankName}) {
+    emit(state.copyWith(bankName: bankName));
+  }
+
+  void accountNumberChanged({required String accountNumber}) {
+    emit(state.copyWith(accountNumber: accountNumber));
+  }
+
+   void authenticateWalletBiometric() async {
     bool canCheckBiometrics = await LocalAuthApi.hasBiometrics();
-    if (Platform.isAndroid) {
       if (canCheckBiometrics) {
         bool didauthenticate = await LocalAuthApi.authenticate(
             localizedReason: 'Scan fingerprint to invest');
@@ -108,10 +132,9 @@ class CryptoWalletCubit extends Cubit<CryptoWalletState> {
           performWalletAddition();
         }
       }
-    }
   }
 
-  void auhenticatePin({required String pin}) async {
+  void auhenticateWalletPin({required String pin}) async {
     final sp = await SharedPreferences.getInstance();
     final traxPin = sp.getString("trax_key");
     if (pin == traxPin) {
@@ -122,6 +145,63 @@ class CryptoWalletCubit extends Cubit<CryptoWalletState> {
           const Duration(seconds: 1), () => emit(state.copyWith(failure: "")));
     }
   }
+
+  void authenticateBankBiometric() async {
+    bool canCheckBiometrics = await LocalAuthApi.hasBiometrics();
+    if (canCheckBiometrics) {
+        bool didauthenticate = await LocalAuthApi.authenticate(
+            localizedReason: 'Scan fingerprint to invest');
+        if (didauthenticate != true) {
+          emit(state.copyWith(failure: "Authenticate to continue"));
+          Future.delayed(const Duration(seconds: 1),
+              () => emit(state.copyWith(failure: "")));
+        } else {
+          addbankClicked();
+        }
+      }
+  }
+
+  void auhenticateBankPin({required String pin}) async {
+    final sp = await SharedPreferences.getInstance();
+    final traxPin = sp.getString("trax_key");
+    if (pin == traxPin) {
+      addbankClicked();
+    } else {
+      emit(state.copyWith(failure: "Incorrect Transaction Pin"));
+      Future.delayed(
+          const Duration(seconds: 1), () => emit(state.copyWith(failure: "")));
+    }
+  }
+
+  void addbankClicked() async {
+    emit(state.copyWith(isLoading: true, success: "", failure: ""));
+    final String bankName = state.bankName;
+    final String userName =
+        "${authCubit.state.userModel.firstName} ${authCubit.state.userModel.lastName}";
+    final String accountNumber = state.accountNumber;
+    final String id = const Uuid().v4().substring(0, 7);
+    final String trax = nanoid(8);
+    BankAddress bankAddress = BankAddress(
+        bankName: bankName,
+        accountNumber: accountNumber,
+        userName: userName,
+        type: "BANKADDRESS",
+        id: id,
+        trax: trax);
+    try {
+      final res = await firestoreFacade.addBank(bankAddress: bankAddress);
+      res.fold((failure) {
+        emit(state.copyWith(isLoading: false, failure: failure));
+      }, (success) {
+        emit(state.copyWith(isLoading: false, success: success));
+      });
+    } catch (e) {
+      print(e);
+      emit(state.copyWith(isLoading: false));
+    }
+  }
+
+ 
 
   void performWalletAddition() async {
     emit(state.copyWith(isloading: true));
@@ -182,6 +262,7 @@ class CryptoWalletCubit extends Cubit<CryptoWalletState> {
   Future<void> close() async {
     await _logsCryptoAddressSubscription?.cancel();
     await _logsGeneralCryptoAddressSubscription?.cancel();
+    await _logsBankAddressSubscription?.cancel();
     return super.close();
   }
 }

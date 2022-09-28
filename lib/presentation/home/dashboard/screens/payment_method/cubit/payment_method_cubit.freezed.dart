@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'crypto_wallet_cubit.dart';
+part of 'payment_method_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,14 +15,17 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$CryptoWalletState {
+mixin _$PaymentMethodState {
+  String get bankName => throw _privateConstructorUsedError;
+  String get accountNumber => throw _privateConstructorUsedError;
+  bool get isLoading => throw _privateConstructorUsedError;
+  String get failure => throw _privateConstructorUsedError;
+  String get success => throw _privateConstructorUsedError;
   String get walletLabel => throw _privateConstructorUsedError;
   String get coin => throw _privateConstructorUsedError;
   String get network => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
   String get platform => throw _privateConstructorUsedError;
-  String get failure => throw _privateConstructorUsedError;
-  String get success => throw _privateConstructorUsedError;
   bool get isGeneral => throw _privateConstructorUsedError;
   bool get isloading => throw _privateConstructorUsedError;
   int? get selectedNetwork => throw _privateConstructorUsedError;
@@ -31,59 +34,88 @@ mixin _$CryptoWalletState {
   List<CryptoWallet> get cryptoAddresses => throw _privateConstructorUsedError;
   List<CryptoWallet> get generalCryptoAddresses =>
       throw _privateConstructorUsedError;
+  List<BankAddress> get bankAddresses => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $CryptoWalletStateCopyWith<CryptoWalletState> get copyWith =>
+  $PaymentMethodStateCopyWith<PaymentMethodState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CryptoWalletStateCopyWith<$Res> {
-  factory $CryptoWalletStateCopyWith(
-          CryptoWalletState value, $Res Function(CryptoWalletState) then) =
-      _$CryptoWalletStateCopyWithImpl<$Res>;
+abstract class $PaymentMethodStateCopyWith<$Res> {
+  factory $PaymentMethodStateCopyWith(
+          PaymentMethodState value, $Res Function(PaymentMethodState) then) =
+      _$PaymentMethodStateCopyWithImpl<$Res>;
   $Res call(
-      {String walletLabel,
+      {String bankName,
+      String accountNumber,
+      bool isLoading,
+      String failure,
+      String success,
+      String walletLabel,
       String coin,
       String network,
       String address,
       String platform,
-      String failure,
-      String success,
       bool isGeneral,
       bool isloading,
       int? selectedNetwork,
       List<DropdownMenuItem<String>> dropdownItems,
       List<CryptoWallet> cryptoAddresses,
-      List<CryptoWallet> generalCryptoAddresses});
+      List<CryptoWallet> generalCryptoAddresses,
+      List<BankAddress> bankAddresses});
 }
 
 /// @nodoc
-class _$CryptoWalletStateCopyWithImpl<$Res>
-    implements $CryptoWalletStateCopyWith<$Res> {
-  _$CryptoWalletStateCopyWithImpl(this._value, this._then);
+class _$PaymentMethodStateCopyWithImpl<$Res>
+    implements $PaymentMethodStateCopyWith<$Res> {
+  _$PaymentMethodStateCopyWithImpl(this._value, this._then);
 
-  final CryptoWalletState _value;
+  final PaymentMethodState _value;
   // ignore: unused_field
-  final $Res Function(CryptoWalletState) _then;
+  final $Res Function(PaymentMethodState) _then;
 
   @override
   $Res call({
+    Object? bankName = freezed,
+    Object? accountNumber = freezed,
+    Object? isLoading = freezed,
+    Object? failure = freezed,
+    Object? success = freezed,
     Object? walletLabel = freezed,
     Object? coin = freezed,
     Object? network = freezed,
     Object? address = freezed,
     Object? platform = freezed,
-    Object? failure = freezed,
-    Object? success = freezed,
     Object? isGeneral = freezed,
     Object? isloading = freezed,
     Object? selectedNetwork = freezed,
     Object? dropdownItems = freezed,
     Object? cryptoAddresses = freezed,
     Object? generalCryptoAddresses = freezed,
+    Object? bankAddresses = freezed,
   }) {
     return _then(_value.copyWith(
+      bankName: bankName == freezed
+          ? _value.bankName
+          : bankName // ignore: cast_nullable_to_non_nullable
+              as String,
+      accountNumber: accountNumber == freezed
+          ? _value.accountNumber
+          : accountNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      isLoading: isLoading == freezed
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      failure: failure == freezed
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as String,
+      success: success == freezed
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as String,
       walletLabel: walletLabel == freezed
           ? _value.walletLabel
           : walletLabel // ignore: cast_nullable_to_non_nullable
@@ -103,14 +135,6 @@ class _$CryptoWalletStateCopyWithImpl<$Res>
       platform: platform == freezed
           ? _value.platform
           : platform // ignore: cast_nullable_to_non_nullable
-              as String,
-      failure: failure == freezed
-          ? _value.failure
-          : failure // ignore: cast_nullable_to_non_nullable
-              as String,
-      success: success == freezed
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
               as String,
       isGeneral: isGeneral == freezed
           ? _value.isGeneral
@@ -136,61 +160,93 @@ class _$CryptoWalletStateCopyWithImpl<$Res>
           ? _value.generalCryptoAddresses
           : generalCryptoAddresses // ignore: cast_nullable_to_non_nullable
               as List<CryptoWallet>,
+      bankAddresses: bankAddresses == freezed
+          ? _value.bankAddresses
+          : bankAddresses // ignore: cast_nullable_to_non_nullable
+              as List<BankAddress>,
     ));
   }
 }
 
 /// @nodoc
-abstract class _$$_CryptoWalletStateCopyWith<$Res>
-    implements $CryptoWalletStateCopyWith<$Res> {
-  factory _$$_CryptoWalletStateCopyWith(_$_CryptoWalletState value,
-          $Res Function(_$_CryptoWalletState) then) =
-      __$$_CryptoWalletStateCopyWithImpl<$Res>;
+abstract class _$$_PaymentMethodStateCopyWith<$Res>
+    implements $PaymentMethodStateCopyWith<$Res> {
+  factory _$$_PaymentMethodStateCopyWith(_$_PaymentMethodState value,
+          $Res Function(_$_PaymentMethodState) then) =
+      __$$_PaymentMethodStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String walletLabel,
+      {String bankName,
+      String accountNumber,
+      bool isLoading,
+      String failure,
+      String success,
+      String walletLabel,
       String coin,
       String network,
       String address,
       String platform,
-      String failure,
-      String success,
       bool isGeneral,
       bool isloading,
       int? selectedNetwork,
       List<DropdownMenuItem<String>> dropdownItems,
       List<CryptoWallet> cryptoAddresses,
-      List<CryptoWallet> generalCryptoAddresses});
+      List<CryptoWallet> generalCryptoAddresses,
+      List<BankAddress> bankAddresses});
 }
 
 /// @nodoc
-class __$$_CryptoWalletStateCopyWithImpl<$Res>
-    extends _$CryptoWalletStateCopyWithImpl<$Res>
-    implements _$$_CryptoWalletStateCopyWith<$Res> {
-  __$$_CryptoWalletStateCopyWithImpl(
-      _$_CryptoWalletState _value, $Res Function(_$_CryptoWalletState) _then)
-      : super(_value, (v) => _then(v as _$_CryptoWalletState));
+class __$$_PaymentMethodStateCopyWithImpl<$Res>
+    extends _$PaymentMethodStateCopyWithImpl<$Res>
+    implements _$$_PaymentMethodStateCopyWith<$Res> {
+  __$$_PaymentMethodStateCopyWithImpl(
+      _$_PaymentMethodState _value, $Res Function(_$_PaymentMethodState) _then)
+      : super(_value, (v) => _then(v as _$_PaymentMethodState));
 
   @override
-  _$_CryptoWalletState get _value => super._value as _$_CryptoWalletState;
+  _$_PaymentMethodState get _value => super._value as _$_PaymentMethodState;
 
   @override
   $Res call({
+    Object? bankName = freezed,
+    Object? accountNumber = freezed,
+    Object? isLoading = freezed,
+    Object? failure = freezed,
+    Object? success = freezed,
     Object? walletLabel = freezed,
     Object? coin = freezed,
     Object? network = freezed,
     Object? address = freezed,
     Object? platform = freezed,
-    Object? failure = freezed,
-    Object? success = freezed,
     Object? isGeneral = freezed,
     Object? isloading = freezed,
     Object? selectedNetwork = freezed,
     Object? dropdownItems = freezed,
     Object? cryptoAddresses = freezed,
     Object? generalCryptoAddresses = freezed,
+    Object? bankAddresses = freezed,
   }) {
-    return _then(_$_CryptoWalletState(
+    return _then(_$_PaymentMethodState(
+      bankName: bankName == freezed
+          ? _value.bankName
+          : bankName // ignore: cast_nullable_to_non_nullable
+              as String,
+      accountNumber: accountNumber == freezed
+          ? _value.accountNumber
+          : accountNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      isLoading: isLoading == freezed
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      failure: failure == freezed
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as String,
+      success: success == freezed
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as String,
       walletLabel: walletLabel == freezed
           ? _value.walletLabel
           : walletLabel // ignore: cast_nullable_to_non_nullable
@@ -210,14 +266,6 @@ class __$$_CryptoWalletStateCopyWithImpl<$Res>
       platform: platform == freezed
           ? _value.platform
           : platform // ignore: cast_nullable_to_non_nullable
-              as String,
-      failure: failure == freezed
-          ? _value.failure
-          : failure // ignore: cast_nullable_to_non_nullable
-              as String,
-      success: success == freezed
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
               as String,
       isGeneral: isGeneral == freezed
           ? _value.isGeneral
@@ -243,32 +291,51 @@ class __$$_CryptoWalletStateCopyWithImpl<$Res>
           ? _value._generalCryptoAddresses
           : generalCryptoAddresses // ignore: cast_nullable_to_non_nullable
               as List<CryptoWallet>,
+      bankAddresses: bankAddresses == freezed
+          ? _value._bankAddresses
+          : bankAddresses // ignore: cast_nullable_to_non_nullable
+              as List<BankAddress>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_CryptoWalletState extends _CryptoWalletState {
-  const _$_CryptoWalletState(
-      {required this.walletLabel,
+class _$_PaymentMethodState extends _PaymentMethodState {
+  const _$_PaymentMethodState(
+      {required this.bankName,
+      required this.accountNumber,
+      required this.isLoading,
+      required this.failure,
+      required this.success,
+      required this.walletLabel,
       required this.coin,
       required this.network,
       required this.address,
       required this.platform,
-      required this.failure,
-      required this.success,
       required this.isGeneral,
       required this.isloading,
       required this.selectedNetwork,
       required final List<DropdownMenuItem<String>> dropdownItems,
       required final List<CryptoWallet> cryptoAddresses,
-      required final List<CryptoWallet> generalCryptoAddresses})
+      required final List<CryptoWallet> generalCryptoAddresses,
+      required final List<BankAddress> bankAddresses})
       : _dropdownItems = dropdownItems,
         _cryptoAddresses = cryptoAddresses,
         _generalCryptoAddresses = generalCryptoAddresses,
+        _bankAddresses = bankAddresses,
         super._();
 
+  @override
+  final String bankName;
+  @override
+  final String accountNumber;
+  @override
+  final bool isLoading;
+  @override
+  final String failure;
+  @override
+  final String success;
   @override
   final String walletLabel;
   @override
@@ -279,10 +346,6 @@ class _$_CryptoWalletState extends _CryptoWalletState {
   final String address;
   @override
   final String platform;
-  @override
-  final String failure;
-  @override
-  final String success;
   @override
   final bool isGeneral;
   @override
@@ -310,24 +373,35 @@ class _$_CryptoWalletState extends _CryptoWalletState {
     return EqualUnmodifiableListView(_generalCryptoAddresses);
   }
 
+  final List<BankAddress> _bankAddresses;
+  @override
+  List<BankAddress> get bankAddresses {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_bankAddresses);
+  }
+
   @override
   String toString() {
-    return 'CryptoWalletState(walletLabel: $walletLabel, coin: $coin, network: $network, address: $address, platform: $platform, failure: $failure, success: $success, isGeneral: $isGeneral, isloading: $isloading, selectedNetwork: $selectedNetwork, dropdownItems: $dropdownItems, cryptoAddresses: $cryptoAddresses, generalCryptoAddresses: $generalCryptoAddresses)';
+    return 'PaymentMethodState(bankName: $bankName, accountNumber: $accountNumber, isLoading: $isLoading, failure: $failure, success: $success, walletLabel: $walletLabel, coin: $coin, network: $network, address: $address, platform: $platform, isGeneral: $isGeneral, isloading: $isloading, selectedNetwork: $selectedNetwork, dropdownItems: $dropdownItems, cryptoAddresses: $cryptoAddresses, generalCryptoAddresses: $generalCryptoAddresses, bankAddresses: $bankAddresses)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CryptoWalletState &&
+            other is _$_PaymentMethodState &&
+            const DeepCollectionEquality().equals(other.bankName, bankName) &&
+            const DeepCollectionEquality()
+                .equals(other.accountNumber, accountNumber) &&
+            const DeepCollectionEquality().equals(other.isLoading, isLoading) &&
+            const DeepCollectionEquality().equals(other.failure, failure) &&
+            const DeepCollectionEquality().equals(other.success, success) &&
             const DeepCollectionEquality()
                 .equals(other.walletLabel, walletLabel) &&
             const DeepCollectionEquality().equals(other.coin, coin) &&
             const DeepCollectionEquality().equals(other.network, network) &&
             const DeepCollectionEquality().equals(other.address, address) &&
             const DeepCollectionEquality().equals(other.platform, platform) &&
-            const DeepCollectionEquality().equals(other.failure, failure) &&
-            const DeepCollectionEquality().equals(other.success, success) &&
             const DeepCollectionEquality().equals(other.isGeneral, isGeneral) &&
             const DeepCollectionEquality().equals(other.isloading, isloading) &&
             const DeepCollectionEquality()
@@ -337,51 +411,70 @@ class _$_CryptoWalletState extends _CryptoWalletState {
             const DeepCollectionEquality()
                 .equals(other._cryptoAddresses, _cryptoAddresses) &&
             const DeepCollectionEquality().equals(
-                other._generalCryptoAddresses, _generalCryptoAddresses));
+                other._generalCryptoAddresses, _generalCryptoAddresses) &&
+            const DeepCollectionEquality()
+                .equals(other._bankAddresses, _bankAddresses));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(bankName),
+      const DeepCollectionEquality().hash(accountNumber),
+      const DeepCollectionEquality().hash(isLoading),
+      const DeepCollectionEquality().hash(failure),
+      const DeepCollectionEquality().hash(success),
       const DeepCollectionEquality().hash(walletLabel),
       const DeepCollectionEquality().hash(coin),
       const DeepCollectionEquality().hash(network),
       const DeepCollectionEquality().hash(address),
       const DeepCollectionEquality().hash(platform),
-      const DeepCollectionEquality().hash(failure),
-      const DeepCollectionEquality().hash(success),
       const DeepCollectionEquality().hash(isGeneral),
       const DeepCollectionEquality().hash(isloading),
       const DeepCollectionEquality().hash(selectedNetwork),
       const DeepCollectionEquality().hash(_dropdownItems),
       const DeepCollectionEquality().hash(_cryptoAddresses),
-      const DeepCollectionEquality().hash(_generalCryptoAddresses));
+      const DeepCollectionEquality().hash(_generalCryptoAddresses),
+      const DeepCollectionEquality().hash(_bankAddresses));
 
   @JsonKey(ignore: true)
   @override
-  _$$_CryptoWalletStateCopyWith<_$_CryptoWalletState> get copyWith =>
-      __$$_CryptoWalletStateCopyWithImpl<_$_CryptoWalletState>(
+  _$$_PaymentMethodStateCopyWith<_$_PaymentMethodState> get copyWith =>
+      __$$_PaymentMethodStateCopyWithImpl<_$_PaymentMethodState>(
           this, _$identity);
 }
 
-abstract class _CryptoWalletState extends CryptoWalletState {
-  const factory _CryptoWalletState(
-          {required final String walletLabel,
-          required final String coin,
-          required final String network,
-          required final String address,
-          required final String platform,
-          required final String failure,
-          required final String success,
-          required final bool isGeneral,
-          required final bool isloading,
-          required final int? selectedNetwork,
-          required final List<DropdownMenuItem<String>> dropdownItems,
-          required final List<CryptoWallet> cryptoAddresses,
-          required final List<CryptoWallet> generalCryptoAddresses}) =
-      _$_CryptoWalletState;
-  const _CryptoWalletState._() : super._();
+abstract class _PaymentMethodState extends PaymentMethodState {
+  const factory _PaymentMethodState(
+      {required final String bankName,
+      required final String accountNumber,
+      required final bool isLoading,
+      required final String failure,
+      required final String success,
+      required final String walletLabel,
+      required final String coin,
+      required final String network,
+      required final String address,
+      required final String platform,
+      required final bool isGeneral,
+      required final bool isloading,
+      required final int? selectedNetwork,
+      required final List<DropdownMenuItem<String>> dropdownItems,
+      required final List<CryptoWallet> cryptoAddresses,
+      required final List<CryptoWallet> generalCryptoAddresses,
+      required final List<BankAddress> bankAddresses}) = _$_PaymentMethodState;
+  const _PaymentMethodState._() : super._();
 
+  @override
+  String get bankName;
+  @override
+  String get accountNumber;
+  @override
+  bool get isLoading;
+  @override
+  String get failure;
+  @override
+  String get success;
   @override
   String get walletLabel;
   @override
@@ -392,10 +485,6 @@ abstract class _CryptoWalletState extends CryptoWalletState {
   String get address;
   @override
   String get platform;
-  @override
-  String get failure;
-  @override
-  String get success;
   @override
   bool get isGeneral;
   @override
@@ -409,7 +498,9 @@ abstract class _CryptoWalletState extends CryptoWalletState {
   @override
   List<CryptoWallet> get generalCryptoAddresses;
   @override
+  List<BankAddress> get bankAddresses;
+  @override
   @JsonKey(ignore: true)
-  _$$_CryptoWalletStateCopyWith<_$_CryptoWalletState> get copyWith =>
+  _$$_PaymentMethodStateCopyWith<_$_PaymentMethodState> get copyWith =>
       throw _privateConstructorUsedError;
 }

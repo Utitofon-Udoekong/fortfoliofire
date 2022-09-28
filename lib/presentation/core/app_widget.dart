@@ -7,8 +7,7 @@ import 'package:fortfolio/application/auth/sign_in_form/phone/sign_in_form_phone
 import 'package:fortfolio/application/auth/sign_up_form/phone/sign_up_form_phone_cubit.dart';
 import 'package:fortfolio/infrastructure/auth/local_auth_api.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/notifications/cubit/notification_cubit.dart';
-import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/bank/cubit/bank_address_cubit.dart';
-import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/crypto/cubit/crypto_wallet_cubit.dart';
+import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/cubit/payment_method_cubit.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/profile/cubit/profile_cubit.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/verification/cubit/verification_cubit.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/security/cubit/security_cubit.dart';
@@ -18,9 +17,9 @@ import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/application/network/network_cubit.dart';
 import 'package:fortfolio/injection.dart';
 import 'package:fortfolio/presentation/home/investment/cubit/investment_cubit.dart';
+import 'package:fortfolio/presentation/home/investment/calculator/cubit/calculator_cubit.dart';
 import 'package:fortfolio/presentation/home/wallet/cubit/wallet_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
-import 'package:auto_route/auto_route.dart';
 
 import '../home/dashboard/cubit/dashboard_cubit.dart';
 
@@ -143,11 +142,11 @@ class _AppState extends State<App> with WidgetsBindingObserver {
           BlocProvider(
               create: (context) => getIt<VerificationCubit>(), lazy: false),
           BlocProvider(
-              create: (context) => getIt<BankAddressCubit>(), lazy: false),
-          BlocProvider(
-              create: (context) => getIt<CryptoWalletCubit>(), lazy: false),
+              create: (context) => getIt<PaymentMethodCubit>(), lazy: false),
           BlocProvider(
               create: (context) => getIt<InvestmentCubit>(), lazy: false),
+          BlocProvider(
+              create: (context) => getIt<CalculatorCubit>(), lazy: false),
         ],
         child: MaterialApp.router(
                   title: 'Fortfolio',

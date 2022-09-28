@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
+import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/cubit/payment_method_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 
-import 'cubit/bank_address_cubit.dart';
 
 class BankAddressPage extends StatelessWidget {
   const BankAddressPage({Key? key}) : super(key: key);
@@ -17,7 +17,7 @@ class BankAddressPage extends StatelessWidget {
       semanticsLabel: 'Blank Wallet',
     );
     return Scaffold(
-      body: BlocSelector<BankAddressCubit, BankAddressState, bool>(
+      body: BlocSelector<PaymentMethodCubit, PaymentMethodState, bool>(
         selector: (state) {
           return state.noAccount;
         },
@@ -55,7 +55,7 @@ class BankAddressPage extends StatelessWidget {
                 const SizedBox(
                   height: 15,
                 ),
-                BlocBuilder<BankAddressCubit, BankAddressState>(
+                BlocBuilder<PaymentMethodCubit, PaymentMethodState>(
                     builder: (context, state) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

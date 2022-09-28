@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_icon_trailing_function_button.dart';
+import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/cubit/payment_method_cubit.dart';
 import 'package:fortfolio/presentation/home/wallet/cubit/wallet_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
  
@@ -45,9 +46,9 @@ class SelectWithdrawalMethod extends StatelessWidget {
                 const SizedBox(
                   height: 30,
                 ),
-                BlocSelector<WalletCubit, WalletState, bool>(
+                BlocSelector<PaymentMethodCubit, PaymentMethodState, bool>(
                   selector: (state) {
-                    return state.paymentMethodExists;
+                    return state.noAddress;
                   },
                   builder: (context, paymentMethodExists) {
                     List<Widget> children = [];
