@@ -46,7 +46,9 @@ import 'package:fortfolio/presentation/home/investment/type/fortdollar/fortdolla
 import 'package:fortfolio/presentation/home/investment/type/fortdollar/invest.dart';
 import 'package:fortfolio/presentation/home/investment/type/fortshield/fortshield.dart';
 import 'package:fortfolio/presentation/home/investment/type/fortshield/invest.dart';
+import 'package:fortfolio/presentation/home/wallet/investment/fortcrypto_info.dart';
 import 'package:fortfolio/presentation/home/wallet/investment/fortdollar_info.dart';
+import 'package:fortfolio/presentation/home/wallet/investment/fortshield_info.dart';
 import 'package:fortfolio/presentation/home/wallet/overview/wallet_overview.dart';
 import 'package:fortfolio/presentation/home/wallet/success.dart';
 import 'package:fortfolio/presentation/home/wallet/transactions/transactions.dart';
@@ -59,9 +61,6 @@ import 'package:fortfolio/presentation/home/wallet/withdraw/withdrawal.dart';
 import 'package:fortfolio/presentation/network/no_connection.dart';
 import 'package:fortfolio/presentation/splash/onboarding.dart';
 import 'package:fortfolio/presentation/splash/splash_screen.dart';
-
-import '../home/wallet/investment/fortcrypto_info.dart';
-import '../home/wallet/investment/fortshield_info.dart';
 
 @MaterialAutoRouter(routes: <AutoRoute>[
   AutoRoute(page: SplashScreen, initial: true),

@@ -31,7 +31,6 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> with WidgetsBindingObserver {
-  bool resumed = false;
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);

@@ -1,8 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.mega.fortfolio">
-    <uses-permission android:name="android.permission.USE_BIOMETRIC"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.SEND_SMS"/>
+    package="com.example.fortfolio">
    <application
         android:label="fortfolio"
         android:name="${applicationName}"
@@ -34,16 +31,4 @@
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
-    <queries>
-        <!-- If your app opens https URLs -->
-        <intent>
-            <action android:name="android.intent.action.VIEW" />
-            <data android:scheme="https" />
-        </intent>
-        <!-- If your app sends emails -->
-        <intent>
-            <action android:name="android.intent.action.SEND" />
-            <data android:mimeType="*/*" />
-        </intent>
-    </queries>
 </manifest>

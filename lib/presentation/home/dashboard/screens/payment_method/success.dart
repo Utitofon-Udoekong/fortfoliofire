@@ -2,14 +2,15 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/application/auth/auth_cubit.dart';
-
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
-import 'package:fortfolio/presentation/routes/router.gr.dart';
 
 class PaymentMethodSuccess extends StatelessWidget {
-  final PageRouteInfo<dynamic> nextPage;
-  const PaymentMethodSuccess({Key? key, required this.nextPage}) : super(key: key);
+  final Route<dynamic> nextPage;
+  const PaymentMethodSuccess({
+    Key? key,
+    required this.nextPage,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,8 +47,7 @@ class PaymentMethodSuccess extends StatelessWidget {
             CustomFilledButton(
                 text: 'DONE',
                 onTap: () {
-                  context.router.popUntil((route) => nextPage);
-                  // try popuntil
+                  context.router.popUntil((route) => route == nextPage);
                 })
           ],
         ),
