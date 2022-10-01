@@ -16,91 +16,100 @@ class BankWithdrawal extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-              child: Padding(
-                padding: kDefaultPadding,
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      InkWell(
-                        onTap: () => context.router.pop(),
-                        child: const Icon(Icons.close),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        "Withdrawal",
-                        style: titleText,
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        'Select the bank you are withdrawing to',
-                        style: subTitle.copyWith(color: kgreyColor),
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      BlocSelector<PaymentMethodCubit, PaymentMethodState, List<BankAddress>>(
-                        selector: (state) {
-                          return state.bankAddresses;
-                        },
-                        builder: (context, bankAddresses) {
-                          List<Widget> children = [];
-                          if(bankAddresses.isEmpty){
-                            children = [Center(
-                            child: TextButton(
-                                onPressed: () =>
-                                    context.router.push(const AddBankRoute()),
-                                child: Text(
-                                  'Add a new bank',
-                                  style: subTitle.copyWith(
-                                      fontSize: 13, color: kPrimaryColor),
-                                )),
-                          )];
-                          }else{
-                            children = bankAddresses.map((address) {
-                              return buildtile(
-                                  address.accountNumber,
-                                  () => context
-                                      .read<WalletCubit>()
-                                      .withdrawalDetailsChanged(
-                                          withdrawalDetails: address.toMap()),
-                                  address.userName);
-                            }).toList();
-                          }
-                          return Column(crossAxisAlignment: CrossAxisAlignment.start, children: children,);
-                        },
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      BlocSelector<WalletCubit, WalletState,
-                          Map<String, dynamic>>(
-                        selector: (state) {
-                          return state.withdrawalDetails;
-                        },
-                        builder: (context, withdrawalDetails) {
-                          return Align(
-                            alignment: Alignment.bottomCenter,
-                            child: CustomAuthFilledButton(
-                              text: "WITHDRAW",
-                              onTap: () => context.router.push(const CheckWithdrawalRoute()),
-                              disabled: withdrawalDetails.isEmpty,
-                            ),
-                          );
-                        },
-                      )
-                    ],
-                  ),
+        child: Padding(
+          padding: kDefaultPadding,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                const SizedBox(
+                  height: 20,
                 ),
-              ),
+                InkWell(
+                  onTap: () => context.router.pop(),
+                  child: const Icon(Icons.close),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  "Withdrawal",
+                  style: titleText,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  'Select the bank you are withdrawing to',
+                  style: subTitle.copyWith(color: kgreyColor),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                BlocSelector<PaymentMethodCubit, PaymentMethodState,
+                    List<BankAddress>>(
+                  selector: (state) {
+                    return state.bankAddresses;
+                  },
+                  builder: (context, bankAddresses) {
+                    List<Widget> children = [];
+                    if (bankAddresses.isEmpty) {
+                      children = [
+                        Center(
+                          child: TextButton(
+                              onPressed: () {
+                                context.read<PaymentMethodCubit>().setNextPage(
+                                    nextPage: const BankWithdrawalRoute());
+                                context.router.push(const AddBankRoute());
+                              },
+                              child: Text(
+                                'Add a new bank',
+                                style: subTitle.copyWith(
+                                    fontSize: 13, color: kPrimaryColor),
+                              )),
+                        )
+                      ];
+                    } else {
+                      children = bankAddresses.map((address) {
+                        return buildtile(
+                            address.accountNumber,
+                            () => context
+                                .read<WalletCubit>()
+                                .withdrawalDetailsChanged(
+                                    withdrawalDetails: address.toMap()),
+                            address.userName);
+                      }).toList();
+                    }
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: children,
+                    );
+                  },
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                BlocSelector<WalletCubit, WalletState, Map<String, dynamic>>(
+                  selector: (state) {
+                    return state.withdrawalDetails;
+                  },
+                  builder: (context, withdrawalDetails) {
+                    return Align(
+                      alignment: Alignment.bottomCenter,
+                      child: CustomAuthFilledButton(
+                        text: "WITHDRAW",
+                        onTap: () =>
+                            context.router.push(const CheckWithdrawalRoute()),
+                        disabled: withdrawalDetails.isEmpty,
+                      ),
+                    );
+                  },
+                )
+              ],
             ),
+          ),
+        ),
+      ),
     );
   }
 

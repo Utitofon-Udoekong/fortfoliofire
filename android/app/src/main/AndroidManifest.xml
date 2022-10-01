@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.fortfolio">
+    package="com.mega.fortfolio">
    <application
         android:label="fortfolio"
         android:name="${applicationName}"

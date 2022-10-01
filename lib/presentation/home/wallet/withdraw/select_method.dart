@@ -103,7 +103,10 @@ class SelectWithdrawalMethod extends StatelessWidget {
                             const SizedBox(
                               height: 8,
                             ),
-                            TextButton(onPressed: () => context.router.push(const PaymentMethodRoute()), child: Text(
+                            TextButton(onPressed: () {
+                              context.read<PaymentMethodCubit>().setNextPage(nextPage: const SelectWithdrawalMethodRoute());
+                              context.router.push(const PaymentMethodRoute());
+                            }, child: Text(
                               "Add new",
                               style: subTitle.copyWith(color: kPrimaryColor, fontSize: 15),
                             ))

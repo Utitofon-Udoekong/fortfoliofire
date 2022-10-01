@@ -20,6 +20,7 @@ mixin _$PaymentMethodState {
   String get accountNumber => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   String get failure => throw _privateConstructorUsedError;
+  PageRouteInfo<dynamic>? get nextPage => throw _privateConstructorUsedError;
   String get success => throw _privateConstructorUsedError;
   String get walletLabel => throw _privateConstructorUsedError;
   String get coin => throw _privateConstructorUsedError;
@@ -51,6 +52,7 @@ abstract class $PaymentMethodStateCopyWith<$Res> {
       String accountNumber,
       bool isLoading,
       String failure,
+      PageRouteInfo<dynamic>? nextPage,
       String success,
       String walletLabel,
       String coin,
@@ -81,6 +83,7 @@ class _$PaymentMethodStateCopyWithImpl<$Res>
     Object? accountNumber = freezed,
     Object? isLoading = freezed,
     Object? failure = freezed,
+    Object? nextPage = freezed,
     Object? success = freezed,
     Object? walletLabel = freezed,
     Object? coin = freezed,
@@ -112,6 +115,10 @@ class _$PaymentMethodStateCopyWithImpl<$Res>
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as String,
+      nextPage: nextPage == freezed
+          ? _value.nextPage
+          : nextPage // ignore: cast_nullable_to_non_nullable
+              as PageRouteInfo<dynamic>?,
       success: success == freezed
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
@@ -180,6 +187,7 @@ abstract class _$$_PaymentMethodStateCopyWith<$Res>
       String accountNumber,
       bool isLoading,
       String failure,
+      PageRouteInfo<dynamic>? nextPage,
       String success,
       String walletLabel,
       String coin,
@@ -212,6 +220,7 @@ class __$$_PaymentMethodStateCopyWithImpl<$Res>
     Object? accountNumber = freezed,
     Object? isLoading = freezed,
     Object? failure = freezed,
+    Object? nextPage = freezed,
     Object? success = freezed,
     Object? walletLabel = freezed,
     Object? coin = freezed,
@@ -243,6 +252,10 @@ class __$$_PaymentMethodStateCopyWithImpl<$Res>
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as String,
+      nextPage: nextPage == freezed
+          ? _value.nextPage
+          : nextPage // ignore: cast_nullable_to_non_nullable
+              as PageRouteInfo<dynamic>?,
       success: success == freezed
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
@@ -307,6 +320,7 @@ class _$_PaymentMethodState extends _PaymentMethodState {
       required this.accountNumber,
       required this.isLoading,
       required this.failure,
+      required this.nextPage,
       required this.success,
       required this.walletLabel,
       required this.coin,
@@ -334,6 +348,8 @@ class _$_PaymentMethodState extends _PaymentMethodState {
   final bool isLoading;
   @override
   final String failure;
+  @override
+  final PageRouteInfo<dynamic>? nextPage;
   @override
   final String success;
   @override
@@ -382,7 +398,7 @@ class _$_PaymentMethodState extends _PaymentMethodState {
 
   @override
   String toString() {
-    return 'PaymentMethodState(bankName: $bankName, accountNumber: $accountNumber, isLoading: $isLoading, failure: $failure, success: $success, walletLabel: $walletLabel, coin: $coin, network: $network, address: $address, platform: $platform, isGeneral: $isGeneral, isloading: $isloading, selectedNetwork: $selectedNetwork, dropdownItems: $dropdownItems, cryptoAddresses: $cryptoAddresses, generalCryptoAddresses: $generalCryptoAddresses, bankAddresses: $bankAddresses)';
+    return 'PaymentMethodState(bankName: $bankName, accountNumber: $accountNumber, isLoading: $isLoading, failure: $failure, nextPage: $nextPage, success: $success, walletLabel: $walletLabel, coin: $coin, network: $network, address: $address, platform: $platform, isGeneral: $isGeneral, isloading: $isloading, selectedNetwork: $selectedNetwork, dropdownItems: $dropdownItems, cryptoAddresses: $cryptoAddresses, generalCryptoAddresses: $generalCryptoAddresses, bankAddresses: $bankAddresses)';
   }
 
   @override
@@ -395,6 +411,7 @@ class _$_PaymentMethodState extends _PaymentMethodState {
                 .equals(other.accountNumber, accountNumber) &&
             const DeepCollectionEquality().equals(other.isLoading, isLoading) &&
             const DeepCollectionEquality().equals(other.failure, failure) &&
+            const DeepCollectionEquality().equals(other.nextPage, nextPage) &&
             const DeepCollectionEquality().equals(other.success, success) &&
             const DeepCollectionEquality()
                 .equals(other.walletLabel, walletLabel) &&
@@ -423,6 +440,7 @@ class _$_PaymentMethodState extends _PaymentMethodState {
       const DeepCollectionEquality().hash(accountNumber),
       const DeepCollectionEquality().hash(isLoading),
       const DeepCollectionEquality().hash(failure),
+      const DeepCollectionEquality().hash(nextPage),
       const DeepCollectionEquality().hash(success),
       const DeepCollectionEquality().hash(walletLabel),
       const DeepCollectionEquality().hash(coin),
@@ -450,6 +468,7 @@ abstract class _PaymentMethodState extends PaymentMethodState {
       required final String accountNumber,
       required final bool isLoading,
       required final String failure,
+      required final PageRouteInfo<dynamic>? nextPage,
       required final String success,
       required final String walletLabel,
       required final String coin,
@@ -473,6 +492,8 @@ abstract class _PaymentMethodState extends PaymentMethodState {
   bool get isLoading;
   @override
   String get failure;
+  @override
+  PageRouteInfo<dynamic>? get nextPage;
   @override
   String get success;
   @override

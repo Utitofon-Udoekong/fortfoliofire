@@ -4,12 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
+import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/cubit/payment_method_cubit.dart';
 
 class PaymentMethodSuccess extends StatelessWidget {
-  final Route<dynamic> nextPage;
   const PaymentMethodSuccess({
     Key? key,
-    required this.nextPage,
   }) : super(key: key);
 
   @override
@@ -18,6 +17,8 @@ class PaymentMethodSuccess extends StatelessWidget {
         .select((AuthCubit element) => element.state.userModel.firstName);
     final lastName =
         context.select((AuthCubit element) => element.state.userModel.lastName);
+    final nextPage =
+        context.select((PaymentMethodCubit element) => element.state.nextPage);
     return Scaffold(
       body: SafeArea(
       child: Padding(
@@ -47,7 +48,11 @@ class PaymentMethodSuccess extends StatelessWidget {
             CustomFilledButton(
                 text: 'DONE',
                 onTap: () {
-                  context.router.popUntil((route) => route == nextPage);
+                  context.router.popUntil((route) {
+                    print(route);
+                    print(nextPage);
+                    return route == nextPage;
+                  });
                 })
           ],
         ),

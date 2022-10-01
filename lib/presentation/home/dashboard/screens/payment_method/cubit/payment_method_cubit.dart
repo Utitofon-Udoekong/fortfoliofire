@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -51,6 +52,11 @@ class PaymentMethodCubit extends Cubit<PaymentMethodState> {
         emit(state.copyWith(cryptoAddresses: cryptoAddresses));
       }
     });
+  }
+
+  void setNextPage({required PageRouteInfo<dynamic> nextPage}){
+    print(nextPage);
+    emit(state.copyWith(nextPage: nextPage));
   }
 
   void initGeneralCryptoWallet() {
