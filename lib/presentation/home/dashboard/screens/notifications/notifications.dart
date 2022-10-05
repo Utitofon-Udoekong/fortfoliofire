@@ -141,7 +141,7 @@ class NotificationsPage extends StatelessWidget {
                   style: titleText.copyWith(
                       fontSize: 13,
                       fontWeight: FontWeight.w600,
-                      color: status == "Successful"
+                      color: status == "Successful" || status == "Approved"
                               ? const Color(0XFF00C566)
                               : status == "Pending"
                                   ? const Color.fromARGB(239, 226, 167, 4)
@@ -157,11 +157,11 @@ class NotificationsPage extends StatelessWidget {
               ),
               itemBuilder: (BuildContext context) => [
                 PopupMenuItem(
+                  onTap: deleteNotification,
                   child: ListTile(
                     title:
                         Text('Delete', style: titleText.copyWith(fontSize: 13)),
                   ),
-                  onTap: deleteNotification,
                 )
               ],
             )
