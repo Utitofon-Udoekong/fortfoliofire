@@ -15,6 +15,7 @@ import 'package:fortfolio/domain/user/withdrawal_item.dart';
 import 'package:fortfolio/infrastructure/auth/dto/bank_address/bank_address_dto.dart';
 import 'package:fortfolio/infrastructure/auth/dto/crypto_address/crypto_address.dart';
 import 'package:fortfolio/infrastructure/auth/dto/investment/investment_dto.dart';
+import 'package:fortfolio/infrastructure/auth/dto/transactions/transactions_dto.dart';
 import 'package:fortfolio/infrastructure/auth/dto/withdrawal/withdrawal_dto.dart';
 import 'package:fortfolio/infrastructure/auth/local_auth_api.dart';
 import 'package:fortfolio/injection.dart';
@@ -37,9 +38,7 @@ class WalletCubit extends Cubit<WalletState> {
   StreamSubscription<QuerySnapshot>? _logsFortDollarSubscription;
   StreamSubscription<QuerySnapshot>? _logsFortShieldSubscription;
   StreamSubscription<QuerySnapshot>? _logsFortCryptoSubscription;
-  StreamSubscription<QuerySnapshot>? _logsBankAddressSubscription;
-  StreamSubscription<QuerySnapshot>? _logsCryptoAddressSubscription;
-  StreamSubscription<QuerySnapshot>? _logsGeneralCryptoAddressSubscription;
+  StreamSubscription<QuerySnapshot>? _logsTransaction;
 
   WalletCubit(this.firestoreFacade, this.externalFacade)
       : super(WalletState.initial()) {
@@ -47,12 +46,18 @@ class WalletCubit extends Cubit<WalletState> {
     dollarPrice = authCubit.state.buyPrice;
     authCubit.stream.listen((state) {
       if (state.isLoggedIn) {
-        initWithdrawals();
+        initTransactions();
         initFortDollarInvestments();
         initFortShieldInvestments();
         initFortCryptoInvestments();
       }
     });
+  }
+
+  pullRefresh(){
+    initFortDollarInvestments();
+    initFortShieldInvestments();
+    initFortCryptoInvestments();
   }
 
   void showDigitsChanged() {
@@ -78,12 +83,6 @@ class WalletCubit extends Cubit<WalletState> {
   }
 
   void withdrawalMethodChanged({required String withdrawalMethod}) {
-    if (withdrawalMethod == "Bank") {
-      initBankAddresses();
-    } else {
-      initCryptoWallet();
-      initGeneralCryptoWallet();
-    }
     emit(state.copyWith(withdrawalMethod: withdrawalMethod));
   }
 
@@ -130,50 +129,6 @@ class WalletCubit extends Cubit<WalletState> {
         fortCryptoInvestmentBalance: amount));
   }
 
-  void initBankAddresses() {
-    _logsBankAddressSubscription =
-        firestoreFacade.getBankAddress().listen((data) {
-      final List<QueryDocumentSnapshot<Object?>> docs = data.docs;
-      List<BankAddress> bankAddresses = [];
-      if (data.size > 0) {
-        for (var element in docs) {
-          final doc = BankAddressDTO.fromFirestore(element).toDomain();
-          bankAddresses.add(doc);
-        }
-        emit(state.copyWith(bankAddresses: bankAddresses));
-      }
-    });
-  }
-
-  void initCryptoWallet() {
-    _logsCryptoAddressSubscription =
-        firestoreFacade.getCryptoWallets().listen((data) {
-      final List<QueryDocumentSnapshot<Object?>> docs = data.docs;
-      List<CryptoWallet> cryptoAddresses = [];
-      if (data.size > 0) {
-        for (var element in docs) {
-          final doc = CryptoWalletDTO.fromFirestore(element).toDomain();
-          cryptoAddresses.add(doc);
-        }
-        emit(state.copyWith(cryptoAddresses: cryptoAddresses));
-      }
-    });
-  }
-
-  void initGeneralCryptoWallet() {
-    _logsGeneralCryptoAddressSubscription =
-        firestoreFacade.getCryptoWallets().listen((data) {
-      final List<QueryDocumentSnapshot<Object?>> docs = data.docs;
-      List<CryptoWallet> generalCryptoAddresses = [];
-      if (data.size > 0) {
-        for (var element in docs) {
-          final doc = CryptoWalletDTO.fromFirestore(element).toDomain();
-          generalCryptoAddresses.add(doc);
-        }
-        emit(state.copyWith(generalCryptoAddresses: generalCryptoAddresses));
-      }
-    });
-  }
 
   void initFortDollarInvestments() {
     _logsFortDollarSubscription =
@@ -187,7 +142,6 @@ class WalletCubit extends Cubit<WalletState> {
         }
         emit(state.copyWith(fortDollarInvestments: fortDollarInvestments));
         initFortDollar();
-        // initWalletBalance();
         initTransactions();
       }
     });
@@ -205,7 +159,6 @@ class WalletCubit extends Cubit<WalletState> {
         }
         emit(state.copyWith(fortShieldInvestments: fortShieldInvestments));
         initFortShield();
-        // initWalletBalance();
         initTransactions();
       }
     });
@@ -223,48 +176,39 @@ class WalletCubit extends Cubit<WalletState> {
         }
         emit(state.copyWith(fortCryptoInvestments: fortCryptoInvestments));
         initFortCrypto();
-        // initWalletBalance();
         initTransactions();
       }
     });
   }
 
-  void initWithdrawals() {
-    _logsFortCryptoSubscription =
-        firestoreFacade.getWithdrawals().listen((data) {
+  // void initWithdrawals() {
+  //   _logsFortCryptoSubscription =
+  //       firestoreFacade.getWithdrawals().listen((data) {
+  //     final List<QueryDocumentSnapshot<Object?>> docs = data.docs;
+  //     List<WithdrawalItem> withdrawals = [];
+  //     if (data.size > 0) {
+  //       for (var element in docs) {
+  //         final doc = WithdrawalItemDTO.fromFirestore(element).toDomain();
+  //         withdrawals.add(doc);
+  //       }
+  //       emit(state.copyWith(withdrawals: withdrawals));
+  //     }
+  //   });
+  // }
+
+  initTransactions() {
+    _logsTransaction = 
+        firestoreFacade.getTransactions().listen((data) {
       final List<QueryDocumentSnapshot<Object?>> docs = data.docs;
-      List<WithdrawalItem> withdrawals = [];
+      List<TransactionItem> transactions = [];
       if (data.size > 0) {
         for (var element in docs) {
-          final doc = WithdrawalItemDTO.fromFirestore(element).toDomain();
-          withdrawals.add(doc);
+          final doc = TransactionItemDTO.fromFirestore(element).toDomain();
+          transactions.add(doc);
         }
-        emit(state.copyWith(withdrawals: withdrawals));
+        emit(state.copyWith(transactions: transactions));
       }
     });
-  }
-
-  void initTransactions() {
-    var investments = state.fortDollarInvestments +
-        state.fortCryptoInvestments +
-        state.fortShieldInvestments;
-    var withdrawals = state.withdrawals;
-    List<TransactionItem> newTransactions = [];
-    for (var investment in investments) {
-      newTransactions.add(
-          TransactionItem(withdrawalItem: null, investmentItem: investment));
-    }
-    for (var withdrawal in withdrawals) {
-      newTransactions.add(
-          TransactionItem(withdrawalItem: withdrawal, investmentItem: null));
-    }
-    if(investments.isNotEmpty){
-    newTransactions.sort((a, b) => b.investmentItem!.paymentDate.compareTo(a.investmentItem!.paymentDate));
-    }
-    if(withdrawals.isNotEmpty){
-    newTransactions.sort((a, b) => b.withdrawalItem!.createdat.compareTo(a.withdrawalItem!.createdat));
-    }
-    emit(state.copyWith(transactions: newTransactions));
   }
 
   void withdrawalDetailsChanged(
@@ -275,19 +219,19 @@ class WalletCubit extends Cubit<WalletState> {
   void makeWithdrawalTransaction() async {
     emit(state.copyWith(loading: true, success: "", failure: ""));
     final String description =
-        "${state.investmentToBeWithdrawn.planName} withdrawal".toUpperCase();
+        "${state.investmentToBeWithdrawn.planName} withdrawal";
     final double amount = state.investmentToBeWithdrawn.amount;
     final int duration = state.investmentToBeWithdrawn.duration;
     final int roi = state.investmentToBeWithdrawn.roi;
     final String paymentMethod = state.withdrawalMethod;
-    final traxId = const Uuid().v4().substring(0, 7);
+    // final traxId = const Uuid().v4().substring(0, 7);
     final String uid = nanoid(8);
     final String currency = state.investmentToBeWithdrawn.currency;
     final Map<String, dynamic> withdrawalDetails = state.withdrawalDetails;
     WithdrawalItem withdrawalItem = WithdrawalItem(
         description: description,
         amount: amount,
-        traxId: traxId,
+        traxId: state.investmentToBeWithdrawn.traxId,
         status: "Pending",
         createdat: DateTime.now(),
         paymentMethod: paymentMethod,
@@ -297,7 +241,8 @@ class WalletCubit extends Cubit<WalletState> {
         withdrawalDetails: withdrawalDetails,
         currency: currency);
     final response = await firestoreFacade.createWithdrawalTransaction(
-        withdrawalItem: withdrawalItem);
+        withdrawalItem: withdrawalItem,
+        invId: state.investmentToBeWithdrawn.uid + state.investmentToBeWithdrawn.traxId);
     try {
       response.fold((failure) {
         emit(state.copyWith(failure: failure,loading: false));
@@ -347,7 +292,12 @@ class WalletCubit extends Cubit<WalletState> {
 
   void auhenticatePinPayment({required String pin}) async {
     final sp = await SharedPreferences.getInstance();
-    final traxPin = sp.getString("trax_key");
+    String traxPin = "";
+    if(sp.containsKey("trax_key")){
+      traxPin = sp.getString("trax_key")!;
+    }
+    print(pin);
+    print(traxPin);
     if (pin == traxPin) {
       makeWithdrawalTransaction();
     } else {
@@ -367,9 +317,7 @@ class WalletCubit extends Cubit<WalletState> {
     await _logsFortCryptoSubscription?.cancel();
     await _logsFortDollarSubscription?.cancel();
     await _logsFortShieldSubscription?.cancel();
-    await _logsBankAddressSubscription?.cancel();
-    await _logsCryptoAddressSubscription?.cancel();
-    await _logsGeneralCryptoAddressSubscription?.cancel();
+    await _logsTransaction?.cancel();
     return super.close();
   }
 }

@@ -50,41 +50,14 @@ class SelectWithdrawalMethod extends StatelessWidget {
                   selector: (state) {
                     return state.noAddress;
                   },
-                  builder: (context, paymentMethodExists) {
-                    List<Widget> children = [];
-                    if(paymentMethodExists){
-                      children = [
-                        CustomIconTrailingFunctionButton(
-                            icon: 'withdraw-bank',
-                            title: 'Bank Account',
-                            ontap: () {
-                              context.router.push(const BankWithdrawalRoute());
-                              context
-                                  .read<WalletCubit>()
-                                  .withdrawalMethodChanged(
-                                      withdrawalMethod: "Bank");
-                            }),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        CustomIconTrailingFunctionButton(
-                          icon: 'withdraw-crypto',
-                          title: 'Crypto Wallet',
-                          ontap: () {
-                            context.router.push(const CryptoWithdrawalRoute());
-                            context
-                                .read<WalletCubit>()
-                                .withdrawalMethodChanged(
-                                    withdrawalMethod: "Crypto");
-                          },
-                        ),
-                      ];
-                    }else{
+                  builder: (context, noAddress) {
                       final svg = SvgPicture.asset(
                         'images/blank-wallet.svg',
                         semanticsLabel: 'Blank Wallet',
                       );
-                      children = [Center(
+                    return noAddress ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [Center(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
@@ -112,11 +85,50 @@ class SelectWithdrawalMethod extends StatelessWidget {
                             ))
                           ],
                         ),
-                      )];
-                    }
-                    return Column(
+                      )],
+                    ) : const SizedBox.shrink();
+                  },
+                ),
+                BlocSelector<PaymentMethodCubit, PaymentMethodState, bool>(
+                  selector: (state) {
+                    return state.noAccount;
+                  },
+                  builder: (context, noAccount) {
+                    return noAccount ? const SizedBox.shrink() : Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: children,
+                      children: [CustomIconTrailingFunctionButton(
+                        icon: 'withdraw-bank',
+                        title: 'Bank Account',
+                        ontap: () {
+                          context.router.push(const BankWithdrawalRoute());
+                          context
+                              .read<WalletCubit>()
+                              .withdrawalMethodChanged(
+                                  withdrawalMethod: "Bank");
+                        }),const SizedBox(
+                          height: 10,
+                        ),],
+                    );
+                  },
+                ),
+                BlocSelector<PaymentMethodCubit, PaymentMethodState, bool>(
+                  selector: (state) {
+                    return state.emptyWallet;
+                  },
+                  builder: (context, emptyWallet) {
+                    return emptyWallet ? const SizedBox.shrink() : Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [CustomIconTrailingFunctionButton(
+                          icon: 'withdraw-crypto',
+                          title: 'Crypto Wallet',
+                          ontap: () {
+                            context.router.push(const CryptoWithdrawalRoute());
+                            context
+                                .read<WalletCubit>()
+                                .withdrawalMethodChanged(
+                                    withdrawalMethod: "Crypto");
+                          },
+                        ),],
                     );
                   },
                 ),
@@ -128,3 +140,6 @@ class SelectWithdrawalMethod extends StatelessWidget {
     );
   }
 }
+
+                        
+                        

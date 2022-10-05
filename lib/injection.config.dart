@@ -97,10 +97,8 @@ _i1.GetIt $initGetIt(
   gh.factory<_i19.NetworkCubit>(() => _i19.NetworkCubit());
   gh.factory<_i20.NotificationCubit>(
       () => _i20.NotificationCubit(get<_i12.IFirestoreFacade>()));
-  gh.factory<_i21.PaymentMethodCubit>(() => _i21.PaymentMethodCubit(
-        get<_i12.IFirestoreFacade>(),
-        get<_i3.AuthCubit>(),
-      ));
+  gh.factory<_i21.PaymentMethodCubit>(
+      () => _i21.PaymentMethodCubit(get<_i12.IFirestoreFacade>()));
   gh.factory<_i22.ProfileCubit>(
       () => _i22.ProfileCubit(get<_i8.IAuthFacade>()));
   gh.factory<_i23.ResetPasswordCubit>(

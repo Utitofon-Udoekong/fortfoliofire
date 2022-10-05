@@ -1,23 +1,35 @@
-import 'package:fortfolio/domain/user/investment.dart';
-import 'package:fortfolio/domain/user/withdrawal_item.dart';
 
-class TransactionItem {
-// class TransactionItem implements _$TransactionItem {
-  WithdrawalItem? withdrawalItem;
-  InvestmentItem? investmentItem;
-  // const factory TransactionItem({
-  //   required String description, //same
-  //   required int amount, //same
-  //   required String traxId, //same
-  //   required String planName, //same
-  //   required String status, //same
-  //   required DateTime createdat,
-  //   required String paymentMethod, //same
-  //   required String currency, //same
-  //   required int duration, //same
-  //   required int roi, //same
-  // }) = _TransactionItem;
-  TransactionItem({required this.withdrawalItem, required this.investmentItem}) {
-    if (withdrawalItem == null && investmentItem == null || withdrawalItem != null && investmentItem != null) throw ArgumentError("only one object is allowed");
-  }
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'transaction_item.freezed.dart';
+
+@freezed
+abstract class TransactionItem implements _$TransactionItem {
+  const factory TransactionItem({
+    required String description,
+    required double amount,
+    required String traxId,
+    required String planName,
+    required String status,
+    required DateTime createdat,
+    required String paymentMethod,
+    required String currency,
+    required String type,
+    required int duration,
+    required int roi,
+  }) = _TransactionItem;
+
+  factory TransactionItem.initial() => TransactionItem(
+        amount: 0,
+        createdat: DateTime.now(),
+        currency: '',
+        type: '',
+        description: '',
+        traxId: "",
+        planName: '',
+        status: '',
+        paymentMethod: '',
+        duration: 0,
+        roi: 0
+      );
 }

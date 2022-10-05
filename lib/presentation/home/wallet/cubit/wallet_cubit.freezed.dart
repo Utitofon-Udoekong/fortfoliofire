@@ -31,10 +31,6 @@ mixin _$WalletState {
       throw _privateConstructorUsedError;
   InvestmentItem get investmentToBeWithdrawn =>
       throw _privateConstructorUsedError;
-  List<BankAddress> get bankAddresses => throw _privateConstructorUsedError;
-  List<CryptoWallet> get cryptoAddresses => throw _privateConstructorUsedError;
-  List<CryptoWallet> get generalCryptoAddresses =>
-      throw _privateConstructorUsedError;
   List<InvestmentItem> get fortDollarInvestments =>
       throw _privateConstructorUsedError;
   List<InvestmentItem> get fortCryptoInvestments =>
@@ -69,9 +65,6 @@ abstract class $WalletStateCopyWith<$Res> {
       String success,
       Map<String, dynamic> withdrawalDetails,
       InvestmentItem investmentToBeWithdrawn,
-      List<BankAddress> bankAddresses,
-      List<CryptoWallet> cryptoAddresses,
-      List<CryptoWallet> generalCryptoAddresses,
       List<InvestmentItem> fortDollarInvestments,
       List<InvestmentItem> fortCryptoInvestments,
       List<InvestmentItem> fortShieldInvestments,
@@ -105,9 +98,6 @@ class _$WalletStateCopyWithImpl<$Res> implements $WalletStateCopyWith<$Res> {
     Object? success = freezed,
     Object? withdrawalDetails = freezed,
     Object? investmentToBeWithdrawn = freezed,
-    Object? bankAddresses = freezed,
-    Object? cryptoAddresses = freezed,
-    Object? generalCryptoAddresses = freezed,
     Object? fortDollarInvestments = freezed,
     Object? fortCryptoInvestments = freezed,
     Object? fortShieldInvestments = freezed,
@@ -168,18 +158,6 @@ class _$WalletStateCopyWithImpl<$Res> implements $WalletStateCopyWith<$Res> {
           ? _value.investmentToBeWithdrawn
           : investmentToBeWithdrawn // ignore: cast_nullable_to_non_nullable
               as InvestmentItem,
-      bankAddresses: bankAddresses == freezed
-          ? _value.bankAddresses
-          : bankAddresses // ignore: cast_nullable_to_non_nullable
-              as List<BankAddress>,
-      cryptoAddresses: cryptoAddresses == freezed
-          ? _value.cryptoAddresses
-          : cryptoAddresses // ignore: cast_nullable_to_non_nullable
-              as List<CryptoWallet>,
-      generalCryptoAddresses: generalCryptoAddresses == freezed
-          ? _value.generalCryptoAddresses
-          : generalCryptoAddresses // ignore: cast_nullable_to_non_nullable
-              as List<CryptoWallet>,
       fortDollarInvestments: fortDollarInvestments == freezed
           ? _value.fortDollarInvestments
           : fortDollarInvestments // ignore: cast_nullable_to_non_nullable
@@ -237,9 +215,6 @@ abstract class _$$_WalletStateCopyWith<$Res>
       String success,
       Map<String, dynamic> withdrawalDetails,
       InvestmentItem investmentToBeWithdrawn,
-      List<BankAddress> bankAddresses,
-      List<CryptoWallet> cryptoAddresses,
-      List<CryptoWallet> generalCryptoAddresses,
       List<InvestmentItem> fortDollarInvestments,
       List<InvestmentItem> fortCryptoInvestments,
       List<InvestmentItem> fortShieldInvestments,
@@ -276,9 +251,6 @@ class __$$_WalletStateCopyWithImpl<$Res> extends _$WalletStateCopyWithImpl<$Res>
     Object? success = freezed,
     Object? withdrawalDetails = freezed,
     Object? investmentToBeWithdrawn = freezed,
-    Object? bankAddresses = freezed,
-    Object? cryptoAddresses = freezed,
-    Object? generalCryptoAddresses = freezed,
     Object? fortDollarInvestments = freezed,
     Object? fortCryptoInvestments = freezed,
     Object? fortShieldInvestments = freezed,
@@ -339,18 +311,6 @@ class __$$_WalletStateCopyWithImpl<$Res> extends _$WalletStateCopyWithImpl<$Res>
           ? _value.investmentToBeWithdrawn
           : investmentToBeWithdrawn // ignore: cast_nullable_to_non_nullable
               as InvestmentItem,
-      bankAddresses: bankAddresses == freezed
-          ? _value._bankAddresses
-          : bankAddresses // ignore: cast_nullable_to_non_nullable
-              as List<BankAddress>,
-      cryptoAddresses: cryptoAddresses == freezed
-          ? _value._cryptoAddresses
-          : cryptoAddresses // ignore: cast_nullable_to_non_nullable
-              as List<CryptoWallet>,
-      generalCryptoAddresses: generalCryptoAddresses == freezed
-          ? _value._generalCryptoAddresses
-          : generalCryptoAddresses // ignore: cast_nullable_to_non_nullable
-              as List<CryptoWallet>,
       fortDollarInvestments: fortDollarInvestments == freezed
           ? _value._fortDollarInvestments
           : fortDollarInvestments // ignore: cast_nullable_to_non_nullable
@@ -396,9 +356,6 @@ class _$_WalletState extends _WalletState {
       required this.success,
       required final Map<String, dynamic> withdrawalDetails,
       required this.investmentToBeWithdrawn,
-      required final List<BankAddress> bankAddresses,
-      required final List<CryptoWallet> cryptoAddresses,
-      required final List<CryptoWallet> generalCryptoAddresses,
       required final List<InvestmentItem> fortDollarInvestments,
       required final List<InvestmentItem> fortCryptoInvestments,
       required final List<InvestmentItem> fortShieldInvestments,
@@ -406,9 +363,6 @@ class _$_WalletState extends _WalletState {
       required final List<TransactionItem> transactions,
       required this.showDigits})
       : _withdrawalDetails = withdrawalDetails,
-        _bankAddresses = bankAddresses,
-        _cryptoAddresses = cryptoAddresses,
-        _generalCryptoAddresses = generalCryptoAddresses,
         _fortDollarInvestments = fortDollarInvestments,
         _fortCryptoInvestments = fortCryptoInvestments,
         _fortShieldInvestments = fortShieldInvestments,
@@ -447,27 +401,6 @@ class _$_WalletState extends _WalletState {
 
   @override
   final InvestmentItem investmentToBeWithdrawn;
-  final List<BankAddress> _bankAddresses;
-  @override
-  List<BankAddress> get bankAddresses {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_bankAddresses);
-  }
-
-  final List<CryptoWallet> _cryptoAddresses;
-  @override
-  List<CryptoWallet> get cryptoAddresses {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_cryptoAddresses);
-  }
-
-  final List<CryptoWallet> _generalCryptoAddresses;
-  @override
-  List<CryptoWallet> get generalCryptoAddresses {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_generalCryptoAddresses);
-  }
-
   final List<InvestmentItem> _fortDollarInvestments;
   @override
   List<InvestmentItem> get fortDollarInvestments {
@@ -508,7 +441,7 @@ class _$_WalletState extends _WalletState {
 
   @override
   String toString() {
-    return 'WalletState(exchange: $exchange, loading: $loading, fortDollarInvestmentBalance: $fortDollarInvestmentBalance, fortCryptoInvestmentBalance: $fortCryptoInvestmentBalance, fortShieldInvestmentBalance: $fortShieldInvestmentBalance, fortDollarYieldBalance: $fortDollarYieldBalance, fortCryptoYieldBalance: $fortCryptoYieldBalance, fortShieldYieldBalance: $fortShieldYieldBalance, withdrawalMethod: $withdrawalMethod, failure: $failure, success: $success, withdrawalDetails: $withdrawalDetails, investmentToBeWithdrawn: $investmentToBeWithdrawn, bankAddresses: $bankAddresses, cryptoAddresses: $cryptoAddresses, generalCryptoAddresses: $generalCryptoAddresses, fortDollarInvestments: $fortDollarInvestments, fortCryptoInvestments: $fortCryptoInvestments, fortShieldInvestments: $fortShieldInvestments, withdrawals: $withdrawals, transactions: $transactions, showDigits: $showDigits)';
+    return 'WalletState(exchange: $exchange, loading: $loading, fortDollarInvestmentBalance: $fortDollarInvestmentBalance, fortCryptoInvestmentBalance: $fortCryptoInvestmentBalance, fortShieldInvestmentBalance: $fortShieldInvestmentBalance, fortDollarYieldBalance: $fortDollarYieldBalance, fortCryptoYieldBalance: $fortCryptoYieldBalance, fortShieldYieldBalance: $fortShieldYieldBalance, withdrawalMethod: $withdrawalMethod, failure: $failure, success: $success, withdrawalDetails: $withdrawalDetails, investmentToBeWithdrawn: $investmentToBeWithdrawn, fortDollarInvestments: $fortDollarInvestments, fortCryptoInvestments: $fortCryptoInvestments, fortShieldInvestments: $fortShieldInvestments, withdrawals: $withdrawals, transactions: $transactions, showDigits: $showDigits)';
   }
 
   @override
@@ -542,12 +475,6 @@ class _$_WalletState extends _WalletState {
             const DeepCollectionEquality().equals(
                 other.investmentToBeWithdrawn, investmentToBeWithdrawn) &&
             const DeepCollectionEquality()
-                .equals(other._bankAddresses, _bankAddresses) &&
-            const DeepCollectionEquality()
-                .equals(other._cryptoAddresses, _cryptoAddresses) &&
-            const DeepCollectionEquality().equals(
-                other._generalCryptoAddresses, _generalCryptoAddresses) &&
-            const DeepCollectionEquality()
                 .equals(other._fortDollarInvestments, _fortDollarInvestments) &&
             const DeepCollectionEquality()
                 .equals(other._fortCryptoInvestments, _fortCryptoInvestments) &&
@@ -577,9 +504,6 @@ class _$_WalletState extends _WalletState {
         const DeepCollectionEquality().hash(success),
         const DeepCollectionEquality().hash(_withdrawalDetails),
         const DeepCollectionEquality().hash(investmentToBeWithdrawn),
-        const DeepCollectionEquality().hash(_bankAddresses),
-        const DeepCollectionEquality().hash(_cryptoAddresses),
-        const DeepCollectionEquality().hash(_generalCryptoAddresses),
         const DeepCollectionEquality().hash(_fortDollarInvestments),
         const DeepCollectionEquality().hash(_fortCryptoInvestments),
         const DeepCollectionEquality().hash(_fortShieldInvestments),
@@ -609,9 +533,6 @@ abstract class _WalletState extends WalletState {
       required final String success,
       required final Map<String, dynamic> withdrawalDetails,
       required final InvestmentItem investmentToBeWithdrawn,
-      required final List<BankAddress> bankAddresses,
-      required final List<CryptoWallet> cryptoAddresses,
-      required final List<CryptoWallet> generalCryptoAddresses,
       required final List<InvestmentItem> fortDollarInvestments,
       required final List<InvestmentItem> fortCryptoInvestments,
       required final List<InvestmentItem> fortShieldInvestments,
@@ -646,12 +567,6 @@ abstract class _WalletState extends WalletState {
   Map<String, dynamic> get withdrawalDetails;
   @override
   InvestmentItem get investmentToBeWithdrawn;
-  @override
-  List<BankAddress> get bankAddresses;
-  @override
-  List<CryptoWallet> get cryptoAddresses;
-  @override
-  List<CryptoWallet> get generalCryptoAddresses;
   @override
   List<InvestmentItem> get fortDollarInvestments;
   @override

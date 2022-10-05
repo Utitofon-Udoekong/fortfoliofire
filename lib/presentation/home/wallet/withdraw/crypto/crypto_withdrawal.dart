@@ -13,6 +13,7 @@ class CryptoWithdrawal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final selectedAddress = context.select((WalletCubit element) => element.state.withdrawalDetails["address"]);
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -49,8 +50,8 @@ class CryptoWithdrawal extends StatelessWidget {
                   selector: (state) {
                     return state.emptyWallet;
                   },
-                  builder: (context, state) {
-                    return Center(
+                  builder: (context, emptyWallet) {
+                    return emptyWallet ? Center(
                       child: TextButton(
                           onPressed: () {
                             context.read<PaymentMethodCubit>().setNextPage(
@@ -62,7 +63,7 @@ class CryptoWithdrawal extends StatelessWidget {
                             style: subTitle.copyWith(
                                 fontSize: 13, color: kPrimaryColor),
                           )),
-                    );
+                    ) : const SizedBox.shrink();
                   },
                 ),
                 BlocSelector<PaymentMethodCubit, PaymentMethodState,
@@ -71,21 +72,18 @@ class CryptoWithdrawal extends StatelessWidget {
                     return state.cryptoAddresses;
                   },
                   builder: (context, cryptoAddresses) {
-                    List<Widget> children = [];
-                    if (cryptoAddresses.isNotEmpty) {
-                      children = cryptoAddresses.map((address) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: cryptoAddresses.map((address) {
                         return buildtile(
-                            address.address,
-                            () => context
+                            address: address.address,
+                            ontap: () => context
                                 .read<WalletCubit>()
                                 .withdrawalDetailsChanged(
                                     withdrawalDetails: address.toMap()),
-                            address.walletLabel);
-                      }).toList();
-                    }
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: children,
+                            label: address.walletLabel,
+                            selected: selectedAddress == address.address);
+                      }).toList(),
                     );
                   },
                 ),
@@ -95,21 +93,18 @@ class CryptoWithdrawal extends StatelessWidget {
                     return state.generalCryptoAddresses;
                   },
                   builder: (context, cryptoAddresses) {
-                    List<Widget> children = [];
-                    if (cryptoAddresses.isNotEmpty) {
-                      children = cryptoAddresses.map((address) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: cryptoAddresses.map((address) {
                         return buildtile(
-                            address.address,
-                            () => context
+                            address: address.address,
+                            ontap: () => context
                                 .read<WalletCubit>()
                                 .withdrawalDetailsChanged(
                                     withdrawalDetails: address.toMap()),
-                            address.walletLabel);
-                      }).toList();
-                    }
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: children,
+                            label: address.walletLabel,
+                            selected: selectedAddress == address.address);
+                      }).toList(),
                     );
                   },
                 ),
@@ -140,7 +135,7 @@ class CryptoWithdrawal extends StatelessWidget {
     );
   }
 
-  Widget buildtile(String address, Function() ontap, String label) {
+  Widget buildtile({required String address, required Function() ontap, required String label, required bool selected}) {
     return GestureDetector(
       onTap: ontap,
       child: Container(
@@ -156,9 +151,9 @@ class CryptoWithdrawal extends StatelessWidget {
             label,
             style: subTitle.copyWith(fontSize: 13, color: kgreyColor),
           ),
-          trailing: const Icon(
-            Icons.circle_outlined,
-            color: Color(0XFF00ADEE),
+          trailing: Icon(
+            selected ? Icons.circle_rounded : Icons.circle_outlined,
+            color: const Color(0XFF00ADEE),
           ),
         ),
       ),

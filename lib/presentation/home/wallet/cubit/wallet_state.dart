@@ -17,9 +17,6 @@ class WalletState with _$WalletState {
       required String success,
       required Map<String, dynamic> withdrawalDetails,
       required InvestmentItem investmentToBeWithdrawn,
-      required List<BankAddress> bankAddresses,
-      required List<CryptoWallet> cryptoAddresses,
-      required List<CryptoWallet> generalCryptoAddresses,
       required List<InvestmentItem> fortDollarInvestments,
       required List<InvestmentItem> fortCryptoInvestments,
       required List<InvestmentItem> fortShieldInvestments,
@@ -41,9 +38,6 @@ class WalletState with _$WalletState {
       withdrawalDetails: {},
       failure: "",
       success: "",
-      bankAddresses: [],
-      cryptoAddresses: [],
-      generalCryptoAddresses: [],
       fortDollarInvestments: [
       ],
       fortCryptoInvestments: [
@@ -56,10 +50,6 @@ class WalletState with _$WalletState {
       transactions: [
         
       ]);
-  bool get paymentMethodExists =>
-      cryptoAddresses.isNotEmpty &&
-      generalCryptoAddresses.isNotEmpty &&
-      bankAddresses.isNotEmpty;
   bool get isFortDollarActive => fortDollarInvestments.isNotEmpty;
   bool get isFortShieldActive => fortShieldInvestments.isNotEmpty;
   bool get isFortCryptoActive => fortCryptoInvestments.isNotEmpty;

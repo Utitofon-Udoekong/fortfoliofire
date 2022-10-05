@@ -81,7 +81,7 @@ class FortDollarInvestmentInfo extends StatelessWidget {
                         context.router.push(const WithdrawalPageRoute());
                       },
                       pending: activeInvestments[index].status == "Pending",
-                      isDue: activeInvestments[index].dueDate.isToday,
+                      isDue: DateTime.now().isAfter(activeInvestments[index].dueDate),
                       daysLeft:
                           Jiffy(activeInvestments[index].dueDate).fromNow(),
                       planYield: '\$${formatter.format(activeInvestments[index].planYield)}'

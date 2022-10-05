@@ -18,39 +18,44 @@ class WithdrawalSuccess extends StatelessWidget {
         .select((AuthCubit element) => element.state.userModel.firstName);
     final lastName =
         context.select((AuthCubit element) => element.state.userModel.lastName);
-    return SafeArea(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          const SizedBox(
-            height: 100,
-          ),
-          Center(
-            child: Image.asset(
-              "images/success.png",
-              width: MediaQuery.of(context).size.width * 0.65,
+    return Scaffold(
+      body: SafeArea(
+      child: Padding(
+        padding: kDefaultPadding,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            const SizedBox(
+              height: 100,
             ),
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-          Text(
-              "Transaction to $firstName $lastName has been carried out successfully! ",
-              style: titleText.copyWith(fontSize: 20),
-              textAlign: TextAlign.center),
-          const SizedBox(
-            height: 30,
-          ),
-          CustomFilledButton(
-              text: 'DONE',
-              onTap: () {
-                context.read<WalletCubit>().reset();
-                context.replaceRoute(const HomePageRoute(children: [
-                  WalletRoute()
-                ]));
-              })
-        ],
+            Center(
+              child: Image.asset(
+                "images/success.png",
+                width: MediaQuery.of(context).size.width * 0.65,
+              ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            Text(
+                "Transaction to $firstName $lastName has been carried out successfully! ",
+                style: titleText.copyWith(fontSize: 20),
+                textAlign: TextAlign.center),
+            const SizedBox(
+              height: 30,
+            ),
+            CustomFilledButton(
+                text: 'DONE',
+                onTap: () {
+                  context.read<WalletCubit>().reset();
+                  context.replaceRoute(const HomePageRoute(children: [
+                    WalletRoute()
+                  ]));
+                })
+          ],
+        ),
       ),
+    ),
     );
   }
 }

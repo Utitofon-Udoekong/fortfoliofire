@@ -14,6 +14,7 @@ class BankWithdrawal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final selectedAccountNumber = context.select((WalletCubit element) => element.state.withdrawalDetails["accountNumber"]);
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -47,15 +48,12 @@ class BankWithdrawal extends StatelessWidget {
                   height: 30,
                 ),
                 BlocSelector<PaymentMethodCubit, PaymentMethodState,
-                    List<BankAddress>>(
+                    bool>(
                   selector: (state) {
-                    return state.bankAddresses;
+                    return state.noAccount;
                   },
-                  builder: (context, bankAddresses) {
-                    List<Widget> children = [];
-                    if (bankAddresses.isEmpty) {
-                      children = [
-                        Center(
+                  builder: (context, noAccount) {
+                    return noAccount ? Center(
                           child: TextButton(
                               onPressed: () {
                                 context.read<PaymentMethodCubit>().setNextPage(
@@ -67,22 +65,27 @@ class BankWithdrawal extends StatelessWidget {
                                 style: subTitle.copyWith(
                                     fontSize: 13, color: kPrimaryColor),
                               )),
-                        )
-                      ];
-                    } else {
-                      children = bankAddresses.map((address) {
+                        ) : const SizedBox.shrink();
+                  },
+                ),
+                BlocSelector<PaymentMethodCubit, PaymentMethodState,
+                    List<BankAddress>>(
+                  selector: (state) {
+                    return state.bankAddresses;
+                  },
+                  builder: (context, bankAddresses) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: bankAddresses.map((address) {
                         return buildtile(
-                            address.accountNumber,
-                            () => context
+                            accNumber: address.accountNumber,
+                            ontap: () => context
                                 .read<WalletCubit>()
                                 .withdrawalDetailsChanged(
                                     withdrawalDetails: address.toMap()),
-                            address.userName);
-                      }).toList();
-                    }
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: children,
+                            userName: address.userName,
+                            selected: selectedAccountNumber == address.accountNumber);
+                      }).toList(),
                     );
                   },
                 ),
@@ -113,7 +116,7 @@ class BankWithdrawal extends StatelessWidget {
     );
   }
 
-  Widget buildtile(String accNumber, Function() ontap, String userName) {
+  Widget buildtile({required String accNumber, required Function() ontap, required String userName, required bool selected}) {
     return GestureDetector(
       onTap: ontap,
       child: Container(
@@ -129,9 +132,9 @@ class BankWithdrawal extends StatelessWidget {
             userName,
             style: subTitle.copyWith(fontSize: 13, color: kgreyColor),
           ),
-          trailing: const Icon(
-            Icons.circle_outlined,
-            color: Color(0XFF00ADEE),
+          trailing: Icon(
+            selected ? Icons.circle_rounded : Icons.circle_outlined,
+            color: const Color(0XFF00ADEE),
           ),
         ),
       ),

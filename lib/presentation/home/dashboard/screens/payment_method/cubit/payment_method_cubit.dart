@@ -29,7 +29,7 @@ class PaymentMethodCubit extends Cubit<PaymentMethodState> {
   StreamSubscription<QuerySnapshot>? _logsCryptoAddressSubscription;
   StreamSubscription<QuerySnapshot>? _logsGeneralCryptoAddressSubscription;
   StreamSubscription<QuerySnapshot>? _logsBankAddressSubscription;
-  PaymentMethodCubit(this.firestoreFacade, this.authCubit) : super(PaymentMethodState.initial()){
+  PaymentMethodCubit(this.firestoreFacade) : super(PaymentMethodState.initial()){
     authCubit = getIt<AuthCubit>();
     authCubit.stream.listen((state) {
       if (state.isLoggedIn) {

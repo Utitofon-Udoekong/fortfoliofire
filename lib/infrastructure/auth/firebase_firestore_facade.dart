@@ -9,12 +9,14 @@ import 'package:fortfolio/domain/user/crypto_wallet.dart';
 import 'package:fortfolio/domain/user/investment.dart';
 import 'package:fortfolio/domain/user/kyc_item.dart';
 import 'package:fortfolio/domain/user/notification_item.dart';
+import 'package:fortfolio/domain/user/transaction_item.dart';
 import 'package:fortfolio/domain/user/withdrawal_item.dart';
 import 'package:fortfolio/infrastructure/auth/dto/bank_address/bank_address_dto.dart';
 import 'package:fortfolio/infrastructure/auth/dto/crypto_address/crypto_address.dart';
 import 'package:fortfolio/infrastructure/auth/dto/investment/investment_dto.dart';
 import 'package:fortfolio/infrastructure/auth/dto/kyc/kyc_dto.dart';
 import 'package:fortfolio/infrastructure/auth/dto/notification/notification_dto.dart';
+import 'package:fortfolio/infrastructure/auth/dto/transactions/transactions_dto.dart';
 import 'package:fortfolio/infrastructure/auth/dto/withdrawal/withdrawal_dto.dart';
 import 'package:fortfolio/infrastructure/core/firestore_helpers.dart';
 import 'package:fortfolio/utils/utils.dart';
@@ -81,7 +83,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
       {required InvestmentItem investmentItem}) async {
     String docId = investmentItem.uid + investmentItem.traxId;
     final sp = await SharedPreferences.getInstance();
-    if(!sp.containsKey("notificationCount")){
+    if (!sp.containsKey("notificationCount")) {
       sp.setInt("notificationCount", 0);
     }
     int? notificationCount = sp.getInt("notificationCount");
@@ -91,13 +93,31 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
           .collection("investments")
           .doc(docId)
           .set(InvestmentItemDTO.fromDomain(investmentItem).toJson());
+      TransactionItem transactionItem = TransactionItem(
+        description: investmentItem.description,
+        amount: investmentItem.amount,
+        traxId: investmentItem.traxId,
+        planName: investmentItem.planName,
+        status: investmentItem.status,
+        createdat: investmentItem.paymentDate,
+        paymentMethod: investmentItem.paymentMethod,
+        currency: investmentItem.currency,
+        type: "Investment",
+        duration: investmentItem.duration,
+        roi: investmentItem.roi,
+      );
+      await firestore.authUserCollection
+          .doc(auth.currentUser!.uid)
+          .collection("transactions")
+          .doc(transactionItem.traxId + transactionItem.type)
+          .set(TransactionItemDTO.fromDomain(transactionItem).toJson());
       NotificationItem notificationItem = NotificationItem(
           createdat: investmentItem.paymentDate,
           title: investmentItem.description,
           type: "Investment",
           id: investmentItem.traxId,
           status: investmentItem.status);
-      await createNotification(notificationItem: notificationItem).then((_){
+      await createNotification(notificationItem: notificationItem).then((_) {
         sp.setInt("notificationCount", (notificationCount! + 1));
       });
       return right("Investment made. Awaiting approval");
@@ -108,10 +128,10 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
 
   @override
   Future<Either<String, String>> createWithdrawalTransaction(
-      {required WithdrawalItem withdrawalItem}) async {
-        final sp = await SharedPreferences.getInstance();
+      {required WithdrawalItem withdrawalItem, required String invId}) async {
+    final sp = await SharedPreferences.getInstance();
     String docId = withdrawalItem.uid + withdrawalItem.traxId;
-    if(!sp.containsKey("notificationCount")){
+    if (!sp.containsKey("notificationCount")) {
       sp.setInt("notificationCount", 0);
     }
     int? notificationCount = sp.getInt("notificationCount");
@@ -121,6 +141,24 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
           .collection("withdrawals")
           .doc(docId)
           .set(WithdrawalItemDTO.fromDomain(withdrawalItem).toJson());
+      TransactionItem transactionItem = TransactionItem(
+        description: withdrawalItem.description,
+        amount: withdrawalItem.amount,
+        traxId: withdrawalItem.traxId,
+        planName: withdrawalItem.description.replaceAll("withdrawal", ""),
+        status: withdrawalItem.status,
+        createdat: withdrawalItem.createdat,
+        paymentMethod: withdrawalItem.paymentMethod,
+        currency: withdrawalItem.currency,
+        type: "Withdrawal",
+        duration: withdrawalItem.duration,
+        roi: withdrawalItem.roi,
+      );
+      await firestore.authUserCollection
+          .doc(auth.currentUser!.uid)
+          .collection("transactions")
+          .doc(transactionItem.traxId + transactionItem.type)
+          .set(TransactionItemDTO.fromDomain(transactionItem).toJson());
       NotificationItem notificationItem = NotificationItem(
         id: withdrawalItem.traxId,
         type: "Withdrawal",
@@ -131,6 +169,14 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
       await createNotification(notificationItem: notificationItem).then((_) {
         sp.setInt("notificationCount", (notificationCount! + 1));
       });
+      await firestore.authUserCollection.doc(auth.currentUser!.uid).collection("investments").doc(invId).delete();
+      await firestore.authUserCollection.doc(auth.currentUser!.uid).collection("notifications").doc(withdrawalItem.traxId).delete();
+      final lapo = await firestore.authUserCollection.doc(auth.currentUser!.uid).collection("transactions").where("traxId",isEqualTo: withdrawalItem.traxId).get();
+      for(var doc in lapo.docs){
+        await firestore.authUserCollection.doc(auth.currentUser!.uid).collection("transactions").doc(doc.id).update({
+          "status": "Withdrawn"
+        });
+      }
       return right("Withdrawal submitted. Awaiting approval");
     } on FirebaseException catch (e) {
       return left(getErrorFromCode(symbol: e.code));
@@ -140,7 +186,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
   @override
   Future<Either<String, String>> createKYC({required KYCItem kycItem}) async {
     final sp = await SharedPreferences.getInstance();
-    if(!sp.containsKey("notificationCount")){
+    if (!sp.containsKey("notificationCount")) {
       sp.setInt("notificationCount", 0);
     }
     int? notificationCount = sp.getInt("notificationCount");
@@ -176,7 +222,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
           .collection("notifications")
           .doc(docId)
           .set(NotificationItemDTO.fromDomain(notificationItem).toJson());
-      if(!sp.containsKey("notificationCount")){
+      if (!sp.containsKey("notificationCount")) {
         sp.setInt("notificationCount", 0);
       }
       return right("notification created");
@@ -190,7 +236,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
     yield* firestore.authUserCollection
         .doc(auth.currentUser!.uid)
         .collection("notifications")
-        .orderBy("createdat",descending: true)
+        .orderBy("createdat", descending: true)
         .snapshots();
   }
 
@@ -211,6 +257,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
         .where("type", isEqualTo: "CRYPTOWALLET")
         .snapshots();
   }
+
   @override
   Stream<QuerySnapshot> getNews() async* {
     yield* firestore.newsCollection.snapshots();
@@ -265,6 +312,15 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
   }
 
   @override
+  Stream<QuerySnapshot> getTransactions() async* {
+    yield* firestore.authUserCollection
+        .doc(auth.currentUser!.uid)
+        .collection("transactions")
+        .orderBy("createdat", descending: true)
+        .snapshots();
+  }
+
+  @override
   Stream<QuerySnapshot> getDollarPrice() async* {
     yield* firestore.collection("egoPrice").snapshots();
   }
@@ -277,7 +333,8 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
         .collection("investments")
         .doc(docId);
     try {
-      await query.update({"planYield": 0, "amount": FieldValue.increment(amount)});
+      await query
+          .update({"planYield": 0, "amount": FieldValue.increment(amount)});
       return right('Investment harvested');
     } on FirebaseException catch (e) {
       return left(getErrorFromCode(symbol: e.code));
@@ -317,15 +374,16 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
     }
   }
 
-   @override
+  @override
   Future<Either<String, KYCItem>> getKYC() async {
-    final sp = await SharedPreferences.getInstance(); 
-    final query = await firestore.kycCollection.doc(auth.currentUser!.uid).get();
+    final sp = await SharedPreferences.getInstance();
+    final query =
+        await firestore.kycCollection.doc(auth.currentUser!.uid).get();
     KYCItem doc = KYCItem.empty();
     try {
-      if(query.exists){
-        if(!sp.containsKey("kycExists")){
-          sp.setBool("kycExists",true);
+      if (query.exists) {
+        if (!sp.containsKey("kycExists")) {
+          sp.setBool("kycExists", true);
         }
         doc = KYCItemDTO.fromFirestore(query).toDomain();
         return right(doc);
