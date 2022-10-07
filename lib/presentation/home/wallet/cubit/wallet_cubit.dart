@@ -7,13 +7,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/domain/auth/i_external_facade.dart';
 import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
-import 'package:fortfolio/domain/user/bank_address.dart';
-import 'package:fortfolio/domain/user/crypto_wallet.dart';
 import 'package:fortfolio/domain/user/investment.dart';
 import 'package:fortfolio/domain/user/transaction_item.dart';
 import 'package:fortfolio/domain/user/withdrawal_item.dart';
-import 'package:fortfolio/infrastructure/auth/dto/bank_address/bank_address_dto.dart';
-import 'package:fortfolio/infrastructure/auth/dto/crypto_address/crypto_address.dart';
 import 'package:fortfolio/infrastructure/auth/dto/investment/investment_dto.dart';
 import 'package:fortfolio/infrastructure/auth/dto/transactions/transactions_dto.dart';
 import 'package:fortfolio/infrastructure/auth/dto/withdrawal/withdrawal_dto.dart';
@@ -95,8 +91,10 @@ class WalletCubit extends Cubit<WalletState> {
     var planYield = 0.0;
     var amount = 0.0;
     for (var element in fortDollarInvestments) {
-      planYield += element.planYield;
-      amount += element.amount;
+      if(element.status == "Successful") {
+        planYield += element.planYield;
+        amount += element.amount;
+      }
     }
     emit(state.copyWith(
         fortDollarYieldBalance: planYield,
@@ -108,9 +106,12 @@ class WalletCubit extends Cubit<WalletState> {
     var planYield = 0.0;
     var amount = 0.0;
     for (var element in fortShieldInvestments) {
-      planYield += element.planYield;
-      amount += element.amount;
+      if(element.status == "Successful") {
+        planYield += element.planYield;
+        amount += element.amount;
+      }
     }
+    
     emit(state.copyWith(
         fortShieldYieldBalance: planYield,
         fortShieldInvestmentBalance: amount));
@@ -121,8 +122,10 @@ class WalletCubit extends Cubit<WalletState> {
     var planYield = 0.0;
     var amount = 0.0;
     for (var element in fortCryptoInvestments) {
-      planYield += element.planYield;
-      amount += element.amount;
+      if(element.status == "Successful") {
+        planYield += element.planYield;
+        amount += element.amount;
+      }
     }
     emit(state.copyWith(
         fortCryptoYieldBalance: planYield,

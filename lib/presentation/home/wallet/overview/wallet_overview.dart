@@ -78,7 +78,7 @@ class WalletOverview extends StatelessWidget {
                                 onPressed: () => context
                                     .read<WalletCubit>()
                                     .showDigitsChanged(),
-                                icon: showDigits ? const Icon(Icons.visibility, color: kWhiteColor) : const Icon(Icons.visibility_off, color: kWhiteColor))
+                                icon: showDigits ? const Icon(Icons.visibility_off, color: kWhiteColor) : const Icon(Icons.visibility, color: kWhiteColor))
                           ],
                         ),
                         const SizedBox(
@@ -254,7 +254,6 @@ class WalletOverview extends StatelessWidget {
                           )));
                 },
               ),
-              // BUILD DIFFERENT PAGES TO SHOW BALANCE FOR THESE PLANS
               BlocBuilder<WalletCubit, WalletState>(
                 builder: (context, state) {
                   return Visibility(
