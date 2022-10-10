@@ -24,9 +24,11 @@ class DashboardTransactions extends StatelessWidget {
       'images/blank-wallet.svg',
       semanticsLabel: 'Blank Wallet',
     );
+   final List<String> _chipLabel = ['All Transactions', 'Investments', 'Withdrawals'];
     final formatter = NumberFormat("#,##0.##", "en_US");
     ScreenshotController screenshotController = ScreenshotController();
-    double pixelRatio = MediaQuery.of(context).devicePixelRatio;
+    final currentSort = context.select((WalletCubit cubit) => cubit.state.currentSort);
+    // double pixelRatio = MediaQuery.of(context).devicePixelRatio;
     return Scaffold(
         body: SafeArea(
       child: Padding(
@@ -48,7 +50,41 @@ class DashboardTransactions extends StatelessWidget {
                   child: const Icon(Icons.close),
                 ),
                 const SizedBox(
-                  height: 50,
+                  height: 20,
+                ),
+                SizedBox(
+                          height: 30,
+                          child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 3,
+                      itemBuilder: (context, index) {
+                        return ChoiceChip(label: Text(_chipLabel[index],style: subTitle.copyWith(
+                                            color: kPrimaryColor,
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.w500)), selected: currentSort == _chipLabel[index], selectedColor: klightblue.withOpacity(0.4),
+                                            onSelected: (value) {
+                                              context.read<WalletCubit>().toggleCurrentSort(currentSort: _chipLabel[index]);
+                                              if(value == false){
+                                                return;
+                                              }
+                                              if(_chipLabel[index] == "Investments"){
+                                                context.read<WalletCubit>().sortInvestments();
+                                                return;
+                                              }
+                                              if(_chipLabel[index] == "Withdrawals"){
+                                                context.read<WalletCubit>().sortWithdrawals();
+                                                return;
+                                              }
+                                              if(_chipLabel[index] == "All Transactions"){
+                                                context.read<WalletCubit>().initTransactions();
+                                                return;
+                                              }
+                                            },);
+                      },
+                    )
+                        ),
+                SizedBox(
+                  height: transactions.isEmpty ? 50 : 30,
                 ),
                 transactions.isEmpty
                     ? Center(
@@ -74,7 +110,7 @@ class DashboardTransactions extends StatelessWidget {
                           ],
                         ),
                       )
-                    : Column(
+                    :Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: transactions.map((document) {
                           return buildTransactionTile(
@@ -163,7 +199,7 @@ class DashboardTransactions extends StatelessWidget {
                         //         shape: BoxShape.circle),
                         //     child: Icon(
                         //       Icons.adaptive.share,
-                        //       color: kgreyColor,
+                        //       color: kBlackColor,
                         //     ),
                         //   ),
                         // ),
@@ -174,14 +210,14 @@ class DashboardTransactions extends StatelessWidget {
                     ),
                     Text(
                       type,
-                      style: subTitle.copyWith(color: kgreyColor, fontSize: 14),
+                      style: subTitle.copyWith(color: kBlackColor, fontSize: 14),
                     ),
                     const SizedBox(
                       height: 20,
                     ),
                     Text(
                       "Type of Transaction",
-                      style: subTitle.copyWith(color: kgreyColor, fontSize: 13),
+                      style: subTitle.copyWith(color: kBlackColor, fontSize: 13),
                     ),
                     const SizedBox(
                       height: 5,
@@ -196,7 +232,7 @@ class DashboardTransactions extends StatelessWidget {
                     ),
                     Text(
                       "Amount",
-                      style: subTitle.copyWith(color: kgreyColor, fontSize: 13),
+                      style: subTitle.copyWith(color: kBlackColor, fontSize: 13),
                     ),
                     const SizedBox(
                       height: 5,
@@ -211,7 +247,7 @@ class DashboardTransactions extends StatelessWidget {
                     ),
                     Text(
                       "Date",
-                      style: subTitle.copyWith(color: kgreyColor, fontSize: 13),
+                      style: subTitle.copyWith(color: kBlackColor, fontSize: 13),
                     ),
                     const SizedBox(
                       height: 5,
@@ -226,7 +262,7 @@ class DashboardTransactions extends StatelessWidget {
                     ),
                     Text(
                       "Status",
-                      style: subTitle.copyWith(color: kgreyColor, fontSize: 13),
+                      style: subTitle.copyWith(color: kBlackColor, fontSize: 13),
                     ),
                     const SizedBox(
                       height: 5,
@@ -248,7 +284,7 @@ class DashboardTransactions extends StatelessWidget {
                     ),
                     Text(
                       "Transaction Reference",
-                      style: subTitle.copyWith(color: kgreyColor, fontSize: 13),
+                      style: subTitle.copyWith(color: kBlackColor, fontSize: 13),
                     ),
                     const SizedBox(
                       height: 5,
@@ -263,7 +299,7 @@ class DashboardTransactions extends StatelessWidget {
                     ),
                     Text(
                       "Payment Method",
-                      style: subTitle.copyWith(color: kgreyColor, fontSize: 13),
+                      style: subTitle.copyWith(color: kBlackColor, fontSize: 13),
                     ),
                     const SizedBox(
                       height: 5,
@@ -310,7 +346,7 @@ class DashboardTransactions extends StatelessWidget {
                   TextSpan(
                       text: "$roi% returns",
                       style: subTitle.copyWith(
-                          fontSize: 12, color: kgreyColor.withOpacity(0.7))),
+                          fontSize: 12, color: kBlackColor.withOpacity(0.7))),
                   TextSpan(text: " ● $duration months")
                 ])),
                 const SizedBox(
@@ -318,7 +354,7 @@ class DashboardTransactions extends StatelessWidget {
                 ),
                 Text(date.toString(),
                     style: subTitle.copyWith(
-                        fontSize: 12, color: const Color(0XFFD8D8D8))),
+                        fontSize: 12, color: const Color(0xFF1F1E1E))),
               ],
             ),
             // Spacer(),
@@ -329,7 +365,7 @@ class DashboardTransactions extends StatelessWidget {
                 Text(
                   "$currency$amount",
                   style: titleText.copyWith(
-                      fontSize: 20,
+                      fontSize: 16,
                       color: status == "Successful"
                           ? const Color(0XFF00C566)
                           : status == "Pending"

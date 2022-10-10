@@ -45,30 +45,34 @@ class VerificationCubit extends Cubit<VerificationState> {
   }
 
   getSubmittedState() async {
-    final sp = await SharedPreferences.getInstance();
     final databaseKYC = await firestoreFacade.getKYC();
     final bool isVerified = authCubit.state.userModel.isVerified;
-    bool kycExists = false;
-    if(sp.containsKey("kycExists")){
-      kycExists = sp.getBool('kycExists')!;
+    if(isVerified){
+      emit(state.copyWith(kycExists: false));
+      return;
     }
+    bool kycExists = false;
     databaseKYC.fold((l) {
       emit(state.copyWith(failure: l));
     }, (r) {
       if (r == KYCItem.empty()){
-        sp.setBool("kycExists", false);
         emit(state.copyWith(kycExists: false));
+        return;
       }
-      if (r.status == "Rejected" || r.status == "Approved" || isVerified) {
-        sp.setBool("kycExists", false);
-        if (r.status == "Approved") emit(state.copyWith(status: r.status));
-        if (r.status == "Rejected") {
-          emit(state.copyWith(
-              status: r.status, rejectionReason: r.rejectionReason!));
-        }
-      } else {
-        emit(state.copyWith(kycExists: kycExists));
+      if (r.status == "Approved") {
+        emit(state.copyWith(status: r.status));
+        return;
       }
+      if (r.status == "Rejected") {
+        emit(state.copyWith(
+           status: r.status, rejectionReason: r.rejectionReason!));
+        return;
+      }
+      if (r.status == "Pending") {
+        emit(state.copyWith(kycExists: true));
+        return;
+      }
+      emit(state.copyWith(kycExists: kycExists));
     });
   }
 
@@ -107,7 +111,7 @@ class VerificationCubit extends Cubit<VerificationState> {
     response.fold((failure) {
       emit(state.copyWith(submitting: false, failure: failure));
     }, (success) {
-      emit(state.copyWith(submitting: false, success: success));
+      emit(state.copyWith(submitting: false, success: success, kycExists: true));
     });
   }
 

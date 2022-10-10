@@ -23,7 +23,12 @@ class FortShieldInvestment extends StatelessWidget {
   Widget build(BuildContext context) {
     final duration = context.select((InvestmentCubit element) => element.state.duration);
     final endDate = Jiffy(DateTime.now()).add(months: duration.toInt()).yMMMMd;
-    return Scaffold(
+    return WillPopScope(
+      onWillPop: () async {
+            context.read<InvestmentCubit>().reset();
+            return true;
+          },
+      child: Scaffold(
       body: SafeArea(
         child: Padding(
           padding: kDefaultPadding,
@@ -321,6 +326,7 @@ class FortShieldInvestment extends StatelessWidget {
           ),
         ),
       ),
+    )
     );
   }
 

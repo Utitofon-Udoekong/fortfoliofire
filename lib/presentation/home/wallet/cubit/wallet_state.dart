@@ -15,6 +15,7 @@ class WalletState with _$WalletState {
       required String withdrawalMethod,
       required String failure,
       required String success,
+      required String currentSort,
       required Map<String, dynamic> withdrawalDetails,
       required InvestmentItem investmentToBeWithdrawn,
       required List<InvestmentItem> fortDollarInvestments,
@@ -22,6 +23,7 @@ class WalletState with _$WalletState {
       required List<InvestmentItem> fortShieldInvestments,
       required List<WithdrawalItem> withdrawals,
       required List<TransactionItem> transactions,
+      required List<TransactionItem> currentFilter,
       required bool showDigits}) = _WalletState;
   const WalletState._();
   factory WalletState.initial() => WalletState(
@@ -38,6 +40,7 @@ class WalletState with _$WalletState {
       withdrawalDetails: {},
       failure: "",
       success: "",
+      currentSort: "All Transactions",
       fortDollarInvestments: [
       ],
       fortCryptoInvestments: [
@@ -49,7 +52,8 @@ class WalletState with _$WalletState {
       showDigits: true,
       transactions: [
         
-      ]);
+      ],
+      currentFilter: []);
   bool get isFortDollarActive => fortDollarInvestments.isNotEmpty;
   bool get isFortShieldActive => fortShieldInvestments.isNotEmpty;
   bool get isFortCryptoActive => fortCryptoInvestments.isNotEmpty;

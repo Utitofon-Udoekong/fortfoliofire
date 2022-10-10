@@ -27,6 +27,7 @@ mixin _$WalletState {
   String get withdrawalMethod => throw _privateConstructorUsedError;
   String get failure => throw _privateConstructorUsedError;
   String get success => throw _privateConstructorUsedError;
+  String get currentSort => throw _privateConstructorUsedError;
   Map<String, dynamic> get withdrawalDetails =>
       throw _privateConstructorUsedError;
   InvestmentItem get investmentToBeWithdrawn =>
@@ -39,6 +40,7 @@ mixin _$WalletState {
       throw _privateConstructorUsedError;
   List<WithdrawalItem> get withdrawals => throw _privateConstructorUsedError;
   List<TransactionItem> get transactions => throw _privateConstructorUsedError;
+  List<TransactionItem> get currentFilter => throw _privateConstructorUsedError;
   bool get showDigits => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -63,6 +65,7 @@ abstract class $WalletStateCopyWith<$Res> {
       String withdrawalMethod,
       String failure,
       String success,
+      String currentSort,
       Map<String, dynamic> withdrawalDetails,
       InvestmentItem investmentToBeWithdrawn,
       List<InvestmentItem> fortDollarInvestments,
@@ -70,6 +73,7 @@ abstract class $WalletStateCopyWith<$Res> {
       List<InvestmentItem> fortShieldInvestments,
       List<WithdrawalItem> withdrawals,
       List<TransactionItem> transactions,
+      List<TransactionItem> currentFilter,
       bool showDigits});
 
   $InvestmentItemCopyWith<$Res> get investmentToBeWithdrawn;
@@ -96,6 +100,7 @@ class _$WalletStateCopyWithImpl<$Res> implements $WalletStateCopyWith<$Res> {
     Object? withdrawalMethod = freezed,
     Object? failure = freezed,
     Object? success = freezed,
+    Object? currentSort = freezed,
     Object? withdrawalDetails = freezed,
     Object? investmentToBeWithdrawn = freezed,
     Object? fortDollarInvestments = freezed,
@@ -103,6 +108,7 @@ class _$WalletStateCopyWithImpl<$Res> implements $WalletStateCopyWith<$Res> {
     Object? fortShieldInvestments = freezed,
     Object? withdrawals = freezed,
     Object? transactions = freezed,
+    Object? currentFilter = freezed,
     Object? showDigits = freezed,
   }) {
     return _then(_value.copyWith(
@@ -150,6 +156,10 @@ class _$WalletStateCopyWithImpl<$Res> implements $WalletStateCopyWith<$Res> {
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
               as String,
+      currentSort: currentSort == freezed
+          ? _value.currentSort
+          : currentSort // ignore: cast_nullable_to_non_nullable
+              as String,
       withdrawalDetails: withdrawalDetails == freezed
           ? _value.withdrawalDetails
           : withdrawalDetails // ignore: cast_nullable_to_non_nullable
@@ -177,6 +187,10 @@ class _$WalletStateCopyWithImpl<$Res> implements $WalletStateCopyWith<$Res> {
       transactions: transactions == freezed
           ? _value.transactions
           : transactions // ignore: cast_nullable_to_non_nullable
+              as List<TransactionItem>,
+      currentFilter: currentFilter == freezed
+          ? _value.currentFilter
+          : currentFilter // ignore: cast_nullable_to_non_nullable
               as List<TransactionItem>,
       showDigits: showDigits == freezed
           ? _value.showDigits
@@ -213,6 +227,7 @@ abstract class _$$_WalletStateCopyWith<$Res>
       String withdrawalMethod,
       String failure,
       String success,
+      String currentSort,
       Map<String, dynamic> withdrawalDetails,
       InvestmentItem investmentToBeWithdrawn,
       List<InvestmentItem> fortDollarInvestments,
@@ -220,6 +235,7 @@ abstract class _$$_WalletStateCopyWith<$Res>
       List<InvestmentItem> fortShieldInvestments,
       List<WithdrawalItem> withdrawals,
       List<TransactionItem> transactions,
+      List<TransactionItem> currentFilter,
       bool showDigits});
 
   @override
@@ -249,6 +265,7 @@ class __$$_WalletStateCopyWithImpl<$Res> extends _$WalletStateCopyWithImpl<$Res>
     Object? withdrawalMethod = freezed,
     Object? failure = freezed,
     Object? success = freezed,
+    Object? currentSort = freezed,
     Object? withdrawalDetails = freezed,
     Object? investmentToBeWithdrawn = freezed,
     Object? fortDollarInvestments = freezed,
@@ -256,6 +273,7 @@ class __$$_WalletStateCopyWithImpl<$Res> extends _$WalletStateCopyWithImpl<$Res>
     Object? fortShieldInvestments = freezed,
     Object? withdrawals = freezed,
     Object? transactions = freezed,
+    Object? currentFilter = freezed,
     Object? showDigits = freezed,
   }) {
     return _then(_$_WalletState(
@@ -303,6 +321,10 @@ class __$$_WalletStateCopyWithImpl<$Res> extends _$WalletStateCopyWithImpl<$Res>
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
               as String,
+      currentSort: currentSort == freezed
+          ? _value.currentSort
+          : currentSort // ignore: cast_nullable_to_non_nullable
+              as String,
       withdrawalDetails: withdrawalDetails == freezed
           ? _value._withdrawalDetails
           : withdrawalDetails // ignore: cast_nullable_to_non_nullable
@@ -331,6 +353,10 @@ class __$$_WalletStateCopyWithImpl<$Res> extends _$WalletStateCopyWithImpl<$Res>
           ? _value._transactions
           : transactions // ignore: cast_nullable_to_non_nullable
               as List<TransactionItem>,
+      currentFilter: currentFilter == freezed
+          ? _value._currentFilter
+          : currentFilter // ignore: cast_nullable_to_non_nullable
+              as List<TransactionItem>,
       showDigits: showDigits == freezed
           ? _value.showDigits
           : showDigits // ignore: cast_nullable_to_non_nullable
@@ -354,6 +380,7 @@ class _$_WalletState extends _WalletState {
       required this.withdrawalMethod,
       required this.failure,
       required this.success,
+      required this.currentSort,
       required final Map<String, dynamic> withdrawalDetails,
       required this.investmentToBeWithdrawn,
       required final List<InvestmentItem> fortDollarInvestments,
@@ -361,6 +388,7 @@ class _$_WalletState extends _WalletState {
       required final List<InvestmentItem> fortShieldInvestments,
       required final List<WithdrawalItem> withdrawals,
       required final List<TransactionItem> transactions,
+      required final List<TransactionItem> currentFilter,
       required this.showDigits})
       : _withdrawalDetails = withdrawalDetails,
         _fortDollarInvestments = fortDollarInvestments,
@@ -368,6 +396,7 @@ class _$_WalletState extends _WalletState {
         _fortShieldInvestments = fortShieldInvestments,
         _withdrawals = withdrawals,
         _transactions = transactions,
+        _currentFilter = currentFilter,
         super._();
 
   @override
@@ -392,6 +421,8 @@ class _$_WalletState extends _WalletState {
   final String failure;
   @override
   final String success;
+  @override
+  final String currentSort;
   final Map<String, dynamic> _withdrawalDetails;
   @override
   Map<String, dynamic> get withdrawalDetails {
@@ -436,12 +467,19 @@ class _$_WalletState extends _WalletState {
     return EqualUnmodifiableListView(_transactions);
   }
 
+  final List<TransactionItem> _currentFilter;
+  @override
+  List<TransactionItem> get currentFilter {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_currentFilter);
+  }
+
   @override
   final bool showDigits;
 
   @override
   String toString() {
-    return 'WalletState(exchange: $exchange, loading: $loading, fortDollarInvestmentBalance: $fortDollarInvestmentBalance, fortCryptoInvestmentBalance: $fortCryptoInvestmentBalance, fortShieldInvestmentBalance: $fortShieldInvestmentBalance, fortDollarYieldBalance: $fortDollarYieldBalance, fortCryptoYieldBalance: $fortCryptoYieldBalance, fortShieldYieldBalance: $fortShieldYieldBalance, withdrawalMethod: $withdrawalMethod, failure: $failure, success: $success, withdrawalDetails: $withdrawalDetails, investmentToBeWithdrawn: $investmentToBeWithdrawn, fortDollarInvestments: $fortDollarInvestments, fortCryptoInvestments: $fortCryptoInvestments, fortShieldInvestments: $fortShieldInvestments, withdrawals: $withdrawals, transactions: $transactions, showDigits: $showDigits)';
+    return 'WalletState(exchange: $exchange, loading: $loading, fortDollarInvestmentBalance: $fortDollarInvestmentBalance, fortCryptoInvestmentBalance: $fortCryptoInvestmentBalance, fortShieldInvestmentBalance: $fortShieldInvestmentBalance, fortDollarYieldBalance: $fortDollarYieldBalance, fortCryptoYieldBalance: $fortCryptoYieldBalance, fortShieldYieldBalance: $fortShieldYieldBalance, withdrawalMethod: $withdrawalMethod, failure: $failure, success: $success, currentSort: $currentSort, withdrawalDetails: $withdrawalDetails, investmentToBeWithdrawn: $investmentToBeWithdrawn, fortDollarInvestments: $fortDollarInvestments, fortCryptoInvestments: $fortCryptoInvestments, fortShieldInvestments: $fortShieldInvestments, withdrawals: $withdrawals, transactions: $transactions, currentFilter: $currentFilter, showDigits: $showDigits)';
   }
 
   @override
@@ -471,6 +509,8 @@ class _$_WalletState extends _WalletState {
             const DeepCollectionEquality().equals(other.failure, failure) &&
             const DeepCollectionEquality().equals(other.success, success) &&
             const DeepCollectionEquality()
+                .equals(other.currentSort, currentSort) &&
+            const DeepCollectionEquality()
                 .equals(other._withdrawalDetails, _withdrawalDetails) &&
             const DeepCollectionEquality().equals(
                 other.investmentToBeWithdrawn, investmentToBeWithdrawn) &&
@@ -484,6 +524,8 @@ class _$_WalletState extends _WalletState {
                 .equals(other._withdrawals, _withdrawals) &&
             const DeepCollectionEquality()
                 .equals(other._transactions, _transactions) &&
+            const DeepCollectionEquality()
+                .equals(other._currentFilter, _currentFilter) &&
             const DeepCollectionEquality()
                 .equals(other.showDigits, showDigits));
   }
@@ -502,6 +544,7 @@ class _$_WalletState extends _WalletState {
         const DeepCollectionEquality().hash(withdrawalMethod),
         const DeepCollectionEquality().hash(failure),
         const DeepCollectionEquality().hash(success),
+        const DeepCollectionEquality().hash(currentSort),
         const DeepCollectionEquality().hash(_withdrawalDetails),
         const DeepCollectionEquality().hash(investmentToBeWithdrawn),
         const DeepCollectionEquality().hash(_fortDollarInvestments),
@@ -509,6 +552,7 @@ class _$_WalletState extends _WalletState {
         const DeepCollectionEquality().hash(_fortShieldInvestments),
         const DeepCollectionEquality().hash(_withdrawals),
         const DeepCollectionEquality().hash(_transactions),
+        const DeepCollectionEquality().hash(_currentFilter),
         const DeepCollectionEquality().hash(showDigits)
       ]);
 
@@ -531,6 +575,7 @@ abstract class _WalletState extends WalletState {
       required final String withdrawalMethod,
       required final String failure,
       required final String success,
+      required final String currentSort,
       required final Map<String, dynamic> withdrawalDetails,
       required final InvestmentItem investmentToBeWithdrawn,
       required final List<InvestmentItem> fortDollarInvestments,
@@ -538,6 +583,7 @@ abstract class _WalletState extends WalletState {
       required final List<InvestmentItem> fortShieldInvestments,
       required final List<WithdrawalItem> withdrawals,
       required final List<TransactionItem> transactions,
+      required final List<TransactionItem> currentFilter,
       required final bool showDigits}) = _$_WalletState;
   const _WalletState._() : super._();
 
@@ -564,6 +610,8 @@ abstract class _WalletState extends WalletState {
   @override
   String get success;
   @override
+  String get currentSort;
+  @override
   Map<String, dynamic> get withdrawalDetails;
   @override
   InvestmentItem get investmentToBeWithdrawn;
@@ -577,6 +625,8 @@ abstract class _WalletState extends WalletState {
   List<WithdrawalItem> get withdrawals;
   @override
   List<TransactionItem> get transactions;
+  @override
+  List<TransactionItem> get currentFilter;
   @override
   bool get showDigits;
   @override

@@ -60,7 +60,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
   }
   void setCryptoBaseAmount({required String coin}) async {
     final coinPriceinUSD = await externalFacade.getCoinPrice(id: coinCode(coin: coin));
-    double baseAmount = double.parse((1000 / coinPriceinUSD).toStringAsFixed(2));
+    double baseAmount = double.parse((1000 / coinPriceinUSD).toStringAsFixed(3));
     emit(state.copyWith(baseAmount: baseAmount));
   }
 

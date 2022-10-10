@@ -61,6 +61,43 @@ class WalletCubit extends Cubit<WalletState> {
     emit(state.copyWith(showDigits: !showDigits));
   }
 
+  void toggleCurrentSort({required String currentSort}){
+    emit(state.copyWith(currentSort: currentSort));
+  }
+
+  void sortInvestments(){
+    _logsTransaction = 
+        firestoreFacade.getTransactions().listen((data) {
+      final List<QueryDocumentSnapshot<Object?>> docs = data.docs;
+      List<TransactionItem> transactions = [];
+      if (data.size > 0) {
+        for (var element in docs) {
+          final doc = TransactionItemDTO.fromFirestore(element).toDomain();
+          if(doc.type == "Investment"){
+            transactions.add(doc);
+          }
+        }
+        emit(state.copyWith(transactions: transactions));
+      }
+    });
+  }
+  void sortWithdrawals(){
+    _logsTransaction = 
+        firestoreFacade.getTransactions().listen((data) {
+      final List<QueryDocumentSnapshot<Object?>> docs = data.docs;
+      List<TransactionItem> transactions = [];
+      if (data.size > 0) {
+        for (var element in docs) {
+          final doc = TransactionItemDTO.fromFirestore(element).toDomain();
+          if(doc.type == "Withdrawal"){
+            transactions.add(doc);
+          }
+        }
+        emit(state.copyWith(transactions: transactions));
+      }
+    });
+  }
+
   void getWalletBalanceInBTC() async {
     emit(state.copyWith( exchange: "BTC"));
   }

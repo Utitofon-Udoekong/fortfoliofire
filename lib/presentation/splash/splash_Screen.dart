@@ -3,6 +3,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
@@ -60,7 +61,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     // final svg = SvgPicture.asset(
-    //   'images/logo.svg',
+    //   'images/logo.png',
     //   semanticsLabel: 'logo',
     // );
     return Scaffold(

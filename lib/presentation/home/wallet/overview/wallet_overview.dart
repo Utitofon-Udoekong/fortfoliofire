@@ -333,7 +333,7 @@ class WalletOverview extends StatelessWidget {
 
   Widget buildcard(String title, String path, Function() ontap, String balance,
       bool showDigits, String yield, bool isAccountActive) {
-    return GestureDetector(
+    return InkWell(
       onTap: isAccountActive ? ontap : null,
       child: Container(
         margin: const EdgeInsets.only(bottom: 20.0),

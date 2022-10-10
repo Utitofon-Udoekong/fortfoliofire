@@ -106,11 +106,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
         duration: investmentItem.duration,
         roi: investmentItem.roi,
       );
-      await firestore.authUserCollection
-          .doc(auth.currentUser!.uid)
-          .collection("transactions")
-          .doc(transactionItem.traxId + transactionItem.type)
-          .set(TransactionItemDTO.fromDomain(transactionItem).toJson());
+      await createTransaction(transactionItem: transactionItem);
       NotificationItem notificationItem = NotificationItem(
           createdat: investmentItem.paymentDate,
           title: investmentItem.description,
@@ -154,11 +150,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
         duration: withdrawalItem.duration,
         roi: withdrawalItem.roi,
       );
-      await firestore.authUserCollection
-          .doc(auth.currentUser!.uid)
-          .collection("transactions")
-          .doc(transactionItem.traxId + transactionItem.type)
-          .set(TransactionItemDTO.fromDomain(transactionItem).toJson());
+      await createTransaction(transactionItem: transactionItem);
       NotificationItem notificationItem = NotificationItem(
         id: withdrawalItem.traxId,
         type: "Withdrawal",
@@ -166,8 +158,8 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
         createdat: withdrawalItem.createdat,
         status: withdrawalItem.status,
       );
-      await createNotification(notificationItem: notificationItem).then((_) {
-        sp.setInt("notificationCount", (notificationCount! + 1));
+      await createNotification(notificationItem: notificationItem).then((val) {
+        val.fold((l) => null, (r) => sp.setInt("notificationCount", (notificationCount! + 1)));
       });
       await firestore.authUserCollection.doc(auth.currentUser!.uid).collection("investments").doc(invId).delete();
       await firestore.authUserCollection.doc(auth.currentUser!.uid).collection("notifications").doc(withdrawalItem.traxId).delete();
@@ -201,9 +193,8 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
         createdat: kycItem.submitted,
         status: kycItem.status,
       );
-      await createNotification(notificationItem: notificationItem).then((_) {
-        sp.setBool("kycExists", true);
-        sp.setInt("notificationCount", (notificationCount! + 1));
+      await createNotification(notificationItem: notificationItem).then((val) {
+        val.fold((l) => null, (r) => sp.setInt("notificationCount", (notificationCount! + 1)));
       });
       return right("KYC Documents submitted");
     } on FirebaseException catch (e) {
@@ -212,7 +203,22 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
   }
 
   @override
-  Future<Either<String, String>> createNotification(
+  Future<Either<String, bool>> createTransaction(
+      {required TransactionItem transactionItem}) async {
+    try {
+      await firestore.authUserCollection
+          .doc(auth.currentUser!.uid)
+          .collection("transactions")
+          .doc(transactionItem.traxId + transactionItem.type)
+          .set(TransactionItemDTO.fromDomain(transactionItem).toJson());
+      return right(true);
+    } on FirebaseException catch (e) {
+      return left(getErrorFromCode(symbol: e.code));
+    }
+  }
+
+  @override
+  Future<Either<String, bool>> createNotification(
       {required NotificationItem notificationItem}) async {
     final sp = await SharedPreferences.getInstance();
     final String docId = notificationItem.id;
@@ -225,7 +231,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
       if (!sp.containsKey("notificationCount")) {
         sp.setInt("notificationCount", 0);
       }
-      return right("notification created");
+      return right(true);
     } on FirebaseException catch (e) {
       return left(getErrorFromCode(symbol: e.code));
     }
@@ -376,15 +382,11 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
 
   @override
   Future<Either<String, KYCItem>> getKYC() async {
-    final sp = await SharedPreferences.getInstance();
     final query =
         await firestore.kycCollection.doc(auth.currentUser!.uid).get();
     KYCItem doc = KYCItem.empty();
     try {
       if (query.exists) {
-        if (!sp.containsKey("kycExists")) {
-          sp.setBool("kycExists", true);
-        }
         doc = KYCItemDTO.fromFirestore(query).toDomain();
         return right(doc);
       }

@@ -37,7 +37,7 @@ dependencies:
   webview_flutter: ^3.0.4
   local_auth: ^2.1.2
   screenshot: ^1.2.3
-  # share_plus: ^4.4.0
+  # share_plus: ^4.5.3
   image_picker: ^0.8.5+3
   nanoid: ^1.0.0
   path_provider: ^2.0.11
@@ -62,9 +62,9 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: false
-  image_path: "images/logo.png"
+  image_path: "images/launch_logo.png"
   adaptive_icon_background: "#ffffff"
-  adaptive_icon_foreground: "images/logo.png"
+  adaptive_icon_foreground: "images/launch_logo.png"
 
 flutter:
   uses-material-design: true

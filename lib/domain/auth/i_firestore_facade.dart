@@ -5,6 +5,7 @@ import 'package:fortfolio/domain/user/crypto_wallet.dart';
 import 'package:fortfolio/domain/user/investment.dart';
 import 'package:fortfolio/domain/user/kyc_item.dart';
 import 'package:fortfolio/domain/user/notification_item.dart';
+import 'package:fortfolio/domain/user/transaction_item.dart';
 import 'package:fortfolio/domain/user/withdrawal_item.dart';
 
 abstract class IFirestoreFacade {
@@ -33,8 +34,10 @@ abstract class IFirestoreFacade {
     required WithdrawalItem withdrawalItem,
     required String invId
   });
-  Future<Either<String, String>> createNotification(
+  Future<Either<String, bool>> createNotification(
       {required NotificationItem notificationItem});
+  Future<Either<String, bool>> createTransaction(
+      {required TransactionItem transactionItem});
   Future<Either<String, String>> createKYC({required KYCItem kycItem});
   Future<Either<String, String>> deleteNotification(
       {required NotificationItem notificationItem});

@@ -131,7 +131,7 @@ Widget buildTile(
               ),
               const SizedBox(height: 2.5),
               Text(
-                amount,
+                pending ? "***" : amount,
                 style: titleText.copyWith(fontSize: 15),
               ),
               const SizedBox(height: 2.5),

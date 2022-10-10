@@ -45,7 +45,12 @@ class FortCryptoInvestment extends StatelessWidget {
             },
           ),
         ],
-        child: SafeArea(
+        child: WillPopScope(
+          onWillPop: () async {
+            context.read<InvestmentCubit>().reset();
+            return true;
+          },
+          child: SafeArea(
           child: Padding(
             padding: kDefaultPadding,
             child: SingleChildScrollView(
@@ -421,6 +426,7 @@ class FortCryptoInvestment extends StatelessWidget {
               ),
             ),
           ),
+        )
         ),
       ),
     );

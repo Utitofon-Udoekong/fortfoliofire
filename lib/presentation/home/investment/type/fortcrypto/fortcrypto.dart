@@ -11,6 +11,7 @@ class FortCrypto extends StatelessWidget {
   const FortCrypto({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final coin = context.select((InvestmentCubit bloc) => bloc.state.coin);
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -60,7 +61,7 @@ class FortCrypto extends StatelessWidget {
                     text: 'Invest',
                     onTap: () {
                       context.read<InvestmentCubit>().planNameChanged( planName: "FortCrypto");
-                      context.read<InvestmentCubit>().setCryptoBaseAmount(coin: "BTC");
+                      context.read<InvestmentCubit>().setCryptoBaseAmount(coin: coin);
                       context
                           .read<InvestmentCubit>()
                           .exchangeTypeChanged(exchangeType: "USD");
