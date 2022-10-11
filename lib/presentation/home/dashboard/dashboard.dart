@@ -20,145 +20,140 @@ class Dashboard extends StatelessWidget {
       child: Padding(
         padding: kDefaultPadding,
         child: SingleChildScrollView(
-          child: RefreshIndicator(
-            color: Colors.white,
-            backgroundColor: kPrimaryColor,
-            strokeWidth: 2.0,
-            onRefresh: () => context.read<DashboardCubit>().initNews(),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                BlocSelector<DashboardCubit, DashboardState, bool>(
-                  selector: (state) {
-                    return state.loading;
-                  },
-                  builder: (context, loading) {
-                    if (loading) {
-                      return Center(
-                        child: Container(
-                          margin: const EdgeInsets.all(8),
-                          child: const CircularProgressIndicator(),
-                        ),
-                      );
-                    } else {
-                      return BlocSelector<DashboardCubit, DashboardState, bool>(
-                        selector: (state) {
-                          return state.failure.isNotEmpty;
-                        },
-                        builder: (context, failure) {
-                          if (failure) {
-                            return FailureView(
-                              onpressed: () =>
-                                  context.read<DashboardCubit>().initNews(),
-                              message:
-                                  context.read<DashboardCubit>().state.failure,
-                            );
-                          } else {
-                            return CarouselSlider(
-                                items: generateSlider(
-                                    context,
-                                    context
-                                        .read<DashboardCubit>()
-                                        .state
-                                        .newsList),
-                                options: CarouselOptions(
-                                  autoPlay: true,
-                                  aspectRatio: 16 / 9,
-                                ));
-                          }
-                        },
-                      );
-                    }
-                  },
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    buildSmallIcons(
-                        'images/Swap.svg',
-                        'Transactions',
-                        () => context.router
-                            .push(const DashboardTransactionsRoute())),
-                    buildSmallIcons('images/Chart.svg', 'Invest Calculator',
-                        () => context.router.push(const CalculatorRoute())),
-                  ],
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      'Quick Actions',
-                      style: TextStyle(
-                          color: Color(0XFF212529),
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600),
-                      textAlign: TextAlign.left,
-                    ),
-                    IconButton(
-                      onPressed: () => context.read<DashboardCubit>().refresh(),
-                      tooltip: "Refresh",
-                      icon: const Icon(Icons.refresh_rounded),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    buildBigIcons(
-                        'images/Activity-big.svg',
-                        'Active Investments',
-                        const Color(0XFF00ADEE),
-                        'View your investment status, portfolio and transaction details.',
-                        'Active Invests',
-                        () => context.pushRoute(
-                            const HomePageRoute(children: [WalletRoute()])),
-                        context),
-                    buildBigIcons(
-                        'images/bolt.svg',
-                        'Quick Investments',
-                        const Color(0XFF00C566),
-                        'Find available investment packages of interest and get started.',
-                        'Quick Invest',
-                        () => context.pushRoute(const HomePageRoute(
-                            children: [InvestmentPageRoute()])),
-                        context),
-                  ],
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    buildBigIcons(
-                        'images/support.svg',
-                        'Need Help? Get Support',
-                        const Color(0XFF00ADEE),
-                        'Contact our customer care service today for help.',
-                        'Get help',
-                        () => context.router.push(const SupportPageRoute()),
-                        context),
-                    buildBigIcons(
-                        'images/Profile.svg',
-                        'Access Your Profile',
-                        const Color(0XFF00ADEE),
-                        'See your transactions, settings & update your preferences.',
-                        'Access Profile',
-                        () => context.router.push(const ProfilePageRoute()),
-                        context),
-                  ],
-                ),
-              ],
-            ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              BlocSelector<DashboardCubit, DashboardState, bool>(
+                selector: (state) {
+                  return state.loading;
+                },
+                builder: (context, loading) {
+                  if (loading) {
+                    return Center(
+                      child: Container(
+                        margin: const EdgeInsets.all(8),
+                        child: const CircularProgressIndicator(),
+                      ),
+                    );
+                  } else {
+                    return BlocSelector<DashboardCubit, DashboardState, bool>(
+                      selector: (state) {
+                        return state.failure.isNotEmpty;
+                      },
+                      builder: (context, failure) {
+                        if (failure) {
+                          return FailureView(
+                            onpressed: () =>
+                                context.read<DashboardCubit>().initNews(),
+                            message:
+                                context.read<DashboardCubit>().state.failure,
+                          );
+                        } else {
+                          return CarouselSlider(
+                              items: generateSlider(
+                                  context,
+                                  context
+                                      .read<DashboardCubit>()
+                                      .state
+                                      .newsList),
+                              options: CarouselOptions(
+                                autoPlay: true,
+                                aspectRatio: 16 / 9,
+                                viewportFraction: 1.0
+                              ));
+                        }
+                      },
+                    );
+                  }
+                },
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  buildSmallIcons(
+                      'images/Swap.svg',
+                      'Transactions',
+                      () => context.router
+                          .push(const DashboardTransactionsRoute())),
+                  buildSmallIcons('images/Chart.svg', 'Invest Calculator',
+                      () => context.router.push(const CalculatorRoute())),
+                ],
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Quick Actions',
+                    style: TextStyle(
+                        color: Color(0XFF212529),
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600),
+                    textAlign: TextAlign.left,
+                  ),
+                  IconButton(
+                    onPressed: () => context.read<DashboardCubit>().refresh(),
+                    tooltip: "Refresh",
+                    icon: const Icon(Icons.refresh_rounded),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  buildBigIcons(
+                      'images/Activity-big.svg',
+                      'Active Investments',
+                      const Color(0XFF00ADEE),
+                      'View your investment status, portfolio and transaction details.',
+                      'Active Invests',
+                      () => context.pushRoute(
+                          const HomePageRoute(children: [WalletRoute()])),
+                      context),
+                  buildBigIcons(
+                      'images/bolt.svg',
+                      'Quick Investments',
+                      const Color(0XFF00C566),
+                      'Find available investment packages of interest and get started.',
+                      'Quick Invest',
+                      () => context.pushRoute(const HomePageRoute(
+                          children: [InvestmentPageRoute()])),
+                      context),
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  buildBigIcons(
+                      'images/support.svg',
+                      'Need Help? Get Support',
+                      const Color(0XFF00ADEE),
+                      'Contact our customer care service today for help.',
+                      'Get help',
+                      () => context.router.push(const SupportPageRoute()),
+                      context),
+                  buildBigIcons(
+                      'images/Profile.svg',
+                      'Access Your Profile',
+                      const Color(0XFF00ADEE),
+                      'See your transactions, settings & update your preferences.',
+                      'Access Profile',
+                      () => context.router.push(const ProfilePageRoute()),
+                      context),
+                ],
+              ),
+            ],
           ),
         ),
       ),

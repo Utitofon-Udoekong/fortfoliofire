@@ -99,10 +99,13 @@ class FortShieldInvestment extends StatelessWidget {
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.number,
                         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                        decoration: const InputDecoration(
+                        decoration: InputDecoration(
                           filled: true,
-                          fillColor: Color(0xFFF3F6F8),
+                          fillColor: const Color(0xFFF3F6F8),
                           border: InputBorder.none,
+                          suffixIcon: const Text("₦"),
+                            suffixStyle: TextStyle(
+                                color: Colors.grey.shade400, fontSize: 13)
                         ),
                         onChanged: (value) => context
                             .read<InvestmentCubit>()
