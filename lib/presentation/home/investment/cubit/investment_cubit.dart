@@ -153,6 +153,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     final String traxId = const Uuid().v4().substring(0, 7);
     final String uid = nanoid(8);
     final String refId = authFacade.getUserId();
+    final fullName = "${authCubit.state.userModel.firstName} ${authCubit.state.userModel.lastName}";
     final dueDate = Jiffy(paymentDate).add(hours: 2).dateTime;
     // final dueDate = Jiffy(paymentDate).add(months: duration.toInt()).dateTime;
     final int numberOfDays = dueDate.difference(paymentDate).inDays;
@@ -177,6 +178,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
           planYield: 0,
           paymentMethod: paymentMethod,
           coin: coin,
+          fullName: fullName,
           numberOfDays: numberOfDays);
     }else {
       investmentItem = InvestmentItem(
@@ -195,6 +197,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
           status: status,
           planYield: 0,
           paymentMethod: paymentMethod,
+          fullName: fullName,
           numberOfDays: numberOfDays);
     }
     final response = await firestoreFacade.createInvestmentTransaction(

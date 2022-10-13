@@ -26,6 +26,7 @@ mixin _$InvestmentItemDTO {
   String? get bankAccountType => throw _privateConstructorUsedError;
   double get amount => throw _privateConstructorUsedError;
   String get traxId => throw _privateConstructorUsedError;
+  String get fullName => throw _privateConstructorUsedError;
   int get roi => throw _privateConstructorUsedError;
   int get numberOfDays => throw _privateConstructorUsedError;
   String get planName => throw _privateConstructorUsedError;
@@ -56,6 +57,7 @@ abstract class $InvestmentItemDTOCopyWith<$Res> {
       String? bankAccountType,
       double amount,
       String traxId,
+      String fullName,
       int roi,
       int numberOfDays,
       String planName,
@@ -86,6 +88,7 @@ class _$InvestmentItemDTOCopyWithImpl<$Res>
     Object? bankAccountType = freezed,
     Object? amount = freezed,
     Object? traxId = freezed,
+    Object? fullName = freezed,
     Object? roi = freezed,
     Object? numberOfDays = freezed,
     Object? planName = freezed,
@@ -122,6 +125,10 @@ class _$InvestmentItemDTOCopyWithImpl<$Res>
       traxId: traxId == freezed
           ? _value.traxId
           : traxId // ignore: cast_nullable_to_non_nullable
+              as String,
+      fullName: fullName == freezed
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
               as String,
       roi: roi == freezed
           ? _value.roi
@@ -185,6 +192,7 @@ abstract class _$$_InvestmentItemDTOCopyWith<$Res>
       String? bankAccountType,
       double amount,
       String traxId,
+      String fullName,
       int roi,
       int numberOfDays,
       String planName,
@@ -217,6 +225,7 @@ class __$$_InvestmentItemDTOCopyWithImpl<$Res>
     Object? bankAccountType = freezed,
     Object? amount = freezed,
     Object? traxId = freezed,
+    Object? fullName = freezed,
     Object? roi = freezed,
     Object? numberOfDays = freezed,
     Object? planName = freezed,
@@ -253,6 +262,10 @@ class __$$_InvestmentItemDTOCopyWithImpl<$Res>
       traxId: traxId == freezed
           ? _value.traxId
           : traxId // ignore: cast_nullable_to_non_nullable
+              as String,
+      fullName: fullName == freezed
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
               as String,
       roi: roi == freezed
           ? _value.roi
@@ -312,6 +325,7 @@ class _$_InvestmentItemDTO extends _InvestmentItemDTO {
       this.bankAccountType,
       required this.amount,
       required this.traxId,
+      required this.fullName,
       required this.roi,
       required this.numberOfDays,
       required this.planName,
@@ -341,6 +355,8 @@ class _$_InvestmentItemDTO extends _InvestmentItemDTO {
   @override
   final String traxId;
   @override
+  final String fullName;
+  @override
   final int roi;
   @override
   final int numberOfDays;
@@ -365,7 +381,7 @@ class _$_InvestmentItemDTO extends _InvestmentItemDTO {
 
   @override
   String toString() {
-    return 'InvestmentItemDTO(description: $description, uid: $uid, coin: $coin, bankAccountType: $bankAccountType, amount: $amount, traxId: $traxId, roi: $roi, numberOfDays: $numberOfDays, planName: $planName, paymentDate: $paymentDate, dueDate: $dueDate, duration: $duration, status: $status, currency: $currency, planYield: $planYield, paymentMethod: $paymentMethod, refId: $refId)';
+    return 'InvestmentItemDTO(description: $description, uid: $uid, coin: $coin, bankAccountType: $bankAccountType, amount: $amount, traxId: $traxId, fullName: $fullName, roi: $roi, numberOfDays: $numberOfDays, planName: $planName, paymentDate: $paymentDate, dueDate: $dueDate, duration: $duration, status: $status, currency: $currency, planYield: $planYield, paymentMethod: $paymentMethod, refId: $refId)';
   }
 
   @override
@@ -381,6 +397,7 @@ class _$_InvestmentItemDTO extends _InvestmentItemDTO {
                 .equals(other.bankAccountType, bankAccountType) &&
             const DeepCollectionEquality().equals(other.amount, amount) &&
             const DeepCollectionEquality().equals(other.traxId, traxId) &&
+            const DeepCollectionEquality().equals(other.fullName, fullName) &&
             const DeepCollectionEquality().equals(other.roi, roi) &&
             const DeepCollectionEquality()
                 .equals(other.numberOfDays, numberOfDays) &&
@@ -407,6 +424,7 @@ class _$_InvestmentItemDTO extends _InvestmentItemDTO {
       const DeepCollectionEquality().hash(bankAccountType),
       const DeepCollectionEquality().hash(amount),
       const DeepCollectionEquality().hash(traxId),
+      const DeepCollectionEquality().hash(fullName),
       const DeepCollectionEquality().hash(roi),
       const DeepCollectionEquality().hash(numberOfDays),
       const DeepCollectionEquality().hash(planName),
@@ -441,6 +459,7 @@ abstract class _InvestmentItemDTO extends InvestmentItemDTO {
       final String? bankAccountType,
       required final double amount,
       required final String traxId,
+      required final String fullName,
       required final int roi,
       required final int numberOfDays,
       required final String planName,
@@ -469,6 +488,8 @@ abstract class _InvestmentItemDTO extends InvestmentItemDTO {
   double get amount;
   @override
   String get traxId;
+  @override
+  String get fullName;
   @override
   int get roi;
   @override
