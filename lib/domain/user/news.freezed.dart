@@ -17,7 +17,6 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$NewsModel {
   String get name => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
   String get url => throw _privateConstructorUsedError;
   String get imageRef => throw _privateConstructorUsedError;
   String? get redirectLink => throw _privateConstructorUsedError;
@@ -36,7 +35,6 @@ abstract class $NewsModelCopyWith<$Res> {
       _$NewsModelCopyWithImpl<$Res>;
   $Res call(
       {String name,
-      String description,
       String url,
       String imageRef,
       String? redirectLink,
@@ -56,7 +54,6 @@ class _$NewsModelCopyWithImpl<$Res> implements $NewsModelCopyWith<$Res> {
   @override
   $Res call({
     Object? name = freezed,
-    Object? description = freezed,
     Object? url = freezed,
     Object? imageRef = freezed,
     Object? redirectLink = freezed,
@@ -68,10 +65,6 @@ class _$NewsModelCopyWithImpl<$Res> implements $NewsModelCopyWith<$Res> {
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: description == freezed
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
               as String,
       url: url == freezed
           ? _value.url
@@ -109,7 +102,6 @@ abstract class _$$_NewsModelCopyWith<$Res> implements $NewsModelCopyWith<$Res> {
   @override
   $Res call(
       {String name,
-      String description,
       String url,
       String imageRef,
       String? redirectLink,
@@ -131,7 +123,6 @@ class __$$_NewsModelCopyWithImpl<$Res> extends _$NewsModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = freezed,
-    Object? description = freezed,
     Object? url = freezed,
     Object? imageRef = freezed,
     Object? redirectLink = freezed,
@@ -143,10 +134,6 @@ class __$$_NewsModelCopyWithImpl<$Res> extends _$NewsModelCopyWithImpl<$Res>
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: description == freezed
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
               as String,
       url: url == freezed
           ? _value.url
@@ -181,7 +168,6 @@ class __$$_NewsModelCopyWithImpl<$Res> extends _$NewsModelCopyWithImpl<$Res>
 class _$_NewsModel extends _NewsModel {
   const _$_NewsModel(
       {required this.name,
-      required this.description,
       required this.url,
       required this.imageRef,
       required this.redirectLink,
@@ -192,8 +178,6 @@ class _$_NewsModel extends _NewsModel {
 
   @override
   final String name;
-  @override
-  final String description;
   @override
   final String url;
   @override
@@ -209,7 +193,7 @@ class _$_NewsModel extends _NewsModel {
 
   @override
   String toString() {
-    return 'NewsModel(name: $name, description: $description, url: $url, imageRef: $imageRef, redirectLink: $redirectLink, createdat: $createdat, size: $size, fullPath: $fullPath)';
+    return 'NewsModel(name: $name, url: $url, imageRef: $imageRef, redirectLink: $redirectLink, createdat: $createdat, size: $size, fullPath: $fullPath)';
   }
 
   @override
@@ -218,8 +202,6 @@ class _$_NewsModel extends _NewsModel {
         (other.runtimeType == runtimeType &&
             other is _$_NewsModel &&
             const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality()
-                .equals(other.description, description) &&
             const DeepCollectionEquality().equals(other.url, url) &&
             const DeepCollectionEquality().equals(other.imageRef, imageRef) &&
             const DeepCollectionEquality()
@@ -233,7 +215,6 @@ class _$_NewsModel extends _NewsModel {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(url),
       const DeepCollectionEquality().hash(imageRef),
       const DeepCollectionEquality().hash(redirectLink),
@@ -250,7 +231,6 @@ class _$_NewsModel extends _NewsModel {
 abstract class _NewsModel extends NewsModel {
   const factory _NewsModel(
       {required final String name,
-      required final String description,
       required final String url,
       required final String imageRef,
       required final String? redirectLink,
@@ -261,8 +241,6 @@ abstract class _NewsModel extends NewsModel {
 
   @override
   String get name;
-  @override
-  String get description;
   @override
   String get url;
   @override

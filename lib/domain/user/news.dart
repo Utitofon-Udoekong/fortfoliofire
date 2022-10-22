@@ -6,7 +6,6 @@ abstract class NewsModel implements _$NewsModel {
   
   const factory NewsModel({
     required String name,
-    required String description,
     required String url,
     required String imageRef,
     required String? redirectLink,
@@ -14,9 +13,8 @@ abstract class NewsModel implements _$NewsModel {
     required int size,
     required String fullPath,
   }) = _NewsModel;
-  factory NewsModel.empty() => const NewsModel(
+  factory NewsModel.empty() => NewsModel(
     name: "",
-    description: "",
     url: "",
     imageRef: "",
     redirectLink: "",

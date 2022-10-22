@@ -97,7 +97,7 @@ class VerificationPage extends StatelessWidget {
                             padding: const EdgeInsets.all(8.0),
                             margin: const EdgeInsets.symmetric(horizontal: 10),
                             child: Text(
-                              "Verification documents rejected.",
+                              "Verification documents were rejected.(Click here to see why)",
                               style: subTitle.copyWith(
                                   color: kRedColor,
                                   fontSize: 14,

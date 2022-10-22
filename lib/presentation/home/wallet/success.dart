@@ -19,7 +19,12 @@ class WithdrawalSuccess extends StatelessWidget {
     final lastName =
         context.select((AuthCubit element) => element.state.userModel.lastName);
     return Scaffold(
-      body: SafeArea(
+      body: WillPopScope(onWillPop: () async {
+        context.replaceRoute(const HomePageRoute(children: [
+          WalletRoute()
+        ]));
+        return true;
+      }, child: SafeArea(
       child: Padding(
         padding: kDefaultPadding,
         child: Column(
@@ -55,7 +60,7 @@ class WithdrawalSuccess extends StatelessWidget {
           ],
         ),
       ),
-    ),
+    )),
     );
   }
 }

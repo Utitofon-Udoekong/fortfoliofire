@@ -21,7 +21,6 @@ NewsModelDTO _$NewsModelDTOFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$NewsModelDTO {
   String get name => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
   String get url => throw _privateConstructorUsedError;
   String get imageRef => throw _privateConstructorUsedError;
   String? get redirectLink => throw _privateConstructorUsedError;
@@ -42,7 +41,6 @@ abstract class $NewsModelDTOCopyWith<$Res> {
       _$NewsModelDTOCopyWithImpl<$Res>;
   $Res call(
       {String name,
-      String description,
       String url,
       String imageRef,
       String? redirectLink,
@@ -62,7 +60,6 @@ class _$NewsModelDTOCopyWithImpl<$Res> implements $NewsModelDTOCopyWith<$Res> {
   @override
   $Res call({
     Object? name = freezed,
-    Object? description = freezed,
     Object? url = freezed,
     Object? imageRef = freezed,
     Object? redirectLink = freezed,
@@ -74,10 +71,6 @@ class _$NewsModelDTOCopyWithImpl<$Res> implements $NewsModelDTOCopyWith<$Res> {
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: description == freezed
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
               as String,
       url: url == freezed
           ? _value.url
@@ -116,7 +109,6 @@ abstract class _$$_NewsModelDTOCopyWith<$Res>
   @override
   $Res call(
       {String name,
-      String description,
       String url,
       String imageRef,
       String? redirectLink,
@@ -139,7 +131,6 @@ class __$$_NewsModelDTOCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = freezed,
-    Object? description = freezed,
     Object? url = freezed,
     Object? imageRef = freezed,
     Object? redirectLink = freezed,
@@ -151,10 +142,6 @@ class __$$_NewsModelDTOCopyWithImpl<$Res>
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: description == freezed
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
               as String,
       url: url == freezed
           ? _value.url
@@ -189,7 +176,6 @@ class __$$_NewsModelDTOCopyWithImpl<$Res>
 class _$_NewsModelDTO extends _NewsModelDTO {
   const _$_NewsModelDTO(
       {required this.name,
-      required this.description,
       required this.url,
       required this.imageRef,
       required this.redirectLink,
@@ -203,8 +189,6 @@ class _$_NewsModelDTO extends _NewsModelDTO {
 
   @override
   final String name;
-  @override
-  final String description;
   @override
   final String url;
   @override
@@ -220,7 +204,7 @@ class _$_NewsModelDTO extends _NewsModelDTO {
 
   @override
   String toString() {
-    return 'NewsModelDTO(name: $name, description: $description, url: $url, imageRef: $imageRef, redirectLink: $redirectLink, createdat: $createdat, size: $size, fullPath: $fullPath)';
+    return 'NewsModelDTO(name: $name, url: $url, imageRef: $imageRef, redirectLink: $redirectLink, createdat: $createdat, size: $size, fullPath: $fullPath)';
   }
 
   @override
@@ -229,8 +213,6 @@ class _$_NewsModelDTO extends _NewsModelDTO {
         (other.runtimeType == runtimeType &&
             other is _$_NewsModelDTO &&
             const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality()
-                .equals(other.description, description) &&
             const DeepCollectionEquality().equals(other.url, url) &&
             const DeepCollectionEquality().equals(other.imageRef, imageRef) &&
             const DeepCollectionEquality()
@@ -245,7 +227,6 @@ class _$_NewsModelDTO extends _NewsModelDTO {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(url),
       const DeepCollectionEquality().hash(imageRef),
       const DeepCollectionEquality().hash(redirectLink),
@@ -269,7 +250,6 @@ class _$_NewsModelDTO extends _NewsModelDTO {
 abstract class _NewsModelDTO extends NewsModelDTO {
   const factory _NewsModelDTO(
       {required final String name,
-      required final String description,
       required final String url,
       required final String imageRef,
       required final String? redirectLink,
@@ -283,8 +263,6 @@ abstract class _NewsModelDTO extends NewsModelDTO {
 
   @override
   String get name;
-  @override
-  String get description;
   @override
   String get url;
   @override

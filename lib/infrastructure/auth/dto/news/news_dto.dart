@@ -11,7 +11,6 @@ abstract class NewsModelDTO implements _$NewsModelDTO {
   const NewsModelDTO._();
   const factory NewsModelDTO({
     required String name,
-    required String description,
     required String url,
     required String imageRef,
     required String? redirectLink,
@@ -23,7 +22,6 @@ abstract class NewsModelDTO implements _$NewsModelDTO {
   factory NewsModelDTO.fromDomain(NewsModel newsModel) {
     return NewsModelDTO(
       name: newsModel.name,
-      description: newsModel.description,
       url: newsModel.url,
       imageRef: newsModel.imageRef,
       redirectLink: newsModel.redirectLink,
@@ -50,7 +48,6 @@ extension NewsModelDTOX on NewsModelDTO {
   NewsModel toDomain() {
     return NewsModel(
       name: name,
-    description: description,
     url: url,
     imageRef: imageRef,
     redirectLink: redirectLink,
