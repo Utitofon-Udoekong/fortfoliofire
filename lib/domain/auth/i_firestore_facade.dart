@@ -12,7 +12,7 @@ abstract class IFirestoreFacade {
   Future<Either<String, String>> createInvestmentTransaction(
       {required InvestmentItem investmentItem});
   Future<Either<String, String>> harvestInvestment(
-      {required String docId, required double amount});
+      {required String docId, required double amount, required WithdrawalItem withdrawalItem});
   Future<Either<String, String>> addBank({required BankAddress bankAddress});
   Future<Either<String, String>> addCryptoWallet(
       {required CryptoWallet cryptoWallet});
@@ -41,5 +41,7 @@ abstract class IFirestoreFacade {
   Future<Either<String, String>> createKYC({required KYCItem kycItem});
   Future<Either<String, String>> deleteNotification(
       {required NotificationItem notificationItem});
+  Stream<DocumentSnapshot<Map<String, dynamic>>> getNotificationCount();
+  Future<Either<String, String>> deleteNotificationCount();
   Future<Either<String, String>> deleteAllNotifications();
 }

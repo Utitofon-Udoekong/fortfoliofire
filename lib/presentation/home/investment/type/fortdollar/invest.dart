@@ -11,6 +11,7 @@ import 'package:fortfolio/domain/widgets/tac_text.dart';
 import 'package:fortfolio/presentation/home/investment/cubit/investment_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:jiffy/jiffy.dart';
+import 'package:pattern_formatter/pattern_formatter.dart';
 
 import 'package:timelines/timelines.dart';
 
@@ -100,6 +101,7 @@ class FortDollarInvestment extends StatelessWidget {
                         autocorrect: false,
                         keyboardType: TextInputType.number,
                         inputFormatters: [
+                          ThousandsFormatter(),
                           FilteringTextInputFormatter.digitsOnly
                         ],
                         textInputAction: TextInputAction.next,

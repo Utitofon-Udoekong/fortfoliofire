@@ -19,21 +19,25 @@ class NotificationCubit extends Cubit<NotificationState> {
   final IFirestoreFacade firestoreFacade;
   late final AuthCubit authCubit;
   StreamSubscription<QuerySnapshot>? _logsStreamSubscription;
+  StreamSubscription<DocumentSnapshot<Map<String, dynamic>>>? _logsCountSubscription;
   NotificationCubit(this.firestoreFacade) : super(NotificationState.empty()){
     authCubit = getIt<AuthCubit>();
     authCubit.stream.listen((state) {
       if(state.isLoggedIn){
         initNotifications();
+        getNotificationCount();
       }
     });
   }
 
   void getNotificationCount() async{
-    final sp = await SharedPreferences.getInstance();
-    if(sp.containsKey("notificationCount")){
-      int notificationCount = sp.getInt("notificationCount")!;
-      emit(state.copyWith(notificationCount: notificationCount));
-    }
+    _logsCountSubscription = firestoreFacade.getNotificationCount().listen((snap){
+      if(snap.exists){
+        final Map<String, dynamic>? docData = snap.data();
+        final int notificationCount = docData!["count"];
+        emit(state.copyWith(notificationCount: notificationCount, loading: false));
+      }
+    });
   }
 
   void initNotifications() {
@@ -84,14 +88,15 @@ class NotificationCubit extends Cubit<NotificationState> {
   }
 
   void reset() async{
-    final sp = await SharedPreferences.getInstance();
-    sp.setInt("notificationCount", 0);
+    final stream = await firestoreFacade.deleteNotificationCount();
+    stream.fold((l) => null, (r) => emit(state.copyWith(notificationCount: 0)));
     getNotificationCount();
   }
 
   @override
   Future<void> close() async {
     await _logsStreamSubscription?.cancel();
+    await _logsCountSubscription?.cancel();
     return super.close();
   }
 }

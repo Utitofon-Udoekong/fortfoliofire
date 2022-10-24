@@ -12,6 +12,7 @@ import 'package:timelines/timelines.dart';
 import 'package:fortfolio/domain/constants/order.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/labelled_checkbox.dart';
+import 'package:pattern_formatter/pattern_formatter.dart';
 
 import '../../cubit/investment_cubit.dart';
 
@@ -120,6 +121,9 @@ class FortCryptoInvestment extends StatelessWidget {
                           keyboardType: TextInputType.number,
                           textInputAction: TextInputAction.next,
                           autovalidateMode: AutovalidateMode.onUserInteraction,
+                          inputFormatters: [
+                            ThousandsFormatter(),
+                          ],
                           decoration: InputDecoration(
                             errorMaxLines: 2,
                             filled: true,

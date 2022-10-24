@@ -11,6 +11,7 @@ import 'package:fortfolio/domain/widgets/tac_text.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:timelines/timelines.dart';
+import 'package:pattern_formatter/pattern_formatter.dart';
 
 import '../../cubit/investment_cubit.dart';
 
@@ -98,7 +99,7 @@ class FortShieldInvestment extends StatelessWidget {
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.number,
-                        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                        inputFormatters: [ThousandsFormatter(),FilteringTextInputFormatter.digitsOnly],
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: const Color(0xFFF3F6F8),

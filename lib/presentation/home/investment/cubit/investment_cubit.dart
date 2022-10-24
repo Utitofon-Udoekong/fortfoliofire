@@ -154,8 +154,8 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     final String uid = nanoid(8);
     final String refId = authFacade.getUserId();
     final fullName = "${authCubit.state.userModel.firstName} ${authCubit.state.userModel.lastName}";
-    final dueDate = Jiffy(paymentDate).add(hours: 2).dateTime;
-    // final dueDate = Jiffy(paymentDate).add(months: duration.toInt()).dateTime;
+    // final dueDate = Jiffy(paymentDate).add(hours: 2).dateTime;
+    final dueDate = Jiffy(paymentDate).add(months: duration.toInt()).dateTime;
     final int numberOfDays = dueDate.difference(paymentDate).inDays;
     final String currency = state.exchangeType == "USD" ? "\$" : "₦";
     final String paymentMethod = state.paymentMethod;

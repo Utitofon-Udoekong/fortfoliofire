@@ -10,7 +10,9 @@ import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
 import 'package:fortfolio/presentation/home/wallet/cubit/wallet_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:screenshot/screenshot.dart';
-// import 'package:share_plus/share_plus.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:intl/intl.dart';
 
 class DashboardTransactions extends StatelessWidget {
@@ -28,7 +30,7 @@ class DashboardTransactions extends StatelessWidget {
     final formatter = NumberFormat("#,##0.##", "en_US");
     ScreenshotController screenshotController = ScreenshotController();
     final currentSort = context.select((WalletCubit cubit) => cubit.state.currentSort);
-    // double pixelRatio = MediaQuery.of(context).devicePixelRatio;
+    double pixelRatio = MediaQuery.of(context).devicePixelRatio;
     return Scaffold(
         body: SafeArea(
       child: Padding(
@@ -126,15 +128,15 @@ class DashboardTransactions extends StatelessWidget {
                                 currency: document.currency,
                                 type: document.type,
                                 screenshotController: screenshotController,
-                                ontap: () {
-                                  // await screenshotController.capture(pixelRatio: pixelRatio,delay: const Duration(milliseconds: 10)).then((Uint8List? image) async {
-                                  //   if (image != null) {
-                                  //     final directory = await getApplicationDocumentsDirectory();
-                                  //     final imagePath = await File('${directory.path}/image.png').create();
-                                  //     await imagePath.writeAsBytes(image);
-                                  //     await Share.shareFiles([imagePath.path]);
-                                  //   }
-                                  // });
+                                ontap: () async {
+                                  await screenshotController.capture(pixelRatio: pixelRatio,delay: const Duration(milliseconds: 10)).then((Uint8List? image) async {
+                                    if (image != null) {
+                                      final directory = await getApplicationDocumentsDirectory();
+                                      final imagePath = await File('${directory.path}/image.png').create();
+                                      await imagePath.writeAsBytes(image);
+                                      await Share.shareXFiles([XFile(imagePath.path)]);
+                                    }
+                                  });
                                 });
                         }).toList()),
               ],
@@ -190,19 +192,19 @@ class DashboardTransactions extends StatelessWidget {
                             color: Color.fromRGBO(16, 180, 107, 1),
                           ),
                         ),
-                        // GestureDetector(
-                        //   onTap: ontap,
-                        //   child: Container(
-                        //     padding: const EdgeInsets.all(3.0),
-                        //     decoration: const BoxDecoration(
-                        //         color: Color(0XFFF0FFFA),
-                        //         shape: BoxShape.circle),
-                        //     child: Icon(
-                        //       Icons.adaptive.share,
-                        //       color: kBlackColor,
-                        //     ),
-                        //   ),
-                        // ),
+                        GestureDetector(
+                          onTap: ontap,
+                          child: Container(
+                            padding: const EdgeInsets.all(3.0),
+                            decoration: const BoxDecoration(
+                                color: Color(0XFFF0FFFA),
+                                shape: BoxShape.circle),
+                            child: Icon(
+                              Icons.adaptive.share,
+                              color: kBlackColor,
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                     const SizedBox(

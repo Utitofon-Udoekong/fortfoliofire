@@ -100,7 +100,8 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   void deleteUser() async {
     final bool investmentDoesNotExist = walletCubit.state.investmentDoesNotExist;
-    if(investmentDoesNotExist){
+    final bool withdrawalDoesNotExist = walletCubit.state.withdrawalDoesNotExist;
+    if(investmentDoesNotExist && withdrawalDoesNotExist){
       emit(state.copyWith(loading: true, failure: "", success: ""));
       final Either<String, String> failureOrSuccess =
           await authFacade.deleteUser();

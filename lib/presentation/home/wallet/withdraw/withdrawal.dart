@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/user/investment.dart';
+import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/domain/widgets/loading_view.dart';
 import 'package:fortfolio/presentation/home/wallet/cubit/wallet_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
@@ -17,15 +18,20 @@ class WithdrawalPage extends StatelessWidget {
         (WalletCubit walletCubit) => walletCubit.state.investmentToBeWithdrawn);
     final bool harvested = context.select((WalletCubit walletCubit) =>
         walletCubit.state.investmentToBeWithdrawn.planYield == 0);
-    final dollarPrice = context.select((AuthCubit walletCubit) =>
-        walletCubit.state.buyPrice);
+    final dollarPrice =
+        context.select((AuthCubit walletCubit) => walletCubit.state.buyPrice);
     return Scaffold(
-      body: BlocSelector<WalletCubit, WalletState, bool>(
-        selector: (state) {
-          return state.loading;
+      body: BlocListener<WalletCubit, WalletState>(
+        listenWhen: (previous, current) => current.success == "Investment harvested",
+        listener: (context, state) {
+          CustomSnackbar.showSnackBar(context, state.success, false);
         },
-        builder: (context, loading) {
-          return LoadingView(
+        child: BlocSelector<WalletCubit, WalletState, bool>(
+          selector: (state) {
+            return state.loading;
+          },
+          builder: (context, loading) {
+            return LoadingView(
               isLoading: loading,
               child: SafeArea(
                 child: Padding(
@@ -53,16 +59,16 @@ class WithdrawalPage extends StatelessWidget {
                         ),
                         Text(
                           'Select where you want to withdraw from. Withdrawals have a time lock of 7 days.',
-                          style:
-                              subTitle.copyWith(color: kgreyColor, fontSize: 15),
+                          style: subTitle.copyWith(
+                              color: kgreyColor, fontSize: 15),
                         ),
                         const SizedBox(
                           height: 10,
                         ),
                         Text(
                           'Note that all rewards must be harvested before investments can be withdrawn',
-                          style:
-                              subTitle.copyWith(color: kgreyColor, fontSize: 15),
+                          style: subTitle.copyWith(
+                              color: kgreyColor, fontSize: 15),
                         ),
                         const SizedBox(
                           height: 10,
@@ -72,11 +78,12 @@ class WithdrawalPage extends StatelessWidget {
                           Container(
                             padding: const EdgeInsets.all(13),
                             decoration: BoxDecoration(
-                                color: const Color.fromRGBO(203, 241, 255, 0.18),
+                                color:
+                                    const Color.fromRGBO(203, 241, 255, 0.18),
                                 borderRadius: BorderRadius.circular(20)),
                             alignment: Alignment.center,
                             child: Text(
-                              '\$1 = N$dollarPrice',
+                              '\$1 = ₦$dollarPrice',
                               style: subTitle.copyWith(
                                   fontSize: 13, color: kPrimaryColor),
                             ),
@@ -119,7 +126,8 @@ class WithdrawalPage extends StatelessWidget {
                 ),
               ),
             );
-        },
+          },
+        ),
       ),
     );
   }

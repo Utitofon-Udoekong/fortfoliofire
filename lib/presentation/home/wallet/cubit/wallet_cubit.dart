@@ -50,7 +50,7 @@ class WalletCubit extends Cubit<WalletState> {
     });
   }
 
-  pullRefresh(){
+  pullRefresh() {
     initFortDollarInvestments();
     initFortShieldInvestments();
     initFortCryptoInvestments();
@@ -61,19 +61,18 @@ class WalletCubit extends Cubit<WalletState> {
     emit(state.copyWith(showDigits: !showDigits));
   }
 
-  void toggleCurrentSort({required String currentSort}){
+  void toggleCurrentSort({required String currentSort}) {
     emit(state.copyWith(currentSort: currentSort));
   }
 
-  void sortInvestments(){
-    _logsTransaction = 
-        firestoreFacade.getTransactions().listen((data) {
+  void sortInvestments() {
+    _logsTransaction = firestoreFacade.getTransactions().listen((data) {
       final List<QueryDocumentSnapshot<Object?>> docs = data.docs;
       List<TransactionItem> transactions = [];
       if (data.size > 0) {
         for (var element in docs) {
           final doc = TransactionItemDTO.fromFirestore(element).toDomain();
-          if(doc.type == "Investment"){
+          if (doc.type == "Investment") {
             transactions.add(doc);
           }
         }
@@ -81,15 +80,15 @@ class WalletCubit extends Cubit<WalletState> {
       }
     });
   }
-  void sortWithdrawals(){
-    _logsTransaction = 
-        firestoreFacade.getTransactions().listen((data) {
+
+  void sortWithdrawals() {
+    _logsTransaction = firestoreFacade.getTransactions().listen((data) {
       final List<QueryDocumentSnapshot<Object?>> docs = data.docs;
       List<TransactionItem> transactions = [];
       if (data.size > 0) {
         for (var element in docs) {
           final doc = TransactionItemDTO.fromFirestore(element).toDomain();
-          if(doc.type == "Withdrawal"){
+          if (doc.type == "Withdrawal") {
             transactions.add(doc);
           }
         }
@@ -99,11 +98,11 @@ class WalletCubit extends Cubit<WalletState> {
   }
 
   void getWalletBalanceInBTC() async {
-    emit(state.copyWith( exchange: "BTC"));
+    emit(state.copyWith(exchange: "BTC"));
   }
 
   void getWalletBalanceInNaira() async {
-      emit(state.copyWith(exchange: "NGN"));
+    emit(state.copyWith(exchange: "NGN"));
   }
 
   void getWalletBalanceInUSD() async {
@@ -128,7 +127,7 @@ class WalletCubit extends Cubit<WalletState> {
     var planYield = 0.0;
     var amount = 0.0;
     for (var element in fortDollarInvestments) {
-      if(element.status == "Successful") {
+      if (element.status == "Successful") {
         planYield += element.planYield;
         amount += element.amount;
       }
@@ -143,12 +142,12 @@ class WalletCubit extends Cubit<WalletState> {
     var planYield = 0.0;
     var amount = 0.0;
     for (var element in fortShieldInvestments) {
-      if(element.status == "Successful") {
+      if (element.status == "Successful") {
         planYield += element.planYield;
         amount += element.amount;
       }
     }
-    
+
     emit(state.copyWith(
         fortShieldYieldBalance: planYield,
         fortShieldInvestmentBalance: amount));
@@ -159,7 +158,7 @@ class WalletCubit extends Cubit<WalletState> {
     var planYield = 0.0;
     var amount = 0.0;
     for (var element in fortCryptoInvestments) {
-      if(element.status == "Successful") {
+      if (element.status == "Successful") {
         planYield += element.planYield;
         amount += element.amount;
       }
@@ -168,7 +167,6 @@ class WalletCubit extends Cubit<WalletState> {
         fortCryptoYieldBalance: planYield,
         fortCryptoInvestmentBalance: amount));
   }
-
 
   void initFortDollarInvestments() {
     _logsFortDollarSubscription =
@@ -237,8 +235,7 @@ class WalletCubit extends Cubit<WalletState> {
   // }
 
   initTransactions() {
-    _logsTransaction = 
-        firestoreFacade.getTransactions().listen((data) {
+    _logsTransaction = firestoreFacade.getTransactions().listen((data) {
       final List<QueryDocumentSnapshot<Object?>> docs = data.docs;
       List<TransactionItem> transactions = [];
       if (data.size > 0) {
@@ -282,12 +279,13 @@ class WalletCubit extends Cubit<WalletState> {
         currency: currency);
     final response = await firestoreFacade.createWithdrawalTransaction(
         withdrawalItem: withdrawalItem,
-        invId: state.investmentToBeWithdrawn.uid + state.investmentToBeWithdrawn.traxId);
+        invId: state.investmentToBeWithdrawn.uid +
+            state.investmentToBeWithdrawn.traxId);
     try {
       response.fold((failure) {
-        emit(state.copyWith(failure: failure,loading: false));
+        emit(state.copyWith(failure: failure, loading: false));
       }, (success) {
-        emit(state.copyWith(success: success,loading: false));
+        emit(state.copyWith(success: success, loading: false));
         initTransactions();
       });
     } catch (e) {
@@ -299,13 +297,31 @@ class WalletCubit extends Cubit<WalletState> {
       {required String docId, required double amount}) async {
     emit(state.copyWith(loading: true));
     var investmentToBeWithdrawn = state.investmentToBeWithdrawn;
-    final response =
-        await firestoreFacade.harvestInvestment(docId: docId, amount: amount);
+    final String uid = nanoid(8);
+    WithdrawalItem withdrawalItem = WithdrawalItem(
+      description: "${investmentToBeWithdrawn.planName} Investment Harvest",
+      amount: amount,
+      traxId: investmentToBeWithdrawn.traxId,
+      uid: uid,
+      status: "Successful",
+      createdat: DateTime.now(),
+      paymentMethod: investmentToBeWithdrawn.paymentMethod,
+      currency: investmentToBeWithdrawn.currency,
+      duration: investmentToBeWithdrawn.duration,
+      roi: investmentToBeWithdrawn.roi,
+      withdrawalDetails: {},
+    );
     try {
+      final response =
+        await firestoreFacade.harvestInvestment(docId: docId, amount: amount, withdrawalItem: withdrawalItem);
       response.fold((failure) {
         emit(state.copyWith(loading: false, failure: failure));
       }, (success) {
-        emit(state.copyWith(loading: false, success: success, investmentToBeWithdrawn: investmentToBeWithdrawn.copyWith(planYield: 0)));
+        emit(state.copyWith(
+            loading: false,
+            success: success,
+            investmentToBeWithdrawn:
+                investmentToBeWithdrawn.copyWith(planYield: 0)));
       });
     } catch (e) {
       log(e.toString());
@@ -323,8 +339,8 @@ class WalletCubit extends Cubit<WalletState> {
           Future.delayed(const Duration(seconds: 1),
               () => emit(state.copyWith(failure: "")));
         } else {
-          Future.delayed(const Duration(seconds: 1),
-              () => makeWithdrawalTransaction());
+          Future.delayed(
+              const Duration(seconds: 1), () => makeWithdrawalTransaction());
         }
       }
     }
@@ -333,7 +349,7 @@ class WalletCubit extends Cubit<WalletState> {
   void auhenticatePinPayment({required String pin}) async {
     final sp = await SharedPreferences.getInstance();
     String traxPin = "";
-    if(sp.containsKey("trax_key")){
+    if (sp.containsKey("trax_key")) {
       traxPin = sp.getString("trax_key")!;
     }
     print(pin);
