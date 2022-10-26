@@ -37,6 +37,7 @@ mixin _$InvestmentItemDTO {
   String get currency => throw _privateConstructorUsedError;
   double get planYield => throw _privateConstructorUsedError;
   String get paymentMethod => throw _privateConstructorUsedError;
+  DateTime? get nextHarvestDate => throw _privateConstructorUsedError;
   String get refId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -68,6 +69,7 @@ abstract class $InvestmentItemDTOCopyWith<$Res> {
       String currency,
       double planYield,
       String paymentMethod,
+      DateTime? nextHarvestDate,
       String refId});
 }
 
@@ -99,6 +101,7 @@ class _$InvestmentItemDTOCopyWithImpl<$Res>
     Object? currency = freezed,
     Object? planYield = freezed,
     Object? paymentMethod = freezed,
+    Object? nextHarvestDate = freezed,
     Object? refId = freezed,
   }) {
     return _then(_value.copyWith(
@@ -170,6 +173,10 @@ class _$InvestmentItemDTOCopyWithImpl<$Res>
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
               as String,
+      nextHarvestDate: nextHarvestDate == freezed
+          ? _value.nextHarvestDate
+          : nextHarvestDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       refId: refId == freezed
           ? _value.refId
           : refId // ignore: cast_nullable_to_non_nullable
@@ -203,6 +210,7 @@ abstract class _$$_InvestmentItemDTOCopyWith<$Res>
       String currency,
       double planYield,
       String paymentMethod,
+      DateTime? nextHarvestDate,
       String refId});
 }
 
@@ -236,6 +244,7 @@ class __$$_InvestmentItemDTOCopyWithImpl<$Res>
     Object? currency = freezed,
     Object? planYield = freezed,
     Object? paymentMethod = freezed,
+    Object? nextHarvestDate = freezed,
     Object? refId = freezed,
   }) {
     return _then(_$_InvestmentItemDTO(
@@ -307,6 +316,10 @@ class __$$_InvestmentItemDTOCopyWithImpl<$Res>
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
               as String,
+      nextHarvestDate: nextHarvestDate == freezed
+          ? _value.nextHarvestDate
+          : nextHarvestDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       refId: refId == freezed
           ? _value.refId
           : refId // ignore: cast_nullable_to_non_nullable
@@ -336,6 +349,7 @@ class _$_InvestmentItemDTO extends _InvestmentItemDTO {
       required this.currency,
       required this.planYield,
       required this.paymentMethod,
+      this.nextHarvestDate,
       required this.refId})
       : super._();
 
@@ -377,11 +391,13 @@ class _$_InvestmentItemDTO extends _InvestmentItemDTO {
   @override
   final String paymentMethod;
   @override
+  final DateTime? nextHarvestDate;
+  @override
   final String refId;
 
   @override
   String toString() {
-    return 'InvestmentItemDTO(description: $description, uid: $uid, coin: $coin, bankAccountType: $bankAccountType, amount: $amount, traxId: $traxId, fullName: $fullName, roi: $roi, numberOfDays: $numberOfDays, planName: $planName, paymentDate: $paymentDate, dueDate: $dueDate, duration: $duration, status: $status, currency: $currency, planYield: $planYield, paymentMethod: $paymentMethod, refId: $refId)';
+    return 'InvestmentItemDTO(description: $description, uid: $uid, coin: $coin, bankAccountType: $bankAccountType, amount: $amount, traxId: $traxId, fullName: $fullName, roi: $roi, numberOfDays: $numberOfDays, planName: $planName, paymentDate: $paymentDate, dueDate: $dueDate, duration: $duration, status: $status, currency: $currency, planYield: $planYield, paymentMethod: $paymentMethod, nextHarvestDate: $nextHarvestDate, refId: $refId)';
   }
 
   @override
@@ -411,31 +427,35 @@ class _$_InvestmentItemDTO extends _InvestmentItemDTO {
             const DeepCollectionEquality().equals(other.planYield, planYield) &&
             const DeepCollectionEquality()
                 .equals(other.paymentMethod, paymentMethod) &&
+            const DeepCollectionEquality()
+                .equals(other.nextHarvestDate, nextHarvestDate) &&
             const DeepCollectionEquality().equals(other.refId, refId));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(description),
-      const DeepCollectionEquality().hash(uid),
-      const DeepCollectionEquality().hash(coin),
-      const DeepCollectionEquality().hash(bankAccountType),
-      const DeepCollectionEquality().hash(amount),
-      const DeepCollectionEquality().hash(traxId),
-      const DeepCollectionEquality().hash(fullName),
-      const DeepCollectionEquality().hash(roi),
-      const DeepCollectionEquality().hash(numberOfDays),
-      const DeepCollectionEquality().hash(planName),
-      const DeepCollectionEquality().hash(paymentDate),
-      const DeepCollectionEquality().hash(dueDate),
-      const DeepCollectionEquality().hash(duration),
-      const DeepCollectionEquality().hash(status),
-      const DeepCollectionEquality().hash(currency),
-      const DeepCollectionEquality().hash(planYield),
-      const DeepCollectionEquality().hash(paymentMethod),
-      const DeepCollectionEquality().hash(refId));
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(description),
+        const DeepCollectionEquality().hash(uid),
+        const DeepCollectionEquality().hash(coin),
+        const DeepCollectionEquality().hash(bankAccountType),
+        const DeepCollectionEquality().hash(amount),
+        const DeepCollectionEquality().hash(traxId),
+        const DeepCollectionEquality().hash(fullName),
+        const DeepCollectionEquality().hash(roi),
+        const DeepCollectionEquality().hash(numberOfDays),
+        const DeepCollectionEquality().hash(planName),
+        const DeepCollectionEquality().hash(paymentDate),
+        const DeepCollectionEquality().hash(dueDate),
+        const DeepCollectionEquality().hash(duration),
+        const DeepCollectionEquality().hash(status),
+        const DeepCollectionEquality().hash(currency),
+        const DeepCollectionEquality().hash(planYield),
+        const DeepCollectionEquality().hash(paymentMethod),
+        const DeepCollectionEquality().hash(nextHarvestDate),
+        const DeepCollectionEquality().hash(refId)
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -470,6 +490,7 @@ abstract class _InvestmentItemDTO extends InvestmentItemDTO {
       required final String currency,
       required final double planYield,
       required final String paymentMethod,
+      final DateTime? nextHarvestDate,
       required final String refId}) = _$_InvestmentItemDTO;
   const _InvestmentItemDTO._() : super._();
 
@@ -510,6 +531,8 @@ abstract class _InvestmentItemDTO extends InvestmentItemDTO {
   double get planYield;
   @override
   String get paymentMethod;
+  @override
+  DateTime? get nextHarvestDate;
   @override
   String get refId;
   @override

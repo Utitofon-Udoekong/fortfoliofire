@@ -154,12 +154,12 @@ class WalletTransactions extends StatelessWidget {
       required BuildContext context}) {
     return GestureDetector(
       onTap: () {
-        var dialog = Screenshot(
-          controller: screenshotController,
-          child: Dialog(
-            backgroundColor: Colors.transparent,
-            child: ClipPath(
-              clipper: RPSCustomClipper(),
+        var dialog = Dialog(
+          backgroundColor: Colors.transparent,
+          child: ClipPath(
+            clipper: RPSCustomClipper(),
+            child: Screenshot(
+              controller: screenshotController,
               child: Container(
                 decoration: const BoxDecoration(
                     color: Colors.white,
@@ -344,7 +344,7 @@ class WalletTransactions extends StatelessWidget {
                 const SizedBox(
                   height: 8,
                 ),
-                Text(Jiffy(date).yMMMMEEEEdjm,
+                Text(Jiffy(date).yMMMMd,
                     style: subTitle.copyWith(
                         fontSize: 12, color: const Color(0xFF1F1E1E))),
               ],

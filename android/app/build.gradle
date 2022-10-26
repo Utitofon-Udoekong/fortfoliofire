@@ -53,30 +53,30 @@ android {
         applicationId 'com.mega.fortfolio'
         minSdkVersion 23
         targetSdkVersion 32
-        versionCode 35
+        versionCode 36
         versionName '1.6.0'
     }
 
-    buildTypes {
-        release {
-            signingConfig signingConfigs.debug
-        }
-    }
-    // signingConfigs {
-    //     release {
-    //         keyAlias keystoreProperties['keyAlias']
-    //         keyPassword keystoreProperties['keyPassword']
-    //         storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
-    //         storePassword keystoreProperties['storePassword']
-    //     }
-    // }
     // buildTypes {
     //     release {
-    //         minifyEnabled false
-    //         shrinkResources false
-    //         signingConfig signingConfigs.release
+    //         signingConfig signingConfigs.debug
     //     }
     // }
+    signingConfigs {
+        release {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+            storePassword keystoreProperties['storePassword']
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.release
+        }
+    }
 }
 
 flutter {

@@ -102,26 +102,25 @@ class FortDollarInvestment extends StatelessWidget {
                         keyboardType: TextInputType.number,
                         inputFormatters: [
                           ThousandsFormatter(),
-                          FilteringTextInputFormatter.digitsOnly
+                          // FilteringTextInputFormatter.digitsOnly
                         ],
                         textInputAction: TextInputAction.next,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                             filled: true,
-                            fillColor: const Color(0xFFF3F6F8),
+                            fillColor: Color(0xFFF3F6F8),
                             border: InputBorder.none,
-                            suffixIcon: const Icon(Icons.attach_money),
-                            suffixStyle: TextStyle(
-                                color: Colors.grey.shade400, fontSize: 13)),
+                            suffix: Text("\$", style: TextStyle(
+                                color: kPrimaryColor, fontSize: 15, height: 1),),),
                         onChanged: (value) => context
                             .read<InvestmentCubit>()
                             .amountInvestedChanged(
-                                amountInvested: double.parse(value)),
+                                amountInvested: double.parse(value.replaceAll(",", ""))),
                         validator: (String? value) =>
-                            double.tryParse(value!) == null
+                            double.tryParse(value!.replaceAll(",", "")) == null
                                 ? 'Field cannot be empty'
-                                : double.parse(value) < state.baseAmount
+                                : double.parse(value.replaceAll(",", "")) < state.baseAmount
                                     ? 'Minimum investment is \$1,000'
-                                    : double.parse(value).isNaN
+                                    : double.parse(value.replaceAll(",", "")).isNaN
                                         ? 'Invalid amount'
                                         : null,
                       ),

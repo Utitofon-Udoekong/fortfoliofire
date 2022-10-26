@@ -27,6 +27,7 @@ abstract class InvestmentItemDTO implements _$InvestmentItemDTO {
     required String currency,
     required double planYield,
     required String paymentMethod,
+    DateTime? nextHarvestDate,
     required String refId,
   }) = _InvestmentItemDTO;
 
@@ -38,6 +39,7 @@ abstract class InvestmentItemDTO implements _$InvestmentItemDTO {
       fullName: investmentItem.fullName,
       description: investmentItem.description,
       dueDate: investmentItem.dueDate,
+      nextHarvestDate: investmentItem.nextHarvestDate,
       duration: investmentItem.duration,
       paymentDate: investmentItem.paymentDate,
       planYield: investmentItem.planYield,
@@ -77,6 +79,7 @@ extension InvestmentItemDTOX on InvestmentItemDTO {
       duration: duration,
       paymentDate: paymentDate,
       planYield: planYield,
+      nextHarvestDate: nextHarvestDate,
       roi: roi,
       status: status,
       traxId: traxId,

@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fortfolio/application/auth/auth_cubit.dart';
+import 'package:fortfolio/domain/auth/i_auth_facade.dart';
 import 'package:fortfolio/domain/auth/i_external_facade.dart';
 import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
 import 'package:fortfolio/domain/user/investment.dart';
@@ -29,6 +30,7 @@ part 'wallet_cubit.freezed.dart';
 class WalletCubit extends Cubit<WalletState> {
   final IFirestoreFacade firestoreFacade;
   final IExternalFacade externalFacade;
+  final IAuthFacade authFacade;
   late final AuthCubit authCubit;
   late final int dollarPrice;
   StreamSubscription<QuerySnapshot>? _logsFortDollarSubscription;
@@ -36,7 +38,7 @@ class WalletCubit extends Cubit<WalletState> {
   StreamSubscription<QuerySnapshot>? _logsFortCryptoSubscription;
   StreamSubscription<QuerySnapshot>? _logsTransaction;
 
-  WalletCubit(this.firestoreFacade, this.externalFacade)
+  WalletCubit(this.firestoreFacade, this.externalFacade, this.authFacade)
       : super(WalletState.initial()) {
     authCubit = getIt<AuthCubit>();
     dollarPrice = authCubit.state.buyPrice;
@@ -273,6 +275,7 @@ class WalletCubit extends Cubit<WalletState> {
         createdat: DateTime.now(),
         paymentMethod: paymentMethod,
         uid: uid,
+        refId: authFacade.getUserId(),
         duration: duration.toInt(),
         roi: roi,
         withdrawalDetails: withdrawalDetails,
@@ -303,6 +306,7 @@ class WalletCubit extends Cubit<WalletState> {
       amount: amount,
       traxId: investmentToBeWithdrawn.traxId,
       uid: uid,
+      refId: authFacade.getUserId(),
       status: "Successful",
       createdat: DateTime.now(),
       paymentMethod: investmentToBeWithdrawn.paymentMethod,

@@ -19,6 +19,7 @@ abstract class WithdrawalItemDTO implements _$WithdrawalItemDTO {
     required DateTime createdat,
     required String paymentMethod,
     required String currency,
+    required String refId,
     required Map<String, dynamic> withdrawalDetails
   }) = _WithdrawalItemDTO;
 
@@ -31,6 +32,7 @@ abstract class WithdrawalItemDTO implements _$WithdrawalItemDTO {
       createdat: withdrawalItem.createdat,
       description: withdrawalItem.description,
       paymentMethod: withdrawalItem.paymentMethod,
+      refId: withdrawalItem.refId,
       status: withdrawalItem.status,
       traxId: withdrawalItem.traxId,
       uid: withdrawalItem.uid,
@@ -62,6 +64,7 @@ extension WithdrawalItemDTOX on WithdrawalItemDTO {
       paymentMethod: paymentMethod,
       status: status,
       traxId: traxId,
+      refId: refId,
       uid: uid,
       currency: currency,
       withdrawalDetails: withdrawalDetails

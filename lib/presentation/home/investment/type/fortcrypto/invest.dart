@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
 import 'package:fortfolio/domain/widgets/custom_loading_button.dart';
@@ -12,7 +11,6 @@ import 'package:timelines/timelines.dart';
 import 'package:fortfolio/domain/constants/order.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/labelled_checkbox.dart';
-import 'package:pattern_formatter/pattern_formatter.dart';
 
 import '../../cubit/investment_cubit.dart';
 
@@ -121,9 +119,6 @@ class FortCryptoInvestment extends StatelessWidget {
                           keyboardType: TextInputType.number,
                           textInputAction: TextInputAction.next,
                           autovalidateMode: AutovalidateMode.onUserInteraction,
-                          inputFormatters: [
-                            ThousandsFormatter(),
-                          ],
                           decoration: InputDecoration(
                             errorMaxLines: 2,
                             filled: true,

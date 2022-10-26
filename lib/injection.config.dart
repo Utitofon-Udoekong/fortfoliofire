@@ -119,6 +119,7 @@ _i1.GetIt $initGetIt(
   gh.factory<_i30.WalletCubit>(() => _i30.WalletCubit(
         get<_i12.IFirestoreFacade>(),
         get<_i10.IExternalFacade>(),
+        get<_i8.IAuthFacade>(),
       ));
   gh.factory<_i31.CalculatorCubit>(
       () => _i31.CalculatorCubit(get<_i10.IExternalFacade>()));

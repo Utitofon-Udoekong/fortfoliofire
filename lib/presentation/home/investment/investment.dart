@@ -56,7 +56,7 @@ class InvestmentPage extends StatelessWidget {
               const SizedBox(
                 height: 15,
               ),
-              buildCard('fortshield', 'FortShield', 'N1,000,000', '18%',
+              buildCard('fortshield', 'FortShield', '₦1,000,000', '18%',
                   'Naira, USD or Crypto (USDC/BUSD or USDT only).', () {
                 context.router.push(const FortShieldRoute());
               }, isAccountActive),

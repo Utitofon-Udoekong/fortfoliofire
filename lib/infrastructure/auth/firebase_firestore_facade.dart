@@ -207,9 +207,9 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
           .doc(docId)
           .set(NotificationItemDTO.fromDomain(notificationItem).toJson());
       await firestore.collection("notificationCount")
-          .doc(auth.currentUser!.uid).update({
-            "count": FieldValue.increment(1)
-          });
+          .doc(auth.currentUser!.uid).set({
+            "count": 1
+          }, SetOptions(merge: true));
       return right(true);
     } on FirebaseException catch (e) {
       return left(getErrorFromCode(symbol: e.code));
@@ -317,6 +317,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
         .doc(auth.currentUser!.uid)
         .collection("investments")
         .doc(docId);
+    final nextHarvestDate = DateTime.now().add(const Duration(days: 30));
     try {
       await firestore.authUserCollection
           .doc(auth.currentUser!.uid)
@@ -345,8 +346,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
         status: withdrawalItem.status,
       );
       await createNotification(notificationItem: notificationItem);
-      await query
-          .update({"planYield": 0, "amount": FieldValue.increment(amount)});
+      await query.update({"planYield": 0, "amount": FieldValue.increment(amount), "nextHarvestDate": nextHarvestDate});
       return right('Investment harvested');
     } on FirebaseException catch (e) {
       return left(getErrorFromCode(symbol: e.code));

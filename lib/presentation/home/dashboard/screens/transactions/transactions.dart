@@ -9,6 +9,7 @@ import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
 import 'package:fortfolio/presentation/home/wallet/cubit/wallet_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:image_picker/image_picker.dart';
@@ -163,12 +164,12 @@ class DashboardTransactions extends StatelessWidget {
       required BuildContext context}) {
     return GestureDetector(
       onTap: () {
-        var dialog = Screenshot(
-          controller: screenshotController,
-          child: Dialog(
-            backgroundColor: Colors.transparent,
-            child: ClipPath(
-              clipper: RPSCustomClipper(),
+        var dialog = Dialog(
+          backgroundColor: Colors.transparent,
+          child: ClipPath(
+            clipper: RPSCustomClipper(),
+            child: Screenshot(
+              controller: screenshotController,
               child: Container(
                 decoration: const BoxDecoration(
                     color: Colors.white,
@@ -255,7 +256,7 @@ class DashboardTransactions extends StatelessWidget {
                       height: 5,
                     ),
                     Text(
-                      date.toString(),
+                      Jiffy(date).yMMMMEEEEdjm,
                       style:
                           titleText.copyWith(color: kBlackColor, fontSize: 15),
                     ),
@@ -354,9 +355,9 @@ class DashboardTransactions extends StatelessWidget {
                 const SizedBox(
                   height: 8,
                 ),
-                Text(date.toString(),
+                Text(Jiffy(date).yMMMMd,
                     style: subTitle.copyWith(
-                        fontSize: 12, color: const Color(0xFF1F1E1E))),
+                        fontSize: 12, color: const Color(0xFF1F1E1E)), maxLines: 2,),
               ],
             ),
             // Spacer(),

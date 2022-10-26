@@ -25,6 +25,9 @@ _$_InvestmentItemDTO _$$_InvestmentItemDTOFromJson(Map<String, dynamic> json) =>
       currency: json['currency'] as String,
       planYield: (json['planYield'] as num).toDouble(),
       paymentMethod: json['paymentMethod'] as String,
+      nextHarvestDate: json['nextHarvestDate'] == null
+          ? null
+          : DateTime.parse(json['nextHarvestDate'] as String),
       refId: json['refId'] as String,
     );
 
@@ -48,5 +51,6 @@ Map<String, dynamic> _$$_InvestmentItemDTOToJson(
       'currency': instance.currency,
       'planYield': instance.planYield,
       'paymentMethod': instance.paymentMethod,
+      'nextHarvestDate': instance.nextHarvestDate?.toIso8601String(),
       'refId': instance.refId,
     };

@@ -28,6 +28,7 @@ mixin _$InvestmentItem {
   String get planName => throw _privateConstructorUsedError;
   DateTime get paymentDate => throw _privateConstructorUsedError;
   DateTime get dueDate => throw _privateConstructorUsedError;
+  DateTime? get nextHarvestDate => throw _privateConstructorUsedError;
   int get duration => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   String get currency => throw _privateConstructorUsedError;
@@ -58,6 +59,7 @@ abstract class $InvestmentItemCopyWith<$Res> {
       String planName,
       DateTime paymentDate,
       DateTime dueDate,
+      DateTime? nextHarvestDate,
       int duration,
       String status,
       String currency,
@@ -89,6 +91,7 @@ class _$InvestmentItemCopyWithImpl<$Res>
     Object? planName = freezed,
     Object? paymentDate = freezed,
     Object? dueDate = freezed,
+    Object? nextHarvestDate = freezed,
     Object? duration = freezed,
     Object? status = freezed,
     Object? currency = freezed,
@@ -145,6 +148,10 @@ class _$InvestmentItemCopyWithImpl<$Res>
           ? _value.dueDate
           : dueDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      nextHarvestDate: nextHarvestDate == freezed
+          ? _value.nextHarvestDate
+          : nextHarvestDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       duration: duration == freezed
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
@@ -193,6 +200,7 @@ abstract class _$$_InvestmentItemCopyWith<$Res>
       String planName,
       DateTime paymentDate,
       DateTime dueDate,
+      DateTime? nextHarvestDate,
       int duration,
       String status,
       String currency,
@@ -226,6 +234,7 @@ class __$$_InvestmentItemCopyWithImpl<$Res>
     Object? planName = freezed,
     Object? paymentDate = freezed,
     Object? dueDate = freezed,
+    Object? nextHarvestDate = freezed,
     Object? duration = freezed,
     Object? status = freezed,
     Object? currency = freezed,
@@ -282,6 +291,10 @@ class __$$_InvestmentItemCopyWithImpl<$Res>
           ? _value.dueDate
           : dueDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      nextHarvestDate: nextHarvestDate == freezed
+          ? _value.nextHarvestDate
+          : nextHarvestDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       duration: duration == freezed
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
@@ -326,6 +339,7 @@ class _$_InvestmentItem extends _InvestmentItem {
       required this.planName,
       required this.paymentDate,
       required this.dueDate,
+      this.nextHarvestDate,
       required this.duration,
       required this.status,
       required this.currency,
@@ -359,6 +373,8 @@ class _$_InvestmentItem extends _InvestmentItem {
   @override
   final DateTime dueDate;
   @override
+  final DateTime? nextHarvestDate;
+  @override
   final int duration;
   @override
   final String status;
@@ -373,7 +389,7 @@ class _$_InvestmentItem extends _InvestmentItem {
 
   @override
   String toString() {
-    return 'InvestmentItem(description: $description, uid: $uid, coin: $coin, bankAccountType: $bankAccountType, amount: $amount, traxId: $traxId, fullName: $fullName, roi: $roi, numberOfDays: $numberOfDays, planName: $planName, paymentDate: $paymentDate, dueDate: $dueDate, duration: $duration, status: $status, currency: $currency, planYield: $planYield, paymentMethod: $paymentMethod, refId: $refId)';
+    return 'InvestmentItem(description: $description, uid: $uid, coin: $coin, bankAccountType: $bankAccountType, amount: $amount, traxId: $traxId, fullName: $fullName, roi: $roi, numberOfDays: $numberOfDays, planName: $planName, paymentDate: $paymentDate, dueDate: $dueDate, nextHarvestDate: $nextHarvestDate, duration: $duration, status: $status, currency: $currency, planYield: $planYield, paymentMethod: $paymentMethod, refId: $refId)';
   }
 
   @override
@@ -397,6 +413,8 @@ class _$_InvestmentItem extends _InvestmentItem {
             const DeepCollectionEquality()
                 .equals(other.paymentDate, paymentDate) &&
             const DeepCollectionEquality().equals(other.dueDate, dueDate) &&
+            const DeepCollectionEquality()
+                .equals(other.nextHarvestDate, nextHarvestDate) &&
             const DeepCollectionEquality().equals(other.duration, duration) &&
             const DeepCollectionEquality().equals(other.status, status) &&
             const DeepCollectionEquality().equals(other.currency, currency) &&
@@ -407,26 +425,28 @@ class _$_InvestmentItem extends _InvestmentItem {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(description),
-      const DeepCollectionEquality().hash(uid),
-      const DeepCollectionEquality().hash(coin),
-      const DeepCollectionEquality().hash(bankAccountType),
-      const DeepCollectionEquality().hash(amount),
-      const DeepCollectionEquality().hash(traxId),
-      const DeepCollectionEquality().hash(fullName),
-      const DeepCollectionEquality().hash(roi),
-      const DeepCollectionEquality().hash(numberOfDays),
-      const DeepCollectionEquality().hash(planName),
-      const DeepCollectionEquality().hash(paymentDate),
-      const DeepCollectionEquality().hash(dueDate),
-      const DeepCollectionEquality().hash(duration),
-      const DeepCollectionEquality().hash(status),
-      const DeepCollectionEquality().hash(currency),
-      const DeepCollectionEquality().hash(planYield),
-      const DeepCollectionEquality().hash(paymentMethod),
-      const DeepCollectionEquality().hash(refId));
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(description),
+        const DeepCollectionEquality().hash(uid),
+        const DeepCollectionEquality().hash(coin),
+        const DeepCollectionEquality().hash(bankAccountType),
+        const DeepCollectionEquality().hash(amount),
+        const DeepCollectionEquality().hash(traxId),
+        const DeepCollectionEquality().hash(fullName),
+        const DeepCollectionEquality().hash(roi),
+        const DeepCollectionEquality().hash(numberOfDays),
+        const DeepCollectionEquality().hash(planName),
+        const DeepCollectionEquality().hash(paymentDate),
+        const DeepCollectionEquality().hash(dueDate),
+        const DeepCollectionEquality().hash(nextHarvestDate),
+        const DeepCollectionEquality().hash(duration),
+        const DeepCollectionEquality().hash(status),
+        const DeepCollectionEquality().hash(currency),
+        const DeepCollectionEquality().hash(planYield),
+        const DeepCollectionEquality().hash(paymentMethod),
+        const DeepCollectionEquality().hash(refId)
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -448,6 +468,7 @@ abstract class _InvestmentItem extends InvestmentItem {
       required final String planName,
       required final DateTime paymentDate,
       required final DateTime dueDate,
+      final DateTime? nextHarvestDate,
       required final int duration,
       required final String status,
       required final String currency,
@@ -480,6 +501,8 @@ abstract class _InvestmentItem extends InvestmentItem {
   DateTime get paymentDate;
   @override
   DateTime get dueDate;
+  @override
+  DateTime? get nextHarvestDate;
   @override
   int get duration;
   @override

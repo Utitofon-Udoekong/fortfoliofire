@@ -99,20 +99,22 @@ class FortShieldInvestment extends StatelessWidget {
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.number,
-                        inputFormatters: [ThousandsFormatter(),FilteringTextInputFormatter.digitsOnly],
-                        decoration: InputDecoration(
+                        inputFormatters: [ThousandsFormatter()],
+                        decoration: const InputDecoration(
                           filled: true,
-                          fillColor: const Color(0xFFF3F6F8),
+                          fillColor: Color(0xFFF3F6F8),
                           border: InputBorder.none,
-                          suffixIcon: const Text("₦"),
-                            suffixStyle: TextStyle(
-                                color: Colors.grey.shade400, fontSize: 13)
+                          suffix: Text("₦", style: TextStyle(
+                                color: kPrimaryColor, fontSize: 15, height: 1),),
+                          // suffixIcon: const Text("₦"),
+                          //   suffixStyle: TextStyle(
+                          //       color: Colors.grey.shade400, fontSize: 15, height: 1)
                         ),
                         onChanged: (value) => context
                             .read<InvestmentCubit>()
                             .amountInvestedChanged(
-                                amountInvested: double.parse(value)),
-                        validator: (String? value) => double.tryParse(value!) == null ? 'Field cannot be empty' : double.parse(value) < state.baseAmount  ? 'Minimum investment is N1,000,000' : double.parse(value).isNaN ? 'Invalid amount' : null,
+                                amountInvested: double.parse(value.replaceAll(",", ""))),
+                        validator: (String? value) => double.tryParse(value!.replaceAll(",", "")) == null ? 'Field cannot be empty' : double.parse(value.replaceAll(",", "")) < state.baseAmount  ? 'Minimum investment is N1,000,000' : double.parse(value.replaceAll(",", "")).isNaN ? 'Invalid amount' : null,
                       ),
                     );
                   },
