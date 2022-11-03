@@ -171,7 +171,7 @@ Widget buildTile(
               ),
               const SizedBox(height: 2.5),
               Text(
-                planYield,
+                planYield, 
                 style: subTitle.copyWith(fontSize: 12),
               )
             ],
@@ -249,6 +249,7 @@ Widget buildTile(
                           child: Container(
                             alignment: Alignment.center,
                             height: 35,
+                            width: 90,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 color: const Color.fromRGBO(3, 66, 109, 0.65)),
@@ -271,6 +272,7 @@ Widget buildTile(
                           child: Container(
                             alignment: Alignment.center,
                                                     width: 90,
+                                                    height: 35,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: const Color.fromRGBO(3, 66, 109, 0.65),

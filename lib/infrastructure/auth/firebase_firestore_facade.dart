@@ -170,7 +170,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
       NotificationItem notificationItem = NotificationItem(
         id: kycItem.id,
         type: "KYC",
-        title: kycItem.documentType,
+        title: "KYC",
         createdat: kycItem.submitted,
         status: kycItem.status,
       );

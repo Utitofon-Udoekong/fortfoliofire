@@ -15,11 +15,11 @@ const kRedColor = Color(0xFFDF1414);
 
 const kDefaultPadding = EdgeInsets.symmetric(horizontal: 20);
 
-var titleText = GoogleFonts.raleway(
+var titleText = GoogleFonts.openSans(
     fontSize: 32, fontWeight: FontWeight.w500, color: kBlackColor);
-var subTitle = GoogleFonts.raleway(
+var subTitle = GoogleFonts.openSans(
     fontSize: 18, fontWeight: FontWeight.w300, color: kBlackColor);
-var textButton = GoogleFonts.raleway(
+var textButton = GoogleFonts.montserrat(
     fontSize: 15, fontWeight: FontWeight.w300, color: kPrimaryColor);
 var hintTextStyle =
-    GoogleFonts.raleway(fontSize: 12, color: kgreyColor.withOpacity(0.4));
+    GoogleFonts.montserrat(fontSize: 12, color: kgreyColor.withOpacity(0.4));
