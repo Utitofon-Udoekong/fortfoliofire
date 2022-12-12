@@ -146,6 +146,7 @@ class NotificationsPage extends StatelessWidget {
                               : status == "Pending"
                                   ? const Color.fromARGB(239, 226, 167, 4)
                                   : const Color(0XFFDF1414),),
+                                  maxLines: 2,
                 )
               ],
             ),

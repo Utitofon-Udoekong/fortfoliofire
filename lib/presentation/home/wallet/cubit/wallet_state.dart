@@ -29,6 +29,8 @@ class WalletState with _$WalletState {
   factory WalletState.initial() => WalletState(
       exchange: "NGN",
       loading: false,
+      failure: "",
+      success: "",
       fortDollarInvestmentBalance: 0,
       fortCryptoInvestmentBalance: 0,
       fortShieldInvestmentBalance: 0,
@@ -38,8 +40,6 @@ class WalletState with _$WalletState {
       withdrawalMethod: "",
       investmentToBeWithdrawn: InvestmentItem.empty(),
       withdrawalDetails: {},
-      failure: "",
-      success: "",
       currentSort: "All Transactions",
       fortDollarInvestments: [
       ],

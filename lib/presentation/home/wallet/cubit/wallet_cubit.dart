@@ -302,30 +302,33 @@ class WalletCubit extends Cubit<WalletState> {
     var investmentToBeWithdrawn = state.investmentToBeWithdrawn;
     final String uid = nanoid(8);
     WithdrawalItem withdrawalItem = WithdrawalItem(
-      description: "${investmentToBeWithdrawn.planName} Investment Harvest",
+      description: "${investmentToBeWithdrawn.planName} Harvest",
       amount: amount,
       traxId: investmentToBeWithdrawn.traxId,
       uid: uid,
       refId: authFacade.getUserId(),
-      status: "Successful",
+      status: "Pending",
       createdat: DateTime.now(),
       paymentMethod: investmentToBeWithdrawn.paymentMethod,
       currency: investmentToBeWithdrawn.currency,
       duration: investmentToBeWithdrawn.duration,
       roi: investmentToBeWithdrawn.roi,
-      withdrawalDetails: {},
+      withdrawalDetails: state.withdrawalDetails,
     );
     try {
       final response =
         await firestoreFacade.harvestInvestment(docId: docId, amount: amount, withdrawalItem: withdrawalItem);
       response.fold((failure) {
-        emit(state.copyWith(loading: false, failure: failure));
+        emit(state.copyWith(loading: false, failure: failure,withdrawalDetails: {}));
       }, (success) {
         emit(state.copyWith(
             loading: false,
             success: success,
             investmentToBeWithdrawn:
-                investmentToBeWithdrawn.copyWith(planYield: 0)));
+                investmentToBeWithdrawn.copyWith(planYield: 0),withdrawalDetails: {}));
+        initFortDollarInvestments();
+        initFortShieldInvestments();
+        initFortCryptoInvestments();
       });
     } catch (e) {
       log(e.toString());
@@ -370,6 +373,10 @@ class WalletCubit extends Cubit<WalletState> {
   void reset() {
     emit(state.copyWith(
         withdrawalMethod: "", failure: "", success: "", withdrawalDetails: {}));
+  }
+  void resetSuccess() {
+    emit(state.copyWith(
+        failure: "", success: ""));
   }
 
   @override

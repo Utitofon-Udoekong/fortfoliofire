@@ -317,36 +317,37 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
         .doc(auth.currentUser!.uid)
         .collection("investments")
         .doc(docId);
-    final nextHarvestDate = DateTime.now().add(const Duration(days: 30));
+    final nextHarvestDate = DateTime.now().add(const Duration(days: 30)).toIso8601String();
     try {
       await firestore.authUserCollection
           .doc(auth.currentUser!.uid)
           .collection("withdrawals")
           .doc(docId)
-          .set(WithdrawalItemDTO.fromDomain(withdrawalItem).toJson());
-      TransactionItem transactionItem = TransactionItem(
-        description: withdrawalItem.description,
-        amount: amount,
-        traxId: withdrawalItem.traxId,
-        planName: withdrawalItem.description.replaceAll("Investment Harvest", ""),
-        status: withdrawalItem.status,
-        createdat: withdrawalItem.createdat,
-        paymentMethod: withdrawalItem.paymentMethod,
-        currency: withdrawalItem.currency,
-        type: "Withdrawal",
-        duration: withdrawalItem.duration,
-        roi: withdrawalItem.roi,
-      );
-      await createTransaction(transactionItem: transactionItem);
-      NotificationItem notificationItem = NotificationItem(
-        id: withdrawalItem.traxId,
-        type: "Withdrawal",
-        title: withdrawalItem.description,
-        createdat: withdrawalItem.createdat,
-        status: withdrawalItem.status,
-      );
-      await createNotification(notificationItem: notificationItem);
-      await query.update({"planYield": 0, "amount": FieldValue.increment(amount), "nextHarvestDate": nextHarvestDate});
+          .set(WithdrawalItemDTO.fromDomain(withdrawalItem).toJson()).then((value) async{
+            TransactionItem transactionItem = TransactionItem(
+              description: withdrawalItem.description,
+              amount: amount,
+              traxId: withdrawalItem.traxId,
+              planName: withdrawalItem.description.replaceAll("Investment Harvest", ""),
+              status: withdrawalItem.status,
+              createdat: withdrawalItem.createdat,
+              paymentMethod: withdrawalItem.paymentMethod,
+              currency: withdrawalItem.currency,
+              type: "Withdrawal",
+              duration: withdrawalItem.duration,
+              roi: withdrawalItem.roi,
+            );
+            await createTransaction(transactionItem: transactionItem);
+            NotificationItem notificationItem = NotificationItem(
+              id: withdrawalItem.traxId,
+              type: "Withdrawal",
+              title: withdrawalItem.description,
+              createdat: withdrawalItem.createdat,
+              status: withdrawalItem.status,
+            );
+            await createNotification(notificationItem: notificationItem);
+            await query.update({"planYield": 0, "nextHarvestDate": nextHarvestDate});
+          });
       return right('Investment harvested');
     } on FirebaseException catch (e) {
       return left(getErrorFromCode(symbol: e.code));

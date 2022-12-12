@@ -78,7 +78,9 @@ class HomePage extends StatelessWidget {
                           onPressed: () {
                             if(isAccountActive) {
                               context.router.push(const NotificationsPageRoute());
-                              context.read<NotificationCubit>().reset();
+                              if(state.notificationExists){
+                                context.read<NotificationCubit>().reset();
+                              }
                             }else {
                               null;
                             }
