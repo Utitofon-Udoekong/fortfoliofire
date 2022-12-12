@@ -54,11 +54,6 @@ class PaymentMethodCubit extends Cubit<PaymentMethodState> {
     });
   }
 
-  void setNextPage({required PageRouteInfo<dynamic> nextPage}){
-    print(nextPage);
-    emit(state.copyWith(nextPage: nextPage));
-  }
-
   void initGeneralCryptoWallet() {
     _logsGeneralCryptoAddressSubscription =
         firestoreFacade.getGeneralCryptoWallets().listen((data) {
@@ -129,7 +124,7 @@ class PaymentMethodCubit extends Cubit<PaymentMethodState> {
     bool canCheckBiometrics = await LocalAuthApi.hasBiometrics();
       if (canCheckBiometrics) {
         bool didauthenticate = await LocalAuthApi.authenticate(
-            localizedReason: 'Scan fingerprint to invest');
+            localizedReason: 'Scan fingerprint to add wallet');
         if (didauthenticate != true) {
           emit(state.copyWith(failure: "Authenticate to continue"));
           Future.delayed(const Duration(seconds: 1),
@@ -156,7 +151,7 @@ class PaymentMethodCubit extends Cubit<PaymentMethodState> {
     bool canCheckBiometrics = await LocalAuthApi.hasBiometrics();
     if (canCheckBiometrics) {
         bool didauthenticate = await LocalAuthApi.authenticate(
-            localizedReason: 'Scan fingerprint to invest');
+            localizedReason: 'Scan fingerprint to add account');
         if (didauthenticate != true) {
           emit(state.copyWith(failure: "Authenticate to continue"));
           Future.delayed(const Duration(seconds: 1),

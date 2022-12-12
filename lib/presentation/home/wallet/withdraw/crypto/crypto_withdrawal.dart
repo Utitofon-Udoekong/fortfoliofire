@@ -54,8 +54,6 @@ class CryptoWithdrawal extends StatelessWidget {
                     return emptyWallet ? Center(
                       child: TextButton(
                           onPressed: () {
-                            context.read<PaymentMethodCubit>().setNextPage(
-                                nextPage: const CryptoWithdrawalRoute());
                             context.router.push(const AddCryptoWalletRoute());
                           },
                           child: Text(

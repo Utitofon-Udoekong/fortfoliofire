@@ -299,6 +299,7 @@ class WalletCubit extends Cubit<WalletState> {
   void harvestInvestment(
       {required String docId, required double amount}) async {
     emit(state.copyWith(loading: true));
+    resetSuccess();
     var investmentToBeWithdrawn = state.investmentToBeWithdrawn;
     final String uid = nanoid(8);
     WithdrawalItem withdrawalItem = WithdrawalItem(

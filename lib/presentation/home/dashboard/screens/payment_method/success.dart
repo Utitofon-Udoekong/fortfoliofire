@@ -17,8 +17,7 @@ class PaymentMethodSuccess extends StatelessWidget {
         .select((AuthCubit element) => element.state.userModel.firstName);
     final lastName =
         context.select((AuthCubit element) => element.state.userModel.lastName);
-    final nextPage =
-        context.select((PaymentMethodCubit element) => element.state.nextPage);
+    
     return Scaffold(
       body: SafeArea(
       child: Padding(
@@ -48,11 +47,7 @@ class PaymentMethodSuccess extends StatelessWidget {
             CustomFilledButton(
                 text: 'DONE',
                 onTap: () {
-                  context.router.popUntil((route) {
-                    print(route);
-                    print(nextPage);
-                    return route == nextPage;
-                  });
+                  context.router.popUntilRouteWithName("PaymentMethodRoute");
                 })
           ],
         ),

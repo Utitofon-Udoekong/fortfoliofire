@@ -5,11 +5,11 @@ const kPrimaryColor = Color(0xFF03426d);
 const kSecondaryColor = Color(0xFF2a4c63);
 const klightblue = Color(0xFF00ADEF);
 // const kSecondaryColor = Color(0xFF656565);
-const kDarkGreyColor = Color(0xFFA8A8A8);
+const kDarkGreyColor = Color(0xFF4d4d4d);
 const kWhiteColor = Color(0xFFFFFFFF);
-const kgreyColor = Color(0xFF5B5B5B);
+const kgreyColor = Color(0xFF292828);
 const kBlackColor = Color.fromARGB(255, 22, 22, 22);
-const kTextFieldColor = Color(0xFF979797);
+const kTextFieldColor = Color(0xFF474747);
 const kGreenColor = Color(0XFF00C566);
 const kRedColor = Color(0xFFDF1414);
 

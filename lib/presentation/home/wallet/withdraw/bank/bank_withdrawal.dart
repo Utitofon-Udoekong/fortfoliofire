@@ -56,8 +56,6 @@ class BankWithdrawal extends StatelessWidget {
                     return noAccount ? Center(
                           child: TextButton(
                               onPressed: () {
-                                context.read<PaymentMethodCubit>().setNextPage(
-                                    nextPage: const BankWithdrawalRoute());
                                 context.router.push(const AddBankRoute());
                               },
                               child: Text(

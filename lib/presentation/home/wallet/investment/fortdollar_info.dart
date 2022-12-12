@@ -23,7 +23,6 @@ class FortDollarInvestmentInfo extends StatelessWidget {
         walletCubit.state.fortDollarInvestmentBalance);
     final isLoading = context.select((WalletCubit walletCubit) =>
         walletCubit.state.loading);
-    final selectedAccountNumber = context.select((WalletCubit element) => element.state.withdrawalDetails["accountNumber"]);
     final yield = context.select(
         (WalletCubit walletCubit) => walletCubit.state.fortDollarYieldBalance);
     final activeInvestments = context
@@ -102,7 +101,6 @@ class FortDollarInvestmentInfo extends StatelessWidget {
                       scrollDirection: Axis.vertical,
                       itemBuilder: ((context, index) {
                         return BuildTile(
-                          selectedAccountNumber:selectedAccountNumber,
                             title:
                                 '${activeInvestments[index].planName} / ${activeInvestments[index].duration.toInt()} month(s)',
                             amount:
@@ -125,6 +123,7 @@ class FortDollarInvestmentInfo extends StatelessWidget {
                                   docId:
                                       "${activeInvestments[index].uid}${activeInvestments[index].traxId}",
                                   amount: activeInvestments[index].planYield);
+                              context.router.pop();
                             },
                             pending: activeInvestments[index].status == "Pending",
                             harvDate: activeInvestments[index].nextHarvestDate,
@@ -141,7 +140,7 @@ class FortDollarInvestmentInfo extends StatelessWidget {
                                     ? true
                                     : (Jiffy(activeInvestments[index]
                                                 .nextHarvestDate)
-                                            .isSameOrAfter(DateTime.now()) &&
+                                            .isBefore(DateTime.now()) &&
                                         activeInvestments[index].planYield > 0),
                             daysLeft:
                                 Jiffy(activeInvestments[index].dueDate).fromNow(),
@@ -168,15 +167,15 @@ class FortDollarInvestmentInfo extends StatelessWidget {
 }
 
 class SelectAccountModal extends StatelessWidget {
-  final String selectedAccountNumber;
   final Function() ontapHarvest;
-  const SelectAccountModal({super.key, required this.selectedAccountNumber, required this.ontapHarvest});
+  const SelectAccountModal({super.key, required this.ontapHarvest});
 
   @override
   Widget build(BuildContext context) {
+    final selectedAccountNumber = context.select((WalletCubit element) => element.state.withdrawalDetails["accountNumber"] ?? "");
     return Container(
     padding: const EdgeInsets.symmetric(
-                          horizontal: 5.0, vertical: 4.0),
+                          horizontal: 8.0, vertical: 10.0),
                       decoration: BoxDecoration(
                           border: Border.all(
                             color: kWhiteColor,
@@ -187,6 +186,31 @@ class SelectAccountModal extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
+          Text(
+                                            'Select account',
+                                            style:
+                                                titleText.copyWith(fontSize: 15),
+                                          ),
+                                          const SizedBox(height: 10,),
+          BlocSelector<PaymentMethodCubit, PaymentMethodState,
+                    bool>(
+                  selector: (state) {
+                    return state.noAccount;
+                  },
+                  builder: (context, noAccount) {
+                    return noAccount ? Center(
+                          child: TextButton(
+                              onPressed: () {
+                                context.router.push(const AddBankRoute());
+                              },
+                              child: Text(
+                                'Add a new bank',
+                                style: subTitle.copyWith(
+                                    fontSize: 13, color: kPrimaryColor),
+                              )),
+                        ) : const SizedBox.shrink();
+                  },
+                ),
           BlocSelector<PaymentMethodCubit, PaymentMethodState,
                     List<BankAddress>>(
                   selector: (state) {
@@ -262,7 +286,6 @@ Widget buildAddressTile({required String address, required Function() ontap, req
   class BuildTile extends StatelessWidget {
     final String title;
     final String amount;
-    final String selectedAccountNumber;
     final String planYield;
     final Function() ontap;
     final Function() ontapHarvest;
@@ -271,7 +294,7 @@ Widget buildAddressTile({required String address, required Function() ontap, req
     final bool isHarvestDue;
     final DateTime? harvDate;
     final String daysLeft;
-    const BuildTile({super.key, required this.title, required this.amount, required this.selectedAccountNumber, required this.planYield, required this.ontap, required this.ontapHarvest, required this.pending, required this.isDue, required this.isHarvestDue, this.harvDate, required this.daysLeft});
+    const BuildTile({super.key, required this.title, required this.amount, required this.planYield, required this.ontap, required this.ontapHarvest, required this.pending, required this.isDue, required this.isHarvestDue, this.harvDate, required this.daysLeft});
   
     @override
     Widget build(BuildContext context) {
@@ -311,7 +334,7 @@ Widget buildAddressTile({required String address, required Function() ontap, req
                 onTap: () => showModalBottomSheet<dynamic>(
                   isScrollControlled: true,
                   context: context,
-                  builder: (context) => SelectAccountModal(selectedAccountNumber: selectedAccountNumber, ontapHarvest: ontapHarvest)
+                  builder: (context) => SelectAccountModal(ontapHarvest: ontapHarvest)
                 ),
                 child: Container(
                   alignment: Alignment.center,
@@ -380,8 +403,8 @@ Widget buildAddressTile({required String address, required Function() ontap, req
                           onTap: null,
                           child: Container(
                             alignment: Alignment.center,
-                            height: 45,
-                            width: 100,
+                            height: 35,
+                            width: 90,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 color: const Color.fromRGBO(3, 66, 109, 0.65)),
@@ -403,8 +426,8 @@ Widget buildAddressTile({required String address, required Function() ontap, req
                           margin: const EdgeInsets.symmetric(horizontal: 10),
                           child: Container(
                             alignment: Alignment.center,
-                            height: 45,
-                            width: 100,
+                            height: 35,
+                            width: 90,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: const Color.fromRGBO(3, 66, 109, 0.65),
