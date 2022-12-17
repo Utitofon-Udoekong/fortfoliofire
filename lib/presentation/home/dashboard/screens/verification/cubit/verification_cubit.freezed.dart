@@ -23,9 +23,9 @@ mixin _$VerificationState {
   String get success => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   String get documentType => throw _privateConstructorUsedError;
-  Uint8List get frontFile => throw _privateConstructorUsedError;
-  Uint8List get backFile => throw _privateConstructorUsedError;
-  Uint8List get utilityFile => throw _privateConstructorUsedError;
+  File get frontFile => throw _privateConstructorUsedError;
+  File get backFile => throw _privateConstructorUsedError;
+  File get utilityFile => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $VerificationStateCopyWith<VerificationState> get copyWith =>
@@ -45,9 +45,9 @@ abstract class $VerificationStateCopyWith<$Res> {
       String success,
       String status,
       String documentType,
-      Uint8List frontFile,
-      Uint8List backFile,
-      Uint8List utilityFile});
+      File frontFile,
+      File backFile,
+      File utilityFile});
 }
 
 /// @nodoc
@@ -104,15 +104,15 @@ class _$VerificationStateCopyWithImpl<$Res>
       frontFile: frontFile == freezed
           ? _value.frontFile
           : frontFile // ignore: cast_nullable_to_non_nullable
-              as Uint8List,
+              as File,
       backFile: backFile == freezed
           ? _value.backFile
           : backFile // ignore: cast_nullable_to_non_nullable
-              as Uint8List,
+              as File,
       utilityFile: utilityFile == freezed
           ? _value.utilityFile
           : utilityFile // ignore: cast_nullable_to_non_nullable
-              as Uint8List,
+              as File,
     ));
   }
 }
@@ -132,9 +132,9 @@ abstract class _$$_VerificationStateCopyWith<$Res>
       String success,
       String status,
       String documentType,
-      Uint8List frontFile,
-      Uint8List backFile,
-      Uint8List utilityFile});
+      File frontFile,
+      File backFile,
+      File utilityFile});
 }
 
 /// @nodoc
@@ -193,15 +193,15 @@ class __$$_VerificationStateCopyWithImpl<$Res>
       frontFile: frontFile == freezed
           ? _value.frontFile
           : frontFile // ignore: cast_nullable_to_non_nullable
-              as Uint8List,
+              as File,
       backFile: backFile == freezed
           ? _value.backFile
           : backFile // ignore: cast_nullable_to_non_nullable
-              as Uint8List,
+              as File,
       utilityFile: utilityFile == freezed
           ? _value.utilityFile
           : utilityFile // ignore: cast_nullable_to_non_nullable
-              as Uint8List,
+              as File,
     ));
   }
 }
@@ -237,11 +237,11 @@ class _$_VerificationState extends _VerificationState {
   @override
   final String documentType;
   @override
-  final Uint8List frontFile;
+  final File frontFile;
   @override
-  final Uint8List backFile;
+  final File backFile;
   @override
-  final Uint8List utilityFile;
+  final File utilityFile;
 
   @override
   String toString() {
@@ -299,9 +299,9 @@ abstract class _VerificationState extends VerificationState {
       required final String success,
       required final String status,
       required final String documentType,
-      required final Uint8List frontFile,
-      required final Uint8List backFile,
-      required final Uint8List utilityFile}) = _$_VerificationState;
+      required final File frontFile,
+      required final File backFile,
+      required final File utilityFile}) = _$_VerificationState;
   const _VerificationState._() : super._();
 
   @override
@@ -319,11 +319,11 @@ abstract class _VerificationState extends VerificationState {
   @override
   String get documentType;
   @override
-  Uint8List get frontFile;
+  File get frontFile;
   @override
-  Uint8List get backFile;
+  File get backFile;
   @override
-  Uint8List get utilityFile;
+  File get utilityFile;
   @override
   @JsonKey(ignore: true)
   _$$_VerificationStateCopyWith<_$_VerificationState> get copyWith =>

@@ -9,6 +9,7 @@ import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/domain/widgets/loading_view.dart';
 import 'package:fortfolio/presentation/home/wallet/cubit/wallet_cubit.dart';
+import 'package:fortfolio/presentation/home/investment/cubit/investment_cubit.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/cubit/payment_method_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:intl/intl.dart';
@@ -153,8 +154,12 @@ class FortShieldInvestmentInfo extends StatelessWidget {
                     alignment: Alignment.bottomCenter,
                     child: CustomOutlinedButton(
                         text: 'INVEST',
-                        onTap: () => context.router
-                            .push(const FortShieldInvestmentRoute())),
+                        onTap: () {
+                          context.read<InvestmentCubit>().exchangeTypeChanged(exchangeType: "NGN");
+                          context.read<InvestmentCubit>().planNameChanged( planName: "FortShield");
+                          context.read<InvestmentCubit>().baseAmountChanged( baseAmount: 1000000);
+                          context.router.push(const FortShieldInvestmentRoute());
+                        }),
                   ),
                 ],
               ),

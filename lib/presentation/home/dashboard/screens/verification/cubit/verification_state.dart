@@ -10,9 +10,9 @@ class VerificationState with _$VerificationState {
     required String success,
     required String status,
     required String documentType,
-    required Uint8List frontFile,
-    required Uint8List backFile,
-    required Uint8List utilityFile,
+    required File frontFile,
+    required File backFile,
+    required File utilityFile,
   }) = _VerificationState;
   const VerificationState._();
   factory VerificationState.empty() => VerificationState(
@@ -20,13 +20,13 @@ class VerificationState with _$VerificationState {
     kycExists: false,
     failure: "",
     rejectionReason: "",
-    frontFile: Uint8List.fromList([]),
-    backFile: Uint8List.fromList([]),
-    utilityFile: Uint8List.fromList([]),
+    frontFile: File(""),
+    backFile: File(""),
+    utilityFile: File(""),
     success: "",
     status: "",
     documentType: ""
   );
-  bool get isValidState => frontFile.isNotEmpty && backFile.isNotEmpty;
+  bool get isValidState => frontFile.path.isNotEmpty && backFile.path.isNotEmpty;
   bool get isRejected => status == "Rejected";
 }

@@ -9,6 +9,7 @@ import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/domain/widgets/loading_view.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/cubit/payment_method_cubit.dart';
 import 'package:fortfolio/presentation/home/wallet/cubit/wallet_cubit.dart';
+import 'package:fortfolio/presentation/home/investment/cubit/investment_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:intl/intl.dart';
 import 'package:jiffy/jiffy.dart';
@@ -153,8 +154,14 @@ class FortDollarInvestmentInfo extends StatelessWidget {
                     alignment: Alignment.bottomCenter,
                     child: CustomOutlinedButton(
                         text: 'INVEST',
-                        onTap: () => context.router
-                            .push(const FortDollarInvestmentRoute())),
+                        onTap: () {
+                          context .read<InvestmentCubit>() .planNameChanged( planName: "FortDollar");
+                          context
+                              .read<InvestmentCubit>()
+                              .exchangeTypeChanged(exchangeType: "USD");
+                          context.read<InvestmentCubit>().baseAmountChanged( baseAmount: 1000);
+                          context.router.push(const FortDollarInvestmentRoute());  
+                        }),
                   ),
                 ],
               ),

@@ -19,6 +19,7 @@ void main() async {
   );
   await FirebaseAppCheck.instance.activate(
     webRecaptchaSiteKey: '6Le-eCcgAAAAAC3IN0RKos4l2gLT60GvLLGoobbq',
+    androidProvider: AndroidProvider.playIntegrity,
   );
   Bloc.observer = AppBlocObserver();
   runApp(const App());

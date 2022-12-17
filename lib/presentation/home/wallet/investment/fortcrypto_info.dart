@@ -12,6 +12,7 @@ import 'package:jiffy/jiffy.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/core/validator_helpers.dart';
 import 'package:fortfolio/domain/widgets/custom_outlined_button.dart';
+import 'package:fortfolio/presentation/home/investment/cubit/investment_cubit.dart';
 import 'package:fortfolio/presentation/home/wallet/cubit/wallet_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 
@@ -25,6 +26,7 @@ class FortCryptoInvestmentInfo extends StatelessWidget {
         walletCubit.state.fortCryptoInvestmentBalance);
     final isLoading = context.select((WalletCubit walletCubit) =>
         walletCubit.state.loading);
+    final coin = context.select((InvestmentCubit bloc) => bloc.state.coin);
     final yield = context.select(
         (WalletCubit walletCubit) => walletCubit.state.fortCryptoYieldBalance);
     final activeInvestments = context
@@ -157,8 +159,14 @@ class FortCryptoInvestmentInfo extends StatelessWidget {
                           alignment: Alignment.bottomCenter,
                           child: CustomOutlinedButton(
                               text: 'INVEST',
-                              onTap: () => context.router
-                                  .push(const FortCryptoInvestmentRoute())),
+                              onTap: () {
+                                context.read<InvestmentCubit>().planNameChanged( planName: "FortCrypto");
+                                context.read<InvestmentCubit>().setCryptoBaseAmount(coin: coin);
+                                context
+                                    .read<InvestmentCubit>()
+                                    .exchangeTypeChanged(exchangeType: "USD");
+                                context.router.push(const FortCryptoInvestmentRoute());
+                              }),
                         ),
                       ],
                     ),

@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:auto_route/auto_route.dart';
@@ -26,6 +27,7 @@ class UploadUtilityDoc extends StatelessWidget {
                 p.failure != c.failure && c.failure.isNotEmpty,
             listener: (context, state) {
               CustomSnackbar.showSnackBar(context, state.failure, true);
+              context.router.popUntilRouteWithName("UploadDocumentImageRoute");
             },
           ),
           BlocListener<VerificationCubit, VerificationState>(
@@ -81,7 +83,7 @@ class UploadUtilityDoc extends StatelessWidget {
                                       child: const Text('Take a photo'),
                                       onPressed: () async {
                                         Navigator.pop(context);
-                                        Uint8List file =
+                                        File file =
                                             await pickImage(ImageSource.camera);
                                         context
                                             .read<VerificationCubit>()
@@ -92,7 +94,7 @@ class UploadUtilityDoc extends StatelessWidget {
                                       child: const Text('Choose from Gallery'),
                                       onPressed: () async {
                                         Navigator.of(context).pop();
-                                        Uint8List file = await pickImage(
+                                        File file = await pickImage(
                                             ImageSource.gallery);
                                         context
                                             .read<VerificationCubit>()
@@ -129,7 +131,7 @@ class UploadUtilityDoc extends StatelessWidget {
                         BlocSelector<VerificationCubit, VerificationState,
                             bool>(
                           selector: (state) {
-                            return state.utilityFile.isNotEmpty;
+                            return state.utilityFile.path.isNotEmpty;
                           },
                           builder: (context, utilityExists) {
                             return CustomAuthFilledButton(
@@ -151,7 +153,7 @@ class UploadUtilityDoc extends StatelessWidget {
     );
   }
 
-  Widget buildTile(Function() ontap, Uint8List previewLink) {
+  Widget buildTile(Function() ontap, File previewLink) {
     return GestureDetector(
       onTap: ontap,
       child: Container(
@@ -169,7 +171,7 @@ class UploadUtilityDoc extends StatelessWidget {
               width: 15,
             ),
             Text(
-              previewLink.isEmpty
+              previewLink.path.isEmpty
                   ? 'Select Image'
                   : 'Selected. Click to change',
               style: subTitle.copyWith(color: kgreyColor, fontSize: 13),

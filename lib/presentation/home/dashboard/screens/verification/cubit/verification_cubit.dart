@@ -1,8 +1,10 @@
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/domain/auth/i_firestore_facade.dart';
 import 'package:fortfolio/domain/auth/i_storage_facade.dart';
+import 'package:fortfolio/domain/constants/image_model.dart';
 import 'package:fortfolio/domain/user/kyc_item.dart';
 import 'package:fortfolio/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -32,15 +34,15 @@ class VerificationCubit extends Cubit<VerificationState> {
     emit(state.copyWith(documentType: documentType));
   }
 
-  void frontPicked({required Uint8List file}) async {
+  void frontPicked({required File file}) async {
     emit(state.copyWith(frontFile: file));
   }
 
-  void backPicked({required Uint8List file}) async {
+  void backPicked({required File file}) async {
     emit(state.copyWith(backFile: file));
   }
 
-  void utilityPicked({required Uint8List file}) async {
+  void utilityPicked({required File file}) async {
     emit(state.copyWith(utilityFile: file));
   }
 
@@ -85,15 +87,21 @@ class VerificationCubit extends Cubit<VerificationState> {
     final backDocument = state.backFile;
     final utilityDocument = state.utilityFile;
     final documentType = state.documentType;
-    final uploadfront = await storageFacade.uploadImageToStorage(
-        childName: "FrontDocument", file: frontDocument);
-    final uploadBack = await storageFacade.uploadImageToStorage(
-        childName: "BackDocument", file: backDocument);
-    final uploadUtility = await storageFacade.uploadImageToStorage(
-        childName: "UtilityDocument", file: utilityDocument);
-    uploadfront.fold(() => null, (frontImage) => front = frontImage);
-    uploadBack.fold(() => null, (backImage) => back = backImage);
-    uploadUtility.fold(() => null, (utilityImage) => utility = utilityImage);
+    final List<ImageModel> imageModelList = <ImageModel>[
+      ImageModel(childName: "FrontDocument", file: frontDocument),
+      ImageModel(childName: "BackDocument", file: backDocument),
+      ImageModel(childName: "UtilityDocument", file: utilityDocument),
+    ]; 
+    final uploadImages = await storageFacade.uploadImagesToStorage(files: imageModelList);
+    uploadImages.fold((failure) {
+      emit(state.copyWith(submitting: false, failure: failure));
+      reset();
+      return;
+    }, (images) {
+      front = images[0];
+      back = images[1];
+      utility = images[2];
+    });
     final documents = [
       {"name": "FrontDocument", "downloadUrl": front},
       {"name": "BackDocument", "downloadUrl": back},
@@ -117,8 +125,8 @@ class VerificationCubit extends Cubit<VerificationState> {
 
   void reset() {
     emit(state.copyWith(
-        frontFile: Uint8List.fromList([]),
-        backFile: Uint8List.fromList([]),
-        utilityFile: Uint8List.fromList([])));
+        frontFile: File(""),
+        backFile: File(""),
+        utilityFile: File("")));
   }
 }

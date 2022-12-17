@@ -1,11 +1,13 @@
+import 'dart:io';
+
 import 'package:image_picker/image_picker.dart';
 
 // for picking up image from gallery
 pickImage(ImageSource source) async {
   final ImagePicker _imagePicker = ImagePicker();
-  XFile? _file = await _imagePicker.pickImage(source: source,maxHeight: 400, maxWidth: 400);
+  XFile? _file = await _imagePicker.pickImage(source: source);
   if (_file != null) {
-    return await _file.readAsBytes();
+    return File(_file.path);
   }
   print('No Image Selected');
 }

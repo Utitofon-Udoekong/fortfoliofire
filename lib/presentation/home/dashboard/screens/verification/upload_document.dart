@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:auto_route/auto_route.dart';
@@ -55,7 +56,7 @@ class UploadDocumentImage extends StatelessWidget {
                             child: const Text('Take a photo'),
                             onPressed: () async {
                               context.router.pop();
-                              Uint8List file =
+                              File file =
                                   await pickImage(ImageSource.camera);
                               context
                                   .read<VerificationCubit>()
@@ -66,7 +67,7 @@ class UploadDocumentImage extends StatelessWidget {
                             child: const Text('Choose from Gallery'),
                             onPressed: () async {
                               context.router.pop();
-                              Uint8List file =
+                              File file =
                                   await pickImage(ImageSource.gallery);
                               context
                                   .read<VerificationCubit>()
@@ -107,7 +108,7 @@ class UploadDocumentImage extends StatelessWidget {
                             child: const Text('Take a photo'),
                             onPressed: () async {
                               Navigator.pop(context);
-                              Uint8List file =
+                              File file =
                                   await pickImage(ImageSource.camera);
                               context
                                   .read<VerificationCubit>()
@@ -118,7 +119,7 @@ class UploadDocumentImage extends StatelessWidget {
                             child: const Text('Choose from Gallery'),
                             onPressed: () async {
                               Navigator.of(context).pop();
-                              Uint8List file =
+                              File file =
                                   await pickImage(ImageSource.gallery);
                               context
                                   .read<VerificationCubit>()
@@ -166,7 +167,7 @@ class UploadDocumentImage extends StatelessWidget {
     );
   }
 
-  Widget buildTile(Function() ontap, Uint8List previewLink) {
+  Widget buildTile(Function() ontap, File previewLink) {
     return GestureDetector(
       onTap: ontap,
       child: Container(
@@ -184,7 +185,7 @@ class UploadDocumentImage extends StatelessWidget {
               width: 15,
             ),
             Text(
-              previewLink.isEmpty ? 'Select Image' : 'Selected. Click to change',
+              previewLink.path.isEmpty ? 'Select Image' : 'Selected. Click to change',
               style: subTitle.copyWith(color: kgreyColor, fontSize: 13),
             )
           ],
