@@ -118,8 +118,10 @@ class VerificationCubit extends Cubit<VerificationState> {
     final response = await firestoreFacade.createKYC(kycItem: kycItem);
     response.fold((failure) {
       emit(state.copyWith(submitting: false, failure: failure));
+      reset();
     }, (success) {
       emit(state.copyWith(submitting: false, success: success, kycExists: true));
+      reset();
     });
   }
 
