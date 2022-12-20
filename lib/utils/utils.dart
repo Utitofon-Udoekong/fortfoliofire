@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 
 // for picking up image from gallery
 pickImage(ImageSource source) async {
@@ -10,6 +11,11 @@ pickImage(ImageSource source) async {
     return File(_file.path);
   }
   print('No Image Selected');
+}
+
+naira(){
+  var format = NumberFormat.simpleCurrency(locale: Platform.localeName, name: 'NGN');
+  return format.currencySymbol;
 }
 
 String coinCode({required String coin}){

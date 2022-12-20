@@ -357,7 +357,7 @@ Widget buildAddressTile({required String address, required Function() ontap, req
                   ),
                 ),
               ) : Tooltip(
-               message: pending ? "Pending Investment" : harvDate == null ? "Investment yield balance is too low" : "Unlocks after 30 days",
+               message: pending ? "Pending Investment" : harvDate == null ? "Investment yield balance is too low" : "Unlocks ${Jiffy(harvDate).fromNow()}",
                 triggerMode: TooltipTriggerMode.tap,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(6),
@@ -375,7 +375,7 @@ Widget buildAddressTile({required String address, required Function() ontap, req
                         borderRadius: BorderRadius.circular(10),
                         color: const Color.fromRGBO(3, 66, 109, 0.65)),
                     child: Text(
-                      "Pending",
+                      pending ? "Pending" : "Harvest",
                       style:
                           textButton.copyWith(color: kWhiteColor, fontSize: 15),
                     ),

@@ -1,8 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_icon_filled_button.dart';
+import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
@@ -70,12 +72,17 @@ class MainDrawer extends StatelessWidget {
                     direction: Axis.horizontal,
                     children: [
                       Expanded(
-                        child: Text(
-                          'ID: $userId',
+                        child: InkWell(
+                          onTap: (){
+                            Clipboard.setData(
+                                      ClipboardData(text: userId));
+                          },
+                          child: Text('ID: $userId',
                           style: subTitle.copyWith(
                               color: kWhiteColor, fontSize: 15),
                           maxLines: 1,
-                          softWrap: false,
+                          softWrap: false,)
+                          
                         ),
                       ),
                       const SizedBox(

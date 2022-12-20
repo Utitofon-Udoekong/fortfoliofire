@@ -52,10 +52,7 @@ class Dashboard extends StatelessWidget {
                           return CarouselSlider(
                               items: generateSlider(
                                   context,
-                                  context
-                                      .read<DashboardCubit>()
-                                      .state
-                                      .newsList),
+                                  context.select((DashboardCubit bloc) => bloc.state.newsList)),
                               options: CarouselOptions(
                                 autoPlay: true,
                                 aspectRatio: 16 / 9,

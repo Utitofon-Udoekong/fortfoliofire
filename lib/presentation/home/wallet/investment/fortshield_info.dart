@@ -12,6 +12,7 @@ import 'package:fortfolio/presentation/home/wallet/cubit/wallet_cubit.dart';
 import 'package:fortfolio/presentation/home/investment/cubit/investment_cubit.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/cubit/payment_method_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
+import 'package:fortfolio/utils/utils.dart';
 import 'package:intl/intl.dart';
 import 'package:jiffy/jiffy.dart';
 
@@ -79,14 +80,14 @@ class FortShieldInvestmentInfo extends StatelessWidget {
                   const SizedBox(height: 30),
                   Text("Total", style: subTitle.copyWith(fontSize: 12)),
                   const SizedBox(height: 8),
-                  Text("₦${formatter.format(balance)}",
+                  Text("${naira()} ${formatter.format(balance)}",
                       style: titleText.copyWith(
                           fontSize: 16, fontWeight: FontWeight.w500)),
                   const SizedBox(height: 30),
                   Text("Available for yield",
                       style: subTitle.copyWith(fontSize: 12)),
                   const SizedBox(height: 8),
-                  Text("₦ ${formatter.format(yield)}",
+                  Text("${naira()} ${formatter.format(yield)}",
                       style: titleText.copyWith(
                           fontSize: 16, fontWeight: FontWeight.w500)),
                   const SizedBox(height: 30),
@@ -106,7 +107,7 @@ class FortShieldInvestmentInfo extends StatelessWidget {
                             title:
                                 '${activeInvestments[index].planName} / ${activeInvestments[index].duration.toInt()} month(s)',
                             amount:
-                                '₦${formatter.format(activeInvestments[index].amount)}',
+                                '${naira()}${formatter.format(activeInvestments[index].amount)}',
                             ontap: () {
                               context
                                   .read<WalletCubit>()
@@ -146,7 +147,7 @@ class FortShieldInvestmentInfo extends StatelessWidget {
                             daysLeft:
                                 Jiffy(activeInvestments[index].dueDate).fromNow(),
                             planYield:
-                                '₦${formatter.format(activeInvestments[index].planYield)}');
+                                '${naira()}${formatter.format(activeInvestments[index].planYield)}');
                       }),
                     ),
                   ),
@@ -355,7 +356,7 @@ Widget buildAddressTile({required String address, required Function() ontap, req
                   ),
                 ),
               ) : Tooltip(
-               message: pending ? "Pending Investment" : harvDate == null ? "Investment yield balance is too low" : "Unlocks after 30 days",
+               message: pending ? "Pending Investment" : harvDate == null ? "Investment yield balance is too low" : "Unlocks ${Jiffy(harvDate).fromNow()}",
                 triggerMode: TooltipTriggerMode.tap,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(6),
@@ -373,7 +374,7 @@ Widget buildAddressTile({required String address, required Function() ontap, req
                         borderRadius: BorderRadius.circular(10),
                         color: const Color.fromRGBO(3, 66, 109, 0.65)),
                     child: Text(
-                      "Pending",
+                      pending ? "Pending" : "Harvest",
                       style:
                           textButton.copyWith(color: kWhiteColor, fontSize: 15),
                     ),

@@ -6,6 +6,7 @@ import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
 import 'package:fortfolio/presentation/home/investment/cubit/investment_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
+import 'package:fortfolio/utils/utils.dart';
  
 
 class FortShield extends StatelessWidget {
@@ -50,7 +51,7 @@ class FortShield extends StatelessWidget {
                   height: 20,
                 ),
                 Text(
-                  'Invest a minimum of a million naira and get a plot of land as collateral. These lands are located in Lagos, Abuja, Asaba, and Ogun state and they are the same value as your investment plan. You earn 18% returns annually. The minimum investment plan is N1,000,000.',
+                  'Invest a minimum of a million naira and get a plot of land as collateral. These lands are located in Lagos, Abuja, Asaba, and Ogun state and they are the same value as your investment plan. You earn 18% returns annually. The minimum investment plan is ${naira()}1,000,000.',
                   style: subTitle.copyWith(fontSize: 13, color: kgreyColor),
                 ),
                 const SizedBox(

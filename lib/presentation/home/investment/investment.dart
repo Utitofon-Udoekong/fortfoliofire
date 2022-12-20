@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/application/auth/auth_cubit.dart';
+import 'package:fortfolio/utils/utils.dart';
 
 
 class InvestmentPage extends StatelessWidget {
@@ -56,7 +57,7 @@ class InvestmentPage extends StatelessWidget {
               const SizedBox(
                 height: 15,
               ),
-              buildCard('fortshield', 'FortShield', '₦1,000,000', '18%',
+              buildCard('fortshield', 'FortShield', '${naira()}1,000,000', '18%',
                   'Naira, USD or Crypto (USDC/BUSD or USDT only).', () {
                 context.router.push(const FortShieldRoute());
               }, isAccountActive),

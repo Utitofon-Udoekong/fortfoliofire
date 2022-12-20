@@ -20,10 +20,6 @@ class SignInFormEmailCubit extends Cubit<SignInFormEmailState> {
     authCubit = getIt<AuthCubit>();
   }
 
-  @override
-  Future<void> close() async {
-    return super.close();
-  }
 
   void emailChanged({required String emailString}){
     emit(state.copyWith(
@@ -51,12 +47,12 @@ class SignInFormEmailCubit extends Cubit<SignInFormEmailState> {
           emailAddress: state.emailAddress, password: state.password);
       failureOrSuccess.fold((failure){
         emit(state.copyWith(isSubmitting: false,failure: failure));
-        reset();
+        // reset();
       }, (success) async{
         emit(state.copyWith(success: "$success. Setting up user"));
-        reset();
         authCubit.stream.listen((authState) {
           if(authState.isLoggedIn){
+            reset();
             emit(state.copyWith(isSubmitting: false));
           }
         });
@@ -69,5 +65,11 @@ class SignInFormEmailCubit extends Cubit<SignInFormEmailState> {
       emailAddress: EmailAddress(""),
       password: Password(""),
     ));
+  }
+
+  
+  @override
+  Future<void> close() async {
+    return super.close();
   }
 }

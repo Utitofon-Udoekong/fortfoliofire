@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
+import 'package:fortfolio/utils/utils.dart';
 import 'package:intl/intl.dart';
 
 import '../cubit/wallet_cubit.dart';
@@ -89,7 +90,7 @@ class WalletOverview extends StatelessWidget {
                             switch (state.exchange) {
                               case "NGN":
                                 return state.showDigits
-                                  ? Text('₦${formatter.format(accountBalance * dollarPrice) }',
+                                  ? Text('${naira()}${formatter.format(accountBalance * dollarPrice) }',
                                       style: titleText.copyWith(
                                           fontSize: 15, color: kWhiteColor))
                                   : Text(
@@ -118,7 +119,7 @@ class WalletOverview extends StatelessWidget {
                                           fontSize: 23, color: kWhiteColor));
                               default:
                                 return state.showDigits
-                                  ? Text('₦${formatter.format(accountBalance * dollarPrice) }',
+                                  ? Text('${naira()}${formatter.format(accountBalance * dollarPrice) }',
                                       style: titleText.copyWith(
                                           fontSize: 15, color: kWhiteColor))
                                   : Text(
@@ -289,8 +290,8 @@ class WalletOverview extends StatelessWidget {
                     visible: state.isFortShieldActive,
                     child: buildcard('FortShield', 'fortshield', () {
                       context.router.push(const FortShieldInvestmentInfoRoute());
-                    }, "₦${formatter.format(fortShieldBalance)}", state.showDigits,
-                        "₦${formatter.format(fortShieldYield)}",isAccountActive),
+                    }, "${naira()}${formatter.format(fortShieldBalance)}", state.showDigits,
+                        "${naira()}${formatter.format(fortShieldYield)}",isAccountActive),
                   );
                 },
               ),
