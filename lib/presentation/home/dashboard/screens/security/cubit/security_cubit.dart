@@ -14,6 +14,7 @@ class SecurityCubit extends Cubit<SecurityState> {
   final IAuthFacade authFacade;
   SecurityCubit(this.authFacade) : super(SecurityState.empty()){
     getBiometricState();
+    getPinStatus();
   }
 
   void reset() => emit(state.copyWith(pin: "", otp: "", sentOtp: ""));
@@ -76,7 +77,7 @@ class SecurityCubit extends Cubit<SecurityState> {
     final sp = await SharedPreferences.getInstance();
     if(!sp.containsKey("bio_enabled")){
       sp.setBool("bio_enabled",false);
-      emit(state.copyWith(biometricsExists: true));
+      emit(state.copyWith(biometricsExists: false));
       return;
     }
     final bioExists = sp.getBool("bio_enabled");
