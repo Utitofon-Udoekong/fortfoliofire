@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'auth_user_model_dto.dart';
 
@@ -46,7 +46,8 @@ mixin _$AuthUserModelDto {
 abstract class $AuthUserModelDtoCopyWith<$Res> {
   factory $AuthUserModelDtoCopyWith(
           AuthUserModelDto value, $Res Function(AuthUserModelDto) then) =
-      _$AuthUserModelDtoCopyWithImpl<$Res>;
+      _$AuthUserModelDtoCopyWithImpl<$Res, AuthUserModelDto>;
+  @useResult
   $Res call(
       {String id,
       String displayName,
@@ -65,84 +66,86 @@ abstract class $AuthUserModelDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AuthUserModelDtoCopyWithImpl<$Res>
+class _$AuthUserModelDtoCopyWithImpl<$Res, $Val extends AuthUserModelDto>
     implements $AuthUserModelDtoCopyWith<$Res> {
   _$AuthUserModelDtoCopyWithImpl(this._value, this._then);
 
-  final AuthUserModelDto _value;
   // ignore: unused_field
-  final $Res Function(AuthUserModelDto) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? displayName = freezed,
-    Object? phoneNumber = freezed,
-    Object? firstName = freezed,
-    Object? lastName = freezed,
-    Object? balance = freezed,
-    Object? email = freezed,
-    Object? status = freezed,
-    Object? isVerified = freezed,
-    Object? isAccountActive = freezed,
-    Object? createdat = freezed,
+    Object? id = null,
+    Object? displayName = null,
+    Object? phoneNumber = null,
+    Object? firstName = null,
+    Object? lastName = null,
+    Object? balance = null,
+    Object? email = null,
+    Object? status = null,
+    Object? isVerified = null,
+    Object? isAccountActive = null,
+    Object? createdat = null,
     Object? startDate = freezed,
     Object? deleteDate = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      displayName: displayName == freezed
+      displayName: null == displayName
           ? _value.displayName
           : displayName // ignore: cast_nullable_to_non_nullable
               as String,
-      phoneNumber: phoneNumber == freezed
+      phoneNumber: null == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
-      firstName: firstName == freezed
+      firstName: null == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
               as String,
-      lastName: lastName == freezed
+      lastName: null == lastName
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as String,
-      balance: balance == freezed
+      balance: null == balance
           ? _value.balance
           : balance // ignore: cast_nullable_to_non_nullable
               as double,
-      email: email == freezed
+      email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      status: status == freezed
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-      isVerified: isVerified == freezed
+      isVerified: null == isVerified
           ? _value.isVerified
           : isVerified // ignore: cast_nullable_to_non_nullable
               as bool,
-      isAccountActive: isAccountActive == freezed
+      isAccountActive: null == isAccountActive
           ? _value.isAccountActive
           : isAccountActive // ignore: cast_nullable_to_non_nullable
               as bool,
-      createdat: createdat == freezed
+      createdat: null == createdat
           ? _value.createdat
           : createdat // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      startDate: startDate == freezed
+      startDate: freezed == startDate
           ? _value.startDate
           : startDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      deleteDate: deleteDate == freezed
+      deleteDate: freezed == deleteDate
           ? _value.deleteDate
           : deleteDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -153,6 +156,7 @@ abstract class _$$_AuthUserModelDtoCopyWith<$Res>
           _$_AuthUserModelDto value, $Res Function(_$_AuthUserModelDto) then) =
       __$$_AuthUserModelDtoCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String id,
       String displayName,
@@ -172,81 +176,79 @@ abstract class _$$_AuthUserModelDtoCopyWith<$Res>
 
 /// @nodoc
 class __$$_AuthUserModelDtoCopyWithImpl<$Res>
-    extends _$AuthUserModelDtoCopyWithImpl<$Res>
+    extends _$AuthUserModelDtoCopyWithImpl<$Res, _$_AuthUserModelDto>
     implements _$$_AuthUserModelDtoCopyWith<$Res> {
   __$$_AuthUserModelDtoCopyWithImpl(
       _$_AuthUserModelDto _value, $Res Function(_$_AuthUserModelDto) _then)
-      : super(_value, (v) => _then(v as _$_AuthUserModelDto));
+      : super(_value, _then);
 
-  @override
-  _$_AuthUserModelDto get _value => super._value as _$_AuthUserModelDto;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? displayName = freezed,
-    Object? phoneNumber = freezed,
-    Object? firstName = freezed,
-    Object? lastName = freezed,
-    Object? balance = freezed,
-    Object? email = freezed,
-    Object? status = freezed,
-    Object? isVerified = freezed,
-    Object? isAccountActive = freezed,
-    Object? createdat = freezed,
+    Object? id = null,
+    Object? displayName = null,
+    Object? phoneNumber = null,
+    Object? firstName = null,
+    Object? lastName = null,
+    Object? balance = null,
+    Object? email = null,
+    Object? status = null,
+    Object? isVerified = null,
+    Object? isAccountActive = null,
+    Object? createdat = null,
     Object? startDate = freezed,
     Object? deleteDate = freezed,
   }) {
     return _then(_$_AuthUserModelDto(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      displayName: displayName == freezed
+      displayName: null == displayName
           ? _value.displayName
           : displayName // ignore: cast_nullable_to_non_nullable
               as String,
-      phoneNumber: phoneNumber == freezed
+      phoneNumber: null == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
-      firstName: firstName == freezed
+      firstName: null == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
               as String,
-      lastName: lastName == freezed
+      lastName: null == lastName
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as String,
-      balance: balance == freezed
+      balance: null == balance
           ? _value.balance
           : balance // ignore: cast_nullable_to_non_nullable
               as double,
-      email: email == freezed
+      email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      status: status == freezed
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-      isVerified: isVerified == freezed
+      isVerified: null == isVerified
           ? _value.isVerified
           : isVerified // ignore: cast_nullable_to_non_nullable
               as bool,
-      isAccountActive: isAccountActive == freezed
+      isAccountActive: null == isAccountActive
           ? _value.isAccountActive
           : isAccountActive // ignore: cast_nullable_to_non_nullable
               as bool,
-      createdat: createdat == freezed
+      createdat: null == createdat
           ? _value.createdat
           : createdat // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      startDate: startDate == freezed
+      startDate: freezed == startDate
           ? _value.startDate
           : startDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      deleteDate: deleteDate == freezed
+      deleteDate: freezed == deleteDate
           ? _value.deleteDate
           : deleteDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
@@ -315,46 +317,51 @@ class _$_AuthUserModelDto implements _AuthUserModelDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AuthUserModelDto &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality()
-                .equals(other.displayName, displayName) &&
-            const DeepCollectionEquality()
-                .equals(other.phoneNumber, phoneNumber) &&
-            const DeepCollectionEquality().equals(other.firstName, firstName) &&
-            const DeepCollectionEquality().equals(other.lastName, lastName) &&
-            const DeepCollectionEquality().equals(other.balance, balance) &&
-            const DeepCollectionEquality().equals(other.email, email) &&
-            const DeepCollectionEquality().equals(other.status, status) &&
-            const DeepCollectionEquality()
-                .equals(other.isVerified, isVerified) &&
-            const DeepCollectionEquality()
-                .equals(other.isAccountActive, isAccountActive) &&
-            const DeepCollectionEquality().equals(other.createdat, createdat) &&
-            const DeepCollectionEquality().equals(other.startDate, startDate) &&
-            const DeepCollectionEquality()
-                .equals(other.deleteDate, deleteDate));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.displayName, displayName) ||
+                other.displayName == displayName) &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                other.phoneNumber == phoneNumber) &&
+            (identical(other.firstName, firstName) ||
+                other.firstName == firstName) &&
+            (identical(other.lastName, lastName) ||
+                other.lastName == lastName) &&
+            (identical(other.balance, balance) || other.balance == balance) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.isVerified, isVerified) ||
+                other.isVerified == isVerified) &&
+            (identical(other.isAccountActive, isAccountActive) ||
+                other.isAccountActive == isAccountActive) &&
+            (identical(other.createdat, createdat) ||
+                other.createdat == createdat) &&
+            (identical(other.startDate, startDate) ||
+                other.startDate == startDate) &&
+            (identical(other.deleteDate, deleteDate) ||
+                other.deleteDate == deleteDate));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(displayName),
-      const DeepCollectionEquality().hash(phoneNumber),
-      const DeepCollectionEquality().hash(firstName),
-      const DeepCollectionEquality().hash(lastName),
-      const DeepCollectionEquality().hash(balance),
-      const DeepCollectionEquality().hash(email),
-      const DeepCollectionEquality().hash(status),
-      const DeepCollectionEquality().hash(isVerified),
-      const DeepCollectionEquality().hash(isAccountActive),
-      const DeepCollectionEquality().hash(createdat),
-      const DeepCollectionEquality().hash(startDate),
-      const DeepCollectionEquality().hash(deleteDate));
+      id,
+      displayName,
+      phoneNumber,
+      firstName,
+      lastName,
+      balance,
+      email,
+      status,
+      isVerified,
+      isAccountActive,
+      createdat,
+      startDate,
+      deleteDate);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_AuthUserModelDtoCopyWith<_$_AuthUserModelDto> get copyWith =>
       __$$_AuthUserModelDtoCopyWithImpl<_$_AuthUserModelDto>(this, _$identity);
 

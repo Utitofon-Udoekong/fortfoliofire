@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'crypto_wallet.dart';
 
@@ -34,7 +34,8 @@ mixin _$CryptoWallet {
 abstract class $CryptoWalletCopyWith<$Res> {
   factory $CryptoWalletCopyWith(
           CryptoWallet value, $Res Function(CryptoWallet) then) =
-      _$CryptoWalletCopyWithImpl<$Res>;
+      _$CryptoWalletCopyWithImpl<$Res, CryptoWallet>;
+  @useResult
   $Res call(
       {String walletLabel,
       String address,
@@ -47,58 +48,61 @@ abstract class $CryptoWalletCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$CryptoWalletCopyWithImpl<$Res> implements $CryptoWalletCopyWith<$Res> {
+class _$CryptoWalletCopyWithImpl<$Res, $Val extends CryptoWallet>
+    implements $CryptoWalletCopyWith<$Res> {
   _$CryptoWalletCopyWithImpl(this._value, this._then);
 
-  final CryptoWallet _value;
   // ignore: unused_field
-  final $Res Function(CryptoWallet) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? walletLabel = freezed,
-    Object? address = freezed,
-    Object? coin = freezed,
+    Object? walletLabel = null,
+    Object? address = null,
+    Object? coin = null,
     Object? network = freezed,
-    Object? platform = freezed,
-    Object? type = freezed,
-    Object? id = freezed,
-    Object? trax = freezed,
+    Object? platform = null,
+    Object? type = null,
+    Object? id = null,
+    Object? trax = null,
   }) {
     return _then(_value.copyWith(
-      walletLabel: walletLabel == freezed
+      walletLabel: null == walletLabel
           ? _value.walletLabel
           : walletLabel // ignore: cast_nullable_to_non_nullable
               as String,
-      address: address == freezed
+      address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String,
-      coin: coin == freezed
+      coin: null == coin
           ? _value.coin
           : coin // ignore: cast_nullable_to_non_nullable
               as String,
-      network: network == freezed
+      network: freezed == network
           ? _value.network
           : network // ignore: cast_nullable_to_non_nullable
               as String?,
-      platform: platform == freezed
+      platform: null == platform
           ? _value.platform
           : platform // ignore: cast_nullable_to_non_nullable
               as String,
-      type: type == freezed
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      trax: trax == freezed
+      trax: null == trax
           ? _value.trax
           : trax // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
@@ -109,6 +113,7 @@ abstract class _$$_CryptoWalletCopyWith<$Res>
           _$_CryptoWallet value, $Res Function(_$_CryptoWallet) then) =
       __$$_CryptoWalletCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String walletLabel,
       String address,
@@ -122,56 +127,54 @@ abstract class _$$_CryptoWalletCopyWith<$Res>
 
 /// @nodoc
 class __$$_CryptoWalletCopyWithImpl<$Res>
-    extends _$CryptoWalletCopyWithImpl<$Res>
+    extends _$CryptoWalletCopyWithImpl<$Res, _$_CryptoWallet>
     implements _$$_CryptoWalletCopyWith<$Res> {
   __$$_CryptoWalletCopyWithImpl(
       _$_CryptoWallet _value, $Res Function(_$_CryptoWallet) _then)
-      : super(_value, (v) => _then(v as _$_CryptoWallet));
+      : super(_value, _then);
 
-  @override
-  _$_CryptoWallet get _value => super._value as _$_CryptoWallet;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? walletLabel = freezed,
-    Object? address = freezed,
-    Object? coin = freezed,
+    Object? walletLabel = null,
+    Object? address = null,
+    Object? coin = null,
     Object? network = freezed,
-    Object? platform = freezed,
-    Object? type = freezed,
-    Object? id = freezed,
-    Object? trax = freezed,
+    Object? platform = null,
+    Object? type = null,
+    Object? id = null,
+    Object? trax = null,
   }) {
     return _then(_$_CryptoWallet(
-      walletLabel: walletLabel == freezed
+      walletLabel: null == walletLabel
           ? _value.walletLabel
           : walletLabel // ignore: cast_nullable_to_non_nullable
               as String,
-      address: address == freezed
+      address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String,
-      coin: coin == freezed
+      coin: null == coin
           ? _value.coin
           : coin // ignore: cast_nullable_to_non_nullable
               as String,
-      network: network == freezed
+      network: freezed == network
           ? _value.network
           : network // ignore: cast_nullable_to_non_nullable
               as String?,
-      platform: platform == freezed
+      platform: null == platform
           ? _value.platform
           : platform // ignore: cast_nullable_to_non_nullable
               as String,
-      type: type == freezed
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      trax: trax == freezed
+      trax: null == trax
           ? _value.trax
           : trax // ignore: cast_nullable_to_non_nullable
               as String,
@@ -220,31 +223,25 @@ class _$_CryptoWallet extends _CryptoWallet {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CryptoWallet &&
-            const DeepCollectionEquality()
-                .equals(other.walletLabel, walletLabel) &&
-            const DeepCollectionEquality().equals(other.address, address) &&
-            const DeepCollectionEquality().equals(other.coin, coin) &&
-            const DeepCollectionEquality().equals(other.network, network) &&
-            const DeepCollectionEquality().equals(other.platform, platform) &&
-            const DeepCollectionEquality().equals(other.type, type) &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.trax, trax));
+            (identical(other.walletLabel, walletLabel) ||
+                other.walletLabel == walletLabel) &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.coin, coin) || other.coin == coin) &&
+            (identical(other.network, network) || other.network == network) &&
+            (identical(other.platform, platform) ||
+                other.platform == platform) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.trax, trax) || other.trax == trax));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(walletLabel),
-      const DeepCollectionEquality().hash(address),
-      const DeepCollectionEquality().hash(coin),
-      const DeepCollectionEquality().hash(network),
-      const DeepCollectionEquality().hash(platform),
-      const DeepCollectionEquality().hash(type),
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(trax));
+  int get hashCode => Object.hash(runtimeType, walletLabel, address, coin,
+      network, platform, type, id, trax);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_CryptoWalletCopyWith<_$_CryptoWallet> get copyWith =>
       __$$_CryptoWalletCopyWithImpl<_$_CryptoWallet>(this, _$identity);
 }

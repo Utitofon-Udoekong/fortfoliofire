@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'sign_in_form_email_cubit.dart';
 
@@ -32,7 +32,8 @@ mixin _$SignInFormEmailState {
 abstract class $SignInFormEmailStateCopyWith<$Res> {
   factory $SignInFormEmailStateCopyWith(SignInFormEmailState value,
           $Res Function(SignInFormEmailState) then) =
-      _$SignInFormEmailStateCopyWithImpl<$Res>;
+      _$SignInFormEmailStateCopyWithImpl<$Res, SignInFormEmailState>;
+  @useResult
   $Res call(
       {EmailAddress emailAddress,
       Password password,
@@ -43,49 +44,52 @@ abstract class $SignInFormEmailStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SignInFormEmailStateCopyWithImpl<$Res>
+class _$SignInFormEmailStateCopyWithImpl<$Res,
+        $Val extends SignInFormEmailState>
     implements $SignInFormEmailStateCopyWith<$Res> {
   _$SignInFormEmailStateCopyWithImpl(this._value, this._then);
 
-  final SignInFormEmailState _value;
   // ignore: unused_field
-  final $Res Function(SignInFormEmailState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? emailAddress = freezed,
-    Object? password = freezed,
-    Object? isSubmitting = freezed,
-    Object? isObscure = freezed,
-    Object? failure = freezed,
-    Object? success = freezed,
+    Object? emailAddress = null,
+    Object? password = null,
+    Object? isSubmitting = null,
+    Object? isObscure = null,
+    Object? failure = null,
+    Object? success = null,
   }) {
     return _then(_value.copyWith(
-      emailAddress: emailAddress == freezed
+      emailAddress: null == emailAddress
           ? _value.emailAddress
           : emailAddress // ignore: cast_nullable_to_non_nullable
               as EmailAddress,
-      password: password == freezed
+      password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as Password,
-      isSubmitting: isSubmitting == freezed
+      isSubmitting: null == isSubmitting
           ? _value.isSubmitting
           : isSubmitting // ignore: cast_nullable_to_non_nullable
               as bool,
-      isObscure: isObscure == freezed
+      isObscure: null == isObscure
           ? _value.isObscure
           : isObscure // ignore: cast_nullable_to_non_nullable
               as bool,
-      failure: failure == freezed
+      failure: null == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as String,
-      success: success == freezed
+      success: null == success
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
@@ -96,6 +100,7 @@ abstract class _$$_SignInFormEmailStateCopyWith<$Res>
           $Res Function(_$_SignInFormEmailState) then) =
       __$$_SignInFormEmailStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {EmailAddress emailAddress,
       Password password,
@@ -107,46 +112,44 @@ abstract class _$$_SignInFormEmailStateCopyWith<$Res>
 
 /// @nodoc
 class __$$_SignInFormEmailStateCopyWithImpl<$Res>
-    extends _$SignInFormEmailStateCopyWithImpl<$Res>
+    extends _$SignInFormEmailStateCopyWithImpl<$Res, _$_SignInFormEmailState>
     implements _$$_SignInFormEmailStateCopyWith<$Res> {
   __$$_SignInFormEmailStateCopyWithImpl(_$_SignInFormEmailState _value,
       $Res Function(_$_SignInFormEmailState) _then)
-      : super(_value, (v) => _then(v as _$_SignInFormEmailState));
+      : super(_value, _then);
 
-  @override
-  _$_SignInFormEmailState get _value => super._value as _$_SignInFormEmailState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? emailAddress = freezed,
-    Object? password = freezed,
-    Object? isSubmitting = freezed,
-    Object? isObscure = freezed,
-    Object? failure = freezed,
-    Object? success = freezed,
+    Object? emailAddress = null,
+    Object? password = null,
+    Object? isSubmitting = null,
+    Object? isObscure = null,
+    Object? failure = null,
+    Object? success = null,
   }) {
     return _then(_$_SignInFormEmailState(
-      emailAddress: emailAddress == freezed
+      emailAddress: null == emailAddress
           ? _value.emailAddress
           : emailAddress // ignore: cast_nullable_to_non_nullable
               as EmailAddress,
-      password: password == freezed
+      password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as Password,
-      isSubmitting: isSubmitting == freezed
+      isSubmitting: null == isSubmitting
           ? _value.isSubmitting
           : isSubmitting // ignore: cast_nullable_to_non_nullable
               as bool,
-      isObscure: isObscure == freezed
+      isObscure: null == isObscure
           ? _value.isObscure
           : isObscure // ignore: cast_nullable_to_non_nullable
               as bool,
-      failure: failure == freezed
+      failure: null == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as String,
-      success: success == freezed
+      success: null == success
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
               as String,
@@ -189,28 +192,25 @@ class _$_SignInFormEmailState extends _SignInFormEmailState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SignInFormEmailState &&
-            const DeepCollectionEquality()
-                .equals(other.emailAddress, emailAddress) &&
-            const DeepCollectionEquality().equals(other.password, password) &&
-            const DeepCollectionEquality()
-                .equals(other.isSubmitting, isSubmitting) &&
-            const DeepCollectionEquality().equals(other.isObscure, isObscure) &&
-            const DeepCollectionEquality().equals(other.failure, failure) &&
-            const DeepCollectionEquality().equals(other.success, success));
+            (identical(other.emailAddress, emailAddress) ||
+                other.emailAddress == emailAddress) &&
+            (identical(other.password, password) ||
+                other.password == password) &&
+            (identical(other.isSubmitting, isSubmitting) ||
+                other.isSubmitting == isSubmitting) &&
+            (identical(other.isObscure, isObscure) ||
+                other.isObscure == isObscure) &&
+            (identical(other.failure, failure) || other.failure == failure) &&
+            (identical(other.success, success) || other.success == success));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(emailAddress),
-      const DeepCollectionEquality().hash(password),
-      const DeepCollectionEquality().hash(isSubmitting),
-      const DeepCollectionEquality().hash(isObscure),
-      const DeepCollectionEquality().hash(failure),
-      const DeepCollectionEquality().hash(success));
+  int get hashCode => Object.hash(runtimeType, emailAddress, password,
+      isSubmitting, isObscure, failure, success);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_SignInFormEmailStateCopyWith<_$_SignInFormEmailState> get copyWith =>
       __$$_SignInFormEmailStateCopyWithImpl<_$_SignInFormEmailState>(
           this, _$identity);

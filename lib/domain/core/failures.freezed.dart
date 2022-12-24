@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'failures.dart';
 
@@ -31,14 +31,14 @@ mixin _$ValueFailure<T> {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T failedValue)? invalidEmail,
-    TResult Function(T failedValue)? invalidPassword,
-    TResult Function(T failedValue)? invalidPhone,
-    TResult Function(T failedValue)? shortPassword,
-    TResult Function(T failedValue)? shortName,
-    TResult Function(T failedValue)? empty,
-    TResult Function(T failedValue, int max)? listTooLong,
-    TResult Function(T failedValue, int min)? invalidAmount,
+    TResult? Function(T failedValue)? invalidEmail,
+    TResult? Function(T failedValue)? invalidPassword,
+    TResult? Function(T failedValue)? invalidPhone,
+    TResult? Function(T failedValue)? shortPassword,
+    TResult? Function(T failedValue)? shortName,
+    TResult? Function(T failedValue)? empty,
+    TResult? Function(T failedValue, int max)? listTooLong,
+    TResult? Function(T failedValue, int min)? invalidAmount,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -68,14 +68,14 @@ mixin _$ValueFailure<T> {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(InvalidEmail<T> value)? invalidEmail,
-    TResult Function(InvalidPassword<T> value)? invalidPassword,
-    TResult Function(InvalidPhone<T> value)? invalidPhone,
-    TResult Function(ShortPassword<T> value)? shortPassword,
-    TResult Function(ShortName<T> value)? shortName,
-    TResult Function(Empty<T> value)? empty,
-    TResult Function(ListTooLong<T> value)? listTooLong,
-    TResult Function(InvalidAmount<T> value)? invalidAmount,
+    TResult? Function(InvalidEmail<T> value)? invalidEmail,
+    TResult? Function(InvalidPassword<T> value)? invalidPassword,
+    TResult? Function(InvalidPhone<T> value)? invalidPhone,
+    TResult? Function(ShortPassword<T> value)? shortPassword,
+    TResult? Function(ShortName<T> value)? shortName,
+    TResult? Function(Empty<T> value)? empty,
+    TResult? Function(ListTooLong<T> value)? listTooLong,
+    TResult? Function(InvalidAmount<T> value)? invalidAmount,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -101,29 +101,32 @@ mixin _$ValueFailure<T> {
 abstract class $ValueFailureCopyWith<T, $Res> {
   factory $ValueFailureCopyWith(
           ValueFailure<T> value, $Res Function(ValueFailure<T>) then) =
-      _$ValueFailureCopyWithImpl<T, $Res>;
+      _$ValueFailureCopyWithImpl<T, $Res, ValueFailure<T>>;
+  @useResult
   $Res call({T failedValue});
 }
 
 /// @nodoc
-class _$ValueFailureCopyWithImpl<T, $Res>
+class _$ValueFailureCopyWithImpl<T, $Res, $Val extends ValueFailure<T>>
     implements $ValueFailureCopyWith<T, $Res> {
   _$ValueFailureCopyWithImpl(this._value, this._then);
 
-  final ValueFailure<T> _value;
   // ignore: unused_field
-  final $Res Function(ValueFailure<T>) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? failedValue = freezed,
   }) {
     return _then(_value.copyWith(
-      failedValue: failedValue == freezed
+      failedValue: freezed == failedValue
           ? _value.failedValue
           : failedValue // ignore: cast_nullable_to_non_nullable
               as T,
-    ));
+    ) as $Val);
   }
 }
 
@@ -134,26 +137,25 @@ abstract class _$$InvalidEmailCopyWith<T, $Res>
           _$InvalidEmail<T> value, $Res Function(_$InvalidEmail<T>) then) =
       __$$InvalidEmailCopyWithImpl<T, $Res>;
   @override
+  @useResult
   $Res call({T failedValue});
 }
 
 /// @nodoc
 class __$$InvalidEmailCopyWithImpl<T, $Res>
-    extends _$ValueFailureCopyWithImpl<T, $Res>
+    extends _$ValueFailureCopyWithImpl<T, $Res, _$InvalidEmail<T>>
     implements _$$InvalidEmailCopyWith<T, $Res> {
   __$$InvalidEmailCopyWithImpl(
       _$InvalidEmail<T> _value, $Res Function(_$InvalidEmail<T>) _then)
-      : super(_value, (v) => _then(v as _$InvalidEmail<T>));
+      : super(_value, _then);
 
-  @override
-  _$InvalidEmail<T> get _value => super._value as _$InvalidEmail<T>;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? failedValue = freezed,
   }) {
     return _then(_$InvalidEmail<T>(
-      failedValue: failedValue == freezed
+      failedValue: freezed == failedValue
           ? _value.failedValue
           : failedValue // ignore: cast_nullable_to_non_nullable
               as T,
@@ -189,6 +191,7 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$InvalidEmailCopyWith<T, _$InvalidEmail<T>> get copyWith =>
       __$$InvalidEmailCopyWithImpl<T, _$InvalidEmail<T>>(this, _$identity);
 
@@ -210,14 +213,14 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T failedValue)? invalidEmail,
-    TResult Function(T failedValue)? invalidPassword,
-    TResult Function(T failedValue)? invalidPhone,
-    TResult Function(T failedValue)? shortPassword,
-    TResult Function(T failedValue)? shortName,
-    TResult Function(T failedValue)? empty,
-    TResult Function(T failedValue, int max)? listTooLong,
-    TResult Function(T failedValue, int min)? invalidAmount,
+    TResult? Function(T failedValue)? invalidEmail,
+    TResult? Function(T failedValue)? invalidPassword,
+    TResult? Function(T failedValue)? invalidPhone,
+    TResult? Function(T failedValue)? shortPassword,
+    TResult? Function(T failedValue)? shortName,
+    TResult? Function(T failedValue)? empty,
+    TResult? Function(T failedValue, int max)? listTooLong,
+    TResult? Function(T failedValue, int min)? invalidAmount,
   }) {
     return invalidEmail?.call(failedValue);
   }
@@ -259,14 +262,14 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(InvalidEmail<T> value)? invalidEmail,
-    TResult Function(InvalidPassword<T> value)? invalidPassword,
-    TResult Function(InvalidPhone<T> value)? invalidPhone,
-    TResult Function(ShortPassword<T> value)? shortPassword,
-    TResult Function(ShortName<T> value)? shortName,
-    TResult Function(Empty<T> value)? empty,
-    TResult Function(ListTooLong<T> value)? listTooLong,
-    TResult Function(InvalidAmount<T> value)? invalidAmount,
+    TResult? Function(InvalidEmail<T> value)? invalidEmail,
+    TResult? Function(InvalidPassword<T> value)? invalidPassword,
+    TResult? Function(InvalidPhone<T> value)? invalidPhone,
+    TResult? Function(ShortPassword<T> value)? shortPassword,
+    TResult? Function(ShortName<T> value)? shortName,
+    TResult? Function(Empty<T> value)? empty,
+    TResult? Function(ListTooLong<T> value)? listTooLong,
+    TResult? Function(InvalidAmount<T> value)? invalidAmount,
   }) {
     return invalidEmail?.call(this);
   }
@@ -310,26 +313,25 @@ abstract class _$$InvalidPasswordCopyWith<T, $Res>
           $Res Function(_$InvalidPassword<T>) then) =
       __$$InvalidPasswordCopyWithImpl<T, $Res>;
   @override
+  @useResult
   $Res call({T failedValue});
 }
 
 /// @nodoc
 class __$$InvalidPasswordCopyWithImpl<T, $Res>
-    extends _$ValueFailureCopyWithImpl<T, $Res>
+    extends _$ValueFailureCopyWithImpl<T, $Res, _$InvalidPassword<T>>
     implements _$$InvalidPasswordCopyWith<T, $Res> {
   __$$InvalidPasswordCopyWithImpl(
       _$InvalidPassword<T> _value, $Res Function(_$InvalidPassword<T>) _then)
-      : super(_value, (v) => _then(v as _$InvalidPassword<T>));
+      : super(_value, _then);
 
-  @override
-  _$InvalidPassword<T> get _value => super._value as _$InvalidPassword<T>;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? failedValue = freezed,
   }) {
     return _then(_$InvalidPassword<T>(
-      failedValue: failedValue == freezed
+      failedValue: freezed == failedValue
           ? _value.failedValue
           : failedValue // ignore: cast_nullable_to_non_nullable
               as T,
@@ -365,6 +367,7 @@ class _$InvalidPassword<T> implements InvalidPassword<T> {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$InvalidPasswordCopyWith<T, _$InvalidPassword<T>> get copyWith =>
       __$$InvalidPasswordCopyWithImpl<T, _$InvalidPassword<T>>(
           this, _$identity);
@@ -387,14 +390,14 @@ class _$InvalidPassword<T> implements InvalidPassword<T> {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T failedValue)? invalidEmail,
-    TResult Function(T failedValue)? invalidPassword,
-    TResult Function(T failedValue)? invalidPhone,
-    TResult Function(T failedValue)? shortPassword,
-    TResult Function(T failedValue)? shortName,
-    TResult Function(T failedValue)? empty,
-    TResult Function(T failedValue, int max)? listTooLong,
-    TResult Function(T failedValue, int min)? invalidAmount,
+    TResult? Function(T failedValue)? invalidEmail,
+    TResult? Function(T failedValue)? invalidPassword,
+    TResult? Function(T failedValue)? invalidPhone,
+    TResult? Function(T failedValue)? shortPassword,
+    TResult? Function(T failedValue)? shortName,
+    TResult? Function(T failedValue)? empty,
+    TResult? Function(T failedValue, int max)? listTooLong,
+    TResult? Function(T failedValue, int min)? invalidAmount,
   }) {
     return invalidPassword?.call(failedValue);
   }
@@ -436,14 +439,14 @@ class _$InvalidPassword<T> implements InvalidPassword<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(InvalidEmail<T> value)? invalidEmail,
-    TResult Function(InvalidPassword<T> value)? invalidPassword,
-    TResult Function(InvalidPhone<T> value)? invalidPhone,
-    TResult Function(ShortPassword<T> value)? shortPassword,
-    TResult Function(ShortName<T> value)? shortName,
-    TResult Function(Empty<T> value)? empty,
-    TResult Function(ListTooLong<T> value)? listTooLong,
-    TResult Function(InvalidAmount<T> value)? invalidAmount,
+    TResult? Function(InvalidEmail<T> value)? invalidEmail,
+    TResult? Function(InvalidPassword<T> value)? invalidPassword,
+    TResult? Function(InvalidPhone<T> value)? invalidPhone,
+    TResult? Function(ShortPassword<T> value)? shortPassword,
+    TResult? Function(ShortName<T> value)? shortName,
+    TResult? Function(Empty<T> value)? empty,
+    TResult? Function(ListTooLong<T> value)? listTooLong,
+    TResult? Function(InvalidAmount<T> value)? invalidAmount,
   }) {
     return invalidPassword?.call(this);
   }
@@ -487,26 +490,25 @@ abstract class _$$InvalidPhoneCopyWith<T, $Res>
           _$InvalidPhone<T> value, $Res Function(_$InvalidPhone<T>) then) =
       __$$InvalidPhoneCopyWithImpl<T, $Res>;
   @override
+  @useResult
   $Res call({T failedValue});
 }
 
 /// @nodoc
 class __$$InvalidPhoneCopyWithImpl<T, $Res>
-    extends _$ValueFailureCopyWithImpl<T, $Res>
+    extends _$ValueFailureCopyWithImpl<T, $Res, _$InvalidPhone<T>>
     implements _$$InvalidPhoneCopyWith<T, $Res> {
   __$$InvalidPhoneCopyWithImpl(
       _$InvalidPhone<T> _value, $Res Function(_$InvalidPhone<T>) _then)
-      : super(_value, (v) => _then(v as _$InvalidPhone<T>));
+      : super(_value, _then);
 
-  @override
-  _$InvalidPhone<T> get _value => super._value as _$InvalidPhone<T>;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? failedValue = freezed,
   }) {
     return _then(_$InvalidPhone<T>(
-      failedValue: failedValue == freezed
+      failedValue: freezed == failedValue
           ? _value.failedValue
           : failedValue // ignore: cast_nullable_to_non_nullable
               as T,
@@ -542,6 +544,7 @@ class _$InvalidPhone<T> implements InvalidPhone<T> {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$InvalidPhoneCopyWith<T, _$InvalidPhone<T>> get copyWith =>
       __$$InvalidPhoneCopyWithImpl<T, _$InvalidPhone<T>>(this, _$identity);
 
@@ -563,14 +566,14 @@ class _$InvalidPhone<T> implements InvalidPhone<T> {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T failedValue)? invalidEmail,
-    TResult Function(T failedValue)? invalidPassword,
-    TResult Function(T failedValue)? invalidPhone,
-    TResult Function(T failedValue)? shortPassword,
-    TResult Function(T failedValue)? shortName,
-    TResult Function(T failedValue)? empty,
-    TResult Function(T failedValue, int max)? listTooLong,
-    TResult Function(T failedValue, int min)? invalidAmount,
+    TResult? Function(T failedValue)? invalidEmail,
+    TResult? Function(T failedValue)? invalidPassword,
+    TResult? Function(T failedValue)? invalidPhone,
+    TResult? Function(T failedValue)? shortPassword,
+    TResult? Function(T failedValue)? shortName,
+    TResult? Function(T failedValue)? empty,
+    TResult? Function(T failedValue, int max)? listTooLong,
+    TResult? Function(T failedValue, int min)? invalidAmount,
   }) {
     return invalidPhone?.call(failedValue);
   }
@@ -612,14 +615,14 @@ class _$InvalidPhone<T> implements InvalidPhone<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(InvalidEmail<T> value)? invalidEmail,
-    TResult Function(InvalidPassword<T> value)? invalidPassword,
-    TResult Function(InvalidPhone<T> value)? invalidPhone,
-    TResult Function(ShortPassword<T> value)? shortPassword,
-    TResult Function(ShortName<T> value)? shortName,
-    TResult Function(Empty<T> value)? empty,
-    TResult Function(ListTooLong<T> value)? listTooLong,
-    TResult Function(InvalidAmount<T> value)? invalidAmount,
+    TResult? Function(InvalidEmail<T> value)? invalidEmail,
+    TResult? Function(InvalidPassword<T> value)? invalidPassword,
+    TResult? Function(InvalidPhone<T> value)? invalidPhone,
+    TResult? Function(ShortPassword<T> value)? shortPassword,
+    TResult? Function(ShortName<T> value)? shortName,
+    TResult? Function(Empty<T> value)? empty,
+    TResult? Function(ListTooLong<T> value)? listTooLong,
+    TResult? Function(InvalidAmount<T> value)? invalidAmount,
   }) {
     return invalidPhone?.call(this);
   }
@@ -663,26 +666,25 @@ abstract class _$$ShortPasswordCopyWith<T, $Res>
           _$ShortPassword<T> value, $Res Function(_$ShortPassword<T>) then) =
       __$$ShortPasswordCopyWithImpl<T, $Res>;
   @override
+  @useResult
   $Res call({T failedValue});
 }
 
 /// @nodoc
 class __$$ShortPasswordCopyWithImpl<T, $Res>
-    extends _$ValueFailureCopyWithImpl<T, $Res>
+    extends _$ValueFailureCopyWithImpl<T, $Res, _$ShortPassword<T>>
     implements _$$ShortPasswordCopyWith<T, $Res> {
   __$$ShortPasswordCopyWithImpl(
       _$ShortPassword<T> _value, $Res Function(_$ShortPassword<T>) _then)
-      : super(_value, (v) => _then(v as _$ShortPassword<T>));
+      : super(_value, _then);
 
-  @override
-  _$ShortPassword<T> get _value => super._value as _$ShortPassword<T>;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? failedValue = freezed,
   }) {
     return _then(_$ShortPassword<T>(
-      failedValue: failedValue == freezed
+      failedValue: freezed == failedValue
           ? _value.failedValue
           : failedValue // ignore: cast_nullable_to_non_nullable
               as T,
@@ -718,6 +720,7 @@ class _$ShortPassword<T> implements ShortPassword<T> {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$ShortPasswordCopyWith<T, _$ShortPassword<T>> get copyWith =>
       __$$ShortPasswordCopyWithImpl<T, _$ShortPassword<T>>(this, _$identity);
 
@@ -739,14 +742,14 @@ class _$ShortPassword<T> implements ShortPassword<T> {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T failedValue)? invalidEmail,
-    TResult Function(T failedValue)? invalidPassword,
-    TResult Function(T failedValue)? invalidPhone,
-    TResult Function(T failedValue)? shortPassword,
-    TResult Function(T failedValue)? shortName,
-    TResult Function(T failedValue)? empty,
-    TResult Function(T failedValue, int max)? listTooLong,
-    TResult Function(T failedValue, int min)? invalidAmount,
+    TResult? Function(T failedValue)? invalidEmail,
+    TResult? Function(T failedValue)? invalidPassword,
+    TResult? Function(T failedValue)? invalidPhone,
+    TResult? Function(T failedValue)? shortPassword,
+    TResult? Function(T failedValue)? shortName,
+    TResult? Function(T failedValue)? empty,
+    TResult? Function(T failedValue, int max)? listTooLong,
+    TResult? Function(T failedValue, int min)? invalidAmount,
   }) {
     return shortPassword?.call(failedValue);
   }
@@ -788,14 +791,14 @@ class _$ShortPassword<T> implements ShortPassword<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(InvalidEmail<T> value)? invalidEmail,
-    TResult Function(InvalidPassword<T> value)? invalidPassword,
-    TResult Function(InvalidPhone<T> value)? invalidPhone,
-    TResult Function(ShortPassword<T> value)? shortPassword,
-    TResult Function(ShortName<T> value)? shortName,
-    TResult Function(Empty<T> value)? empty,
-    TResult Function(ListTooLong<T> value)? listTooLong,
-    TResult Function(InvalidAmount<T> value)? invalidAmount,
+    TResult? Function(InvalidEmail<T> value)? invalidEmail,
+    TResult? Function(InvalidPassword<T> value)? invalidPassword,
+    TResult? Function(InvalidPhone<T> value)? invalidPhone,
+    TResult? Function(ShortPassword<T> value)? shortPassword,
+    TResult? Function(ShortName<T> value)? shortName,
+    TResult? Function(Empty<T> value)? empty,
+    TResult? Function(ListTooLong<T> value)? listTooLong,
+    TResult? Function(InvalidAmount<T> value)? invalidAmount,
   }) {
     return shortPassword?.call(this);
   }
@@ -839,26 +842,25 @@ abstract class _$$ShortNameCopyWith<T, $Res>
           _$ShortName<T> value, $Res Function(_$ShortName<T>) then) =
       __$$ShortNameCopyWithImpl<T, $Res>;
   @override
+  @useResult
   $Res call({T failedValue});
 }
 
 /// @nodoc
 class __$$ShortNameCopyWithImpl<T, $Res>
-    extends _$ValueFailureCopyWithImpl<T, $Res>
+    extends _$ValueFailureCopyWithImpl<T, $Res, _$ShortName<T>>
     implements _$$ShortNameCopyWith<T, $Res> {
   __$$ShortNameCopyWithImpl(
       _$ShortName<T> _value, $Res Function(_$ShortName<T>) _then)
-      : super(_value, (v) => _then(v as _$ShortName<T>));
+      : super(_value, _then);
 
-  @override
-  _$ShortName<T> get _value => super._value as _$ShortName<T>;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? failedValue = freezed,
   }) {
     return _then(_$ShortName<T>(
-      failedValue: failedValue == freezed
+      failedValue: freezed == failedValue
           ? _value.failedValue
           : failedValue // ignore: cast_nullable_to_non_nullable
               as T,
@@ -894,6 +896,7 @@ class _$ShortName<T> implements ShortName<T> {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$ShortNameCopyWith<T, _$ShortName<T>> get copyWith =>
       __$$ShortNameCopyWithImpl<T, _$ShortName<T>>(this, _$identity);
 
@@ -915,14 +918,14 @@ class _$ShortName<T> implements ShortName<T> {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T failedValue)? invalidEmail,
-    TResult Function(T failedValue)? invalidPassword,
-    TResult Function(T failedValue)? invalidPhone,
-    TResult Function(T failedValue)? shortPassword,
-    TResult Function(T failedValue)? shortName,
-    TResult Function(T failedValue)? empty,
-    TResult Function(T failedValue, int max)? listTooLong,
-    TResult Function(T failedValue, int min)? invalidAmount,
+    TResult? Function(T failedValue)? invalidEmail,
+    TResult? Function(T failedValue)? invalidPassword,
+    TResult? Function(T failedValue)? invalidPhone,
+    TResult? Function(T failedValue)? shortPassword,
+    TResult? Function(T failedValue)? shortName,
+    TResult? Function(T failedValue)? empty,
+    TResult? Function(T failedValue, int max)? listTooLong,
+    TResult? Function(T failedValue, int min)? invalidAmount,
   }) {
     return shortName?.call(failedValue);
   }
@@ -964,14 +967,14 @@ class _$ShortName<T> implements ShortName<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(InvalidEmail<T> value)? invalidEmail,
-    TResult Function(InvalidPassword<T> value)? invalidPassword,
-    TResult Function(InvalidPhone<T> value)? invalidPhone,
-    TResult Function(ShortPassword<T> value)? shortPassword,
-    TResult Function(ShortName<T> value)? shortName,
-    TResult Function(Empty<T> value)? empty,
-    TResult Function(ListTooLong<T> value)? listTooLong,
-    TResult Function(InvalidAmount<T> value)? invalidAmount,
+    TResult? Function(InvalidEmail<T> value)? invalidEmail,
+    TResult? Function(InvalidPassword<T> value)? invalidPassword,
+    TResult? Function(InvalidPhone<T> value)? invalidPhone,
+    TResult? Function(ShortPassword<T> value)? shortPassword,
+    TResult? Function(ShortName<T> value)? shortName,
+    TResult? Function(Empty<T> value)? empty,
+    TResult? Function(ListTooLong<T> value)? listTooLong,
+    TResult? Function(InvalidAmount<T> value)? invalidAmount,
   }) {
     return shortName?.call(this);
   }
@@ -1013,24 +1016,24 @@ abstract class _$$EmptyCopyWith<T, $Res>
   factory _$$EmptyCopyWith(_$Empty<T> value, $Res Function(_$Empty<T>) then) =
       __$$EmptyCopyWithImpl<T, $Res>;
   @override
+  @useResult
   $Res call({T failedValue});
 }
 
 /// @nodoc
-class __$$EmptyCopyWithImpl<T, $Res> extends _$ValueFailureCopyWithImpl<T, $Res>
+class __$$EmptyCopyWithImpl<T, $Res>
+    extends _$ValueFailureCopyWithImpl<T, $Res, _$Empty<T>>
     implements _$$EmptyCopyWith<T, $Res> {
   __$$EmptyCopyWithImpl(_$Empty<T> _value, $Res Function(_$Empty<T>) _then)
-      : super(_value, (v) => _then(v as _$Empty<T>));
+      : super(_value, _then);
 
-  @override
-  _$Empty<T> get _value => super._value as _$Empty<T>;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? failedValue = freezed,
   }) {
     return _then(_$Empty<T>(
-      failedValue: failedValue == freezed
+      failedValue: freezed == failedValue
           ? _value.failedValue
           : failedValue // ignore: cast_nullable_to_non_nullable
               as T,
@@ -1066,6 +1069,7 @@ class _$Empty<T> implements Empty<T> {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$EmptyCopyWith<T, _$Empty<T>> get copyWith =>
       __$$EmptyCopyWithImpl<T, _$Empty<T>>(this, _$identity);
 
@@ -1087,14 +1091,14 @@ class _$Empty<T> implements Empty<T> {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T failedValue)? invalidEmail,
-    TResult Function(T failedValue)? invalidPassword,
-    TResult Function(T failedValue)? invalidPhone,
-    TResult Function(T failedValue)? shortPassword,
-    TResult Function(T failedValue)? shortName,
-    TResult Function(T failedValue)? empty,
-    TResult Function(T failedValue, int max)? listTooLong,
-    TResult Function(T failedValue, int min)? invalidAmount,
+    TResult? Function(T failedValue)? invalidEmail,
+    TResult? Function(T failedValue)? invalidPassword,
+    TResult? Function(T failedValue)? invalidPhone,
+    TResult? Function(T failedValue)? shortPassword,
+    TResult? Function(T failedValue)? shortName,
+    TResult? Function(T failedValue)? empty,
+    TResult? Function(T failedValue, int max)? listTooLong,
+    TResult? Function(T failedValue, int min)? invalidAmount,
   }) {
     return empty?.call(failedValue);
   }
@@ -1136,14 +1140,14 @@ class _$Empty<T> implements Empty<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(InvalidEmail<T> value)? invalidEmail,
-    TResult Function(InvalidPassword<T> value)? invalidPassword,
-    TResult Function(InvalidPhone<T> value)? invalidPhone,
-    TResult Function(ShortPassword<T> value)? shortPassword,
-    TResult Function(ShortName<T> value)? shortName,
-    TResult Function(Empty<T> value)? empty,
-    TResult Function(ListTooLong<T> value)? listTooLong,
-    TResult Function(InvalidAmount<T> value)? invalidAmount,
+    TResult? Function(InvalidEmail<T> value)? invalidEmail,
+    TResult? Function(InvalidPassword<T> value)? invalidPassword,
+    TResult? Function(InvalidPhone<T> value)? invalidPhone,
+    TResult? Function(ShortPassword<T> value)? shortPassword,
+    TResult? Function(ShortName<T> value)? shortName,
+    TResult? Function(Empty<T> value)? empty,
+    TResult? Function(ListTooLong<T> value)? listTooLong,
+    TResult? Function(InvalidAmount<T> value)? invalidAmount,
   }) {
     return empty?.call(this);
   }
@@ -1186,31 +1190,30 @@ abstract class _$$ListTooLongCopyWith<T, $Res>
           _$ListTooLong<T> value, $Res Function(_$ListTooLong<T>) then) =
       __$$ListTooLongCopyWithImpl<T, $Res>;
   @override
+  @useResult
   $Res call({T failedValue, int max});
 }
 
 /// @nodoc
 class __$$ListTooLongCopyWithImpl<T, $Res>
-    extends _$ValueFailureCopyWithImpl<T, $Res>
+    extends _$ValueFailureCopyWithImpl<T, $Res, _$ListTooLong<T>>
     implements _$$ListTooLongCopyWith<T, $Res> {
   __$$ListTooLongCopyWithImpl(
       _$ListTooLong<T> _value, $Res Function(_$ListTooLong<T>) _then)
-      : super(_value, (v) => _then(v as _$ListTooLong<T>));
+      : super(_value, _then);
 
-  @override
-  _$ListTooLong<T> get _value => super._value as _$ListTooLong<T>;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? failedValue = freezed,
-    Object? max = freezed,
+    Object? max = null,
   }) {
     return _then(_$ListTooLong<T>(
-      failedValue: failedValue == freezed
+      failedValue: freezed == failedValue
           ? _value.failedValue
           : failedValue // ignore: cast_nullable_to_non_nullable
               as T,
-      max: max == freezed
+      max: null == max
           ? _value.max
           : max // ignore: cast_nullable_to_non_nullable
               as int,
@@ -1240,17 +1243,16 @@ class _$ListTooLong<T> implements ListTooLong<T> {
             other is _$ListTooLong<T> &&
             const DeepCollectionEquality()
                 .equals(other.failedValue, failedValue) &&
-            const DeepCollectionEquality().equals(other.max, max));
+            (identical(other.max, max) || other.max == max));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(failedValue),
-      const DeepCollectionEquality().hash(max));
+      runtimeType, const DeepCollectionEquality().hash(failedValue), max);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$ListTooLongCopyWith<T, _$ListTooLong<T>> get copyWith =>
       __$$ListTooLongCopyWithImpl<T, _$ListTooLong<T>>(this, _$identity);
 
@@ -1272,14 +1274,14 @@ class _$ListTooLong<T> implements ListTooLong<T> {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T failedValue)? invalidEmail,
-    TResult Function(T failedValue)? invalidPassword,
-    TResult Function(T failedValue)? invalidPhone,
-    TResult Function(T failedValue)? shortPassword,
-    TResult Function(T failedValue)? shortName,
-    TResult Function(T failedValue)? empty,
-    TResult Function(T failedValue, int max)? listTooLong,
-    TResult Function(T failedValue, int min)? invalidAmount,
+    TResult? Function(T failedValue)? invalidEmail,
+    TResult? Function(T failedValue)? invalidPassword,
+    TResult? Function(T failedValue)? invalidPhone,
+    TResult? Function(T failedValue)? shortPassword,
+    TResult? Function(T failedValue)? shortName,
+    TResult? Function(T failedValue)? empty,
+    TResult? Function(T failedValue, int max)? listTooLong,
+    TResult? Function(T failedValue, int min)? invalidAmount,
   }) {
     return listTooLong?.call(failedValue, max);
   }
@@ -1321,14 +1323,14 @@ class _$ListTooLong<T> implements ListTooLong<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(InvalidEmail<T> value)? invalidEmail,
-    TResult Function(InvalidPassword<T> value)? invalidPassword,
-    TResult Function(InvalidPhone<T> value)? invalidPhone,
-    TResult Function(ShortPassword<T> value)? shortPassword,
-    TResult Function(ShortName<T> value)? shortName,
-    TResult Function(Empty<T> value)? empty,
-    TResult Function(ListTooLong<T> value)? listTooLong,
-    TResult Function(InvalidAmount<T> value)? invalidAmount,
+    TResult? Function(InvalidEmail<T> value)? invalidEmail,
+    TResult? Function(InvalidPassword<T> value)? invalidPassword,
+    TResult? Function(InvalidPhone<T> value)? invalidPhone,
+    TResult? Function(ShortPassword<T> value)? shortPassword,
+    TResult? Function(ShortName<T> value)? shortName,
+    TResult? Function(Empty<T> value)? empty,
+    TResult? Function(ListTooLong<T> value)? listTooLong,
+    TResult? Function(InvalidAmount<T> value)? invalidAmount,
   }) {
     return listTooLong?.call(this);
   }
@@ -1374,31 +1376,30 @@ abstract class _$$InvalidAmountCopyWith<T, $Res>
           _$InvalidAmount<T> value, $Res Function(_$InvalidAmount<T>) then) =
       __$$InvalidAmountCopyWithImpl<T, $Res>;
   @override
+  @useResult
   $Res call({T failedValue, int min});
 }
 
 /// @nodoc
 class __$$InvalidAmountCopyWithImpl<T, $Res>
-    extends _$ValueFailureCopyWithImpl<T, $Res>
+    extends _$ValueFailureCopyWithImpl<T, $Res, _$InvalidAmount<T>>
     implements _$$InvalidAmountCopyWith<T, $Res> {
   __$$InvalidAmountCopyWithImpl(
       _$InvalidAmount<T> _value, $Res Function(_$InvalidAmount<T>) _then)
-      : super(_value, (v) => _then(v as _$InvalidAmount<T>));
+      : super(_value, _then);
 
-  @override
-  _$InvalidAmount<T> get _value => super._value as _$InvalidAmount<T>;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? failedValue = freezed,
-    Object? min = freezed,
+    Object? min = null,
   }) {
     return _then(_$InvalidAmount<T>(
-      failedValue: failedValue == freezed
+      failedValue: freezed == failedValue
           ? _value.failedValue
           : failedValue // ignore: cast_nullable_to_non_nullable
               as T,
-      min: min == freezed
+      min: null == min
           ? _value.min
           : min // ignore: cast_nullable_to_non_nullable
               as int,
@@ -1428,17 +1429,16 @@ class _$InvalidAmount<T> implements InvalidAmount<T> {
             other is _$InvalidAmount<T> &&
             const DeepCollectionEquality()
                 .equals(other.failedValue, failedValue) &&
-            const DeepCollectionEquality().equals(other.min, min));
+            (identical(other.min, min) || other.min == min));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(failedValue),
-      const DeepCollectionEquality().hash(min));
+      runtimeType, const DeepCollectionEquality().hash(failedValue), min);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$InvalidAmountCopyWith<T, _$InvalidAmount<T>> get copyWith =>
       __$$InvalidAmountCopyWithImpl<T, _$InvalidAmount<T>>(this, _$identity);
 
@@ -1460,14 +1460,14 @@ class _$InvalidAmount<T> implements InvalidAmount<T> {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T failedValue)? invalidEmail,
-    TResult Function(T failedValue)? invalidPassword,
-    TResult Function(T failedValue)? invalidPhone,
-    TResult Function(T failedValue)? shortPassword,
-    TResult Function(T failedValue)? shortName,
-    TResult Function(T failedValue)? empty,
-    TResult Function(T failedValue, int max)? listTooLong,
-    TResult Function(T failedValue, int min)? invalidAmount,
+    TResult? Function(T failedValue)? invalidEmail,
+    TResult? Function(T failedValue)? invalidPassword,
+    TResult? Function(T failedValue)? invalidPhone,
+    TResult? Function(T failedValue)? shortPassword,
+    TResult? Function(T failedValue)? shortName,
+    TResult? Function(T failedValue)? empty,
+    TResult? Function(T failedValue, int max)? listTooLong,
+    TResult? Function(T failedValue, int min)? invalidAmount,
   }) {
     return invalidAmount?.call(failedValue, min);
   }
@@ -1509,14 +1509,14 @@ class _$InvalidAmount<T> implements InvalidAmount<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(InvalidEmail<T> value)? invalidEmail,
-    TResult Function(InvalidPassword<T> value)? invalidPassword,
-    TResult Function(InvalidPhone<T> value)? invalidPhone,
-    TResult Function(ShortPassword<T> value)? shortPassword,
-    TResult Function(ShortName<T> value)? shortName,
-    TResult Function(Empty<T> value)? empty,
-    TResult Function(ListTooLong<T> value)? listTooLong,
-    TResult Function(InvalidAmount<T> value)? invalidAmount,
+    TResult? Function(InvalidEmail<T> value)? invalidEmail,
+    TResult? Function(InvalidPassword<T> value)? invalidPassword,
+    TResult? Function(InvalidPhone<T> value)? invalidPhone,
+    TResult? Function(ShortPassword<T> value)? shortPassword,
+    TResult? Function(ShortName<T> value)? shortName,
+    TResult? Function(Empty<T> value)? empty,
+    TResult? Function(ListTooLong<T> value)? listTooLong,
+    TResult? Function(InvalidAmount<T> value)? invalidAmount,
   }) {
     return invalidAmount?.call(this);
   }

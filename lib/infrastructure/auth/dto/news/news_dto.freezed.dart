@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'news_dto.dart';
 
@@ -38,7 +38,8 @@ mixin _$NewsModelDTO {
 abstract class $NewsModelDTOCopyWith<$Res> {
   factory $NewsModelDTOCopyWith(
           NewsModelDTO value, $Res Function(NewsModelDTO) then) =
-      _$NewsModelDTOCopyWithImpl<$Res>;
+      _$NewsModelDTOCopyWithImpl<$Res, NewsModelDTO>;
+  @useResult
   $Res call(
       {String name,
       String url,
@@ -50,53 +51,56 @@ abstract class $NewsModelDTOCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$NewsModelDTOCopyWithImpl<$Res> implements $NewsModelDTOCopyWith<$Res> {
+class _$NewsModelDTOCopyWithImpl<$Res, $Val extends NewsModelDTO>
+    implements $NewsModelDTOCopyWith<$Res> {
   _$NewsModelDTOCopyWithImpl(this._value, this._then);
 
-  final NewsModelDTO _value;
   // ignore: unused_field
-  final $Res Function(NewsModelDTO) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
-    Object? url = freezed,
-    Object? imageRef = freezed,
+    Object? name = null,
+    Object? url = null,
+    Object? imageRef = null,
     Object? redirectLink = freezed,
-    Object? createdat = freezed,
-    Object? size = freezed,
-    Object? fullPath = freezed,
+    Object? createdat = null,
+    Object? size = null,
+    Object? fullPath = null,
   }) {
     return _then(_value.copyWith(
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      url: url == freezed
+      url: null == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
-      imageRef: imageRef == freezed
+      imageRef: null == imageRef
           ? _value.imageRef
           : imageRef // ignore: cast_nullable_to_non_nullable
               as String,
-      redirectLink: redirectLink == freezed
+      redirectLink: freezed == redirectLink
           ? _value.redirectLink
           : redirectLink // ignore: cast_nullable_to_non_nullable
               as String?,
-      createdat: createdat == freezed
+      createdat: null == createdat
           ? _value.createdat
           : createdat // ignore: cast_nullable_to_non_nullable
               as String,
-      size: size == freezed
+      size: null == size
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
               as int,
-      fullPath: fullPath == freezed
+      fullPath: null == fullPath
           ? _value.fullPath
           : fullPath // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
@@ -107,6 +111,7 @@ abstract class _$$_NewsModelDTOCopyWith<$Res>
           _$_NewsModelDTO value, $Res Function(_$_NewsModelDTO) then) =
       __$$_NewsModelDTOCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String name,
       String url,
@@ -119,51 +124,49 @@ abstract class _$$_NewsModelDTOCopyWith<$Res>
 
 /// @nodoc
 class __$$_NewsModelDTOCopyWithImpl<$Res>
-    extends _$NewsModelDTOCopyWithImpl<$Res>
+    extends _$NewsModelDTOCopyWithImpl<$Res, _$_NewsModelDTO>
     implements _$$_NewsModelDTOCopyWith<$Res> {
   __$$_NewsModelDTOCopyWithImpl(
       _$_NewsModelDTO _value, $Res Function(_$_NewsModelDTO) _then)
-      : super(_value, (v) => _then(v as _$_NewsModelDTO));
+      : super(_value, _then);
 
-  @override
-  _$_NewsModelDTO get _value => super._value as _$_NewsModelDTO;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
-    Object? url = freezed,
-    Object? imageRef = freezed,
+    Object? name = null,
+    Object? url = null,
+    Object? imageRef = null,
     Object? redirectLink = freezed,
-    Object? createdat = freezed,
-    Object? size = freezed,
-    Object? fullPath = freezed,
+    Object? createdat = null,
+    Object? size = null,
+    Object? fullPath = null,
   }) {
     return _then(_$_NewsModelDTO(
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      url: url == freezed
+      url: null == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
-      imageRef: imageRef == freezed
+      imageRef: null == imageRef
           ? _value.imageRef
           : imageRef // ignore: cast_nullable_to_non_nullable
               as String,
-      redirectLink: redirectLink == freezed
+      redirectLink: freezed == redirectLink
           ? _value.redirectLink
           : redirectLink // ignore: cast_nullable_to_non_nullable
               as String?,
-      createdat: createdat == freezed
+      createdat: null == createdat
           ? _value.createdat
           : createdat // ignore: cast_nullable_to_non_nullable
               as String,
-      size: size == freezed
+      size: null == size
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
               as int,
-      fullPath: fullPath == freezed
+      fullPath: null == fullPath
           ? _value.fullPath
           : fullPath // ignore: cast_nullable_to_non_nullable
               as String,
@@ -212,30 +215,27 @@ class _$_NewsModelDTO extends _NewsModelDTO {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_NewsModelDTO &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.url, url) &&
-            const DeepCollectionEquality().equals(other.imageRef, imageRef) &&
-            const DeepCollectionEquality()
-                .equals(other.redirectLink, redirectLink) &&
-            const DeepCollectionEquality().equals(other.createdat, createdat) &&
-            const DeepCollectionEquality().equals(other.size, size) &&
-            const DeepCollectionEquality().equals(other.fullPath, fullPath));
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.url, url) || other.url == url) &&
+            (identical(other.imageRef, imageRef) ||
+                other.imageRef == imageRef) &&
+            (identical(other.redirectLink, redirectLink) ||
+                other.redirectLink == redirectLink) &&
+            (identical(other.createdat, createdat) ||
+                other.createdat == createdat) &&
+            (identical(other.size, size) || other.size == size) &&
+            (identical(other.fullPath, fullPath) ||
+                other.fullPath == fullPath));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(url),
-      const DeepCollectionEquality().hash(imageRef),
-      const DeepCollectionEquality().hash(redirectLink),
-      const DeepCollectionEquality().hash(createdat),
-      const DeepCollectionEquality().hash(size),
-      const DeepCollectionEquality().hash(fullPath));
+  int get hashCode => Object.hash(runtimeType, name, url, imageRef,
+      redirectLink, createdat, size, fullPath);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_NewsModelDTOCopyWith<_$_NewsModelDTO> get copyWith =>
       __$$_NewsModelDTOCopyWithImpl<_$_NewsModelDTO>(this, _$identity);
 

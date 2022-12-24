@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'payment_method_cubit.dart';
 
@@ -26,6 +26,7 @@ mixin _$PaymentMethodState {
   String get network => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
   String get platform => throw _privateConstructorUsedError;
+  String get accountType => throw _privateConstructorUsedError;
   bool get isGeneral => throw _privateConstructorUsedError;
   bool get isloading => throw _privateConstructorUsedError;
   int? get selectedNetwork => throw _privateConstructorUsedError;
@@ -45,7 +46,8 @@ mixin _$PaymentMethodState {
 abstract class $PaymentMethodStateCopyWith<$Res> {
   factory $PaymentMethodStateCopyWith(
           PaymentMethodState value, $Res Function(PaymentMethodState) then) =
-      _$PaymentMethodStateCopyWithImpl<$Res>;
+      _$PaymentMethodStateCopyWithImpl<$Res, PaymentMethodState>;
+  @useResult
   $Res call(
       {String bankName,
       String accountNumber,
@@ -57,6 +59,7 @@ abstract class $PaymentMethodStateCopyWith<$Res> {
       String network,
       String address,
       String platform,
+      String accountType,
       bool isGeneral,
       bool isloading,
       int? selectedNetwork,
@@ -67,104 +70,111 @@ abstract class $PaymentMethodStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PaymentMethodStateCopyWithImpl<$Res>
+class _$PaymentMethodStateCopyWithImpl<$Res, $Val extends PaymentMethodState>
     implements $PaymentMethodStateCopyWith<$Res> {
   _$PaymentMethodStateCopyWithImpl(this._value, this._then);
 
-  final PaymentMethodState _value;
   // ignore: unused_field
-  final $Res Function(PaymentMethodState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? bankName = freezed,
-    Object? accountNumber = freezed,
-    Object? isLoading = freezed,
-    Object? failure = freezed,
-    Object? success = freezed,
-    Object? walletLabel = freezed,
-    Object? coin = freezed,
-    Object? network = freezed,
-    Object? address = freezed,
-    Object? platform = freezed,
-    Object? isGeneral = freezed,
-    Object? isloading = freezed,
+    Object? bankName = null,
+    Object? accountNumber = null,
+    Object? isLoading = null,
+    Object? failure = null,
+    Object? success = null,
+    Object? walletLabel = null,
+    Object? coin = null,
+    Object? network = null,
+    Object? address = null,
+    Object? platform = null,
+    Object? accountType = null,
+    Object? isGeneral = null,
+    Object? isloading = null,
     Object? selectedNetwork = freezed,
-    Object? dropdownItems = freezed,
-    Object? cryptoAddresses = freezed,
-    Object? generalCryptoAddresses = freezed,
-    Object? bankAddresses = freezed,
+    Object? dropdownItems = null,
+    Object? cryptoAddresses = null,
+    Object? generalCryptoAddresses = null,
+    Object? bankAddresses = null,
   }) {
     return _then(_value.copyWith(
-      bankName: bankName == freezed
+      bankName: null == bankName
           ? _value.bankName
           : bankName // ignore: cast_nullable_to_non_nullable
               as String,
-      accountNumber: accountNumber == freezed
+      accountNumber: null == accountNumber
           ? _value.accountNumber
           : accountNumber // ignore: cast_nullable_to_non_nullable
               as String,
-      isLoading: isLoading == freezed
+      isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
-      failure: failure == freezed
+      failure: null == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as String,
-      success: success == freezed
+      success: null == success
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
               as String,
-      walletLabel: walletLabel == freezed
+      walletLabel: null == walletLabel
           ? _value.walletLabel
           : walletLabel // ignore: cast_nullable_to_non_nullable
               as String,
-      coin: coin == freezed
+      coin: null == coin
           ? _value.coin
           : coin // ignore: cast_nullable_to_non_nullable
               as String,
-      network: network == freezed
+      network: null == network
           ? _value.network
           : network // ignore: cast_nullable_to_non_nullable
               as String,
-      address: address == freezed
+      address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String,
-      platform: platform == freezed
+      platform: null == platform
           ? _value.platform
           : platform // ignore: cast_nullable_to_non_nullable
               as String,
-      isGeneral: isGeneral == freezed
+      accountType: null == accountType
+          ? _value.accountType
+          : accountType // ignore: cast_nullable_to_non_nullable
+              as String,
+      isGeneral: null == isGeneral
           ? _value.isGeneral
           : isGeneral // ignore: cast_nullable_to_non_nullable
               as bool,
-      isloading: isloading == freezed
+      isloading: null == isloading
           ? _value.isloading
           : isloading // ignore: cast_nullable_to_non_nullable
               as bool,
-      selectedNetwork: selectedNetwork == freezed
+      selectedNetwork: freezed == selectedNetwork
           ? _value.selectedNetwork
           : selectedNetwork // ignore: cast_nullable_to_non_nullable
               as int?,
-      dropdownItems: dropdownItems == freezed
+      dropdownItems: null == dropdownItems
           ? _value.dropdownItems
           : dropdownItems // ignore: cast_nullable_to_non_nullable
               as List<DropdownMenuItem<String>>,
-      cryptoAddresses: cryptoAddresses == freezed
+      cryptoAddresses: null == cryptoAddresses
           ? _value.cryptoAddresses
           : cryptoAddresses // ignore: cast_nullable_to_non_nullable
               as List<CryptoWallet>,
-      generalCryptoAddresses: generalCryptoAddresses == freezed
+      generalCryptoAddresses: null == generalCryptoAddresses
           ? _value.generalCryptoAddresses
           : generalCryptoAddresses // ignore: cast_nullable_to_non_nullable
               as List<CryptoWallet>,
-      bankAddresses: bankAddresses == freezed
+      bankAddresses: null == bankAddresses
           ? _value.bankAddresses
           : bankAddresses // ignore: cast_nullable_to_non_nullable
               as List<BankAddress>,
-    ));
+    ) as $Val);
   }
 }
 
@@ -175,6 +185,7 @@ abstract class _$$_PaymentMethodStateCopyWith<$Res>
           $Res Function(_$_PaymentMethodState) then) =
       __$$_PaymentMethodStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String bankName,
       String accountNumber,
@@ -186,6 +197,7 @@ abstract class _$$_PaymentMethodStateCopyWith<$Res>
       String network,
       String address,
       String platform,
+      String accountType,
       bool isGeneral,
       bool isloading,
       int? selectedNetwork,
@@ -197,101 +209,104 @@ abstract class _$$_PaymentMethodStateCopyWith<$Res>
 
 /// @nodoc
 class __$$_PaymentMethodStateCopyWithImpl<$Res>
-    extends _$PaymentMethodStateCopyWithImpl<$Res>
+    extends _$PaymentMethodStateCopyWithImpl<$Res, _$_PaymentMethodState>
     implements _$$_PaymentMethodStateCopyWith<$Res> {
   __$$_PaymentMethodStateCopyWithImpl(
       _$_PaymentMethodState _value, $Res Function(_$_PaymentMethodState) _then)
-      : super(_value, (v) => _then(v as _$_PaymentMethodState));
+      : super(_value, _then);
 
-  @override
-  _$_PaymentMethodState get _value => super._value as _$_PaymentMethodState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? bankName = freezed,
-    Object? accountNumber = freezed,
-    Object? isLoading = freezed,
-    Object? failure = freezed,
-    Object? success = freezed,
-    Object? walletLabel = freezed,
-    Object? coin = freezed,
-    Object? network = freezed,
-    Object? address = freezed,
-    Object? platform = freezed,
-    Object? isGeneral = freezed,
-    Object? isloading = freezed,
+    Object? bankName = null,
+    Object? accountNumber = null,
+    Object? isLoading = null,
+    Object? failure = null,
+    Object? success = null,
+    Object? walletLabel = null,
+    Object? coin = null,
+    Object? network = null,
+    Object? address = null,
+    Object? platform = null,
+    Object? accountType = null,
+    Object? isGeneral = null,
+    Object? isloading = null,
     Object? selectedNetwork = freezed,
-    Object? dropdownItems = freezed,
-    Object? cryptoAddresses = freezed,
-    Object? generalCryptoAddresses = freezed,
-    Object? bankAddresses = freezed,
+    Object? dropdownItems = null,
+    Object? cryptoAddresses = null,
+    Object? generalCryptoAddresses = null,
+    Object? bankAddresses = null,
   }) {
     return _then(_$_PaymentMethodState(
-      bankName: bankName == freezed
+      bankName: null == bankName
           ? _value.bankName
           : bankName // ignore: cast_nullable_to_non_nullable
               as String,
-      accountNumber: accountNumber == freezed
+      accountNumber: null == accountNumber
           ? _value.accountNumber
           : accountNumber // ignore: cast_nullable_to_non_nullable
               as String,
-      isLoading: isLoading == freezed
+      isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
-      failure: failure == freezed
+      failure: null == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as String,
-      success: success == freezed
+      success: null == success
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
               as String,
-      walletLabel: walletLabel == freezed
+      walletLabel: null == walletLabel
           ? _value.walletLabel
           : walletLabel // ignore: cast_nullable_to_non_nullable
               as String,
-      coin: coin == freezed
+      coin: null == coin
           ? _value.coin
           : coin // ignore: cast_nullable_to_non_nullable
               as String,
-      network: network == freezed
+      network: null == network
           ? _value.network
           : network // ignore: cast_nullable_to_non_nullable
               as String,
-      address: address == freezed
+      address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String,
-      platform: platform == freezed
+      platform: null == platform
           ? _value.platform
           : platform // ignore: cast_nullable_to_non_nullable
               as String,
-      isGeneral: isGeneral == freezed
+      accountType: null == accountType
+          ? _value.accountType
+          : accountType // ignore: cast_nullable_to_non_nullable
+              as String,
+      isGeneral: null == isGeneral
           ? _value.isGeneral
           : isGeneral // ignore: cast_nullable_to_non_nullable
               as bool,
-      isloading: isloading == freezed
+      isloading: null == isloading
           ? _value.isloading
           : isloading // ignore: cast_nullable_to_non_nullable
               as bool,
-      selectedNetwork: selectedNetwork == freezed
+      selectedNetwork: freezed == selectedNetwork
           ? _value.selectedNetwork
           : selectedNetwork // ignore: cast_nullable_to_non_nullable
               as int?,
-      dropdownItems: dropdownItems == freezed
+      dropdownItems: null == dropdownItems
           ? _value._dropdownItems
           : dropdownItems // ignore: cast_nullable_to_non_nullable
               as List<DropdownMenuItem<String>>,
-      cryptoAddresses: cryptoAddresses == freezed
+      cryptoAddresses: null == cryptoAddresses
           ? _value._cryptoAddresses
           : cryptoAddresses // ignore: cast_nullable_to_non_nullable
               as List<CryptoWallet>,
-      generalCryptoAddresses: generalCryptoAddresses == freezed
+      generalCryptoAddresses: null == generalCryptoAddresses
           ? _value._generalCryptoAddresses
           : generalCryptoAddresses // ignore: cast_nullable_to_non_nullable
               as List<CryptoWallet>,
-      bankAddresses: bankAddresses == freezed
+      bankAddresses: null == bankAddresses
           ? _value._bankAddresses
           : bankAddresses // ignore: cast_nullable_to_non_nullable
               as List<BankAddress>,
@@ -313,6 +328,7 @@ class _$_PaymentMethodState extends _PaymentMethodState {
       required this.network,
       required this.address,
       required this.platform,
+      required this.accountType,
       required this.isGeneral,
       required this.isloading,
       required this.selectedNetwork,
@@ -347,6 +363,8 @@ class _$_PaymentMethodState extends _PaymentMethodState {
   @override
   final String platform;
   @override
+  final String accountType;
+  @override
   final bool isGeneral;
   @override
   final bool isloading;
@@ -355,6 +373,7 @@ class _$_PaymentMethodState extends _PaymentMethodState {
   final List<DropdownMenuItem<String>> _dropdownItems;
   @override
   List<DropdownMenuItem<String>> get dropdownItems {
+    if (_dropdownItems is EqualUnmodifiableListView) return _dropdownItems;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_dropdownItems);
   }
@@ -362,6 +381,7 @@ class _$_PaymentMethodState extends _PaymentMethodState {
   final List<CryptoWallet> _cryptoAddresses;
   @override
   List<CryptoWallet> get cryptoAddresses {
+    if (_cryptoAddresses is EqualUnmodifiableListView) return _cryptoAddresses;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_cryptoAddresses);
   }
@@ -369,6 +389,8 @@ class _$_PaymentMethodState extends _PaymentMethodState {
   final List<CryptoWallet> _generalCryptoAddresses;
   @override
   List<CryptoWallet> get generalCryptoAddresses {
+    if (_generalCryptoAddresses is EqualUnmodifiableListView)
+      return _generalCryptoAddresses;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_generalCryptoAddresses);
   }
@@ -376,13 +398,14 @@ class _$_PaymentMethodState extends _PaymentMethodState {
   final List<BankAddress> _bankAddresses;
   @override
   List<BankAddress> get bankAddresses {
+    if (_bankAddresses is EqualUnmodifiableListView) return _bankAddresses;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_bankAddresses);
   }
 
   @override
   String toString() {
-    return 'PaymentMethodState(bankName: $bankName, accountNumber: $accountNumber, isLoading: $isLoading, failure: $failure, success: $success, walletLabel: $walletLabel, coin: $coin, network: $network, address: $address, platform: $platform, isGeneral: $isGeneral, isloading: $isloading, selectedNetwork: $selectedNetwork, dropdownItems: $dropdownItems, cryptoAddresses: $cryptoAddresses, generalCryptoAddresses: $generalCryptoAddresses, bankAddresses: $bankAddresses)';
+    return 'PaymentMethodState(bankName: $bankName, accountNumber: $accountNumber, isLoading: $isLoading, failure: $failure, success: $success, walletLabel: $walletLabel, coin: $coin, network: $network, address: $address, platform: $platform, accountType: $accountType, isGeneral: $isGeneral, isloading: $isloading, selectedNetwork: $selectedNetwork, dropdownItems: $dropdownItems, cryptoAddresses: $cryptoAddresses, generalCryptoAddresses: $generalCryptoAddresses, bankAddresses: $bankAddresses)';
   }
 
   @override
@@ -390,22 +413,29 @@ class _$_PaymentMethodState extends _PaymentMethodState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_PaymentMethodState &&
-            const DeepCollectionEquality().equals(other.bankName, bankName) &&
-            const DeepCollectionEquality()
-                .equals(other.accountNumber, accountNumber) &&
-            const DeepCollectionEquality().equals(other.isLoading, isLoading) &&
-            const DeepCollectionEquality().equals(other.failure, failure) &&
-            const DeepCollectionEquality().equals(other.success, success) &&
-            const DeepCollectionEquality()
-                .equals(other.walletLabel, walletLabel) &&
-            const DeepCollectionEquality().equals(other.coin, coin) &&
-            const DeepCollectionEquality().equals(other.network, network) &&
-            const DeepCollectionEquality().equals(other.address, address) &&
-            const DeepCollectionEquality().equals(other.platform, platform) &&
-            const DeepCollectionEquality().equals(other.isGeneral, isGeneral) &&
-            const DeepCollectionEquality().equals(other.isloading, isloading) &&
-            const DeepCollectionEquality()
-                .equals(other.selectedNetwork, selectedNetwork) &&
+            (identical(other.bankName, bankName) ||
+                other.bankName == bankName) &&
+            (identical(other.accountNumber, accountNumber) ||
+                other.accountNumber == accountNumber) &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading) &&
+            (identical(other.failure, failure) || other.failure == failure) &&
+            (identical(other.success, success) || other.success == success) &&
+            (identical(other.walletLabel, walletLabel) ||
+                other.walletLabel == walletLabel) &&
+            (identical(other.coin, coin) || other.coin == coin) &&
+            (identical(other.network, network) || other.network == network) &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.platform, platform) ||
+                other.platform == platform) &&
+            (identical(other.accountType, accountType) ||
+                other.accountType == accountType) &&
+            (identical(other.isGeneral, isGeneral) ||
+                other.isGeneral == isGeneral) &&
+            (identical(other.isloading, isloading) ||
+                other.isloading == isloading) &&
+            (identical(other.selectedNetwork, selectedNetwork) ||
+                other.selectedNetwork == selectedNetwork) &&
             const DeepCollectionEquality()
                 .equals(other._dropdownItems, _dropdownItems) &&
             const DeepCollectionEquality()
@@ -419,19 +449,20 @@ class _$_PaymentMethodState extends _PaymentMethodState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(bankName),
-      const DeepCollectionEquality().hash(accountNumber),
-      const DeepCollectionEquality().hash(isLoading),
-      const DeepCollectionEquality().hash(failure),
-      const DeepCollectionEquality().hash(success),
-      const DeepCollectionEquality().hash(walletLabel),
-      const DeepCollectionEquality().hash(coin),
-      const DeepCollectionEquality().hash(network),
-      const DeepCollectionEquality().hash(address),
-      const DeepCollectionEquality().hash(platform),
-      const DeepCollectionEquality().hash(isGeneral),
-      const DeepCollectionEquality().hash(isloading),
-      const DeepCollectionEquality().hash(selectedNetwork),
+      bankName,
+      accountNumber,
+      isLoading,
+      failure,
+      success,
+      walletLabel,
+      coin,
+      network,
+      address,
+      platform,
+      accountType,
+      isGeneral,
+      isloading,
+      selectedNetwork,
       const DeepCollectionEquality().hash(_dropdownItems),
       const DeepCollectionEquality().hash(_cryptoAddresses),
       const DeepCollectionEquality().hash(_generalCryptoAddresses),
@@ -439,6 +470,7 @@ class _$_PaymentMethodState extends _PaymentMethodState {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_PaymentMethodStateCopyWith<_$_PaymentMethodState> get copyWith =>
       __$$_PaymentMethodStateCopyWithImpl<_$_PaymentMethodState>(
           this, _$identity);
@@ -456,6 +488,7 @@ abstract class _PaymentMethodState extends PaymentMethodState {
       required final String network,
       required final String address,
       required final String platform,
+      required final String accountType,
       required final bool isGeneral,
       required final bool isloading,
       required final int? selectedNetwork,
@@ -485,6 +518,8 @@ abstract class _PaymentMethodState extends PaymentMethodState {
   String get address;
   @override
   String get platform;
+  @override
+  String get accountType;
   @override
   bool get isGeneral;
   @override

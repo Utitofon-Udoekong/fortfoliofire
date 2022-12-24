@@ -57,6 +57,7 @@ import 'package:fortfolio/presentation/home/wallet/withdraw/bank/bank_withdrawal
 import 'package:fortfolio/presentation/home/wallet/withdraw/crypto/crypto_withdrawal.dart';
 import 'package:fortfolio/presentation/home/wallet/withdraw/security/check.dart';
 import 'package:fortfolio/presentation/home/wallet/withdraw/select_method.dart';
+import 'package:fortfolio/presentation/home/wallet/withdraw/harvest_investment.dart';
 import 'package:fortfolio/presentation/home/wallet/withdraw/withdrawal.dart';
 import 'package:fortfolio/presentation/network/no_connection.dart';
 import 'package:fortfolio/presentation/splash/onboarding.dart';
@@ -111,6 +112,7 @@ import 'package:fortfolio/presentation/splash/splash_screen.dart';
   AutoRoute( page: WalletOverview),
   AutoRoute( page: WalletTransactions),
   
+  AutoRoute( page: HarvestInvestment),
   AutoRoute( page: SelectWithdrawalMethod),
   AutoRoute( page: BankWithdrawal),
   AutoRoute( page: CryptoWithdrawal),

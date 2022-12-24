@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'investment_cubit.dart';
 
@@ -43,7 +43,8 @@ mixin _$InvestmentState {
 abstract class $InvestmentStateCopyWith<$Res> {
   factory $InvestmentStateCopyWith(
           InvestmentState value, $Res Function(InvestmentState) then) =
-      _$InvestmentStateCopyWithImpl<$Res>;
+      _$InvestmentStateCopyWithImpl<$Res, InvestmentState>;
+  @useResult
   $Res call(
       {String planName,
       int duration,
@@ -65,104 +66,106 @@ abstract class $InvestmentStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$InvestmentStateCopyWithImpl<$Res>
+class _$InvestmentStateCopyWithImpl<$Res, $Val extends InvestmentState>
     implements $InvestmentStateCopyWith<$Res> {
   _$InvestmentStateCopyWithImpl(this._value, this._then);
 
-  final InvestmentState _value;
   // ignore: unused_field
-  final $Res Function(InvestmentState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? planName = freezed,
-    Object? duration = freezed,
-    Object? amountInvested = freezed,
-    Object? roi = freezed,
-    Object? failure = freezed,
-    Object? success = freezed,
-    Object? agreementAccepted = freezed,
-    Object? isLoading = freezed,
-    Object? exchangeType = freezed,
-    Object? coin = freezed,
-    Object? bankAccountType = freezed,
-    Object? isSelected = freezed,
-    Object? durations = freezed,
-    Object? paymentMethod = freezed,
-    Object? baseAmount = freezed,
-    Object? charge = freezed,
-    Object? paymentStatus = freezed,
+    Object? planName = null,
+    Object? duration = null,
+    Object? amountInvested = null,
+    Object? roi = null,
+    Object? failure = null,
+    Object? success = null,
+    Object? agreementAccepted = null,
+    Object? isLoading = null,
+    Object? exchangeType = null,
+    Object? coin = null,
+    Object? bankAccountType = null,
+    Object? isSelected = null,
+    Object? durations = null,
+    Object? paymentMethod = null,
+    Object? baseAmount = null,
+    Object? charge = null,
+    Object? paymentStatus = null,
   }) {
     return _then(_value.copyWith(
-      planName: planName == freezed
+      planName: null == planName
           ? _value.planName
           : planName // ignore: cast_nullable_to_non_nullable
               as String,
-      duration: duration == freezed
+      duration: null == duration
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
               as int,
-      amountInvested: amountInvested == freezed
+      amountInvested: null == amountInvested
           ? _value.amountInvested
           : amountInvested // ignore: cast_nullable_to_non_nullable
               as double,
-      roi: roi == freezed
+      roi: null == roi
           ? _value.roi
           : roi // ignore: cast_nullable_to_non_nullable
               as int,
-      failure: failure == freezed
+      failure: null == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as String,
-      success: success == freezed
+      success: null == success
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
               as String,
-      agreementAccepted: agreementAccepted == freezed
+      agreementAccepted: null == agreementAccepted
           ? _value.agreementAccepted
           : agreementAccepted // ignore: cast_nullable_to_non_nullable
               as bool,
-      isLoading: isLoading == freezed
+      isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
-      exchangeType: exchangeType == freezed
+      exchangeType: null == exchangeType
           ? _value.exchangeType
           : exchangeType // ignore: cast_nullable_to_non_nullable
               as String,
-      coin: coin == freezed
+      coin: null == coin
           ? _value.coin
           : coin // ignore: cast_nullable_to_non_nullable
               as String,
-      bankAccountType: bankAccountType == freezed
+      bankAccountType: null == bankAccountType
           ? _value.bankAccountType
           : bankAccountType // ignore: cast_nullable_to_non_nullable
               as String,
-      isSelected: isSelected == freezed
+      isSelected: null == isSelected
           ? _value.isSelected
           : isSelected // ignore: cast_nullable_to_non_nullable
               as List<bool>,
-      durations: durations == freezed
+      durations: null == durations
           ? _value.durations
           : durations // ignore: cast_nullable_to_non_nullable
               as List<int>,
-      paymentMethod: paymentMethod == freezed
+      paymentMethod: null == paymentMethod
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
               as String,
-      baseAmount: baseAmount == freezed
+      baseAmount: null == baseAmount
           ? _value.baseAmount
           : baseAmount // ignore: cast_nullable_to_non_nullable
               as double,
-      charge: charge == freezed
+      charge: null == charge
           ? _value.charge
           : charge // ignore: cast_nullable_to_non_nullable
               as ChargeObject,
-      paymentStatus: paymentStatus == freezed
+      paymentStatus: null == paymentStatus
           ? _value.paymentStatus
           : paymentStatus // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
@@ -173,6 +176,7 @@ abstract class _$$_InvestmentStateCopyWith<$Res>
           _$_InvestmentState value, $Res Function(_$_InvestmentState) then) =
       __$$_InvestmentStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String planName,
       int duration,
@@ -195,101 +199,99 @@ abstract class _$$_InvestmentStateCopyWith<$Res>
 
 /// @nodoc
 class __$$_InvestmentStateCopyWithImpl<$Res>
-    extends _$InvestmentStateCopyWithImpl<$Res>
+    extends _$InvestmentStateCopyWithImpl<$Res, _$_InvestmentState>
     implements _$$_InvestmentStateCopyWith<$Res> {
   __$$_InvestmentStateCopyWithImpl(
       _$_InvestmentState _value, $Res Function(_$_InvestmentState) _then)
-      : super(_value, (v) => _then(v as _$_InvestmentState));
+      : super(_value, _then);
 
-  @override
-  _$_InvestmentState get _value => super._value as _$_InvestmentState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? planName = freezed,
-    Object? duration = freezed,
-    Object? amountInvested = freezed,
-    Object? roi = freezed,
-    Object? failure = freezed,
-    Object? success = freezed,
-    Object? agreementAccepted = freezed,
-    Object? isLoading = freezed,
-    Object? exchangeType = freezed,
-    Object? coin = freezed,
-    Object? bankAccountType = freezed,
-    Object? isSelected = freezed,
-    Object? durations = freezed,
-    Object? paymentMethod = freezed,
-    Object? baseAmount = freezed,
-    Object? charge = freezed,
-    Object? paymentStatus = freezed,
+    Object? planName = null,
+    Object? duration = null,
+    Object? amountInvested = null,
+    Object? roi = null,
+    Object? failure = null,
+    Object? success = null,
+    Object? agreementAccepted = null,
+    Object? isLoading = null,
+    Object? exchangeType = null,
+    Object? coin = null,
+    Object? bankAccountType = null,
+    Object? isSelected = null,
+    Object? durations = null,
+    Object? paymentMethod = null,
+    Object? baseAmount = null,
+    Object? charge = null,
+    Object? paymentStatus = null,
   }) {
     return _then(_$_InvestmentState(
-      planName: planName == freezed
+      planName: null == planName
           ? _value.planName
           : planName // ignore: cast_nullable_to_non_nullable
               as String,
-      duration: duration == freezed
+      duration: null == duration
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
               as int,
-      amountInvested: amountInvested == freezed
+      amountInvested: null == amountInvested
           ? _value.amountInvested
           : amountInvested // ignore: cast_nullable_to_non_nullable
               as double,
-      roi: roi == freezed
+      roi: null == roi
           ? _value.roi
           : roi // ignore: cast_nullable_to_non_nullable
               as int,
-      failure: failure == freezed
+      failure: null == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as String,
-      success: success == freezed
+      success: null == success
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
               as String,
-      agreementAccepted: agreementAccepted == freezed
+      agreementAccepted: null == agreementAccepted
           ? _value.agreementAccepted
           : agreementAccepted // ignore: cast_nullable_to_non_nullable
               as bool,
-      isLoading: isLoading == freezed
+      isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
-      exchangeType: exchangeType == freezed
+      exchangeType: null == exchangeType
           ? _value.exchangeType
           : exchangeType // ignore: cast_nullable_to_non_nullable
               as String,
-      coin: coin == freezed
+      coin: null == coin
           ? _value.coin
           : coin // ignore: cast_nullable_to_non_nullable
               as String,
-      bankAccountType: bankAccountType == freezed
+      bankAccountType: null == bankAccountType
           ? _value.bankAccountType
           : bankAccountType // ignore: cast_nullable_to_non_nullable
               as String,
-      isSelected: isSelected == freezed
+      isSelected: null == isSelected
           ? _value._isSelected
           : isSelected // ignore: cast_nullable_to_non_nullable
               as List<bool>,
-      durations: durations == freezed
+      durations: null == durations
           ? _value._durations
           : durations // ignore: cast_nullable_to_non_nullable
               as List<int>,
-      paymentMethod: paymentMethod == freezed
+      paymentMethod: null == paymentMethod
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
               as String,
-      baseAmount: baseAmount == freezed
+      baseAmount: null == baseAmount
           ? _value.baseAmount
           : baseAmount // ignore: cast_nullable_to_non_nullable
               as double,
-      charge: charge == freezed
+      charge: null == charge
           ? _value.charge
           : charge // ignore: cast_nullable_to_non_nullable
               as ChargeObject,
-      paymentStatus: paymentStatus == freezed
+      paymentStatus: null == paymentStatus
           ? _value.paymentStatus
           : paymentStatus // ignore: cast_nullable_to_non_nullable
               as String,
@@ -347,6 +349,7 @@ class _$_InvestmentState extends _InvestmentState {
   final List<bool> _isSelected;
   @override
   List<bool> get isSelected {
+    if (_isSelected is EqualUnmodifiableListView) return _isSelected;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_isSelected);
   }
@@ -354,6 +357,7 @@ class _$_InvestmentState extends _InvestmentState {
   final List<int> _durations;
   @override
   List<int> get durations {
+    if (_durations is EqualUnmodifiableListView) return _durations;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_durations);
   }
@@ -377,57 +381,61 @@ class _$_InvestmentState extends _InvestmentState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_InvestmentState &&
-            const DeepCollectionEquality().equals(other.planName, planName) &&
-            const DeepCollectionEquality().equals(other.duration, duration) &&
-            const DeepCollectionEquality()
-                .equals(other.amountInvested, amountInvested) &&
-            const DeepCollectionEquality().equals(other.roi, roi) &&
-            const DeepCollectionEquality().equals(other.failure, failure) &&
-            const DeepCollectionEquality().equals(other.success, success) &&
-            const DeepCollectionEquality()
-                .equals(other.agreementAccepted, agreementAccepted) &&
-            const DeepCollectionEquality().equals(other.isLoading, isLoading) &&
-            const DeepCollectionEquality()
-                .equals(other.exchangeType, exchangeType) &&
-            const DeepCollectionEquality().equals(other.coin, coin) &&
-            const DeepCollectionEquality()
-                .equals(other.bankAccountType, bankAccountType) &&
+            (identical(other.planName, planName) ||
+                other.planName == planName) &&
+            (identical(other.duration, duration) ||
+                other.duration == duration) &&
+            (identical(other.amountInvested, amountInvested) ||
+                other.amountInvested == amountInvested) &&
+            (identical(other.roi, roi) || other.roi == roi) &&
+            (identical(other.failure, failure) || other.failure == failure) &&
+            (identical(other.success, success) || other.success == success) &&
+            (identical(other.agreementAccepted, agreementAccepted) ||
+                other.agreementAccepted == agreementAccepted) &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading) &&
+            (identical(other.exchangeType, exchangeType) ||
+                other.exchangeType == exchangeType) &&
+            (identical(other.coin, coin) || other.coin == coin) &&
+            (identical(other.bankAccountType, bankAccountType) ||
+                other.bankAccountType == bankAccountType) &&
             const DeepCollectionEquality()
                 .equals(other._isSelected, _isSelected) &&
             const DeepCollectionEquality()
                 .equals(other._durations, _durations) &&
-            const DeepCollectionEquality()
-                .equals(other.paymentMethod, paymentMethod) &&
-            const DeepCollectionEquality()
-                .equals(other.baseAmount, baseAmount) &&
-            const DeepCollectionEquality().equals(other.charge, charge) &&
-            const DeepCollectionEquality()
-                .equals(other.paymentStatus, paymentStatus));
+            (identical(other.paymentMethod, paymentMethod) ||
+                other.paymentMethod == paymentMethod) &&
+            (identical(other.baseAmount, baseAmount) ||
+                other.baseAmount == baseAmount) &&
+            (identical(other.charge, charge) || other.charge == charge) &&
+            (identical(other.paymentStatus, paymentStatus) ||
+                other.paymentStatus == paymentStatus));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(planName),
-      const DeepCollectionEquality().hash(duration),
-      const DeepCollectionEquality().hash(amountInvested),
-      const DeepCollectionEquality().hash(roi),
-      const DeepCollectionEquality().hash(failure),
-      const DeepCollectionEquality().hash(success),
-      const DeepCollectionEquality().hash(agreementAccepted),
-      const DeepCollectionEquality().hash(isLoading),
-      const DeepCollectionEquality().hash(exchangeType),
-      const DeepCollectionEquality().hash(coin),
-      const DeepCollectionEquality().hash(bankAccountType),
+      planName,
+      duration,
+      amountInvested,
+      roi,
+      failure,
+      success,
+      agreementAccepted,
+      isLoading,
+      exchangeType,
+      coin,
+      bankAccountType,
       const DeepCollectionEquality().hash(_isSelected),
       const DeepCollectionEquality().hash(_durations),
-      const DeepCollectionEquality().hash(paymentMethod),
-      const DeepCollectionEquality().hash(baseAmount),
-      const DeepCollectionEquality().hash(charge),
-      const DeepCollectionEquality().hash(paymentStatus));
+      paymentMethod,
+      baseAmount,
+      charge,
+      paymentStatus);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_InvestmentStateCopyWith<_$_InvestmentState> get copyWith =>
       __$$_InvestmentStateCopyWithImpl<_$_InvestmentState>(this, _$identity);
 }

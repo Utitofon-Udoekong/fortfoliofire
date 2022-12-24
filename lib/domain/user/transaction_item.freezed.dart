@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'transaction_item.dart';
 
@@ -37,7 +37,8 @@ mixin _$TransactionItem {
 abstract class $TransactionItemCopyWith<$Res> {
   factory $TransactionItemCopyWith(
           TransactionItem value, $Res Function(TransactionItem) then) =
-      _$TransactionItemCopyWithImpl<$Res>;
+      _$TransactionItemCopyWithImpl<$Res, TransactionItem>;
+  @useResult
   $Res call(
       {String description,
       double amount,
@@ -53,74 +54,76 @@ abstract class $TransactionItemCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TransactionItemCopyWithImpl<$Res>
+class _$TransactionItemCopyWithImpl<$Res, $Val extends TransactionItem>
     implements $TransactionItemCopyWith<$Res> {
   _$TransactionItemCopyWithImpl(this._value, this._then);
 
-  final TransactionItem _value;
   // ignore: unused_field
-  final $Res Function(TransactionItem) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? description = freezed,
-    Object? amount = freezed,
-    Object? traxId = freezed,
-    Object? planName = freezed,
-    Object? status = freezed,
-    Object? createdat = freezed,
-    Object? paymentMethod = freezed,
-    Object? currency = freezed,
-    Object? type = freezed,
-    Object? duration = freezed,
-    Object? roi = freezed,
+    Object? description = null,
+    Object? amount = null,
+    Object? traxId = null,
+    Object? planName = null,
+    Object? status = null,
+    Object? createdat = null,
+    Object? paymentMethod = null,
+    Object? currency = null,
+    Object? type = null,
+    Object? duration = null,
+    Object? roi = null,
   }) {
     return _then(_value.copyWith(
-      description: description == freezed
+      description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      amount: amount == freezed
+      amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as double,
-      traxId: traxId == freezed
+      traxId: null == traxId
           ? _value.traxId
           : traxId // ignore: cast_nullable_to_non_nullable
               as String,
-      planName: planName == freezed
+      planName: null == planName
           ? _value.planName
           : planName // ignore: cast_nullable_to_non_nullable
               as String,
-      status: status == freezed
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-      createdat: createdat == freezed
+      createdat: null == createdat
           ? _value.createdat
           : createdat // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      paymentMethod: paymentMethod == freezed
+      paymentMethod: null == paymentMethod
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
               as String,
-      currency: currency == freezed
+      currency: null == currency
           ? _value.currency
           : currency // ignore: cast_nullable_to_non_nullable
               as String,
-      type: type == freezed
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
-      duration: duration == freezed
+      duration: null == duration
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
               as int,
-      roi: roi == freezed
+      roi: null == roi
           ? _value.roi
           : roi // ignore: cast_nullable_to_non_nullable
               as int,
-    ));
+    ) as $Val);
   }
 }
 
@@ -131,6 +134,7 @@ abstract class _$$_TransactionItemCopyWith<$Res>
           _$_TransactionItem value, $Res Function(_$_TransactionItem) then) =
       __$$_TransactionItemCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String description,
       double amount,
@@ -147,71 +151,69 @@ abstract class _$$_TransactionItemCopyWith<$Res>
 
 /// @nodoc
 class __$$_TransactionItemCopyWithImpl<$Res>
-    extends _$TransactionItemCopyWithImpl<$Res>
+    extends _$TransactionItemCopyWithImpl<$Res, _$_TransactionItem>
     implements _$$_TransactionItemCopyWith<$Res> {
   __$$_TransactionItemCopyWithImpl(
       _$_TransactionItem _value, $Res Function(_$_TransactionItem) _then)
-      : super(_value, (v) => _then(v as _$_TransactionItem));
+      : super(_value, _then);
 
-  @override
-  _$_TransactionItem get _value => super._value as _$_TransactionItem;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? description = freezed,
-    Object? amount = freezed,
-    Object? traxId = freezed,
-    Object? planName = freezed,
-    Object? status = freezed,
-    Object? createdat = freezed,
-    Object? paymentMethod = freezed,
-    Object? currency = freezed,
-    Object? type = freezed,
-    Object? duration = freezed,
-    Object? roi = freezed,
+    Object? description = null,
+    Object? amount = null,
+    Object? traxId = null,
+    Object? planName = null,
+    Object? status = null,
+    Object? createdat = null,
+    Object? paymentMethod = null,
+    Object? currency = null,
+    Object? type = null,
+    Object? duration = null,
+    Object? roi = null,
   }) {
     return _then(_$_TransactionItem(
-      description: description == freezed
+      description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      amount: amount == freezed
+      amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as double,
-      traxId: traxId == freezed
+      traxId: null == traxId
           ? _value.traxId
           : traxId // ignore: cast_nullable_to_non_nullable
               as String,
-      planName: planName == freezed
+      planName: null == planName
           ? _value.planName
           : planName // ignore: cast_nullable_to_non_nullable
               as String,
-      status: status == freezed
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-      createdat: createdat == freezed
+      createdat: null == createdat
           ? _value.createdat
           : createdat // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      paymentMethod: paymentMethod == freezed
+      paymentMethod: null == paymentMethod
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
               as String,
-      currency: currency == freezed
+      currency: null == currency
           ? _value.currency
           : currency // ignore: cast_nullable_to_non_nullable
               as String,
-      type: type == freezed
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
-      duration: duration == freezed
+      duration: null == duration
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
               as int,
-      roi: roi == freezed
+      roi: null == roi
           ? _value.roi
           : roi // ignore: cast_nullable_to_non_nullable
               as int,
@@ -268,38 +270,43 @@ class _$_TransactionItem implements _TransactionItem {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TransactionItem &&
-            const DeepCollectionEquality()
-                .equals(other.description, description) &&
-            const DeepCollectionEquality().equals(other.amount, amount) &&
-            const DeepCollectionEquality().equals(other.traxId, traxId) &&
-            const DeepCollectionEquality().equals(other.planName, planName) &&
-            const DeepCollectionEquality().equals(other.status, status) &&
-            const DeepCollectionEquality().equals(other.createdat, createdat) &&
-            const DeepCollectionEquality()
-                .equals(other.paymentMethod, paymentMethod) &&
-            const DeepCollectionEquality().equals(other.currency, currency) &&
-            const DeepCollectionEquality().equals(other.type, type) &&
-            const DeepCollectionEquality().equals(other.duration, duration) &&
-            const DeepCollectionEquality().equals(other.roi, roi));
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.amount, amount) || other.amount == amount) &&
+            (identical(other.traxId, traxId) || other.traxId == traxId) &&
+            (identical(other.planName, planName) ||
+                other.planName == planName) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.createdat, createdat) ||
+                other.createdat == createdat) &&
+            (identical(other.paymentMethod, paymentMethod) ||
+                other.paymentMethod == paymentMethod) &&
+            (identical(other.currency, currency) ||
+                other.currency == currency) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.duration, duration) ||
+                other.duration == duration) &&
+            (identical(other.roi, roi) || other.roi == roi));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(description),
-      const DeepCollectionEquality().hash(amount),
-      const DeepCollectionEquality().hash(traxId),
-      const DeepCollectionEquality().hash(planName),
-      const DeepCollectionEquality().hash(status),
-      const DeepCollectionEquality().hash(createdat),
-      const DeepCollectionEquality().hash(paymentMethod),
-      const DeepCollectionEquality().hash(currency),
-      const DeepCollectionEquality().hash(type),
-      const DeepCollectionEquality().hash(duration),
-      const DeepCollectionEquality().hash(roi));
+      description,
+      amount,
+      traxId,
+      planName,
+      status,
+      createdat,
+      paymentMethod,
+      currency,
+      type,
+      duration,
+      roi);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_TransactionItemCopyWith<_$_TransactionItem> get copyWith =>
       __$$_TransactionItemCopyWithImpl<_$_TransactionItem>(this, _$identity);
 }

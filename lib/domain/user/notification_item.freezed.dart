@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'notification_item.dart';
 
@@ -31,7 +31,8 @@ mixin _$NotificationItem {
 abstract class $NotificationItemCopyWith<$Res> {
   factory $NotificationItemCopyWith(
           NotificationItem value, $Res Function(NotificationItem) then) =
-      _$NotificationItemCopyWithImpl<$Res>;
+      _$NotificationItemCopyWithImpl<$Res, NotificationItem>;
+  @useResult
   $Res call(
       {String id,
       String type,
@@ -41,44 +42,46 @@ abstract class $NotificationItemCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$NotificationItemCopyWithImpl<$Res>
+class _$NotificationItemCopyWithImpl<$Res, $Val extends NotificationItem>
     implements $NotificationItemCopyWith<$Res> {
   _$NotificationItemCopyWithImpl(this._value, this._then);
 
-  final NotificationItem _value;
   // ignore: unused_field
-  final $Res Function(NotificationItem) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? type = freezed,
-    Object? title = freezed,
-    Object? createdat = freezed,
-    Object? status = freezed,
+    Object? id = null,
+    Object? type = null,
+    Object? title = null,
+    Object? createdat = null,
+    Object? status = null,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      type: type == freezed
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
-      title: title == freezed
+      title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      createdat: createdat == freezed
+      createdat: null == createdat
           ? _value.createdat
           : createdat // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      status: status == freezed
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
@@ -89,6 +92,7 @@ abstract class _$$_NotificationItemCopyWith<$Res>
           _$_NotificationItem value, $Res Function(_$_NotificationItem) then) =
       __$$_NotificationItemCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String id,
       String type,
@@ -99,41 +103,39 @@ abstract class _$$_NotificationItemCopyWith<$Res>
 
 /// @nodoc
 class __$$_NotificationItemCopyWithImpl<$Res>
-    extends _$NotificationItemCopyWithImpl<$Res>
+    extends _$NotificationItemCopyWithImpl<$Res, _$_NotificationItem>
     implements _$$_NotificationItemCopyWith<$Res> {
   __$$_NotificationItemCopyWithImpl(
       _$_NotificationItem _value, $Res Function(_$_NotificationItem) _then)
-      : super(_value, (v) => _then(v as _$_NotificationItem));
+      : super(_value, _then);
 
-  @override
-  _$_NotificationItem get _value => super._value as _$_NotificationItem;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? type = freezed,
-    Object? title = freezed,
-    Object? createdat = freezed,
-    Object? status = freezed,
+    Object? id = null,
+    Object? type = null,
+    Object? title = null,
+    Object? createdat = null,
+    Object? status = null,
   }) {
     return _then(_$_NotificationItem(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      type: type == freezed
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
-      title: title == freezed
+      title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      createdat: createdat == freezed
+      createdat: null == createdat
           ? _value.createdat
           : createdat // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      status: status == freezed
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
@@ -173,24 +175,21 @@ class _$_NotificationItem extends _NotificationItem {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_NotificationItem &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.type, type) &&
-            const DeepCollectionEquality().equals(other.title, title) &&
-            const DeepCollectionEquality().equals(other.createdat, createdat) &&
-            const DeepCollectionEquality().equals(other.status, status));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.createdat, createdat) ||
+                other.createdat == createdat) &&
+            (identical(other.status, status) || other.status == status));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(type),
-      const DeepCollectionEquality().hash(title),
-      const DeepCollectionEquality().hash(createdat),
-      const DeepCollectionEquality().hash(status));
+  int get hashCode =>
+      Object.hash(runtimeType, id, type, title, createdat, status);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_NotificationItemCopyWith<_$_NotificationItem> get copyWith =>
       __$$_NotificationItemCopyWithImpl<_$_NotificationItem>(this, _$identity);
 }

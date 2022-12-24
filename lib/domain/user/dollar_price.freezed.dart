@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'dollar_price.dart';
 
@@ -28,33 +28,37 @@ mixin _$DollarPrice {
 abstract class $DollarPriceCopyWith<$Res> {
   factory $DollarPriceCopyWith(
           DollarPrice value, $Res Function(DollarPrice) then) =
-      _$DollarPriceCopyWithImpl<$Res>;
+      _$DollarPriceCopyWithImpl<$Res, DollarPrice>;
+  @useResult
   $Res call({int buyPrice, int sellPrice});
 }
 
 /// @nodoc
-class _$DollarPriceCopyWithImpl<$Res> implements $DollarPriceCopyWith<$Res> {
+class _$DollarPriceCopyWithImpl<$Res, $Val extends DollarPrice>
+    implements $DollarPriceCopyWith<$Res> {
   _$DollarPriceCopyWithImpl(this._value, this._then);
 
-  final DollarPrice _value;
   // ignore: unused_field
-  final $Res Function(DollarPrice) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? buyPrice = freezed,
-    Object? sellPrice = freezed,
+    Object? buyPrice = null,
+    Object? sellPrice = null,
   }) {
     return _then(_value.copyWith(
-      buyPrice: buyPrice == freezed
+      buyPrice: null == buyPrice
           ? _value.buyPrice
           : buyPrice // ignore: cast_nullable_to_non_nullable
               as int,
-      sellPrice: sellPrice == freezed
+      sellPrice: null == sellPrice
           ? _value.sellPrice
           : sellPrice // ignore: cast_nullable_to_non_nullable
               as int,
-    ));
+    ) as $Val);
   }
 }
 
@@ -65,30 +69,30 @@ abstract class _$$_DollarPriceCopyWith<$Res>
           _$_DollarPrice value, $Res Function(_$_DollarPrice) then) =
       __$$_DollarPriceCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({int buyPrice, int sellPrice});
 }
 
 /// @nodoc
-class __$$_DollarPriceCopyWithImpl<$Res> extends _$DollarPriceCopyWithImpl<$Res>
+class __$$_DollarPriceCopyWithImpl<$Res>
+    extends _$DollarPriceCopyWithImpl<$Res, _$_DollarPrice>
     implements _$$_DollarPriceCopyWith<$Res> {
   __$$_DollarPriceCopyWithImpl(
       _$_DollarPrice _value, $Res Function(_$_DollarPrice) _then)
-      : super(_value, (v) => _then(v as _$_DollarPrice));
+      : super(_value, _then);
 
-  @override
-  _$_DollarPrice get _value => super._value as _$_DollarPrice;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? buyPrice = freezed,
-    Object? sellPrice = freezed,
+    Object? buyPrice = null,
+    Object? sellPrice = null,
   }) {
     return _then(_$_DollarPrice(
-      buyPrice: buyPrice == freezed
+      buyPrice: null == buyPrice
           ? _value.buyPrice
           : buyPrice // ignore: cast_nullable_to_non_nullable
               as int,
-      sellPrice: sellPrice == freezed
+      sellPrice: null == sellPrice
           ? _value.sellPrice
           : sellPrice // ignore: cast_nullable_to_non_nullable
               as int,
@@ -116,18 +120,18 @@ class _$_DollarPrice implements _DollarPrice {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_DollarPrice &&
-            const DeepCollectionEquality().equals(other.buyPrice, buyPrice) &&
-            const DeepCollectionEquality().equals(other.sellPrice, sellPrice));
+            (identical(other.buyPrice, buyPrice) ||
+                other.buyPrice == buyPrice) &&
+            (identical(other.sellPrice, sellPrice) ||
+                other.sellPrice == sellPrice));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(buyPrice),
-      const DeepCollectionEquality().hash(sellPrice));
+  int get hashCode => Object.hash(runtimeType, buyPrice, sellPrice);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_DollarPriceCopyWith<_$_DollarPrice> get copyWith =>
       __$$_DollarPriceCopyWithImpl<_$_DollarPrice>(this, _$identity);
 }

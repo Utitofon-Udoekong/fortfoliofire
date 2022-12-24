@@ -11,6 +11,7 @@ abstract class BankAddressDTO implements _$BankAddressDTO {
   const factory BankAddressDTO({
     required String bankName,
     required String accountNumber,
+    required String accountType,
     required String userName,
     required String id,
     required String trax,
@@ -20,6 +21,7 @@ abstract class BankAddressDTO implements _$BankAddressDTO {
   factory BankAddressDTO.fromDomain(BankAddress bankAddress) {
     return BankAddressDTO(
         accountNumber: bankAddress.accountNumber,
+        accountType: bankAddress.accountType,
         bankName: bankAddress.bankName,
         trax: bankAddress.trax,
         type: bankAddress.type,
@@ -45,6 +47,7 @@ extension BankAddressDTOX on BankAddressDTO {
     return BankAddress(
         bankName: bankName,
         accountNumber: accountNumber,
+        accountType: accountType,
         userName: userName,
         id: id,
         trax: trax,

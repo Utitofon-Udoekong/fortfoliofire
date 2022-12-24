@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'dashboard_cubit.dart';
 
@@ -29,39 +29,42 @@ mixin _$DashboardState {
 abstract class $DashboardStateCopyWith<$Res> {
   factory $DashboardStateCopyWith(
           DashboardState value, $Res Function(DashboardState) then) =
-      _$DashboardStateCopyWithImpl<$Res>;
+      _$DashboardStateCopyWithImpl<$Res, DashboardState>;
+  @useResult
   $Res call({List<NewsModel> newsList, bool loading, String failure});
 }
 
 /// @nodoc
-class _$DashboardStateCopyWithImpl<$Res>
+class _$DashboardStateCopyWithImpl<$Res, $Val extends DashboardState>
     implements $DashboardStateCopyWith<$Res> {
   _$DashboardStateCopyWithImpl(this._value, this._then);
 
-  final DashboardState _value;
   // ignore: unused_field
-  final $Res Function(DashboardState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? newsList = freezed,
-    Object? loading = freezed,
-    Object? failure = freezed,
+    Object? newsList = null,
+    Object? loading = null,
+    Object? failure = null,
   }) {
     return _then(_value.copyWith(
-      newsList: newsList == freezed
+      newsList: null == newsList
           ? _value.newsList
           : newsList // ignore: cast_nullable_to_non_nullable
               as List<NewsModel>,
-      loading: loading == freezed
+      loading: null == loading
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
-      failure: failure == freezed
+      failure: null == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
@@ -72,36 +75,35 @@ abstract class _$$_DashboardStateCopyWith<$Res>
           _$_DashboardState value, $Res Function(_$_DashboardState) then) =
       __$$_DashboardStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({List<NewsModel> newsList, bool loading, String failure});
 }
 
 /// @nodoc
 class __$$_DashboardStateCopyWithImpl<$Res>
-    extends _$DashboardStateCopyWithImpl<$Res>
+    extends _$DashboardStateCopyWithImpl<$Res, _$_DashboardState>
     implements _$$_DashboardStateCopyWith<$Res> {
   __$$_DashboardStateCopyWithImpl(
       _$_DashboardState _value, $Res Function(_$_DashboardState) _then)
-      : super(_value, (v) => _then(v as _$_DashboardState));
+      : super(_value, _then);
 
-  @override
-  _$_DashboardState get _value => super._value as _$_DashboardState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? newsList = freezed,
-    Object? loading = freezed,
-    Object? failure = freezed,
+    Object? newsList = null,
+    Object? loading = null,
+    Object? failure = null,
   }) {
     return _then(_$_DashboardState(
-      newsList: newsList == freezed
+      newsList: null == newsList
           ? _value._newsList
           : newsList // ignore: cast_nullable_to_non_nullable
               as List<NewsModel>,
-      loading: loading == freezed
+      loading: null == loading
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
-      failure: failure == freezed
+      failure: null == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as String,
@@ -121,6 +123,7 @@ class _$_DashboardState implements _DashboardState {
   final List<NewsModel> _newsList;
   @override
   List<NewsModel> get newsList {
+    if (_newsList is EqualUnmodifiableListView) return _newsList;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_newsList);
   }
@@ -141,19 +144,17 @@ class _$_DashboardState implements _DashboardState {
         (other.runtimeType == runtimeType &&
             other is _$_DashboardState &&
             const DeepCollectionEquality().equals(other._newsList, _newsList) &&
-            const DeepCollectionEquality().equals(other.loading, loading) &&
-            const DeepCollectionEquality().equals(other.failure, failure));
+            (identical(other.loading, loading) || other.loading == loading) &&
+            (identical(other.failure, failure) || other.failure == failure));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_newsList),
-      const DeepCollectionEquality().hash(loading),
-      const DeepCollectionEquality().hash(failure));
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_newsList), loading, failure);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_DashboardStateCopyWith<_$_DashboardState> get copyWith =>
       __$$_DashboardStateCopyWithImpl<_$_DashboardState>(this, _$identity);
 }

@@ -60,7 +60,7 @@ class BankAddressPage extends StatelessWidget {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: state.bankAddresses.map((address) {
-                      return buildtile(address.accountNumber,
+                      return buildtile(address.accountNumber, address.accountType,
                           address.userName, address.bankName, context);
                     }).toList(),
                   );
@@ -72,17 +72,17 @@ class BankAddressPage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
           onPressed: () => context.router.push(const AddBankRoute()),
+          elevation: 5.0,
+          backgroundColor: kWhiteColor,
           child: const Icon(
             Icons.add,
             size: 25,
             color: kPrimaryColor,
-          ),
-          elevation: 5.0,
-          backgroundColor: kWhiteColor),
+          )),
     );
   }
 
-  Widget buildtile(String accNumber, String userName, String bank, BuildContext context) {
+  Widget buildtile(String accNumber, String accType, String userName, String bank, BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(13.0),
       margin: const EdgeInsets.only(bottom: 10),
@@ -94,11 +94,21 @@ class BankAddressPage extends StatelessWidget {
         direction: Axis.vertical,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(
-            accNumber,
-            style:
-                titleText.copyWith(fontSize: 15, fontWeight: FontWeight.w600, color: kWhiteColor),
-          ),
+          Row(children: [
+            Text(
+              accNumber,
+              style: titleText.copyWith(fontSize: 15),
+            ),
+            const SizedBox(width: 20),
+            Container(
+                decoration: BoxDecoration(
+                  color: kPrimaryColor,
+                  borderRadius: BorderRadius.circular(3.0),
+                ),
+                child: Text(accType,
+                    style:
+                        subTitle.copyWith(fontSize: 13, color: Colors.white)))
+          ]),
           const SizedBox(
             height: 8,
           ),

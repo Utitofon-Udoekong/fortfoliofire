@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'calculator_cubit.dart';
 
@@ -36,7 +36,8 @@ mixin _$CalculatorState {
 abstract class $CalculatorStateCopyWith<$Res> {
   factory $CalculatorStateCopyWith(
           CalculatorState value, $Res Function(CalculatorState) then) =
-      _$CalculatorStateCopyWithImpl<$Res>;
+      _$CalculatorStateCopyWithImpl<$Res, CalculatorState>;
+  @useResult
   $Res call(
       {double investmentAmount,
       int duration,
@@ -49,59 +50,61 @@ abstract class $CalculatorStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$CalculatorStateCopyWithImpl<$Res>
+class _$CalculatorStateCopyWithImpl<$Res, $Val extends CalculatorState>
     implements $CalculatorStateCopyWith<$Res> {
   _$CalculatorStateCopyWithImpl(this._value, this._then);
 
-  final CalculatorState _value;
   // ignore: unused_field
-  final $Res Function(CalculatorState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? investmentAmount = freezed,
-    Object? duration = freezed,
-    Object? returnRate = freezed,
-    Object? totalReturns = freezed,
-    Object? selectedPlan = freezed,
-    Object? exchange = freezed,
-    Object? dropdownItems = freezed,
-    Object? durations = freezed,
+    Object? investmentAmount = null,
+    Object? duration = null,
+    Object? returnRate = null,
+    Object? totalReturns = null,
+    Object? selectedPlan = null,
+    Object? exchange = null,
+    Object? dropdownItems = null,
+    Object? durations = null,
   }) {
     return _then(_value.copyWith(
-      investmentAmount: investmentAmount == freezed
+      investmentAmount: null == investmentAmount
           ? _value.investmentAmount
           : investmentAmount // ignore: cast_nullable_to_non_nullable
               as double,
-      duration: duration == freezed
+      duration: null == duration
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
               as int,
-      returnRate: returnRate == freezed
+      returnRate: null == returnRate
           ? _value.returnRate
           : returnRate // ignore: cast_nullable_to_non_nullable
               as int,
-      totalReturns: totalReturns == freezed
+      totalReturns: null == totalReturns
           ? _value.totalReturns
           : totalReturns // ignore: cast_nullable_to_non_nullable
               as double,
-      selectedPlan: selectedPlan == freezed
+      selectedPlan: null == selectedPlan
           ? _value.selectedPlan
           : selectedPlan // ignore: cast_nullable_to_non_nullable
               as String,
-      exchange: exchange == freezed
+      exchange: null == exchange
           ? _value.exchange
           : exchange // ignore: cast_nullable_to_non_nullable
               as String,
-      dropdownItems: dropdownItems == freezed
+      dropdownItems: null == dropdownItems
           ? _value.dropdownItems
           : dropdownItems // ignore: cast_nullable_to_non_nullable
               as List<DropdownMenuItem<String>>,
-      durations: durations == freezed
+      durations: null == durations
           ? _value.durations
           : durations // ignore: cast_nullable_to_non_nullable
               as List<DropdownMenuItem<int>>,
-    ));
+    ) as $Val);
   }
 }
 
@@ -112,6 +115,7 @@ abstract class _$$_CalculatorStateCopyWith<$Res>
           _$_CalculatorState value, $Res Function(_$_CalculatorState) then) =
       __$$_CalculatorStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {double investmentAmount,
       int duration,
@@ -125,56 +129,54 @@ abstract class _$$_CalculatorStateCopyWith<$Res>
 
 /// @nodoc
 class __$$_CalculatorStateCopyWithImpl<$Res>
-    extends _$CalculatorStateCopyWithImpl<$Res>
+    extends _$CalculatorStateCopyWithImpl<$Res, _$_CalculatorState>
     implements _$$_CalculatorStateCopyWith<$Res> {
   __$$_CalculatorStateCopyWithImpl(
       _$_CalculatorState _value, $Res Function(_$_CalculatorState) _then)
-      : super(_value, (v) => _then(v as _$_CalculatorState));
+      : super(_value, _then);
 
-  @override
-  _$_CalculatorState get _value => super._value as _$_CalculatorState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? investmentAmount = freezed,
-    Object? duration = freezed,
-    Object? returnRate = freezed,
-    Object? totalReturns = freezed,
-    Object? selectedPlan = freezed,
-    Object? exchange = freezed,
-    Object? dropdownItems = freezed,
-    Object? durations = freezed,
+    Object? investmentAmount = null,
+    Object? duration = null,
+    Object? returnRate = null,
+    Object? totalReturns = null,
+    Object? selectedPlan = null,
+    Object? exchange = null,
+    Object? dropdownItems = null,
+    Object? durations = null,
   }) {
     return _then(_$_CalculatorState(
-      investmentAmount: investmentAmount == freezed
+      investmentAmount: null == investmentAmount
           ? _value.investmentAmount
           : investmentAmount // ignore: cast_nullable_to_non_nullable
               as double,
-      duration: duration == freezed
+      duration: null == duration
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
               as int,
-      returnRate: returnRate == freezed
+      returnRate: null == returnRate
           ? _value.returnRate
           : returnRate // ignore: cast_nullable_to_non_nullable
               as int,
-      totalReturns: totalReturns == freezed
+      totalReturns: null == totalReturns
           ? _value.totalReturns
           : totalReturns // ignore: cast_nullable_to_non_nullable
               as double,
-      selectedPlan: selectedPlan == freezed
+      selectedPlan: null == selectedPlan
           ? _value.selectedPlan
           : selectedPlan // ignore: cast_nullable_to_non_nullable
               as String,
-      exchange: exchange == freezed
+      exchange: null == exchange
           ? _value.exchange
           : exchange // ignore: cast_nullable_to_non_nullable
               as String,
-      dropdownItems: dropdownItems == freezed
+      dropdownItems: null == dropdownItems
           ? _value._dropdownItems
           : dropdownItems // ignore: cast_nullable_to_non_nullable
               as List<DropdownMenuItem<String>>,
-      durations: durations == freezed
+      durations: null == durations
           ? _value._durations
           : durations // ignore: cast_nullable_to_non_nullable
               as List<DropdownMenuItem<int>>,
@@ -213,6 +215,7 @@ class _$_CalculatorState extends _CalculatorState {
   final List<DropdownMenuItem<String>> _dropdownItems;
   @override
   List<DropdownMenuItem<String>> get dropdownItems {
+    if (_dropdownItems is EqualUnmodifiableListView) return _dropdownItems;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_dropdownItems);
   }
@@ -220,6 +223,7 @@ class _$_CalculatorState extends _CalculatorState {
   final List<DropdownMenuItem<int>> _durations;
   @override
   List<DropdownMenuItem<int>> get durations {
+    if (_durations is EqualUnmodifiableListView) return _durations;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_durations);
   }
@@ -234,16 +238,18 @@ class _$_CalculatorState extends _CalculatorState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CalculatorState &&
-            const DeepCollectionEquality()
-                .equals(other.investmentAmount, investmentAmount) &&
-            const DeepCollectionEquality().equals(other.duration, duration) &&
-            const DeepCollectionEquality()
-                .equals(other.returnRate, returnRate) &&
-            const DeepCollectionEquality()
-                .equals(other.totalReturns, totalReturns) &&
-            const DeepCollectionEquality()
-                .equals(other.selectedPlan, selectedPlan) &&
-            const DeepCollectionEquality().equals(other.exchange, exchange) &&
+            (identical(other.investmentAmount, investmentAmount) ||
+                other.investmentAmount == investmentAmount) &&
+            (identical(other.duration, duration) ||
+                other.duration == duration) &&
+            (identical(other.returnRate, returnRate) ||
+                other.returnRate == returnRate) &&
+            (identical(other.totalReturns, totalReturns) ||
+                other.totalReturns == totalReturns) &&
+            (identical(other.selectedPlan, selectedPlan) ||
+                other.selectedPlan == selectedPlan) &&
+            (identical(other.exchange, exchange) ||
+                other.exchange == exchange) &&
             const DeepCollectionEquality()
                 .equals(other._dropdownItems, _dropdownItems) &&
             const DeepCollectionEquality()
@@ -253,17 +259,18 @@ class _$_CalculatorState extends _CalculatorState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(investmentAmount),
-      const DeepCollectionEquality().hash(duration),
-      const DeepCollectionEquality().hash(returnRate),
-      const DeepCollectionEquality().hash(totalReturns),
-      const DeepCollectionEquality().hash(selectedPlan),
-      const DeepCollectionEquality().hash(exchange),
+      investmentAmount,
+      duration,
+      returnRate,
+      totalReturns,
+      selectedPlan,
+      exchange,
       const DeepCollectionEquality().hash(_dropdownItems),
       const DeepCollectionEquality().hash(_durations));
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_CalculatorStateCopyWith<_$_CalculatorState> get copyWith =>
       __$$_CalculatorStateCopyWithImpl<_$_CalculatorState>(this, _$identity);
 }

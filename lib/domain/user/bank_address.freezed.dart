@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'bank_address.dart';
 
@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$BankAddress {
   String get bankName => throw _privateConstructorUsedError;
   String get accountNumber => throw _privateConstructorUsedError;
+  String get accountType => throw _privateConstructorUsedError;
   String get userName => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   String get trax => throw _privateConstructorUsedError;
@@ -32,10 +33,12 @@ mixin _$BankAddress {
 abstract class $BankAddressCopyWith<$Res> {
   factory $BankAddressCopyWith(
           BankAddress value, $Res Function(BankAddress) then) =
-      _$BankAddressCopyWithImpl<$Res>;
+      _$BankAddressCopyWithImpl<$Res, BankAddress>;
+  @useResult
   $Res call(
       {String bankName,
       String accountNumber,
+      String accountType,
       String userName,
       String id,
       String trax,
@@ -43,48 +46,56 @@ abstract class $BankAddressCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$BankAddressCopyWithImpl<$Res> implements $BankAddressCopyWith<$Res> {
+class _$BankAddressCopyWithImpl<$Res, $Val extends BankAddress>
+    implements $BankAddressCopyWith<$Res> {
   _$BankAddressCopyWithImpl(this._value, this._then);
 
-  final BankAddress _value;
   // ignore: unused_field
-  final $Res Function(BankAddress) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? bankName = freezed,
-    Object? accountNumber = freezed,
-    Object? userName = freezed,
-    Object? id = freezed,
-    Object? trax = freezed,
-    Object? type = freezed,
+    Object? bankName = null,
+    Object? accountNumber = null,
+    Object? accountType = null,
+    Object? userName = null,
+    Object? id = null,
+    Object? trax = null,
+    Object? type = null,
   }) {
     return _then(_value.copyWith(
-      bankName: bankName == freezed
+      bankName: null == bankName
           ? _value.bankName
           : bankName // ignore: cast_nullable_to_non_nullable
               as String,
-      accountNumber: accountNumber == freezed
+      accountNumber: null == accountNumber
           ? _value.accountNumber
           : accountNumber // ignore: cast_nullable_to_non_nullable
               as String,
-      userName: userName == freezed
+      accountType: null == accountType
+          ? _value.accountType
+          : accountType // ignore: cast_nullable_to_non_nullable
+              as String,
+      userName: null == userName
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
               as String,
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      trax: trax == freezed
+      trax: null == trax
           ? _value.trax
           : trax // ignore: cast_nullable_to_non_nullable
               as String,
-      type: type == freezed
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
@@ -95,9 +106,11 @@ abstract class _$$_BankAddressCopyWith<$Res>
           _$_BankAddress value, $Res Function(_$_BankAddress) then) =
       __$$_BankAddressCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String bankName,
       String accountNumber,
+      String accountType,
       String userName,
       String id,
       String trax,
@@ -105,46 +118,50 @@ abstract class _$$_BankAddressCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_BankAddressCopyWithImpl<$Res> extends _$BankAddressCopyWithImpl<$Res>
+class __$$_BankAddressCopyWithImpl<$Res>
+    extends _$BankAddressCopyWithImpl<$Res, _$_BankAddress>
     implements _$$_BankAddressCopyWith<$Res> {
   __$$_BankAddressCopyWithImpl(
       _$_BankAddress _value, $Res Function(_$_BankAddress) _then)
-      : super(_value, (v) => _then(v as _$_BankAddress));
+      : super(_value, _then);
 
-  @override
-  _$_BankAddress get _value => super._value as _$_BankAddress;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? bankName = freezed,
-    Object? accountNumber = freezed,
-    Object? userName = freezed,
-    Object? id = freezed,
-    Object? trax = freezed,
-    Object? type = freezed,
+    Object? bankName = null,
+    Object? accountNumber = null,
+    Object? accountType = null,
+    Object? userName = null,
+    Object? id = null,
+    Object? trax = null,
+    Object? type = null,
   }) {
     return _then(_$_BankAddress(
-      bankName: bankName == freezed
+      bankName: null == bankName
           ? _value.bankName
           : bankName // ignore: cast_nullable_to_non_nullable
               as String,
-      accountNumber: accountNumber == freezed
+      accountNumber: null == accountNumber
           ? _value.accountNumber
           : accountNumber // ignore: cast_nullable_to_non_nullable
               as String,
-      userName: userName == freezed
+      accountType: null == accountType
+          ? _value.accountType
+          : accountType // ignore: cast_nullable_to_non_nullable
+              as String,
+      userName: null == userName
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
               as String,
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      trax: trax == freezed
+      trax: null == trax
           ? _value.trax
           : trax // ignore: cast_nullable_to_non_nullable
               as String,
-      type: type == freezed
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
@@ -158,6 +175,7 @@ class _$_BankAddress extends _BankAddress {
   const _$_BankAddress(
       {required this.bankName,
       required this.accountNumber,
+      required this.accountType,
       required this.userName,
       required this.id,
       required this.trax,
@@ -169,6 +187,8 @@ class _$_BankAddress extends _BankAddress {
   @override
   final String accountNumber;
   @override
+  final String accountType;
+  @override
   final String userName;
   @override
   final String id;
@@ -179,7 +199,7 @@ class _$_BankAddress extends _BankAddress {
 
   @override
   String toString() {
-    return 'BankAddress(bankName: $bankName, accountNumber: $accountNumber, userName: $userName, id: $id, trax: $trax, type: $type)';
+    return 'BankAddress(bankName: $bankName, accountNumber: $accountNumber, accountType: $accountType, userName: $userName, id: $id, trax: $trax, type: $type)';
   }
 
   @override
@@ -187,27 +207,26 @@ class _$_BankAddress extends _BankAddress {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_BankAddress &&
-            const DeepCollectionEquality().equals(other.bankName, bankName) &&
-            const DeepCollectionEquality()
-                .equals(other.accountNumber, accountNumber) &&
-            const DeepCollectionEquality().equals(other.userName, userName) &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.trax, trax) &&
-            const DeepCollectionEquality().equals(other.type, type));
+            (identical(other.bankName, bankName) ||
+                other.bankName == bankName) &&
+            (identical(other.accountNumber, accountNumber) ||
+                other.accountNumber == accountNumber) &&
+            (identical(other.accountType, accountType) ||
+                other.accountType == accountType) &&
+            (identical(other.userName, userName) ||
+                other.userName == userName) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.trax, trax) || other.trax == trax) &&
+            (identical(other.type, type) || other.type == type));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(bankName),
-      const DeepCollectionEquality().hash(accountNumber),
-      const DeepCollectionEquality().hash(userName),
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(trax),
-      const DeepCollectionEquality().hash(type));
+  int get hashCode => Object.hash(runtimeType, bankName, accountNumber,
+      accountType, userName, id, trax, type);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_BankAddressCopyWith<_$_BankAddress> get copyWith =>
       __$$_BankAddressCopyWithImpl<_$_BankAddress>(this, _$identity);
 }
@@ -216,6 +235,7 @@ abstract class _BankAddress extends BankAddress {
   const factory _BankAddress(
       {required final String bankName,
       required final String accountNumber,
+      required final String accountType,
       required final String userName,
       required final String id,
       required final String trax,
@@ -226,6 +246,8 @@ abstract class _BankAddress extends BankAddress {
   String get bankName;
   @override
   String get accountNumber;
+  @override
+  String get accountType;
   @override
   String get userName;
   @override

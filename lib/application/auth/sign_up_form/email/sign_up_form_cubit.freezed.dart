@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'sign_up_form_cubit.dart';
 
@@ -35,7 +35,8 @@ mixin _$SignUpFormState {
 abstract class $SignUpFormStateCopyWith<$Res> {
   factory $SignUpFormStateCopyWith(
           SignUpFormState value, $Res Function(SignUpFormState) then) =
-      _$SignUpFormStateCopyWithImpl<$Res>;
+      _$SignUpFormStateCopyWithImpl<$Res, SignUpFormState>;
+  @useResult
   $Res call(
       {EmailAddress emailAddress,
       UserName firstName,
@@ -49,64 +50,66 @@ abstract class $SignUpFormStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SignUpFormStateCopyWithImpl<$Res>
+class _$SignUpFormStateCopyWithImpl<$Res, $Val extends SignUpFormState>
     implements $SignUpFormStateCopyWith<$Res> {
   _$SignUpFormStateCopyWithImpl(this._value, this._then);
 
-  final SignUpFormState _value;
   // ignore: unused_field
-  final $Res Function(SignUpFormState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? emailAddress = freezed,
-    Object? firstName = freezed,
-    Object? lastName = freezed,
-    Object? password = freezed,
-    Object? isSubmitting = freezed,
-    Object? isObscure = freezed,
-    Object? accepted = freezed,
-    Object? failure = freezed,
-    Object? success = freezed,
+    Object? emailAddress = null,
+    Object? firstName = null,
+    Object? lastName = null,
+    Object? password = null,
+    Object? isSubmitting = null,
+    Object? isObscure = null,
+    Object? accepted = null,
+    Object? failure = null,
+    Object? success = null,
   }) {
     return _then(_value.copyWith(
-      emailAddress: emailAddress == freezed
+      emailAddress: null == emailAddress
           ? _value.emailAddress
           : emailAddress // ignore: cast_nullable_to_non_nullable
               as EmailAddress,
-      firstName: firstName == freezed
+      firstName: null == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
               as UserName,
-      lastName: lastName == freezed
+      lastName: null == lastName
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as UserName,
-      password: password == freezed
+      password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as Password,
-      isSubmitting: isSubmitting == freezed
+      isSubmitting: null == isSubmitting
           ? _value.isSubmitting
           : isSubmitting // ignore: cast_nullable_to_non_nullable
               as bool,
-      isObscure: isObscure == freezed
+      isObscure: null == isObscure
           ? _value.isObscure
           : isObscure // ignore: cast_nullable_to_non_nullable
               as bool,
-      accepted: accepted == freezed
+      accepted: null == accepted
           ? _value.accepted
           : accepted // ignore: cast_nullable_to_non_nullable
               as bool,
-      failure: failure == freezed
+      failure: null == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as String,
-      success: success == freezed
+      success: null == success
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
@@ -117,6 +120,7 @@ abstract class _$$_SignUpFormStateCopyWith<$Res>
           _$_SignUpFormState value, $Res Function(_$_SignUpFormState) then) =
       __$$_SignUpFormStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {EmailAddress emailAddress,
       UserName firstName,
@@ -131,61 +135,59 @@ abstract class _$$_SignUpFormStateCopyWith<$Res>
 
 /// @nodoc
 class __$$_SignUpFormStateCopyWithImpl<$Res>
-    extends _$SignUpFormStateCopyWithImpl<$Res>
+    extends _$SignUpFormStateCopyWithImpl<$Res, _$_SignUpFormState>
     implements _$$_SignUpFormStateCopyWith<$Res> {
   __$$_SignUpFormStateCopyWithImpl(
       _$_SignUpFormState _value, $Res Function(_$_SignUpFormState) _then)
-      : super(_value, (v) => _then(v as _$_SignUpFormState));
+      : super(_value, _then);
 
-  @override
-  _$_SignUpFormState get _value => super._value as _$_SignUpFormState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? emailAddress = freezed,
-    Object? firstName = freezed,
-    Object? lastName = freezed,
-    Object? password = freezed,
-    Object? isSubmitting = freezed,
-    Object? isObscure = freezed,
-    Object? accepted = freezed,
-    Object? failure = freezed,
-    Object? success = freezed,
+    Object? emailAddress = null,
+    Object? firstName = null,
+    Object? lastName = null,
+    Object? password = null,
+    Object? isSubmitting = null,
+    Object? isObscure = null,
+    Object? accepted = null,
+    Object? failure = null,
+    Object? success = null,
   }) {
     return _then(_$_SignUpFormState(
-      emailAddress: emailAddress == freezed
+      emailAddress: null == emailAddress
           ? _value.emailAddress
           : emailAddress // ignore: cast_nullable_to_non_nullable
               as EmailAddress,
-      firstName: firstName == freezed
+      firstName: null == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
               as UserName,
-      lastName: lastName == freezed
+      lastName: null == lastName
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as UserName,
-      password: password == freezed
+      password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as Password,
-      isSubmitting: isSubmitting == freezed
+      isSubmitting: null == isSubmitting
           ? _value.isSubmitting
           : isSubmitting // ignore: cast_nullable_to_non_nullable
               as bool,
-      isObscure: isObscure == freezed
+      isObscure: null == isObscure
           ? _value.isObscure
           : isObscure // ignore: cast_nullable_to_non_nullable
               as bool,
-      accepted: accepted == freezed
+      accepted: null == accepted
           ? _value.accepted
           : accepted // ignore: cast_nullable_to_non_nullable
               as bool,
-      failure: failure == freezed
+      failure: null == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as String,
-      success: success == freezed
+      success: null == success
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
               as String,
@@ -237,34 +239,31 @@ class _$_SignUpFormState extends _SignUpFormState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SignUpFormState &&
-            const DeepCollectionEquality()
-                .equals(other.emailAddress, emailAddress) &&
-            const DeepCollectionEquality().equals(other.firstName, firstName) &&
-            const DeepCollectionEquality().equals(other.lastName, lastName) &&
-            const DeepCollectionEquality().equals(other.password, password) &&
-            const DeepCollectionEquality()
-                .equals(other.isSubmitting, isSubmitting) &&
-            const DeepCollectionEquality().equals(other.isObscure, isObscure) &&
-            const DeepCollectionEquality().equals(other.accepted, accepted) &&
-            const DeepCollectionEquality().equals(other.failure, failure) &&
-            const DeepCollectionEquality().equals(other.success, success));
+            (identical(other.emailAddress, emailAddress) ||
+                other.emailAddress == emailAddress) &&
+            (identical(other.firstName, firstName) ||
+                other.firstName == firstName) &&
+            (identical(other.lastName, lastName) ||
+                other.lastName == lastName) &&
+            (identical(other.password, password) ||
+                other.password == password) &&
+            (identical(other.isSubmitting, isSubmitting) ||
+                other.isSubmitting == isSubmitting) &&
+            (identical(other.isObscure, isObscure) ||
+                other.isObscure == isObscure) &&
+            (identical(other.accepted, accepted) ||
+                other.accepted == accepted) &&
+            (identical(other.failure, failure) || other.failure == failure) &&
+            (identical(other.success, success) || other.success == success));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(emailAddress),
-      const DeepCollectionEquality().hash(firstName),
-      const DeepCollectionEquality().hash(lastName),
-      const DeepCollectionEquality().hash(password),
-      const DeepCollectionEquality().hash(isSubmitting),
-      const DeepCollectionEquality().hash(isObscure),
-      const DeepCollectionEquality().hash(accepted),
-      const DeepCollectionEquality().hash(failure),
-      const DeepCollectionEquality().hash(success));
+  int get hashCode => Object.hash(runtimeType, emailAddress, firstName,
+      lastName, password, isSubmitting, isObscure, accepted, failure, success);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_SignUpFormStateCopyWith<_$_SignUpFormState> get copyWith =>
       __$$_SignUpFormStateCopyWithImpl<_$_SignUpFormState>(this, _$identity);
 }

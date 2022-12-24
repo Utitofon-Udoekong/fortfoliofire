@@ -118,7 +118,7 @@ class FirebaseAuthFacade implements IAuthFacade {
           .then((value) async {
         AuthUserModel authUserModel = AuthUserModel(
             email: emailAddressString,
-            phoneNumber: "+123456",
+            phoneNumber: "",
             firstName: fName,
             lastName: lName,
             balance: 0,

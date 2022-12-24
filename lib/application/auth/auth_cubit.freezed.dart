@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'auth_cubit.dart';
 
@@ -30,7 +30,8 @@ mixin _$AuthState {
 /// @nodoc
 abstract class $AuthStateCopyWith<$Res> {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
-      _$AuthStateCopyWithImpl<$Res>;
+      _$AuthStateCopyWithImpl<$Res, AuthState>;
+  @useResult
   $Res call(
       {AuthUserModel userModel,
       bool isUserCheckedFromAuthFacade,
@@ -42,49 +43,53 @@ abstract class $AuthStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
+class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
+    implements $AuthStateCopyWith<$Res> {
   _$AuthStateCopyWithImpl(this._value, this._then);
 
-  final AuthState _value;
   // ignore: unused_field
-  final $Res Function(AuthState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userModel = freezed,
-    Object? isUserCheckedFromAuthFacade = freezed,
-    Object? buyPrice = freezed,
-    Object? sellPrice = freezed,
-    Object? btcPrice = freezed,
+    Object? userModel = null,
+    Object? isUserCheckedFromAuthFacade = null,
+    Object? buyPrice = null,
+    Object? sellPrice = null,
+    Object? btcPrice = null,
   }) {
     return _then(_value.copyWith(
-      userModel: userModel == freezed
+      userModel: null == userModel
           ? _value.userModel
           : userModel // ignore: cast_nullable_to_non_nullable
               as AuthUserModel,
-      isUserCheckedFromAuthFacade: isUserCheckedFromAuthFacade == freezed
+      isUserCheckedFromAuthFacade: null == isUserCheckedFromAuthFacade
           ? _value.isUserCheckedFromAuthFacade
           : isUserCheckedFromAuthFacade // ignore: cast_nullable_to_non_nullable
               as bool,
-      buyPrice: buyPrice == freezed
+      buyPrice: null == buyPrice
           ? _value.buyPrice
           : buyPrice // ignore: cast_nullable_to_non_nullable
               as int,
-      sellPrice: sellPrice == freezed
+      sellPrice: null == sellPrice
           ? _value.sellPrice
           : sellPrice // ignore: cast_nullable_to_non_nullable
               as int,
-      btcPrice: btcPrice == freezed
+      btcPrice: null == btcPrice
           ? _value.btcPrice
           : btcPrice // ignore: cast_nullable_to_non_nullable
               as double,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $AuthUserModelCopyWith<$Res> get userModel {
     return $AuthUserModelCopyWith<$Res>(_value.userModel, (value) {
-      return _then(_value.copyWith(userModel: value));
+      return _then(_value.copyWith(userModel: value) as $Val);
     });
   }
 }
@@ -95,6 +100,7 @@ abstract class _$$_AuthStateCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
           _$_AuthState value, $Res Function(_$_AuthState) then) =
       __$$_AuthStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {AuthUserModel userModel,
       bool isUserCheckedFromAuthFacade,
@@ -107,41 +113,40 @@ abstract class _$$_AuthStateCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_AuthStateCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
+class __$$_AuthStateCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$_AuthState>
     implements _$$_AuthStateCopyWith<$Res> {
   __$$_AuthStateCopyWithImpl(
       _$_AuthState _value, $Res Function(_$_AuthState) _then)
-      : super(_value, (v) => _then(v as _$_AuthState));
+      : super(_value, _then);
 
-  @override
-  _$_AuthState get _value => super._value as _$_AuthState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userModel = freezed,
-    Object? isUserCheckedFromAuthFacade = freezed,
-    Object? buyPrice = freezed,
-    Object? sellPrice = freezed,
-    Object? btcPrice = freezed,
+    Object? userModel = null,
+    Object? isUserCheckedFromAuthFacade = null,
+    Object? buyPrice = null,
+    Object? sellPrice = null,
+    Object? btcPrice = null,
   }) {
     return _then(_$_AuthState(
-      userModel: userModel == freezed
+      userModel: null == userModel
           ? _value.userModel
           : userModel // ignore: cast_nullable_to_non_nullable
               as AuthUserModel,
-      isUserCheckedFromAuthFacade: isUserCheckedFromAuthFacade == freezed
+      isUserCheckedFromAuthFacade: null == isUserCheckedFromAuthFacade
           ? _value.isUserCheckedFromAuthFacade
           : isUserCheckedFromAuthFacade // ignore: cast_nullable_to_non_nullable
               as bool,
-      buyPrice: buyPrice == freezed
+      buyPrice: null == buyPrice
           ? _value.buyPrice
           : buyPrice // ignore: cast_nullable_to_non_nullable
               as int,
-      sellPrice: sellPrice == freezed
+      sellPrice: null == sellPrice
           ? _value.sellPrice
           : sellPrice // ignore: cast_nullable_to_non_nullable
               as int,
-      btcPrice: btcPrice == freezed
+      btcPrice: null == btcPrice
           ? _value.btcPrice
           : btcPrice // ignore: cast_nullable_to_non_nullable
               as double,
@@ -181,26 +186,27 @@ class _$_AuthState extends _AuthState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AuthState &&
-            const DeepCollectionEquality().equals(other.userModel, userModel) &&
-            const DeepCollectionEquality().equals(
-                other.isUserCheckedFromAuthFacade,
-                isUserCheckedFromAuthFacade) &&
-            const DeepCollectionEquality().equals(other.buyPrice, buyPrice) &&
-            const DeepCollectionEquality().equals(other.sellPrice, sellPrice) &&
-            const DeepCollectionEquality().equals(other.btcPrice, btcPrice));
+            (identical(other.userModel, userModel) ||
+                other.userModel == userModel) &&
+            (identical(other.isUserCheckedFromAuthFacade,
+                    isUserCheckedFromAuthFacade) ||
+                other.isUserCheckedFromAuthFacade ==
+                    isUserCheckedFromAuthFacade) &&
+            (identical(other.buyPrice, buyPrice) ||
+                other.buyPrice == buyPrice) &&
+            (identical(other.sellPrice, sellPrice) ||
+                other.sellPrice == sellPrice) &&
+            (identical(other.btcPrice, btcPrice) ||
+                other.btcPrice == btcPrice));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(userModel),
-      const DeepCollectionEquality().hash(isUserCheckedFromAuthFacade),
-      const DeepCollectionEquality().hash(buyPrice),
-      const DeepCollectionEquality().hash(sellPrice),
-      const DeepCollectionEquality().hash(btcPrice));
+  int get hashCode => Object.hash(runtimeType, userModel,
+      isUserCheckedFromAuthFacade, buyPrice, sellPrice, btcPrice);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_AuthStateCopyWith<_$_AuthState> get copyWith =>
       __$$_AuthStateCopyWithImpl<_$_AuthState>(this, _$identity);
 }

@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'kyc_dto.dart';
 
@@ -39,7 +39,8 @@ mixin _$KYCItemDTO {
 abstract class $KYCItemDTOCopyWith<$Res> {
   factory $KYCItemDTOCopyWith(
           KYCItemDTO value, $Res Function(KYCItemDTO) then) =
-      _$KYCItemDTOCopyWithImpl<$Res>;
+      _$KYCItemDTOCopyWithImpl<$Res, KYCItemDTO>;
+  @useResult
   $Res call(
       {String fullName,
       String id,
@@ -51,53 +52,56 @@ abstract class $KYCItemDTOCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$KYCItemDTOCopyWithImpl<$Res> implements $KYCItemDTOCopyWith<$Res> {
+class _$KYCItemDTOCopyWithImpl<$Res, $Val extends KYCItemDTO>
+    implements $KYCItemDTOCopyWith<$Res> {
   _$KYCItemDTOCopyWithImpl(this._value, this._then);
 
-  final KYCItemDTO _value;
   // ignore: unused_field
-  final $Res Function(KYCItemDTO) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fullName = freezed,
-    Object? id = freezed,
-    Object? documentType = freezed,
-    Object? documents = freezed,
-    Object? submitted = freezed,
-    Object? status = freezed,
+    Object? fullName = null,
+    Object? id = null,
+    Object? documentType = null,
+    Object? documents = null,
+    Object? submitted = null,
+    Object? status = null,
     Object? rejectionReason = freezed,
   }) {
     return _then(_value.copyWith(
-      fullName: fullName == freezed
+      fullName: null == fullName
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
               as String,
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      documentType: documentType == freezed
+      documentType: null == documentType
           ? _value.documentType
           : documentType // ignore: cast_nullable_to_non_nullable
               as String,
-      documents: documents == freezed
+      documents: null == documents
           ? _value.documents
           : documents // ignore: cast_nullable_to_non_nullable
               as List<Map<String, dynamic>>,
-      submitted: submitted == freezed
+      submitted: null == submitted
           ? _value.submitted
           : submitted // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      status: status == freezed
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-      rejectionReason: rejectionReason == freezed
+      rejectionReason: freezed == rejectionReason
           ? _value.rejectionReason
           : rejectionReason // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -108,6 +112,7 @@ abstract class _$$_KYCItemDTOCopyWith<$Res>
           _$_KYCItemDTO value, $Res Function(_$_KYCItemDTO) then) =
       __$$_KYCItemDTOCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String fullName,
       String id,
@@ -119,51 +124,50 @@ abstract class _$$_KYCItemDTOCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_KYCItemDTOCopyWithImpl<$Res> extends _$KYCItemDTOCopyWithImpl<$Res>
+class __$$_KYCItemDTOCopyWithImpl<$Res>
+    extends _$KYCItemDTOCopyWithImpl<$Res, _$_KYCItemDTO>
     implements _$$_KYCItemDTOCopyWith<$Res> {
   __$$_KYCItemDTOCopyWithImpl(
       _$_KYCItemDTO _value, $Res Function(_$_KYCItemDTO) _then)
-      : super(_value, (v) => _then(v as _$_KYCItemDTO));
+      : super(_value, _then);
 
-  @override
-  _$_KYCItemDTO get _value => super._value as _$_KYCItemDTO;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fullName = freezed,
-    Object? id = freezed,
-    Object? documentType = freezed,
-    Object? documents = freezed,
-    Object? submitted = freezed,
-    Object? status = freezed,
+    Object? fullName = null,
+    Object? id = null,
+    Object? documentType = null,
+    Object? documents = null,
+    Object? submitted = null,
+    Object? status = null,
     Object? rejectionReason = freezed,
   }) {
     return _then(_$_KYCItemDTO(
-      fullName: fullName == freezed
+      fullName: null == fullName
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
               as String,
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      documentType: documentType == freezed
+      documentType: null == documentType
           ? _value.documentType
           : documentType // ignore: cast_nullable_to_non_nullable
               as String,
-      documents: documents == freezed
+      documents: null == documents
           ? _value._documents
           : documents // ignore: cast_nullable_to_non_nullable
               as List<Map<String, dynamic>>,
-      submitted: submitted == freezed
+      submitted: null == submitted
           ? _value.submitted
           : submitted // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      status: status == freezed
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-      rejectionReason: rejectionReason == freezed
+      rejectionReason: freezed == rejectionReason
           ? _value.rejectionReason
           : rejectionReason // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -197,6 +201,7 @@ class _$_KYCItemDTO extends _KYCItemDTO {
   final List<Map<String, dynamic>> _documents;
   @override
   List<Map<String, dynamic>> get documents {
+    if (_documents is EqualUnmodifiableListView) return _documents;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_documents);
   }
@@ -218,32 +223,35 @@ class _$_KYCItemDTO extends _KYCItemDTO {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_KYCItemDTO &&
-            const DeepCollectionEquality().equals(other.fullName, fullName) &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality()
-                .equals(other.documentType, documentType) &&
+            (identical(other.fullName, fullName) ||
+                other.fullName == fullName) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.documentType, documentType) ||
+                other.documentType == documentType) &&
             const DeepCollectionEquality()
                 .equals(other._documents, _documents) &&
-            const DeepCollectionEquality().equals(other.submitted, submitted) &&
-            const DeepCollectionEquality().equals(other.status, status) &&
-            const DeepCollectionEquality()
-                .equals(other.rejectionReason, rejectionReason));
+            (identical(other.submitted, submitted) ||
+                other.submitted == submitted) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.rejectionReason, rejectionReason) ||
+                other.rejectionReason == rejectionReason));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(fullName),
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(documentType),
+      fullName,
+      id,
+      documentType,
       const DeepCollectionEquality().hash(_documents),
-      const DeepCollectionEquality().hash(submitted),
-      const DeepCollectionEquality().hash(status),
-      const DeepCollectionEquality().hash(rejectionReason));
+      submitted,
+      status,
+      rejectionReason);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_KYCItemDTOCopyWith<_$_KYCItemDTO> get copyWith =>
       __$$_KYCItemDTOCopyWithImpl<_$_KYCItemDTO>(this, _$identity);
 

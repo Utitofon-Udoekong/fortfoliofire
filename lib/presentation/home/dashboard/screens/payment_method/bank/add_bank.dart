@@ -90,6 +90,37 @@ class AddBank extends StatelessWidget {
                       height: 30,
                     ),
                     const Text(
+                      "Account Type",
+                      style:
+                          TextStyle(fontSize: 15, color: Color(0xFF656565)),
+                    ),
+                    BlocBuilder<PaymentMethodCubit, PaymentMethodState>(
+                          buildWhen: (previous, current) =>
+                              previous.accountType != current.accountType,
+                          builder: (context, state) {
+                            return DropdownButtonFormField(
+                              items: const [
+                                DropdownMenuItem(value: "NGN", child: Text("NGN")),
+                                DropdownMenuItem(value: "USD", child: Text("USD")),
+                              ],
+                              onChanged: (String? accountType) => context
+                                  .read<PaymentMethodCubit>()
+                                  .accountTypeChanged(accountType: accountType!),
+                              value: state.accountType,
+                              decoration: InputDecoration(
+                                  filled: true,
+                                  fillColor: const Color(0xFFF3F6F8),
+                                  border: InputBorder.none,
+                                  hintText: "NGN",
+                                  hintStyle: hintTextStyle),
+                              icon: const Icon(Icons.keyboard_arrow_down),
+                            );
+                          },
+                        ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    const Text(
                       "Bank Name",
                       style:
                           TextStyle(fontSize: 15, color: Color(0xFF656565)),

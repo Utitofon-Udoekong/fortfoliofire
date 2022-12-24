@@ -1,12 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
+import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/domain/widgets/loading_view.dart';
 import 'package:intl/intl.dart';
-import 'package:fortfolio/domain/user/crypto_wallet.dart';
-import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/cubit/payment_method_cubit.dart';
 import 'package:jiffy/jiffy.dart';
 
 import 'package:fortfolio/domain/constants/theme.dart';
@@ -29,291 +27,128 @@ class FortCryptoInvestmentInfo extends StatelessWidget {
     final coin = context.select((InvestmentCubit bloc) => bloc.state.coin);
     final yield = context.select(
         (WalletCubit walletCubit) => walletCubit.state.fortCryptoYieldBalance);
+    final phoneExists = context.select((AuthCubit bloc) => bloc.state.userModel.phoneNumber.isNotEmpty);
     final activeInvestments = context
         .select((WalletCubit walletCubit) =>
             walletCubit.state.fortCryptoInvestments.where((element) =>
                 element.status == "Pending" || element.status == "Successful"))
         .toList();
     return Scaffold(
-      body: MultiBlocListener(
-         listeners: [
-              BlocListener<WalletCubit, WalletState>(
-              listenWhen: (previous, current) =>
-                  current.success == "Investment harvested",
-              listener: (context, state) {
-                CustomSnackbar.showSnackBar(context, state.success, false);
-                context.read<WalletCubit>().resetSuccess();
-              },
-      
+      body: LoadingView(
+        isLoading: isLoading,
+        child: SafeArea(
+        child: SingleChildScrollView(
+                      child: Padding(
+        padding: kDefaultPadding,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            const SizedBox(height: 30),
+            Row(children: <Widget>[
+              InkWell(
+                onTap: () => context.router.pop(),
+                child: const Icon(Icons.close),
+              ),
+              Text(
+                "Fortcrypto",
+                style: titleText.copyWith(
+                    fontSize: 18, fontWeight: FontWeight.w700),
+                textAlign: TextAlign.center,
+              )
+            ]),
+            const SizedBox(height: 30),
+            Text("Total", style: subTitle.copyWith(fontSize: 12)),
+            const SizedBox(height: 8),
+            Text("\$ ${formatter.format(balance)}",
+                style: titleText.copyWith(
+                    fontSize: 16, fontWeight: FontWeight.w500)),
+            const SizedBox(height: 30),
+            Text("Available for yield",
+                style: subTitle.copyWith(fontSize: 12)),
+            const SizedBox(height: 8),
+            Text("\$ ${formatter.format(yield)}",
+                style: titleText.copyWith(
+                    fontSize: 16, fontWeight: FontWeight.w500)),
+            const SizedBox(height: 30),
+            Text("Active Investments",
+                style:
+                    subTitle.copyWith(fontSize: 12, color: kPrimaryColor)),
+            const SizedBox(height: 15),
+            SizedBox(
+              height: activeInvestments.length * 100 + 50,
+              child: ListView.builder(
+                itemCount: activeInvestments.length,
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                scrollDirection: Axis.vertical,
+                itemBuilder: ((context, index) {
+                  return BuildTile(
+                    context: context,
+                    title:
+                        '${activeInvestments[index].planName} / ${activeInvestments[index].duration.toInt()} month(s)',
+                    amount:
+                        '\$${formatter.format(activeInvestments[index].amount)}',
+                    ontap: () {
+                      context
+                          .read<WalletCubit>()
+                          .investmentToBeWithdrawnChanged(
+                              investmentToBeWithdrawn:
+                                  activeInvestments[index]);
+                      context.router.push(const WithdrawalPageRoute());
+                    },
+                    ontapHarvest: phoneExists ? () {
+                      context
+                          .read<WalletCubit>()
+                          .investmentToBeWithdrawnChanged(
+                              investmentToBeWithdrawn:
+                                  activeInvestments[index]);
+                          context.router.push(HarvestInvestmentRoute());
+                    } : () => CustomSnackbar.showSnackBar(context, "Add a phone number to access this feature", true),
+                    pending: activeInvestments[index].status == "Pending",
+                    isDue: activeInvestments[index].dueDate.isToday,
+                    harvDate: activeInvestments[index].nextHarvestDate,
+                    isHarvestDue: (activeInvestments[index]
+                                .nextHarvestDate ==
+                            null &&
+                        activeInvestments[index].planYield == 0)
+                    ? false
+                    : (activeInvestments[index].nextHarvestDate ==
+                                null &&
+                            activeInvestments[index].planYield > 0)
+                        ? true
+                        : (Jiffy(activeInvestments[index]
+                                    .nextHarvestDate)
+                                .isBefore(DateTime.now()) &&
+                            activeInvestments[index].planYield > 0),
+                    daysLeft:
+                        Jiffy(activeInvestments[index].dueDate).fromNow(),
+                    planYield:
+                        '\$${formatter.format(activeInvestments[index].planYield)}',
+                  );
+                }),
+              ),
             ),
-              BlocListener<WalletCubit, WalletState>(
-              listenWhen: (previous, current) => previous.failure !=
-                  current.failure && current.failure.isNotEmpty,
-              listener: (context, state) {
-                CustomSnackbar.showSnackBar(context, state.failure, false);
-                context.read<WalletCubit>().resetSuccess();
-              },
-      
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: CustomOutlinedButton(
+                  text: 'INVEST',
+                  onTap: () {
+                    context.read<InvestmentCubit>().planNameChanged( planName: "FortCrypto");
+                    context.read<InvestmentCubit>().setCryptoBaseAmount(coin: coin);
+                    context
+                        .read<InvestmentCubit>()
+                        .exchangeTypeChanged(exchangeType: "USD");
+                    context.router.push(const FortCryptoInvestmentRoute());
+                  }),
             ),
-            
           ],
-                  child: LoadingView(
-                    isLoading: isLoading,
-                    child: SafeArea(
-                    child: SingleChildScrollView(
-                                  child: Padding(
-                    padding: kDefaultPadding,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        const SizedBox(height: 30),
-                        Row(children: <Widget>[
-                          InkWell(
-                            onTap: () => context.router.pop(),
-                            child: const Icon(Icons.close),
-                          ),
-                          Text(
-                            "Fortcrypto",
-                            style: titleText.copyWith(
-                                fontSize: 18, fontWeight: FontWeight.w700),
-                            textAlign: TextAlign.center,
-                          )
-                        ]),
-                        const SizedBox(height: 30),
-                        Text("Total", style: subTitle.copyWith(fontSize: 12)),
-                        const SizedBox(height: 8),
-                        Text("\$ ${formatter.format(balance)}",
-                            style: titleText.copyWith(
-                                fontSize: 16, fontWeight: FontWeight.w500)),
-                        const SizedBox(height: 30),
-                        Text("Available for yield",
-                            style: subTitle.copyWith(fontSize: 12)),
-                        const SizedBox(height: 8),
-                        Text("\$ ${formatter.format(yield)}",
-                            style: titleText.copyWith(
-                                fontSize: 16, fontWeight: FontWeight.w500)),
-                        const SizedBox(height: 30),
-                        Text("Active Investments",
-                            style:
-                                subTitle.copyWith(fontSize: 12, color: kPrimaryColor)),
-                        const SizedBox(height: 15),
-                        SizedBox(
-                          height: activeInvestments.length * 100 + 50,
-                          child: ListView.builder(
-                            itemCount: activeInvestments.length,
-                            physics: const NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            scrollDirection: Axis.vertical,
-                            itemBuilder: ((context, index) {
-                              return BuildTile(
-                                context: context,
-                                title:
-                                    '${activeInvestments[index].planName} / ${activeInvestments[index].duration.toInt()} month(s)',
-                                amount:
-                                    '\$${formatter.format(activeInvestments[index].amount)}',
-                                ontap: () {
-                                  context
-                                      .read<WalletCubit>()
-                                      .investmentToBeWithdrawnChanged(
-                                          investmentToBeWithdrawn:
-                                              activeInvestments[index]);
-                                  context.router.push(const WithdrawalPageRoute());
-                                },
-                                ontapHarvest: () {
-                                  context
-                                  .read<WalletCubit>()
-                                  .investmentToBeWithdrawnChanged(
-                                      investmentToBeWithdrawn:
-                                          activeInvestments[index]);
-                                  context.read<WalletCubit>().harvestInvestment(
-                                      docId:
-                                          "${activeInvestments[index].uid}${activeInvestments[index].traxId}",
-                                      amount: activeInvestments[index].planYield);
-                                  context.router.pop();
-                                },
-                                pending: activeInvestments[index].status == "Pending",
-                                isDue: activeInvestments[index].dueDate.isToday,
-                                harvDate: activeInvestments[index].nextHarvestDate,
-                                isHarvestDue: (activeInvestments[index]
-                                            .nextHarvestDate ==
-                                        null &&
-                                    activeInvestments[index].planYield == 0)
-                                ? false
-                                : (activeInvestments[index].nextHarvestDate ==
-                                            null &&
-                                        activeInvestments[index].planYield > 0)
-                                    ? true
-                                    : (Jiffy(activeInvestments[index]
-                                                .nextHarvestDate)
-                                            .isBefore(DateTime.now()) &&
-                                        activeInvestments[index].planYield > 0),
-                                daysLeft:
-                                    Jiffy(activeInvestments[index].dueDate).fromNow(),
-                                planYield:
-                                    '\$${formatter.format(activeInvestments[index].planYield)}',
-                              );
-                            }),
-                          ),
-                        ),
-                        Align(
-                          alignment: Alignment.bottomCenter,
-                          child: CustomOutlinedButton(
-                              text: 'INVEST',
-                              onTap: () {
-                                context.read<InvestmentCubit>().planNameChanged( planName: "FortCrypto");
-                                context.read<InvestmentCubit>().setCryptoBaseAmount(coin: coin);
-                                context
-                                    .read<InvestmentCubit>()
-                                    .exchangeTypeChanged(exchangeType: "USD");
-                                context.router.push(const FortCryptoInvestmentRoute());
-                              }),
-                        ),
-                      ],
-                    ),
-                                  ),
-                                )),
-                  ),
-      ),
-    );
-  }
-}
-
-class SelectAccountModal extends StatelessWidget {
-  final Function() ontapHarvest;
-  const SelectAccountModal({super.key, required this.ontapHarvest});
-
-  @override
-  Widget build(BuildContext context) {
-    final selectedAddress = context.select((WalletCubit element) => element.state.withdrawalDetails["address"] ?? "");
-    return Container(
-    padding: const EdgeInsets.symmetric(
-                          horizontal: 8.0, vertical: 10.0),
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                            color: kWhiteColor,
-                          ),
-                          borderRadius: BorderRadius.circular(5.0)),
-    child: GestureDetector(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-                                            'Select account',
-                                            style:
-                                                titleText.copyWith(fontSize: 15),
-                                          ),
-                                          const SizedBox(height: 10,),
-          BlocSelector<PaymentMethodCubit, PaymentMethodState, bool>(
-                  selector: (state) {
-                    return state.emptyWallet;
-                  },
-                  builder: (context, emptyWallet) {
-                    return emptyWallet ? Center(
-                      child: TextButton(
-                          onPressed: () {
-                            context.router.push(const AddCryptoWalletRoute());
-                          },
-                          child: Text(
-                            'Add a new wallet',
-                            style: subTitle.copyWith(
-                                fontSize: 13, color: kPrimaryColor),
-                          )),
-                    ) : const SizedBox.shrink();
-                  },
-                ),
-          BlocSelector<PaymentMethodCubit, PaymentMethodState,
-                    List<CryptoWallet>>(
-                  selector: (state) {
-                    return state.cryptoAddresses;
-                  },
-                  builder: (context, cryptoAddresses) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: cryptoAddresses.map((address) {
-                        return buildAddressTile(
-                            address: address.address,
-                            ontap: () => context
-                                .read<WalletCubit>()
-                                .withdrawalDetailsChanged(
-                                    withdrawalDetails: address.toMap()),
-                            label: address.walletLabel,
-                            selected: selectedAddress == address.address);
-                      }).toList(),
-                    );
-                  },
-                ),
-                BlocSelector<PaymentMethodCubit, PaymentMethodState,
-                    List<CryptoWallet>>(
-                  selector: (state) {
-                    return state.generalCryptoAddresses;
-                  },
-                  builder: (context, cryptoAddresses) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: cryptoAddresses.map((address) {
-                        return buildAddressTile(
-                            address: address.address,
-                            ontap: () => context
-                                .read<WalletCubit>()
-                                .withdrawalDetailsChanged(
-                                    withdrawalDetails: address.toMap()),
-                            label: address.walletLabel,
-                            selected: selectedAddress == address.address);
-                      }).toList(),
-                    );
-                  },
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                BlocSelector<WalletCubit, WalletState, bool>(
-                  selector: (state) {
-                    return state.withdrawalDetails.isEmpty;
-                  },
-                  builder: (context, detailsDontExists) {
-                    return Align(
-                      alignment: Alignment.bottomCenter,
-                      child: CustomAuthFilledButton(
-                        text: "CONTINUE",
-                        onTap: ontapHarvest,
-                        disabled: detailsDontExists,
-                      ),
-                    );
-                  },
-                )
-        ]
-      )
-    )
-  );
-  }
-}
-
-
-Widget buildAddressTile({required String address, required Function() ontap, required String label, required bool selected}) {
-    return GestureDetector(
-      onTap: ontap,
-      child: Container(
-        decoration: BoxDecoration(
-            color: const Color(0XFFF3F6F8),
-            borderRadius: BorderRadius.circular(5.0)),
-        child: ListTile(
-          title: Text(
-            address,
-            style: titleText.copyWith(fontSize: 15),
-          ),
-          subtitle: Text(
-            label,
-            style: subTitle.copyWith(fontSize: 13, color: kgreyColor),
-          ),
-          trailing: Icon(
-            selected ? Icons.circle_rounded : Icons.circle_outlined,
-            color: const Color(0XFF00ADEE),
-          ),
         ),
+                      ),
+                    )),
       ),
     );
   }
+}
 
   class BuildTile extends StatelessWidget {
     final String title;
@@ -364,11 +199,7 @@ Widget buildAddressTile({required String address, required Function() ontap, req
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               isHarvestDue ? GestureDetector(
-                onTap: () => showModalBottomSheet<dynamic>(
-                  isScrollControlled: true,
-                  context: context,
-                  builder: (context) => SelectAccountModal( ontapHarvest: ontapHarvest)
-                ),
+                onTap: ontapHarvest,
                 child: Container(
                   alignment: Alignment.center,
                   height: 35,

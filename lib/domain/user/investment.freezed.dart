@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'investment.dart';
 
@@ -45,7 +45,8 @@ mixin _$InvestmentItem {
 abstract class $InvestmentItemCopyWith<$Res> {
   factory $InvestmentItemCopyWith(
           InvestmentItem value, $Res Function(InvestmentItem) then) =
-      _$InvestmentItemCopyWithImpl<$Res>;
+      _$InvestmentItemCopyWithImpl<$Res, InvestmentItem>;
+  @useResult
   $Res call(
       {String description,
       String uid,
@@ -69,114 +70,116 @@ abstract class $InvestmentItemCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$InvestmentItemCopyWithImpl<$Res>
+class _$InvestmentItemCopyWithImpl<$Res, $Val extends InvestmentItem>
     implements $InvestmentItemCopyWith<$Res> {
   _$InvestmentItemCopyWithImpl(this._value, this._then);
 
-  final InvestmentItem _value;
   // ignore: unused_field
-  final $Res Function(InvestmentItem) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? description = freezed,
-    Object? uid = freezed,
+    Object? description = null,
+    Object? uid = null,
     Object? coin = freezed,
     Object? bankAccountType = freezed,
-    Object? amount = freezed,
-    Object? traxId = freezed,
-    Object? fullName = freezed,
-    Object? roi = freezed,
-    Object? numberOfDays = freezed,
-    Object? planName = freezed,
-    Object? paymentDate = freezed,
-    Object? dueDate = freezed,
+    Object? amount = null,
+    Object? traxId = null,
+    Object? fullName = null,
+    Object? roi = null,
+    Object? numberOfDays = null,
+    Object? planName = null,
+    Object? paymentDate = null,
+    Object? dueDate = null,
     Object? nextHarvestDate = freezed,
-    Object? duration = freezed,
-    Object? status = freezed,
-    Object? currency = freezed,
-    Object? planYield = freezed,
-    Object? paymentMethod = freezed,
-    Object? refId = freezed,
+    Object? duration = null,
+    Object? status = null,
+    Object? currency = null,
+    Object? planYield = null,
+    Object? paymentMethod = null,
+    Object? refId = null,
   }) {
     return _then(_value.copyWith(
-      description: description == freezed
+      description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      uid: uid == freezed
+      uid: null == uid
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String,
-      coin: coin == freezed
+      coin: freezed == coin
           ? _value.coin
           : coin // ignore: cast_nullable_to_non_nullable
               as String?,
-      bankAccountType: bankAccountType == freezed
+      bankAccountType: freezed == bankAccountType
           ? _value.bankAccountType
           : bankAccountType // ignore: cast_nullable_to_non_nullable
               as String?,
-      amount: amount == freezed
+      amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as double,
-      traxId: traxId == freezed
+      traxId: null == traxId
           ? _value.traxId
           : traxId // ignore: cast_nullable_to_non_nullable
               as String,
-      fullName: fullName == freezed
+      fullName: null == fullName
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
               as String,
-      roi: roi == freezed
+      roi: null == roi
           ? _value.roi
           : roi // ignore: cast_nullable_to_non_nullable
               as int,
-      numberOfDays: numberOfDays == freezed
+      numberOfDays: null == numberOfDays
           ? _value.numberOfDays
           : numberOfDays // ignore: cast_nullable_to_non_nullable
               as int,
-      planName: planName == freezed
+      planName: null == planName
           ? _value.planName
           : planName // ignore: cast_nullable_to_non_nullable
               as String,
-      paymentDate: paymentDate == freezed
+      paymentDate: null == paymentDate
           ? _value.paymentDate
           : paymentDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      dueDate: dueDate == freezed
+      dueDate: null == dueDate
           ? _value.dueDate
           : dueDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      nextHarvestDate: nextHarvestDate == freezed
+      nextHarvestDate: freezed == nextHarvestDate
           ? _value.nextHarvestDate
           : nextHarvestDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      duration: duration == freezed
+      duration: null == duration
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
               as int,
-      status: status == freezed
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-      currency: currency == freezed
+      currency: null == currency
           ? _value.currency
           : currency // ignore: cast_nullable_to_non_nullable
               as String,
-      planYield: planYield == freezed
+      planYield: null == planYield
           ? _value.planYield
           : planYield // ignore: cast_nullable_to_non_nullable
               as double,
-      paymentMethod: paymentMethod == freezed
+      paymentMethod: null == paymentMethod
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
               as String,
-      refId: refId == freezed
+      refId: null == refId
           ? _value.refId
           : refId // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
@@ -187,6 +190,7 @@ abstract class _$$_InvestmentItemCopyWith<$Res>
           _$_InvestmentItem value, $Res Function(_$_InvestmentItem) then) =
       __$$_InvestmentItemCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String description,
       String uid,
@@ -211,111 +215,109 @@ abstract class _$$_InvestmentItemCopyWith<$Res>
 
 /// @nodoc
 class __$$_InvestmentItemCopyWithImpl<$Res>
-    extends _$InvestmentItemCopyWithImpl<$Res>
+    extends _$InvestmentItemCopyWithImpl<$Res, _$_InvestmentItem>
     implements _$$_InvestmentItemCopyWith<$Res> {
   __$$_InvestmentItemCopyWithImpl(
       _$_InvestmentItem _value, $Res Function(_$_InvestmentItem) _then)
-      : super(_value, (v) => _then(v as _$_InvestmentItem));
+      : super(_value, _then);
 
-  @override
-  _$_InvestmentItem get _value => super._value as _$_InvestmentItem;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? description = freezed,
-    Object? uid = freezed,
+    Object? description = null,
+    Object? uid = null,
     Object? coin = freezed,
     Object? bankAccountType = freezed,
-    Object? amount = freezed,
-    Object? traxId = freezed,
-    Object? fullName = freezed,
-    Object? roi = freezed,
-    Object? numberOfDays = freezed,
-    Object? planName = freezed,
-    Object? paymentDate = freezed,
-    Object? dueDate = freezed,
+    Object? amount = null,
+    Object? traxId = null,
+    Object? fullName = null,
+    Object? roi = null,
+    Object? numberOfDays = null,
+    Object? planName = null,
+    Object? paymentDate = null,
+    Object? dueDate = null,
     Object? nextHarvestDate = freezed,
-    Object? duration = freezed,
-    Object? status = freezed,
-    Object? currency = freezed,
-    Object? planYield = freezed,
-    Object? paymentMethod = freezed,
-    Object? refId = freezed,
+    Object? duration = null,
+    Object? status = null,
+    Object? currency = null,
+    Object? planYield = null,
+    Object? paymentMethod = null,
+    Object? refId = null,
   }) {
     return _then(_$_InvestmentItem(
-      description: description == freezed
+      description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      uid: uid == freezed
+      uid: null == uid
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String,
-      coin: coin == freezed
+      coin: freezed == coin
           ? _value.coin
           : coin // ignore: cast_nullable_to_non_nullable
               as String?,
-      bankAccountType: bankAccountType == freezed
+      bankAccountType: freezed == bankAccountType
           ? _value.bankAccountType
           : bankAccountType // ignore: cast_nullable_to_non_nullable
               as String?,
-      amount: amount == freezed
+      amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as double,
-      traxId: traxId == freezed
+      traxId: null == traxId
           ? _value.traxId
           : traxId // ignore: cast_nullable_to_non_nullable
               as String,
-      fullName: fullName == freezed
+      fullName: null == fullName
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
               as String,
-      roi: roi == freezed
+      roi: null == roi
           ? _value.roi
           : roi // ignore: cast_nullable_to_non_nullable
               as int,
-      numberOfDays: numberOfDays == freezed
+      numberOfDays: null == numberOfDays
           ? _value.numberOfDays
           : numberOfDays // ignore: cast_nullable_to_non_nullable
               as int,
-      planName: planName == freezed
+      planName: null == planName
           ? _value.planName
           : planName // ignore: cast_nullable_to_non_nullable
               as String,
-      paymentDate: paymentDate == freezed
+      paymentDate: null == paymentDate
           ? _value.paymentDate
           : paymentDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      dueDate: dueDate == freezed
+      dueDate: null == dueDate
           ? _value.dueDate
           : dueDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      nextHarvestDate: nextHarvestDate == freezed
+      nextHarvestDate: freezed == nextHarvestDate
           ? _value.nextHarvestDate
           : nextHarvestDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      duration: duration == freezed
+      duration: null == duration
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
               as int,
-      status: status == freezed
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-      currency: currency == freezed
+      currency: null == currency
           ? _value.currency
           : currency // ignore: cast_nullable_to_non_nullable
               as String,
-      planYield: planYield == freezed
+      planYield: null == planYield
           ? _value.planYield
           : planYield // ignore: cast_nullable_to_non_nullable
               as double,
-      paymentMethod: paymentMethod == freezed
+      paymentMethod: null == paymentMethod
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
               as String,
-      refId: refId == freezed
+      refId: null == refId
           ? _value.refId
           : refId // ignore: cast_nullable_to_non_nullable
               as String,
@@ -397,59 +399,65 @@ class _$_InvestmentItem extends _InvestmentItem {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_InvestmentItem &&
-            const DeepCollectionEquality()
-                .equals(other.description, description) &&
-            const DeepCollectionEquality().equals(other.uid, uid) &&
-            const DeepCollectionEquality().equals(other.coin, coin) &&
-            const DeepCollectionEquality()
-                .equals(other.bankAccountType, bankAccountType) &&
-            const DeepCollectionEquality().equals(other.amount, amount) &&
-            const DeepCollectionEquality().equals(other.traxId, traxId) &&
-            const DeepCollectionEquality().equals(other.fullName, fullName) &&
-            const DeepCollectionEquality().equals(other.roi, roi) &&
-            const DeepCollectionEquality()
-                .equals(other.numberOfDays, numberOfDays) &&
-            const DeepCollectionEquality().equals(other.planName, planName) &&
-            const DeepCollectionEquality()
-                .equals(other.paymentDate, paymentDate) &&
-            const DeepCollectionEquality().equals(other.dueDate, dueDate) &&
-            const DeepCollectionEquality()
-                .equals(other.nextHarvestDate, nextHarvestDate) &&
-            const DeepCollectionEquality().equals(other.duration, duration) &&
-            const DeepCollectionEquality().equals(other.status, status) &&
-            const DeepCollectionEquality().equals(other.currency, currency) &&
-            const DeepCollectionEquality().equals(other.planYield, planYield) &&
-            const DeepCollectionEquality()
-                .equals(other.paymentMethod, paymentMethod) &&
-            const DeepCollectionEquality().equals(other.refId, refId));
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.uid, uid) || other.uid == uid) &&
+            (identical(other.coin, coin) || other.coin == coin) &&
+            (identical(other.bankAccountType, bankAccountType) ||
+                other.bankAccountType == bankAccountType) &&
+            (identical(other.amount, amount) || other.amount == amount) &&
+            (identical(other.traxId, traxId) || other.traxId == traxId) &&
+            (identical(other.fullName, fullName) ||
+                other.fullName == fullName) &&
+            (identical(other.roi, roi) || other.roi == roi) &&
+            (identical(other.numberOfDays, numberOfDays) ||
+                other.numberOfDays == numberOfDays) &&
+            (identical(other.planName, planName) ||
+                other.planName == planName) &&
+            (identical(other.paymentDate, paymentDate) ||
+                other.paymentDate == paymentDate) &&
+            (identical(other.dueDate, dueDate) || other.dueDate == dueDate) &&
+            (identical(other.nextHarvestDate, nextHarvestDate) ||
+                other.nextHarvestDate == nextHarvestDate) &&
+            (identical(other.duration, duration) ||
+                other.duration == duration) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.currency, currency) ||
+                other.currency == currency) &&
+            (identical(other.planYield, planYield) ||
+                other.planYield == planYield) &&
+            (identical(other.paymentMethod, paymentMethod) ||
+                other.paymentMethod == paymentMethod) &&
+            (identical(other.refId, refId) || other.refId == refId));
   }
 
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        const DeepCollectionEquality().hash(description),
-        const DeepCollectionEquality().hash(uid),
-        const DeepCollectionEquality().hash(coin),
-        const DeepCollectionEquality().hash(bankAccountType),
-        const DeepCollectionEquality().hash(amount),
-        const DeepCollectionEquality().hash(traxId),
-        const DeepCollectionEquality().hash(fullName),
-        const DeepCollectionEquality().hash(roi),
-        const DeepCollectionEquality().hash(numberOfDays),
-        const DeepCollectionEquality().hash(planName),
-        const DeepCollectionEquality().hash(paymentDate),
-        const DeepCollectionEquality().hash(dueDate),
-        const DeepCollectionEquality().hash(nextHarvestDate),
-        const DeepCollectionEquality().hash(duration),
-        const DeepCollectionEquality().hash(status),
-        const DeepCollectionEquality().hash(currency),
-        const DeepCollectionEquality().hash(planYield),
-        const DeepCollectionEquality().hash(paymentMethod),
-        const DeepCollectionEquality().hash(refId)
+        description,
+        uid,
+        coin,
+        bankAccountType,
+        amount,
+        traxId,
+        fullName,
+        roi,
+        numberOfDays,
+        planName,
+        paymentDate,
+        dueDate,
+        nextHarvestDate,
+        duration,
+        status,
+        currency,
+        planYield,
+        paymentMethod,
+        refId
       ]);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_InvestmentItemCopyWith<_$_InvestmentItem> get copyWith =>
       __$$_InvestmentItemCopyWithImpl<_$_InvestmentItem>(this, _$identity);
 }

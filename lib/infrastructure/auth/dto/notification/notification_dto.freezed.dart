@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'notification_dto.dart';
 
@@ -36,7 +36,8 @@ mixin _$NotificationItemDTO {
 abstract class $NotificationItemDTOCopyWith<$Res> {
   factory $NotificationItemDTOCopyWith(
           NotificationItemDTO value, $Res Function(NotificationItemDTO) then) =
-      _$NotificationItemDTOCopyWithImpl<$Res>;
+      _$NotificationItemDTOCopyWithImpl<$Res, NotificationItemDTO>;
+  @useResult
   $Res call(
       {String type,
       String id,
@@ -46,44 +47,46 @@ abstract class $NotificationItemDTOCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$NotificationItemDTOCopyWithImpl<$Res>
+class _$NotificationItemDTOCopyWithImpl<$Res, $Val extends NotificationItemDTO>
     implements $NotificationItemDTOCopyWith<$Res> {
   _$NotificationItemDTOCopyWithImpl(this._value, this._then);
 
-  final NotificationItemDTO _value;
   // ignore: unused_field
-  final $Res Function(NotificationItemDTO) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? type = freezed,
-    Object? id = freezed,
-    Object? title = freezed,
-    Object? createdat = freezed,
-    Object? status = freezed,
+    Object? type = null,
+    Object? id = null,
+    Object? title = null,
+    Object? createdat = null,
+    Object? status = null,
   }) {
     return _then(_value.copyWith(
-      type: type == freezed
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      title: title == freezed
+      title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      createdat: createdat == freezed
+      createdat: null == createdat
           ? _value.createdat
           : createdat // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      status: status == freezed
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
@@ -94,6 +97,7 @@ abstract class _$$_NotificationItemDTOCopyWith<$Res>
           $Res Function(_$_NotificationItemDTO) then) =
       __$$_NotificationItemDTOCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String type,
       String id,
@@ -104,41 +108,39 @@ abstract class _$$_NotificationItemDTOCopyWith<$Res>
 
 /// @nodoc
 class __$$_NotificationItemDTOCopyWithImpl<$Res>
-    extends _$NotificationItemDTOCopyWithImpl<$Res>
+    extends _$NotificationItemDTOCopyWithImpl<$Res, _$_NotificationItemDTO>
     implements _$$_NotificationItemDTOCopyWith<$Res> {
   __$$_NotificationItemDTOCopyWithImpl(_$_NotificationItemDTO _value,
       $Res Function(_$_NotificationItemDTO) _then)
-      : super(_value, (v) => _then(v as _$_NotificationItemDTO));
+      : super(_value, _then);
 
-  @override
-  _$_NotificationItemDTO get _value => super._value as _$_NotificationItemDTO;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? type = freezed,
-    Object? id = freezed,
-    Object? title = freezed,
-    Object? createdat = freezed,
-    Object? status = freezed,
+    Object? type = null,
+    Object? id = null,
+    Object? title = null,
+    Object? createdat = null,
+    Object? status = null,
   }) {
     return _then(_$_NotificationItemDTO(
-      type: type == freezed
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      title: title == freezed
+      title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      createdat: createdat == freezed
+      createdat: null == createdat
           ? _value.createdat
           : createdat // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      status: status == freezed
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
@@ -181,25 +183,22 @@ class _$_NotificationItemDTO extends _NotificationItemDTO {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_NotificationItemDTO &&
-            const DeepCollectionEquality().equals(other.type, type) &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.title, title) &&
-            const DeepCollectionEquality().equals(other.createdat, createdat) &&
-            const DeepCollectionEquality().equals(other.status, status));
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.createdat, createdat) ||
+                other.createdat == createdat) &&
+            (identical(other.status, status) || other.status == status));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(type),
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(title),
-      const DeepCollectionEquality().hash(createdat),
-      const DeepCollectionEquality().hash(status));
+  int get hashCode =>
+      Object.hash(runtimeType, type, id, title, createdat, status);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_NotificationItemDTOCopyWith<_$_NotificationItemDTO> get copyWith =>
       __$$_NotificationItemDTOCopyWithImpl<_$_NotificationItemDTO>(
           this, _$identity);

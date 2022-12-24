@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'wallet_cubit.dart';
 
@@ -52,7 +52,8 @@ mixin _$WalletState {
 abstract class $WalletStateCopyWith<$Res> {
   factory $WalletStateCopyWith(
           WalletState value, $Res Function(WalletState) then) =
-      _$WalletStateCopyWithImpl<$Res>;
+      _$WalletStateCopyWithImpl<$Res, WalletState>;
+  @useResult
   $Res call(
       {String exchange,
       bool loading,
@@ -80,130 +81,134 @@ abstract class $WalletStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$WalletStateCopyWithImpl<$Res> implements $WalletStateCopyWith<$Res> {
+class _$WalletStateCopyWithImpl<$Res, $Val extends WalletState>
+    implements $WalletStateCopyWith<$Res> {
   _$WalletStateCopyWithImpl(this._value, this._then);
 
-  final WalletState _value;
   // ignore: unused_field
-  final $Res Function(WalletState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? exchange = freezed,
-    Object? loading = freezed,
-    Object? fortDollarInvestmentBalance = freezed,
-    Object? fortCryptoInvestmentBalance = freezed,
-    Object? fortShieldInvestmentBalance = freezed,
-    Object? fortDollarYieldBalance = freezed,
-    Object? fortCryptoYieldBalance = freezed,
-    Object? fortShieldYieldBalance = freezed,
-    Object? withdrawalMethod = freezed,
-    Object? failure = freezed,
-    Object? success = freezed,
-    Object? currentSort = freezed,
-    Object? withdrawalDetails = freezed,
-    Object? investmentToBeWithdrawn = freezed,
-    Object? fortDollarInvestments = freezed,
-    Object? fortCryptoInvestments = freezed,
-    Object? fortShieldInvestments = freezed,
-    Object? withdrawals = freezed,
-    Object? transactions = freezed,
-    Object? currentFilter = freezed,
-    Object? showDigits = freezed,
+    Object? exchange = null,
+    Object? loading = null,
+    Object? fortDollarInvestmentBalance = null,
+    Object? fortCryptoInvestmentBalance = null,
+    Object? fortShieldInvestmentBalance = null,
+    Object? fortDollarYieldBalance = null,
+    Object? fortCryptoYieldBalance = null,
+    Object? fortShieldYieldBalance = null,
+    Object? withdrawalMethod = null,
+    Object? failure = null,
+    Object? success = null,
+    Object? currentSort = null,
+    Object? withdrawalDetails = null,
+    Object? investmentToBeWithdrawn = null,
+    Object? fortDollarInvestments = null,
+    Object? fortCryptoInvestments = null,
+    Object? fortShieldInvestments = null,
+    Object? withdrawals = null,
+    Object? transactions = null,
+    Object? currentFilter = null,
+    Object? showDigits = null,
   }) {
     return _then(_value.copyWith(
-      exchange: exchange == freezed
+      exchange: null == exchange
           ? _value.exchange
           : exchange // ignore: cast_nullable_to_non_nullable
               as String,
-      loading: loading == freezed
+      loading: null == loading
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
-      fortDollarInvestmentBalance: fortDollarInvestmentBalance == freezed
+      fortDollarInvestmentBalance: null == fortDollarInvestmentBalance
           ? _value.fortDollarInvestmentBalance
           : fortDollarInvestmentBalance // ignore: cast_nullable_to_non_nullable
               as double,
-      fortCryptoInvestmentBalance: fortCryptoInvestmentBalance == freezed
+      fortCryptoInvestmentBalance: null == fortCryptoInvestmentBalance
           ? _value.fortCryptoInvestmentBalance
           : fortCryptoInvestmentBalance // ignore: cast_nullable_to_non_nullable
               as double,
-      fortShieldInvestmentBalance: fortShieldInvestmentBalance == freezed
+      fortShieldInvestmentBalance: null == fortShieldInvestmentBalance
           ? _value.fortShieldInvestmentBalance
           : fortShieldInvestmentBalance // ignore: cast_nullable_to_non_nullable
               as double,
-      fortDollarYieldBalance: fortDollarYieldBalance == freezed
+      fortDollarYieldBalance: null == fortDollarYieldBalance
           ? _value.fortDollarYieldBalance
           : fortDollarYieldBalance // ignore: cast_nullable_to_non_nullable
               as double,
-      fortCryptoYieldBalance: fortCryptoYieldBalance == freezed
+      fortCryptoYieldBalance: null == fortCryptoYieldBalance
           ? _value.fortCryptoYieldBalance
           : fortCryptoYieldBalance // ignore: cast_nullable_to_non_nullable
               as double,
-      fortShieldYieldBalance: fortShieldYieldBalance == freezed
+      fortShieldYieldBalance: null == fortShieldYieldBalance
           ? _value.fortShieldYieldBalance
           : fortShieldYieldBalance // ignore: cast_nullable_to_non_nullable
               as double,
-      withdrawalMethod: withdrawalMethod == freezed
+      withdrawalMethod: null == withdrawalMethod
           ? _value.withdrawalMethod
           : withdrawalMethod // ignore: cast_nullable_to_non_nullable
               as String,
-      failure: failure == freezed
+      failure: null == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as String,
-      success: success == freezed
+      success: null == success
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
               as String,
-      currentSort: currentSort == freezed
+      currentSort: null == currentSort
           ? _value.currentSort
           : currentSort // ignore: cast_nullable_to_non_nullable
               as String,
-      withdrawalDetails: withdrawalDetails == freezed
+      withdrawalDetails: null == withdrawalDetails
           ? _value.withdrawalDetails
           : withdrawalDetails // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
-      investmentToBeWithdrawn: investmentToBeWithdrawn == freezed
+      investmentToBeWithdrawn: null == investmentToBeWithdrawn
           ? _value.investmentToBeWithdrawn
           : investmentToBeWithdrawn // ignore: cast_nullable_to_non_nullable
               as InvestmentItem,
-      fortDollarInvestments: fortDollarInvestments == freezed
+      fortDollarInvestments: null == fortDollarInvestments
           ? _value.fortDollarInvestments
           : fortDollarInvestments // ignore: cast_nullable_to_non_nullable
               as List<InvestmentItem>,
-      fortCryptoInvestments: fortCryptoInvestments == freezed
+      fortCryptoInvestments: null == fortCryptoInvestments
           ? _value.fortCryptoInvestments
           : fortCryptoInvestments // ignore: cast_nullable_to_non_nullable
               as List<InvestmentItem>,
-      fortShieldInvestments: fortShieldInvestments == freezed
+      fortShieldInvestments: null == fortShieldInvestments
           ? _value.fortShieldInvestments
           : fortShieldInvestments // ignore: cast_nullable_to_non_nullable
               as List<InvestmentItem>,
-      withdrawals: withdrawals == freezed
+      withdrawals: null == withdrawals
           ? _value.withdrawals
           : withdrawals // ignore: cast_nullable_to_non_nullable
               as List<WithdrawalItem>,
-      transactions: transactions == freezed
+      transactions: null == transactions
           ? _value.transactions
           : transactions // ignore: cast_nullable_to_non_nullable
               as List<TransactionItem>,
-      currentFilter: currentFilter == freezed
+      currentFilter: null == currentFilter
           ? _value.currentFilter
           : currentFilter // ignore: cast_nullable_to_non_nullable
               as List<TransactionItem>,
-      showDigits: showDigits == freezed
+      showDigits: null == showDigits
           ? _value.showDigits
           : showDigits // ignore: cast_nullable_to_non_nullable
               as bool,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $InvestmentItemCopyWith<$Res> get investmentToBeWithdrawn {
     return $InvestmentItemCopyWith<$Res>(_value.investmentToBeWithdrawn,
         (value) {
-      return _then(_value.copyWith(investmentToBeWithdrawn: value));
+      return _then(_value.copyWith(investmentToBeWithdrawn: value) as $Val);
     });
   }
 }
@@ -215,6 +220,7 @@ abstract class _$$_WalletStateCopyWith<$Res>
           _$_WalletState value, $Res Function(_$_WalletState) then) =
       __$$_WalletStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String exchange,
       bool loading,
@@ -243,121 +249,120 @@ abstract class _$$_WalletStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_WalletStateCopyWithImpl<$Res> extends _$WalletStateCopyWithImpl<$Res>
+class __$$_WalletStateCopyWithImpl<$Res>
+    extends _$WalletStateCopyWithImpl<$Res, _$_WalletState>
     implements _$$_WalletStateCopyWith<$Res> {
   __$$_WalletStateCopyWithImpl(
       _$_WalletState _value, $Res Function(_$_WalletState) _then)
-      : super(_value, (v) => _then(v as _$_WalletState));
+      : super(_value, _then);
 
-  @override
-  _$_WalletState get _value => super._value as _$_WalletState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? exchange = freezed,
-    Object? loading = freezed,
-    Object? fortDollarInvestmentBalance = freezed,
-    Object? fortCryptoInvestmentBalance = freezed,
-    Object? fortShieldInvestmentBalance = freezed,
-    Object? fortDollarYieldBalance = freezed,
-    Object? fortCryptoYieldBalance = freezed,
-    Object? fortShieldYieldBalance = freezed,
-    Object? withdrawalMethod = freezed,
-    Object? failure = freezed,
-    Object? success = freezed,
-    Object? currentSort = freezed,
-    Object? withdrawalDetails = freezed,
-    Object? investmentToBeWithdrawn = freezed,
-    Object? fortDollarInvestments = freezed,
-    Object? fortCryptoInvestments = freezed,
-    Object? fortShieldInvestments = freezed,
-    Object? withdrawals = freezed,
-    Object? transactions = freezed,
-    Object? currentFilter = freezed,
-    Object? showDigits = freezed,
+    Object? exchange = null,
+    Object? loading = null,
+    Object? fortDollarInvestmentBalance = null,
+    Object? fortCryptoInvestmentBalance = null,
+    Object? fortShieldInvestmentBalance = null,
+    Object? fortDollarYieldBalance = null,
+    Object? fortCryptoYieldBalance = null,
+    Object? fortShieldYieldBalance = null,
+    Object? withdrawalMethod = null,
+    Object? failure = null,
+    Object? success = null,
+    Object? currentSort = null,
+    Object? withdrawalDetails = null,
+    Object? investmentToBeWithdrawn = null,
+    Object? fortDollarInvestments = null,
+    Object? fortCryptoInvestments = null,
+    Object? fortShieldInvestments = null,
+    Object? withdrawals = null,
+    Object? transactions = null,
+    Object? currentFilter = null,
+    Object? showDigits = null,
   }) {
     return _then(_$_WalletState(
-      exchange: exchange == freezed
+      exchange: null == exchange
           ? _value.exchange
           : exchange // ignore: cast_nullable_to_non_nullable
               as String,
-      loading: loading == freezed
+      loading: null == loading
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
-      fortDollarInvestmentBalance: fortDollarInvestmentBalance == freezed
+      fortDollarInvestmentBalance: null == fortDollarInvestmentBalance
           ? _value.fortDollarInvestmentBalance
           : fortDollarInvestmentBalance // ignore: cast_nullable_to_non_nullable
               as double,
-      fortCryptoInvestmentBalance: fortCryptoInvestmentBalance == freezed
+      fortCryptoInvestmentBalance: null == fortCryptoInvestmentBalance
           ? _value.fortCryptoInvestmentBalance
           : fortCryptoInvestmentBalance // ignore: cast_nullable_to_non_nullable
               as double,
-      fortShieldInvestmentBalance: fortShieldInvestmentBalance == freezed
+      fortShieldInvestmentBalance: null == fortShieldInvestmentBalance
           ? _value.fortShieldInvestmentBalance
           : fortShieldInvestmentBalance // ignore: cast_nullable_to_non_nullable
               as double,
-      fortDollarYieldBalance: fortDollarYieldBalance == freezed
+      fortDollarYieldBalance: null == fortDollarYieldBalance
           ? _value.fortDollarYieldBalance
           : fortDollarYieldBalance // ignore: cast_nullable_to_non_nullable
               as double,
-      fortCryptoYieldBalance: fortCryptoYieldBalance == freezed
+      fortCryptoYieldBalance: null == fortCryptoYieldBalance
           ? _value.fortCryptoYieldBalance
           : fortCryptoYieldBalance // ignore: cast_nullable_to_non_nullable
               as double,
-      fortShieldYieldBalance: fortShieldYieldBalance == freezed
+      fortShieldYieldBalance: null == fortShieldYieldBalance
           ? _value.fortShieldYieldBalance
           : fortShieldYieldBalance // ignore: cast_nullable_to_non_nullable
               as double,
-      withdrawalMethod: withdrawalMethod == freezed
+      withdrawalMethod: null == withdrawalMethod
           ? _value.withdrawalMethod
           : withdrawalMethod // ignore: cast_nullable_to_non_nullable
               as String,
-      failure: failure == freezed
+      failure: null == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as String,
-      success: success == freezed
+      success: null == success
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
               as String,
-      currentSort: currentSort == freezed
+      currentSort: null == currentSort
           ? _value.currentSort
           : currentSort // ignore: cast_nullable_to_non_nullable
               as String,
-      withdrawalDetails: withdrawalDetails == freezed
+      withdrawalDetails: null == withdrawalDetails
           ? _value._withdrawalDetails
           : withdrawalDetails // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
-      investmentToBeWithdrawn: investmentToBeWithdrawn == freezed
+      investmentToBeWithdrawn: null == investmentToBeWithdrawn
           ? _value.investmentToBeWithdrawn
           : investmentToBeWithdrawn // ignore: cast_nullable_to_non_nullable
               as InvestmentItem,
-      fortDollarInvestments: fortDollarInvestments == freezed
+      fortDollarInvestments: null == fortDollarInvestments
           ? _value._fortDollarInvestments
           : fortDollarInvestments // ignore: cast_nullable_to_non_nullable
               as List<InvestmentItem>,
-      fortCryptoInvestments: fortCryptoInvestments == freezed
+      fortCryptoInvestments: null == fortCryptoInvestments
           ? _value._fortCryptoInvestments
           : fortCryptoInvestments // ignore: cast_nullable_to_non_nullable
               as List<InvestmentItem>,
-      fortShieldInvestments: fortShieldInvestments == freezed
+      fortShieldInvestments: null == fortShieldInvestments
           ? _value._fortShieldInvestments
           : fortShieldInvestments // ignore: cast_nullable_to_non_nullable
               as List<InvestmentItem>,
-      withdrawals: withdrawals == freezed
+      withdrawals: null == withdrawals
           ? _value._withdrawals
           : withdrawals // ignore: cast_nullable_to_non_nullable
               as List<WithdrawalItem>,
-      transactions: transactions == freezed
+      transactions: null == transactions
           ? _value._transactions
           : transactions // ignore: cast_nullable_to_non_nullable
               as List<TransactionItem>,
-      currentFilter: currentFilter == freezed
+      currentFilter: null == currentFilter
           ? _value._currentFilter
           : currentFilter // ignore: cast_nullable_to_non_nullable
               as List<TransactionItem>,
-      showDigits: showDigits == freezed
+      showDigits: null == showDigits
           ? _value.showDigits
           : showDigits // ignore: cast_nullable_to_non_nullable
               as bool,
@@ -426,6 +431,8 @@ class _$_WalletState extends _WalletState {
   final Map<String, dynamic> _withdrawalDetails;
   @override
   Map<String, dynamic> get withdrawalDetails {
+    if (_withdrawalDetails is EqualUnmodifiableMapView)
+      return _withdrawalDetails;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableMapView(_withdrawalDetails);
   }
@@ -435,6 +442,8 @@ class _$_WalletState extends _WalletState {
   final List<InvestmentItem> _fortDollarInvestments;
   @override
   List<InvestmentItem> get fortDollarInvestments {
+    if (_fortDollarInvestments is EqualUnmodifiableListView)
+      return _fortDollarInvestments;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_fortDollarInvestments);
   }
@@ -442,6 +451,8 @@ class _$_WalletState extends _WalletState {
   final List<InvestmentItem> _fortCryptoInvestments;
   @override
   List<InvestmentItem> get fortCryptoInvestments {
+    if (_fortCryptoInvestments is EqualUnmodifiableListView)
+      return _fortCryptoInvestments;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_fortCryptoInvestments);
   }
@@ -449,6 +460,8 @@ class _$_WalletState extends _WalletState {
   final List<InvestmentItem> _fortShieldInvestments;
   @override
   List<InvestmentItem> get fortShieldInvestments {
+    if (_fortShieldInvestments is EqualUnmodifiableListView)
+      return _fortShieldInvestments;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_fortShieldInvestments);
   }
@@ -456,6 +469,7 @@ class _$_WalletState extends _WalletState {
   final List<WithdrawalItem> _withdrawals;
   @override
   List<WithdrawalItem> get withdrawals {
+    if (_withdrawals is EqualUnmodifiableListView) return _withdrawals;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_withdrawals);
   }
@@ -463,6 +477,7 @@ class _$_WalletState extends _WalletState {
   final List<TransactionItem> _transactions;
   @override
   List<TransactionItem> get transactions {
+    if (_transactions is EqualUnmodifiableListView) return _transactions;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_transactions);
   }
@@ -470,6 +485,7 @@ class _$_WalletState extends _WalletState {
   final List<TransactionItem> _currentFilter;
   @override
   List<TransactionItem> get currentFilter {
+    if (_currentFilter is EqualUnmodifiableListView) return _currentFilter;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_currentFilter);
   }
@@ -487,33 +503,37 @@ class _$_WalletState extends _WalletState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_WalletState &&
-            const DeepCollectionEquality().equals(other.exchange, exchange) &&
-            const DeepCollectionEquality().equals(other.loading, loading) &&
-            const DeepCollectionEquality().equals(
-                other.fortDollarInvestmentBalance,
-                fortDollarInvestmentBalance) &&
-            const DeepCollectionEquality().equals(
-                other.fortCryptoInvestmentBalance,
-                fortCryptoInvestmentBalance) &&
-            const DeepCollectionEquality().equals(
-                other.fortShieldInvestmentBalance,
-                fortShieldInvestmentBalance) &&
-            const DeepCollectionEquality()
-                .equals(other.fortDollarYieldBalance, fortDollarYieldBalance) &&
-            const DeepCollectionEquality()
-                .equals(other.fortCryptoYieldBalance, fortCryptoYieldBalance) &&
-            const DeepCollectionEquality()
-                .equals(other.fortShieldYieldBalance, fortShieldYieldBalance) &&
-            const DeepCollectionEquality()
-                .equals(other.withdrawalMethod, withdrawalMethod) &&
-            const DeepCollectionEquality().equals(other.failure, failure) &&
-            const DeepCollectionEquality().equals(other.success, success) &&
-            const DeepCollectionEquality()
-                .equals(other.currentSort, currentSort) &&
+            (identical(other.exchange, exchange) ||
+                other.exchange == exchange) &&
+            (identical(other.loading, loading) || other.loading == loading) &&
+            (identical(other.fortDollarInvestmentBalance, fortDollarInvestmentBalance) ||
+                other.fortDollarInvestmentBalance ==
+                    fortDollarInvestmentBalance) &&
+            (identical(other.fortCryptoInvestmentBalance,
+                    fortCryptoInvestmentBalance) ||
+                other.fortCryptoInvestmentBalance ==
+                    fortCryptoInvestmentBalance) &&
+            (identical(other.fortShieldInvestmentBalance,
+                    fortShieldInvestmentBalance) ||
+                other.fortShieldInvestmentBalance ==
+                    fortShieldInvestmentBalance) &&
+            (identical(other.fortDollarYieldBalance, fortDollarYieldBalance) ||
+                other.fortDollarYieldBalance == fortDollarYieldBalance) &&
+            (identical(other.fortCryptoYieldBalance, fortCryptoYieldBalance) ||
+                other.fortCryptoYieldBalance == fortCryptoYieldBalance) &&
+            (identical(other.fortShieldYieldBalance, fortShieldYieldBalance) ||
+                other.fortShieldYieldBalance == fortShieldYieldBalance) &&
+            (identical(other.withdrawalMethod, withdrawalMethod) ||
+                other.withdrawalMethod == withdrawalMethod) &&
+            (identical(other.failure, failure) || other.failure == failure) &&
+            (identical(other.success, success) || other.success == success) &&
+            (identical(other.currentSort, currentSort) ||
+                other.currentSort == currentSort) &&
             const DeepCollectionEquality()
                 .equals(other._withdrawalDetails, _withdrawalDetails) &&
-            const DeepCollectionEquality().equals(
-                other.investmentToBeWithdrawn, investmentToBeWithdrawn) &&
+            (identical(
+                    other.investmentToBeWithdrawn, investmentToBeWithdrawn) ||
+                other.investmentToBeWithdrawn == investmentToBeWithdrawn) &&
             const DeepCollectionEquality()
                 .equals(other._fortDollarInvestments, _fortDollarInvestments) &&
             const DeepCollectionEquality()
@@ -526,38 +546,39 @@ class _$_WalletState extends _WalletState {
                 .equals(other._transactions, _transactions) &&
             const DeepCollectionEquality()
                 .equals(other._currentFilter, _currentFilter) &&
-            const DeepCollectionEquality()
-                .equals(other.showDigits, showDigits));
+            (identical(other.showDigits, showDigits) ||
+                other.showDigits == showDigits));
   }
 
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        const DeepCollectionEquality().hash(exchange),
-        const DeepCollectionEquality().hash(loading),
-        const DeepCollectionEquality().hash(fortDollarInvestmentBalance),
-        const DeepCollectionEquality().hash(fortCryptoInvestmentBalance),
-        const DeepCollectionEquality().hash(fortShieldInvestmentBalance),
-        const DeepCollectionEquality().hash(fortDollarYieldBalance),
-        const DeepCollectionEquality().hash(fortCryptoYieldBalance),
-        const DeepCollectionEquality().hash(fortShieldYieldBalance),
-        const DeepCollectionEquality().hash(withdrawalMethod),
-        const DeepCollectionEquality().hash(failure),
-        const DeepCollectionEquality().hash(success),
-        const DeepCollectionEquality().hash(currentSort),
+        exchange,
+        loading,
+        fortDollarInvestmentBalance,
+        fortCryptoInvestmentBalance,
+        fortShieldInvestmentBalance,
+        fortDollarYieldBalance,
+        fortCryptoYieldBalance,
+        fortShieldYieldBalance,
+        withdrawalMethod,
+        failure,
+        success,
+        currentSort,
         const DeepCollectionEquality().hash(_withdrawalDetails),
-        const DeepCollectionEquality().hash(investmentToBeWithdrawn),
+        investmentToBeWithdrawn,
         const DeepCollectionEquality().hash(_fortDollarInvestments),
         const DeepCollectionEquality().hash(_fortCryptoInvestments),
         const DeepCollectionEquality().hash(_fortShieldInvestments),
         const DeepCollectionEquality().hash(_withdrawals),
         const DeepCollectionEquality().hash(_transactions),
         const DeepCollectionEquality().hash(_currentFilter),
-        const DeepCollectionEquality().hash(showDigits)
+        showDigits
       ]);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_WalletStateCopyWith<_$_WalletState> get copyWith =>
       __$$_WalletStateCopyWithImpl<_$_WalletState>(this, _$identity);
 }

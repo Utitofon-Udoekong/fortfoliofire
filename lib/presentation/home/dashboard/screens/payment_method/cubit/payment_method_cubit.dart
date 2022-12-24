@@ -88,6 +88,9 @@ class PaymentMethodCubit extends Cubit<PaymentMethodState> {
   void platformChanged({required String platform}) {
     emit(state.copyWith(platform: platform));
   }
+  void accountTypeChanged({required String accountType}) {
+    emit(state.copyWith(accountType: accountType));
+  }
 
   void walletLabelChanged({required String walletLabel}) {
     emit(state.copyWith(walletLabel: walletLabel));
@@ -180,11 +183,13 @@ class PaymentMethodCubit extends Cubit<PaymentMethodState> {
     final String userName =
         "${authCubit.state.userModel.firstName} ${authCubit.state.userModel.lastName}";
     final String accountNumber = state.accountNumber;
+    final String accountType = state.accountType;
     final String id = const Uuid().v4().substring(0, 7);
     final String trax = nanoid(8);
     BankAddress bankAddress = BankAddress(
         bankName: bankName,
         accountNumber: accountNumber,
+        accountType: accountType,
         userName: userName,
         type: "BANKADDRESS",
         id: id,

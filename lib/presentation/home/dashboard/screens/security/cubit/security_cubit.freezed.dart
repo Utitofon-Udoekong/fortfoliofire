@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'security_cubit.dart';
 
@@ -35,7 +35,8 @@ mixin _$SecurityState {
 abstract class $SecurityStateCopyWith<$Res> {
   factory $SecurityStateCopyWith(
           SecurityState value, $Res Function(SecurityState) then) =
-      _$SecurityStateCopyWithImpl<$Res>;
+      _$SecurityStateCopyWithImpl<$Res, SecurityState>;
+  @useResult
   $Res call(
       {String emailAddress,
       String pin,
@@ -49,64 +50,66 @@ abstract class $SecurityStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SecurityStateCopyWithImpl<$Res>
+class _$SecurityStateCopyWithImpl<$Res, $Val extends SecurityState>
     implements $SecurityStateCopyWith<$Res> {
   _$SecurityStateCopyWithImpl(this._value, this._then);
 
-  final SecurityState _value;
   // ignore: unused_field
-  final $Res Function(SecurityState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? emailAddress = freezed,
-    Object? pin = freezed,
-    Object? otp = freezed,
-    Object? sentOtp = freezed,
-    Object? showSnackbar = freezed,
-    Object? pinExists = freezed,
-    Object? biometricsExists = freezed,
-    Object? failure = freezed,
-    Object? success = freezed,
+    Object? emailAddress = null,
+    Object? pin = null,
+    Object? otp = null,
+    Object? sentOtp = null,
+    Object? showSnackbar = null,
+    Object? pinExists = null,
+    Object? biometricsExists = null,
+    Object? failure = null,
+    Object? success = null,
   }) {
     return _then(_value.copyWith(
-      emailAddress: emailAddress == freezed
+      emailAddress: null == emailAddress
           ? _value.emailAddress
           : emailAddress // ignore: cast_nullable_to_non_nullable
               as String,
-      pin: pin == freezed
+      pin: null == pin
           ? _value.pin
           : pin // ignore: cast_nullable_to_non_nullable
               as String,
-      otp: otp == freezed
+      otp: null == otp
           ? _value.otp
           : otp // ignore: cast_nullable_to_non_nullable
               as String,
-      sentOtp: sentOtp == freezed
+      sentOtp: null == sentOtp
           ? _value.sentOtp
           : sentOtp // ignore: cast_nullable_to_non_nullable
               as String,
-      showSnackbar: showSnackbar == freezed
+      showSnackbar: null == showSnackbar
           ? _value.showSnackbar
           : showSnackbar // ignore: cast_nullable_to_non_nullable
               as bool,
-      pinExists: pinExists == freezed
+      pinExists: null == pinExists
           ? _value.pinExists
           : pinExists // ignore: cast_nullable_to_non_nullable
               as bool,
-      biometricsExists: biometricsExists == freezed
+      biometricsExists: null == biometricsExists
           ? _value.biometricsExists
           : biometricsExists // ignore: cast_nullable_to_non_nullable
               as bool,
-      failure: failure == freezed
+      failure: null == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as String,
-      success: success == freezed
+      success: null == success
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
@@ -117,6 +120,7 @@ abstract class _$$_SecurityStateCopyWith<$Res>
           _$_SecurityState value, $Res Function(_$_SecurityState) then) =
       __$$_SecurityStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String emailAddress,
       String pin,
@@ -131,61 +135,59 @@ abstract class _$$_SecurityStateCopyWith<$Res>
 
 /// @nodoc
 class __$$_SecurityStateCopyWithImpl<$Res>
-    extends _$SecurityStateCopyWithImpl<$Res>
+    extends _$SecurityStateCopyWithImpl<$Res, _$_SecurityState>
     implements _$$_SecurityStateCopyWith<$Res> {
   __$$_SecurityStateCopyWithImpl(
       _$_SecurityState _value, $Res Function(_$_SecurityState) _then)
-      : super(_value, (v) => _then(v as _$_SecurityState));
+      : super(_value, _then);
 
-  @override
-  _$_SecurityState get _value => super._value as _$_SecurityState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? emailAddress = freezed,
-    Object? pin = freezed,
-    Object? otp = freezed,
-    Object? sentOtp = freezed,
-    Object? showSnackbar = freezed,
-    Object? pinExists = freezed,
-    Object? biometricsExists = freezed,
-    Object? failure = freezed,
-    Object? success = freezed,
+    Object? emailAddress = null,
+    Object? pin = null,
+    Object? otp = null,
+    Object? sentOtp = null,
+    Object? showSnackbar = null,
+    Object? pinExists = null,
+    Object? biometricsExists = null,
+    Object? failure = null,
+    Object? success = null,
   }) {
     return _then(_$_SecurityState(
-      emailAddress: emailAddress == freezed
+      emailAddress: null == emailAddress
           ? _value.emailAddress
           : emailAddress // ignore: cast_nullable_to_non_nullable
               as String,
-      pin: pin == freezed
+      pin: null == pin
           ? _value.pin
           : pin // ignore: cast_nullable_to_non_nullable
               as String,
-      otp: otp == freezed
+      otp: null == otp
           ? _value.otp
           : otp // ignore: cast_nullable_to_non_nullable
               as String,
-      sentOtp: sentOtp == freezed
+      sentOtp: null == sentOtp
           ? _value.sentOtp
           : sentOtp // ignore: cast_nullable_to_non_nullable
               as String,
-      showSnackbar: showSnackbar == freezed
+      showSnackbar: null == showSnackbar
           ? _value.showSnackbar
           : showSnackbar // ignore: cast_nullable_to_non_nullable
               as bool,
-      pinExists: pinExists == freezed
+      pinExists: null == pinExists
           ? _value.pinExists
           : pinExists // ignore: cast_nullable_to_non_nullable
               as bool,
-      biometricsExists: biometricsExists == freezed
+      biometricsExists: null == biometricsExists
           ? _value.biometricsExists
           : biometricsExists // ignore: cast_nullable_to_non_nullable
               as bool,
-      failure: failure == freezed
+      failure: null == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as String,
-      success: success == freezed
+      success: null == success
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
               as String,
@@ -237,35 +239,28 @@ class _$_SecurityState extends _SecurityState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SecurityState &&
-            const DeepCollectionEquality()
-                .equals(other.emailAddress, emailAddress) &&
-            const DeepCollectionEquality().equals(other.pin, pin) &&
-            const DeepCollectionEquality().equals(other.otp, otp) &&
-            const DeepCollectionEquality().equals(other.sentOtp, sentOtp) &&
-            const DeepCollectionEquality()
-                .equals(other.showSnackbar, showSnackbar) &&
-            const DeepCollectionEquality().equals(other.pinExists, pinExists) &&
-            const DeepCollectionEquality()
-                .equals(other.biometricsExists, biometricsExists) &&
-            const DeepCollectionEquality().equals(other.failure, failure) &&
-            const DeepCollectionEquality().equals(other.success, success));
+            (identical(other.emailAddress, emailAddress) ||
+                other.emailAddress == emailAddress) &&
+            (identical(other.pin, pin) || other.pin == pin) &&
+            (identical(other.otp, otp) || other.otp == otp) &&
+            (identical(other.sentOtp, sentOtp) || other.sentOtp == sentOtp) &&
+            (identical(other.showSnackbar, showSnackbar) ||
+                other.showSnackbar == showSnackbar) &&
+            (identical(other.pinExists, pinExists) ||
+                other.pinExists == pinExists) &&
+            (identical(other.biometricsExists, biometricsExists) ||
+                other.biometricsExists == biometricsExists) &&
+            (identical(other.failure, failure) || other.failure == failure) &&
+            (identical(other.success, success) || other.success == success));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(emailAddress),
-      const DeepCollectionEquality().hash(pin),
-      const DeepCollectionEquality().hash(otp),
-      const DeepCollectionEquality().hash(sentOtp),
-      const DeepCollectionEquality().hash(showSnackbar),
-      const DeepCollectionEquality().hash(pinExists),
-      const DeepCollectionEquality().hash(biometricsExists),
-      const DeepCollectionEquality().hash(failure),
-      const DeepCollectionEquality().hash(success));
+  int get hashCode => Object.hash(runtimeType, emailAddress, pin, otp, sentOtp,
+      showSnackbar, pinExists, biometricsExists, failure, success);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_SecurityStateCopyWith<_$_SecurityState> get copyWith =>
       __$$_SecurityStateCopyWithImpl<_$_SecurityState>(this, _$identity);
 }

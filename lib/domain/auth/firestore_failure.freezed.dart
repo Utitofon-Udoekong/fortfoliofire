@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'firestore_failure.dart';
 
@@ -29,13 +29,13 @@ mixin _$FirestoreFailure {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? serverError,
-    TResult Function()? emailAlreadyInUse,
-    TResult Function()? invalidEmail,
-    TResult Function()? userNotFound,
-    TResult Function()? tooManyRequests,
-    TResult Function()? deviceNotSupported,
-    TResult Function()? emailNotVerified,
+    TResult? Function()? serverError,
+    TResult? Function()? emailAlreadyInUse,
+    TResult? Function()? invalidEmail,
+    TResult? Function()? userNotFound,
+    TResult? Function()? tooManyRequests,
+    TResult? Function()? deviceNotSupported,
+    TResult? Function()? emailNotVerified,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,13 +63,13 @@ mixin _$FirestoreFailure {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ServerError value)? serverError,
-    TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
-    TResult Function(InvalidEmail value)? invalidEmail,
-    TResult Function(UserNotFound value)? userNotFound,
-    TResult Function(TooManyRequests value)? tooManyRequests,
-    TResult Function(DeviceNotSupported value)? deviceNotSupported,
-    TResult Function(EmailNotVerified value)? emailNotVerified,
+    TResult? Function(ServerError value)? serverError,
+    TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult? Function(InvalidEmail value)? invalidEmail,
+    TResult? Function(UserNotFound value)? userNotFound,
+    TResult? Function(TooManyRequests value)? tooManyRequests,
+    TResult? Function(DeviceNotSupported value)? deviceNotSupported,
+    TResult? Function(EmailNotVerified value)? emailNotVerified,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -90,17 +90,18 @@ mixin _$FirestoreFailure {
 abstract class $FirestoreFailureCopyWith<$Res> {
   factory $FirestoreFailureCopyWith(
           FirestoreFailure value, $Res Function(FirestoreFailure) then) =
-      _$FirestoreFailureCopyWithImpl<$Res>;
+      _$FirestoreFailureCopyWithImpl<$Res, FirestoreFailure>;
 }
 
 /// @nodoc
-class _$FirestoreFailureCopyWithImpl<$Res>
+class _$FirestoreFailureCopyWithImpl<$Res, $Val extends FirestoreFailure>
     implements $FirestoreFailureCopyWith<$Res> {
   _$FirestoreFailureCopyWithImpl(this._value, this._then);
 
-  final FirestoreFailure _value;
   // ignore: unused_field
-  final $Res Function(FirestoreFailure) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
@@ -112,14 +113,11 @@ abstract class _$$ServerErrorCopyWith<$Res> {
 
 /// @nodoc
 class __$$ServerErrorCopyWithImpl<$Res>
-    extends _$FirestoreFailureCopyWithImpl<$Res>
+    extends _$FirestoreFailureCopyWithImpl<$Res, _$ServerError>
     implements _$$ServerErrorCopyWith<$Res> {
   __$$ServerErrorCopyWithImpl(
       _$ServerError _value, $Res Function(_$ServerError) _then)
-      : super(_value, (v) => _then(v as _$ServerError));
-
-  @override
-  _$ServerError get _value => super._value as _$ServerError;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -158,13 +156,13 @@ class _$ServerError implements ServerError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? serverError,
-    TResult Function()? emailAlreadyInUse,
-    TResult Function()? invalidEmail,
-    TResult Function()? userNotFound,
-    TResult Function()? tooManyRequests,
-    TResult Function()? deviceNotSupported,
-    TResult Function()? emailNotVerified,
+    TResult? Function()? serverError,
+    TResult? Function()? emailAlreadyInUse,
+    TResult? Function()? invalidEmail,
+    TResult? Function()? userNotFound,
+    TResult? Function()? tooManyRequests,
+    TResult? Function()? deviceNotSupported,
+    TResult? Function()? emailNotVerified,
   }) {
     return serverError?.call();
   }
@@ -204,13 +202,13 @@ class _$ServerError implements ServerError {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ServerError value)? serverError,
-    TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
-    TResult Function(InvalidEmail value)? invalidEmail,
-    TResult Function(UserNotFound value)? userNotFound,
-    TResult Function(TooManyRequests value)? tooManyRequests,
-    TResult Function(DeviceNotSupported value)? deviceNotSupported,
-    TResult Function(EmailNotVerified value)? emailNotVerified,
+    TResult? Function(ServerError value)? serverError,
+    TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult? Function(InvalidEmail value)? invalidEmail,
+    TResult? Function(UserNotFound value)? userNotFound,
+    TResult? Function(TooManyRequests value)? tooManyRequests,
+    TResult? Function(DeviceNotSupported value)? deviceNotSupported,
+    TResult? Function(EmailNotVerified value)? emailNotVerified,
   }) {
     return serverError?.call(this);
   }
@@ -247,14 +245,11 @@ abstract class _$$EmailAlreadyInUseCopyWith<$Res> {
 
 /// @nodoc
 class __$$EmailAlreadyInUseCopyWithImpl<$Res>
-    extends _$FirestoreFailureCopyWithImpl<$Res>
+    extends _$FirestoreFailureCopyWithImpl<$Res, _$EmailAlreadyInUse>
     implements _$$EmailAlreadyInUseCopyWith<$Res> {
   __$$EmailAlreadyInUseCopyWithImpl(
       _$EmailAlreadyInUse _value, $Res Function(_$EmailAlreadyInUse) _then)
-      : super(_value, (v) => _then(v as _$EmailAlreadyInUse));
-
-  @override
-  _$EmailAlreadyInUse get _value => super._value as _$EmailAlreadyInUse;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -293,13 +288,13 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? serverError,
-    TResult Function()? emailAlreadyInUse,
-    TResult Function()? invalidEmail,
-    TResult Function()? userNotFound,
-    TResult Function()? tooManyRequests,
-    TResult Function()? deviceNotSupported,
-    TResult Function()? emailNotVerified,
+    TResult? Function()? serverError,
+    TResult? Function()? emailAlreadyInUse,
+    TResult? Function()? invalidEmail,
+    TResult? Function()? userNotFound,
+    TResult? Function()? tooManyRequests,
+    TResult? Function()? deviceNotSupported,
+    TResult? Function()? emailNotVerified,
   }) {
     return emailAlreadyInUse?.call();
   }
@@ -339,13 +334,13 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ServerError value)? serverError,
-    TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
-    TResult Function(InvalidEmail value)? invalidEmail,
-    TResult Function(UserNotFound value)? userNotFound,
-    TResult Function(TooManyRequests value)? tooManyRequests,
-    TResult Function(DeviceNotSupported value)? deviceNotSupported,
-    TResult Function(EmailNotVerified value)? emailNotVerified,
+    TResult? Function(ServerError value)? serverError,
+    TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult? Function(InvalidEmail value)? invalidEmail,
+    TResult? Function(UserNotFound value)? userNotFound,
+    TResult? Function(TooManyRequests value)? tooManyRequests,
+    TResult? Function(DeviceNotSupported value)? deviceNotSupported,
+    TResult? Function(EmailNotVerified value)? emailNotVerified,
   }) {
     return emailAlreadyInUse?.call(this);
   }
@@ -382,14 +377,11 @@ abstract class _$$InvalidEmailCopyWith<$Res> {
 
 /// @nodoc
 class __$$InvalidEmailCopyWithImpl<$Res>
-    extends _$FirestoreFailureCopyWithImpl<$Res>
+    extends _$FirestoreFailureCopyWithImpl<$Res, _$InvalidEmail>
     implements _$$InvalidEmailCopyWith<$Res> {
   __$$InvalidEmailCopyWithImpl(
       _$InvalidEmail _value, $Res Function(_$InvalidEmail) _then)
-      : super(_value, (v) => _then(v as _$InvalidEmail));
-
-  @override
-  _$InvalidEmail get _value => super._value as _$InvalidEmail;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -428,13 +420,13 @@ class _$InvalidEmail implements InvalidEmail {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? serverError,
-    TResult Function()? emailAlreadyInUse,
-    TResult Function()? invalidEmail,
-    TResult Function()? userNotFound,
-    TResult Function()? tooManyRequests,
-    TResult Function()? deviceNotSupported,
-    TResult Function()? emailNotVerified,
+    TResult? Function()? serverError,
+    TResult? Function()? emailAlreadyInUse,
+    TResult? Function()? invalidEmail,
+    TResult? Function()? userNotFound,
+    TResult? Function()? tooManyRequests,
+    TResult? Function()? deviceNotSupported,
+    TResult? Function()? emailNotVerified,
   }) {
     return invalidEmail?.call();
   }
@@ -474,13 +466,13 @@ class _$InvalidEmail implements InvalidEmail {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ServerError value)? serverError,
-    TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
-    TResult Function(InvalidEmail value)? invalidEmail,
-    TResult Function(UserNotFound value)? userNotFound,
-    TResult Function(TooManyRequests value)? tooManyRequests,
-    TResult Function(DeviceNotSupported value)? deviceNotSupported,
-    TResult Function(EmailNotVerified value)? emailNotVerified,
+    TResult? Function(ServerError value)? serverError,
+    TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult? Function(InvalidEmail value)? invalidEmail,
+    TResult? Function(UserNotFound value)? userNotFound,
+    TResult? Function(TooManyRequests value)? tooManyRequests,
+    TResult? Function(DeviceNotSupported value)? deviceNotSupported,
+    TResult? Function(EmailNotVerified value)? emailNotVerified,
   }) {
     return invalidEmail?.call(this);
   }
@@ -517,14 +509,11 @@ abstract class _$$UserNotFoundCopyWith<$Res> {
 
 /// @nodoc
 class __$$UserNotFoundCopyWithImpl<$Res>
-    extends _$FirestoreFailureCopyWithImpl<$Res>
+    extends _$FirestoreFailureCopyWithImpl<$Res, _$UserNotFound>
     implements _$$UserNotFoundCopyWith<$Res> {
   __$$UserNotFoundCopyWithImpl(
       _$UserNotFound _value, $Res Function(_$UserNotFound) _then)
-      : super(_value, (v) => _then(v as _$UserNotFound));
-
-  @override
-  _$UserNotFound get _value => super._value as _$UserNotFound;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -563,13 +552,13 @@ class _$UserNotFound implements UserNotFound {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? serverError,
-    TResult Function()? emailAlreadyInUse,
-    TResult Function()? invalidEmail,
-    TResult Function()? userNotFound,
-    TResult Function()? tooManyRequests,
-    TResult Function()? deviceNotSupported,
-    TResult Function()? emailNotVerified,
+    TResult? Function()? serverError,
+    TResult? Function()? emailAlreadyInUse,
+    TResult? Function()? invalidEmail,
+    TResult? Function()? userNotFound,
+    TResult? Function()? tooManyRequests,
+    TResult? Function()? deviceNotSupported,
+    TResult? Function()? emailNotVerified,
   }) {
     return userNotFound?.call();
   }
@@ -609,13 +598,13 @@ class _$UserNotFound implements UserNotFound {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ServerError value)? serverError,
-    TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
-    TResult Function(InvalidEmail value)? invalidEmail,
-    TResult Function(UserNotFound value)? userNotFound,
-    TResult Function(TooManyRequests value)? tooManyRequests,
-    TResult Function(DeviceNotSupported value)? deviceNotSupported,
-    TResult Function(EmailNotVerified value)? emailNotVerified,
+    TResult? Function(ServerError value)? serverError,
+    TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult? Function(InvalidEmail value)? invalidEmail,
+    TResult? Function(UserNotFound value)? userNotFound,
+    TResult? Function(TooManyRequests value)? tooManyRequests,
+    TResult? Function(DeviceNotSupported value)? deviceNotSupported,
+    TResult? Function(EmailNotVerified value)? emailNotVerified,
   }) {
     return userNotFound?.call(this);
   }
@@ -652,14 +641,11 @@ abstract class _$$TooManyRequestsCopyWith<$Res> {
 
 /// @nodoc
 class __$$TooManyRequestsCopyWithImpl<$Res>
-    extends _$FirestoreFailureCopyWithImpl<$Res>
+    extends _$FirestoreFailureCopyWithImpl<$Res, _$TooManyRequests>
     implements _$$TooManyRequestsCopyWith<$Res> {
   __$$TooManyRequestsCopyWithImpl(
       _$TooManyRequests _value, $Res Function(_$TooManyRequests) _then)
-      : super(_value, (v) => _then(v as _$TooManyRequests));
-
-  @override
-  _$TooManyRequests get _value => super._value as _$TooManyRequests;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -698,13 +684,13 @@ class _$TooManyRequests implements TooManyRequests {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? serverError,
-    TResult Function()? emailAlreadyInUse,
-    TResult Function()? invalidEmail,
-    TResult Function()? userNotFound,
-    TResult Function()? tooManyRequests,
-    TResult Function()? deviceNotSupported,
-    TResult Function()? emailNotVerified,
+    TResult? Function()? serverError,
+    TResult? Function()? emailAlreadyInUse,
+    TResult? Function()? invalidEmail,
+    TResult? Function()? userNotFound,
+    TResult? Function()? tooManyRequests,
+    TResult? Function()? deviceNotSupported,
+    TResult? Function()? emailNotVerified,
   }) {
     return tooManyRequests?.call();
   }
@@ -744,13 +730,13 @@ class _$TooManyRequests implements TooManyRequests {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ServerError value)? serverError,
-    TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
-    TResult Function(InvalidEmail value)? invalidEmail,
-    TResult Function(UserNotFound value)? userNotFound,
-    TResult Function(TooManyRequests value)? tooManyRequests,
-    TResult Function(DeviceNotSupported value)? deviceNotSupported,
-    TResult Function(EmailNotVerified value)? emailNotVerified,
+    TResult? Function(ServerError value)? serverError,
+    TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult? Function(InvalidEmail value)? invalidEmail,
+    TResult? Function(UserNotFound value)? userNotFound,
+    TResult? Function(TooManyRequests value)? tooManyRequests,
+    TResult? Function(DeviceNotSupported value)? deviceNotSupported,
+    TResult? Function(EmailNotVerified value)? emailNotVerified,
   }) {
     return tooManyRequests?.call(this);
   }
@@ -787,14 +773,11 @@ abstract class _$$DeviceNotSupportedCopyWith<$Res> {
 
 /// @nodoc
 class __$$DeviceNotSupportedCopyWithImpl<$Res>
-    extends _$FirestoreFailureCopyWithImpl<$Res>
+    extends _$FirestoreFailureCopyWithImpl<$Res, _$DeviceNotSupported>
     implements _$$DeviceNotSupportedCopyWith<$Res> {
   __$$DeviceNotSupportedCopyWithImpl(
       _$DeviceNotSupported _value, $Res Function(_$DeviceNotSupported) _then)
-      : super(_value, (v) => _then(v as _$DeviceNotSupported));
-
-  @override
-  _$DeviceNotSupported get _value => super._value as _$DeviceNotSupported;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -833,13 +816,13 @@ class _$DeviceNotSupported implements DeviceNotSupported {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? serverError,
-    TResult Function()? emailAlreadyInUse,
-    TResult Function()? invalidEmail,
-    TResult Function()? userNotFound,
-    TResult Function()? tooManyRequests,
-    TResult Function()? deviceNotSupported,
-    TResult Function()? emailNotVerified,
+    TResult? Function()? serverError,
+    TResult? Function()? emailAlreadyInUse,
+    TResult? Function()? invalidEmail,
+    TResult? Function()? userNotFound,
+    TResult? Function()? tooManyRequests,
+    TResult? Function()? deviceNotSupported,
+    TResult? Function()? emailNotVerified,
   }) {
     return deviceNotSupported?.call();
   }
@@ -879,13 +862,13 @@ class _$DeviceNotSupported implements DeviceNotSupported {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ServerError value)? serverError,
-    TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
-    TResult Function(InvalidEmail value)? invalidEmail,
-    TResult Function(UserNotFound value)? userNotFound,
-    TResult Function(TooManyRequests value)? tooManyRequests,
-    TResult Function(DeviceNotSupported value)? deviceNotSupported,
-    TResult Function(EmailNotVerified value)? emailNotVerified,
+    TResult? Function(ServerError value)? serverError,
+    TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult? Function(InvalidEmail value)? invalidEmail,
+    TResult? Function(UserNotFound value)? userNotFound,
+    TResult? Function(TooManyRequests value)? tooManyRequests,
+    TResult? Function(DeviceNotSupported value)? deviceNotSupported,
+    TResult? Function(EmailNotVerified value)? emailNotVerified,
   }) {
     return deviceNotSupported?.call(this);
   }
@@ -922,14 +905,11 @@ abstract class _$$EmailNotVerifiedCopyWith<$Res> {
 
 /// @nodoc
 class __$$EmailNotVerifiedCopyWithImpl<$Res>
-    extends _$FirestoreFailureCopyWithImpl<$Res>
+    extends _$FirestoreFailureCopyWithImpl<$Res, _$EmailNotVerified>
     implements _$$EmailNotVerifiedCopyWith<$Res> {
   __$$EmailNotVerifiedCopyWithImpl(
       _$EmailNotVerified _value, $Res Function(_$EmailNotVerified) _then)
-      : super(_value, (v) => _then(v as _$EmailNotVerified));
-
-  @override
-  _$EmailNotVerified get _value => super._value as _$EmailNotVerified;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -968,13 +948,13 @@ class _$EmailNotVerified implements EmailNotVerified {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? serverError,
-    TResult Function()? emailAlreadyInUse,
-    TResult Function()? invalidEmail,
-    TResult Function()? userNotFound,
-    TResult Function()? tooManyRequests,
-    TResult Function()? deviceNotSupported,
-    TResult Function()? emailNotVerified,
+    TResult? Function()? serverError,
+    TResult? Function()? emailAlreadyInUse,
+    TResult? Function()? invalidEmail,
+    TResult? Function()? userNotFound,
+    TResult? Function()? tooManyRequests,
+    TResult? Function()? deviceNotSupported,
+    TResult? Function()? emailNotVerified,
   }) {
     return emailNotVerified?.call();
   }
@@ -1014,13 +994,13 @@ class _$EmailNotVerified implements EmailNotVerified {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ServerError value)? serverError,
-    TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
-    TResult Function(InvalidEmail value)? invalidEmail,
-    TResult Function(UserNotFound value)? userNotFound,
-    TResult Function(TooManyRequests value)? tooManyRequests,
-    TResult Function(DeviceNotSupported value)? deviceNotSupported,
-    TResult Function(EmailNotVerified value)? emailNotVerified,
+    TResult? Function(ServerError value)? serverError,
+    TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult? Function(InvalidEmail value)? invalidEmail,
+    TResult? Function(UserNotFound value)? userNotFound,
+    TResult? Function(TooManyRequests value)? tooManyRequests,
+    TResult? Function(DeviceNotSupported value)? deviceNotSupported,
+    TResult? Function(EmailNotVerified value)? emailNotVerified,
   }) {
     return emailNotVerified?.call(this);
   }

@@ -10,6 +10,7 @@ abstract class BankAddress implements _$BankAddress {
       {
         required String bankName,
   required String accountNumber,
+  required String accountType,
   required String userName,
   required String id,
   required String trax,
@@ -19,6 +20,7 @@ abstract class BankAddress implements _$BankAddress {
   factory BankAddress.empty() => const BankAddress(
        bankName: "",
        accountNumber: "",
+       accountType: "",
        userName: "",
        id: "",
        trax: "",
@@ -28,6 +30,7 @@ abstract class BankAddress implements _$BankAddress {
   Map<String, dynamic> toMap() {
     return {
       'bankName': bankName,
+      'accountType': accountType,
       'accountNumber': accountNumber,
       'userName': userName,
       'id': id,

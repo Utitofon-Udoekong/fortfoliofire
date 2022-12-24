@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'sign_in_form_phone_cubit.dart';
 
@@ -32,7 +32,8 @@ mixin _$SignInFormPhoneState {
 abstract class $SignInFormPhoneStateCopyWith<$Res> {
   factory $SignInFormPhoneStateCopyWith(SignInFormPhoneState value,
           $Res Function(SignInFormPhoneState) then) =
-      _$SignInFormPhoneStateCopyWithImpl<$Res>;
+      _$SignInFormPhoneStateCopyWithImpl<$Res, SignInFormPhoneState>;
+  @useResult
   $Res call(
       {String phoneNumber,
       String smsCode,
@@ -43,49 +44,52 @@ abstract class $SignInFormPhoneStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SignInFormPhoneStateCopyWithImpl<$Res>
+class _$SignInFormPhoneStateCopyWithImpl<$Res,
+        $Val extends SignInFormPhoneState>
     implements $SignInFormPhoneStateCopyWith<$Res> {
   _$SignInFormPhoneStateCopyWithImpl(this._value, this._then);
 
-  final SignInFormPhoneState _value;
   // ignore: unused_field
-  final $Res Function(SignInFormPhoneState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? phoneNumber = freezed,
-    Object? smsCode = freezed,
-    Object? verificationId = freezed,
-    Object? failure = freezed,
-    Object? success = freezed,
-    Object? isSubmitting = freezed,
+    Object? phoneNumber = null,
+    Object? smsCode = null,
+    Object? verificationId = null,
+    Object? failure = null,
+    Object? success = null,
+    Object? isSubmitting = null,
   }) {
     return _then(_value.copyWith(
-      phoneNumber: phoneNumber == freezed
+      phoneNumber: null == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
-      smsCode: smsCode == freezed
+      smsCode: null == smsCode
           ? _value.smsCode
           : smsCode // ignore: cast_nullable_to_non_nullable
               as String,
-      verificationId: verificationId == freezed
+      verificationId: null == verificationId
           ? _value.verificationId
           : verificationId // ignore: cast_nullable_to_non_nullable
               as String,
-      failure: failure == freezed
+      failure: null == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as String,
-      success: success == freezed
+      success: null == success
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
               as String,
-      isSubmitting: isSubmitting == freezed
+      isSubmitting: null == isSubmitting
           ? _value.isSubmitting
           : isSubmitting // ignore: cast_nullable_to_non_nullable
               as bool,
-    ));
+    ) as $Val);
   }
 }
 
@@ -96,6 +100,7 @@ abstract class _$$_SignInFormPhoneStateCopyWith<$Res>
           $Res Function(_$_SignInFormPhoneState) then) =
       __$$_SignInFormPhoneStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String phoneNumber,
       String smsCode,
@@ -107,46 +112,44 @@ abstract class _$$_SignInFormPhoneStateCopyWith<$Res>
 
 /// @nodoc
 class __$$_SignInFormPhoneStateCopyWithImpl<$Res>
-    extends _$SignInFormPhoneStateCopyWithImpl<$Res>
+    extends _$SignInFormPhoneStateCopyWithImpl<$Res, _$_SignInFormPhoneState>
     implements _$$_SignInFormPhoneStateCopyWith<$Res> {
   __$$_SignInFormPhoneStateCopyWithImpl(_$_SignInFormPhoneState _value,
       $Res Function(_$_SignInFormPhoneState) _then)
-      : super(_value, (v) => _then(v as _$_SignInFormPhoneState));
+      : super(_value, _then);
 
-  @override
-  _$_SignInFormPhoneState get _value => super._value as _$_SignInFormPhoneState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? phoneNumber = freezed,
-    Object? smsCode = freezed,
-    Object? verificationId = freezed,
-    Object? failure = freezed,
-    Object? success = freezed,
-    Object? isSubmitting = freezed,
+    Object? phoneNumber = null,
+    Object? smsCode = null,
+    Object? verificationId = null,
+    Object? failure = null,
+    Object? success = null,
+    Object? isSubmitting = null,
   }) {
     return _then(_$_SignInFormPhoneState(
-      phoneNumber: phoneNumber == freezed
+      phoneNumber: null == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
-      smsCode: smsCode == freezed
+      smsCode: null == smsCode
           ? _value.smsCode
           : smsCode // ignore: cast_nullable_to_non_nullable
               as String,
-      verificationId: verificationId == freezed
+      verificationId: null == verificationId
           ? _value.verificationId
           : verificationId // ignore: cast_nullable_to_non_nullable
               as String,
-      failure: failure == freezed
+      failure: null == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as String,
-      success: success == freezed
+      success: null == success
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
               as String,
-      isSubmitting: isSubmitting == freezed
+      isSubmitting: null == isSubmitting
           ? _value.isSubmitting
           : isSubmitting // ignore: cast_nullable_to_non_nullable
               as bool,
@@ -189,29 +192,24 @@ class _$_SignInFormPhoneState extends _SignInFormPhoneState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SignInFormPhoneState &&
-            const DeepCollectionEquality()
-                .equals(other.phoneNumber, phoneNumber) &&
-            const DeepCollectionEquality().equals(other.smsCode, smsCode) &&
-            const DeepCollectionEquality()
-                .equals(other.verificationId, verificationId) &&
-            const DeepCollectionEquality().equals(other.failure, failure) &&
-            const DeepCollectionEquality().equals(other.success, success) &&
-            const DeepCollectionEquality()
-                .equals(other.isSubmitting, isSubmitting));
+            (identical(other.phoneNumber, phoneNumber) ||
+                other.phoneNumber == phoneNumber) &&
+            (identical(other.smsCode, smsCode) || other.smsCode == smsCode) &&
+            (identical(other.verificationId, verificationId) ||
+                other.verificationId == verificationId) &&
+            (identical(other.failure, failure) || other.failure == failure) &&
+            (identical(other.success, success) || other.success == success) &&
+            (identical(other.isSubmitting, isSubmitting) ||
+                other.isSubmitting == isSubmitting));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(phoneNumber),
-      const DeepCollectionEquality().hash(smsCode),
-      const DeepCollectionEquality().hash(verificationId),
-      const DeepCollectionEquality().hash(failure),
-      const DeepCollectionEquality().hash(success),
-      const DeepCollectionEquality().hash(isSubmitting));
+  int get hashCode => Object.hash(runtimeType, phoneNumber, smsCode,
+      verificationId, failure, success, isSubmitting);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_SignInFormPhoneStateCopyWith<_$_SignInFormPhoneState> get copyWith =>
       __$$_SignInFormPhoneStateCopyWithImpl<_$_SignInFormPhoneState>(
           this, _$identity);

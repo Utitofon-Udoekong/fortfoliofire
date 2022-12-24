@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'crypto_address.dart';
 
@@ -39,7 +39,8 @@ mixin _$CryptoWalletDTO {
 abstract class $CryptoWalletDTOCopyWith<$Res> {
   factory $CryptoWalletDTOCopyWith(
           CryptoWalletDTO value, $Res Function(CryptoWalletDTO) then) =
-      _$CryptoWalletDTOCopyWithImpl<$Res>;
+      _$CryptoWalletDTOCopyWithImpl<$Res, CryptoWalletDTO>;
+  @useResult
   $Res call(
       {String walletLabel,
       String address,
@@ -52,59 +53,61 @@ abstract class $CryptoWalletDTOCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$CryptoWalletDTOCopyWithImpl<$Res>
+class _$CryptoWalletDTOCopyWithImpl<$Res, $Val extends CryptoWalletDTO>
     implements $CryptoWalletDTOCopyWith<$Res> {
   _$CryptoWalletDTOCopyWithImpl(this._value, this._then);
 
-  final CryptoWalletDTO _value;
   // ignore: unused_field
-  final $Res Function(CryptoWalletDTO) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? walletLabel = freezed,
-    Object? address = freezed,
-    Object? coin = freezed,
+    Object? walletLabel = null,
+    Object? address = null,
+    Object? coin = null,
     Object? network = freezed,
-    Object? platform = freezed,
-    Object? id = freezed,
-    Object? trax = freezed,
-    Object? type = freezed,
+    Object? platform = null,
+    Object? id = null,
+    Object? trax = null,
+    Object? type = null,
   }) {
     return _then(_value.copyWith(
-      walletLabel: walletLabel == freezed
+      walletLabel: null == walletLabel
           ? _value.walletLabel
           : walletLabel // ignore: cast_nullable_to_non_nullable
               as String,
-      address: address == freezed
+      address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String,
-      coin: coin == freezed
+      coin: null == coin
           ? _value.coin
           : coin // ignore: cast_nullable_to_non_nullable
               as String,
-      network: network == freezed
+      network: freezed == network
           ? _value.network
           : network // ignore: cast_nullable_to_non_nullable
               as String?,
-      platform: platform == freezed
+      platform: null == platform
           ? _value.platform
           : platform // ignore: cast_nullable_to_non_nullable
               as String,
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      trax: trax == freezed
+      trax: null == trax
           ? _value.trax
           : trax // ignore: cast_nullable_to_non_nullable
               as String,
-      type: type == freezed
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
@@ -115,6 +118,7 @@ abstract class _$$_CryptoWalletDTOCopyWith<$Res>
           _$_CryptoWalletDTO value, $Res Function(_$_CryptoWalletDTO) then) =
       __$$_CryptoWalletDTOCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String walletLabel,
       String address,
@@ -128,56 +132,54 @@ abstract class _$$_CryptoWalletDTOCopyWith<$Res>
 
 /// @nodoc
 class __$$_CryptoWalletDTOCopyWithImpl<$Res>
-    extends _$CryptoWalletDTOCopyWithImpl<$Res>
+    extends _$CryptoWalletDTOCopyWithImpl<$Res, _$_CryptoWalletDTO>
     implements _$$_CryptoWalletDTOCopyWith<$Res> {
   __$$_CryptoWalletDTOCopyWithImpl(
       _$_CryptoWalletDTO _value, $Res Function(_$_CryptoWalletDTO) _then)
-      : super(_value, (v) => _then(v as _$_CryptoWalletDTO));
+      : super(_value, _then);
 
-  @override
-  _$_CryptoWalletDTO get _value => super._value as _$_CryptoWalletDTO;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? walletLabel = freezed,
-    Object? address = freezed,
-    Object? coin = freezed,
+    Object? walletLabel = null,
+    Object? address = null,
+    Object? coin = null,
     Object? network = freezed,
-    Object? platform = freezed,
-    Object? id = freezed,
-    Object? trax = freezed,
-    Object? type = freezed,
+    Object? platform = null,
+    Object? id = null,
+    Object? trax = null,
+    Object? type = null,
   }) {
     return _then(_$_CryptoWalletDTO(
-      walletLabel: walletLabel == freezed
+      walletLabel: null == walletLabel
           ? _value.walletLabel
           : walletLabel // ignore: cast_nullable_to_non_nullable
               as String,
-      address: address == freezed
+      address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String,
-      coin: coin == freezed
+      coin: null == coin
           ? _value.coin
           : coin // ignore: cast_nullable_to_non_nullable
               as String,
-      network: network == freezed
+      network: freezed == network
           ? _value.network
           : network // ignore: cast_nullable_to_non_nullable
               as String?,
-      platform: platform == freezed
+      platform: null == platform
           ? _value.platform
           : platform // ignore: cast_nullable_to_non_nullable
               as String,
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      trax: trax == freezed
+      trax: null == trax
           ? _value.trax
           : trax // ignore: cast_nullable_to_non_nullable
               as String,
-      type: type == freezed
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
@@ -229,32 +231,26 @@ class _$_CryptoWalletDTO extends _CryptoWalletDTO {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CryptoWalletDTO &&
-            const DeepCollectionEquality()
-                .equals(other.walletLabel, walletLabel) &&
-            const DeepCollectionEquality().equals(other.address, address) &&
-            const DeepCollectionEquality().equals(other.coin, coin) &&
-            const DeepCollectionEquality().equals(other.network, network) &&
-            const DeepCollectionEquality().equals(other.platform, platform) &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.trax, trax) &&
-            const DeepCollectionEquality().equals(other.type, type));
+            (identical(other.walletLabel, walletLabel) ||
+                other.walletLabel == walletLabel) &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.coin, coin) || other.coin == coin) &&
+            (identical(other.network, network) || other.network == network) &&
+            (identical(other.platform, platform) ||
+                other.platform == platform) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.trax, trax) || other.trax == trax) &&
+            (identical(other.type, type) || other.type == type));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(walletLabel),
-      const DeepCollectionEquality().hash(address),
-      const DeepCollectionEquality().hash(coin),
-      const DeepCollectionEquality().hash(network),
-      const DeepCollectionEquality().hash(platform),
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(trax),
-      const DeepCollectionEquality().hash(type));
+  int get hashCode => Object.hash(runtimeType, walletLabel, address, coin,
+      network, platform, id, trax, type);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_CryptoWalletDTOCopyWith<_$_CryptoWalletDTO> get copyWith =>
       __$$_CryptoWalletDTOCopyWithImpl<_$_CryptoWalletDTO>(this, _$identity);
 

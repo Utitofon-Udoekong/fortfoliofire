@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'notification_cubit.dart';
 
@@ -37,7 +37,8 @@ mixin _$NotificationState {
 abstract class $NotificationStateCopyWith<$Res> {
   factory $NotificationStateCopyWith(
           NotificationState value, $Res Function(NotificationState) then) =
-      _$NotificationStateCopyWithImpl<$Res>;
+      _$NotificationStateCopyWithImpl<$Res, NotificationState>;
+  @useResult
   $Res call(
       {List<NotificationItem> notifications,
       List<NotificationItem> selectedNotifications,
@@ -51,64 +52,66 @@ abstract class $NotificationStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$NotificationStateCopyWithImpl<$Res>
+class _$NotificationStateCopyWithImpl<$Res, $Val extends NotificationState>
     implements $NotificationStateCopyWith<$Res> {
   _$NotificationStateCopyWithImpl(this._value, this._then);
 
-  final NotificationState _value;
   // ignore: unused_field
-  final $Res Function(NotificationState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? notifications = freezed,
-    Object? selectedNotifications = freezed,
-    Object? notificationCount = freezed,
-    Object? loading = freezed,
-    Object? type = freezed,
-    Object? title = freezed,
-    Object? createdat = freezed,
-    Object? id = freezed,
-    Object? status = freezed,
+    Object? notifications = null,
+    Object? selectedNotifications = null,
+    Object? notificationCount = null,
+    Object? loading = null,
+    Object? type = null,
+    Object? title = null,
+    Object? createdat = null,
+    Object? id = null,
+    Object? status = null,
   }) {
     return _then(_value.copyWith(
-      notifications: notifications == freezed
+      notifications: null == notifications
           ? _value.notifications
           : notifications // ignore: cast_nullable_to_non_nullable
               as List<NotificationItem>,
-      selectedNotifications: selectedNotifications == freezed
+      selectedNotifications: null == selectedNotifications
           ? _value.selectedNotifications
           : selectedNotifications // ignore: cast_nullable_to_non_nullable
               as List<NotificationItem>,
-      notificationCount: notificationCount == freezed
+      notificationCount: null == notificationCount
           ? _value.notificationCount
           : notificationCount // ignore: cast_nullable_to_non_nullable
               as int,
-      loading: loading == freezed
+      loading: null == loading
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
-      type: type == freezed
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
-      title: title == freezed
+      title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      createdat: createdat == freezed
+      createdat: null == createdat
           ? _value.createdat
           : createdat // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      status: status == freezed
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
@@ -119,6 +122,7 @@ abstract class _$$_NotificationStateCopyWith<$Res>
           $Res Function(_$_NotificationState) then) =
       __$$_NotificationStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {List<NotificationItem> notifications,
       List<NotificationItem> selectedNotifications,
@@ -133,61 +137,59 @@ abstract class _$$_NotificationStateCopyWith<$Res>
 
 /// @nodoc
 class __$$_NotificationStateCopyWithImpl<$Res>
-    extends _$NotificationStateCopyWithImpl<$Res>
+    extends _$NotificationStateCopyWithImpl<$Res, _$_NotificationState>
     implements _$$_NotificationStateCopyWith<$Res> {
   __$$_NotificationStateCopyWithImpl(
       _$_NotificationState _value, $Res Function(_$_NotificationState) _then)
-      : super(_value, (v) => _then(v as _$_NotificationState));
+      : super(_value, _then);
 
-  @override
-  _$_NotificationState get _value => super._value as _$_NotificationState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? notifications = freezed,
-    Object? selectedNotifications = freezed,
-    Object? notificationCount = freezed,
-    Object? loading = freezed,
-    Object? type = freezed,
-    Object? title = freezed,
-    Object? createdat = freezed,
-    Object? id = freezed,
-    Object? status = freezed,
+    Object? notifications = null,
+    Object? selectedNotifications = null,
+    Object? notificationCount = null,
+    Object? loading = null,
+    Object? type = null,
+    Object? title = null,
+    Object? createdat = null,
+    Object? id = null,
+    Object? status = null,
   }) {
     return _then(_$_NotificationState(
-      notifications: notifications == freezed
+      notifications: null == notifications
           ? _value._notifications
           : notifications // ignore: cast_nullable_to_non_nullable
               as List<NotificationItem>,
-      selectedNotifications: selectedNotifications == freezed
+      selectedNotifications: null == selectedNotifications
           ? _value._selectedNotifications
           : selectedNotifications // ignore: cast_nullable_to_non_nullable
               as List<NotificationItem>,
-      notificationCount: notificationCount == freezed
+      notificationCount: null == notificationCount
           ? _value.notificationCount
           : notificationCount // ignore: cast_nullable_to_non_nullable
               as int,
-      loading: loading == freezed
+      loading: null == loading
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
-      type: type == freezed
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
-      title: title == freezed
+      title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      createdat: createdat == freezed
+      createdat: null == createdat
           ? _value.createdat
           : createdat // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      status: status == freezed
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
@@ -215,6 +217,7 @@ class _$_NotificationState extends _NotificationState {
   final List<NotificationItem> _notifications;
   @override
   List<NotificationItem> get notifications {
+    if (_notifications is EqualUnmodifiableListView) return _notifications;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_notifications);
   }
@@ -222,6 +225,8 @@ class _$_NotificationState extends _NotificationState {
   final List<NotificationItem> _selectedNotifications;
   @override
   List<NotificationItem> get selectedNotifications {
+    if (_selectedNotifications is EqualUnmodifiableListView)
+      return _selectedNotifications;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_selectedNotifications);
   }
@@ -255,14 +260,15 @@ class _$_NotificationState extends _NotificationState {
                 .equals(other._notifications, _notifications) &&
             const DeepCollectionEquality()
                 .equals(other._selectedNotifications, _selectedNotifications) &&
-            const DeepCollectionEquality()
-                .equals(other.notificationCount, notificationCount) &&
-            const DeepCollectionEquality().equals(other.loading, loading) &&
-            const DeepCollectionEquality().equals(other.type, type) &&
-            const DeepCollectionEquality().equals(other.title, title) &&
-            const DeepCollectionEquality().equals(other.createdat, createdat) &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.status, status));
+            (identical(other.notificationCount, notificationCount) ||
+                other.notificationCount == notificationCount) &&
+            (identical(other.loading, loading) || other.loading == loading) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.createdat, createdat) ||
+                other.createdat == createdat) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.status, status) || other.status == status));
   }
 
   @override
@@ -270,16 +276,17 @@ class _$_NotificationState extends _NotificationState {
       runtimeType,
       const DeepCollectionEquality().hash(_notifications),
       const DeepCollectionEquality().hash(_selectedNotifications),
-      const DeepCollectionEquality().hash(notificationCount),
-      const DeepCollectionEquality().hash(loading),
-      const DeepCollectionEquality().hash(type),
-      const DeepCollectionEquality().hash(title),
-      const DeepCollectionEquality().hash(createdat),
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(status));
+      notificationCount,
+      loading,
+      type,
+      title,
+      createdat,
+      id,
+      status);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_NotificationStateCopyWith<_$_NotificationState> get copyWith =>
       __$$_NotificationStateCopyWithImpl<_$_NotificationState>(
           this, _$identity);

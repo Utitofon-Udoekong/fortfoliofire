@@ -14,7 +14,6 @@ class BankWithdrawal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final selectedAccountNumber = context.select((WalletCubit element) => element.state.withdrawalDetails["accountNumber"]);
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -75,14 +74,14 @@ class BankWithdrawal extends StatelessWidget {
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: bankAddresses.map((address) {
-                        return buildtile(
+                        return BuildTile(
                             accNumber: address.accountNumber,
+                            accType: address.accountType,
                             ontap: () => context
                                 .read<WalletCubit>()
                                 .withdrawalDetailsChanged(
                                     withdrawalDetails: address.toMap()),
-                            userName: address.userName,
-                            selected: selectedAccountNumber == address.accountNumber);
+                            userName: address.userName,);
                       }).toList(),
                     );
                   },
@@ -114,7 +113,18 @@ class BankWithdrawal extends StatelessWidget {
     );
   }
 
-  Widget buildtile({required String accNumber, required Function() ontap, required String userName, required bool selected}) {
+}
+
+class BuildTile extends StatelessWidget {
+  final String accNumber; 
+  final String accType; 
+  final Function() ontap; 
+  final String userName; 
+  const BuildTile({super.key, required this.accNumber, required this.accType, required this.ontap, required this.userName});
+
+  @override
+  Widget build(BuildContext context) {
+    final selectedAccountNumber = context.select((WalletCubit element) => element.state.withdrawalDetails["accountNumber"]);
     return GestureDetector(
       onTap: ontap,
       child: Container(
@@ -122,16 +132,28 @@ class BankWithdrawal extends StatelessWidget {
             color: const Color(0XFFF3F6F8),
             borderRadius: BorderRadius.circular(5.0)),
         child: ListTile(
-          title: Text(
-            accNumber,
-            style: titleText.copyWith(fontSize: 15),
+          title: Row(
+            children: [
+              Text(
+                accNumber,
+                style: titleText.copyWith(fontSize: 15),
+              ),
+              const SizedBox(width: 20),
+              Container(
+                decoration: BoxDecoration(
+                  color: kPrimaryColor,
+                  borderRadius: BorderRadius.circular(3.0),
+                ),
+                child: Text(accType, style: subTitle.copyWith(fontSize: 13, color: Colors.white))
+              )
+            ]
           ),
           subtitle: Text(
             userName,
             style: subTitle.copyWith(fontSize: 13, color: kgreyColor),
           ),
           trailing: Icon(
-            selected ? Icons.circle_rounded : Icons.circle_outlined,
+            selectedAccountNumber == accNumber ? Icons.circle_rounded : Icons.circle_outlined,
             color: const Color(0XFF00ADEE),
           ),
         ),

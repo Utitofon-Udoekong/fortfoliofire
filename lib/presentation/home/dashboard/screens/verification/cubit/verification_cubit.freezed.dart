@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'verification_cubit.dart';
 
@@ -36,7 +36,8 @@ mixin _$VerificationState {
 abstract class $VerificationStateCopyWith<$Res> {
   factory $VerificationStateCopyWith(
           VerificationState value, $Res Function(VerificationState) then) =
-      _$VerificationStateCopyWithImpl<$Res>;
+      _$VerificationStateCopyWithImpl<$Res, VerificationState>;
+  @useResult
   $Res call(
       {bool submitting,
       bool kycExists,
@@ -51,69 +52,71 @@ abstract class $VerificationStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$VerificationStateCopyWithImpl<$Res>
+class _$VerificationStateCopyWithImpl<$Res, $Val extends VerificationState>
     implements $VerificationStateCopyWith<$Res> {
   _$VerificationStateCopyWithImpl(this._value, this._then);
 
-  final VerificationState _value;
   // ignore: unused_field
-  final $Res Function(VerificationState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? submitting = freezed,
-    Object? kycExists = freezed,
-    Object? failure = freezed,
-    Object? rejectionReason = freezed,
-    Object? success = freezed,
-    Object? status = freezed,
-    Object? documentType = freezed,
-    Object? frontFile = freezed,
-    Object? backFile = freezed,
-    Object? utilityFile = freezed,
+    Object? submitting = null,
+    Object? kycExists = null,
+    Object? failure = null,
+    Object? rejectionReason = null,
+    Object? success = null,
+    Object? status = null,
+    Object? documentType = null,
+    Object? frontFile = null,
+    Object? backFile = null,
+    Object? utilityFile = null,
   }) {
     return _then(_value.copyWith(
-      submitting: submitting == freezed
+      submitting: null == submitting
           ? _value.submitting
           : submitting // ignore: cast_nullable_to_non_nullable
               as bool,
-      kycExists: kycExists == freezed
+      kycExists: null == kycExists
           ? _value.kycExists
           : kycExists // ignore: cast_nullable_to_non_nullable
               as bool,
-      failure: failure == freezed
+      failure: null == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as String,
-      rejectionReason: rejectionReason == freezed
+      rejectionReason: null == rejectionReason
           ? _value.rejectionReason
           : rejectionReason // ignore: cast_nullable_to_non_nullable
               as String,
-      success: success == freezed
+      success: null == success
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
               as String,
-      status: status == freezed
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-      documentType: documentType == freezed
+      documentType: null == documentType
           ? _value.documentType
           : documentType // ignore: cast_nullable_to_non_nullable
               as String,
-      frontFile: frontFile == freezed
+      frontFile: null == frontFile
           ? _value.frontFile
           : frontFile // ignore: cast_nullable_to_non_nullable
               as File,
-      backFile: backFile == freezed
+      backFile: null == backFile
           ? _value.backFile
           : backFile // ignore: cast_nullable_to_non_nullable
               as File,
-      utilityFile: utilityFile == freezed
+      utilityFile: null == utilityFile
           ? _value.utilityFile
           : utilityFile // ignore: cast_nullable_to_non_nullable
               as File,
-    ));
+    ) as $Val);
   }
 }
 
@@ -124,6 +127,7 @@ abstract class _$$_VerificationStateCopyWith<$Res>
           $Res Function(_$_VerificationState) then) =
       __$$_VerificationStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {bool submitting,
       bool kycExists,
@@ -139,66 +143,64 @@ abstract class _$$_VerificationStateCopyWith<$Res>
 
 /// @nodoc
 class __$$_VerificationStateCopyWithImpl<$Res>
-    extends _$VerificationStateCopyWithImpl<$Res>
+    extends _$VerificationStateCopyWithImpl<$Res, _$_VerificationState>
     implements _$$_VerificationStateCopyWith<$Res> {
   __$$_VerificationStateCopyWithImpl(
       _$_VerificationState _value, $Res Function(_$_VerificationState) _then)
-      : super(_value, (v) => _then(v as _$_VerificationState));
+      : super(_value, _then);
 
-  @override
-  _$_VerificationState get _value => super._value as _$_VerificationState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? submitting = freezed,
-    Object? kycExists = freezed,
-    Object? failure = freezed,
-    Object? rejectionReason = freezed,
-    Object? success = freezed,
-    Object? status = freezed,
-    Object? documentType = freezed,
-    Object? frontFile = freezed,
-    Object? backFile = freezed,
-    Object? utilityFile = freezed,
+    Object? submitting = null,
+    Object? kycExists = null,
+    Object? failure = null,
+    Object? rejectionReason = null,
+    Object? success = null,
+    Object? status = null,
+    Object? documentType = null,
+    Object? frontFile = null,
+    Object? backFile = null,
+    Object? utilityFile = null,
   }) {
     return _then(_$_VerificationState(
-      submitting: submitting == freezed
+      submitting: null == submitting
           ? _value.submitting
           : submitting // ignore: cast_nullable_to_non_nullable
               as bool,
-      kycExists: kycExists == freezed
+      kycExists: null == kycExists
           ? _value.kycExists
           : kycExists // ignore: cast_nullable_to_non_nullable
               as bool,
-      failure: failure == freezed
+      failure: null == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as String,
-      rejectionReason: rejectionReason == freezed
+      rejectionReason: null == rejectionReason
           ? _value.rejectionReason
           : rejectionReason // ignore: cast_nullable_to_non_nullable
               as String,
-      success: success == freezed
+      success: null == success
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
               as String,
-      status: status == freezed
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-      documentType: documentType == freezed
+      documentType: null == documentType
           ? _value.documentType
           : documentType // ignore: cast_nullable_to_non_nullable
               as String,
-      frontFile: frontFile == freezed
+      frontFile: null == frontFile
           ? _value.frontFile
           : frontFile // ignore: cast_nullable_to_non_nullable
               as File,
-      backFile: backFile == freezed
+      backFile: null == backFile
           ? _value.backFile
           : backFile // ignore: cast_nullable_to_non_nullable
               as File,
-      utilityFile: utilityFile == freezed
+      utilityFile: null == utilityFile
           ? _value.utilityFile
           : utilityFile // ignore: cast_nullable_to_non_nullable
               as File,
@@ -253,38 +255,42 @@ class _$_VerificationState extends _VerificationState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_VerificationState &&
-            const DeepCollectionEquality()
-                .equals(other.submitting, submitting) &&
-            const DeepCollectionEquality().equals(other.kycExists, kycExists) &&
-            const DeepCollectionEquality().equals(other.failure, failure) &&
-            const DeepCollectionEquality()
-                .equals(other.rejectionReason, rejectionReason) &&
-            const DeepCollectionEquality().equals(other.success, success) &&
-            const DeepCollectionEquality().equals(other.status, status) &&
-            const DeepCollectionEquality()
-                .equals(other.documentType, documentType) &&
-            const DeepCollectionEquality().equals(other.frontFile, frontFile) &&
-            const DeepCollectionEquality().equals(other.backFile, backFile) &&
-            const DeepCollectionEquality()
-                .equals(other.utilityFile, utilityFile));
+            (identical(other.submitting, submitting) ||
+                other.submitting == submitting) &&
+            (identical(other.kycExists, kycExists) ||
+                other.kycExists == kycExists) &&
+            (identical(other.failure, failure) || other.failure == failure) &&
+            (identical(other.rejectionReason, rejectionReason) ||
+                other.rejectionReason == rejectionReason) &&
+            (identical(other.success, success) || other.success == success) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.documentType, documentType) ||
+                other.documentType == documentType) &&
+            (identical(other.frontFile, frontFile) ||
+                other.frontFile == frontFile) &&
+            (identical(other.backFile, backFile) ||
+                other.backFile == backFile) &&
+            (identical(other.utilityFile, utilityFile) ||
+                other.utilityFile == utilityFile));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(submitting),
-      const DeepCollectionEquality().hash(kycExists),
-      const DeepCollectionEquality().hash(failure),
-      const DeepCollectionEquality().hash(rejectionReason),
-      const DeepCollectionEquality().hash(success),
-      const DeepCollectionEquality().hash(status),
-      const DeepCollectionEquality().hash(documentType),
-      const DeepCollectionEquality().hash(frontFile),
-      const DeepCollectionEquality().hash(backFile),
-      const DeepCollectionEquality().hash(utilityFile));
+      submitting,
+      kycExists,
+      failure,
+      rejectionReason,
+      success,
+      status,
+      documentType,
+      frontFile,
+      backFile,
+      utilityFile);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_VerificationStateCopyWith<_$_VerificationState> get copyWith =>
       __$$_VerificationStateCopyWithImpl<_$_VerificationState>(
           this, _$identity);

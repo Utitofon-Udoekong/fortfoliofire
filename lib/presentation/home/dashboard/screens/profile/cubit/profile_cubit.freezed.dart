@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'profile_cubit.dart';
 
@@ -35,7 +35,8 @@ mixin _$ProfileState {
 abstract class $ProfileStateCopyWith<$Res> {
   factory $ProfileStateCopyWith(
           ProfileState value, $Res Function(ProfileState) then) =
-      _$ProfileStateCopyWithImpl<$Res>;
+      _$ProfileStateCopyWithImpl<$Res, ProfileState>;
+  @useResult
   $Res call(
       {String firstName,
       String lastName,
@@ -49,63 +50,66 @@ abstract class $ProfileStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ProfileStateCopyWithImpl<$Res> implements $ProfileStateCopyWith<$Res> {
+class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
+    implements $ProfileStateCopyWith<$Res> {
   _$ProfileStateCopyWithImpl(this._value, this._then);
 
-  final ProfileState _value;
   // ignore: unused_field
-  final $Res Function(ProfileState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? firstName = freezed,
-    Object? lastName = freezed,
-    Object? email = freezed,
-    Object? phoneNumber = freezed,
-    Object? failure = freezed,
-    Object? success = freezed,
-    Object? smsCode = freezed,
-    Object? verificationId = freezed,
-    Object? loading = freezed,
+    Object? firstName = null,
+    Object? lastName = null,
+    Object? email = null,
+    Object? phoneNumber = null,
+    Object? failure = null,
+    Object? success = null,
+    Object? smsCode = null,
+    Object? verificationId = null,
+    Object? loading = null,
   }) {
     return _then(_value.copyWith(
-      firstName: firstName == freezed
+      firstName: null == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
               as String,
-      lastName: lastName == freezed
+      lastName: null == lastName
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as String,
-      email: email == freezed
+      email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      phoneNumber: phoneNumber == freezed
+      phoneNumber: null == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
-      failure: failure == freezed
+      failure: null == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as String,
-      success: success == freezed
+      success: null == success
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
               as String,
-      smsCode: smsCode == freezed
+      smsCode: null == smsCode
           ? _value.smsCode
           : smsCode // ignore: cast_nullable_to_non_nullable
               as String,
-      verificationId: verificationId == freezed
+      verificationId: null == verificationId
           ? _value.verificationId
           : verificationId // ignore: cast_nullable_to_non_nullable
               as String,
-      loading: loading == freezed
+      loading: null == loading
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
-    ));
+    ) as $Val);
   }
 }
 
@@ -116,6 +120,7 @@ abstract class _$$_ProfileStateCopyWith<$Res>
           _$_ProfileState value, $Res Function(_$_ProfileState) then) =
       __$$_ProfileStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String firstName,
       String lastName,
@@ -130,61 +135,59 @@ abstract class _$$_ProfileStateCopyWith<$Res>
 
 /// @nodoc
 class __$$_ProfileStateCopyWithImpl<$Res>
-    extends _$ProfileStateCopyWithImpl<$Res>
+    extends _$ProfileStateCopyWithImpl<$Res, _$_ProfileState>
     implements _$$_ProfileStateCopyWith<$Res> {
   __$$_ProfileStateCopyWithImpl(
       _$_ProfileState _value, $Res Function(_$_ProfileState) _then)
-      : super(_value, (v) => _then(v as _$_ProfileState));
+      : super(_value, _then);
 
-  @override
-  _$_ProfileState get _value => super._value as _$_ProfileState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? firstName = freezed,
-    Object? lastName = freezed,
-    Object? email = freezed,
-    Object? phoneNumber = freezed,
-    Object? failure = freezed,
-    Object? success = freezed,
-    Object? smsCode = freezed,
-    Object? verificationId = freezed,
-    Object? loading = freezed,
+    Object? firstName = null,
+    Object? lastName = null,
+    Object? email = null,
+    Object? phoneNumber = null,
+    Object? failure = null,
+    Object? success = null,
+    Object? smsCode = null,
+    Object? verificationId = null,
+    Object? loading = null,
   }) {
     return _then(_$_ProfileState(
-      firstName: firstName == freezed
+      firstName: null == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
               as String,
-      lastName: lastName == freezed
+      lastName: null == lastName
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as String,
-      email: email == freezed
+      email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      phoneNumber: phoneNumber == freezed
+      phoneNumber: null == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
-      failure: failure == freezed
+      failure: null == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as String,
-      success: success == freezed
+      success: null == success
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
               as String,
-      smsCode: smsCode == freezed
+      smsCode: null == smsCode
           ? _value.smsCode
           : smsCode // ignore: cast_nullable_to_non_nullable
               as String,
-      verificationId: verificationId == freezed
+      verificationId: null == verificationId
           ? _value.verificationId
           : verificationId // ignore: cast_nullable_to_non_nullable
               as String,
-      loading: loading == freezed
+      loading: null == loading
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
@@ -235,34 +238,28 @@ class _$_ProfileState implements _ProfileState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ProfileState &&
-            const DeepCollectionEquality().equals(other.firstName, firstName) &&
-            const DeepCollectionEquality().equals(other.lastName, lastName) &&
-            const DeepCollectionEquality().equals(other.email, email) &&
-            const DeepCollectionEquality()
-                .equals(other.phoneNumber, phoneNumber) &&
-            const DeepCollectionEquality().equals(other.failure, failure) &&
-            const DeepCollectionEquality().equals(other.success, success) &&
-            const DeepCollectionEquality().equals(other.smsCode, smsCode) &&
-            const DeepCollectionEquality()
-                .equals(other.verificationId, verificationId) &&
-            const DeepCollectionEquality().equals(other.loading, loading));
+            (identical(other.firstName, firstName) ||
+                other.firstName == firstName) &&
+            (identical(other.lastName, lastName) ||
+                other.lastName == lastName) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                other.phoneNumber == phoneNumber) &&
+            (identical(other.failure, failure) || other.failure == failure) &&
+            (identical(other.success, success) || other.success == success) &&
+            (identical(other.smsCode, smsCode) || other.smsCode == smsCode) &&
+            (identical(other.verificationId, verificationId) ||
+                other.verificationId == verificationId) &&
+            (identical(other.loading, loading) || other.loading == loading));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(firstName),
-      const DeepCollectionEquality().hash(lastName),
-      const DeepCollectionEquality().hash(email),
-      const DeepCollectionEquality().hash(phoneNumber),
-      const DeepCollectionEquality().hash(failure),
-      const DeepCollectionEquality().hash(success),
-      const DeepCollectionEquality().hash(smsCode),
-      const DeepCollectionEquality().hash(verificationId),
-      const DeepCollectionEquality().hash(loading));
+  int get hashCode => Object.hash(runtimeType, firstName, lastName, email,
+      phoneNumber, failure, success, smsCode, verificationId, loading);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ProfileStateCopyWith<_$_ProfileState> get copyWith =>
       __$$_ProfileStateCopyWithImpl<_$_ProfileState>(this, _$identity);
 }
