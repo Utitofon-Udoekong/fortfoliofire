@@ -371,11 +371,9 @@ class AppRouter extends _i63.RootStackRouter {
       );
     },
     HarvestInvestmentRoute.name: (routeData) {
-      final args = routeData.argsAs<HarvestInvestmentRouteArgs>(
-          orElse: () => const HarvestInvestmentRouteArgs());
       return _i63.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i48.HarvestInvestment(key: args.key),
+        child: const _i48.HarvestInvestment(),
       );
     },
     SelectWithdrawalMethodRoute.name: (routeData) {
@@ -1288,27 +1286,14 @@ class WalletTransactionsRoute extends _i63.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i48.HarvestInvestment]
-class HarvestInvestmentRoute
-    extends _i63.PageRouteInfo<HarvestInvestmentRouteArgs> {
-  HarvestInvestmentRoute({dynamic key})
+class HarvestInvestmentRoute extends _i63.PageRouteInfo<void> {
+  const HarvestInvestmentRoute()
       : super(
           HarvestInvestmentRoute.name,
           path: '/harvest-investment',
-          args: HarvestInvestmentRouteArgs(key: key),
         );
 
   static const String name = 'HarvestInvestmentRoute';
-}
-
-class HarvestInvestmentRouteArgs {
-  const HarvestInvestmentRouteArgs({this.key});
-
-  final dynamic key;
-
-  @override
-  String toString() {
-    return 'HarvestInvestmentRouteArgs{key: $key}';
-  }
 }
 
 /// generated route for

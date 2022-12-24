@@ -5,6 +5,7 @@ import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/user/bank_address.dart';
 import 'package:fortfolio/domain/widgets/custom_auth_filled_button.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
+import 'package:fortfolio/domain/widgets/loading_view.dart';
 import 'package:fortfolio/presentation/home/dashboard/screens/payment_method/cubit/payment_method_cubit.dart';
 import 'package:fortfolio/presentation/home/wallet/cubit/wallet_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
@@ -14,6 +15,8 @@ class HarvestInvestment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isLoading = context.select(
+        (WalletCubit walletCubit) => walletCubit.state.loading);
     final investmentToHarvest = context.select(
         (WalletCubit walletCubit) => walletCubit.state.investmentToBeWithdrawn);
     return MultiBlocListener(
@@ -31,14 +34,14 @@ class HarvestInvestment extends StatelessWidget {
               listenWhen: (previous, current) => previous.failure !=
                   current.failure && current.failure.isNotEmpty,
               listener: (context, state) {
-                CustomSnackbar.showSnackBar(context, state.failure, false);
+                CustomSnackbar.showSnackBar(context, state.failure, true);
                 context.read<WalletCubit>().resetSuccess();
               },
       
             ),
       ],
       child: Scaffold(
-        body: SafeArea(
+        body: LoadingView(isLoading: isLoading, child: SafeArea(
           child: Padding(
             padding: kDefaultPadding,
             child: SingleChildScrollView(
@@ -140,7 +143,7 @@ class HarvestInvestment extends StatelessWidget {
               ),
             ),
           ),
-        ),
+        )),
       ),
     );
   }
@@ -174,8 +177,9 @@ class BuildTile extends StatelessWidget {
               accNumber,
               style: titleText.copyWith(fontSize: 15),
             ),
-            const SizedBox(width: 20),
+            const SizedBox(width: 10),
             Container(
+              padding: const EdgeInsets.all(3.0),
                 decoration: BoxDecoration(
                   color: kPrimaryColor,
                   borderRadius: BorderRadius.circular(3.0),

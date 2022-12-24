@@ -99,8 +99,9 @@ class BankAddressPage extends StatelessWidget {
               accNumber,
               style: titleText.copyWith(fontSize: 15),
             ),
-            const SizedBox(width: 20),
+            const SizedBox(width: 10),
             Container(
+                padding: const EdgeInsets.all(3.0),
                 decoration: BoxDecoration(
                   color: kPrimaryColor,
                   borderRadius: BorderRadius.circular(3.0),

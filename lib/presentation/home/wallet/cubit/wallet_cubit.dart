@@ -282,8 +282,7 @@ class WalletCubit extends Cubit<WalletState> {
         currency: currency);
     final response = await firestoreFacade.createWithdrawalTransaction(
         withdrawalItem: withdrawalItem,
-        invId: state.investmentToBeWithdrawn.uid +
-            state.investmentToBeWithdrawn.traxId);
+        );
     try {
       response.fold((failure) {
         emit(state.copyWith(failure: failure, loading: false));
@@ -295,6 +294,7 @@ class WalletCubit extends Cubit<WalletState> {
       log(e.toString());
     }
   }
+
 
   void harvestInvestment(
       {required String docId, required double amount}) async {
@@ -330,6 +330,23 @@ class WalletCubit extends Cubit<WalletState> {
         initFortDollarInvestments();
         initFortShieldInvestments();
         initFortCryptoInvestments();
+      });
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
+  void cancelWithdrawal({required String traxId}) async{
+    emit(state.copyWith(loading: true));
+    resetSuccess();
+    try {
+      final response = await firestoreFacade.cancelWithdrawal(traxId: traxId);
+      response.fold((failure) {
+        emit(state.copyWith(loading: false, failure: failure));
+      }, (success) {
+        emit(state.copyWith(
+            loading: false,
+            success: success,));
       });
     } catch (e) {
       log(e.toString());

@@ -117,7 +117,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
 
   @override
   Future<Either<String, String>> createWithdrawalTransaction(
-      {required WithdrawalItem withdrawalItem, required String invId}) async {
+      {required WithdrawalItem withdrawalItem}) async {
     String docId = withdrawalItem.uid + withdrawalItem.traxId;
     try {
       await firestore.authUserCollection
@@ -206,10 +206,10 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
           .collection("notifications")
           .doc(docId)
           .set(NotificationItemDTO.fromDomain(notificationItem).toJson());
-      await firestore.collection("notificationCount")
-          .doc(auth.currentUser!.uid).set({
-            "count": 1
-          }, SetOptions(merge: true));
+      await firestore
+          .collection("notificationCount")
+          .doc(auth.currentUser!.uid)
+          .set({"count": 1}, SetOptions(merge: true));
       return right(true);
     } on FirebaseException catch (e) {
       return left(getErrorFromCode(symbol: e.code));
@@ -312,43 +312,78 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
 
   @override
   Future<Either<String, String>> harvestInvestment(
-      {required String docId, required double amount, required WithdrawalItem withdrawalItem}) async {
+      {required String docId,
+      required double amount,
+      required WithdrawalItem withdrawalItem}) async {
     final query = firestore.authUserCollection
         .doc(auth.currentUser!.uid)
         .collection("investments")
         .doc(docId);
-    final nextHarvestDate = DateTime.now().add(const Duration(days: 30)).toIso8601String();
+    final nextHarvestDate =
+        DateTime.now().add(const Duration(days: 30)).toIso8601String();
+    TransactionItem transactionItem = TransactionItem(
+      description: withdrawalItem.description,
+      amount: amount,
+      traxId: withdrawalItem.traxId,
+      planName: withdrawalItem.description.replaceAll("Investment Harvest", ""),
+      status: withdrawalItem.status,
+      createdat: withdrawalItem.createdat,
+      paymentMethod: withdrawalItem.paymentMethod,
+      currency: withdrawalItem.currency,
+      type: "Withdrawal",
+      duration: withdrawalItem.duration,
+      roi: withdrawalItem.roi,
+    );
+    NotificationItem notificationItem = NotificationItem(
+      id: withdrawalItem.traxId,
+      type: "Withdrawal",
+      title: withdrawalItem.description,
+      createdat: withdrawalItem.createdat,
+      status: withdrawalItem.status,
+    );
     try {
       await firestore.authUserCollection
           .doc(auth.currentUser!.uid)
           .collection("withdrawals")
-          .doc(docId)
-          .set(WithdrawalItemDTO.fromDomain(withdrawalItem).toJson()).then((value) async{
-            TransactionItem transactionItem = TransactionItem(
-              description: withdrawalItem.description,
-              amount: amount,
-              traxId: withdrawalItem.traxId,
-              planName: withdrawalItem.description.replaceAll("Investment Harvest", ""),
-              status: withdrawalItem.status,
-              createdat: withdrawalItem.createdat,
-              paymentMethod: withdrawalItem.paymentMethod,
-              currency: withdrawalItem.currency,
-              type: "Withdrawal",
-              duration: withdrawalItem.duration,
-              roi: withdrawalItem.roi,
-            );
-            await createTransaction(transactionItem: transactionItem);
-            NotificationItem notificationItem = NotificationItem(
-              id: withdrawalItem.traxId,
-              type: "Withdrawal",
-              title: withdrawalItem.description,
-              createdat: withdrawalItem.createdat,
-              status: withdrawalItem.status,
-            );
-            await createNotification(notificationItem: notificationItem);
-            await query.update({"planYield": 0, "nextHarvestDate": nextHarvestDate});
-          });
+          .doc(withdrawalItem.uid + withdrawalItem.traxId)
+          .set(WithdrawalItemDTO.fromDomain(withdrawalItem).toJson());
+      await createTransaction(transactionItem: transactionItem);
+      await createNotification(notificationItem: notificationItem);
+      await query.update({"planYield": 0, "nextHarvestDate": nextHarvestDate});
       return right('Investment harvested');
+    } on FirebaseException catch (e) {
+      return left(getErrorFromCode(symbol: e.code));
+    }
+  }
+
+  @override
+  Future<Either<String, String>> cancelWithdrawal(
+      {required String traxId}) async {
+    try {
+      final query = await firestore.authUserCollection
+          .doc(auth.currentUser!.uid)
+          .collection("withdrawals")
+          .where("traxId", isEqualTo: traxId)
+          .get();
+      final withdrawal =
+          WithdrawalItemDTO.fromJson(query.docs.first.data()).toDomain();
+      await firestore.authUserCollection
+          .doc(auth.currentUser!.uid)
+          .collection("withdrawals")
+          .doc(withdrawal.uid + traxId)
+          .delete();
+      await firestore.authUserCollection
+          .doc(auth.currentUser!.uid)
+          .collection("transactions")
+          .doc("${traxId}Withdrawal")
+          .delete();
+      await firestore.authUserCollection
+          .doc(auth.currentUser!.uid)
+          .collection("notifications")
+          .doc(traxId)
+          .delete();
+
+      return right("Transaction cancelled");
     } on FirebaseException catch (e) {
       return left(getErrorFromCode(symbol: e.code));
     }
@@ -402,23 +437,24 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
       return left(getErrorFromCode(symbol: e.code));
     }
   }
-  
+
   @override
   Future<Either<String, String>> deleteNotificationCount() async {
     try {
-      await firestore.collection("notificationCount")
-          .doc(auth.currentUser!.uid).update({
-            "count": 0
-          });
+      await firestore
+          .collection("notificationCount")
+          .doc(auth.currentUser!.uid)
+          .update({"count": 0});
       return right("count cleared");
     } on FirebaseException catch (e) {
       return left(getErrorFromCode(symbol: e.code));
     }
   }
-  
+
   @override
-  Stream<DocumentSnapshot<Map<String, dynamic>>> getNotificationCount() async*{
-    yield* firestore.collection("notificationCount")
+  Stream<DocumentSnapshot<Map<String, dynamic>>> getNotificationCount() async* {
+    yield* firestore
+        .collection("notificationCount")
         .doc(auth.currentUser!.uid)
         .snapshots();
   }
