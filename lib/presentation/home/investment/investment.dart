@@ -57,7 +57,7 @@ class InvestmentPage extends StatelessWidget {
               const SizedBox(
                 height: 15,
               ),
-              buildCard('fortshield', 'FortShield', '${naira()}1,000,000', '18%',
+              buildCard('fortshield', 'FortShield', '1,000,000', '18%',
                   'Naira, USD or Crypto (USDC/BUSD or USDT only).', () {
                 context.router.push(const FortShieldRoute());
               }, isAccountActive),
@@ -148,6 +148,9 @@ class InvestmentPage extends StatelessWidget {
                 text: 'Minimum Investment     ',
                 style: subTitle.copyWith(fontSize: 15, color: kBlackColor),
                 children: [
+                  TextSpan(
+                      text: naira(),
+                      style: nairaText.copyWith(fontWeight: FontWeight.w600)),
                   TextSpan(
                       text: minPrice,
                       style: subTitle.copyWith(fontWeight: FontWeight.w600))

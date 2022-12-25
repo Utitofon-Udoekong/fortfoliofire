@@ -90,9 +90,16 @@ class WalletOverview extends StatelessWidget {
                             switch (state.exchange) {
                               case "NGN":
                                 return state.showDigits
-                                  ? Text('${naira()}${formatter.format(accountBalance * dollarPrice) }',
+                                  ? Text.rich(TextSpan(
+                                    children: [
+                                      TextSpan(text: '${naira()}',
+                                      style: nairaText.copyWith(
+                                          fontSize: 15, color: kWhiteColor)),
+                                      TextSpan(text: formatter.format(accountBalance * dollarPrice),
                                       style: titleText.copyWith(
                                           fontSize: 15, color: kWhiteColor))
+                                    ]
+                                  ))
                                   : Text(
                                       formatter.format(accountBalance * dollarPrice)
                                           .replaceAll(regExp, "*"),
@@ -119,9 +126,16 @@ class WalletOverview extends StatelessWidget {
                                           fontSize: 23, color: kWhiteColor));
                               default:
                                 return state.showDigits
-                                  ? Text('${naira()}${formatter.format(accountBalance * dollarPrice) }',
+                                  ? Text.rich(TextSpan(
+                                    children: [
+                                      TextSpan(text: '${naira()}',
+                                      style: nairaText.copyWith(
+                                          fontSize: 15, color: kWhiteColor)),
+                                      TextSpan(text: formatter.format(accountBalance * dollarPrice),
                                       style: titleText.copyWith(
                                           fontSize: 15, color: kWhiteColor))
+                                    ]
+                                  ))
                                   : Text(
                                       formatter.format(accountBalance * dollarPrice)
                                           .replaceAll(regExp, "*"),
@@ -290,8 +304,8 @@ class WalletOverview extends StatelessWidget {
                     visible: state.isFortShieldActive,
                     child: buildcard('FortShield', 'fortshield', () {
                       context.router.push(const FortShieldInvestmentInfoRoute());
-                    }, "${naira()}${formatter.format(fortShieldBalance)}", state.showDigits,
-                        "${naira()}${formatter.format(fortShieldYield)}",isAccountActive),
+                    }, formatter.format(fortShieldBalance), state.showDigits,
+                        formatter.format(fortShieldYield),isAccountActive),
                   );
                 },
               ),
@@ -359,17 +373,32 @@ class WalletOverview extends StatelessWidget {
                     direction: Axis.vertical,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Text(
-                        balance,
-                        style: titleText.copyWith(fontSize: 14),
+                      Text.rich(
+                        TextSpan(children: [
+                          TextSpan(
+                            text: naira(),
+                            style: nairaText.copyWith(fontSize: 14),
+                          ),
+                          TextSpan(
+                            text: balance,
+                            style: titleText.copyWith(fontSize: 14),
+                          )
+                        ])
                       ),
                       const SizedBox(
                         height: 8,
                       ),
-                      Text(
-                        yield,
-                        style:
-                            subTitle.copyWith(fontSize: 14, color: kBlackColor),
+                      Text.rich(
+                        TextSpan(children: [
+                          TextSpan(
+                            text: naira(),
+                            style: nairaText.copyWith(fontSize: 14),
+                          ),
+                          TextSpan(
+                            text: yield,
+                            style: subTitle.copyWith(fontSize: 14)
+                          )
+                        ])
                       ),
                     ],
                   )

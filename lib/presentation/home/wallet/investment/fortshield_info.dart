@@ -58,16 +58,26 @@ class FortShieldInvestmentInfo extends StatelessWidget {
                 const SizedBox(height: 30),
                 Text("Total", style: subTitle.copyWith(fontSize: 12)),
                 const SizedBox(height: 8),
-                Text("${naira()} ${formatter.format(balance)}",
-                    style: titleText.copyWith(
+                Text.rich(TextSpan(children: [
+                  TextSpan(text: "${naira()} ",
+                    style: nairaText.copyWith(
                         fontSize: 16, fontWeight: FontWeight.w500)),
+                  TextSpan(text: formatter.format(balance),
+                    style: titleText.copyWith(
+                        fontSize: 16, fontWeight: FontWeight.w500))
+                ])),
                 const SizedBox(height: 30),
                 Text("Available for yield",
                     style: subTitle.copyWith(fontSize: 12)),
                 const SizedBox(height: 8),
-                Text("${naira()} ${formatter.format(yield)}",
-                    style: titleText.copyWith(
+                Text.rich(TextSpan(children: [
+                  TextSpan(text: "${naira()} ",
+                    style: nairaText.copyWith(
                         fontSize: 16, fontWeight: FontWeight.w500)),
+                  TextSpan(text: formatter.format(yield),
+                    style: titleText.copyWith(
+                        fontSize: 16, fontWeight: FontWeight.w500))
+                ])),
                 const SizedBox(height: 30),
                 Text("Active Investments",
                     style:
@@ -85,7 +95,7 @@ class FortShieldInvestmentInfo extends StatelessWidget {
                           title:
                               '${activeInvestments[index].planName} / ${activeInvestments[index].duration.toInt()} month(s)',
                           amount:
-                              '${naira()}${formatter.format(activeInvestments[index].amount)}',
+                              formatter.format(activeInvestments[index].amount),
                           ontap: () {
                             context
                                 .read<WalletCubit>()
@@ -100,7 +110,7 @@ class FortShieldInvestmentInfo extends StatelessWidget {
                                 .investmentToBeWithdrawnChanged(
                                     investmentToBeWithdrawn:
                                         activeInvestments[index]);
-                                context.router.push(HarvestInvestmentRoute());
+                                context.router.push(const HarvestInvestmentRoute());
                           } : () => CustomSnackbar.showSnackBar(context, "Add a phone number to access this feature", true),
                           pending: activeInvestments[index].status == "Pending",
                           isDue: activeInvestments[index].dueDate.isToday,
@@ -121,7 +131,7 @@ class FortShieldInvestmentInfo extends StatelessWidget {
                           daysLeft:
                               Jiffy(activeInvestments[index].dueDate).fromNow(),
                           planYield:
-                              '${naira()}${formatter.format(activeInvestments[index].planYield)}');
+                              formatter.format(activeInvestments[index].planYield));
                     }),
                   ),
                 ),
@@ -178,14 +188,30 @@ class FortShieldInvestmentInfo extends StatelessWidget {
                 style: subTitle.copyWith(fontSize: 12),
               ),
               const SizedBox(height: 2.5),
-              Text(
-                pending ? "***" : amount,
-                style: titleText.copyWith(fontSize: 15),
+              Text.rich(
+                TextSpan(children: [
+                  TextSpan(
+                    text: naira(),
+                    style: nairaText.copyWith(fontSize: 15),
+                  ),
+                  TextSpan(
+                    text: pending ? "***" : amount,
+                    style: titleText.copyWith(fontSize: 15),
+                  )
+                ])
               ),
               const SizedBox(height: 2.5),
-              Text(
-                planYield,
-                style: subTitle.copyWith(fontSize: 12),
+              Text.rich(
+                TextSpan(children: [
+                  TextSpan(
+                    text: naira(),
+                    style: nairaText.copyWith(fontSize: 12),
+                  ),
+                  TextSpan(
+                    text: planYield,
+                    style: subTitle.copyWith(fontSize: 12),
+                  )
+                ])
               ),
             ],
           ),

@@ -50,9 +50,20 @@ class FortShield extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                Text(
-                  'Invest a minimum of a million naira and get a plot of land as collateral. These lands are located in Lagos, Abuja, Asaba, and Ogun state and they are the same value as your investment plan. You earn 18% returns annually. The minimum investment plan is ${naira()}1,000,000.',
-                  style: subTitle.copyWith(fontSize: 13, color: kgreyColor),
+                Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                        text: 'Invest a minimum of a million naira and get a plot of land as collateral. These lands are located in Lagos, Abuja, Asaba, and Ogun state and they are the same value as your investment plan. You earn 18% returns annually. The minimum investment plan is ',
+                        style: subTitle.copyWith(fontSize: 13, color: kgreyColor),
+                      ),
+                      TextSpan(
+                        text: '${naira()}1,000,000.',
+                        style: nairaText.copyWith(fontSize: 13, color: kgreyColor),
+                      )
+
+                    ]
+                  )
                 ),
                 const SizedBox(
                   height: 20,
