@@ -38,12 +38,14 @@ class WalletTransactions extends StatelessWidget {
     final currentSort =
         context.select((WalletCubit cubit) => cubit.state.currentSort);
     double pixelRatio = MediaQuery.of(context).devicePixelRatio;
-    return MultiBlocListener(
+    return Scaffold(
+          body: MultiBlocListener(
       listeners: [
         BlocListener<WalletCubit, WalletState>(
               listenWhen: (previous, current) =>
                   current.success == "Transaction cancelled",
               listener: (context, state) {
+                context.router.pop();
                 CustomSnackbar.showSnackBar(context, state.success, false);
               },
       
@@ -52,13 +54,13 @@ class WalletTransactions extends StatelessWidget {
               listenWhen: (previous, current) => previous.failure !=
                   current.failure && current.failure.isNotEmpty,
               listener: (context, state) {
+                context.router.pop();
                 CustomSnackbar.showSnackBar(context, state.failure, true);
               },
       
             ),
       ],
-      child: Scaffold(
-          body: SafeArea(
+      child: SafeArea(
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -168,8 +170,8 @@ class WalletTransactions extends StatelessWidget {
                           });
                     }).toList(),
                   ))
-          ]))),
-    );
+          ])),
+    ));
   }
 
   Widget buildTransactionTile(
@@ -352,8 +354,7 @@ class WalletTransactions extends StatelessWidget {
                         onTap: () {
                             context
                                   .read<WalletCubit>()
-                                  .cancelWithdrawal(traxId: id);
-                                  context.router.pop();},
+                                  .cancelWithdrawal(traxId: id);},
                         child: Container(
                           height: 35,
                           width: MediaQuery.of(context).size.width,

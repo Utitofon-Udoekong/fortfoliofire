@@ -38,7 +38,8 @@ class DashboardTransactions extends StatelessWidget {
     final currentSort =
         context.select((WalletCubit cubit) => cubit.state.currentSort);
     double pixelRatio = MediaQuery.of(context).devicePixelRatio;
-    return MultiBlocListener(
+    return Scaffold(
+          body: MultiBlocListener(
       listeners: [
         BlocListener<WalletCubit, WalletState>(
               listenWhen: (previous, current) =>
@@ -59,8 +60,7 @@ class DashboardTransactions extends StatelessWidget {
       
             ),
       ],
-      child: Scaffold(
-          body: SafeArea(
+      child: SafeArea(
         child: Padding(
           padding: kDefaultPadding,
           child: SingleChildScrollView(
@@ -186,8 +186,8 @@ class DashboardTransactions extends StatelessWidget {
             ),
           ),
         ),
-      )),
-    );
+      ),
+    ));
   }
 
   Widget buildTransactionTile(

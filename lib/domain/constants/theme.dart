@@ -19,7 +19,7 @@ var titleText = GoogleFonts.openSans(
     fontSize: 32, fontWeight: FontWeight.w500, color: kBlackColor);
 var nairaText = GoogleFonts.roboto(fontSize: 18, fontWeight: FontWeight.w400, color: kBlackColor);
 var subTitle = GoogleFonts.openSans(
-    fontSize: 18, fontWeight: FontWeight.w300, color: kBlackColor);
+    fontSize: 18, fontWeight: FontWeight.w400, color: kBlackColor);
 var textButton = GoogleFonts.montserrat(
     fontSize: 15, fontWeight: FontWeight.w300, color: kPrimaryColor);
 var hintTextStyle =

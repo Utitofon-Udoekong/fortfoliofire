@@ -50,7 +50,7 @@ class InvestmentPage extends StatelessWidget {
                 height: 30,
               ),
               buildCard(
-                  'fortdollar', 'FortDollar', '\$1,000', '30%', 'Naira or USD',
+                  'fortdollar', 'FortDollar', '1,000', '30%', 'Naira or USD',
                   () {
                     context.router.push(const FortDollarRoute());
               }, isAccountActive),
@@ -64,7 +64,7 @@ class InvestmentPage extends StatelessWidget {
               const SizedBox(
                 height: 15,
               ),
-              buildCard('fortcrypto', 'FortCrypto', '\$1,000', '15%',
+              buildCard('fortcrypto', 'FortCrypto', '1,000', '15%',
                   'Cryptocurrency (BTC,ETH/USDT and more).', () {
                 context.router.push(const FortCryptoRoute());
               }, isAccountActive),
@@ -149,7 +149,7 @@ class InvestmentPage extends StatelessWidget {
                 style: subTitle.copyWith(fontSize: 15, color: kBlackColor),
                 children: [
                   TextSpan(
-                      text: naira(),
+                      text: title == 'FortShield' ? naira() : '\$',
                       style: nairaText.copyWith(fontWeight: FontWeight.w600)),
                   TextSpan(
                       text: minPrice,

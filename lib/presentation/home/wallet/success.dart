@@ -28,11 +28,9 @@ class WithdrawalSuccess extends StatelessWidget {
       child: Padding(
         padding: kDefaultPadding,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const SizedBox(
-              height: 100,
-            ),
             Center(
               child: Image.asset(
                 "images/success.png",

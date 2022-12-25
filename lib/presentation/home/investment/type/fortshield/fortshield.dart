@@ -58,8 +58,12 @@ class FortShield extends StatelessWidget {
                         style: subTitle.copyWith(fontSize: 13, color: kgreyColor),
                       ),
                       TextSpan(
-                        text: '${naira()}1,000,000.',
+                        text: '${naira()}',
                         style: nairaText.copyWith(fontSize: 13, color: kgreyColor),
+                      ),
+                      TextSpan(
+                        text: '1,000,000.',
+                        style: subTitle.copyWith(fontSize: 13, color: kgreyColor),
                       )
 
                     ]

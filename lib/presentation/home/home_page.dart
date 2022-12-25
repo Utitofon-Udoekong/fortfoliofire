@@ -50,9 +50,9 @@ class HomePage extends StatelessWidget {
               Text("We buy / We sell", style: subTitle.copyWith(fontSize: 12, color: kgreyColor, fontWeight: FontWeight.bold)),
               Text.rich(TextSpan(
                 children: [
-                  TextSpan(text: "$buyPrice", style: subTitle.copyWith(fontSize: 16, color: kGreenColor, fontWeight: FontWeight.bold)),
-                  TextSpan(text: " / ", style: subTitle.copyWith(fontSize: 16, color: kgreyColor, fontWeight: FontWeight.bold)),
-                  TextSpan(text: "$sellPrice", style: subTitle.copyWith(fontSize: 16, color: kRedColor, fontWeight: FontWeight.bold)),
+                  TextSpan(text: "$buyPrice", style: subTitle.copyWith(fontSize: 16, color: kGreenColor, fontWeight: FontWeight.w300)),
+                  TextSpan(text: " / ", style: subTitle.copyWith(fontSize: 16, color: kgreyColor, fontWeight: FontWeight.w300)),
+                  TextSpan(text: "$sellPrice", style: subTitle.copyWith(fontSize: 16, color: kRedColor, fontWeight: FontWeight.w300)),
                 ]
               ), style: subTitle.copyWith(fontSize: 12, color: kgreyColor))
             ]),
