@@ -25,7 +25,7 @@ List<PlanModel> plans = <PlanModel>[
   PlanModel(
     icon: 'fortdollar',
     title: 'FortDollar',
-    minPrice: '\$1,000',
+    minPrice: '1,000',
     roi: '30%',
     currency: 'Naira or USD',
     onPressed: const FortDollarRoute(),
@@ -33,7 +33,7 @@ List<PlanModel> plans = <PlanModel>[
   PlanModel(
     icon: 'fortshield',
     title: 'FortShield',
-    minPrice: '₦1,000,000',
+    minPrice: '1,000,000',
     roi: '18%',
     currency: 'Naira, USD or Crypto (USDC/BUSD or USDT only).',
     onPressed: const FortShieldRoute(),
@@ -41,7 +41,7 @@ List<PlanModel> plans = <PlanModel>[
   PlanModel(
     icon: 'fortcrypto',
     title: 'FortCrypto',
-    minPrice: '\$1,000',
+    minPrice: '1,000',
     roi: '15%',
     currency: 'Cryptocurrency (BTC,ETH/USDT and more).',
     onPressed: const FortCryptoRoute(),

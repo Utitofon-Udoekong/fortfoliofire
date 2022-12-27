@@ -280,9 +280,9 @@ class WalletOverview extends StatelessWidget {
                           context.router
                               .push(const FortDollarInvestmentInfoRoute());
                         },
-                        "\$${formatter.format(fortDollarBalance)}",
+                        "${formatter.format(fortDollarBalance)}",
                         state.showDigits,
-                        "\$${formatter.format(fortDollarYield)}",
+                        "${formatter.format(fortDollarYield)}",
                         isAccountActive
                       ));
                 },
@@ -293,8 +293,8 @@ class WalletOverview extends StatelessWidget {
                     visible: state.isFortCryptoActive,
                     child: buildcard('FortCrypto', 'fortcrypto', () {
                       context.router.push(const FortCryptoInvestmentInfoRoute());
-                    }, "\$${formatter.format(fortCryptoBalance)}", state.showDigits,
-                        "\$${formatter.format(fortCryptoYield)}",isAccountActive),
+                    }, "${formatter.format(fortCryptoBalance)}", state.showDigits,
+                        "${formatter.format(fortCryptoYield)}",isAccountActive),
                   );
                 },
               ),
@@ -376,7 +376,7 @@ class WalletOverview extends StatelessWidget {
                       Text.rich(
                         TextSpan(children: [
                           TextSpan(
-                            text: naira(),
+                            text: title == 'FortShield' ? naira() : '\$',
                             style: nairaText.copyWith(fontSize: 14),
                           ),
                           TextSpan(
@@ -391,7 +391,7 @@ class WalletOverview extends StatelessWidget {
                       Text.rich(
                         TextSpan(children: [
                           TextSpan(
-                            text: naira(),
+                            text: title == 'FortShield' ? naira() : '\$',
                             style: nairaText.copyWith(fontSize: 14),
                           ),
                           TextSpan(

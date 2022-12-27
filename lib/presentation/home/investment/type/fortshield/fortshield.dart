@@ -209,6 +209,10 @@ class FortShield extends StatelessWidget {
                                       fontSize: 15, color: kBlackColor),
                                   children: <TextSpan>[
                                     TextSpan(
+                                        text: plans[index].title == 'FortShield' ? naira() : '\$',
+                                        style: nairaText.copyWith(
+                                            fontWeight: FontWeight.w600)),
+                                    TextSpan(
                                         text: plans[index].minPrice,
                                         style: subTitle.copyWith(
                                             fontWeight: FontWeight.w600))

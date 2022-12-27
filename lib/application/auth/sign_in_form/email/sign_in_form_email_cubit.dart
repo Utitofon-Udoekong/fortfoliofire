@@ -52,8 +52,8 @@ class SignInFormEmailCubit extends Cubit<SignInFormEmailState> {
         emit(state.copyWith(success: "$success. Setting up user"));
         authCubit.stream.listen((authState) {
           if(authState.isLoggedIn){
-            reset();
             emit(state.copyWith(isSubmitting: false));
+            reset();
           }
         });
       });

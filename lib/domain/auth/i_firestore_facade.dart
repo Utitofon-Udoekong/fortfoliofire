@@ -12,7 +12,7 @@ abstract class IFirestoreFacade {
   Future<Either<String, String>> createInvestmentTransaction(
       {required InvestmentItem investmentItem});
   Future<Either<String, String>> harvestInvestment(
-      {required String docId, required double amount, required WithdrawalItem withdrawalItem});
+      {required String docId,required double amount, required WithdrawalItem withdrawalItem});
   Future<Either<String, String>> cancelWithdrawal(
       {required String traxId});
   Future<Either<String, String>> addBank({required BankAddress bankAddress});

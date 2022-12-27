@@ -68,6 +68,7 @@ class WalletCubit extends Cubit<WalletState> {
   }
 
   void sortInvestments() {
+    resetSuccess();
     _logsTransaction = firestoreFacade.getTransactions().listen((data) {
       final List<QueryDocumentSnapshot<Object?>> docs = data.docs;
       List<TransactionItem> transactions = [];
@@ -84,6 +85,7 @@ class WalletCubit extends Cubit<WalletState> {
   }
 
   void sortWithdrawals() {
+    resetSuccess();
     _logsTransaction = firestoreFacade.getTransactions().listen((data) {
       final List<QueryDocumentSnapshot<Object?>> docs = data.docs;
       List<TransactionItem> transactions = [];
@@ -237,6 +239,7 @@ class WalletCubit extends Cubit<WalletState> {
   // }
 
   initTransactions() {
+    resetSuccess();
     _logsTransaction = firestoreFacade.getTransactions().listen((data) {
       final List<QueryDocumentSnapshot<Object?>> docs = data.docs;
       List<TransactionItem> transactions = [];
@@ -324,9 +327,7 @@ class WalletCubit extends Cubit<WalletState> {
       }, (success) {
         emit(state.copyWith(
             loading: false,
-            success: success,
-            investmentToBeWithdrawn:
-                investmentToBeWithdrawn.copyWith(planYield: 0),withdrawalDetails: {}));
+            success: success,withdrawalDetails: {}));
         initFortDollarInvestments();
         initFortShieldInvestments();
         initFortCryptoInvestments();

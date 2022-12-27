@@ -349,7 +349,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
           .set(WithdrawalItemDTO.fromDomain(withdrawalItem).toJson());
       await createTransaction(transactionItem: transactionItem);
       await createNotification(notificationItem: notificationItem);
-      await query.update({"planYield": 0, "nextHarvestDate": nextHarvestDate});
+      await query.update({"nextHarvestDate": nextHarvestDate});
       return right('Investment harvested');
     } on FirebaseException catch (e) {
       return left(getErrorFromCode(symbol: e.code));
