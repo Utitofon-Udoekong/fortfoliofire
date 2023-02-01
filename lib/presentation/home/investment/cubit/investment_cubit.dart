@@ -19,7 +19,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:nanoid/nanoid.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 
 part 'investment_state.dart';
@@ -33,7 +32,6 @@ class InvestmentCubit extends Cubit<InvestmentState> {
   final IFunctionsFacade functionsFacade;
   late final SecurityCubit securityCubit;
   late final AuthCubit authCubit;
-  StreamSubscription<Option<TransactionStatus?>>? _logPaymentStatusSubscription;
   InvestmentCubit(
       this.firestoreFacade, this.externalFacade, this.functionsFacade, this.authFacade)
       : super(InvestmentState.initial()){
@@ -114,22 +112,43 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     final coin = state.coin;
     final coinPriceinUSD = await externalFacade.getCoinPrice(id: coinCode(coin: coin));
     final chargeAmount = amount * coinPriceinUSD;
-    final chargeOption =
+    try{
+      final chargeOption =
         await functionsFacade.createCharge(amount: chargeAmount.toString());
-    chargeOption.fold((failure) {
-      emit(state.copyWith(isLoading: false));
-      emit(state.copyWith(failure: failure));
-    }, (charge) {
-      emit(state.copyWith(isLoading: false));
-      emit(state.copyWith(charge: ChargeObject.fromJson(charge)));
-    });
+      chargeOption.fold((failure) {
+        emit(state.copyWith(isLoading: false));
+        emit(state.copyWith(failure: failure));
+      }, (charge) {
+        emit(state.copyWith(isLoading: false));
+        emit(state.copyWith(charge: ChargeObject.fromJson(charge)));
+      });
+    }catch(e){
+      print(e);
+    emit(state.copyWith(isLoading: false, failure: "Network error encountered"));
+    }
   }
 
   void startPaymentStatusSubscription() async {
-    _logPaymentStatusSubscription = functionsFacade.checkChargeStatus().listen((event) {
-      event.fold(() => null, (paymentStatus) {
-        String status = getStatusFromTransaction(status: paymentStatus);
-        emit(state.copyWith(paymentStatus: status));
+
+    Timer.periodic(const Duration(seconds: 2, milliseconds: 500), (timer) async {
+      final statusSub = await functionsFacade.checkChargeStatus();
+      print("checking status");
+      statusSub.fold((l) => emit(state.copyWith(failure: l)), (r) {
+        if(r != null){
+          emit(state.copyWith(paymentStatus: r));
+        }
+        if(state.paymentStatus == "COMPLETED"){
+          emit(state.copyWith(success: "Payment Success"));
+          timer.cancel();
+        }
+        if(state.paymentStatus == "CANCELED"){
+          emit(state.copyWith(failure: "Payment Cancelled"));
+          timer.cancel();
+        }
+        if(state.paymentStatus == "failure!"){
+          emit(state.copyWith(failure: "Payment Expired"));
+          timer.cancel();
+        }
       });
     });
   }
@@ -215,12 +234,11 @@ class InvestmentCubit extends Cubit<InvestmentState> {
 
   void reset() {
     emit(state.copyWith(
-        amountInvested: 0, planName: "", agreementAccepted: false, failure: "", success: ""));
+        amountInvested: 0, planName: "", agreementAccepted: false, failure: "", success: "", isLoading: false));
   }
 
   @override
   Future<void> close() async{
-    await _logPaymentStatusSubscription?.cancel();
     return super.close();
   }
 }

@@ -100,7 +100,11 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> signOut() async {
-    emit(state.copyWith(isUserCheckedFromAuthFacade: false));
+    await _authUserSubscription?.cancel();
+    await _databaseUserSubscription?.cancel();
+    await _dollarToNairaSubscription?.cancel();
     await authFacade.signOut();
+
+    emit(state.copyWith(isUserCheckedFromAuthFacade: false));
   }
 }

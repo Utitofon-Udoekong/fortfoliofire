@@ -35,40 +35,6 @@ class DomiciliaryAccount extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
-                    '₦',
-                    style: subTitle.copyWith(
-                        color: kBlackColor,
-                        fontSize: 14,),
-                  ),
-                  Text(
-                    exchangeType == "USD"
-                        ? formatter.format(amountInvested * dollarPrice)
-                        : formatter.format(amountInvested),
-                    style: subTitle.copyWith(color: kBlackColor, fontSize: 14),
-                  ),
-                ],
-              ),
-              Row(children: <Widget>[
-                const Expanded(child: Divider()),
-                Container(
-                  padding: const EdgeInsets.all(13.0),
-                  decoration: BoxDecoration(
-                      color: const Color.fromRGBO(203, 241, 255, 0.18),
-                      borderRadius: BorderRadius.circular(20)),
-                  alignment: Alignment.center,
-                  child: Text(
-                    '\$1 = ₦$dollarPrice',
-                    style:
-                        subTitle.copyWith(fontSize: 13, color: kPrimaryColor),
-                  ),
-                ),
-                const Expanded(child: Divider())
-              ]),
-              Flex(
-                direction: Axis.horizontal,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Text(
                     '\$',
                     style: subTitle.copyWith(color: kBlackColor, fontSize: 14),
                   ),

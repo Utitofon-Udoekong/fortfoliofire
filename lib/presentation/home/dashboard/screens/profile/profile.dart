@@ -181,7 +181,7 @@ class ProfilePage extends StatelessWidget {
                           context: context,
                           isAccountActive: authUserModel.isAccountActive),
                       buildtile(
-                          leading: authUserModel.phoneNumber.isNotEmpty ? authUserModel.phoneNumber : "Phone number",
+                          leading: authUserModel.phoneNumber.isNotEmpty ? authUserModel.phoneNumber : "Set phone number",
                           context: context,
                           ontap: () => showEditPhoneModal(context: context),
                           trailexist: false,

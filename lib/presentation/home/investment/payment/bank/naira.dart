@@ -35,7 +35,7 @@ class NairaAccount extends StatelessWidget {
             children: <Widget>[
               Text(
                 '₦',
-                style: subTitle.copyWith(
+                style: nairaText.copyWith(
                     color: kBlackColor,
                     fontSize: 14,),
               ),
@@ -55,10 +55,14 @@ class NairaAccount extends StatelessWidget {
                   color: const Color.fromRGBO(203, 241, 255, 0.18),
                   borderRadius: BorderRadius.circular(20)),
               alignment: Alignment.center,
-              child: Text(
-                '\$1 = ₦$dollarPrice',
+              child: Text.rich(TextSpan(
+                children: [
+                  TextSpan(text: '\$1 = '),
+                  TextSpan(text: '₦',style: nairaText.copyWith(fontSize: 13, color: kPrimaryColor)),
+                  TextSpan(text: '$dollarPrice'),
+                ],
                 style: subTitle.copyWith(fontSize: 13, color: kPrimaryColor),
-              ),
+              )),
             ),
             const Expanded(child: Divider())
           ]),
