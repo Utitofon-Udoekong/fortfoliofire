@@ -379,7 +379,7 @@ class FortCryptoInvestment extends StatelessWidget {
                                           context
                                               .read<InvestmentCubit>()
                                               .paymentMethodChanged(paymentMethod: "Crypto");
-                                          (await context.read<InvestmentCubit>().createCryptoTransaction()) ? context.read<InvestmentCubit>().createCharge() : null;
+                                          context.read<InvestmentCubit>().createCryptoTransaction();
                                         },
                                         loading: loading);
                                   },
