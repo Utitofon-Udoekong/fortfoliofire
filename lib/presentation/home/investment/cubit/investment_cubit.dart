@@ -107,7 +107,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
   }
 
   void createCharge() async {
-    emit(state.copyWith(isLoading: true));
+    // emit(state.copyWith(isLoading: true));
     final amount = state.amountInvested;
     final coin = state.coin;
     final coinPriceinUSD = await externalFacade.getCoinPrice(id: coinCode(coin: coin));
@@ -134,7 +134,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     await externalFacade.cancelCharge(id: id);
   }
 
-  Future<bool> createCryptoTransaction() async {
+  void createCryptoTransaction() async {
     emit(state.copyWith(isLoading: true));
     final String description = "${state.planName} Investment";
     final double amount = state.amountInvested;
@@ -150,7 +150,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     // final dueDate = Jiffy(paymentDate).add(hours: 2).dateTime;
     final dueDate = Jiffy(paymentDate).add(months: duration.toInt()).dateTime;
     final int numberOfDays = dueDate.difference(paymentDate).inDays;
-    final String currency = state.exchangeType == "USD" ? "\$" : "₦";
+    String currency = "\$";
     final String paymentMethod = state.paymentMethod;
     final String coin = state.coin;
     final InvestmentItem investmentItem = InvestmentItem(
@@ -176,15 +176,16 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     try {
       response.fold((failure) {
         emit(state.copyWith(isLoading: false, failure: failure));
-        return false;
+        // return false;
       }, (success) {
-        emit(state.copyWith(isLoading: false, tempCryptoTraxId: investmentItem.traxId));
-        return true;
+        emit(state.copyWith(tempCryptoTraxId: investmentItem.traxId));
+        createCharge();
+        // return true;
       });
-      return false;
+      // return false;
     } catch (e) {
       emit(state.copyWith(isLoading: false));
-      return false;
+      // return false;
     }
   }
 

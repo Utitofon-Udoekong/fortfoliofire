@@ -78,11 +78,11 @@ class _WebviewStackState extends State<WebviewStack> {
                       ''');
           },
           onNavigationRequest:  (NavigationRequest request) async {
-            if (request.url.startsWith('https://fortsuccess.vercel.app/')) {
+            if (request.url == 'https://fortsuccess.vercel.app/') {
               CustomSnackbar.showSnackBar(context, "Payment Successful", false);
               return NavigationDecision.navigate;
             }
-            if (request.url.startsWith('https://fortsuccess.vercel.app/failure.html')) {
+            if (request.url == 'https://fortsuccess.vercel.app/failure.html') {
               CustomSnackbar.showSnackBar(context, "Payment failed", true);
               return NavigationDecision.navigate;
             }
@@ -93,9 +93,9 @@ class _WebviewStackState extends State<WebviewStack> {
       ..addJavaScriptChannel(
         'Toaster',
         onMessageReceived: (JavaScriptMessage message) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(message.message)),
-          );
+          // ScaffoldMessenger.of(context).showSnackBar(
+          //   SnackBar(content: Text(message.message)),
+          // );
         },
       )
       ..loadRequest(Uri.parse(widget.paymentUrl));
