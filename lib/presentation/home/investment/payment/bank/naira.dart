@@ -156,7 +156,7 @@ class NairaAccount extends StatelessWidget {
                   context
                       .read<InvestmentCubit>()
                       .bankAccountTypeChanged(bankAccountType: "Naira");
-                  context.read<InvestmentCubit>().iHavePaid();
+                  context.read<InvestmentCubit>().createBankTransaction();
                 }),
           )
         ],

@@ -17,44 +17,44 @@ class NavigationControls extends StatelessWidget {
         if (snapshot.connectionState != ConnectionState.done ||
             controller == null) {
           return Row(
-            children: <Widget>[
+            children: const <Widget>[
               Icon(Icons.arrow_back, size: 13,),
               Icon(Icons.arrow_forward, size: 13,),
-              const Icon(Icons.replay, size: 13,),
+              Icon(Icons.replay, size: 13,),
             ],
           );
         }
 
         return Row(
           children: <Widget>[
+            // IconButton(
+            //   icon: const Icon(Icons.arrow_back, size: 13),
+            //   onPressed: () async {
+            //     if (await controller.canGoBack()) {
+            //       await controller.goBack();
+            //     } else {
+            //       ScaffoldMessenger.of(context).showSnackBar(
+            //         const SnackBar(content: Text('No back history item')),
+            //       );
+            //       return;
+            //     }
+            //   },
+            // ),
+            // IconButton(
+            //   icon: Icon(Icons.arrow_forward, size: 13),
+            //   onPressed: () async {
+            //     if (await controller.canGoForward()) {
+            //       await controller.goForward();
+            //     } else {
+            //       ScaffoldMessenger.of(context).showSnackBar(
+            //         const SnackBar(content: Text('No forward history item')),
+            //       );
+            //       return;
+            //     }
+            //   },
+            // ),
             IconButton(
-              icon: Icon(Icons.arrow_back, size: 13),
-              onPressed: () async {
-                if (await controller.canGoBack()) {
-                  await controller.goBack();
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('No back history item')),
-                  );
-                  return;
-                }
-              },
-            ),
-            IconButton(
-              icon: Icon(Icons.arrow_forward, size: 13),
-              onPressed: () async {
-                if (await controller.canGoForward()) {
-                  await controller.goForward();
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('No forward history item')),
-                  );
-                  return;
-                }
-              },
-            ),
-            IconButton(
-              icon: Icon(Icons.replay, size: 13),
+              icon: const Icon(Icons.replay, size: 13),
               onPressed: () {
                 controller.reload();
               },

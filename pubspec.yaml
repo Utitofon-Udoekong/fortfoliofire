@@ -34,7 +34,7 @@ dependencies:
   injectable: ^1.5.3
   auto_route: ^5.0.1
   salomon_bottom_bar: ^3.3.1
-  webview_flutter: ^3.0.4
+  webview_flutter: ^4.0.2
   local_auth: ^2.1.2
   screenshot: ^1.2.3
   share_plus: ^6.3.0

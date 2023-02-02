@@ -112,9 +112,10 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     final coin = state.coin;
     final coinPriceinUSD = await externalFacade.getCoinPrice(id: coinCode(coin: coin));
     final chargeAmount = amount * coinPriceinUSD;
+    final traxId = state.tempCryptoTraxId;
     try{
       final chargeOption =
-        await functionsFacade.createCharge(amount: chargeAmount.toString());
+        await functionsFacade.createCharge(amount: chargeAmount.toString().trim(), traxId: traxId);
       chargeOption.fold((failure) {
         emit(state.copyWith(isLoading: false));
         emit(state.copyWith(failure: failure));
@@ -128,40 +129,13 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     }
   }
 
-  void startPaymentStatusSubscription() async {
-
-    Timer.periodic(const Duration(seconds: 2, milliseconds: 500), (timer) async {
-      final statusSub = await functionsFacade.checkChargeStatus();
-      print("checking status");
-      statusSub.fold((l) => emit(state.copyWith(failure: l)), (r) {
-        if(r != null){
-          emit(state.copyWith(paymentStatus: r));
-        }
-        if(state.paymentStatus == "COMPLETED"){
-          emit(state.copyWith(success: "Payment Success"));
-          timer.cancel();
-        }
-        if(state.paymentStatus == "CANCELED"){
-          emit(state.copyWith(failure: "Payment Cancelled"));
-          timer.cancel();
-        }
-        if(state.paymentStatus == "failure!"){
-          emit(state.copyWith(failure: "Payment Expired"));
-          timer.cancel();
-        }
-      });
-    });
-  }
-
   void cancelCharge() async {
     final id = state.charge.id;
     await externalFacade.cancelCharge(id: id);
   }
 
-
-  void iHavePaid() async {
+  Future<bool> createCryptoTransaction() async {
     emit(state.copyWith(isLoading: true));
-    late InvestmentItem investmentItem;
     final String description = "${state.planName} Investment";
     final double amount = state.amountInvested;
     final DateTime paymentDate = DateTime.now();
@@ -179,9 +153,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     final String currency = state.exchangeType == "USD" ? "\$" : "₦";
     final String paymentMethod = state.paymentMethod;
     final String coin = state.coin;
-    final String bankAccountType = state.bankAccountType;
-    if (state.planName == "FortCrypto") {
-      investmentItem = InvestmentItem(
+    final InvestmentItem investmentItem = InvestmentItem(
           description: description,
           currency: currency,
           uid: uid,
@@ -199,8 +171,43 @@ class InvestmentCubit extends Cubit<InvestmentState> {
           coin: coin,
           fullName: fullName,
           numberOfDays: numberOfDays);
-    }else {
-      investmentItem = InvestmentItem(
+    final response = await firestoreFacade.createInvestmentTransaction(
+        investmentItem: investmentItem);
+    try {
+      response.fold((failure) {
+        emit(state.copyWith(isLoading: false, failure: failure));
+        return false;
+      }, (success) {
+        emit(state.copyWith(isLoading: false, tempCryptoTraxId: investmentItem.traxId));
+        return true;
+      });
+      return false;
+    } catch (e) {
+      emit(state.copyWith(isLoading: false));
+      return false;
+    }
+  }
+
+  void createBankTransaction() async {
+    emit(state.copyWith(isLoading: true));
+    final String description = "${state.planName} Investment";
+    final double amount = state.amountInvested;
+    final DateTime paymentDate = DateTime.now();
+    final String planName = state.planName;
+    final int roi = state.roi;
+    final int duration = state.duration;
+    const String status = "Pending";
+    final String traxId = const Uuid().v4().substring(0, 7);
+    final String uid = nanoid(8);
+    final String refId = authFacade.getUserId();
+    final fullName = "${authCubit.state.userModel.firstName} ${authCubit.state.userModel.lastName}";
+    // final dueDate = Jiffy(paymentDate).add(hours: 2).dateTime;
+    final dueDate = Jiffy(paymentDate).add(months: duration.toInt()).dateTime;
+    final int numberOfDays = dueDate.difference(paymentDate).inDays;
+    final String currency = state.exchangeType == "USD" ? "\$" : "₦";
+    final String paymentMethod = state.paymentMethod;
+    final String bankAccountType = state.bankAccountType;
+    InvestmentItem investmentItem = InvestmentItem(
           description: description,
           currency: currency,
           uid: uid,
@@ -218,7 +225,6 @@ class InvestmentCubit extends Cubit<InvestmentState> {
           paymentMethod: paymentMethod,
           fullName: fullName,
           numberOfDays: numberOfDays);
-    }
     final response = await firestoreFacade.createInvestmentTransaction(
         investmentItem: investmentItem);
     try {
@@ -234,7 +240,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
 
   void reset() {
     emit(state.copyWith(
-        amountInvested: 0, planName: "", agreementAccepted: false, failure: "", success: "", isLoading: false));
+        amountInvested: 0, planName: "", agreementAccepted: false, failure: "", success: "", isLoading: false, tempCryptoTraxId: ""));
   }
 
   @override

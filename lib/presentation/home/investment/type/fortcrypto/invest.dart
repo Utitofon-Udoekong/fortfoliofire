@@ -375,10 +375,11 @@ class FortCryptoInvestment extends StatelessWidget {
                                   builder: (context, loading) {
                                     return CustomLoadingButton(
                                         text: "CONFIRM",
-                                        onTap: () {
+                                        onTap: () async {
                                           context
                                               .read<InvestmentCubit>()
-                                              .createCharge();
+                                              .paymentMethodChanged(paymentMethod: "Crypto");
+                                          (await context.read<InvestmentCubit>().createCryptoTransaction()) ? context.read<InvestmentCubit>().createCharge() : null;
                                         },
                                         loading: loading);
                                   },

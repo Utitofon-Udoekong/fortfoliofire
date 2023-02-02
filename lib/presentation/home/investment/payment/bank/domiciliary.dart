@@ -119,7 +119,7 @@ class DomiciliaryAccount extends StatelessWidget {
                       context
                           .read<InvestmentCubit>()
                           .bankAccountTypeChanged(bankAccountType: "Domiciliary");
-                      context.read<InvestmentCubit>().iHavePaid();
+                      context.read<InvestmentCubit>().createBankTransaction();
                     }),
               )
             ],

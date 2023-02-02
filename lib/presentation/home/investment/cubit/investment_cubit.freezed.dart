@@ -32,7 +32,7 @@ mixin _$InvestmentState {
   String get paymentMethod => throw _privateConstructorUsedError;
   double get baseAmount => throw _privateConstructorUsedError;
   ChargeObject get charge => throw _privateConstructorUsedError;
-  String get paymentStatus => throw _privateConstructorUsedError;
+  String get tempCryptoTraxId => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $InvestmentStateCopyWith<InvestmentState> get copyWith =>
@@ -62,7 +62,7 @@ abstract class $InvestmentStateCopyWith<$Res> {
       String paymentMethod,
       double baseAmount,
       ChargeObject charge,
-      String paymentStatus});
+      String tempCryptoTraxId});
 }
 
 /// @nodoc
@@ -94,7 +94,7 @@ class _$InvestmentStateCopyWithImpl<$Res, $Val extends InvestmentState>
     Object? paymentMethod = null,
     Object? baseAmount = null,
     Object? charge = null,
-    Object? paymentStatus = null,
+    Object? tempCryptoTraxId = null,
   }) {
     return _then(_value.copyWith(
       planName: null == planName
@@ -161,9 +161,9 @@ class _$InvestmentStateCopyWithImpl<$Res, $Val extends InvestmentState>
           ? _value.charge
           : charge // ignore: cast_nullable_to_non_nullable
               as ChargeObject,
-      paymentStatus: null == paymentStatus
-          ? _value.paymentStatus
-          : paymentStatus // ignore: cast_nullable_to_non_nullable
+      tempCryptoTraxId: null == tempCryptoTraxId
+          ? _value.tempCryptoTraxId
+          : tempCryptoTraxId // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -194,7 +194,7 @@ abstract class _$$_InvestmentStateCopyWith<$Res>
       String paymentMethod,
       double baseAmount,
       ChargeObject charge,
-      String paymentStatus});
+      String tempCryptoTraxId});
 }
 
 /// @nodoc
@@ -224,7 +224,7 @@ class __$$_InvestmentStateCopyWithImpl<$Res>
     Object? paymentMethod = null,
     Object? baseAmount = null,
     Object? charge = null,
-    Object? paymentStatus = null,
+    Object? tempCryptoTraxId = null,
   }) {
     return _then(_$_InvestmentState(
       planName: null == planName
@@ -291,9 +291,9 @@ class __$$_InvestmentStateCopyWithImpl<$Res>
           ? _value.charge
           : charge // ignore: cast_nullable_to_non_nullable
               as ChargeObject,
-      paymentStatus: null == paymentStatus
-          ? _value.paymentStatus
-          : paymentStatus // ignore: cast_nullable_to_non_nullable
+      tempCryptoTraxId: null == tempCryptoTraxId
+          ? _value.tempCryptoTraxId
+          : tempCryptoTraxId // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -319,7 +319,7 @@ class _$_InvestmentState extends _InvestmentState {
       required this.paymentMethod,
       required this.baseAmount,
       required this.charge,
-      required this.paymentStatus})
+      required this.tempCryptoTraxId})
       : _isSelected = isSelected,
         _durations = durations,
         super._();
@@ -369,11 +369,11 @@ class _$_InvestmentState extends _InvestmentState {
   @override
   final ChargeObject charge;
   @override
-  final String paymentStatus;
+  final String tempCryptoTraxId;
 
   @override
   String toString() {
-    return 'InvestmentState(planName: $planName, duration: $duration, amountInvested: $amountInvested, roi: $roi, failure: $failure, success: $success, agreementAccepted: $agreementAccepted, isLoading: $isLoading, exchangeType: $exchangeType, coin: $coin, bankAccountType: $bankAccountType, isSelected: $isSelected, durations: $durations, paymentMethod: $paymentMethod, baseAmount: $baseAmount, charge: $charge, paymentStatus: $paymentStatus)';
+    return 'InvestmentState(planName: $planName, duration: $duration, amountInvested: $amountInvested, roi: $roi, failure: $failure, success: $success, agreementAccepted: $agreementAccepted, isLoading: $isLoading, exchangeType: $exchangeType, coin: $coin, bankAccountType: $bankAccountType, isSelected: $isSelected, durations: $durations, paymentMethod: $paymentMethod, baseAmount: $baseAmount, charge: $charge, tempCryptoTraxId: $tempCryptoTraxId)';
   }
 
   @override
@@ -408,8 +408,8 @@ class _$_InvestmentState extends _InvestmentState {
             (identical(other.baseAmount, baseAmount) ||
                 other.baseAmount == baseAmount) &&
             (identical(other.charge, charge) || other.charge == charge) &&
-            (identical(other.paymentStatus, paymentStatus) ||
-                other.paymentStatus == paymentStatus));
+            (identical(other.tempCryptoTraxId, tempCryptoTraxId) ||
+                other.tempCryptoTraxId == tempCryptoTraxId));
   }
 
   @override
@@ -431,7 +431,7 @@ class _$_InvestmentState extends _InvestmentState {
       paymentMethod,
       baseAmount,
       charge,
-      paymentStatus);
+      tempCryptoTraxId);
 
   @JsonKey(ignore: true)
   @override
@@ -458,7 +458,7 @@ abstract class _InvestmentState extends InvestmentState {
       required final String paymentMethod,
       required final double baseAmount,
       required final ChargeObject charge,
-      required final String paymentStatus}) = _$_InvestmentState;
+      required final String tempCryptoTraxId}) = _$_InvestmentState;
   const _InvestmentState._() : super._();
 
   @override
@@ -494,7 +494,7 @@ abstract class _InvestmentState extends InvestmentState {
   @override
   ChargeObject get charge;
   @override
-  String get paymentStatus;
+  String get tempCryptoTraxId;
   @override
   @JsonKey(ignore: true)
   _$$_InvestmentStateCopyWith<_$_InvestmentState> get copyWith =>

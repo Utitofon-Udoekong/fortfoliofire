@@ -19,11 +19,11 @@ class FirebaseFunctionsFacade implements IFunctionsFacade {
 
   @override
   Future<Either<String, Map<String, dynamic>>> createCharge(
-      {required String amount, required String invId}) async {
+      {required String amount, required String traxId}) async {
     try {
       Map<String, dynamic> charge = {};
       final url = Uri.https('us-central1-fortfolio-64207.cloudfunctions.net',
-          '/createCharge', {'amount': amount, 'traxId': invId});
+          '/createCharge', {'amount': amount, 'traxId': traxId});
       final response = await http.get(
         url,
         headers: {"Content-Type": "application/json; charset=UTF-8"},
