@@ -133,8 +133,6 @@ class FortCryptoInvestment extends StatelessWidget {
                                   'ETH',
                                   'LTC',
                                   'USDC',
-                                  'DAI',
-                                  'DOGE',
                                 ].map<DropdownMenuItem<String>>((String value) {
                                   return DropdownMenuItem<String>(
                                     value: value,

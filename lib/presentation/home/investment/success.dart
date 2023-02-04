@@ -20,6 +20,7 @@ class InvestmentSuccess extends StatelessWidget {
     return Scaffold(
       body: WillPopScope(
         onWillPop: ()async{
+          context.read<InvestmentCubit>().reset();
           context.router.replaceAll([const HomePageRoute(children: [InvestmentPageRoute()])]);
           return true;
         },

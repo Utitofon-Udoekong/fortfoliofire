@@ -12,12 +12,39 @@ import 'package:injectable/injectable.dart';
 @LazySingleton(as: IExternalFacade)
 class ExternalFacade implements IExternalFacade {
   @override
-  Future<double> getCoinPrice({ required String id}) async {
+  Future<double> getCoinAPriceInCoinB({ required String coinA, required String coinB }) async {
+    try {
+      var url = Uri.parse("https://api.coingecko.com/api/v3/coins/$coinA");
+      var response = await http.get(url);
+      var json = jsonDecode(response.body);
+      var value = json['market_data']['current_price'][coinB].toString();
+      print(value);
+      return double.parse(value);
+    } catch (e) {
+      log(e.toString());
+      return 0.0;
+    }
+  }
+  @override
+  Future<double> getCoinPriceInDollars({ required String id}) async {
     try {
       var url = Uri.parse("https://api.coingecko.com/api/v3/coins/$id");
       var response = await http.get(url);
       var json = jsonDecode(response.body);
       var value = json['market_data']['current_price']['usd'].toString();
+      return double.parse(value);
+    } catch (e) {
+      log(e.toString());
+      return 0.0;
+    }
+  }
+  @override
+  Future<double> getCoinPriceInNaira({ required String id}) async {
+    try {
+      var url = Uri.parse("https://api.coingecko.com/api/v3/coins/$id");
+      var response = await http.get(url);
+      var json = jsonDecode(response.body);
+      var value = json['market_data']['current_price']['ngn'].toString();
       return double.parse(value);
     } catch (e) {
       log(e.toString());

@@ -30,12 +30,24 @@ String coinCode({required String coin}){
       return "litecoin";
     case "USDC":
       return "usd-coin";
-    case "DAI":
-      return "dai";
-    case "DOGE":
-      return "dogecoin";
     default:
       return "bitcoin";
+  }
+}
+String coinShortCode({required String coin}){
+  switch(coin){
+    case "BTC":
+      return "btc";
+    case "BCH":
+      return "bch";
+    case "ETH":
+      return "eth";
+    case "LTC":
+      return "ltc";
+    case "USDC":
+      return "usd";
+    default:
+      return "btc";
   }
 }
 

@@ -52,12 +52,6 @@ class WalletCubit extends Cubit<WalletState> {
     });
   }
 
-  pullRefresh() {
-    initFortDollarInvestments();
-    initFortShieldInvestments();
-    initFortCryptoInvestments();
-  }
-
   void showDigitsChanged() {
     final showDigits = state.showDigits;
     emit(state.copyWith(showDigits: !showDigits));
@@ -180,12 +174,13 @@ class WalletCubit extends Cubit<WalletState> {
       if (data.size > 0) {
         for (var element in docs) {
           final doc = InvestmentItemDTO.fromFirestore(element).toDomain();
-          fortDollarInvestments.add(doc);
+          if(doc.status != "Rejected") {
+            fortDollarInvestments.add(doc);
+          }
         }
-        emit(state.copyWith(fortDollarInvestments: fortDollarInvestments));
         initFortDollar();
-        initTransactions();
       }
+      emit(state.copyWith(fortDollarInvestments: fortDollarInvestments));
     });
   }
 
@@ -197,12 +192,13 @@ class WalletCubit extends Cubit<WalletState> {
       if (data.size > 0) {
         for (var element in docs) {
           final doc = InvestmentItemDTO.fromFirestore(element).toDomain();
-          fortShieldInvestments.add(doc);
+          if(doc.status != "Rejected") {
+            fortShieldInvestments.add(doc);
+          }
         }
-        emit(state.copyWith(fortShieldInvestments: fortShieldInvestments));
         initFortShield();
-        initTransactions();
       }
+      emit(state.copyWith(fortShieldInvestments: fortShieldInvestments));
     });
   }
 
@@ -214,12 +210,14 @@ class WalletCubit extends Cubit<WalletState> {
       if (data.size > 0) {
         for (var element in docs) {
           final doc = InvestmentItemDTO.fromFirestore(element).toDomain();
-          fortCryptoInvestments.add(doc);
+          if(doc.status != "Rejected") {
+            fortCryptoInvestments.add(doc);
+          }
         }
-        emit(state.copyWith(fortCryptoInvestments: fortCryptoInvestments));
         initFortCrypto();
-        initTransactions();
       }
+      emit(state.copyWith(fortCryptoInvestments: fortCryptoInvestments));
+      print(state.fortCryptoInvestments);
     });
   }
 

@@ -22,8 +22,6 @@ mixin _$CalculatorState {
   double get totalReturns => throw _privateConstructorUsedError;
   String get selectedPlan => throw _privateConstructorUsedError;
   String get exchange => throw _privateConstructorUsedError;
-  List<DropdownMenuItem<String>> get dropdownItems =>
-      throw _privateConstructorUsedError;
   List<DropdownMenuItem<int>> get durations =>
       throw _privateConstructorUsedError;
 
@@ -45,7 +43,6 @@ abstract class $CalculatorStateCopyWith<$Res> {
       double totalReturns,
       String selectedPlan,
       String exchange,
-      List<DropdownMenuItem<String>> dropdownItems,
       List<DropdownMenuItem<int>> durations});
 }
 
@@ -68,7 +65,6 @@ class _$CalculatorStateCopyWithImpl<$Res, $Val extends CalculatorState>
     Object? totalReturns = null,
     Object? selectedPlan = null,
     Object? exchange = null,
-    Object? dropdownItems = null,
     Object? durations = null,
   }) {
     return _then(_value.copyWith(
@@ -96,10 +92,6 @@ class _$CalculatorStateCopyWithImpl<$Res, $Val extends CalculatorState>
           ? _value.exchange
           : exchange // ignore: cast_nullable_to_non_nullable
               as String,
-      dropdownItems: null == dropdownItems
-          ? _value.dropdownItems
-          : dropdownItems // ignore: cast_nullable_to_non_nullable
-              as List<DropdownMenuItem<String>>,
       durations: null == durations
           ? _value.durations
           : durations // ignore: cast_nullable_to_non_nullable
@@ -123,7 +115,6 @@ abstract class _$$_CalculatorStateCopyWith<$Res>
       double totalReturns,
       String selectedPlan,
       String exchange,
-      List<DropdownMenuItem<String>> dropdownItems,
       List<DropdownMenuItem<int>> durations});
 }
 
@@ -144,7 +135,6 @@ class __$$_CalculatorStateCopyWithImpl<$Res>
     Object? totalReturns = null,
     Object? selectedPlan = null,
     Object? exchange = null,
-    Object? dropdownItems = null,
     Object? durations = null,
   }) {
     return _then(_$_CalculatorState(
@@ -172,10 +162,6 @@ class __$$_CalculatorStateCopyWithImpl<$Res>
           ? _value.exchange
           : exchange // ignore: cast_nullable_to_non_nullable
               as String,
-      dropdownItems: null == dropdownItems
-          ? _value._dropdownItems
-          : dropdownItems // ignore: cast_nullable_to_non_nullable
-              as List<DropdownMenuItem<String>>,
       durations: null == durations
           ? _value._durations
           : durations // ignore: cast_nullable_to_non_nullable
@@ -194,10 +180,8 @@ class _$_CalculatorState extends _CalculatorState {
       required this.totalReturns,
       required this.selectedPlan,
       required this.exchange,
-      required final List<DropdownMenuItem<String>> dropdownItems,
       required final List<DropdownMenuItem<int>> durations})
-      : _dropdownItems = dropdownItems,
-        _durations = durations,
+      : _durations = durations,
         super._();
 
   @override
@@ -212,14 +196,6 @@ class _$_CalculatorState extends _CalculatorState {
   final String selectedPlan;
   @override
   final String exchange;
-  final List<DropdownMenuItem<String>> _dropdownItems;
-  @override
-  List<DropdownMenuItem<String>> get dropdownItems {
-    if (_dropdownItems is EqualUnmodifiableListView) return _dropdownItems;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_dropdownItems);
-  }
-
   final List<DropdownMenuItem<int>> _durations;
   @override
   List<DropdownMenuItem<int>> get durations {
@@ -230,7 +206,7 @@ class _$_CalculatorState extends _CalculatorState {
 
   @override
   String toString() {
-    return 'CalculatorState(investmentAmount: $investmentAmount, duration: $duration, returnRate: $returnRate, totalReturns: $totalReturns, selectedPlan: $selectedPlan, exchange: $exchange, dropdownItems: $dropdownItems, durations: $durations)';
+    return 'CalculatorState(investmentAmount: $investmentAmount, duration: $duration, returnRate: $returnRate, totalReturns: $totalReturns, selectedPlan: $selectedPlan, exchange: $exchange, durations: $durations)';
   }
 
   @override
@@ -251,8 +227,6 @@ class _$_CalculatorState extends _CalculatorState {
             (identical(other.exchange, exchange) ||
                 other.exchange == exchange) &&
             const DeepCollectionEquality()
-                .equals(other._dropdownItems, _dropdownItems) &&
-            const DeepCollectionEquality()
                 .equals(other._durations, _durations));
   }
 
@@ -265,7 +239,6 @@ class _$_CalculatorState extends _CalculatorState {
       totalReturns,
       selectedPlan,
       exchange,
-      const DeepCollectionEquality().hash(_dropdownItems),
       const DeepCollectionEquality().hash(_durations));
 
   @JsonKey(ignore: true)
@@ -283,7 +256,6 @@ abstract class _CalculatorState extends CalculatorState {
           required final double totalReturns,
           required final String selectedPlan,
           required final String exchange,
-          required final List<DropdownMenuItem<String>> dropdownItems,
           required final List<DropdownMenuItem<int>> durations}) =
       _$_CalculatorState;
   const _CalculatorState._() : super._();
@@ -300,8 +272,6 @@ abstract class _CalculatorState extends CalculatorState {
   String get selectedPlan;
   @override
   String get exchange;
-  @override
-  List<DropdownMenuItem<String>> get dropdownItems;
   @override
   List<DropdownMenuItem<int>> get durations;
   @override

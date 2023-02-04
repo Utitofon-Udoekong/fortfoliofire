@@ -57,7 +57,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     emit(state.copyWith(isSelected: newList));
   }
   void setCryptoBaseAmount({required String coin}) async {
-    final coinPriceinUSD = await externalFacade.getCoinPrice(id: coinCode(coin: coin));
+    final coinPriceinUSD = await externalFacade.getCoinPriceInDollars(id: coinCode(coin: coin));
     double baseAmount = double.parse((1000 / coinPriceinUSD).toStringAsFixed(3));
     emit(state.copyWith(baseAmount: baseAmount));
   }
@@ -110,12 +110,12 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     // emit(state.copyWith(isLoading: true));
     final amount = state.amountInvested;
     final coin = state.coin;
-    final coinPriceinUSD = await externalFacade.getCoinPrice(id: coinCode(coin: coin));
-    final chargeAmount = amount * coinPriceinUSD;
+    // final coinPriceinUSD = await externalFacade.getCoinPrice(id: coinCode(coin: coin));
+    // final chargeAmount = amount * coinPriceinUSD;
     final traxId = state.tempCryptoTraxId;
     try{
       final chargeOption =
-        await functionsFacade.createCharge(amount: chargeAmount.toString().trim(), traxId: traxId);
+        await functionsFacade.createCharge(amount: amount.toString().trim(), traxId: traxId);
       chargeOption.fold((failure) {
         emit(state.copyWith(isLoading: false));
         emit(state.copyWith(failure: failure));

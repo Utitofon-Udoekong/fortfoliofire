@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
@@ -7,6 +8,7 @@ import 'dart:typed_data';
 
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
+import 'package:fortfolio/presentation/home/investment/cubit/investment_cubit.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -55,16 +57,13 @@ class _WebviewStackState extends State<WebviewStack> {
               loadingPercentage = 100;
             });
             if(url == 'https://fortsuccess.vercel.app/'){
-              context.router.push(const InvestmentSuccessRoute());
-              // if (await controller.canGoBack()) {
-              //     await controller.goBack();
-              //   }
+              Future.delayed(const Duration(seconds: 2),() => context.router.push(const InvestmentSuccessRoute()));
             }
             if(url == 'https://fortsuccess.vercel.app/failure.html'){
-              // context.router.pop();
-              if (await controller.canGoBack()) {
-                  await controller.goBack();
-                }
+              Future.delayed(const Duration(seconds: 2),() {
+                context.read<InvestmentCubit>().reset();
+                context.router.popUntilRouteWithName(const FortCryptoRoute().routeName);
+              });
             }
             debugPrint('Page finished loading: $url');
           },

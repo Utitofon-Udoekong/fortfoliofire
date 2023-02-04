@@ -17,6 +17,8 @@ class Calculator extends StatelessWidget {
     //     context.select((AuthCubit cubit) => cubit.state.sellPrice);
     final exchangeIcon =
         context.select((CalculatorCubit cubit) => cubit.state.exchange);
+    final invAmount =
+        context.select((CalculatorCubit cubit) => cubit.state.investmentAmount);
     return Scaffold(
           body: SafeArea(
         child: Padding(
@@ -60,58 +62,95 @@ class Calculator extends StatelessWidget {
                             isScrollControlled: true,
                             context: context,
                             builder: (BuildContext context) {
-                              return SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.35,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(20.0),
-                                  child: BlocSelector<CalculatorCubit,
-                                      CalculatorState, String>(
-                                    selector: (state) {
-                                      return state.exchange;
-                                    },
-                                    builder: (context, selectedExchange) {
-                                      return Column(
-                                        children: <Widget>[
-                                          Text(
-                                            'Select balance',
-                                            style: titleText.copyWith(
-                                                fontSize: 15),
-                                          ),
-                                          const SizedBox(
-                                            height: 20,
-                                          ),
-                                          buildModalTile('9ja', 'NGN Balance',
-                                              () {
-                                            context
-                                                .read<CalculatorCubit>()
-                                                .exchangeChanged(exchange: "NGN");
-                                            context.router.pop();
-                                          }, selectedExchange, "NGN"),
-                                          const SizedBox(
-                                            height: 16,
-                                          ),
-                                          buildModalTile('usa', 'USD Balance',
-                                              () {
-                                            context
-                                                .read<CalculatorCubit>()
-                                                .exchangeChanged(exchange: "USD");
-                                            context.router.pop();
-                                          }, selectedExchange, "USD"),
-                                          const SizedBox(
-                                            height: 16,
-                                          ),
-                                          buildModalTile('btc', 'BTC Balance',
-                                              () {
-                                            context
-                                                .read<CalculatorCubit>()
-                                                .exchangeChanged(exchange: "BTC");
-                                            context.router.pop();
-                                          }, selectedExchange, "BTC"),
-                                        ],
-                                      );
-                                    },
-                                  ),
+                              return Padding(
+                                padding: const EdgeInsets.all(20.0),
+                                child: BlocSelector<CalculatorCubit,
+                                    CalculatorState, String>(
+                                  selector: (state) {
+                                    return state.exchange;
+                                  },
+                                  builder: (context, selectedExchange) {
+                                    return Wrap(
+                                      runSpacing: 16,
+                                      children: <Widget>[
+                                        Text(
+                                          'Select currency',
+                                          style: titleText.copyWith(
+                                              fontSize: 15),
+                                        ),
+                                        const SizedBox(
+                                          height: 20,
+                                        ),
+                                        buildModalTile('9ja', 'NGN',
+                                            () {
+                                          context
+                                              .read<CalculatorCubit>()
+                                              .exchangeChanged(exchange: "NGN");
+                                          context.router.pop();
+                                        }, selectedExchange, "NGN"),
+                                        const SizedBox(
+                                          height: 16,
+                                        ),
+                                        buildModalTile('usa', 'USD',
+                                            () {
+                                          context
+                                              .read<CalculatorCubit>()
+                                              .exchangeChanged(exchange: "USD");
+                                          context.router.pop();
+                                        }, selectedExchange, "USD"),
+                                        const SizedBox(
+                                          height: 16,
+                                        ),
+                                        buildModalTile('btc', 'BTC',
+                                            () {
+                                          context
+                                              .read<CalculatorCubit>()
+                                              .exchangeChanged(exchange: "BTC");
+                                          context.router.pop();
+                                        }, selectedExchange, "BTC"),
+                                        const SizedBox(
+                                          height: 16,
+                                        ),
+                                        buildModalTile('bch', 'BCH',
+                                            () {
+                                          context
+                                              .read<CalculatorCubit>()
+                                              .exchangeChanged(exchange: "BCH");
+                                          context.router.pop();
+                                        }, selectedExchange, "BCH"),
+                                        const SizedBox(
+                                          height: 16,
+                                        ),
+                                        buildModalTile('ltc', 'LTC',
+                                            () {
+                                          context
+                                              .read<CalculatorCubit>()
+                                              .exchangeChanged(exchange: "LTC");
+                                          context.router.pop();
+                                        }, selectedExchange, "LTC"),
+                                        const SizedBox(
+                                          height: 16,
+                                        ),
+                                        buildModalTile('usdc', 'USDC',
+                                            () {
+                                          context
+                                              .read<CalculatorCubit>()
+                                              .exchangeChanged(exchange: "USDC");
+                                          context.router.pop();
+                                        }, selectedExchange, "USDC"),
+                                        const SizedBox(
+                                          height: 16,
+                                        ),
+                                        buildModalTile('eth', 'ETH',
+                                            () {
+                                          context
+                                              .read<CalculatorCubit>()
+                                              .exchangeChanged(exchange: "ETH");
+                                          context.router.pop();
+                                        }, selectedExchange, "ETH"),
+                                      ],
+                                    );
+                                  },
                                 ),
                               );
                             },
@@ -152,22 +191,23 @@ class Calculator extends StatelessWidget {
               const SizedBox(
                 height: 5,
               ),
-              BlocBuilder<CalculatorCubit, CalculatorState>(
-                builder: (context, state) {
-                  return TextFormField(
+              TextFormField(
+                    // initialValue: invAmount.toStringAsFixed(2),
                     autocorrect: false,
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
                         filled: true,
                         fillColor: Color(0xFFF3F6F8),
                         border: InputBorder.none),
+                    textInputAction: TextInputAction.done,
                     onChanged: (String amount) => context
                         .read<CalculatorCubit>()
                         .investmentAmountChanged(
                             investmentAmount: double.parse(amount)),
-                  );
-                },
-              ),
+                    onEditingComplete: () {
+                      
+                    },
+                  ),
               const SizedBox(
                 height: 20,
               ),
@@ -215,18 +255,13 @@ class Calculator extends StatelessWidget {
                 buildWhen: (previous, current) =>
                     previous.selectedPlan != current.selectedPlan,
                 builder: (context, state) {
-                  return DropdownButtonFormField(
-                    items: state.dropdownItems,
-                    onChanged: (String? selectedPlan) => context
-                        .read<CalculatorCubit>()
-                        .selectedPlanChanged(selectedPlan: selectedPlan!),
-                    value: state.selectedPlan,
-                    decoration: const InputDecoration(
-                      filled: true,
-                      fillColor: Color(0xFFF3F6F8),
-                      border: InputBorder.none,
+                  return Container(
+                    width: MediaQuery.of(context).size.width,
+                    padding: const EdgeInsets.all(20.0),
+                    decoration: const BoxDecoration(
+                      color: Color(0xFFF3F6F8),
                     ),
-                    icon: const Icon(Icons.keyboard_arrow_down),
+                    child: Text(state.selectedPlan),
                   );
                 },
               ),
@@ -277,7 +312,7 @@ class Calculator extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       buildtile('Starting Amount',
-                          '${getSymbol(exchangeIcon)}${formatter.format(state.investmentAmount)}'),
+                          '${getSymbol(exchangeIcon)} ${formatter.format(state.investmentAmount)}'),
                       const SizedBox(
                         height: 7,
                       ),
@@ -287,12 +322,12 @@ class Calculator extends StatelessWidget {
                         height: 7,
                       ),
                       buildtile('Total Interest',
-                          '${getSymbol(exchangeIcon)}${formatter.format(state.totalReturns - state.investmentAmount)}'),
+                          '${getSymbol(exchangeIcon)} ${formatter.format(state.totalReturns - state.investmentAmount)}'),
                       const SizedBox(
                         height: 7,
                       ),
                       buildtile('Total Returns',
-                          '${getSymbol(exchangeIcon)}${formatter.format(state.totalReturns)}'),
+                          '${getSymbol(exchangeIcon)} ${formatter.format(state.totalReturns)}'),
                     ],
                   );
                 },
@@ -314,6 +349,18 @@ class Calculator extends StatelessWidget {
         return "₦";
       case "BTC":
         return "BTC";
+      case "BCH":
+        return "BCH";
+      case "LTC":
+        return "LTC";
+      case "ETH":
+        return "ETH";
+      case "USDC":
+        return "USDC";
+      case "DAI":
+        return "DAI";
+      case "DOGE":
+        return "DOGE";
       default:
         return "\$";
     }
@@ -325,7 +372,7 @@ class Calculator extends StatelessWidget {
       onTap: ontap,
       child: Row(
         children: <Widget>[
-          Image(image: AssetImage("images/$icon.png")),
+          Image(image: AssetImage("images/$icon.png"),width: 20),
           const SizedBox(
             width: 20,
           ),

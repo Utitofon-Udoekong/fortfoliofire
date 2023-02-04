@@ -9,15 +9,9 @@ class CalculatorState with _$CalculatorState {
     required double totalReturns,
     required String selectedPlan,
     required String exchange,
-    required List<DropdownMenuItem<String>> dropdownItems,
     required List<DropdownMenuItem<int>> durations,
   }) = _CalculatorState;
   factory CalculatorState.initial() => const CalculatorState(
-        dropdownItems: [
-          DropdownMenuItem(value: "FortDollar", child: Text("FortDollar")),
-          DropdownMenuItem(value: "FortCrypto", child: Text("FortCrypto")),
-          DropdownMenuItem(value: "FortShield", child: Text("FortShield")),
-        ],
         duration: 3,
         durations: [
           DropdownMenuItem(value: 3, child: Text("3")),
