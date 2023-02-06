@@ -1,0 +1,90 @@
+{
+  "project_info": {
+    "project_number": "981811466568",
+    "project_id": "fortfolio-64207",
+    "storage_bucket": "fortfolio-64207.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:981811466568:android:92e674ebc019fcbb6d237d",
+        "android_client_info": {
+          "package_name": "com.example.fortfolio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "981811466568-oi33ejr737ip7tqiismabfoia87pfnin.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBC1_-SsgDOVEIRhwOL2VFBdLlgvNw4hMU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "981811466568-oi33ejr737ip7tqiismabfoia87pfnin.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "981811466568-mucr73pjivkc115tvmq9um9o2m67rajr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.fortfolioIos"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:981811466568:android:c7b16f9970dde4496d237d",
+        "android_client_info": {
+          "package_name": "com.mega.fortfolio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "981811466568-gllh526cvugnghtaa4gm7pmrtskd7vf5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mega.fortfolio",
+            "certificate_hash": "750ef04e3d5aabdfb860461b4a4a52205d3c8ad7"
+          }
+        },
+        {
+          "client_id": "981811466568-oi33ejr737ip7tqiismabfoia87pfnin.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBC1_-SsgDOVEIRhwOL2VFBdLlgvNw4hMU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "981811466568-oi33ejr737ip7tqiismabfoia87pfnin.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "981811466568-mucr73pjivkc115tvmq9um9o2m67rajr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.fortfolioIos"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
