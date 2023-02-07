@@ -110,12 +110,12 @@ class InvestmentCubit extends Cubit<InvestmentState> {
     // emit(state.copyWith(isLoading: true));
     final amount = state.amountInvested;
     final coin = state.coin;
-    // final coinPriceinUSD = await externalFacade.getCoinPrice(id: coinCode(coin: coin));
-    // final chargeAmount = amount * coinPriceinUSD;
+    final coinPriceinUSD = await externalFacade.getCoinPriceInDollars(id: coinCode(coin: coin));
+    final chargeAmount = amount * coinPriceinUSD;
     final traxId = state.tempCryptoTraxId;
     try{
       final chargeOption =
-        await functionsFacade.createCharge(amount: amount.toString().trim(), traxId: traxId);
+        await functionsFacade.createCharge(amount: chargeAmount.toString().trim(), traxId: traxId);
       chargeOption.fold((failure) {
         emit(state.copyWith(isLoading: false));
         emit(state.copyWith(failure: failure));
@@ -125,7 +125,7 @@ class InvestmentCubit extends Cubit<InvestmentState> {
       });
     }catch(e){
       print(e);
-    emit(state.copyWith(isLoading: false, failure: "Network error encountered"));
+      emit(state.copyWith(isLoading: false, failure: "Network error encountered"));
     }
   }
 

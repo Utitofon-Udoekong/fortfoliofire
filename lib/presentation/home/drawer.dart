@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
 import 'package:fortfolio/domain/widgets/custom_icon_filled_button.dart';
-import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
@@ -72,18 +71,23 @@ class MainDrawer extends StatelessWidget {
                     direction: Axis.horizontal,
                     children: [
                       Expanded(
-                        child: InkWell(
-                          onTap: (){
-                            Clipboard.setData(
-                                      ClipboardData(text: userId));
-                          },
+                        child: Tooltip(
+                          message: "ID COPIED",
+                          triggerMode: TooltipTriggerMode.tap,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(6),
+                            color: kSecondaryColor
+                          ),
+                          height: 50,
+                          padding: const EdgeInsets.all(8.0),
+                          margin: const EdgeInsets.symmetric(horizontal: 10),
                           child: Text('ID: $userId',
-                          style: subTitle.copyWith(
+                              style: subTitle.copyWith(
                               color: kWhiteColor, fontSize: 15),
                           maxLines: 1,
-                          softWrap: false,)
-                          
-                        ),
+                          softWrap: false,),
+                          onTriggered: () => Clipboard.setData(ClipboardData(text: userId)),
+                        )
                       ),
                       const SizedBox(
                         width: 10.0,

@@ -122,9 +122,11 @@ class WalletCubit extends Cubit<WalletState> {
 
   void initFortDollar() {
     var fortDollarInvestments = state.fortDollarInvestments;
+    var isFortDollarActive = state.isFortDollarActive;
     var planYield = 0.0;
     var amount = 0.0;
-    for (var element in fortDollarInvestments) {
+    if(isFortDollarActive){
+      for (var element in fortDollarInvestments) {
       if (element.status == "Successful") {
         planYield += element.planYield;
         amount += element.amount;
@@ -133,13 +135,16 @@ class WalletCubit extends Cubit<WalletState> {
     emit(state.copyWith(
         fortDollarYieldBalance: planYield,
         fortDollarInvestmentBalance: amount));
+    }
   }
 
   void initFortShield() {
     var fortShieldInvestments = state.fortShieldInvestments;
+    var isFortShieldActive = state.isFortShieldActive;
     var planYield = 0.0;
     var amount = 0.0;
-    for (var element in fortShieldInvestments) {
+    if(isFortShieldActive){
+      for (var element in fortShieldInvestments) {
       if (element.status == "Successful") {
         planYield += element.planYield;
         amount += element.amount;
@@ -149,21 +154,25 @@ class WalletCubit extends Cubit<WalletState> {
     emit(state.copyWith(
         fortShieldYieldBalance: planYield,
         fortShieldInvestmentBalance: amount));
+    }
   }
 
   void initFortCrypto() {
     var fortCryptoInvestments = state.fortCryptoInvestments;
+    var isFortCryptoActive = state.isFortCryptoActive;
     var planYield = 0.0;
     var amount = 0.0;
-    for (var element in fortCryptoInvestments) {
-      if (element.status == "Successful") {
-        planYield += element.planYield;
-        amount += element.amount;
+    if(isFortCryptoActive){
+      for (var element in fortCryptoInvestments) {
+        if (element.status == "Successful") {
+          planYield += element.planYield;
+          amount += element.amount;
+        }
       }
+      emit(state.copyWith(
+          fortCryptoYieldBalance: planYield,
+          fortCryptoInvestmentBalance: amount));
     }
-    emit(state.copyWith(
-        fortCryptoYieldBalance: planYield,
-        fortCryptoInvestmentBalance: amount));
   }
 
   void initFortDollarInvestments() {
@@ -217,7 +226,6 @@ class WalletCubit extends Cubit<WalletState> {
         initFortCrypto();
       }
       emit(state.copyWith(fortCryptoInvestments: fortCryptoInvestments));
-      print(state.fortCryptoInvestments);
     });
   }
 

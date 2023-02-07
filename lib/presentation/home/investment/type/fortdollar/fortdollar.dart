@@ -66,13 +66,13 @@ class FortDollar extends StatelessWidget {
                         text: 'In the fort dollar plan, your capital is invested in the various ventures referenced ',
                       ),
                       TextSpan(
-                        text: 'here ',
+                        text: 'here, ',
                         style: subTitle.copyWith(color: klightblue, decoration: TextDecoration.underline, fontSize: 13),
                         recognizer: TapGestureRecognizer()
                         ..onTap = _launchUrl,
                       ),
                       const TextSpan(
-                        text: ', in dollars. You earn 30% returns annually. The minimum investment amount is \$1000.'
+                        text: 'in dollars. You earn 30% returns annually. The minimum investment amount is \$1000.'
                       )
                     ]
                   ),

@@ -319,7 +319,7 @@ class WalletOverview extends StatelessWidget {
       onTap: ontap,
       child: Row(
         children: <Widget>[
-          Image(image: AssetImage("images/$icon.png")),
+          Image(image: AssetImage("images/$icon.png"),width: 20),
           const SizedBox(
             width: 20,
           ),

@@ -18,6 +18,12 @@ class SignInFormEmailCubit extends Cubit<SignInFormEmailState> {
   late final AuthCubit authCubit;
   SignInFormEmailCubit(this._authFacade): super(SignInFormEmailState.initial()){
     authCubit = getIt<AuthCubit>();
+    authCubit.stream.listen((authState) {
+      if(authState.isLoggedIn){
+        emit(state.copyWith(isSubmitting: false));
+        reset();
+      }
+    });
   }
 
 
@@ -50,12 +56,6 @@ class SignInFormEmailCubit extends Cubit<SignInFormEmailState> {
         // reset();
       }, (success) async{
         emit(state.copyWith(success: "$success. Setting up user"));
-        authCubit.stream.listen((authState) {
-          if(authState.isLoggedIn){
-            emit(state.copyWith(isSubmitting: false));
-            reset();
-          }
-        });
       });
     }
   }
