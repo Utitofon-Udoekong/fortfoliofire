@@ -77,11 +77,11 @@ class _PaymentMethodState extends State<PaymentMethod>
                             controller: _tabController,
                             tabs: const [
                               Tab(
-                                text: 'Crypto Wallet',
-                              ),
-                              Tab(
                                 text: 'Banks',
                               ),
+                              Tab(
+                                text: 'Crypto Wallet',
+                              )
                             ],
                           ),
                         ),

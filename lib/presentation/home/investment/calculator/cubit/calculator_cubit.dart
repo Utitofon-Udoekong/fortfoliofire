@@ -93,4 +93,8 @@ class CalculatorCubit extends Cubit<CalculatorState> {
     final double total = investmentAmount + (investmentAmount * ((returnRate/100) * (duration / 12)));
     emit(state.copyWith(totalReturns: total));
   }
+
+  void reset(){
+    emit(state.copyWith(investmentAmount: 0, returnRate: 30, totalReturns: 0, exchange: "USD", selectedPlan: "FortDollar", duration: 3));
+  }
 }
