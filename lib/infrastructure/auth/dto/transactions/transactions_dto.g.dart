@@ -20,6 +20,7 @@ _$_TransactionItemDTO _$$_TransactionItemDTOFromJson(
       type: json['type'] as String,
       duration: json['duration'] as int,
       roi: json['roi'] as int,
+      coin: json['coin'] as String?,
     );
 
 Map<String, dynamic> _$$_TransactionItemDTOToJson(
@@ -36,4 +37,5 @@ Map<String, dynamic> _$$_TransactionItemDTOToJson(
       'type': instance.type,
       'duration': instance.duration,
       'roi': instance.roi,
+      'coin': instance.coin,
     };

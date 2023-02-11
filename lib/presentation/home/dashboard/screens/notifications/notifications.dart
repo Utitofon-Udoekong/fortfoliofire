@@ -10,6 +10,8 @@ class NotificationsPage extends StatelessWidget {
   const NotificationsPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final notifications = context.select((NotificationCubit bloc) => bloc.state.notifications);
+    final selectedNotifications = context.select((NotificationCubit bloc) => bloc.state.selectedNotifications);
     return Scaffold(
         body: SafeArea(
       child: SingleChildScrollView(
@@ -35,16 +37,10 @@ class NotificationsPage extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                BlocBuilder<NotificationCubit, NotificationState>(
-                  buildWhen: (previous, current) => previous.notifications != current.notifications,
-                  builder: (context, state) {
-                    if(state.notifications.isEmpty){
-                      return Text("No notifications at the moment", style: subTitle.copyWith(color: kBlackColor, fontSize: 15),);
-                    }else{
-                      return Column(
-                      children: state.notifications.map((notification) {
-                        return buildtile(
-                          selected: state.selectedNotifications
+                notifications.isEmpty ? Text("No notifications at the moment", style: subTitle.copyWith(color: kBlackColor, fontSize: 15),) : Column(
+                      children: notifications.map((notification) {
+                        return BuildTile(
+                          selected: selectedNotifications
                               .contains(notification),
                           selectNotification: () => context
                               .read<NotificationCubit>()
@@ -64,10 +60,7 @@ class NotificationsPage extends StatelessWidget {
                           status: notification.status
                         );
                       }).toList(),
-                    );
-                    }
-                  },
-                ),
+                    ),
                 const SizedBox(
                   height: 20,
                 ),
@@ -94,24 +87,29 @@ class NotificationsPage extends StatelessWidget {
     ));
   }
 
-  Widget buildtile({
-    required String type,
-    required String title,
-    required String status,
-    required DateTime createdat,
-    required bool selected,
-    required Function() selectNotification,
-    required Function() deSelectNotification,
-    required Function() deleteNotification,
-  }) {
-    return GestureDetector(
+}
+
+class BuildTile extends StatelessWidget {
+  final String type;
+  final String title;
+  final String status;
+  final DateTime createdat;
+  final bool selected;
+  final void Function()? selectNotification;
+  final void Function()? deSelectNotification;
+  final void Function()? deleteNotification;
+  const BuildTile({super.key, required this.type, required this.title, required this.status, required this.createdat, required this.selected, required this.selectNotification, required this.deSelectNotification, required this.deleteNotification});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
       onLongPress: selectNotification,
       onTap: selected ? deSelectNotification : null,
       child: Container(
               margin: const EdgeInsets.only(bottom: 10.0),
         padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 4.0),
         decoration: BoxDecoration(
-          color: selected ? const Color(0XFFF4FBFF) : kWhiteColor,
+          color: selected ? const Color(0xFF59C1FD) : kWhiteColor,
         ),
         child: Row(
           children: <Widget>[

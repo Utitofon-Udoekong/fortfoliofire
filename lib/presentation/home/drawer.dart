@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fortfolio/application/auth/auth_cubit.dart';
 import 'package:fortfolio/domain/constants/theme.dart';
+import 'package:fortfolio/domain/widgets/custom_filled_button.dart';
 import 'package:fortfolio/domain/widgets/custom_icon_filled_button.dart';
 import 'package:fortfolio/presentation/routes/router.gr.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -76,17 +77,19 @@ class MainDrawer extends StatelessWidget {
                           triggerMode: TooltipTriggerMode.tap,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
-                            color: kSecondaryColor
+                            color: kWhiteColor
                           ),
                           height: 50,
                           padding: const EdgeInsets.all(8.0),
                           margin: const EdgeInsets.symmetric(horizontal: 10),
+                          textStyle: subTitle.copyWith(
+                              color: kPrimaryColor, fontSize: 15),
+                          onTriggered: () => Clipboard.setData(ClipboardData(text: userId)),
                           child: Text('ID: $userId',
                               style: subTitle.copyWith(
                               color: kWhiteColor, fontSize: 15),
                           maxLines: 1,
                           softWrap: false,),
-                          onTriggered: () => Clipboard.setData(ClipboardData(text: userId)),
                         )
                       ),
                       const SizedBox(
@@ -147,10 +150,61 @@ class MainDrawer extends StatelessWidget {
               child: CustomIconFilledButton(
                   text: 'LOGOUT',
                   onTap: () async {
-                    await context.read<AuthCubit>().signOut().then((_) {
-                      context.router.pop();
-                      context.replaceRoute(const OnboardingScreenRoute());
-                    });
+                    context.router.pop();
+                    var dialog = AlertDialog(
+                            // title: const Text(
+                            //   "Please confirm your investment transaction",
+                            //   textAlign: TextAlign.center,
+                            // ),
+                            // titleTextStyle: titleText.copyWith(
+                            //   fontSize: 16,
+                            // ),
+                            content: const Text(
+                                "Are you sure you want to log out",
+                                textAlign: TextAlign.center),
+                            contentTextStyle: subTitle.copyWith(
+                                fontSize: 13, color: kgreyColor),
+                            actions: [
+                              CustomFilledButton(
+                                  text: "LOGOUT",
+                                  onTap: () async {
+                                    await context.read<AuthCubit>().signOut().then((_) {
+                                      context.router.pop();
+                                      context.replaceRoute(const OnboardingScreenRoute());
+                                    });
+                                  }),
+                              InkWell(
+                                onTap: () => context.router.pop(),
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  height: 45,
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: kWhiteColor,
+                                  ),
+                                  child: Text(
+                                    "CANCEL",
+                                    style:
+                                        textButton.copyWith(color: kRedColor),
+                                  ),
+                                ),
+                              )
+                            ],
+                            backgroundColor: kWhiteColor,
+                            titlePadding: const EdgeInsets.symmetric(
+                                horizontal: 10.0, vertical: 15),
+                            contentPadding: const EdgeInsets.symmetric(
+                                horizontal: 10.0, vertical: 10),
+                            actionsPadding: const EdgeInsets.symmetric(
+                                horizontal: 10.0, vertical: 10),
+                          );
+                          showDialog(
+                              context: context,
+                              builder: (context) {
+                                return dialog;
+                              });
+                    
                   },
                   icon: 'images/logout.png'),
             ),

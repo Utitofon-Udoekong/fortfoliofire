@@ -21,6 +21,7 @@ abstract class TransactionItemDTO implements _$TransactionItemDTO {
     required String type,
     required int duration,
     required int roi,
+    String? coin
   }) = _TransactionItemDTO;
 
   factory TransactionItemDTO.fromDomain(TransactionItem transactionItem) {
@@ -35,7 +36,8 @@ abstract class TransactionItemDTO implements _$TransactionItemDTO {
     duration: transactionItem.duration,
     roi: transactionItem.roi,
     createdat: transactionItem.createdat,
-    status: transactionItem.status
+    status: transactionItem.status,
+    coin: transactionItem.coin
     );
   }
 
@@ -65,6 +67,7 @@ extension TransactionItemDTOX on TransactionItemDTO {
     type: type,
     roi: roi,
     createdat: createdat,
+    coin: coin,
     status: status
     );
   }

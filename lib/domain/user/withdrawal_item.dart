@@ -16,7 +16,8 @@ abstract class WithdrawalItem implements _$WithdrawalItem {
     required int duration,
     required int roi,
     required String refId,
-    required Map<String, dynamic> withdrawalDetails
+    required Map<String, dynamic> withdrawalDetails,
+    String? coin
     // add roi
   }) = _WithdrawalItem;
 
@@ -32,6 +33,7 @@ abstract class WithdrawalItem implements _$WithdrawalItem {
         traxId: '',
         uid: '',
         refId: '',
+        coin: '',
         withdrawalDetails: {}
       );
 }

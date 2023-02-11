@@ -10,6 +10,7 @@ import 'package:fortfolio/domain/widgets/otp_field/otp_box_style.dart';
 import 'package:fortfolio/domain/widgets/otp_field/otp_field_style.dart';
 import 'package:fortfolio/domain/widgets/otp_field/otp_text_field.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:fortfolio/presentation/routes/router.gr.dart';
 
 class ConfirmPhoneUpdate extends StatelessWidget {
   final int smsCodeTimeoutSeconds = 60;
@@ -36,7 +37,7 @@ class ConfirmPhoneUpdate extends StatelessWidget {
                 current.success.isNotEmpty,
             listener: (context, state) {
               CustomSnackbar.showSnackBar(context, state.success, false);
-              context.router.pop();
+              context.router.popUntilRouteWithName(const ProfilePageRoute().routeName);
             },
           ),
         ],

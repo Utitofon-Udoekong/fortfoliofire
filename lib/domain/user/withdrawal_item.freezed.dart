@@ -29,6 +29,7 @@ mixin _$WithdrawalItem {
   String get refId => throw _privateConstructorUsedError;
   Map<String, dynamic> get withdrawalDetails =>
       throw _privateConstructorUsedError;
+  String? get coin => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $WithdrawalItemCopyWith<WithdrawalItem> get copyWith =>
@@ -53,7 +54,8 @@ abstract class $WithdrawalItemCopyWith<$Res> {
       int duration,
       int roi,
       String refId,
-      Map<String, dynamic> withdrawalDetails});
+      Map<String, dynamic> withdrawalDetails,
+      String? coin});
 }
 
 /// @nodoc
@@ -81,6 +83,7 @@ class _$WithdrawalItemCopyWithImpl<$Res, $Val extends WithdrawalItem>
     Object? roi = null,
     Object? refId = null,
     Object? withdrawalDetails = null,
+    Object? coin = freezed,
   }) {
     return _then(_value.copyWith(
       description: null == description
@@ -131,6 +134,10 @@ class _$WithdrawalItemCopyWithImpl<$Res, $Val extends WithdrawalItem>
           ? _value.withdrawalDetails
           : withdrawalDetails // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
+      coin: freezed == coin
+          ? _value.coin
+          : coin // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -155,7 +162,8 @@ abstract class _$$_WithdrawalItemCopyWith<$Res>
       int duration,
       int roi,
       String refId,
-      Map<String, dynamic> withdrawalDetails});
+      Map<String, dynamic> withdrawalDetails,
+      String? coin});
 }
 
 /// @nodoc
@@ -181,6 +189,7 @@ class __$$_WithdrawalItemCopyWithImpl<$Res>
     Object? roi = null,
     Object? refId = null,
     Object? withdrawalDetails = null,
+    Object? coin = freezed,
   }) {
     return _then(_$_WithdrawalItem(
       description: null == description
@@ -231,6 +240,10 @@ class __$$_WithdrawalItemCopyWithImpl<$Res>
           ? _value._withdrawalDetails
           : withdrawalDetails // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
+      coin: freezed == coin
+          ? _value.coin
+          : coin // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -250,7 +263,8 @@ class _$_WithdrawalItem extends _WithdrawalItem {
       required this.duration,
       required this.roi,
       required this.refId,
-      required final Map<String, dynamic> withdrawalDetails})
+      required final Map<String, dynamic> withdrawalDetails,
+      this.coin})
       : _withdrawalDetails = withdrawalDetails,
         super._();
 
@@ -286,8 +300,11 @@ class _$_WithdrawalItem extends _WithdrawalItem {
   }
 
   @override
+  final String? coin;
+
+  @override
   String toString() {
-    return 'WithdrawalItem(description: $description, amount: $amount, traxId: $traxId, uid: $uid, status: $status, createdat: $createdat, paymentMethod: $paymentMethod, currency: $currency, duration: $duration, roi: $roi, refId: $refId, withdrawalDetails: $withdrawalDetails)';
+    return 'WithdrawalItem(description: $description, amount: $amount, traxId: $traxId, uid: $uid, status: $status, createdat: $createdat, paymentMethod: $paymentMethod, currency: $currency, duration: $duration, roi: $roi, refId: $refId, withdrawalDetails: $withdrawalDetails, coin: $coin)';
   }
 
   @override
@@ -312,7 +329,8 @@ class _$_WithdrawalItem extends _WithdrawalItem {
             (identical(other.roi, roi) || other.roi == roi) &&
             (identical(other.refId, refId) || other.refId == refId) &&
             const DeepCollectionEquality()
-                .equals(other._withdrawalDetails, _withdrawalDetails));
+                .equals(other._withdrawalDetails, _withdrawalDetails) &&
+            (identical(other.coin, coin) || other.coin == coin));
   }
 
   @override
@@ -329,7 +347,8 @@ class _$_WithdrawalItem extends _WithdrawalItem {
       duration,
       roi,
       refId,
-      const DeepCollectionEquality().hash(_withdrawalDetails));
+      const DeepCollectionEquality().hash(_withdrawalDetails),
+      coin);
 
   @JsonKey(ignore: true)
   @override
@@ -340,19 +359,19 @@ class _$_WithdrawalItem extends _WithdrawalItem {
 
 abstract class _WithdrawalItem extends WithdrawalItem {
   const factory _WithdrawalItem(
-          {required final String description,
-          required final double amount,
-          required final String traxId,
-          required final String uid,
-          required final String status,
-          required final DateTime createdat,
-          required final String paymentMethod,
-          required final String currency,
-          required final int duration,
-          required final int roi,
-          required final String refId,
-          required final Map<String, dynamic> withdrawalDetails}) =
-      _$_WithdrawalItem;
+      {required final String description,
+      required final double amount,
+      required final String traxId,
+      required final String uid,
+      required final String status,
+      required final DateTime createdat,
+      required final String paymentMethod,
+      required final String currency,
+      required final int duration,
+      required final int roi,
+      required final String refId,
+      required final Map<String, dynamic> withdrawalDetails,
+      final String? coin}) = _$_WithdrawalItem;
   const _WithdrawalItem._() : super._();
 
   @override
@@ -379,6 +398,8 @@ abstract class _WithdrawalItem extends WithdrawalItem {
   String get refId;
   @override
   Map<String, dynamic> get withdrawalDetails;
+  @override
+  String? get coin;
   @override
   @JsonKey(ignore: true)
   _$$_WithdrawalItemCopyWith<_$_WithdrawalItem> get copyWith =>

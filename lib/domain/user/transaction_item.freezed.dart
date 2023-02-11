@@ -27,6 +27,7 @@ mixin _$TransactionItem {
   String get type => throw _privateConstructorUsedError;
   int get duration => throw _privateConstructorUsedError;
   int get roi => throw _privateConstructorUsedError;
+  String? get coin => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TransactionItemCopyWith<TransactionItem> get copyWith =>
@@ -50,7 +51,8 @@ abstract class $TransactionItemCopyWith<$Res> {
       String currency,
       String type,
       int duration,
-      int roi});
+      int roi,
+      String? coin});
 }
 
 /// @nodoc
@@ -77,6 +79,7 @@ class _$TransactionItemCopyWithImpl<$Res, $Val extends TransactionItem>
     Object? type = null,
     Object? duration = null,
     Object? roi = null,
+    Object? coin = freezed,
   }) {
     return _then(_value.copyWith(
       description: null == description
@@ -123,6 +126,10 @@ class _$TransactionItemCopyWithImpl<$Res, $Val extends TransactionItem>
           ? _value.roi
           : roi // ignore: cast_nullable_to_non_nullable
               as int,
+      coin: freezed == coin
+          ? _value.coin
+          : coin // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -146,7 +153,8 @@ abstract class _$$_TransactionItemCopyWith<$Res>
       String currency,
       String type,
       int duration,
-      int roi});
+      int roi,
+      String? coin});
 }
 
 /// @nodoc
@@ -171,6 +179,7 @@ class __$$_TransactionItemCopyWithImpl<$Res>
     Object? type = null,
     Object? duration = null,
     Object? roi = null,
+    Object? coin = freezed,
   }) {
     return _then(_$_TransactionItem(
       description: null == description
@@ -217,6 +226,10 @@ class __$$_TransactionItemCopyWithImpl<$Res>
           ? _value.roi
           : roi // ignore: cast_nullable_to_non_nullable
               as int,
+      coin: freezed == coin
+          ? _value.coin
+          : coin // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -235,7 +248,8 @@ class _$_TransactionItem implements _TransactionItem {
       required this.currency,
       required this.type,
       required this.duration,
-      required this.roi});
+      required this.roi,
+      this.coin});
 
   @override
   final String description;
@@ -259,10 +273,12 @@ class _$_TransactionItem implements _TransactionItem {
   final int duration;
   @override
   final int roi;
+  @override
+  final String? coin;
 
   @override
   String toString() {
-    return 'TransactionItem(description: $description, amount: $amount, traxId: $traxId, planName: $planName, status: $status, createdat: $createdat, paymentMethod: $paymentMethod, currency: $currency, type: $type, duration: $duration, roi: $roi)';
+    return 'TransactionItem(description: $description, amount: $amount, traxId: $traxId, planName: $planName, status: $status, createdat: $createdat, paymentMethod: $paymentMethod, currency: $currency, type: $type, duration: $duration, roi: $roi, coin: $coin)';
   }
 
   @override
@@ -286,7 +302,8 @@ class _$_TransactionItem implements _TransactionItem {
             (identical(other.type, type) || other.type == type) &&
             (identical(other.duration, duration) ||
                 other.duration == duration) &&
-            (identical(other.roi, roi) || other.roi == roi));
+            (identical(other.roi, roi) || other.roi == roi) &&
+            (identical(other.coin, coin) || other.coin == coin));
   }
 
   @override
@@ -302,7 +319,8 @@ class _$_TransactionItem implements _TransactionItem {
       currency,
       type,
       duration,
-      roi);
+      roi,
+      coin);
 
   @JsonKey(ignore: true)
   @override
@@ -323,7 +341,8 @@ abstract class _TransactionItem implements TransactionItem {
       required final String currency,
       required final String type,
       required final int duration,
-      required final int roi}) = _$_TransactionItem;
+      required final int roi,
+      final String? coin}) = _$_TransactionItem;
 
   @override
   String get description;
@@ -347,6 +366,8 @@ abstract class _TransactionItem implements TransactionItem {
   int get duration;
   @override
   int get roi;
+  @override
+  String? get coin;
   @override
   @JsonKey(ignore: true)
   _$$_TransactionItemCopyWith<_$_TransactionItem> get copyWith =>

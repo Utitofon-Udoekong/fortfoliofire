@@ -31,6 +31,7 @@ mixin _$WithdrawalItemDTO {
   String get paymentMethod => throw _privateConstructorUsedError;
   String get currency => throw _privateConstructorUsedError;
   String get refId => throw _privateConstructorUsedError;
+  String? get coin => throw _privateConstructorUsedError;
   Map<String, dynamic> get withdrawalDetails =>
       throw _privateConstructorUsedError;
 
@@ -58,6 +59,7 @@ abstract class $WithdrawalItemDTOCopyWith<$Res> {
       String paymentMethod,
       String currency,
       String refId,
+      String? coin,
       Map<String, dynamic> withdrawalDetails});
 }
 
@@ -85,6 +87,7 @@ class _$WithdrawalItemDTOCopyWithImpl<$Res, $Val extends WithdrawalItemDTO>
     Object? paymentMethod = null,
     Object? currency = null,
     Object? refId = null,
+    Object? coin = freezed,
     Object? withdrawalDetails = null,
   }) {
     return _then(_value.copyWith(
@@ -132,6 +135,10 @@ class _$WithdrawalItemDTOCopyWithImpl<$Res, $Val extends WithdrawalItemDTO>
           ? _value.refId
           : refId // ignore: cast_nullable_to_non_nullable
               as String,
+      coin: freezed == coin
+          ? _value.coin
+          : coin // ignore: cast_nullable_to_non_nullable
+              as String?,
       withdrawalDetails: null == withdrawalDetails
           ? _value.withdrawalDetails
           : withdrawalDetails // ignore: cast_nullable_to_non_nullable
@@ -160,6 +167,7 @@ abstract class _$$_WithdrawalItemDTOCopyWith<$Res>
       String paymentMethod,
       String currency,
       String refId,
+      String? coin,
       Map<String, dynamic> withdrawalDetails});
 }
 
@@ -185,6 +193,7 @@ class __$$_WithdrawalItemDTOCopyWithImpl<$Res>
     Object? paymentMethod = null,
     Object? currency = null,
     Object? refId = null,
+    Object? coin = freezed,
     Object? withdrawalDetails = null,
   }) {
     return _then(_$_WithdrawalItemDTO(
@@ -232,6 +241,10 @@ class __$$_WithdrawalItemDTOCopyWithImpl<$Res>
           ? _value.refId
           : refId // ignore: cast_nullable_to_non_nullable
               as String,
+      coin: freezed == coin
+          ? _value.coin
+          : coin // ignore: cast_nullable_to_non_nullable
+              as String?,
       withdrawalDetails: null == withdrawalDetails
           ? _value._withdrawalDetails
           : withdrawalDetails // ignore: cast_nullable_to_non_nullable
@@ -255,6 +268,7 @@ class _$_WithdrawalItemDTO extends _WithdrawalItemDTO {
       required this.paymentMethod,
       required this.currency,
       required this.refId,
+      this.coin,
       required final Map<String, dynamic> withdrawalDetails})
       : _withdrawalDetails = withdrawalDetails,
         super._();
@@ -284,6 +298,8 @@ class _$_WithdrawalItemDTO extends _WithdrawalItemDTO {
   final String currency;
   @override
   final String refId;
+  @override
+  final String? coin;
   final Map<String, dynamic> _withdrawalDetails;
   @override
   Map<String, dynamic> get withdrawalDetails {
@@ -295,7 +311,7 @@ class _$_WithdrawalItemDTO extends _WithdrawalItemDTO {
 
   @override
   String toString() {
-    return 'WithdrawalItemDTO(description: $description, amount: $amount, duration: $duration, roi: $roi, traxId: $traxId, uid: $uid, status: $status, createdat: $createdat, paymentMethod: $paymentMethod, currency: $currency, refId: $refId, withdrawalDetails: $withdrawalDetails)';
+    return 'WithdrawalItemDTO(description: $description, amount: $amount, duration: $duration, roi: $roi, traxId: $traxId, uid: $uid, status: $status, createdat: $createdat, paymentMethod: $paymentMethod, currency: $currency, refId: $refId, coin: $coin, withdrawalDetails: $withdrawalDetails)';
   }
 
   @override
@@ -319,6 +335,7 @@ class _$_WithdrawalItemDTO extends _WithdrawalItemDTO {
             (identical(other.currency, currency) ||
                 other.currency == currency) &&
             (identical(other.refId, refId) || other.refId == refId) &&
+            (identical(other.coin, coin) || other.coin == coin) &&
             const DeepCollectionEquality()
                 .equals(other._withdrawalDetails, _withdrawalDetails));
   }
@@ -338,6 +355,7 @@ class _$_WithdrawalItemDTO extends _WithdrawalItemDTO {
       paymentMethod,
       currency,
       refId,
+      coin,
       const DeepCollectionEquality().hash(_withdrawalDetails));
 
   @JsonKey(ignore: true)
@@ -368,6 +386,7 @@ abstract class _WithdrawalItemDTO extends WithdrawalItemDTO {
           required final String paymentMethod,
           required final String currency,
           required final String refId,
+          final String? coin,
           required final Map<String, dynamic> withdrawalDetails}) =
       _$_WithdrawalItemDTO;
   const _WithdrawalItemDTO._() : super._();
@@ -397,6 +416,8 @@ abstract class _WithdrawalItemDTO extends WithdrawalItemDTO {
   String get currency;
   @override
   String get refId;
+  @override
+  String? get coin;
   @override
   Map<String, dynamic> get withdrawalDetails;
   @override

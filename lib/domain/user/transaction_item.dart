@@ -17,6 +17,7 @@ abstract class TransactionItem implements _$TransactionItem {
     required String type,
     required int duration,
     required int roi,
+    String? coin
   }) = _TransactionItem;
 
   factory TransactionItem.initial() => TransactionItem(
@@ -29,6 +30,7 @@ abstract class TransactionItem implements _$TransactionItem {
         planName: '',
         status: '',
         paymentMethod: '',
+        coin: '',
         duration: 0,
         roi: 0
       );

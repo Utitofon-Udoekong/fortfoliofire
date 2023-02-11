@@ -56,13 +56,13 @@ class NotificationCubit extends Cubit<NotificationState> {
   }
 
   void selectNotification({required NotificationItem notificationItem}) {
-    final selectedNotifications = state.selectedNotifications;
+    final selectedNotifications = state.selectedNotifications.toList(growable: true);
     selectedNotifications.add(notificationItem);
     emit(state.copyWith(selectedNotifications: selectedNotifications));
   }
 
   void deSelectNotification({required NotificationItem notificationItem}) {
-    final selectedNotifications = state.selectedNotifications;
+    final selectedNotifications = state.selectedNotifications.toList(growable: true);
     final item = selectedNotifications
         .firstWhere((element) => element.id == notificationItem.id);
     selectedNotifications.remove(item);

@@ -19,6 +19,7 @@ _$_WithdrawalItemDTO _$$_WithdrawalItemDTOFromJson(Map<String, dynamic> json) =>
       paymentMethod: json['paymentMethod'] as String,
       currency: json['currency'] as String,
       refId: json['refId'] as String,
+      coin: json['coin'] as String?,
       withdrawalDetails: json['withdrawalDetails'] as Map<String, dynamic>,
     );
 
@@ -36,5 +37,6 @@ Map<String, dynamic> _$$_WithdrawalItemDTOToJson(
       'paymentMethod': instance.paymentMethod,
       'currency': instance.currency,
       'refId': instance.refId,
+      'coin': instance.coin,
       'withdrawalDetails': instance.withdrawalDetails,
     };

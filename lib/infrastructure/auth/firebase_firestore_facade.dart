@@ -100,6 +100,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
         type: "Investment",
         duration: investmentItem.duration,
         roi: investmentItem.roi,
+        coin: investmentItem.planName == "FortCrypto" ? investmentItem.coin: null
       );
       await createTransaction(transactionItem: transactionItem);
       NotificationItem notificationItem = NotificationItem(
@@ -137,6 +138,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
         type: "Withdrawal",
         duration: withdrawalItem.duration,
         roi: withdrawalItem.roi,
+        coin: withdrawalItem.description.replaceAll("withdrawal", "") == "FortCrypto" ? withdrawalItem.coin: null
       );
       await createTransaction(transactionItem: transactionItem);
       NotificationItem notificationItem = NotificationItem(
@@ -333,6 +335,7 @@ class FirebaseFirestoreFacade implements IFirestoreFacade {
       type: "Withdrawal",
       duration: withdrawalItem.duration,
       roi: withdrawalItem.roi,
+      coin: withdrawalItem.description.replaceAll("Investment Harvest", "") == "FortCrypto" ? withdrawalItem.coin: null
     );
     NotificationItem notificationItem = NotificationItem(
       id: withdrawalItem.traxId,

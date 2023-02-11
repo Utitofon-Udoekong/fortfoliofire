@@ -158,6 +158,7 @@ class DashboardTransactions extends StatelessWidget {
                                 currency: document.currency,
                                 type: document.type,
                                 screenshotController: screenshotController,
+                                coin: document.coin,
                                 ontap: () async {
                                   await screenshotController
                                       .capture(
@@ -202,7 +203,8 @@ class BuildTransactionTile extends StatelessWidget {
   final String currency;
   final ScreenshotController screenshotController;
   final Function() ontap;
-  const BuildTransactionTile({super.key, required this.title, required this.status, required this.amount, required this.type, required this.duration, required this.roi, required this.date, required this.id, required this.paymentMethod, required this.currency, required this.screenshotController, required this.ontap});
+  final String? coin;
+  const BuildTransactionTile({super.key, required this.title, required this.status, required this.amount, required this.type, required this.duration, required this.roi, required this.date, required this.id, required this.paymentMethod, required this.currency, required this.screenshotController, required this.ontap, this.coin});
 
   @override
   Widget build(BuildContext context) {
@@ -306,7 +308,7 @@ class BuildTransactionTile extends StatelessWidget {
                         height: 5,
                       ),
                       Text(
-                        "$currency$amount",
+                        "${paymentMethod == 'Crypto' ? coin : currency}$amount",
                         style:
                             titleText.copyWith(color: kBlackColor, fontSize: 15),
                       ),
@@ -460,7 +462,7 @@ class BuildTransactionTile extends StatelessWidget {
                     TextSpan(
                       children: [
                         TextSpan(
-                          text: currency,
+                          text: paymentMethod == 'Crypto' ? coin : currency,
                           style: nairaText.copyWith(
                               fontSize: 16,
                               color: status == "Successful"

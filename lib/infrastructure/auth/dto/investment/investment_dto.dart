@@ -40,6 +40,7 @@ abstract class InvestmentItemDTO implements _$InvestmentItemDTO {
       description: investmentItem.description,
       dueDate: investmentItem.dueDate,
       nextHarvestDate: investmentItem.nextHarvestDate,
+      bankAccountType: investmentItem.bankAccountType,
       duration: investmentItem.duration,
       paymentDate: investmentItem.paymentDate,
       planYield: investmentItem.planYield,
