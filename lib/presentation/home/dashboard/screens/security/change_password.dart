@@ -26,6 +26,7 @@ class ChangePassword extends StatelessWidget {
             listenWhen: (previous, current) => previous.success != current.success,
             listener: (context, state) {
               CustomSnackbar.showSnackBar(context, state.success, false);
+              context.router.pop();
             },
           ),
         ],

@@ -7,6 +7,7 @@ import 'package:fortfolio/domain/widgets/custom_snackbar.dart';
 import 'package:fortfolio/domain/widgets/loading_view.dart';
 import 'package:fortfolio/injection.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:fortfolio/presentation/routes/router.gr.dart';
 
 class ResetPassword extends StatelessWidget {
   const ResetPassword({Key? key}) : super(key: key);
@@ -21,6 +22,7 @@ class ResetPassword extends StatelessWidget {
               listenWhen: (p, c) => p.failure != c.failure && c.failure.isNotEmpty,
               listener: (context, state) {
                 CustomSnackbar.showSnackBar(context, state.failure, true);
+                context.router.replace(const SignInFormEmailRoute());
               },
             ),
             BlocListener<ResetPasswordCubit, ResetPasswordState>(
